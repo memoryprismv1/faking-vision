@@ -1,0 +1,69 @@
+COMPILED PROMPT — derived from FV_PACKET (Alice's Adventures in Wonderland, Ch. I excerpt)
+Target duration: ~60 seconds, single continuous scene.
+
+GLOBAL STYLE / PROJECT CONSTANTS
+Illustrative storybook realism. Soft daylight. 19th-century English countryside
+setting. (This style is a renderer default, not a source-confirmed detail —
+treat it as flexible.)
+
+GLOBAL IDENTITY LEDGER
+- A1: a girl/child figure. No described appearance — render a coherent, generic
+  child figure. Do NOT use any specific named illustration style, character
+  design, or branded likeness for "Alice." Do not add period clothing details
+  beyond what a generic coherent rendering requires.
+- R1: a white rabbit with pink eyes, wearing a waistcoat with a pocket. Capable
+  of upright movement and speech. Do not add a top hat, pocket-watch chain, or
+  any other prop beyond the single watch specified below.
+
+CLOSED OBJECT INVENTORY
+- A1 (see ledger)
+- R1 (see ledger), with two components:
+   - R1's waistcoat pocket
+   - R1's watch (plain — no specified color/material; do not invent an ornate
+     or branded design)
+- H1: a large opening in the ground under the hedge (the rabbit-hole)
+
+CLOSED BACKGROUND INVENTORY
+- An open field
+- A hedge at one edge of the field, with H1 located beneath it
+No other background objects (no additional animals, people, furniture, or
+structures). Do not populate the field with generic countryside props (flowers,
+fences, birds) not listed here.
+
+GLOBAL TEMPORAL RULES
+- A1 and R1 are each a single persistent identity throughout. Neither may be
+  duplicated. Do not show a second rabbit or a second child at any point.
+- When R1 and then A1 exit into H1, they are not deleted — the scene simply
+  ends with both off-screen inside the opening. Do not cut back to show them
+  still in the field afterward.
+
+SCENE S01 (0:00–1:00)
+BACKGROUND: open field with a hedge at the far side; H1 visible under the hedge.
+PRESENT ENTITIES AT START: A1 (seated), R1 (about to enter/entering frame at a run).
+POSITIONS: A1 is seated in the field, at a distance from the hedge. R1 runs
+close by A1 at the start.
+
+ACTION / STATE (in order):
+1. (0:00–0:06) R1 runs close by A1.
+2. (0:06–0:12) R1 speaks: "Oh dear! Oh dear! I shall be late!"
+3. (0:12–0:20) R1 takes the watch out of the waistcoat pocket and looks at it.
+4. (0:20–0:26) R1 hurries onward, picking up pace, moving toward the hedge/H1.
+5. (0:24–0:30) A1 rises to her feet (was seated, now standing).
+6. (0:30–0:45) A1 runs across the field, following R1, moving toward H1.
+7. (0:42–0:48) R1 reaches H1 and pops down into it — R1 goes off-screen into
+   the opening.
+8. (0:50–0:60) A1 reaches H1 and follows R1 down into it — A1 goes off-screen
+   into the opening.
+
+CAMERA / FRAMING: operator/renderer discretion — not specified by source.
+TRANSITION: none — single continuous scene, ends on both figures off-screen.
+LOCAL ENTITY CLOSURE: A1, R1, H1 only. No additional characters, animals, or
+props may be introduced at any point in this scene.
+
+FINAL CLOSED-WORLD ASSERTION
+No entities exist beyond A1, R1, H1, the field, and the hedge. No appearance
+detail beyond what is specified above may be treated as semantically
+meaningful (e.g., any incidental texture, shading, or background greenery the
+renderer produces to fill the frame is appearance only, not new inventory).
+Do not add dialogue, characters, or props not listed in this document, even if
+they would be conventional for a "storybook" or "Alice in Wonderland" scene.

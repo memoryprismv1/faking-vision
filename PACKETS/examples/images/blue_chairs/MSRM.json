@@ -1,0 +1,69 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {
+          "id": "TABLE_FOREGROUND_01",
+          "position": "foreground center"
+        },
+        {
+          "id": "CHAIR_FOREGROUND_01",
+          "position": "front-left of TABLE_FOREGROUND_01"
+        },
+        {
+          "id": "CHAIR_FOREGROUND_02",
+          "position": "rear-left of TABLE_FOREGROUND_01"
+        },
+        {
+          "id": "CHAIR_FOREGROUND_03",
+          "position": "rear-right of TABLE_FOREGROUND_01"
+        },
+        {
+          "id": "CHAIR_FOREGROUND_04",
+          "position": "front-right of TABLE_FOREGROUND_01"
+        },
+        {
+          "id": "TABLE_BACKGROUND_01",
+          "position": "behind TABLE_FOREGROUND_01 on raised platform"
+        },
+        {
+          "id": "TABLE_BACKGROUND_02",
+          "position": "behind TABLE_BACKGROUND_01 on raised platform"
+        },
+        {
+          "id": "CHAIRS_BACKGROUND_GROUP_01",
+          "position": "distributed around background tables"
+        },
+        {
+          "id": "CHAIRS_BACKGROUND_GROUP_02",
+          "position": "farther right/background"
+        },
+        {
+          "id": "PLATFORM_01",
+          "position": "behind foreground seating"
+        },
+        {
+          "id": "STEPS_01",
+          "position": "between foreground paving and PLATFORM_01"
+        },
+        {
+          "id": "PAVING_01",
+          "position": "foreground and lower scene"
+        },
+        {
+          "id": "POLE_01",
+          "position": "left edge"
+        },
+        {
+          "id": "POLE_02",
+          "position": "right side"
+        },
+        {
+          "id": "BUILDING_01",
+          "position": "background"
+        }
+      ]
+    }
+  ]
+}

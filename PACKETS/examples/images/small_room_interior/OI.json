@@ -1,0 +1,99 @@
+{
+  "entities": [
+    {
+      "canonical_id": "BED_01",
+      "category": "bed",
+      "properties": {
+        "appearance": "light-colored bed frame with mattress and rumpled patterned bedding",
+        "orientation": "long axis from lower foreground toward upper left"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PILLOW_01",
+      "category": "pillow",
+      "properties": {
+        "appearance": "light-colored pillow with dark linear pattern"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PILLOW_02",
+      "category": "pillow",
+      "properties": {
+        "appearance": "light-colored pillow with dark linear pattern"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "BEDSIDE_TABLE_01",
+      "category": "table",
+      "properties": {
+        "appearance": "small light-colored bedside table"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "LAMP_01",
+      "category": "lamp",
+      "properties": {
+        "appearance": "small light-colored lamp with rounded shade"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DARK_OBJECT_01",
+      "category": "unresolved object",
+      "properties": {
+        "appearance": "small dark rectangular object on the bedside table"
+      },
+      "components": [],
+      "uncertainty": [
+        "identity unresolved from the supplied image"
+      ]
+    },
+    {
+      "canonical_id": "WINDOW_01",
+      "category": "window",
+      "properties": {
+        "appearance": "vertical window with partially closed horizontal blinds"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "WALL_ART_01",
+      "category": "wall-mounted picture",
+      "properties": {
+        "appearance": "small dark-framed rectangular picture with pale figure-like graphic"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "RIGHT_SIDE_FURNITURE_01",
+      "category": "furniture",
+      "properties": {
+        "appearance": "partial light-colored furniture unit visible at right edge"
+      },
+      "components": [],
+      "uncertainty": [
+        "specific furniture identity is not resolved from the visible crop"
+      ]
+    },
+    {
+      "canonical_id": "SHOES_01",
+      "category": "pair of footwear",
+      "properties": {
+        "appearance": "dark footwear partly visible beneath the bed near the foreground"
+      },
+      "components": [],
+      "uncertainty": []
+    }
+  ]
+}

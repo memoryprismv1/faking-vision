@@ -1,0 +1,31 @@
+{
+  "experiment_id": "FV_OMNI_001",
+  "title": "Old MacDonald Had a Farm",
+  "target": "short nursery rhyme video",
+  "duration_seconds": 24,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "style": {
+    "render": "soft colorful 3D nursery animation",
+    "lighting": "warm sunny morning",
+    "palette": "bright natural colors",
+    "camera_language": "gentle cinematic children's animation"
+  },
+  "environment": {
+    "scene_name": "farm",
+    "weather": "clear sunny day",
+    "terrain": "green grass field",
+    "background": ["red barn", "wooden fence", "large oak tree", "small pond", "rolling hills", "blue sky with soft clouds"]
+  },
+  "objects": [
+    {"id":"CHAR_OLD_MACDONALD","type":"farmer","canonical_properties":{"age_group":"elderly","hat":"brown straw hat","shirt":"red plaid shirt","overalls":"blue denim","boots":"brown work boots","facial_hair":"white mustache"}},
+    {"id":"OBJ_BARN","type":"red wooden barn","canonical_properties":{"roof":"dark gray","double_doors":true}},
+    {"id":"OBJ_TREE","type":"large oak tree"},
+    {"id":"OBJ_FENCE","type":"wooden farm fence"},
+    {"id":"OBJ_POND","type":"small reflective pond"},
+    {"id":"ANIMAL_COW","type":"cow","canonical_properties":{"body":"black and white","size":"large"}},
+    {"id":"ANIMAL_DUCK","type":"duck","canonical_properties":{"body":"yellow","size":"small"}},
+    {"id":"ANIMAL_PIG","type":"pig","canonical_properties":{"body":"pink","size":"medium"}},
+    {"id":"ANIMAL_SHEEP","type":"sheep","canonical_properties":{"wool":"white fluffy"}}
+  ]
+}

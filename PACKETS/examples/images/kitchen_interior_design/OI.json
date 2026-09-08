@@ -1,0 +1,116 @@
+{
+  "entities": [
+    {
+      "canonical_id": "LEFT_CABINET_SET_01",
+      "category": "cabinetry",
+      "properties": {"appearance": "wooden upper and lower cabinetry at left side"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "UPPER_CABINET_CENTER_01",
+      "category": "cabinetry",
+      "properties": {"appearance": "wooden upper cabinet unit above the cooking area"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "UPPER_CABINET_RIGHT_01",
+      "category": "cabinetry",
+      "properties": {"appearance": "wooden upper cabinet unit at right"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "LOWER_CABINET_SET_01",
+      "category": "cabinetry",
+      "properties": {"appearance": "wooden lower cabinets and drawers beneath the counter"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "RANGE_01",
+      "category": "cooking range",
+      "properties": {"appearance": "large stainless-steel range with multiple burners and front controls"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "RANGE_HOOD_01",
+      "category": "range hood",
+      "properties": {"appearance": "large stainless-steel hood centered above RANGE_01"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "COUNTERTOP_01",
+      "category": "countertop",
+      "properties": {"appearance": "light stone-patterned countertop extending across the cooking area"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "BACKSPLASH_01",
+      "category": "backsplash",
+      "properties": {"appearance": "light rectangular stone tile surface behind the counter"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "WINDOW_01",
+      "category": "window",
+      "properties": {"appearance": "window at upper left behind the cabinetry area"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "OUTLET_01",
+      "category": "electrical outlet",
+      "properties": {"appearance": "white wall outlet on backsplash near center-left"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "OUTLET_02",
+      "category": "electrical outlet",
+      "properties": {"appearance": "white wall outlet on backsplash near center-right"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DECORATIVE_VASE_01",
+      "category": "decorative vessel",
+      "properties": {"appearance": "round multicolored decorative vessel on the right countertop"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "SMALL_VESSEL_01",
+      "category": "small vessel",
+      "properties": {"appearance": "small light-colored vessel beside DECORATIVE_VASE_01"},
+      "components": [],
+      "uncertainty": ["specific object identity unresolved"]
+    },
+    {
+      "canonical_id": "DISPLAY_OBJECT_01",
+      "category": "decorative display object",
+      "properties": {"appearance": "upright rectangular decorative object at far right of counter"},
+      "components": [],
+      "uncertainty": ["specific object identity unresolved"]
+    },
+    {
+      "canonical_id": "FLOWER_ARRANGEMENT_01",
+      "category": "plant/flower arrangement",
+      "properties": {"appearance": "tall flowering arrangement extending upward from foreground-left"},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FOREGROUND_PLANT_01",
+      "category": "plant",
+      "properties": {"appearance": "large leafy plant occupying the lower foreground"},
+      "components": [],
+      "uncertainty": []
+    }
+  ]
+}

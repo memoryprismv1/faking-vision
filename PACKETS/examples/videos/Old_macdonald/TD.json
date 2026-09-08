@@ -1,0 +1,12 @@
+{
+  "fps": 24,
+  "total_duration_seconds": 24,
+  "scenes": [
+    {"id":"scene_01","duration":5,"lyric_section":"Old MacDonald introduction + cow verse","entry":"fade in from white","transition_out":"gentle dissolve","temporal_changes":["Farmer waves once","Cow grazes and lifts head","Grass and tree move slightly in breeze"]},
+    {"id":"scene_02","duration":5,"lyric_section":"Duck verse","entry":"continue same farm without reset","transition_out":"straight cut","temporal_changes":["Camera pans toward pond","Duck waddles along pond edge","Farmer walks two slow steps"]},
+    {"id":"scene_03","duration":5,"lyric_section":"Pig verse","entry":"same environment persistent","transition_out":"gentle dissolve","temporal_changes":["Pig trots into foreground","Pig rolls once playfully","Other animals remain alive but secondary"]},
+    {"id":"scene_04","duration":5,"lyric_section":"Sheep verse","entry":"camera widens","transition_out":"straight cut","temporal_changes":["Sheep enters beside fence","Sheep turns head toward farmer","Camera slowly rises revealing full farm"]},
+    {"id":"scene_05","duration":4,"lyric_section":"Final E-I-E-I-O chorus","entry":"all animals assembled","transition_out":"fade out","temporal_changes":["Farmer raises arms","Animals vocalize in sequence","Camera slowly pulls back","End on complete farm tableau"]}
+  ],
+  "carryover":{"persistent_identity":["CHAR_OLD_MACDONALD","ANIMAL_COW","ANIMAL_DUCK","ANIMAL_PIG","ANIMAL_SHEEP"],"environment_persists":true,"lighting_constant":true}
+}

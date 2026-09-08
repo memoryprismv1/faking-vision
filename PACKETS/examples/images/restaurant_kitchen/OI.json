@@ -1,0 +1,130 @@
+{
+  "entities": [
+    {
+      "canonical_id": "FIGURE_01",
+      "category": "person/figure",
+      "properties": {
+        "appearance": "human figure at left wearing a light chef-style garment and blue-and-white head covering; facing away/sideways"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FIGURE_02",
+      "category": "person/figure",
+      "properties": {
+        "appearance": "human figure near center wearing a light chef-style garment and blue-and-white head covering; back toward camera"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "OVEN_STACK_01",
+      "category": "oven stack",
+      "properties": {
+        "appearance": "large vertical stack of multiple stainless-steel oven compartments at center-right"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "OVEN_01",
+      "category": "oven/cooking unit",
+      "properties": {
+        "appearance": "large dark cooking unit immediately left of OVEN_STACK_01"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DISH_STACK_01",
+      "category": "stack of dishes",
+      "properties": {
+        "appearance": "stacked dark plates/bowls on upper left shelving"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "SHELF_01",
+      "category": "shelf",
+      "properties": {
+        "appearance": "horizontal shelf supporting dish stacks and equipment"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "COUNTER_LEFT_01",
+      "category": "counter/work surface",
+      "properties": {
+        "appearance": "work surface extending along left and middle background"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "COUNTER_FOREGROUND_01",
+      "category": "counter/work surface",
+      "properties": {
+        "appearance": "foreground work surface across the lower image"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CONTAINER_01",
+      "category": "container",
+      "properties": {
+        "appearance": "small upright container near the left figure"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FOOD_CONTAINER_01",
+      "category": "food container",
+      "properties": {
+        "appearance": "light container/tray near lower center foreground"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FOOD_DISH_01",
+      "category": "dish of food",
+      "properties": {
+        "appearance": "bowl or plate containing visible food at lower right-center"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FOOD_TRAY_01",
+      "category": "food tray",
+      "properties": {
+        "appearance": "green tray or surface holding orange/red food at lower right"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "UTENSIL_01",
+      "category": "utensil/tool",
+      "properties": {
+        "appearance": "long blue-handled tool leaning at right side"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "WALL_01",
+      "category": "wall surface",
+      "properties": {
+        "appearance": "tiled wall forming the background"
+      },
+      "components": [],
+      "uncertainty": []
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {
+          "id": "FIGURE_01",
+          "position": "left side"
+        },
+        {
+          "id": "FIGURE_02",
+          "position": "center"
+        },
+        {
+          "id": "OVEN_STACK_01",
+          "position": "center-right"
+        },
+        {
+          "id": "OVEN_01",
+          "position": "left of OVEN_STACK_01"
+        },
+        {
+          "id": "DISH_STACK_01",
+          "position": "upper-left"
+        },
+        {
+          "id": "SHELF_01",
+          "position": "behind/above FIGURE_01 and FIGURE_02"
+        },
+        {
+          "id": "COUNTER_LEFT_01",
+          "position": "left and middle background"
+        },
+        {
+          "id": "COUNTER_FOREGROUND_01",
+          "position": "lower foreground"
+        },
+        {
+          "id": "CONTAINER_01",
+          "position": "near FIGURE_01"
+        },
+        {
+          "id": "FOOD_CONTAINER_01",
+          "position": "lower center"
+        },
+        {
+          "id": "FOOD_DISH_01",
+          "position": "lower right-center"
+        },
+        {
+          "id": "FOOD_TRAY_01",
+          "position": "lower right"
+        },
+        {
+          "id": "UTENSIL_01",
+          "position": "right side"
+        },
+        {
+          "id": "WALL_01",
+          "position": "background"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "entities": [
+    {
+      "canonical_id": "TABLETOP_01",
+      "category": "table/display surface",
+      "properties": {
+        "appearance": "long horizontal yellow-brown surface spanning most of the image; supported by vertical legs"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DISPLAY_CABINET_01",
+      "category": "cabinet/display unit",
+      "properties": {
+        "appearance": "large dark blue cabinet or display unit occupying the lower foreground"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "SIGN_01",
+      "category": "lettered sign",
+      "properties": {
+        "appearance": "light fabric or paper sign hanging at upper left area with visible handwritten lettering"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "BUST_01",
+      "category": "bust/sculptural object",
+      "properties": {
+        "appearance": "dark upright human-shaped bust or sculpture positioned on the tabletop near center"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "BOOK_01",
+      "category": "rectangular object",
+      "properties": {
+        "appearance": "light rectangular object lying on the tabletop left of the bust"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "TALL_OBJECT_01",
+      "category": "upright rectangular object",
+      "properties": {
+        "appearance": "dark upright rectangular object standing on the tabletop near center-right"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "LIGHT_01",
+      "category": "lamp/light fixture",
+      "properties": {
+        "appearance": "tall light-colored floor or standing lamp visible behind the tabletop toward right"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DISPLAY_OBJECT_01",
+      "category": "display object",
+      "properties": {
+        "appearance": "light rectangular/sloped object on the tabletop at right of center"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "DECORATIVE_OBJECT_01",
+      "category": "decorative object",
+      "properties": {
+        "appearance": "small colorful upright object near the right end of the tabletop"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PLANT_01",
+      "category": "plant",
+      "properties": {
+        "appearance": "leafy potted plant on the right side near the window"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PLANT_02",
+      "category": "plant",
+      "properties": {
+        "appearance": "smaller leafy plant near the center-right background"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "WINDOW_GROUP_01",
+      "category": "windows",
+      "properties": {
+        "appearance": "multiple large rectangular windows forming the upper background"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIR_01",
+      "category": "chair",
+      "properties": {
+        "appearance": "partial red chair visible at far left edge"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FLOOR_01",
+      "category": "floor",
+      "properties": {
+        "appearance": "gray floor surface visible beneath the foreground unit"
+      },
+      "components": [],
+      "uncertainty": []
+    }
+  ]
+}

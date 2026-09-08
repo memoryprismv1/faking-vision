@@ -1,0 +1,59 @@
+{
+  "entities": [
+    {
+      "canonical_id": "A1",
+      "category": "girl, child figure",
+      "properties": {
+        "appearance": "unspecified in source excerpt",
+        "initial_posture": "seated (inferred from 'started to her feet')",
+        "seating_surface": "unresolved — not named in this excerpt"
+      },
+      "components": [],
+      "behaviour_sequence_ref": "TD:A1",
+      "uncertainty": [
+        "appearance not described by source",
+        "seating surface not described by source"
+      ]
+    },
+    {
+      "canonical_id": "R1",
+      "category": "rabbit (White Rabbit), anthropomorphic to the extent stated",
+      "properties": {
+        "eye_color": "pink (stated)",
+        "clothing": "waistcoat with pocket (stated)",
+        "capability": "speaks aloud (stated: 'Oh dear! Oh dear! I shall be late!')",
+        "initial_state": "running"
+      },
+      "components": [
+        {
+          "component_id": "R1-waistcoat_pocket",
+          "description": "pocket of R1's waistcoat; source of the watch"
+        },
+        {
+          "component_id": "R1-watch",
+          "description": "watch, held/extracted from waistcoat pocket, appearance unspecified"
+        }
+      ],
+      "behaviour_sequence_ref": "TD:R1",
+      "uncertainty": [
+        "watch material/color not described by source",
+        "degree of anthropomorphism (bipedal vs. quadrupedal gait) not described by source — left to renderer as coherent, non-invented realization"
+      ]
+    },
+    {
+      "canonical_id": "H1",
+      "category": "environmental opening (rabbit-hole)",
+      "properties": {
+        "size": "large (stated)",
+        "location": "under the hedge (stated)"
+      },
+      "components": [],
+      "note": "Background-adjacent but plot-critical: both A1 and R1 pass through it. Declared as its own entity per spec section 11 (separately important semantic component of the background).",
+      "uncertainty": []
+    }
+  ],
+  "background_inventory": {
+    "field": "stated — open field, otherwise unspecified",
+    "hedge": "stated — location of H1, otherwise unspecified"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "scene_01": {
+    "objects_present": ["CHAR_OLD_MACDONALD","OBJ_BARN","OBJ_TREE","OBJ_FENCE","OBJ_POND","ANIMAL_COW"],
+    "states": {
+      "CHAR_OLD_MACDONALD":{"current_state":"standing happily","behaviour":"waves toward camera"},
+      "ANIMAL_COW":{"current_state":"standing and grazing","behaviour":"occasionally lifts head"}
+    }
+  },
+  "scene_02": {
+    "objects_present": ["CHAR_OLD_MACDONALD","OBJ_BARN","OBJ_TREE","OBJ_FENCE","OBJ_POND","ANIMAL_COW","ANIMAL_DUCK"],
+    "states": {
+      "CHAR_OLD_MACDONALD":{"current_state":"walking slowly"},
+      "ANIMAL_DUCK":{"current_state":"walking beside pond","behaviour":"gentle waddling"}
+    }
+  },
+  "scene_03": {
+    "objects_present": ["CHAR_OLD_MACDONALD","OBJ_BARN","OBJ_TREE","OBJ_FENCE","OBJ_POND","ANIMAL_COW","ANIMAL_DUCK","ANIMAL_PIG"],
+    "states": {"ANIMAL_PIG":{"current_state":"rolling happily in clean grass"}}
+  },
+  "scene_04": {
+    "objects_present": ["CHAR_OLD_MACDONALD","OBJ_BARN","OBJ_TREE","OBJ_FENCE","OBJ_POND","ANIMAL_COW","ANIMAL_DUCK","ANIMAL_PIG","ANIMAL_SHEEP"],
+    "states": {"ANIMAL_SHEEP":{"current_state":"standing near fence","behaviour":"gentle head movement"}}
+  },
+  "scene_05": {
+    "objects_present": ["CHAR_OLD_MACDONALD","OBJ_BARN","OBJ_TREE","OBJ_FENCE","OBJ_POND","ANIMAL_COW","ANIMAL_DUCK","ANIMAL_PIG","ANIMAL_SHEEP"],
+    "states": {
+      "CHAR_OLD_MACDONALD":{"current_state":"laughing","behaviour":"raises both arms joyfully"},
+      "ANIMAL_COW":{"behaviour":"happy moo"},
+      "ANIMAL_DUCK":{"behaviour":"happy quack"},
+      "ANIMAL_PIG":{"behaviour":"happy oink"},
+      "ANIMAL_SHEEP":{"behaviour":"happy baa"}
+    }
+  }
+}

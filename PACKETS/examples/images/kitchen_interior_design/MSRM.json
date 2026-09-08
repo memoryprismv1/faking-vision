@@ -1,0 +1,25 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {"id": "LEFT_CABINET_SET_01", "position": "left side of scene, surrounding the left counter area"},
+        {"id": "UPPER_CABINET_CENTER_01", "position": "above and behind RANGE_HOOD_01"},
+        {"id": "UPPER_CABINET_RIGHT_01", "position": "upper right side of scene"},
+        {"id": "LOWER_CABINET_SET_01", "position": "below COUNTERTOP_01 across the lower kitchen wall"},
+        {"id": "RANGE_01", "position": "central lower scene"},
+        {"id": "RANGE_HOOD_01", "position": "above RANGE_01"},
+        {"id": "COUNTERTOP_01", "position": "horizontal surface spanning the cooking area"},
+        {"id": "BACKSPLASH_01", "position": "behind COUNTERTOP_01 and RANGE_01"},
+        {"id": "WINDOW_01", "position": "upper left area behind/adjacent to cabinetry"},
+        {"id": "OUTLET_01", "position": "on BACKSPLASH_01 left of RANGE_01"},
+        {"id": "OUTLET_02", "position": "on BACKSPLASH_01 right of RANGE_01"},
+        {"id": "DECORATIVE_VASE_01", "position": "on COUNTERTOP_01 right of RANGE_01"},
+        {"id": "SMALL_VESSEL_01", "position": "on COUNTERTOP_01 immediately beside DECORATIVE_VASE_01"},
+        {"id": "DISPLAY_OBJECT_01", "position": "on COUNTERTOP_01 at far right"},
+        {"id": "FLOWER_ARRANGEMENT_01", "position": "foreground-left, extending upward across the counter/range area"},
+        {"id": "FOREGROUND_PLANT_01", "position": "lower foreground, in front of the kitchen cabinetry and range"}
+      ]
+    }
+  ]
+}

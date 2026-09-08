@@ -1,0 +1,55 @@
+{
+  "timeline": [
+    {
+      "scene_id": "S01",
+      "start": 0,
+      "end": 60,
+      "visible_at_start": ["A1", "R1"],
+      "off_screen_at_start": [],
+      "changes": [
+        {
+          "t": [0, 6],
+          "id": "R1",
+          "change": "runs close by A1 (entry into scene at close range)"
+        },
+        {
+          "t": [6, 12],
+          "id": "R1",
+          "change": "speaks: 'Oh dear! Oh dear! I shall be late!'"
+        },
+        {
+          "t": [12, 20],
+          "id": "R1",
+          "change": "extracts watch from R1-waistcoat_pocket (R1-watch becomes visible in hand/paw), looks at it"
+        },
+        {
+          "t": [20, 26],
+          "id": "R1",
+          "change": "hurries on — pace increases, moves away from A1 toward H1"
+        },
+        {
+          "t": [24, 30],
+          "id": "A1",
+          "change": "state change: seated -> standing ('started to her feet')"
+        },
+        {
+          "t": [30, 45],
+          "id": "A1",
+          "change": "runs across the field, pursuing R1, moving toward H1"
+        },
+        {
+          "t": [42, 48],
+          "id": "R1",
+          "change": "reaches H1 and enters it ('pop down a large rabbit-hole') — R1 transitions to off_screen, state='entered H1'; identity persists, not deleted"
+        },
+        {
+          "t": [50, 60],
+          "id": "A1",
+          "change": "reaches H1 and follows R1 in ('down went Alice after it') — A1 transitions to off_screen, state='entered H1'; identity persists, not deleted"
+        }
+      ],
+      "off_screen_at_end": ["A1", "R1"],
+      "note": "Excerpt ends here per README — no tunnel-interior scene is authorized by this packet."
+    }
+  ]
+}

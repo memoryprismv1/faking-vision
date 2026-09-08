@@ -1,0 +1,84 @@
+{
+  "project_id": "FV_MOVIE_002",
+  "title": "A Trip to the Moon \u2014 condensed FV reconstruction",
+  "source": {
+    "work": "Le Voyage dans la Lune / A Trip to the Moon",
+    "year": 1902,
+    "director": "Georges M\u00e9li\u00e8s",
+    "rights": "Underlying 1902 film is public domain."
+  },
+  "target": {
+    "duration_seconds": 54,
+    "aspect_ratio": "16:9",
+    "style": "theatrical early-cinema fantasy; painted stage sets; whimsical M\u00e9li\u00e8s-like staging"
+  },
+  "inventory": [
+    [
+      "CHAR_ASTRONOMER_LEAD",
+      "character",
+      "middle-aged theatrical astronomer; dark academic costume; tall pale hat",
+      true
+    ],
+    [
+      "CHAR_ASTRONOMER_02",
+      "character",
+      "second astronomer; dark academic costume; pale hat",
+      true
+    ],
+    [
+      "CHAR_ASTRONOMER_03",
+      "character",
+      "third astronomer; dark academic costume; pale hat",
+      true
+    ],
+    [
+      "OBJ_CANNON",
+      "object",
+      "large ornate cannon on theatrical launch platform",
+      true
+    ],
+    [
+      "OBJ_CAPSULE",
+      "object",
+      "small pointed metallic projectile capsule",
+      true
+    ],
+    [
+      "BG_OBSERVATORY",
+      "background",
+      "ornate astronomical workshop/observatory interior",
+      true
+    ],
+    [
+      "BG_LAUNCH_STAGE",
+      "background",
+      "theatrical launch platform and dark painted backdrop",
+      true
+    ],
+    [
+      "BG_MOON_SURFACE",
+      "background",
+      "fantastical lunar landscape; pale cratered ground; starry sky",
+      true
+    ],
+    [
+      "BG_MUSHROOM_GROTTO",
+      "background",
+      "underground lunar cavern with oversized stylized mushrooms",
+      true
+    ],
+    [
+      "BG_SELENITE_COURT",
+      "background",
+      "fantastical lunar court/cavern interior with raised platform",
+      true
+    ],
+    [
+      "BG_EARTH_RETURN",
+      "background",
+      "stylized ocean/horizon return tableau",
+      true
+    ]
+  ],
+  "closed_inventory_rule": "No additional semantic objects, characters, props, plants, rocks, architecture or decorative entities may be introduced."
+}

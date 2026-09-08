@@ -1,0 +1,19 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {"id": "BED_01", "position": "dominant central foreground-to-background object"},
+        {"id": "PILLOW_01", "position": "on BED_01 at the head end"},
+        {"id": "PILLOW_02", "position": "on BED_01 at the head end, adjacent to PILLOW_01"},
+        {"id": "BEDSIDE_TABLE_01", "position": "left of BED_01 near the head end"},
+        {"id": "LAMP_01", "position": "on BEDSIDE_TABLE_01"},
+        {"id": "DARK_OBJECT_01", "position": "on BEDSIDE_TABLE_01, adjacent to LAMP_01"},
+        {"id": "WINDOW_01", "position": "behind and to the right of the head portion of BED_01"},
+        {"id": "WALL_ART_01", "position": "on the wall above and to the right of WINDOW_01"},
+        {"id": "RIGHT_SIDE_FURNITURE_01", "position": "at the right image edge, foreground of WINDOW_01"},
+        {"id": "SHOES_01", "position": "partly underneath BED_01 near the foreground foot area"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "start": 0,
+      "end": 9,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "center, addressing others"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "left of lead"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "right of lead"
+        },
+        {
+          "id": "BG_OBSERVATORY",
+          "state": "static"
+        }
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "start": 9,
+      "end": 18,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "inspecting cannon"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "beside cannon"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "beside cannon"
+        },
+        {
+          "id": "OBJ_CANNON",
+          "state": "fixed on platform"
+        },
+        {
+          "id": "OBJ_CAPSULE",
+          "state": "before cannon"
+        },
+        {
+          "id": "BG_LAUNCH_STAGE",
+          "state": "static"
+        }
+      ]
+    },
+    {
+      "scene_id": "S03",
+      "start": 18,
+      "end": 27,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "beside landed capsule"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "behind lead"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "behind lead"
+        },
+        {
+          "id": "OBJ_CAPSULE",
+          "state": "landed left of lead"
+        },
+        {
+          "id": "BG_MOON_SURFACE",
+          "state": "static"
+        }
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "start": 27,
+      "end": 36,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "walking through cavern"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "following"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "following"
+        },
+        {
+          "id": "OBJ_CAPSULE",
+          "state": "off-screen; persists"
+        },
+        {
+          "id": "BG_MUSHROOM_GROTTO",
+          "state": "static"
+        }
+      ]
+    },
+    {
+      "scene_id": "S05",
+      "start": 36,
+      "end": 45,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "on raised court area"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "behind lead"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "behind lead"
+        },
+        {
+          "id": "OBJ_CAPSULE",
+          "state": "off-screen; persists"
+        },
+        {
+          "id": "BG_SELENITE_COURT",
+          "state": "static"
+        }
+      ]
+    },
+    {
+      "scene_id": "S06",
+      "start": 45,
+      "end": 54,
+      "members": [
+        {
+          "id": "CHAR_ASTRONOMER_LEAD",
+          "state": "beside capsule; raises arm"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_02",
+          "state": "beside lead"
+        },
+        {
+          "id": "CHAR_ASTRONOMER_03",
+          "state": "beside lead"
+        },
+        {
+          "id": "OBJ_CAPSULE",
+          "state": "recovered beside lead"
+        },
+        {
+          "id": "BG_EARTH_RETURN",
+          "state": "static"
+        }
+      ]
+    }
+  ]
+}

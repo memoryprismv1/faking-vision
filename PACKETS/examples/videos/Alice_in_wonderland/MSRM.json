@@ -1,0 +1,27 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "background": "field, with a hedge at one edge; H1 located under the hedge",
+      "entities": [
+        {
+          "id": "A1",
+          "position": "seated, within the field, at a distance from the hedge (exact distance unspecified)"
+        },
+        {
+          "id": "R1",
+          "position": "runs close by A1 at scene start; position moves toward the hedge/H1 over the scene (see TD)"
+        },
+        {
+          "id": "H1",
+          "position": "under the hedge, at the far side of the field relative to A1's starting position"
+        }
+      ],
+      "relationships": [
+        "R1 passes near A1 at close range at scene start (stated: 'ran close by her')",
+        "H1 is positioned at/under the hedge, which bounds the field (stated: 'under the hedge')",
+        "A1's path of pursuit terminates at H1 (stated: 'ran across the field after it')"
+      ]
+    }
+  ]
+}

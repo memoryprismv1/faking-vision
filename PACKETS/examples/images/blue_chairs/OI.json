@@ -1,0 +1,139 @@
+{
+  "entities": [
+    {
+      "canonical_id": "TABLE_FOREGROUND_01",
+      "category": "table",
+      "properties": {
+        "appearance": "square light-blue metal table in foreground"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIR_FOREGROUND_01",
+      "category": "chair",
+      "properties": {
+        "appearance": "light-blue metal chair at front-left of foreground table"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIR_FOREGROUND_02",
+      "category": "chair",
+      "properties": {
+        "appearance": "light-blue metal chair at rear-left of foreground table"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIR_FOREGROUND_03",
+      "category": "chair",
+      "properties": {
+        "appearance": "light-blue metal chair at rear-right of foreground table"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIR_FOREGROUND_04",
+      "category": "chair",
+      "properties": {
+        "appearance": "light-blue metal chair at front-right of foreground table"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "TABLE_BACKGROUND_01",
+      "category": "table",
+      "properties": {
+        "appearance": "table within the repeated seating area on raised platform"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "TABLE_BACKGROUND_02",
+      "category": "table",
+      "properties": {
+        "appearance": "another table within the repeated seating area on raised platform"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIRS_BACKGROUND_GROUP_01",
+      "category": "chairs",
+      "properties": {
+        "appearance": "multiple light-blue chairs distributed around background tables"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CHAIRS_BACKGROUND_GROUP_02",
+      "category": "chairs",
+      "properties": {
+        "appearance": "multiple darker chairs distributed farther right/background"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PLATFORM_01",
+      "category": "raised platform",
+      "properties": {
+        "appearance": "wooden raised seating platform behind foreground seating"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "STEPS_01",
+      "category": "steps",
+      "properties": {
+        "appearance": "wooden steps connecting lower brick paving to raised platform"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PAVING_01",
+      "category": "ground surface",
+      "properties": {
+        "appearance": "brick paving across foreground and lower scene"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "POLE_01",
+      "category": "vertical pole",
+      "properties": {
+        "appearance": "light-colored vertical pole at left side"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "POLE_02",
+      "category": "vertical pole",
+      "properties": {
+        "appearance": "light-colored vertical pole at right side"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "BUILDING_01",
+      "category": "building structure",
+      "properties": {
+        "appearance": "dark/glass building edge forming background"
+      },
+      "components": [],
+      "uncertainty": []
+    }
+  ]
+}

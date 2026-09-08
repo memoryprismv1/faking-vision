@@ -1,0 +1,47 @@
+{
+  "duration_seconds": 54,
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "start": 0,
+      "end": 9,
+      "transition": "hard theatrical cut"
+    },
+    {
+      "scene_id": "S02",
+      "start": 9,
+      "end": 18,
+      "transition": "hard theatrical cut"
+    },
+    {
+      "scene_id": "S03",
+      "start": 18,
+      "end": 27,
+      "transition": "hard theatrical cut"
+    },
+    {
+      "scene_id": "S04",
+      "start": 27,
+      "end": 36,
+      "transition": "hard theatrical cut"
+    },
+    {
+      "scene_id": "S05",
+      "start": 36,
+      "end": 45,
+      "transition": "hard theatrical cut"
+    },
+    {
+      "scene_id": "S06",
+      "start": 45,
+      "end": 54,
+      "transition": "hard theatrical cut"
+    }
+  ],
+  "identity_rules": [
+    "Each of the three astronomers remains one persistent identity across all six scenes.",
+    "OBJ_CAPSULE remains one identity; off-screen in S04/S05 is not deletion.",
+    "OBJ_CANNON is present only in S02.",
+    "Scene changes do not reset persistent identities."
+  ]
+}

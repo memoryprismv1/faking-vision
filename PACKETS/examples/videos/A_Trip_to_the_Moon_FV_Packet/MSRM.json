@@ -1,0 +1,135 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "camera": "wide static",
+      "relations": [
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "center_of",
+          "BG_OBSERVATORY"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "left_of",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "right_of",
+          "CHAR_ASTRONOMER_LEAD"
+        ]
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "camera": "wide static",
+      "relations": [
+        [
+          "OBJ_CANNON",
+          "center_of",
+          "BG_LAUNCH_STAGE"
+        ],
+        [
+          "OBJ_CAPSULE",
+          "in_front_of",
+          "OBJ_CANNON"
+        ],
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "left_of",
+          "OBJ_CANNON"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "right_of",
+          "OBJ_CANNON"
+        ]
+      ]
+    },
+    {
+      "scene_id": "S03",
+      "camera": "wide static",
+      "relations": [
+        [
+          "OBJ_CAPSULE",
+          "left_of",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "behind",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "behind",
+          "CHAR_ASTRONOMER_LEAD"
+        ]
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "camera": "wide slow lateral",
+      "relations": [
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "center_of",
+          "BG_MUSHROOM_GROTTO"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "behind",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "behind",
+          "CHAR_ASTRONOMER_02"
+        ]
+      ]
+    },
+    {
+      "scene_id": "S05",
+      "camera": "wide static",
+      "relations": [
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "center_of",
+          "BG_SELENITE_COURT"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "behind",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "behind",
+          "CHAR_ASTRONOMER_LEAD"
+        ]
+      ]
+    },
+    {
+      "scene_id": "S06",
+      "camera": "wide static",
+      "relations": [
+        [
+          "OBJ_CAPSULE",
+          "beside",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_02",
+          "left_of",
+          "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "right_of",
+          "CHAR_ASTRONOMER_LEAD"
+        ]
+      ]
+    }
+  ]
+}

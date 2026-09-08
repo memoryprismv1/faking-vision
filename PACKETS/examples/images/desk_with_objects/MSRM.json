@@ -1,0 +1,65 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {
+          "id": "TABLETOP_01",
+          "position": "upper-middle foreground"
+        },
+        {
+          "id": "DISPLAY_CABINET_01",
+          "position": "lower foreground"
+        },
+        {
+          "id": "SIGN_01",
+          "position": "upper-left"
+        },
+        {
+          "id": "BUST_01",
+          "position": "upper-middle"
+        },
+        {
+          "id": "BOOK_01",
+          "position": "left of BUST_01"
+        },
+        {
+          "id": "TALL_OBJECT_01",
+          "position": "right of BUST_01"
+        },
+        {
+          "id": "LIGHT_01",
+          "position": "upper-right"
+        },
+        {
+          "id": "DISPLAY_OBJECT_01",
+          "position": "right of center on TABLETOP_01"
+        },
+        {
+          "id": "DECORATIVE_OBJECT_01",
+          "position": "far right on TABLETOP_01"
+        },
+        {
+          "id": "PLANT_01",
+          "position": "right background"
+        },
+        {
+          "id": "PLANT_02",
+          "position": "center-right background"
+        },
+        {
+          "id": "WINDOW_GROUP_01",
+          "position": "upper background"
+        },
+        {
+          "id": "CHAIR_01",
+          "position": "far left edge"
+        },
+        {
+          "id": "FLOOR_01",
+          "position": "lower background"
+        }
+      ]
+    }
+  ]
+}
