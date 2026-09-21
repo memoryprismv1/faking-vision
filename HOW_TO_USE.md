@@ -1,5 +1,7 @@
 # How to Use Faking Vision
 
+**v0.21 update:** transcript claims may trigger targeted sampling before visual support is established; transcript fidelity and cross-modal visual support are assessed separately.
+
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
 it.
@@ -8,7 +10,7 @@ it.
 
 Give the AI the source image together with:
 
-`SPECIFICATION/FV_Working_Process_Specification_v0.19.docx`
+`SPECIFICATION/FV_Working_Process_Specification.docx`
 
 The image-analysis path is:
 
@@ -35,7 +37,7 @@ or be explicitly represented as inference/uncertainty.
 
 Give the AI the source video together with:
 
-`SPECIFICATION/FV_Working_Process_Specification_v0.19.docx`
+`SPECIFICATION/FV_Working_Process_Specification.docx`
 
 The video path uses:
 
@@ -63,6 +65,20 @@ Video analysis should:
 7.  Record entry/exit and state/behaviour changes.
 8.  Promote evidence-supported temporal statements into **TD**.
 9.  Preserve richer provisional investigation in **TIR** when needed.
+
+### Audio-assisted temporal analysis
+
+When audio is intentionally included:
+
+1. Generate the timestamped transcript early, before the initial temporary TIR/TD investigation.
+2. Keep the transcript as a provisional variable; it is not source truth.
+3. Use transcript segments as additional cues for adaptive sampling.
+4. Test the transcript against the source audio and the independently observed visual evidence.
+5. Track transcription fidelity, cross-modal visual support, unresolved content, and timing/context mismatch cumulatively.
+6. Do not discard the transcript channel because of a small number of apparent errors.
+7. If a transcript claim identifies a potential gap, sample the relevant time/interval even if the claim is not yet visually supported, then update TIR.
+8. Promote only source-supported results into TD.
+9. If commentary does not match the current scene, preserve the discrepancy rather than assuming it is false, satirical, fabricated, or intentionally misleading.
 
 ### TIR versus TD
 

@@ -1,6 +1,6 @@
 # Faking Vision
 
-**Working Process Specification / Additional Guidance — v0.19**
+**Working Process Specification / Additional Guidance — v0.20**
 
 ## Image Analysis Manual for the AI Team
 
@@ -786,6 +786,25 @@ pass as independently authoritative. Their observations are evidence that is
 combined in TIR.
 
 
+### 17.18.13 Audio-assisted adaptive sampling
+
+When the source video contains intentionally included audio, the AI may generate a timestamped transcript before beginning the initial temporary temporal investigation.
+
+Treat the transcript as a **provisional sampling variable**, not as committed evidence. It can identify candidate times, events, actions, or relationships that may deserve additional visual sampling.
+
+During TIR construction, test transcript claims against the source audio and the independently acquired visual observations. Maintain cumulative outcomes so that a few incorrect transcript interpretations do not cause the entire audio channel to be discarded.
+
+Record at least:
+
+- **transcription fidelity** — whether the transcript accurately represents the source audio;
+- **cross-modal support** — whether a narrated claim corresponds to the visual evidence;
+- unresolved or ambiguous transcript content;
+- commentary whose timing/context does not correspond to the currently observed scene.
+
+If a transcript claim identifies a potential gap in the current temporal representation, use its location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. The claim does not need to be visually supported yet. Acquire the additional source observation, update TIR, and promote only source-supported temporal statements into TD.
+
+Do not assume that commentary is synchronized scene-by-scene. A statement may describe an earlier or later event, an off-screen event, or a broader interpretation of the sequence. Do not resolve such a mismatch as false, satire, fabrication, or intent without evidence.
+
 ### 17.18.13 Selected-frame FV image analysis
 
 Every source frame that FV actually captures or retains as an evidence observation **must undergo the default FV image-analysis procedure**. Temporal sampling determines which source frames are acquired as evidence; it does not replace image analysis of those frames with mere frame retention.
@@ -965,6 +984,27 @@ The current state file should remain small when possible. A long investigation m
 
 When audio is intentionally included in a video packet, preserve the **audio file and its transcript together as source-derived evidence**. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
 
+### Audio-assisted temporal analysis
+
+Generate the timestamped transcript **before the initial temporary TIR/TD temporal investigation** and keep it as a provisional analysis variable.
+
+The transcript may be used during adaptive temporal sampling as an additional cue. A transcript segment can point the investigation toward a time or interval that deserves visual inspection because the initial temporal observations may not yet contain the relevant event.
+
+The transcript is **not authoritative**. The temporal investigation must independently test it against the source audio and the visual evidence.
+
+TIR should maintain a cumulative assessment of the transcript/audio channel rather than a binary keep/discard decision. At minimum distinguish:
+
+- supported transcript content;
+- contradicted transcript content;
+- unresolved or ambiguous transcript content;
+- audio-supported commentary that does not correspond scene-by-scene with the current visual interval.
+
+A small number of transcript errors or apparent mismatches does not automatically invalidate the transcript as a useful information channel. Continue testing the channel and use transcript claims as candidate sampling cues to locate potential gaps in the current TIR/TD.
+
+A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Therefore, a mismatch with the current visual interval is not by itself evidence that the commentary is false, satirical, fabricated, or intentionally misleading. Preserve the discrepancy and uncertainty unless source evidence resolves it.
+
+When a transcript-supported claim reveals a gap in the current temporal representation, perform additional sampling at the relevant location. Add the resulting evidence to TIR and promote the corresponding statement into TD only when the retained source evidence supports it.
+
 Use an optional packet-level `audio/` directory:
 
 ```text
@@ -981,7 +1021,7 @@ Audio and visual evidence are separate evidence streams. A transcript may inform
 
 `AUDIO_COMPANION.txt` may continue to provide human-readable audio notes, but it does not replace the audio file or `transcript.json` when a transcript is intentionally included.
 
-When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable.
+When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable, and that TIR records the transcript assessment and material discrepancies.
 
 ## 19. Snapshots
 
@@ -1061,6 +1101,19 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
 - Added support for highlighted analytical object snapshots while preserving the original source evidence separately.
 - Added explicit filesystem discipline requiring operator permission before creating unlisted folders.
 
+
+### Change log — v0.21
+
+- Clarified that transcript claims may identify potential gaps and trigger adaptive sampling before the claims are visually supported.
+- Separated transcription fidelity from cross-modal visual support in cumulative audio/transcript assessment.
+
+### Change log — v0.20
+
+- Defined transcript generation as an early provisional analysis step before the initial temporary TIR/TD temporal investigation.
+- Defined the transcript as an adaptive-sampling cue rather than a source-of-truth record.
+- Added cumulative transcript/channel assessment so isolated errors do not automatically invalidate otherwise useful audio information.
+- Added distinction between transcript errors, unresolved content, and commentary that is temporally or contextually displaced from the current visual scene.
+- Clarified that transcript-supported gaps may trigger targeted adaptive sampling and that only source-supported results are promoted into TD.
 
 ### Change log — v0.19
 
