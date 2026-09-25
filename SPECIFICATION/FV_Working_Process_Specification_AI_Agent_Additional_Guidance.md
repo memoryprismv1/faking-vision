@@ -1,6 +1,6 @@
 # Faking Vision
 
-**Working Process Specification / Additional Guidance — v0.22**
+**Working Process Specification / Additional Guidance — v0.23**
 
 ## Image Analysis Manual for the AI Team
 
@@ -107,6 +107,40 @@ objects.
 
 Do not assume the most visually obvious object is necessarily the most
 important object.
+
+## 5.1 Component-driven candidature and verification
+
+When whole-object identity is uncertain, use visible components to generate and refine object candidature rather than waiting for a complete-object view.
+
+The operational sequence is:
+
+**component → candidate set → targeted search for expected components/relationships → candidate verification or rejection**
+
+A component is evidence, not an identity. One component may support multiple candidates. Preserve the candidate set that is actually supported by the evidence.
+
+For each component-driven candidature, record:
+
+- the observed component and its source location;
+- candidate objects supported by that component and current context;
+- additional components or spatial/structural relationships that would distinguish the candidates;
+- which expected components/relationships were searched for;
+- what was actually observed;
+- whether each candidate was strengthened, weakened, rejected, or left unresolved;
+- the evidence supporting the decision.
+
+Once candidature exists, search should become **discriminating**, not merely confirmatory. Ask what additional observation would separate the candidates. Where practical, inspect for evidence that could weaken or reject the current leading candidate as well as evidence that could support it.
+
+Do not treat a missing component as negative evidence unless the inspected view should have exposed it. Occlusion, crop, blur, scale, and viewpoint can make an expected component unobservable.
+
+Do not use a later whole-object recognition to rewrite the earlier investigation. Preserve the forward evidence path: what was visible then, what candidates were possible then, what was searched for, and what new evidence changed the candidature.
+
+For video, emergence, disappearance, movement, or interaction of a diagnostic component may justify adaptive temporal sampling or behaviour-triggered component tracking when it materially affects candidature, identity, relationships, reconstruction fidelity, or uncertainty.
+
+### Component confusion-set example
+
+A useful experiment deliberately presents visually similar objects whose global appearance is insufficient for reliable identification. A fruit set can contain **peach, strawberry, raspberry, blackberry, and blueberry**. The analysis should not begin by assigning those names. It should first record visible body shape, surface structure, aggregate-unit structure, calyx/stem structures, flesh/skin relationships where exposed, and other observable components. Candidate names may then be generated and distinguished by searching for components that separate the alternatives.
+
+The ground-truth object name is evaluation information; it is not source evidence available to the blind analysis.
 
 ## 6. Multiple Promotion Passes
 
@@ -1214,3 +1248,12 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
 - Added operational incongruity as expectation/observation mismatch that can trigger additional investigation.
 - Added explicit external task objectives as a separate source of sampling priority, without allowing the objective to become evidence.
 - Clarified the separation between CP/CCP, EY, change-generator relationships, and task objectives.
+
+
+### Change log — v0.23
+
+- Added component-driven candidature and verification: **component → candidate set → targeted search for expected components/relationships → verification or rejection**.
+- Clarified that a component is evidence, not an object identity, and may support multiple candidates.
+- Added a structured candidature/verification record covering observed components, candidate alternatives, discriminating evidence, search results, and promotion/rejection status.
+- Added explicit protection against retroactively rewriting the evidence path after later whole-object recognition.
+- Added the fruit confusion-set example (peach, strawberry, raspberry, blackberry, blueberry) as an experimental pattern for component-based differentiation.

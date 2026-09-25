@@ -1,6 +1,6 @@
 # How to Use Faking Vision
 
-**v0.22 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
+**v0.23 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
 
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
@@ -15,6 +15,16 @@ Give the AI the source image together with:
 The image-analysis path is:
 
 `source → observation → candidate generation → entity/component/appearance resolution → packet promotion → packet construction → validation → export`
+
+### Component candidature
+
+When an object is ambiguous, do not wait for whole-object recognition.
+
+Use:
+
+`component → candidate set → search for discriminating components/relationships → verify/reject`
+
+A component is evidence, not identity. Preserve multiple evidence-supported candidates when necessary. Record what additional component or relationship was sought, what was observed, and why a candidate was strengthened, weakened, rejected, or left unresolved. Do not let later recognition rewrite the earlier evidence path.
 
 The resulting FV packet uses:
 
@@ -382,3 +392,11 @@ to packet semantics.
 - Added structured EY with current/frameid/previous history.
 - Added operational incongruity.
 - Added explicit task-objective handling as a separate sampling-priority input.
+
+
+### Change log — v0.23
+
+- Added component-driven candidature and verification.
+- Added targeted search for discriminating components and relationships.
+- Clarified preservation of candidate alternatives and forward evidence paths.
+- Added the fruit confusion-set pattern for component-based differentiation.
