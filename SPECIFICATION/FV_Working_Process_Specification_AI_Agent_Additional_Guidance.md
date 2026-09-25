@@ -1,6 +1,6 @@
 # Faking Vision
 
-**Working Process Specification / Additional Guidance — v0.20**
+**Working Process Specification / Additional Guidance — v0.22**
 
 ## Image Analysis Manual for the AI Team
 
@@ -371,6 +371,53 @@ The initial division of a video into length-dependent chunks is an engineering s
 The intended behaviour is: **quiet → lazy; emerging perturbation → more attention; sustained/high perturbation → high-power scan; perturbation subsides → relax.** The exact sampling rates are implementation parameters to be empirically calibrated. They are not FV constants.
 
 The purpose of adaptive sampling is efficient acquisition of sufficient temporal evidence. It does not require object identity, interaction inference, or maintenance of a persistent event history. Those may be downstream uses and are not prerequisites for temporal packet generation.
+
+
+### 17.2.2 Change Propensity and change propagation
+
+**Change Propensity (CP)** is an attention-prior mechanism for deciding what to inspect first under limited observation effort. It is not an importance score, observed change, motivation, or source fact.
+
+**Static Change Propensity (SCP)** is the baseline propensity associated with an object before the current event develops. It remains stable during an analysis unless the experiment explicitly defines recalibration. Low-SCP objects are not discarded; lazy scanning remains responsible for the rest of the scene.
+
+**Current Change Propensity (CCP)** is the present change-priority state after incorporating current observations, interactions, and propagation. CCP can rise or fall while SCP remains unchanged.
+
+When a perturbation propagates through objects, TIR should record **`change_generator_obj_ids`**: the persistent object IDs for which source evidence supports generator/transmitter status. Also record affected object IDs where supported. An affected object may become a subsequent generator. Preserve only the propagation chain actually supported by observations; do not invent a complete causal graph.
+
+Example:
+
+`generator A → affected B → subsequent generator B → affected C`
+
+### 17.2.3 Evidence Yield (EY)
+
+**Evidence Yield (EY)** is a temporal evidence record, not a scalar score.
+
+Conceptual minimum structure:
+
+```text
+EY = {
+    current: <current evidence/state>,
+    frameid: <source frame>,
+    previous: [<earlier evidence records>]
+}
+```
+
+`current` records what meaningful evidence the object or region is producing now. `previous` preserves relevant prior evidence so the current observation can be interpreted temporally. EY may describe movement, boundary change, displacement, interaction, emergence, disappearance, or other source-grounded evidence.
+
+EY does not itself identify the cause of the evidence.
+
+### 17.2.4 Incongruity
+
+Operational **incongruity** occurs when the current observation produces materially more or different evidence than the current expectation accounts for. A useful case is low expected change followed by meaningful EY.
+
+Incongruity is an expectation/observation mismatch that can trigger additional investigation. It is not an object identity, cause, or semantic explanation.
+
+### 17.2.5 Explicit task objectives
+
+An experiment may supply an external task objective, such as tracking a specified thing across multiple videos. The objective may alter sampling priority and the objects/relationships selected for closer investigation.
+
+The task objective remains separate from source evidence. It may specify **what to investigate**, but it must not supply missing identities, events, motivations, or temporal facts. Evidence acquired under the task objective is still subject to normal FV observation, uncertainty, and promotion rules.
+
+CP/CCP, EY, and change-generator relationships must remain distinct: CP controls attention priority; EY records evidence produced; change-generator fields record supported propagation relationships; the task objective specifies the external investigative target.
 
 ### 17.3 What makes an interval unresolved?
 
@@ -1157,3 +1204,13 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
   evidence-grounded temporal information.
 - Clarified that TIR is the source/workspace for deriving the official TD
   record, not a temporary copy of TD.
+
+
+### Change log — v0.22
+
+- Added Static Change Propensity (SCP) and Current Change Propensity (CCP) as distinct temporal-analysis attention controls.
+- Added `change_generator_obj_ids` and evidence-grounded propagation chains.
+- Defined Evidence Yield (EY) as a structured temporal evidence record with `current`, `frameid`, and `previous`.
+- Added operational incongruity as expectation/observation mismatch that can trigger additional investigation.
+- Added explicit external task objectives as a separate source of sampling priority, without allowing the objective to become evidence.
+- Clarified the separation between CP/CCP, EY, change-generator relationships, and task objectives.

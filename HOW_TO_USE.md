@@ -1,6 +1,6 @@
 # How to Use Faking Vision
 
-**v0.21 update:** transcript claims may trigger targeted sampling before visual support is established; transcript fidelity and cross-modal visual support are assessed separately.
+**v0.22 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
 
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
@@ -108,6 +108,42 @@ sampled there.
 Activity magnitude and interval width are separate controls: a highly
 active region does not by itself determine the temporal precision
 required.
+
+
+### Change Propensity and propagation
+
+Use **Static Change Propensity (SCP)** as the baseline attention prior for an
+object. Use **Current Change Propensity (CCP)** for its present change-priority
+state. CCP may change as observations, interactions, and propagation occur;
+SCP does not automatically change.
+
+Record **`change_generator_obj_ids`** when source evidence supports which
+object(s) generated or transmitted a perturbation. An affected object may
+become a subsequent generator. Do not invent an unobserved causal chain.
+
+Use **Evidence Yield (EY)** as a temporal evidence record rather than a scalar:
+
+```text
+EY = {
+    current: <current evidence/state>,
+    frameid: <source frame>,
+    previous: [<earlier evidence records>]
+}
+```
+
+EY describes what evidence an object or region is producing now in relation
+to its previous observations. CP/CCP directs attention; EY records evidence;
+generator IDs record supported propagation relationships.
+
+**Incongruity** is an expectation/observation mismatch, such as low expected
+change followed by meaningful EY. It is a reason to investigate further, not
+an object identity or explanation.
+
+If an experiment supplies an explicit **task objective**, it may change
+sampling priority (for example, tracking a specified thing across multiple
+videos). The objective is an external instruction, not source evidence. It
+specifies what to investigate, not what happened.
+
 
 ## 3. Create FV packets from existing literature
 
@@ -337,3 +373,12 @@ to packet semantics.
 **Packet → video**
 
 `FV video packet → verify identity/occupancy/temporal structure → lossless renderer compilation → video reconstruction → independent audit`
+
+
+### Change log — v0.22
+
+- Added SCP/CCP separation for temporal attention.
+- Added change-generator IDs and propagation tracking.
+- Added structured EY with current/frameid/previous history.
+- Added operational incongruity.
+- Added explicit task-objective handling as a separate sampling-priority input.
