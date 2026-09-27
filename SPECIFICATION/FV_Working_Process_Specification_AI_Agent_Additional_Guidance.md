@@ -1,6 +1,6 @@
 # Faking Vision
 
-**Working Process Specification / Additional Guidance — v0.23**
+**Working Process Specification / Additional Guidance — v0.24**
 
 ## Image Analysis Manual for the AI Team
 
@@ -107,6 +107,34 @@ objects.
 
 Do not assume the most visually obvious object is necessarily the most
 important object.
+
+## 5.1.1 Ambiguous correspondence and identity across media
+
+Identity resolution should begin as a **correspondence investigation**, not as an immediate identity commitment.
+
+When observations of a possible object occur across multiple investigated media, record a provisional correspondence hypothesis in TIR. Identification based on components must include **component quality**:
+
+- **high** — relatively distinctive and sufficiently stable to contribute strongly to correspondence;
+- **weak** — observable but common, non-distinctive, or insufficient on its own;
+- **transient** — potentially useful but dependent on temporary pose, expression, clothing, illumination, viewpoint, or other changing state.
+
+Useful TIR wording includes:
+
+> **Initial investigation suggests same object based on [component report].**
+
+and, where the evidence remains unresolved:
+
+> **Correspondence remains unresolved; current evidence includes [component report].**
+
+When the same object is hypothesized across multiple investigated media, the TIR should state what would discriminate the correspondence:
+
+> **If the said object is the same object across multiple investigated media, search for [expected/discriminating component or relationship].**
+
+Do not merge candidates merely because they share a category or generic components. Do not split merely because appearance changes.
+
+Do not treat an unobserved expected component as negative evidence unless the inspected view should have exposed it. Occlusion, crop, blur, scale, viewpoint, and other source limitations may make an expected component unobservable.
+
+Record whether the correspondence was **strengthened, weakened, rejected, or left unresolved**, and preserve the evidence supporting that status. Promote a correspondence hypothesis to persistent identity only when the available source evidence supports that resolution.
 
 ## 5.1 Component-driven candidature and verification
 
@@ -1257,3 +1285,11 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
 - Added a structured candidature/verification record covering observed components, candidate alternatives, discriminating evidence, search results, and promotion/rejection status.
 - Added explicit protection against retroactively rewriting the evidence path after later whole-object recognition.
 - Added the fruit confusion-set example (peach, strawberry, raspberry, blackberry, blueberry) as an experimental pattern for component-based differentiation.
+
+
+### Change log — v0.24
+
+- Added ambiguous TIR correspondence/identity handling across multiple investigated media.
+- Added component-quality labels: high, weak, and transient.
+- Added provisional correspondence wording and discriminating-component search for identity resolution.
+- Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.

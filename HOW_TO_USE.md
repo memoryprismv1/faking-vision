@@ -1,6 +1,6 @@
 # How to Use Faking Vision
 
-**v0.23 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
+**v0.24 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
 
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
@@ -25,6 +25,16 @@ Use:
 `component → candidate set → search for discriminating components/relationships → verify/reject`
 
 A component is evidence, not identity. Preserve multiple evidence-supported candidates when necessary. Record what additional component or relationship was sought, what was observed, and why a candidate was strengthened, weakened, rejected, or left unresolved. Do not let later recognition rewrite the earlier evidence path.
+
+For cross-media identity, keep TIR ambiguous until correspondence is supported:
+
+- record the component report used for the correspondence hypothesis;
+- label component quality as **high, weak, or transient**;
+- use wording such as **“Initial investigation suggests same object based on [component-report]”**;
+- if correspondence remains unresolved, record the competing candidates and what discriminating component/relationship should be searched for;
+- if the said object is the same object across multiple investigated media, search for expected/discriminating components and relationships;
+- do not treat an unobserved expected component as negative evidence when the view is occluded, cropped, blurred, too small, or otherwise uninformative;
+- promote correspondence to persistent identity only when source evidence supports it.
 
 The resulting FV packet uses:
 
@@ -400,3 +410,10 @@ to packet semantics.
 - Added targeted search for discriminating components and relationships.
 - Clarified preservation of candidate alternatives and forward evidence paths.
 - Added the fruit confusion-set pattern for component-based differentiation.
+
+### Change log — v0.24
+
+- Added ambiguous TIR correspondence/identity handling across multiple investigated media.
+- Added component-quality labels: high, weak, and transient.
+- Added provisional correspondence wording and discriminating-component search for identity resolution.
+- Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
