@@ -6,11 +6,22 @@ This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
 it.
 
+## FV artifact output
+
+FV operations produce actual artifacts, not merely prose responses.
+
+- `fv analyse` creates the structured FV packet as files and packages the packet as a ZIP for delivery. The ZIP is the primary deliverable; human-readable analysis is supplementary.
+- `fv validate` produces a validation report artifact and does not silently repair the packet.
+- `fv compile` produces the compiled renderer specification and/or reconstruction artifact available to the environment.
+- `fv audit` produces an independent audit artifact.
+
+When file creation and packaging are available, do not substitute a textual dump of the packet for the packet ZIP. Do not simulate file creation by printing what the files would contain.
+
 ## 1. Analyse an image with FV
 
 Give the AI the source image together with:
 
-`SPECIFICATION/FV_Working_Process_Specification.docx`
+the FV Working Process Specification contained in the FV skill (or the repository copy of `FV_Working_Process_Specification.docx`)
 
 The image-analysis path is:
 
@@ -57,7 +68,7 @@ or be explicitly represented as inference/uncertainty.
 
 Give the AI the source video together with:
 
-`SPECIFICATION/FV_Working_Process_Specification.docx`
+the FV Working Process Specification contained in the FV skill (or the repository copy of `FV_Working_Process_Specification.docx`)
 
 The video path uses:
 
