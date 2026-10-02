@@ -6,14 +6,19 @@ FV provides procedures for examining images and video through visible components
 
 ## What FV does
 
-FV supports a complete visual-analysis workflow:
+FV supports a complete visual-investigation and reconstruction workflow:
 
-* **Analyse** — investigate an image or video and produce a structured FV packet.
+* **Analyse** — examine a raw visual source and produce a structured FV packet.
+* **Investigate** — pursue a specified object, event, relationship, correspondence, or question across observations.
+* **Assemble** — register and combine partial or overlapping visual/spatial observations into a larger view or representation.
+* **Merge** — reconcile independently produced FV packets and normalize object identity only when the evidence supports equivalence.
+* **Create** — deliberately construct a new FV packet from established FV information or an explicit specification.
+* **Resolve** — resolve packet disputes, ambiguities, and competing interpretations, including the required human-resolution and AI-reconciliation lifecycle.
 * **Validate** — check a packet for structural problems, contradictions, missing information, and unresolved disputes.
-* **Compile** — translate a valid packet into a lossless reconstruction specification and, where supported, perform the reconstruction.
+* **Compile** — translate a resolved and validated packet into a lossless reconstruction specification and, where supported, perform the reconstruction.
 * **Audit** — independently evaluate a reconstruction against the FV packet and, where available, the original source.
 
-These operations are deliberately separated. Analysis does not silently become reconstruction; validation does not repair a packet; compilation does not add semantic information; and audit does not rewrite the packet to accommodate a generated result.
+These operations are deliberately separated. Analysis does not silently become reconstruction; assembly does not silently become identity merge; validation does not repair a packet; resolution does not bypass validation; compilation does not add semantic information; and audit does not rewrite the packet to accommodate a generated result.
 
 ## Visual investigation
 
@@ -47,10 +52,31 @@ The FV textarea commands are:
 
 ```text
 fv analyse
+fv investigate
+fv assemble
+fv merge
+fv create
+fv resolve
 fv validate
 fv compile
 fv audit
 ```
+
+The normal reconstruction path is:
+
+```text
+analyse / investigate / assemble / merge / create
+                    ↓
+                 resolve
+                    ↓
+                validate
+                    ↓
+                 compile
+                    ↓
+                  audit
+```
+
+Not every job requires every operation. In particular, **assemble** is for putting partial or overlapping observations of a larger view together, while **merge** is for reconciling knowledge contained in separate FV packets. **Compile is a hard fidelity gate:** it does not resolve disputes or repair invalid packets.
 
 The skill is designed so an AI agent can operate FV without requiring the user to repeatedly supply the underlying FV specification. The authoritative process specification remains the governing source for FV procedures and rules.
 

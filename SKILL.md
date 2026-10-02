@@ -1,6 +1,6 @@
 ---
 name: faking-vision
-description: Operate Faking Vision (FV) for image and video analysis, FV packet construction, reconstruction, packet validation, prompt compilation, temporal investigation, independent reconstruction audit, and the textarea command interface for FV work. Use this skill whenever the user asks to analyse an image/video with FV, create or inspect an FV packet, reconstruct from an FV packet, or audit a reconstruction. The FV Working Process Specification below is authoritative; do not substitute general computer-vision assumptions for FV procedures.
+description: Operate Faking Vision (FV) for image and video analysis, visual investigation, spatial assembly, FV packet construction and merge, dispute resolution, reconstruction, packet validation, prompt compilation, temporal investigation, independent reconstruction audit, and the textarea command interface for FV work. Use this skill whenever the user asks to analyse an image/video with FV, create or inspect an FV packet, reconstruct from an FV packet, or audit a reconstruction. The FV Working Process Specification below is authoritative; do not substitute general computer-vision assumptions for FV procedures.
 ---
 
 # Faking Vision Agent Skill
@@ -19,32 +19,108 @@ unless the user clearly asks for FV work.
 
 ### `fv analyse`
 
-Analyse the attached or otherwise identified source image or video using
-the complete FV procedure.
+Analyse the attached or otherwise identified raw visual source using the
+complete FV procedure.
 
 For an image, create the complete FV packet as actual packet files and
-package the packet as a ZIP. The ZIP is the primary deliverable. A concise
-human-readable analysis may accompany it but does not substitute for the
-packet artifact.
+package the packet as a ZIP. The ZIP is the primary deliverable.
 
 For a video, establish temporal structure and create the complete packet as
 actual packet files containing OI + MSRM + TD, with TD authoritative for the
-temporal record, then package the packet as a ZIP.
+temporal record.
 
-Do not reconstruct unless reconstruction is explicitly requested separately.
-Do not dump the packet contents into the chat as a substitute for creating
-the packet files.
+`fv analyse` is source analysis. Do not use it as a substitute for a
+question-driven investigation when the task is to pursue a specified object,
+event, relationship, or correspondence across observations.
 
-Examples:
+### `fv investigate`
 
-`fv analyse`
+Investigate a specified object, event, relationship, correspondence, or
+question across one or more visual observations or media.
 
-`fv analyse this video, paying particular attention to the traffic light`
+Use TIR as the investigative workspace. Preserve hypotheses, competing
+interpretations, rejected hypotheses, sampling decisions, evidence paths,
+and unresolved questions there. Promote only source-supported conclusions
+into authoritative packet records.
 
-`fv analyse these two images for possible object correspondence`
+A task objective may alter attention or sampling priority, but it is not
+source evidence and cannot supply missing identity, event, motivation, or
+temporal facts.
 
-The command may include an ordinary-language task objective. A task objective
-can change sampling or investigation priority, but it is not source evidence.
+Example:
+
+`fv investigate this person across these CCTV clips`
+
+### `fv assemble`
+
+Assemble partial or overlapping observations into a larger spatial or visual
+representation.
+
+Use this for inputs such as overlapping LiDAR scans, telescope fields of
+view, aerial/satellite imagery, microscopy tiles, or overlapping
+photographs. Establish registration, overlap, coordinate alignment, and
+source correspondence as supported by the evidence.
+
+Preserve source provenance and unresolved registration conflicts.
+
+`fv assemble` does not silently establish global object identity. If
+independently produced FV packets also need identity reconciliation, use
+`fv merge`.
+
+Example:
+
+`fv assemble these LiDAR scans`
+
+### `fv merge`
+
+Merge independently produced FV packets or packet-scoped object inventories.
+
+Compare source evidence, temporal continuity, structural properties,
+relationships, and preserved visual evidence before establishing normalized
+persistent identity. Preserve packet-scoped IDs and provenance throughout
+the merge.
+
+Do not assume that equal local IDs mean equal objects. Do not merge merely
+because candidates share a category or generic components.
+
+Example:
+
+`fv merge these two adjacent CCTV packets`
+
+### `fv create`
+
+Deliberately create a new FV packet from established FV information or an
+explicit specification.
+
+Use this when the requested packet is being constructed rather than derived
+directly from a raw source. A reconstruction packet is an example. Existing
+packet-generation procedures, including packets derived from supplied
+literature or other non-visual material where explicitly supported, remain
+subject to FV evidence and uncertainty rules.
+
+`fv create` must not manufacture visual facts or turn external knowledge
+into visual evidence.
+
+Example:
+
+`fv create a reconstruction packet from this resolved packet`
+
+### `fv resolve`
+
+Resolve an FV dispute, ambiguity, correspondence conflict, or competing
+interpretation.
+
+Use the existing dispute lifecycle. Where human intervention is required,
+the human supplies the resolution information; the AI then reconciles the
+packet against the cited evidence and human changes, preserves provenance,
+and validates the affected records.
+
+An open or invalid dispute remains a reconstruction gate. Do not merely
+change a status field to make compilation possible.
+
+Example:
+
+`fv resolve dispute D-014`
 
 ### `fv validate`
 
@@ -66,16 +142,24 @@ Example:
 
 ### `fv compile`
 
-Compile a valid FV packet into a reconstruction specification and perform
-the reconstruction when the required renderer/generator is available.
+Compile a **resolved and validated** FV packet into a reconstruction
+specification and perform the reconstruction when the required
+renderer/generator is available.
 
 Compilation is a fidelity boundary. It may translate packet content into
 renderer-specific syntax but may not add semantic content, world knowledge,
 props, motivations, genre conventions, or other undeclared information.
 
+Before compilation, verify the packet validation result and the current
+`dispute.json` rendering gate. If the packet is invalid, reconciliation is
+incomplete, or `dispute.json` is open, missing, malformed, or inconsistent,
+stop and return the packet to the appropriate earlier operation.
+
+Compilation never resolves disputes.
+
 If the available environment cannot perform the actual rendering, produce
-the lossless compiled renderer specification that can be used for the
-rendering step rather than pretending that rendering occurred.
+the lossless compiled renderer specification rather than pretending that
+rendering occurred.
 
 Examples:
 
@@ -103,12 +187,15 @@ Example:
 
 ## Command interpretation rules
 
-- `fv analyse` means source → FV analysis/packet.
-- `fv validate` means packet → validation.
-- `fv compile` means packet → lossless renderer specification and, where
-  supported, reconstruction.
-- `fv audit` means reconstruction → independent FV evaluation against the
-  packet/source.
+- `fv analyse` means raw source → FV analysis/packet.
+- `fv investigate` means specified visual question/object/event → investigative evidence path.
+- `fv assemble` means partial/overlapping observations → registered/assembled representation.
+- `fv merge` means independent FV packets → reconciled packet/object inventory with provenance preserved.
+- `fv create` means established information/specification → newly constructed FV packet.
+- `fv resolve` means open dispute/ambiguity → reconciled or still-unresolved packet.
+- `fv validate` means packet → validation report.
+- `fv compile` means resolved + validated packet → lossless renderer specification and, where supported, reconstruction.
+- `fv audit` means reconstruction → independent FV evaluation against the packet/source.
 - Keep these boundaries separate. Do not silently combine operations.
 - A command may be followed by natural-language constraints or objectives;
   those modify the requested operation but do not change FV evidence rules.
@@ -120,6 +207,16 @@ the requested FV operation calls for an artifact.
 
 - `fv analyse` MUST create the packet files and, when file packaging is
   available, package them as a ZIP. Return the ZIP as the primary result.
+- `fv investigate` MUST create the investigation artifact/report when the
+  operation produces a persistent investigation result.
+- `fv assemble` MUST create the assembled/registered representation and
+  preserve the source provenance and unresolved registration information.
+- `fv merge` MUST create the merged packet/object inventory with provenance
+  and correspondence decisions preserved.
+- `fv create` MUST create the requested FV packet as actual packet files when
+  the environment supports file creation.
+- `fv resolve` MUST preserve the dispute/resolution record and the
+  reconciled packet state as artifacts when applicable.
 - `fv validate` MUST create a validation report artifact when file creation
   is available.
 - `fv compile` MUST create the compiled renderer specification and/or
@@ -149,9 +246,13 @@ the requested FV operation calls for an artifact.
 
 ## Command chaining
 
-Commands may be issued in separate turns:
+Commands may be issued in separate turns. The normal downstream path is:
 
-`fv analyse`
+`fv analyse / fv investigate / fv assemble / fv merge / fv create`
+
+then, when required:
+
+`fv resolve`
 
 then:
 
@@ -164,6 +265,16 @@ then:
 then:
 
 `fv audit`
+
+Not every operation is required for every job. In particular:
+
+- `assemble` is for putting partial or overlapping observations together;
+- `merge` is for reconciling independently produced FV knowledge;
+- `create` is for deliberately constructing a packet from established
+  information or an explicit specification;
+- `resolve` is required when a dispute or ambiguity blocks downstream work;
+- `compile` requires a resolved, validated packet and never performs
+  resolution or repair.
 
 When the relevant packet or reconstruction already exists in the current
 working context, do not make the user re-import the FV specification merely
@@ -218,6 +329,8 @@ Uncertainty must survive the pipeline. An unresolved observation cannot silently
 Evaluation claims require evidence. A suspected failure without a frame/time/location remains unresolved.
 Renderer limitations are not packet facts. If a renderer cannot express a constraint, record that limitation instead of rewriting the packet.
 The packet-to-prompt transformation is itself auditable. A compiler may translate syntax, but may not add world knowledge.
+3.1 FV operation model and command interface
+`fv analyse`, `fv investigate`, `fv assemble`, `fv merge`, `fv create`, `fv resolve`, `fv validate`, `fv compile`, and `fv audit` are distinct FV operations. The normal downstream path is analyse/investigate/assemble/merge/create → resolve → validate → compile → audit. Assemble combines partial or overlapping observations into a larger spatial/visual representation; merge reconciles independently produced FV packets and may normalize persistent identity only when evidence supports equivalence. Create constructs a packet from established information or an explicit specification. Compile requires a resolved and validated packet and never resolves disputes or repairs packets.
 3. Operating model: five distinct layers
 Never use a later layer to retroactively rewrite an earlier layer. A generated image cannot become evidence about what was in the original source.
 4. Source intake

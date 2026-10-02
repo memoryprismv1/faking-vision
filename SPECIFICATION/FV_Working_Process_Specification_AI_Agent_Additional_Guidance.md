@@ -18,6 +18,51 @@ uncertainty.
 The goal is not to produce the most fluent description. It is to produce
 the **best-supported visual analysis available from the evidence**.
 
+## 0. FV operation model
+
+The agent-facing FV command interface separates visual analysis, investigation, assembly, packet reconciliation, resolution, validation, compilation, and audit.
+
+```text
+fv analyse
+fv investigate
+fv assemble
+fv merge
+fv create
+fv resolve
+fv validate
+fv compile
+fv audit
+```
+
+Use the commands as operational boundaries:
+
+- **`fv analyse`** — derive a source-grounded FV packet from a raw visual source.
+- **`fv investigate`** — pursue a specified object, event, relationship, correspondence, or question across observations/media. Keep provisional reasoning in TIR and promote only supported conclusions into packet records.
+- **`fv assemble`** — combine partial or overlapping observations into a larger spatial/visual representation. This includes LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve registration evidence and provenance.
+- **`fv merge`** — reconcile independently produced FV packets. Compare packet-scoped declarations and visual/temporal evidence before normalizing persistent identity.
+- **`fv create`** — deliberately construct a new FV packet from established FV information or an explicit specification. Do not manufacture source facts.
+- **`fv resolve`** — handle disputes and competing interpretations through the existing human-resolution → AI-reconciliation → validation lifecycle.
+- **`fv validate`** — check packet validity without silently repairing it.
+- **`fv compile`** — compile only a resolved and validated packet. Compilation is not a place to resolve ambiguity or fill missing information from world knowledge.
+- **`fv audit`** — independently evaluate the reconstruction against the packet and source where available.
+
+### Assemble is not merge
+
+Assembly answers: **how do these partial observations fit together into the larger view?**
+
+Merge answers: **what established FV information from these packets refers to the same underlying entities or project objects?**
+
+Do not use assembly to silently assign global object identity. Do not use merge as a substitute for geometric registration or spatial stitching.
+
+### Reconstruction gate
+
+The normal downstream path is:
+
+`analyse / investigate / assemble / merge / create → resolve → validate → compile → audit`
+
+Not every operation is required for every job. However, if a dispute is open, reconciliation is incomplete, or validation fails, `fv compile` must stop and return the packet to the appropriate earlier operation.
+
+
 ## 1. The Core Problem
 
 Humans receive images through extensive perceptual preprocessing. A

@@ -17,6 +17,46 @@ FV operations produce actual artifacts, not merely prose responses.
 
 When file creation and packaging are available, do not substitute a textual dump of the packet for the packet ZIP. Do not simulate file creation by printing what the files would contain.
 
+## FV command map
+
+The textarea commands are operational boundaries, not claims that a standalone FV CLI exists.
+
+| Command | Use it for | Main result |
+|---|---|---|
+| `fv analyse` | Analyse a raw image, video, CCTV sequence, LiDAR-camera sequence, scientific sequence, animation, or other visual source. | Source-grounded FV analysis packet. |
+| `fv investigate` | Pursue a specified object, event, relationship, correspondence, or question across one or more observations/media. | Investigation record/report and, where appropriate, packet updates. |
+| `fv assemble` | Put partial or overlapping observations together into a larger spatial/visual representation: LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, overlapping photographs, etc. | Registered/assembled representation with provenance and unresolved registration issues preserved. |
+| `fv merge` | Reconcile independently produced FV packets and compare packet-scoped object declarations. | Merged packet/object inventory with provenance preserved and identity normalization only where supported. |
+| `fv create` | Deliberately construct a new FV packet from established FV information or an explicit specification. | Requested packet type, including a reconstruction packet where applicable. |
+| `fv resolve` | Resolve an open dispute or competing interpretation. | Reconciled packet or explicitly still-unresolved packet, with resolution history preserved. |
+| `fv validate` | Check packet structure, evidence, consistency, disputes, and readiness. | Validation report; no silent repair. |
+| `fv compile` | Convert a **resolved and validated** packet into renderer instructions and, where supported, reconstruct. | Compiled renderer specification and/or reconstruction artifact. |
+| `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
+
+### The important distinctions
+
+**Assemble is not merge.**
+
+`assemble` combines partial observations that cover portions of a larger visual/spatial view. It may require registration, overlap handling, coordinate alignment, or spatial stitching. It does not automatically establish that similarly appearing objects across the inputs are one persistent object.
+
+`merge` combines already-produced FV knowledge. It compares packet-scoped declarations, source evidence, temporal continuity, properties, relationships, and preserved visual evidence before establishing normalized persistent identity.
+
+**Create is not analyse.**
+
+`analyse` derives a packet from a source through the FV observation procedure. `create` constructs a packet from information that has already been established or explicitly specified. Existing packet-creation workflows, including packets derived from supplied literature, remain subject to evidence/uncertainty rules and must not turn external knowledge into visual evidence.
+
+**Compile is not resolve.**
+
+If a packet contains an open dispute, failed reconciliation, or failed validation, compilation stops and the packet returns to the appropriate earlier operation. The compiler must never solve an unresolved visual question by inventing an answer.
+
+### Command chaining
+
+A typical reconstruction path is:
+
+`analyse / investigate / assemble / merge / create → resolve → validate → compile → audit`
+
+Some jobs can skip operations that are not needed. `resolve` is required when a dispute or unresolved issue blocks the requested downstream operation. `validate` is the final packet gate before `compile`.
+
 ## 1. Analyse an image with FV
 
 Give the AI the source image together with:
@@ -176,7 +216,63 @@ videos). The objective is an external instruction, not source evidence. It
 specifies what to investigate, not what happened.
 
 
-## 3. Create FV packets from existing literature
+## 3. Investigate a visual question with FV
+
+Use `fv investigate` when the task is not simply to describe or packetize a source, but to answer a specified visual question.
+
+Examples:
+
+- track a specified object across multiple videos;
+- investigate whether two observed objects correspond;
+- determine when a relationship changed;
+- investigate an appearance/disappearance or ambiguous event;
+- inspect multiple media for evidence relevant to one target.
+
+The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, and unresolved questions there. Promote only evidence-supported conclusions into the authoritative packet records.
+
+A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts.
+
+`fv investigate` should return the evidence path, relevant source observations, correspondence/component evidence, supported conclusions, and unresolved issues. If the investigation changes the packet, the affected packet must still pass the normal validation lifecycle.
+
+## 4. Assemble partial or overlapping observations
+
+Use `fv assemble` when multiple observations are pieces of a larger visual or spatial view.
+
+Typical inputs include:
+
+- overlapping LiDAR scans;
+- telescope fields of view;
+- satellite or aerial image tiles;
+- microscopy tiles;
+- overlapping photographs;
+- other partial observations that must be registered into a larger representation.
+
+The assembly process may establish geometric registration, overlap, coordinate alignment, and source correspondence needed to place the observations together. Preserve source provenance and unresolved registration conflicts.
+
+Do not silently convert assembly correspondence into global object identity. If the assembled material requires object reconciliation across packets, use `fv merge`.
+
+## 5. Merge independently produced FV packets
+
+Use `fv merge` when separate FV packets need to be reconciled.
+
+Before normalizing identity, compare:
+
+- source and packet provenance;
+- temporal continuity;
+- visible structural properties and components;
+- spatial relationships;
+- preserved snapshots;
+- other evidence relevant to the correspondence.
+
+Packet-scoped IDs remain intact during this process. A normalized persistent identity is established only after the evidence supports equivalence.
+
+## 6. Create a new FV packet deliberately
+
+Use `fv create` when the required packet is being constructed from already established FV information or an explicit specification rather than directly analysing a raw source.
+
+The command may be used to create a reconstruction packet or other explicitly supported packet type. It must not manufacture visual facts. Any supplied inference, external knowledge, or test instruction must remain distinguishable from source-derived evidence.
+
+## 7. Create FV packets from existing literature
 
 When a published image or video is the source material, treat the
 published material as the source and apply the normal FV analysis
@@ -189,7 +285,7 @@ the source category or supplied by outside knowledge.
 The resulting packet can then be used independently as a reconstruction
 representation.
 
-## 4. Packet closure, identity, and uncertainty
+## 8. Packet closure, identity, and uncertainty
 
 The packet is the reconstruction source of truth.
 
@@ -217,7 +313,7 @@ a normalized persistent identity.
 validated claim.** Packet-scoped PC IDs use the form
 `<packet_id>-<object_id>` before merge.
 
-## 5. Render an image from an FV packet
+## 9. Render an image from an FV packet
 
 Give the renderer/generator:
 
@@ -239,7 +335,7 @@ The packet's closed object/component inventory remains authoritative.
 A renderer's capabilities and limitations are renderer facts, not FV
 packet facts.
 
-## 6. Render a video from an FV packet
+## 10. Render a video from an FV packet
 
 Use a valid video packet containing **OI + MSRM + TD** (and **PC** only
 where applicable).
@@ -260,7 +356,7 @@ actual precision, report insufficient temporal information rather than
 infer the missing timing from OI, MSRM, scene category, or world
 knowledge.
 
-## 7. Prompt compilation is a separate fidelity boundary
+## 11. Prompt compilation is a separate fidelity boundary
 
 The packet-to-prompt/compiler step must be auditable.
 
@@ -288,7 +384,7 @@ Useful failure classes include:
 -   **PC-B** --- background expansion
 -   **PC-U** --- uncertainty collapse
 
-## 8. Independently audit the reconstruction
+## 12. Independently audit the reconstruction
 
 Do not use the generator's explanation as evidence of what its output
 contains.
@@ -324,7 +420,7 @@ Useful failure classes include:
 Generated imagery is not source evidence unless supported by the FV
 packet. Every reconstruction should be independently FV-audited.
 
-## 9. Evidence-grade disputes
+## 13. Evidence-grade disputes
 
 A suspected failure is not automatically a confirmed failure.
 
@@ -346,7 +442,7 @@ Human resolution does not directly repair the packet. The affected
 analysis/packet records must be reprocessed and validated before the
 dispute can be cleared.
 
-## 10. Three distinct correctness questions
+## 14. Three distinct correctness questions
 
 Keep these separate:
 
@@ -363,7 +459,7 @@ A failed reconstruction does not automatically mean the packet was
 wrong. A correct packet and correct compilation can still produce a
 failed reconstruction.
 
-## 11. "I haven't been taught to create an image/video from a packet."
+## 15. "I haven't been taught to create an image/video from a packet."
 
 The FV specification already defines the reconstruction task and
 packet-to-renderer compilation boundary.
