@@ -1,0 +1,29 @@
+{
+  "packet_id": "PKT-CCTV-STORAGE-PART1-001",
+  "spec_version": "0.24",
+  "td_is_authoritative": true,
+  "timeline": [
+    {
+      "interval_id": "PART1_SEGMENT",
+      "scene_id": "S-PART1",
+      "start": "00:00",
+      "end": "11:23",
+      "type": "temporal leaf - part of longer CCTV",
+      "visible": [
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-003",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+          "change": "Initial contact - officers approach, questioning",
+          "change_type": "action/state change"
+        }
+      ]
+    }
+  ],
+  "atd_note": "For fixed CCTV, ATD should detect no global camera perturbation, only local object changes. Local activity baseline: bench area high activity, background static."
+}

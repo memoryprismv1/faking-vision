@@ -1,0 +1,15 @@
+{
+  "packet_id": "PKT-MAYAN-MERGE-61K-001",
+  "global_map": "Maya Biosphere Reserve 2,100km2, 61k structures interconnected",
+  "scenes": [
+    {
+      "scene_id": "GLOBAL_MAYA_MEGACITY",
+      "entities_present": [
+        "PYR-GLOBAL-00001",
+        "PYR-GLOBAL-00002",
+        "PYR-GLOBAL-00003"
+      ],
+      "total": 61000
+    }
+  ]
+}

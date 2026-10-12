@@ -1,0 +1,11 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "overall_status": "VALID",
+  "checks": [
+    {
+      "check": "pyramid_promotion",
+      "status": "PASS",
+      "details": "Rectangular base + cardinal + causeway = high quality correspondence, natural hill rejected"
+    }
+  ]
+}

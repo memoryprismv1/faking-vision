@@ -1,0 +1,34 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-007",
+  "spec_version": "0.24",
+  "operation": "fv assemble",
+  "inventory_lock": true,
+  "entities": [
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-001",
+      "category": "road_network",
+      "label": "downtown road network 07",
+      "properties": {
+        "type": "dense urban roads, intersections every 80-120m"
+      }
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-002",
+      "category": "building_cluster_dense",
+      "label": "dense building canyon 15-35m",
+      "properties": {
+        "height_range": "15-35m, taller than seq00"
+      }
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-003",
+      "category": "vegetation_sparse",
+      "label": "sparse trees downtown"
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-004",
+      "category": "parked_vehicles_dense",
+      "label": "many parked cars, higher density than 00"
+    }
+  ]
+}

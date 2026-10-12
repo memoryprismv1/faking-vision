@@ -1,0 +1,23 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "constants": [
+    {
+      "name": "Tr_velo_to_cam",
+      "description": "Velodyne to camera 0 extrinsic from calib.txt",
+      "value": "4x4 transform - genuine project-wide constant per v0.24"
+    },
+    {
+      "name": "R0_rect",
+      "description": "Rectification matrix"
+    },
+    {
+      "name": "P2, P3",
+      "description": "Camera projection matrices"
+    },
+    {
+      "name": "Velodyne HDL-64E config",
+      "description": "64 beams, 10Hz, 360 deg FOV, max range 120m"
+    }
+  ],
+  "note": "These are genuine project-wide constants per FV 8.4 - allowed in PC.json"
+}

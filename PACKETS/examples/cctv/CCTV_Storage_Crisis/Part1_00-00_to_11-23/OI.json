@@ -1,0 +1,88 @@
+{
+  "packet_id": "PKT-CCTV-STORAGE-PART1-001",
+  "spec_version": "0.24",
+  "operation": "fv analyse - part of CCTV split",
+  "inventory_lock": true,
+  "source_provenance": {
+    "original_file": "Full, unedited Kelly Thomas confrontation video (35 min.).webm",
+    "part": "Part 1 00:00 to 11:23",
+    "original_duration": "34min10s",
+    "part_duration": "683s",
+    "storage_note": "Original 61.4MB for 34min10s = 1.8MB/min at 640x360 low res. At 1080p 10Mbps: 1 camera = 54GB/day, 1000 cameras = 54TB/day - storage crisis"
+  },
+  "entities": [
+    {
+      "canonical_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+      "packet_scoped_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+      "category": "person",
+      "label": "Person A - individual near bench",
+      "properties": {
+        "clothing": "unresolved - low res 640x360",
+        "position": "bench area, Initial contact - officers approach, questioning",
+        "evidence_level": "L1 direct"
+      },
+      "components": [
+        {
+          "component_id": "PKT-CCTV-STORAGE-PART1-001-COMP-001",
+          "type": "head",
+          "description": "head visible"
+        },
+        {
+          "component_id": "PKT-CCTV-STORAGE-PART1-001-COMP-002",
+          "type": "torso",
+          "description": "torso"
+        }
+      ],
+      "behaviour": {
+        "action": "seated/standing/prone depending on part",
+        "evidence": "Part 1 action: Initial contact - officers approach, questioning"
+      },
+      "uncertainty": [
+        "Identity name requires L4 knowledge - not visual"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+      "packet_scoped_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+      "category": "person",
+      "label": "Person B - officer approaching",
+      "properties": {
+        "clothing": "uniform",
+        "evidence_level": "L2 relational - uniform indicates role"
+      }
+    },
+    {
+      "canonical_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-003",
+      "packet_scoped_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-003",
+      "category": "person",
+      "label": "Person C - second officer",
+      "properties": {}
+    },
+    {
+      "canonical_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-004",
+      "packet_scoped_id": "PKT-CCTV-STORAGE-PART1-001-OBJ-004",
+      "category": "structure",
+      "label": "bus shelter / bench",
+      "properties": {
+        "type": "static structure",
+        "evidence_level": "L1 direct - fixed background"
+      }
+    }
+  ],
+  "background": {
+    "status": "static CCTV background - parking lot, bus depot",
+    "note": "Background is static per CCTV - camera does not move, per Additional Guidance ATD should detect no global camera change, only local object changes"
+  },
+  "component_candidature_record": {
+    "observed_component": "person forms in low-res CCTV",
+    "candidate_set": [
+      "person",
+      "officer (person in uniform)"
+    ],
+    "discriminating_search": [
+      "uniform vs civilian clothing",
+      "position near bench"
+    ],
+    "promotion_decision": "promoted to OBJ-001..004 with uncertainty preserved"
+  }
+}

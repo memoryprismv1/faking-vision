@@ -1,0 +1,120 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "spec_version": "0.24",
+  "operation": "fv assemble",
+  "inventory_lock": true,
+  "source_provenance": {
+    "note": "Each entity retains packet-scoped ID before merge. Global canonical ID not assigned - assembly does not normalize identity per spec.",
+    "scans": [
+      {
+        "scan_id": "scan_0000",
+        "source": "2011_10_03_drive_0027_sync/velodyne_points/data/0000000000.bin",
+        "pose_source": "poses/00.txt line 0"
+      },
+      {
+        "scan_id": "scan_0001",
+        "source": "2011_10_03_drive_0027_sync/velodyne_points/data/0000000001.bin",
+        "pose_source": "poses/00.txt line 1"
+      },
+      {
+        "scan_id": "scan_0002",
+        "source": "2011_10_03_drive_0027_sync/velodyne_points/data/0000000002.bin",
+        "pose_source": "poses/00.txt line 2"
+      },
+      {
+        "scan_id": "scan_0003",
+        "source": "2011_10_03_drive_0027_sync/velodyne_points/data/0000000003.bin",
+        "pose_source": "poses/00.txt line 3"
+      },
+      {
+        "scan_id": "scan_0004",
+        "source": "2011_10_03_drive_0027_sync/velodyne_points/data/0000000004.bin",
+        "pose_source": "poses/00.txt line 4"
+      }
+    ],
+    "total_scans_assembled": 400,
+    "truncated_example_in_packet": "5 scans listed in OI for brevity, full 400 in README and final map"
+  },
+  "entities": [
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+      "packet_scoped_id": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+      "category": "road_network",
+      "label": "assembled road surface",
+      "properties": {
+        "type": "asphalt road, intersections",
+        "appearance": "blue/cyan in height-colored map 0-3m",
+        "evidence_level": "L1 direct + L3 calibrated poses"
+      },
+      "components": [
+        {
+          "component_id": "PKT-KITTI-ASSEMBLE-001-COMP-001",
+          "type": "lane_markings",
+          "description": "detected via reflectance >0.5"
+        }
+      ],
+      "uncertainty": [
+        "Exact lane count unresolved without camera image inspection"
+      ]
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+      "packet_scoped_id": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+      "category": "building_cluster",
+      "label": "buildings 12-22m height",
+      "properties": {
+        "appearance": "orange/red in height map",
+        "evidence_level": "L1 direct points + L4 knowledge for building classification"
+      },
+      "components": [],
+      "uncertainty": [
+        "Building instances not individually counted - assembly aggregates, not merge"
+      ]
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+      "packet_scoped_id": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+      "category": "vegetation",
+      "label": "trees and bushes 5-10m",
+      "properties": {
+        "appearance": "green/yellow",
+        "evidence_level": "L1 direct"
+      },
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
+      "packet_scoped_id": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
+      "category": "parked_vehicles",
+      "label": "parked cars along curb",
+      "properties": {
+        "appearance": "small blue rectangles along road edge",
+        "evidence_level": "L2 relational"
+      },
+      "components": [],
+      "uncertainty": [
+        "Dynamic vs static not distinguished without SemanticKITTI filter - marked as potential registration conflict"
+      ]
+    }
+  ],
+  "background": {
+    "status": "assembled landscape itself is the background + objects - not separate",
+    "note": "Per FV 11, background vs object distinction preserved: sky not represented in LiDAR, ground plane is object OBJ-001 not background"
+  },
+  "unresolved_candidates": [
+    {
+      "candidate_id": "CAND-DYNAMIC-001",
+      "observed_component": "moving car in sequence",
+      "candidate_set": [
+        "car, moving object - should be excluded from static map"
+      ],
+      "status": "unresolved - registration conflict",
+      "resolution": "Exclude points with SemanticKITTI labels 252-259 or velocity >0.5 m/s"
+    }
+  ],
+  "assembly_vs_merge": {
+    "assembly_did": "Register and combine partial scans into larger spatial representation using poses + ICP, preserve provenance (scan id per point)",
+    "assembly_did_not": "Silently assign global object identity - e.g., building seen in scan_0001 and scan_0100 remains same physical building but no merged global ID assigned in this assemble packet - that requires fv merge"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "global_coordinate_system": "UTM Zone 16N, WGS84, ground returns only (canopy filtered)",
+  "registration": {
+    "method": "Overlap 30-50% between flight lines, ICP on ground DEM, GPS/IMU for initial alignment",
+    "vegetation_filter": "First returns = canopy (removed), last returns = ground (kept). Object-based vegetation classification per Inomata et al. 2018 Ceibal method",
+    "dem_generation": "Ground points -> TIN -> 1m DEM, then hillshade visualization reveals pyramids"
+  },
+  "scenes": [
+    {
+      "scene_id": "ASSEMBLED_MAYAN_MEGACITY_2100KM2",
+      "label": "Entire landscape 2,100km2, 61,000 structures, interconnected network of dozens of cities",
+      "entities_present": [
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-005"
+      ],
+      "spatial_relationships": [
+        {
+          "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002",
+          "relation": "connects",
+          "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+          "evidence": "causeway connects pyramid to plaza"
+        },
+        {
+          "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+          "relation": "adjacent to",
+          "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
+          "evidence": "pyramid adjacent to plaza"
+        },
+        {
+          "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
+          "relation": "encloses",
+          "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+          "evidence": "fortification encloses city center"
+        }
+      ],
+      "coverage": {
+        "area": "2,100km2",
+        "structures": "61,000+",
+        "flight_lines": "100+",
+        "points": "billions of pulses"
+      },
+      "provenance": "Each ground point retains flight ID and return number (first/last)"
+    }
+  ]
+}

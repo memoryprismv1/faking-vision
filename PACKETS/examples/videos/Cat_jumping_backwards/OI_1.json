@@ -1,0 +1,82 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "spec_version": "0.24",
+  "inventory_lock": true,
+  "entities": [
+    {
+      "canonical_id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+      "packet_scoped_id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+      "category": "felis_catus",
+      "label": "domestic cat",
+      "properties": {
+        "species": "Felis catus",
+        "type": "domestic cat",
+        "appearance": "quadruped mammalian form, felis characteristics - direct visual evidence LIMITED due to lack of frame inspection",
+        "color": "unresolved - source not directly inspected",
+        "size": "unresolved - relative scale not calibrated"
+      },
+      "components": [
+        {
+          "component_id": "PKT-CAT-JUMP-BACK-001-COMP-001",
+          "type": "body",
+          "description": "main torso/limbs of cat - expected for jumping",
+          "evidence_level": "L2 - relational (from description)",
+          "verification_status": "unresolved - no direct frame crop"
+        },
+        {
+          "component_id": "PKT-CAT-JUMP-BACK-001-COMP-002",
+          "type": "tail",
+          "description": "tail, may be involved in balance during backwards jump",
+          "evidence_level": "L4 - knowledge-supported (cats use tail for balance)",
+          "verification_status": "probable but not directly observed in this environment"
+        }
+      ],
+      "behaviour": {
+        "action": "jumping backwards",
+        "evidence": "described in Wikimedia Commons: 'A domestic cat (Felis catus) jumping backwards'",
+        "evidence_level": "L2 - relational (from authoritative description, not direct pixel observation)",
+        "temporal_phase": "occurs in both S01 and S02 (replay)"
+      },
+      "uncertainty": [
+        "Exact fur color/pattern not observed - source frames not inspected",
+        "Exact spatial trajectory not measured - no bounding geometry available",
+        "Landing/takeoff surfaces not observed - background unresolved"
+      ],
+      "source_basis": "Wikimedia Commons File:Cat_jumping_backwards.webm description + transcode metadata"
+    }
+  ],
+  "background": {
+    "status": "unresolved",
+    "description": "Background not directly inspected - file description does not state location. Must not be invented. Treated as appearance-only, not semantic inventory.",
+    "appearance_notes": "May be indoor or outdoor - not specified in source description",
+    "inventory_rule": "Background is visual setting, not semantic object inventory per FV 11. No props may be added merely by category knowledge."
+  },
+  "unresolved_candidates": [
+    {
+      "candidate_id": "CAND-BG-001",
+      "observed_component": "floor/surface region where cat jumps",
+      "candidate_set": [
+        "floor",
+        "ground",
+        "mat"
+      ],
+      "status": "unresolved - not promoted",
+      "reason": "No direct visual inspection, description does not mention surface"
+    }
+  ],
+  "component_candidature_record": {
+    "observed_component": "quadruped form in motion, jumping backwards",
+    "candidate_set": [
+      "felis_catus domestic cat"
+    ],
+    "discriminating_search": [
+      "ear shape, whiskers, tail length, body proportions - not searchable without frames"
+    ],
+    "expected_components": [
+      "head with feline facial structure, four limbs, tail"
+    ],
+    "search_result": "description states Felis catus - supports candidate, but direct component verification not performed due to environment limitation",
+    "promotion_decision": "promoted to OBJ-001 with uncertainty preserved",
+    "evidence_path": "description \u2192 candidate set \u2192 limited verification \u2192 promotion with uncertainty"
+  }
+}

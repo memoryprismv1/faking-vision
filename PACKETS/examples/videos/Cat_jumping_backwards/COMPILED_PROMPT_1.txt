@@ -1,0 +1,40 @@
+FV COMPILED RENDERER SPECIFICATION v0.24
+packet_id: PKT-CAT-JUMP-BACK-001
+Type: LOSSLESS compiled spec - renderer-specific adapter must not add semantic content
+
+GLOBAL STYLE / PROJECT CONSTANTS
+- Style: none - preserve packet only
+- PC: none
+
+GLOBAL IDENTITY LEDGER, CLOSED OBJECT INVENTORY, CLOSED BACKGROUND INVENTORY, GLOBAL TEMPORAL RULES
+- Closed object inventory: PKT-CAT-JUMP-BACK-001-OBJ-001 (felis_catus domestic cat, jumping backwards)
+- Closed background inventory: unresolved appearance-only - no semantic background objects authorized
+- Global temporal rules: TD authoritative, movement≠duplication, off-screen persistence, single identity across S01,S02
+
+SCENE S01 - original clip - cat jumping backwards
+- BACKGROUND: unresolved appearance-only
+- PRESENT ENTITIES: PKT-CAT-JUMP-BACK-001-OBJ-001
+- OFF-SCREEN / ABSENT: []
+- POSITIONS / RELATIONSHIPS: center frame estimated low precision - not measured
+- ACTION / STATE: jumping backwards (from description, L2 evidence)
+- CAMERA / FRAMING: static estimated, 1920x1080 frame
+- LOCAL ENTITY CLOSURE: Only PKT-CAT-JUMP-BACK-001-OBJ-001 may appear in S01
+
+SCENE S02 - slow-motion replay at 1/4 speed
+- BACKGROUND: same as S01 unresolved
+- PRESENT ENTITIES: PKT-CAT-JUMP-BACK-001-OBJ-001 (SAME identity, not new instance)
+- OFF-SCREEN / ABSENT: []
+- POSITIONS / RELATIONSHIPS: same as S01 but temporal scaling 0.25x
+- ACTION / STATE: same backwards jump at 0.25x speed
+- CAMERA / FRAMING: same as S01
+- TRANSITION: S01 -> S02 cut/replay boundary - ordered but not time-stamped (precision low)
+- LOCAL ENTITY CLOSURE: Only PKT-CAT-JUMP-BACK-001-OBJ-001 may appear in S02
+
+FINAL CLOSED-WORLD ASSERTION
+- Only 1 semantic object exists. Background is appearance-only.
+- Negative: No second cat, no people, no props, no invented floor, no fur color invention, no audio
+- Renderer limitation: If cannot express unresolved background or low-precision positions, record limitation, do not alter packet
+
+Evidence levels preserved: L2 relational from description for action, L5 unresolved for background/spatial/color
+Component-driven candidature preserved: quadruped form -> cat candidate -> promotion with uncertainty
+Correspondence: single identity across intervals, quality weak due to no direct frame inspection, but strengthened by description stating replay

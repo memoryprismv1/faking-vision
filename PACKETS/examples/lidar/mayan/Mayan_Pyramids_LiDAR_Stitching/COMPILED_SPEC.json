@@ -1,0 +1,10 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "global_identity_ledger": [
+    "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+    "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002"
+  ],
+  "negative": [
+    "Do NOT add modern buildings, Do NOT duplicate pyramids - same identity stitched"
+  ]
+}

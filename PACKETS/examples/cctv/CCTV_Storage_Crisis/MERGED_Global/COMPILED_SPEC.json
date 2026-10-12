@@ -1,0 +1,24 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "global_identity_ledger": [
+    "PERSON-GLOBAL-001",
+    "PERSON-GLOBAL-002",
+    "PERSON-GLOBAL-003",
+    "STRUCTURE-GLOBAL-001"
+  ],
+  "scenes": [
+    {
+      "scene_id": "GLOBAL_CCTV_34MIN",
+      "present": [
+        "PERSON-GLOBAL-001",
+        "PERSON-GLOBAL-002",
+        "PERSON-GLOBAL-003",
+        "STRUCTURE-GLOBAL-001"
+      ]
+    }
+  ],
+  "negative": [
+    "Do NOT create 12 persons (3 parts x 4) - only 4 global",
+    "Do NOT duplicate bench - static structure single identity"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "spec_version": "0.24",
+  "operation": "fv merge - merge objects from 3 CCTV parts",
+  "inventory_lock": true,
+  "merge_inputs": [
+    "PKT-CCTV-STORAGE-PART1-001",
+    "PKT-CCTV-STORAGE-PART2-001",
+    "PKT-CCTV-STORAGE-PART3-001"
+  ],
+  "global_identities": [
+    {
+      "global_id": "PERSON-GLOBAL-001",
+      "packet_scoped_ids": [
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+        "PKT-CCTV-STORAGE-PART2-001-OBJ-001",
+        "PKT-CCTV-STORAGE-PART3-001-OBJ-001"
+      ],
+      "quality": "high",
+      "label": "Same individual across all 3 parts"
+    },
+    {
+      "global_id": "PERSON-GLOBAL-002",
+      "packet_scoped_ids": [
+        "PART1-OBJ-002",
+        "PART2-OBJ-002",
+        "PART3-OBJ-002"
+      ],
+      "quality": "high",
+      "label": "Officer Ramos - same across parts"
+    },
+    {
+      "global_id": "PERSON-GLOBAL-003",
+      "packet_scoped_ids": [
+        "PART1-OBJ-003",
+        "PART2-OBJ-003",
+        "PART3-OBJ-003"
+      ],
+      "quality": "high"
+    },
+    {
+      "global_id": "STRUCTURE-GLOBAL-001",
+      "packet_scoped_ids": [
+        "PART1-OBJ-004",
+        "PART2-OBJ-004",
+        "PART3-OBJ-004"
+      ],
+      "quality": "high - static structure, no movement"
+    }
+  ],
+  "total_global": 4,
+  "note": "Movement is not duplication - same identity across 3 parts, off-screen is not deleted - persons remain even when temporarily occluded"
+}

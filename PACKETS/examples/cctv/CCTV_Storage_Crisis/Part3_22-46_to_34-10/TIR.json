@@ -1,0 +1,51 @@
+{
+  "packet_id": "PKT-CCTV-STORAGE-PART3-001",
+  "tir_version": "v0.24 TIR - Temporal Investigation Record",
+  "note": "TIR is rich in-memory workspace, retains provisional, contradictory, rejected hypotheses. TD is committed official record derived from TIR.",
+  "temporal_range": {
+    "start": "22:46",
+    "end": "34:10"
+  },
+  "observations": [
+    {
+      "time": "22:46 + 10s",
+      "object": "Person A (Kelly Thomas) - seated/standing near bench",
+      "action": "present",
+      "confidence": "high",
+      "evidence": "L1 direct - visible in frame"
+    },
+    {
+      "time": "22:46 + 45s",
+      "object": "Person B (Officer Ramos)",
+      "action": "approaching",
+      "confidence": "high"
+    },
+    {
+      "time": "22:46 + 2min",
+      "object": "Person C (Officer Cicinelli)",
+      "action": "arriving",
+      "confidence": "high"
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis": "Same identities across Part1-3",
+      "status": "provisional",
+      "quality": "high - clothing continuity, position continuity"
+    },
+    {
+      "hypothesis": "Object count = 6 persons + bench + shelter structure",
+      "status": "strengthened",
+      "evidence": "L2 relational - relative positions"
+    }
+  ],
+  "uncertainty": [
+    "Exact identities require knowledge-supported inference L4 - names from external knowledge, not visual alone"
+  ],
+  "rejected": [],
+  "ey": {
+    "current": "Aftermath - prolonged restraint, officers remain, bystanders",
+    "previous": [],
+    "frameid": null
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "spec_version": "0.24",
+  "operation": "fv assemble",
+  "global_coordinate_system": "ENU, Z=height above ground, origin at first pose (00.txt line 0)",
+  "registration": {
+    "method": "Initial alignment via KITTI ground-truth poses (T_w_velo), then ICP refinement where overlap >30%",
+    "calibration": "From calib.txt: Tr_velo_to_cam, R0_rect, P2, P3 - transforms velodyne to camera frame",
+    "overlap_criteria": ">20% bounding box overlap required",
+    "icp_params": "max correspondence distance 1.0m, 30 iterations"
+  },
+  "scenes": [
+    {
+      "scene_id": "ASSEMBLED_MAP_00",
+      "label": "Entire landscape 1200m x 800m from 400 scans",
+      "entities_present": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "spatial_relationships": [
+        {
+          "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+          "relation": "beside",
+          "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+          "evidence": "buildings flank roads"
+        },
+        {
+          "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+          "relation": "along",
+          "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+          "evidence": "trees along sidewalk"
+        },
+        {
+          "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
+          "relation": "on edge of",
+          "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+          "evidence": "parked cars at curb"
+        }
+      ],
+      "coverage": {
+        "total_points": "~1.25M",
+        "area": "1200m x 800m",
+        "height_range": "0-21.5m",
+        "grid_spacing": "100m"
+      },
+      "provenance": "Each point retains source scan id - see snapshot/objs/ point cloud metadata"
+    }
+  ],
+  "unresolved_registration_conflicts": [
+    {
+      "location": "intersection center",
+      "conflict": "Moving car at time scan_0150 vs scan_0151 - same space occupied by different objects at different times",
+      "resolution": "Marked as dynamic, excluded from static map or kept with temporal label"
+    }
+  ]
+}

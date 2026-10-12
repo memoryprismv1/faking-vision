@@ -1,0 +1,20 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-007",
+  "global_coordinate_system": "ENU, origin pose 07.txt line 0",
+  "scenes": [
+    {
+      "scene_id": "ASSEMBLED_MAP_07",
+      "entities_present": [
+        "PKT-KITTI-ASSEMBLE-007-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-004"
+      ],
+      "coverage": {
+        "scans": 1101,
+        "points": "~3.2M",
+        "area": "1500m x 900m"
+      }
+    }
+  ]
+}

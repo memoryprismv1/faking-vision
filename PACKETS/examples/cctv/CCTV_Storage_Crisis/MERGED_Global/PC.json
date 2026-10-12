@@ -1,0 +1,6 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "constants": [
+    "CCTV fixed camera - no movement, static background"
+  ]
+}

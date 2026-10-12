@@ -1,0 +1,9 @@
+{
+  "packet_id": "PKT-MAYAN-MERGE-61K-001",
+  "timeline": [
+    {
+      "interval_id": "MERGE_ALL_FLIGHTS",
+      "action": "100+ flights -> 61k global IDs"
+    }
+  ]
+}

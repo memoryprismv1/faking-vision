@@ -1,0 +1,62 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "spec_version": "0.24",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "label": "original clip - cat jumping backwards",
+      "temporal_range": {
+        "start": 0.0,
+        "end": "unresolved - split between original and replay not timestamped in metadata",
+        "duration_estimate": "portion of 19s total"
+      },
+      "entities_present": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "spatial_relationships": [
+        {
+          "subject": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "relation": "position",
+          "value": "center frame - estimated, not measured",
+          "precision": "low - no direct measurement",
+          "evidence_level": "L5 unresolved"
+        }
+      ],
+      "background": "unresolved - not promoted to semantic inventory",
+      "camera": {
+        "framing": "unresolved - 1920x1080 frame, cat appears fully visible per description",
+        "movement": "appears static - no camera motion described"
+      }
+    },
+    {
+      "scene_id": "S02",
+      "label": "slow-motion replay at 1/4 speed",
+      "temporal_range": {
+        "start": "unresolved - after S01",
+        "end": 19.0,
+        "note": "Wikimedia description: slow-motion replay (1/4 speed) has been added to original material"
+      },
+      "entities_present": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "spatial_relationships": [
+        {
+          "subject": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "relation": "position",
+          "value": "same as S01 but temporal scaling 1/4",
+          "precision": "low",
+          "evidence_level": "L5 unresolved"
+        }
+      ],
+      "background": "same as S01 - unresolved",
+      "camera": {
+        "framing": "same as S01"
+      }
+    }
+  ],
+  "identity_persistence": {
+    "note": "Single canonical identity PKT-CAT-JUMP-BACK-001-OBJ-001 persists across S01 and S02",
+    "continuity_evidence": "Description indicates same cat in replay - not two instances",
+    "movement_vs_duplication": "Movement not duplication per FV core rule - same identity changing location/pose remains same identity"
+  }
+}

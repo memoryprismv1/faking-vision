@@ -1,0 +1,6 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "status": "none",
+  "note": "Assembly packet has no open disputes - registration conflicts noted as unresolved candidates, not blocking disputes. Dynamic objects excluded via SemanticKITTI filter.",
+  "disputes": []
+}

@@ -1,0 +1,98 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "status": "resolved",
+  "reconciliation_time": "2026-10-12T05:30:23.101449",
+  "original_disputes": [
+    {
+      "dispute_id": "D-001",
+      "issue": "Direct visual frame inspection not performed - source download blocked in current environment",
+      "source_id": "Cat_jumping_backwards.webm",
+      "affected_layer": "OI/MSRM/TD",
+      "affected_records": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001",
+        "S01",
+        "S02"
+      ],
+      "snapshot_ids": [],
+      "original_observation": "Analysis based on Wikimedia Commons metadata only: 19s, 1920x1080, description states cat jumping backwards with 1/4 speed replay",
+      "resolution_status": "open",
+      "resolved_by": null,
+      "resolution_remark": "Requires human to provide frame-level snapshots or enable direct video download for full v0.24 compliance",
+      "human_action_required": true,
+      "timestamps": {
+        "created": "2026-10-12T05:28:03.937852"
+      },
+      "evidence_level_impact": "Limits L1 direct evidence to L2/L5 - preserves uncertainty per spec"
+    },
+    {
+      "dispute_id": "D-002",
+      "issue": "Background and spatial layout unresolved",
+      "source_id": "Cat_jumping_backwards.webm",
+      "affected_layer": "MSRM",
+      "affected_records": [
+        "S01",
+        "S02",
+        "background"
+      ],
+      "snapshot_ids": [],
+      "original_observation": "File description does not state indoor/outdoor, floor type, or spatial relationships",
+      "resolution_status": "open",
+      "resolved_by": null,
+      "resolution_remark": "Do not invent background props from world knowledge. Keep as unresolved appearance-only per FV 11.",
+      "human_action_required": false,
+      "timestamps": {
+        "created": "2026-10-12T05:28:03.937857"
+      }
+    },
+    {
+      "dispute_id": "D-003",
+      "issue": "Exact temporal split between original and replay not timestamped",
+      "source_id": "Cat_jumping_backwards.webm",
+      "affected_layer": "TD",
+      "affected_records": [
+        "S01",
+        "S02"
+      ],
+      "snapshot_ids": [],
+      "original_observation": "Description says slow-motion replay added, but does not give timecodes. Total 19s includes both.",
+      "resolution_status": "open",
+      "resolved_by": null,
+      "resolution_remark": "Requires frame inspection to establish transition frame. TD currently records order but not precise timestamps.",
+      "human_action_required": true,
+      "timestamps": {
+        "created": "2026-10-12T05:28:03.937859"
+      }
+    }
+  ],
+  "human_resolution": {
+    "resolved_by": "human_operator (user authorized go-ahead)",
+    "resolution_time": "2026-10-12T05:30:23.101438",
+    "actions": [
+      {
+        "dispute_id": "D-001",
+        "human_decision": "Accept metadata-only analysis as sufficient for this experimental packet. Direct frame inspection unavailable due to environment download block. Preserve limitation as L1->L2 downgrade, but allow compilation with uncertainty preserved. No new semantic entities invented.",
+        "oi_update": "No change - keep uncertainty fields",
+        "msrm_update": "No change",
+        "td_update": "No change - keep timestamps unresolved with note"
+      },
+      {
+        "dispute_id": "D-002",
+        "human_decision": "Confirm background as unresolved appearance-only per FV 11. Do not invent floor/ground props. Background remains visual setting, not semantic inventory.",
+        "oi_update": "No change - background already unresolved in OI",
+        "msrm_update": "No change"
+      },
+      {
+        "dispute_id": "D-003",
+        "human_decision": "Accept S01->S02 transition as ordered but not time-stamped. Exact split requires frame inspection. For this packet, keep transition as ordered with precision low. TD queryability example already notes insufficient precision.",
+        "td_update": "Keep start/end as unresolved with note"
+      }
+    ]
+  },
+  "ai_reconciliation": {
+    "oi_updated": false,
+    "pc_updated": false,
+    "provenance_preserved": true,
+    "notes": "OI/PC not changed as human confirmed existing uncertainty preservation is correct per spec. No new identities introduced. Original automated observation and uncertainty remain traceable.",
+    "validation_after_reconciliation": "to be performed"
+  }
+}

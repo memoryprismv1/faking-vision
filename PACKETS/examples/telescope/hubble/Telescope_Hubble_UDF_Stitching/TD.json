@@ -1,0 +1,13 @@
+{
+  "packet_id": "PKT-TELESCOPE-HUDF-STITCH-001",
+  "timeline": [
+    {
+      "interval_id": "EXPOSURE_001",
+      "action": "20min exposure"
+    },
+    {
+      "interval_id": "ASSEMBLED_HUDF",
+      "action": "800 exposures stitched -> 10k galaxies"
+    }
+  ]
+}

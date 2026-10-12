@@ -1,0 +1,43 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "operation": "fv assemble - Mayan pyramids",
+  "tir_version": "v0.24 TIR",
+  "note": "TIR retains provisional hypotheses, rejected candidates, uncertainty. TD is committed.",
+  "hypotheses": [
+    {
+      "hypothesis": "Elevated mound = pyramid vs natural hill",
+      "status": "provisional",
+      "tests": [
+        "shape rectangular 40x40m",
+        "orientation cardinal",
+        "adjacent causeway",
+        "height 15m"
+      ],
+      "quality": "weak -> strengthened"
+    },
+    {
+      "hypothesis": "Linear feature = sacbeob (elevated highway) vs natural ridge",
+      "status": "provisional",
+      "tests": [
+        "straight 2km, width 5m, connects two pyramids"
+      ],
+      "quality": "high"
+    },
+    {
+      "hypothesis": "Cluster = entire city vs scattered farmsteads",
+      "status": "provisional",
+      "quality": "high - 61k structures in network"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "Natural hill",
+      "reason": "Rectangular base, cardinal orientation, causeway connection - not natural",
+      "status": "rejected"
+    }
+  ],
+  "ey": {
+    "current": "stitching 100+ flight lines into 2,100km2 megacity",
+    "previous": []
+  }
+}

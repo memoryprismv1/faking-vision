@@ -1,0 +1,13 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "snapshots": {
+    "note": "No direct frame snapshots preserved due to download limitation - would normally include verification/ crops around jump apex and transition boundary",
+    "expected_retention": [
+      "jump takeoff frame",
+      "apex of backwards jump",
+      "landing frame",
+      "S01\u2192S02 transition",
+      "slow-motion replay apex"
+    ]
+  }
+}

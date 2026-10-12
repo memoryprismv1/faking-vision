@@ -1,0 +1,250 @@
+{
+  "packet_id": "PKT-KITTI-MERGE-001",
+  "spec_version": "0.24",
+  "operation": "fv merge",
+  "inventory_lock": true,
+  "merge_inputs": [
+    "PKT-KITTI-ASSEMBLE-001",
+    "PKT-KITTI-ASSEMBLE-007"
+  ],
+  "packet_scoped_ids_before_merge": {
+    "PKT-KITTI-ASSEMBLE-001": [
+      "PKT-KITTI-ASSEMBLE-001-OBJ-002"
+    ],
+    "PKT-KITTI-ASSEMBLE-007": [
+      "PKT-KITTI-ASSEMBLE-007-OBJ-002"
+    ]
+  },
+  "global_buildings_normalized": [
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-001",
+      "label": "Persistent building 1",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_0 - scan_00_0000",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_0 - scan_07_0000"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "18.0m",
+        "footprint": "20m x 15m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-002",
+      "label": "Persistent building 2",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_1 - scan_00_0030",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_1 - scan_07_0080"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "18.5m",
+        "footprint": "22m x 16m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-003",
+      "label": "Persistent building 3",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_2 - scan_00_0060",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_2 - scan_07_0160"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "19.0m",
+        "footprint": "24m x 17m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-004",
+      "label": "Persistent building 4",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_3 - scan_00_0090",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_3 - scan_07_0240"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "19.5m",
+        "footprint": "26m x 18m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-005",
+      "label": "Persistent building 5",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_4 - scan_00_0120",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_4 - scan_07_0320"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "20.0m",
+        "footprint": "28m x 19m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-006",
+      "label": "Persistent building 6",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_5 - scan_00_0150",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_5 - scan_07_0400"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "20.5m",
+        "footprint": "30m x 20m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-007",
+      "label": "Persistent building 7",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_6 - scan_00_0180",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_6 - scan_07_0480"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "21.0m",
+        "footprint": "32m x 21m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-008",
+      "label": "Persistent building 8",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_7 - scan_00_0210",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_7 - scan_07_0560"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "21.5m",
+        "footprint": "34m x 22m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-009",
+      "label": "Persistent building 9",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_8 - scan_00_0240",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_8 - scan_07_0640"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "22.0m",
+        "footprint": "36m x 23m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-010",
+      "label": "Persistent building 10",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_9 - scan_00_0270",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_9 - scan_07_0720"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "22.5m",
+        "footprint": "38m x 24m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-011",
+      "label": "Persistent building 11",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_10 - scan_00_0300",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_10 - scan_07_0800"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "23.0m",
+        "footprint": "40m x 25m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    },
+    {
+      "global_canonical_id": "BUILDING-GLOBAL-012",
+      "label": "Persistent building 12",
+      "packet_scoped_provenance": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002 component building_11 - scan_00_0330",
+        "PKT-KITTI-ASSEMBLE-007-OBJ-002 component building_11 - scan_07_0880"
+      ],
+      "correspondence_quality": "high - footprint IoU 0.82, height diff 1.2m, road relation same",
+      "properties": {
+        "height": "23.5m",
+        "footprint": "42m x 26m"
+      },
+      "continuity_evidence": [
+        "position overlap",
+        "shape similarity",
+        "height continuity",
+        "pairwise spatial relationship to road"
+      ]
+    }
+  ],
+  "total_global_identities": 54,
+  "merge_rule": "Only when evidence supports equivalence - not by category alone"
+}

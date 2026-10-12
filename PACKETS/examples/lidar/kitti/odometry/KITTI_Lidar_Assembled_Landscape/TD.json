@@ -1,0 +1,119 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "spec_version": "0.24",
+  "operation": "fv assemble",
+  "note": "TD for assemble records assembly sequence, not video temporal changes. Each scan addition is a temporal step.",
+  "timeline": [
+    {
+      "interval_id": "ASSEMBLE_STEP_0000",
+      "scene_id": "ASSEMBLED_MAP_00",
+      "start": 0,
+      "end": 1,
+      "type": "assembly step - add scan",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "scan_0000",
+          "change": "registered and merged into global map",
+          "evidence": "pose from poses/00.txt line 0"
+        }
+      ],
+      "provenance": "Source: velodyne/0000000000.bin"
+    },
+    {
+      "interval_id": "ASSEMBLE_STEP_0001",
+      "scene_id": "ASSEMBLED_MAP_00",
+      "start": 1,
+      "end": 2,
+      "type": "assembly step - add scan",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "scan_0001",
+          "change": "registered and merged into global map",
+          "evidence": "pose from poses/00.txt line 1"
+        }
+      ],
+      "provenance": "Source: velodyne/0000000001.bin"
+    },
+    {
+      "interval_id": "ASSEMBLE_STEP_0002",
+      "scene_id": "ASSEMBLED_MAP_00",
+      "start": 2,
+      "end": 3,
+      "type": "assembly step - add scan",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "scan_0002",
+          "change": "registered and merged into global map",
+          "evidence": "pose from poses/00.txt line 2"
+        }
+      ],
+      "provenance": "Source: velodyne/0000000002.bin"
+    },
+    {
+      "interval_id": "ASSEMBLE_STEP_0003",
+      "scene_id": "ASSEMBLED_MAP_00",
+      "start": 3,
+      "end": 4,
+      "type": "assembly step - add scan",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "scan_0003",
+          "change": "registered and merged into global map",
+          "evidence": "pose from poses/00.txt line 3"
+        }
+      ],
+      "provenance": "Source: velodyne/0000000003.bin"
+    },
+    {
+      "interval_id": "ASSEMBLE_STEP_0004",
+      "scene_id": "ASSEMBLED_MAP_00",
+      "start": 4,
+      "end": 5,
+      "type": "assembly step - add scan",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001-OBJ-001",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-002",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-003",
+        "PKT-KITTI-ASSEMBLE-001-OBJ-004"
+      ],
+      "off_screen": [],
+      "changes": [
+        {
+          "id": "scan_0004",
+          "change": "registered and merged into global map",
+          "evidence": "pose from poses/00.txt line 4"
+        }
+      ],
+      "provenance": "Source: velodyne/0000000004.bin"
+    }
+  ],
+  "atd_note": "ATD not applicable for assembly - sequential addition of scans is assembly order, not perturbation-driven subdivision. Full 400 steps truncated to 5 in TD for brevity, full history in logs"
+}

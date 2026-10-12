@@ -1,0 +1,5 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "note": "No genuine project-wide constants for this single-source packet. PC not used. Would be used for canonical object DB if this were part of continuous same-camera footage.",
+  "constants": []
+}

@@ -1,0 +1,100 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "spec_version": "0.24",
+  "td_is_authoritative": true,
+  "observation_records_owner": "TD owns video observation records per v0.15 - no separate observation.json",
+  "timeline": [
+    {
+      "interval_id": "S01",
+      "scene_id": "S01",
+      "start": 0.0,
+      "end": null,
+      "type": "temporal leaf - original clip",
+      "visible": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "off_screen": [],
+      "atd_status": "leaf - adequately represented as one state for this analysis level, pending direct frame perturbation check",
+      "changes": [
+        {
+          "id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "change": "jumping backwards - behavior observed in description",
+          "change_type": "action/state change",
+          "evidence_level": "L2 - relational from description",
+          "frameid": null,
+          "ey": {
+            "current": "backwards jumping motion described",
+            "previous": [],
+            "frameid": null
+          }
+        }
+      ]
+    },
+    {
+      "interval_id": "S02",
+      "scene_id": "S02",
+      "start": null,
+      "end": 19.0,
+      "type": "temporal leaf - slow-motion replay 1/4 speed",
+      "visible": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "off_screen": [],
+      "atd_status": "leaf",
+      "changes": [
+        {
+          "id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "change": "same backwards jump at 0.25x speed",
+          "change_type": "temporal scaling of same action",
+          "evidence_level": "L2 from description",
+          "temporal_scaling": 0.25,
+          "frameid": null,
+          "ey": {
+            "current": "replayed jump at quarter speed",
+            "previous": [
+              {
+                "interval": "S01",
+                "observation": "original jump"
+              }
+            ],
+            "frameid": null
+          }
+        }
+      ],
+      "transition_from_previous": {
+        "type": "cut / replay boundary",
+        "from": "S01",
+        "to": "S02",
+        "description": "Transition from original to slow-motion replay - description states replay has been added"
+      }
+    }
+  ],
+  "temporal_queryability_examples": {
+    "When does cat jump backwards?": "S01 original, and again in S02 at 1/4 speed - exact timestamps unresolved due to lack of direct frame inspection, total duration 19s",
+    "Is S02 new instance or same cat?": "Same persistent identity PKT-CAT-JUMP-BACK-001-OBJ-001 per FV movement\u2260duplication rule and description indicating replay",
+    "Elapsed interval between original and replay": "Insufficient TD precision - not recorded, would require frame-accurate inspection"
+  },
+  "change_propensity": {
+    "note": "Per Additional Guidance v0.24 - SCP/CCP/EY distinct",
+    "objects": [
+      {
+        "id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+        "SCP": "medium - animal capable of rapid movement",
+        "CCP": "high during S01 jump, medium during S02 slow replay",
+        "EY": {
+          "current": "backwards jumping - information-bearing",
+          "frameid": null,
+          "previous": []
+        },
+        "change_generator_obj_ids": [
+          "PKT-CAT-JUMP-BACK-001-OBJ-001"
+        ]
+      }
+    ]
+  },
+  "atd_procedure": {
+    "method": "conceptual ATD - lazy scan default, two major intervals identified from description (original + replay)",
+    "recursive_subdivision": "not performed - requires direct frame perturbation evidence which was unavailable in this environment",
+    "limitation": "High-quality ATD requires direct frame inspection - preserved as uncertainty/dispute"
+  }
+}

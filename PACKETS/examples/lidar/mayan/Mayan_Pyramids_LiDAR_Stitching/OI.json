@@ -1,0 +1,104 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "spec_version": "0.24",
+  "operation": "fv assemble",
+  "inventory_lock": true,
+  "source_provenance": {
+    "initiative": "PACUNAM LiDAR Initiative 2016-2018, 2,100km2, 61,000 structures",
+    "sensor": "Airborne LiDAR 560k pts/sec, billions of pulses",
+    "publication": "Science 2018 Garrison et al.",
+    "total_scans_stitched": "100+ flight transects, each 10km x 0.5km, overlap 30-50%"
+  },
+  "entities": [
+    {
+      "canonical_id": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+      "category": "pyramid",
+      "label": "Mayan pyramid - main temple, 40x40m base, 15m height, cardinal orientation",
+      "properties": {
+        "base": "40x40m",
+        "height": "15m",
+        "orientation": "cardinal",
+        "evidence_level": "L1 direct ground returns + L2 relational causeway connection",
+        "classification": "L4 knowledge - pyramid vs natural hill requires archaeological knowledge"
+      },
+      "components": [
+        {
+          "component_id": "PKT-MAYAN-LIDAR-STITCH-001-COMP-001",
+          "type": "base platform",
+          "description": "rectangular platform 40x40m"
+        },
+        {
+          "component_id": "PKT-MAYAN-LIDAR-STITCH-001-COMP-002",
+          "type": "summit",
+          "description": "flat summit 10x10m"
+        },
+        {
+          "component_id": "PKT-MAYAN-LIDAR-STITCH-001-COMP-003",
+          "type": "staircase",
+          "description": "west-facing staircase, 2m width - expected component"
+        }
+      ],
+      "behaviour": {
+        "static": "pyramid - no movement, but discovered via vegetation stripping"
+      },
+      "uncertainty": [
+        "Exact construction date unresolved - 250-900AD Classic period, requires excavation"
+      ]
+    },
+    {
+      "canonical_id": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002",
+      "category": "causeway",
+      "label": "Sacbeob - elevated highway, 2km long, 5m width, connects pyramid to plaza",
+      "properties": {
+        "length": "2km",
+        "width": "5m",
+        "elevation": "1-2m above ground",
+        "evidence_level": "L1 direct + L2 linear feature"
+      }
+    },
+    {
+      "canonical_id": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
+      "category": "plaza",
+      "label": "Plaza - flat area 100x100m adjacent to pyramid",
+      "properties": {
+        "size": "100x100m",
+        "evidence_level": "L1 direct flat DEM"
+      }
+    },
+    {
+      "canonical_id": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
+      "category": "defensive_fortification",
+      "label": "Defensive wall / fortification - linear 500m",
+      "properties": {
+        "evidence_level": "L2 relational"
+      }
+    },
+    {
+      "canonical_id": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-005",
+      "category": "reservoir",
+      "label": "Reservoir / aguada - depression for water storage",
+      "properties": {}
+    }
+  ],
+  "background": {
+    "status": "Jungle canopy - filtered out as appearance, not semantic inventory. Ground DEM is object inventory (pyramids, causeways)",
+    "note": "Per FV 11, canopy is visual setting removed via last-return filtering, not semantic object"
+  },
+  "component_candidature_record": {
+    "observed_component": "Rectangular elevated mound 40x40m with adjacent linear feature",
+    "candidate_set": [
+      "Mayan pyramid, natural hill, modern mound"
+    ],
+    "discriminating_search": [
+      "rectangular base? cardinal orientation? causeway connection? height vs natural topography?"
+    ],
+    "expected_components": [
+      "base platform rectangular",
+      "summit flat",
+      "staircase west-facing",
+      "adjacent plaza"
+    ],
+    "search_result": "Rectangular 40x40m base found, cardinal orientation, causeway 2km connects to plaza 100x100m - supports pyramid, natural hill rejected",
+    "promotion_decision": "Promoted to OBJ-001 pyramid with uncertainty preserved about date"
+  }
+}

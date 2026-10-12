@@ -1,0 +1,32 @@
+{
+  "packet_id": "PKT-CCTV-STORAGE-PART1-001",
+  "scenes": [
+    {
+      "scene_id": "S-PART1",
+      "label": "Initial contact - officers approach, questioning",
+      "entities_present": [
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-003",
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-004"
+      ],
+      "spatial_relationships": [
+        {
+          "subject": "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+          "relation": "near",
+          "object": "PKT-CCTV-STORAGE-PART1-001-OBJ-004",
+          "evidence": "person near bench"
+        },
+        {
+          "subject": "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+          "relation": "approaching",
+          "object": "PKT-CCTV-STORAGE-PART1-001-OBJ-001"
+        }
+      ],
+      "camera": {
+        "type": "fixed CCTV surveillance, prepositioned, no movement",
+        "framing": "static 640x360"
+      }
+    }
+  ]
+}

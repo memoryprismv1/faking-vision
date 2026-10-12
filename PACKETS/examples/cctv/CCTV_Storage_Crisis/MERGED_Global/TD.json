@@ -1,0 +1,36 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "timeline": [
+    {
+      "interval_id": "PART1",
+      "start": "00:00",
+      "end": "11:23",
+      "visible": [
+        "PERSON-GLOBAL-001",
+        "PERSON-GLOBAL-002",
+        "PERSON-GLOBAL-003"
+      ]
+    },
+    {
+      "interval_id": "PART2",
+      "start": "11:23",
+      "end": "22:46",
+      "visible": [
+        "PERSON-GLOBAL-001",
+        "PERSON-GLOBAL-002",
+        "PERSON-GLOBAL-003"
+      ]
+    },
+    {
+      "interval_id": "PART3",
+      "start": "22:46",
+      "end": "34:10",
+      "visible": [
+        "PERSON-GLOBAL-001",
+        "PERSON-GLOBAL-002",
+        "PERSON-GLOBAL-003"
+      ]
+    }
+  ],
+  "atd_for_cctv": "Fixed CCTV - no camera movement, only local object changes. ATD should maintain low density globally, increase density around bench area where activity occurs (perturbation clusters). CCP high during escalation Part2."
+}

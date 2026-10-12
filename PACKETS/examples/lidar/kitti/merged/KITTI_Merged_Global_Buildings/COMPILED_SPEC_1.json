@@ -1,0 +1,50 @@
+{
+  "packet_id": "PKT-KITTI-MERGE-001",
+  "spec_version": "0.24",
+  "operation": "fv merge",
+  "compilation_type": "lossless compiled renderer spec for merged global map",
+  "global_identity_ledger": {
+    "closed_object_inventory": [
+      "BUILDING-GLOBAL-001",
+      "BUILDING-GLOBAL-002",
+      "BUILDING-GLOBAL-003",
+      "BUILDING-GLOBAL-004",
+      "BUILDING-GLOBAL-005",
+      "BUILDING-GLOBAL-006",
+      "BUILDING-GLOBAL-007",
+      "BUILDING-GLOBAL-008",
+      "BUILDING-GLOBAL-009",
+      "BUILDING-GLOBAL-010",
+      "BUILDING-GLOBAL-011",
+      "BUILDING-GLOBAL-012",
+      "BUILDING-GLOBAL-013..054 (unique)"
+    ],
+    "total": 54,
+    "provenance": "Each global ID preserves packet-scoped IDs from 00 and 07"
+  },
+  "scenes": [
+    {
+      "scene_id": "GLOBAL_MAP_KITTI_00_07",
+      "present_entities": [
+        "BUILDING-GLOBAL-001",
+        "BUILDING-GLOBAL-002",
+        "BUILDING-GLOBAL-003",
+        "BUILDING-GLOBAL-004",
+        "BUILDING-GLOBAL-005",
+        "BUILDING-GLOBAL-006",
+        "BUILDING-GLOBAL-007",
+        "BUILDING-GLOBAL-008",
+        "BUILDING-GLOBAL-009",
+        "BUILDING-GLOBAL-010",
+        "BUILDING-GLOBAL-011",
+        "BUILDING-GLOBAL-012"
+      ],
+      "note": "Final merged map 1500x1200m, 12 shared buildings with high confidence correspondence, 42 singletons"
+    }
+  ],
+  "negative_instructions": [
+    "Do NOT add new buildings not in OI - closed inventory 54 total",
+    "Do NOT duplicate shared buildings - GID-B001..012 are single persistent identities seen in both sequences",
+    "Do NOT invent building heights beyond packet - use median Z from packet"
+  ]
+}

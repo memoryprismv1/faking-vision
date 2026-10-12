@@ -1,0 +1,6 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "constants": [
+    "UTM 16N, WGS84, LiDAR wavelength 1064nm, flight altitude 600m"
+  ]
+}

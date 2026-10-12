@@ -1,0 +1,30 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "validation_time": "2026-10-12T05:30:23.101809",
+  "spec_version": "0.24",
+  "post_reconciliation": true,
+  "checks": [
+    {
+      "check": "dispute_status_resolved",
+      "status": "PASS",
+      "details": "dispute.json status=resolved, dispute.reconciled.json preserved"
+    },
+    {
+      "check": "reconciliation_preserved_provenance",
+      "status": "PASS",
+      "details": "Original disputes archived, human resolution recorded, OI not rewritten"
+    },
+    {
+      "check": "inventory_still_locked",
+      "status": "PASS",
+      "details": "OI inventory_lock still True"
+    },
+    {
+      "check": "snapshot_structure",
+      "status": "PASS",
+      "details": "snapshot/verification, objs, disputes exist, no nested folders"
+    }
+  ],
+  "overall_status": "VALID - resolved",
+  "rendering_gate": "PERMITTED - dispute.json status=resolved"
+}

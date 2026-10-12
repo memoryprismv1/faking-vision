@@ -1,0 +1,36 @@
+FV VALIDATION REPORT v0.24
+packet_id: PKT-CAT-JUMP-BACK-001
+time: 2026-10-12T05:29:50.843932
+overall: INVALID - open disputes block rendering but structure valid
+rendering_gate: dispute.json status=open -> BLOCKED
+
+Checks:
+- required_files: PASS | Required: ['OI.json', 'MSRM.json', 'TD.json', 'dispute.json', 'README.txt'], Missing: [], Present: ['MSRM.json', 'OI.json', 'README.txt', 'TD.json', 'dispute.json', 'PC.json', 'MSRM.json', 'OI.json', 'README.txt', 'TD.json']
+- OI_unique_ids: PASS | IDs: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], unique: True
+- OI_inventory_lock: PASS | inventory_lock=True
+- OI_packet_id_consistent: PASS | OI packet_id=PKT-CAT-JUMP-BACK-001 vs PKT-CAT-JUMP-BACK-001
+- MSRM_refs_valid: PASS | MSRM refs: ['PKT-CAT-JUMP-BACK-001-OBJ-001', 'PKT-CAT-JUMP-BACK-001-OBJ-001'], OI ids: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], invalid: []
+- TD_present_mandatory_for_video: PASS | Video packet requires TD - present
+- TD_ids_valid: PASS | TD ids referenced: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], invalid: []
+- TD_owns_observations: PASS | TD owns observation records per v0.15, no separate observation.json created - compliant
+- dispute_status_explicit: PASS | status=open
+- dispute_D-001_fields: PASS | Missing: []
+- dispute_D-002_fields: PASS | Missing: []
+- dispute_D-003_fields: PASS | Missing: []
+- PC_no_global_id_before_merge: PASS | PC uses packet_id scoping not global - no premature global IDs
+- snapshot_lowercase: PASS | snapshot folder exists lowercase: True
+- snapshot_verification_no_nested: FAIL | verification exists: False, nested check not implemented but no nested folders created
+- snapshot_objs_no_nested: FAIL | objs exists: False, nested check not implemented but no nested folders created
+- snapshot_disputes_no_nested: FAIL | disputes exists: False, nested check not implemented but no nested folders created
+- uncertainty_preserved: PASS | OI entities contain uncertainty field - uncertainty survives pipeline
+- background_separation: PASS | Background kept separate from OI inventory per FV 11, not promoted to semantic object
+
+Summary: 16 PASS, 3 FAIL. Structure is v0.24 compliant but rendering blocked by open disputes per spec 8.5.3
+
+Per spec: validation does not silently repair packet. If repair required, identify what must be reprocessed.
+Required actions to permit compilation:
+1. Resolve D-001: Provide frame-level snapshots (takeoff, apex, landing, transition) or enable direct video download to upgrade L1 evidence from L2/L5
+2. Resolve D-002: Confirm background as unresolved appearance-only (no human action needed, but keep dispute for traceability or downgrade to none after review)
+3. Resolve D-003: Provide precise timecodes for S01->S02 transition via frame inspection
+
+After human resolution, AI must perform reconciliation: update OI/PC as justified, preserve provenance, validate again, then move dispute.json -> dispute.reconciled.json and create new small dispute.json = resolved.

@@ -1,0 +1,16 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "global_map": "Fullerton Transportation Center bus depot - static CCTV background, 34min10s continuous",
+  "scenes": [
+    {
+      "scene_id": "GLOBAL_CCTV_34MIN",
+      "entities_present": [
+        "PERSON-GLOBAL-001",
+        "PERSON-GLOBAL-002",
+        "PERSON-GLOBAL-003",
+        "STRUCTURE-GLOBAL-001"
+      ],
+      "coverage": "34min10s total, 3 parts merged, static camera, no global perturbation"
+    }
+  ]
+}

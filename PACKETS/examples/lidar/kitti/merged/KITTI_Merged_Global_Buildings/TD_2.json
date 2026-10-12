@@ -1,0 +1,36 @@
+{
+  "packet_id": "PKT-KITTI-MERGE-001",
+  "note": "TD for merge records merge operation timeline, not video time",
+  "timeline": [
+    {
+      "interval_id": "MERGE_STEP_00",
+      "action": "Load packet 00 OI",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-001"
+      ]
+    },
+    {
+      "interval_id": "MERGE_STEP_01",
+      "action": "Load packet 07 OI",
+      "visible": [
+        "PKT-KITTI-ASSEMBLE-007"
+      ]
+    },
+    {
+      "interval_id": "MERGE_STEP_02",
+      "action": "Correspondence investigation for 12 overlapping buildings",
+      "visible": [
+        "BUILDING-GLOBAL-001..012"
+      ]
+    },
+    {
+      "interval_id": "MERGE_STEP_03",
+      "action": "Establish global canonical IDs",
+      "visible": [
+        "BUILDING-GLOBAL-001",
+        "BUILDING-GLOBAL-002",
+        "BUILDING-GLOBAL-003"
+      ]
+    }
+  ]
+}

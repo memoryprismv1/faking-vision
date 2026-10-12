@@ -1,0 +1,192 @@
+{
+  "packet_id": "PKT-MAYAN-MERGE-61K-001",
+  "operation": "fv merge",
+  "merge_inputs": "100+ flight transect packets from 2,100km2 survey",
+  "global_identities_sample": [
+    {
+      "global_canonical_id": "PYR-GLOBAL-00001",
+      "label": "Persistent pyramid 1",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-000-OBJ-001",
+        "PKT-FLIGHT-001-OBJ-001",
+        "PKT-FLIGHT-002-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "15.0m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00002",
+      "label": "Persistent pyramid 2",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-008-OBJ-001",
+        "PKT-FLIGHT-009-OBJ-001",
+        "PKT-FLIGHT-010-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "15.3m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00003",
+      "label": "Persistent pyramid 3",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-016-OBJ-001",
+        "PKT-FLIGHT-017-OBJ-001",
+        "PKT-FLIGHT-018-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "15.6m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00004",
+      "label": "Persistent pyramid 4",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-024-OBJ-001",
+        "PKT-FLIGHT-025-OBJ-001",
+        "PKT-FLIGHT-026-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "15.9m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00005",
+      "label": "Persistent pyramid 5",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-032-OBJ-001",
+        "PKT-FLIGHT-033-OBJ-001",
+        "PKT-FLIGHT-034-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "16.2m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00006",
+      "label": "Persistent pyramid 6",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-040-OBJ-001",
+        "PKT-FLIGHT-041-OBJ-001",
+        "PKT-FLIGHT-042-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "16.5m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00007",
+      "label": "Persistent pyramid 7",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-048-OBJ-001",
+        "PKT-FLIGHT-049-OBJ-001",
+        "PKT-FLIGHT-050-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "16.8m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00008",
+      "label": "Persistent pyramid 8",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-056-OBJ-001",
+        "PKT-FLIGHT-057-OBJ-001",
+        "PKT-FLIGHT-058-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "17.1m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00009",
+      "label": "Persistent pyramid 9",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-064-OBJ-001",
+        "PKT-FLIGHT-065-OBJ-001",
+        "PKT-FLIGHT-066-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "17.4m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00010",
+      "label": "Persistent pyramid 10",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-072-OBJ-001",
+        "PKT-FLIGHT-073-OBJ-001",
+        "PKT-FLIGHT-074-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "17.7m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00011",
+      "label": "Persistent pyramid 11",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-080-OBJ-001",
+        "PKT-FLIGHT-081-OBJ-001",
+        "PKT-FLIGHT-082-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "18.0m",
+        "orientation": "N-S/E-W"
+      }
+    },
+    {
+      "global_canonical_id": "PYR-GLOBAL-00012",
+      "label": "Persistent pyramid 12",
+      "packet_scoped_provenance": [
+        "PKT-FLIGHT-088-OBJ-001",
+        "PKT-FLIGHT-089-OBJ-001",
+        "PKT-FLIGHT-090-OBJ-001"
+      ],
+      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "properties": {
+        "base": "40x40m",
+        "height": "18.3m",
+        "orientation": "N-S/E-W"
+      }
+    }
+  ],
+  "total_global": 61000,
+  "total_global_pyramids": 1200,
+  "total_global_causeways": 1800,
+  "total_global_plazas": 3000,
+  "note": "Full 61k not listed in OI for brevity - sample 12 shown, total counts preserved. Each global retains 3 packet_scoped_ids average (overlap 40%)"
+}

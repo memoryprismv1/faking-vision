@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-007",
+  "constants": [
+    "Tr_velo_to_cam from calib 07",
+    "Velodyne HDL-64E"
+  ]
+}

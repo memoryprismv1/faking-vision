@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-KITTI-ASSEMBLE-001",
+  "snapshots": {
+    "assembled_map_top_down": "snapshot/objs/assembled_map.png - height-colored top-down view 1200x800m",
+    "craft_project": "See artifact HTML"
+  }
+}

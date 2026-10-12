@@ -1,0 +1,116 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "spec_version": "0.24",
+  "compilation_type": "lossless compiled renderer specification",
+  "note": "Per FV 14.1 compiler rules: preserve identities, preserve object/background separation, preserve scene membership, state off-screen persistence, preserve temporal ordering, do not add adjectives/props/motivations/world-building",
+  "global": {
+    "style": "No style invention - preserve packet evidence only. No aesthetic improvement.",
+    "project_constants": "PC.json contains no constants - none applied"
+  },
+  "global_identity_ledger": {
+    "closed_object_inventory": [
+      "PKT-CAT-JUMP-BACK-001-OBJ-001"
+    ],
+    "closed_background_inventory": [
+      "background unresolved appearance-only - no semantic background objects"
+    ],
+    "global_temporal_rules": "TD is authoritative, movement\u2260duplication, off-screen\u2260deleted, persistent identity PKT-CAT-JUMP-BACK-001-OBJ-001 across S01,S02"
+  },
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "background": "unresolved - not promoted to semantic inventory",
+      "present_entities": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "off_screen_absent": [],
+      "positions_relationships": [
+        {
+          "subject": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "relation": "position",
+          "value": "center frame - estimated, not measured",
+          "precision": "low - no direct measurement",
+          "evidence_level": "L5 unresolved"
+        }
+      ],
+      "action_state": [
+        {
+          "id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "change": "jumping backwards - behavior observed in description",
+          "change_type": "action/state change",
+          "evidence_level": "L2 - relational from description",
+          "frameid": null,
+          "ey": {
+            "current": "backwards jumping motion described",
+            "previous": [],
+            "frameid": null
+          }
+        }
+      ],
+      "camera_framing": {
+        "framing": "unresolved - 1920x1080 frame, cat appears fully visible per description",
+        "movement": "appears static - no camera motion described"
+      },
+      "transition": null,
+      "local_entity_closure": "Only ['PKT-CAT-JUMP-BACK-001-OBJ-001'] may appear in S01. No other semantic entities authorized."
+    },
+    {
+      "scene_id": "S02",
+      "background": "same as S01 - unresolved",
+      "present_entities": [
+        "PKT-CAT-JUMP-BACK-001-OBJ-001"
+      ],
+      "off_screen_absent": [],
+      "positions_relationships": [
+        {
+          "subject": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "relation": "position",
+          "value": "same as S01 but temporal scaling 1/4",
+          "precision": "low",
+          "evidence_level": "L5 unresolved"
+        }
+      ],
+      "action_state": [
+        {
+          "id": "PKT-CAT-JUMP-BACK-001-OBJ-001",
+          "change": "same backwards jump at 0.25x speed",
+          "change_type": "temporal scaling of same action",
+          "evidence_level": "L2 from description",
+          "temporal_scaling": 0.25,
+          "frameid": null,
+          "ey": {
+            "current": "replayed jump at quarter speed",
+            "previous": [
+              {
+                "interval": "S01",
+                "observation": "original jump"
+              }
+            ],
+            "frameid": null
+          }
+        }
+      ],
+      "camera_framing": {
+        "framing": "same as S01"
+      },
+      "transition": {
+        "type": "cut / replay boundary",
+        "from": "S01",
+        "to": "S02",
+        "description": "Transition from original to slow-motion replay - description states replay has been added"
+      },
+      "local_entity_closure": "Only ['PKT-CAT-JUMP-BACK-001-OBJ-001'] may appear in S02. No other semantic entities authorized."
+    }
+  ],
+  "final_closed_world_assertion": {
+    "assertion": "Closed inventory: only PKT-CAT-JUMP-BACK-001-OBJ-001 exists as semantic object. Background is appearance-only. No additional cats, no people, no props, no motivations, no genre conventions may be added by renderer.",
+    "negative_instructions": [
+      "Do NOT add second cat for slow-motion replay - same identity at 1/4 speed",
+      "Do NOT add floor texture as semantic object - background remains appearance-only",
+      "Do NOT add human, furniture, outdoor scenery - not in packet",
+      "Do NOT invent fur color if not supported - keep unresolved",
+      "Do NOT add sound - no audio in packet"
+    ],
+    "renderer_limitation_handling": "If renderer cannot express unresolved background or low-precision positions, record limitation as engineering observation, do not alter packet"
+  }
+}

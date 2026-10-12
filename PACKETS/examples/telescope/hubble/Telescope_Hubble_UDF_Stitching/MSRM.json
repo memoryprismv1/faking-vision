@@ -1,0 +1,16 @@
+{
+  "packet_id": "PKT-TELESCOPE-HUDF-STITCH-001",
+  "global_coordinate_system": "RA/Dec, J2000, 3 arcmin2",
+  "registration": {
+    "method": "Stars as tie points, 90% overlap, distortion correction ACS/WFC, drizzle algorithm"
+  },
+  "scenes": [
+    {
+      "scene_id": "HUDF_ENTIRE",
+      "entities_present": [
+        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-001"
+      ],
+      "total_galaxies": 10000
+    }
+  ]
+}

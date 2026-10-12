@@ -1,0 +1,24 @@
+{
+  "packet_id": "PKT-KITTI-MERGE-001",
+  "global_map": "Combined ENU - 00 origin + 07 origin aligned via GPS/IMU, then ICP between overlapping region",
+  "scenes": [
+    {
+      "scene_id": "GLOBAL_MAP_KITTI_00_07",
+      "entities_present": [
+        "BUILDING-GLOBAL-001",
+        "BUILDING-GLOBAL-002",
+        "BUILDING-GLOBAL-003",
+        "BUILDING-GLOBAL-004",
+        "BUILDING-GLOBAL-005",
+        "BUILDING-GLOBAL-006",
+        "BUILDING-GLOBAL-007",
+        "BUILDING-GLOBAL-008",
+        "BUILDING-GLOBAL-009",
+        "BUILDING-GLOBAL-010",
+        "BUILDING-GLOBAL-011",
+        "BUILDING-GLOBAL-012"
+      ],
+      "note": "54 global buildings across both sequences, 12 shared"
+    }
+  ]
+}

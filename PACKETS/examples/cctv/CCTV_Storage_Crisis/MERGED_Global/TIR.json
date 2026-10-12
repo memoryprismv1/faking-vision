@@ -1,0 +1,95 @@
+{
+  "packet_id": "PKT-CCTV-MERGE-001",
+  "operation": "fv merge - merge objects + TIR",
+  "source_tirs": [
+    "PKT-CCTV-STORAGE-PART1-001",
+    "PKT-CCTV-STORAGE-PART2-001",
+    "PKT-CCTV-STORAGE-PART3-001"
+  ],
+  "unified_timeline": [
+    {
+      "interval": "Part1 00:00-11:23",
+      "objects": [
+        "OBJ-001, OBJ-002, OBJ-003, OBJ-004"
+      ],
+      "tir_hypotheses": "Initial contact - provisional correspondence high quality"
+    },
+    {
+      "interval": "Part2 11:23-22:46",
+      "objects": [
+        "OBJ-001, OBJ-002, OBJ-003, OBJ-004"
+      ],
+      "tir_hypotheses": "Escalation - same identities continuity strengthened"
+    },
+    {
+      "interval": "Part3 22:46-34:10",
+      "objects": [
+        "OBJ-001, OBJ-002, OBJ-003, OBJ-004"
+      ],
+      "tir_hypotheses": "Aftermath - identity persistence confirmed across all 3 parts"
+    }
+  ],
+  "correspondence_investigation": {
+    "note": "Per Additional Guidance 5.1.1 - identity resolution begins as correspondence investigation, not immediate commitment",
+    "tests": [
+      {
+        "test": "clothing continuity",
+        "result": "Person A same clothing across 3 parts - quality high"
+      },
+      {
+        "test": "position continuity",
+        "result": "Bench remains fixed, persons move but return - quality high"
+      },
+      {
+        "test": "temporal continuity",
+        "result": "No gaps >2s between parts when concatenated - same camera, no off-screen deletion per core rule"
+      }
+    ],
+    "final_correspondence": [
+      {
+        "global_id": "PERSON-GLOBAL-001",
+        "packet_scoped_ids": [
+          "PKT-CCTV-STORAGE-PART1-001-OBJ-001",
+          "PKT-CCTV-STORAGE-PART2-001-OBJ-001",
+          "PKT-CCTV-STORAGE-PART3-001-OBJ-001"
+        ],
+        "quality": "high",
+        "label": "Same individual across all 3 parts"
+      },
+      {
+        "global_id": "PERSON-GLOBAL-002",
+        "packet_scoped_ids": [
+          "PART1-OBJ-002",
+          "PART2-OBJ-002",
+          "PART3-OBJ-002"
+        ],
+        "quality": "high",
+        "label": "Officer Ramos - same across parts"
+      },
+      {
+        "global_id": "PERSON-GLOBAL-003",
+        "packet_scoped_ids": [
+          "PART1-OBJ-003",
+          "PART2-OBJ-003",
+          "PART3-OBJ-003"
+        ],
+        "quality": "high"
+      },
+      {
+        "global_id": "STRUCTURE-GLOBAL-001",
+        "packet_scoped_ids": [
+          "PART1-OBJ-004",
+          "PART2-OBJ-004",
+          "PART3-OBJ-004"
+        ],
+        "quality": "high - static structure, no movement"
+      }
+    ]
+  },
+  "storage_crisis_analysis": {
+    "original": "61.4MB for 34min10s at 640x360 = 1.8MB/min",
+    "extrapolated_1080p_10Mbps": "1 camera = 7.5GB/hour = 180GB/day, 54GB/day at 5Mbps typical",
+    "world_scale": "1M CCTV cameras x 54GB/day = 54PB/day, 19.7EB/year - taking over world storage",
+    "fv_solution": "FV packet compresses to semantic entities + relationships, not pixels - OI/MSRM/TD ~ few KB per 11min vs 20MB video - 10000x reduction while preserving auditable evidence"
+  }
+}

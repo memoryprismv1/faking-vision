@@ -1,0 +1,32 @@
+{
+  "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
+  "timeline": [
+    {
+      "interval_id": "FLIGHT_001",
+      "action": "10km x 0.5km strip, 560k pts/sec",
+      "visible": [
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001"
+      ]
+    },
+    {
+      "interval_id": "FLIGHT_002",
+      "action": "adjacent strip overlap 40%",
+      "visible": [
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002"
+      ]
+    },
+    {
+      "interval_id": "ASSEMBLED_2100KM2",
+      "action": "All strips stitched, vegetation stripped, DEM 1m, 61k structures revealed",
+      "visible": [
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
+        "PKT-MAYAN-LIDAR-STITCH-001-OBJ-005"
+      ]
+    }
+  ],
+  "atd_note": "For airborne LiDAR, ATD increases density around pyramid clusters (perturbation = elevation change >5m over 20m), low density over flat jungle floor. Recursive subdivision where unresolved mound vs pyramid"
+}

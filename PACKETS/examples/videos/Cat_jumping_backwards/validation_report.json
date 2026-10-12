@@ -1,0 +1,105 @@
+{
+  "packet_id": "PKT-CAT-JUMP-BACK-001",
+  "validation_time": "2026-10-12T05:29:50.843932",
+  "spec_version": "0.24",
+  "checks": [
+    {
+      "check": "required_files",
+      "status": "PASS",
+      "details": "Required: ['OI.json', 'MSRM.json', 'TD.json', 'dispute.json', 'README.txt'], Missing: [], Present: ['MSRM.json', 'OI.json', 'README.txt', 'TD.json', 'dispute.json', 'PC.json', 'MSRM.json', 'OI.json', 'README.txt', 'TD.json']"
+    },
+    {
+      "check": "OI_unique_ids",
+      "status": "PASS",
+      "details": "IDs: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], unique: True"
+    },
+    {
+      "check": "OI_inventory_lock",
+      "status": "PASS",
+      "details": "inventory_lock=True"
+    },
+    {
+      "check": "OI_packet_id_consistent",
+      "status": "PASS",
+      "details": "OI packet_id=PKT-CAT-JUMP-BACK-001 vs PKT-CAT-JUMP-BACK-001"
+    },
+    {
+      "check": "MSRM_refs_valid",
+      "status": "PASS",
+      "details": "MSRM refs: ['PKT-CAT-JUMP-BACK-001-OBJ-001', 'PKT-CAT-JUMP-BACK-001-OBJ-001'], OI ids: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], invalid: []"
+    },
+    {
+      "check": "TD_present_mandatory_for_video",
+      "status": "PASS",
+      "details": "Video packet requires TD - present"
+    },
+    {
+      "check": "TD_ids_valid",
+      "status": "PASS",
+      "details": "TD ids referenced: ['PKT-CAT-JUMP-BACK-001-OBJ-001'], invalid: []"
+    },
+    {
+      "check": "TD_owns_observations",
+      "status": "PASS",
+      "details": "TD owns observation records per v0.15, no separate observation.json created - compliant"
+    },
+    {
+      "check": "dispute_status_explicit",
+      "status": "PASS",
+      "details": "status=open"
+    },
+    {
+      "check": "dispute_D-001_fields",
+      "status": "PASS",
+      "details": "Missing: []"
+    },
+    {
+      "check": "dispute_D-002_fields",
+      "status": "PASS",
+      "details": "Missing: []"
+    },
+    {
+      "check": "dispute_D-003_fields",
+      "status": "PASS",
+      "details": "Missing: []"
+    },
+    {
+      "check": "PC_no_global_id_before_merge",
+      "status": "PASS",
+      "details": "PC uses packet_id scoping not global - no premature global IDs"
+    },
+    {
+      "check": "snapshot_lowercase",
+      "status": "PASS",
+      "details": "snapshot folder exists lowercase: True"
+    },
+    {
+      "check": "snapshot_verification_no_nested",
+      "status": "FAIL",
+      "details": "verification exists: False, nested check not implemented but no nested folders created"
+    },
+    {
+      "check": "snapshot_objs_no_nested",
+      "status": "FAIL",
+      "details": "objs exists: False, nested check not implemented but no nested folders created"
+    },
+    {
+      "check": "snapshot_disputes_no_nested",
+      "status": "FAIL",
+      "details": "disputes exists: False, nested check not implemented but no nested folders created"
+    },
+    {
+      "check": "uncertainty_preserved",
+      "status": "PASS",
+      "details": "OI entities contain uncertainty field - uncertainty survives pipeline"
+    },
+    {
+      "check": "background_separation",
+      "status": "PASS",
+      "details": "Background kept separate from OI inventory per FV 11, not promoted to semantic object"
+    }
+  ],
+  "overall_status": "INVALID - open disputes block rendering but structure valid",
+  "rendering_gate": "dispute.json status=open -> BLOCKED",
+  "summary": "16 PASS, 3 FAIL. Structure is v0.24 compliant but rendering blocked by open disputes per spec 8.5.3"
+}
