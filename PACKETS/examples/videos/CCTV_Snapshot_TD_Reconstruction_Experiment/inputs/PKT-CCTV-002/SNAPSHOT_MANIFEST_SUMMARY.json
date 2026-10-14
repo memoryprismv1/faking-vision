@@ -1,0 +1,8 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "source_id": "SRC-CCTV-001-PART-02",
+  "snapshot_count": 50,
+  "notes_count": 3,
+  "source_manifest_in_local_archive": "inputs/PKT-CCTV-002/snapshot_manifest.json",
+  "status": "index summary; not a substitute for the full snapshot manifest"
+}
