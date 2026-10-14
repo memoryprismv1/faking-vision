@@ -1,0 +1,50 @@
+{
+  "packet_inputs": [
+    {
+      "packet_id": "PKT-CCTV-001",
+      "records": [
+        "TD.json",
+        "snapshot_manifest.json"
+      ],
+      "timebase": "packet-local"
+    },
+    {
+      "packet_id": "PKT-CCTV-002",
+      "records": [
+        "TD.json",
+        "snapshot_manifest.json"
+      ],
+      "timebase": "packet-local"
+    },
+    {
+      "packet_id": "PKT-CCTV-003",
+      "records": [
+        "TD.json",
+        "snapshot_manifest.json"
+      ],
+      "timebase": "packet-local"
+    }
+  ],
+  "merge_records": [
+    "records/CROSS_PACKET_CANDIDATE_RECONCILIATION_SUMMARY.json",
+    "records/MERGE_DISPOSITION_REGISTER_SUMMARY.json"
+  ],
+  "reconstruction": {
+    "expected_file": "media/FV_CCTV_snapshot_TD_reconstruction.mp4",
+    "available_in_local_archive": true,
+    "uploaded_to_github": false,
+    "sha256": "d1ba0024bc0de96c0ab7f9ae6a3e98fd1d65255f624240f10595d6874cd2a1ee"
+  },
+  "evidence_images": {
+    "available_in_local_archive": true,
+    "uploaded_to_github": false,
+    "files": [
+      "p1_closest_approach_20_26_10fps.jpg",
+      "p2_view_transition_48_56_10fps.jpg",
+      "p3_moving_vehicle_86_104_5fps.jpg",
+      "p3_opening_view_0_12_0p5fps.jpg",
+      "reconstruction_preview.jpg"
+    ]
+  },
+  "status": "Supporting documentation and selected small text records are being added incrementally. This manifest is an inventory, not proof that every listed artefact has been uploaded."
+}
