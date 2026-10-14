@@ -1,0 +1,52 @@
+{
+  "record_type": "merge_disposition_register_summary",
+  "status": "experimental candidate reconciliation only; unresolved disputes remain open",
+  "decisions": [
+    {
+      "kind": "scene_structure",
+      "candidate": "Part 2 aggregate sign assembly ↔ Part 3 placards and pole",
+      "disposition": "retain aggregate-to-components relation; do not collapse"
+    },
+    {
+      "kind": "scene_structure",
+      "candidate": "Part 2 curb island ↔ Part 3 curb island",
+      "disposition": "candidate correspondence"
+    },
+    {
+      "kind": "scene_structure",
+      "candidate": "Part 1 OBJ-051 ↔ Part 2 OBJ-005 ↔ Part 3 OBJ-017",
+      "disposition": "strong tall-utility-structure correspondence"
+    },
+    {
+      "kind": "scene_structure",
+      "candidate": "Part 2 parking lot ↔ Part 3 parking lot",
+      "disposition": "scene-level correspondence"
+    },
+    {
+      "kind": "scene_structure",
+      "candidate": "Part 2 paved road ↔ Part 3 paved road",
+      "disposition": "scene-level correspondence"
+    },
+    {
+      "kind": "environment",
+      "candidate": "Part 2 vegetation ↔ Part 3 hedge and tree regions",
+      "disposition": "broad correspondence, not one-to-one identity"
+    },
+    {
+      "kind": "vehicle_identity",
+      "candidate": "individual vehicles across packet boundaries",
+      "disposition": "do not merge based on colour/category alone; continuity insufficient"
+    },
+    {
+      "kind": "temporal",
+      "candidate": "packet-local timelines",
+      "disposition": "keep separate; no assumption of continuous chronology"
+    }
+  ],
+  "open_disputes": [
+    "Part 2 view-transition mechanism",
+    "Part 3 moving-vehicle identity/path",
+    "Part 3 opening view-change mechanism"
+  ],
+  "caution": "Summary only; does not replace the detailed MERGE_DISPOSITION_REGISTER.json in the local archive."
+}
