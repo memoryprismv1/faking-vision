@@ -1,0 +1,9 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "fv_specification": "Working Process Specification v0.24",
+  "crop_groups": 8,
+  "listed_files": 116,
+  "source_manifest_in_local_archive": "inputs/PKT-CCTV-003/snapshot_manifest.json",
+  "status": "index summary; not a substitute for the full snapshot manifest"
+}
