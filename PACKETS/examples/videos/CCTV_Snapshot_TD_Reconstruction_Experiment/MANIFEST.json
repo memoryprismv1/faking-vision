@@ -1,0 +1,22 @@
+{
+  "name": "CCTV Snapshot + TD Reconstruction Experiment",
+  "status": "experimental reconstruction; not validated or compiled",
+  "source": "https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm",
+  "segments": 3,
+  "segment_duration_seconds_approx": 105.6,
+  "original_duration_seconds_approx": 316.7,
+  "dispute_resolution": "Explicitly declined by user; reconstruction proceeded by instruction as a documented deviation.",
+  "fv_cli_run": false,
+  "exhaustive_frame_by_frame": false,
+  "repository_payload": "documentation-only commit; media and full evidence bundle remain in local archive",
+  "files": [
+    "README.md",
+    "PROCESS_LOG.md",
+    "FV_DEVIATION.md",
+    "RECONSTRUCTION_METHOD.md",
+    "SOURCE_AND_PROVENANCE.md",
+    "EVIDENCE_REGISTER.md",
+    "UPLOAD_TO_REPOSITORY.md",
+    "MANIFEST.json"
+  ]
+}
