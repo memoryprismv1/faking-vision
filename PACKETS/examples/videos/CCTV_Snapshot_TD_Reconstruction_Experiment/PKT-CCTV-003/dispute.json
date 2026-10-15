@@ -1,0 +1,61 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "status": "open_active_temporal_investigations",
+  "merge_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "PKT-CCTV-003-DSP-001",
+      "topic": "exhaustive object inventory",
+      "status": "RESOLVED AS NON-BLOCKING FOR THIS CHUNK",
+      "issue": "The wide parking lot contains many overlapping/cropped vehicles; existing OI groups or leaves some vehicle instances unresolved. Completeness is not demonstrated.",
+      "evidence": [
+        "snapshot/verification/frame_026.jpg",
+        "snapshot/verification/frame_060.jpg",
+        "snapshot/verification/frame_081.jpg",
+        "snapshot/verification/frame_104.jpg"
+      ],
+      "required_resolution": "Exhaustive enumeration of stable parked vehicles is not currently operationally required. Retain scene/instance information and the known coverage limitation; do not claim completeness. Re-promote any region or vehicle if relevant changes or another chunk make it pertinent.",
+      "operational_disposition": "DEFERRED",
+      "resolution_status": null,
+      "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+    },
+    {
+      "dispute_id": "PKT-CCTV-003-DSP-002",
+      "topic": "moving light-coloured vehicle-like form",
+      "status": "OPEN",
+      "issue": "Position changes across later samples, but exact identity, path and continuity are not sufficiently established.",
+      "evidence": [
+        "snapshot/verification/frame_081.jpg",
+        "snapshot/verification/frame_090.jpg",
+        "snapshot/verification/frame_100.jpg",
+        "snapshot/verification/frame_104.jpg"
+      ],
+      "required_resolution": "The moving light-coloured vehicle-like form is a change candidate and warrants local temporal investigation. Exact identity, route and continuity remain unresolved; inspect denser evidence before committing.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": null,
+      "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+    },
+    {
+      "dispute_id": "PKT-CCTV-003-DSP-003",
+      "topic": "opening camera/view change",
+      "status": "OPEN",
+      "issue": "The field of view changes substantially in the opening seconds; the mechanism (zoom, pan/tilt, cut, or other change) is not established from this packet alone.",
+      "evidence": [
+        "snapshot/verification/frame_000.jpg",
+        "snapshot/verification/frame_003.jpg",
+        "snapshot/verification/frame_004.jpg",
+        "snapshot/verification/frame_008.jpg"
+      ],
+      "required_resolution": "The substantial opening view change is salient and warrants investigation as a change in visual regime. Preserve the observed change; mechanism remains unresolved.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": null,
+      "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+    }
+  ],
+  "operational_policy": "Making Vision v1/v2: preserve data; allocate attention selectively; defer stable/background inventory questions when they do not affect the current chunk; re-promote when later evidence or another chunk makes them pertinent.",
+  "cross_chunk_caution": "No object or observation is permanently dismissed by a deferred disposition. Do not infer continuity/identity across chunks without evidence."
+}

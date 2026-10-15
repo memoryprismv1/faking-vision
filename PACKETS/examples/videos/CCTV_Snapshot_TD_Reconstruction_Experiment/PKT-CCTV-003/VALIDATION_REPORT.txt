@@ -1,0 +1,23 @@
+FV PACKET STRUCTURAL VALIDATION — PKT-CCTV-003
+
+This is a structural check, not certification of visual completeness or correctness.
+
+OI.json: PASS JSON parse
+MSRM.json: PASS JSON parse
+TD.json: PASS JSON parse
+PC.json: PASS JSON parse
+TIR.json: PASS JSON parse
+dispute.json: PASS JSON parse
+snapshot/manifest.json: PASS JSON parse
+snapshot/verification/frame_000.jpg: PASS exists
+snapshot/verification/frame_104.jpg: PASS exists
+OI/PC packet-local ID sets: PASS match
+OI inventory completeness: NOT ESTABLISHED
+merge gate: FAIL / BLOCKED — open disputes
+
+OI entities: 19
+PC packet-local declarations: 19
+Preserved full-frame snapshots declared: 105
+Open disputes: 3
+
+RESULT: STRUCTURALLY CHECKED WITH BLOCKERS. Do not merge/compile as settled. No FV CLI was run.

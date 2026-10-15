@@ -1,0 +1,1017 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "fv_specification": "Working Process Specification v0.24",
+  "packet_operation": "fv analyse",
+  "source": {
+    "source_id": "CCTV-PART-02",
+    "filename": "part_02.mp4",
+    "parent_source_filename": "BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video (1).webm",
+    "parent_source_interval_seconds": [
+      105.569333,
+      211.138667
+    ],
+    "duration_seconds": 105.599675,
+    "file_size_bytes": 127748510,
+    "sha256": "d729c47eea1aa2a3d44a878ebf3068deb51f3899df9c444def000ff54c0896a5",
+    "video_codec": "h264",
+    "frame_width_px": 1920,
+    "frame_height_px": 1080,
+    "reported_frame_rate": "30/1",
+    "audio_present": true,
+    "audio_included_in_packet": false,
+    "audio_note": "Audio is present in the split file but was not intentionally analyzed or used for packet facts."
+  },
+  "snapshot_method": {
+    "sampling": "one source frame per whole second from t=0 through t=105 inclusive",
+    "count": 106,
+    "preservation": "full-frame JPEG snapshots at source frame dimensions; not lossless frame copies",
+    "analysis_method": "manual FV visual observation only; no object detector, classifier, tracker, OCR, or automated visual inference used",
+    "timestamp_caveat": "times are nominal sample times relative to part_02.mp4; not original CCTV wall-clock time"
+  },
+  "snapshots": [
+    {
+      "file": "snapshot/verification/frame_001.jpg",
+      "source_time_seconds": 0,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b6a84fd5061d19f8dbe49c41e209aafbef720df0595bd29169543395f946a938"
+    },
+    {
+      "file": "snapshot/verification/frame_002.jpg",
+      "source_time_seconds": 1,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b30b293ea0ac2d07e43cee73d02d98f87024ec6283b93e37e8150c0a6d7321eb"
+    },
+    {
+      "file": "snapshot/verification/frame_003.jpg",
+      "source_time_seconds": 2,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "3f053d56dacf2c1a06363089df059b278d4781813fdf65df06306dac2737cad4"
+    },
+    {
+      "file": "snapshot/verification/frame_004.jpg",
+      "source_time_seconds": 3,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "fa012fde40e461803ac534eb9ee29585f81c4c60633ad2ea193042a9128b9848"
+    },
+    {
+      "file": "snapshot/verification/frame_005.jpg",
+      "source_time_seconds": 4,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "c7809e5a00aff4e25e2633ef74f81cca791e2207c4efd7d4999bdaa049aec985"
+    },
+    {
+      "file": "snapshot/verification/frame_006.jpg",
+      "source_time_seconds": 5,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "ad6a040645bcb31d6f78b58701b7d28413be2b24f808108205f418f1a2fa8d99"
+    },
+    {
+      "file": "snapshot/verification/frame_007.jpg",
+      "source_time_seconds": 6,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "817fea6ad7544f51f7b8f5044aafd43498f0658916d9ae985060890acb9ecd94"
+    },
+    {
+      "file": "snapshot/verification/frame_008.jpg",
+      "source_time_seconds": 7,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "5f8dec65262b08186ef30cbf748866eade8d7abd1d9d23324a5de0f8ea27226b"
+    },
+    {
+      "file": "snapshot/verification/frame_009.jpg",
+      "source_time_seconds": 8,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "ba6d1860ab8dcc0abb8ba42d08cd1f69438efc53722ba4ac599d3a5fa3f4b1a3"
+    },
+    {
+      "file": "snapshot/verification/frame_010.jpg",
+      "source_time_seconds": 9,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "cfc77bb48f82c4f6b5a16317784834b57b0ac69b9dc986301b3e31348ee4741d"
+    },
+    {
+      "file": "snapshot/verification/frame_011.jpg",
+      "source_time_seconds": 10,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "7e7a073b32dbfcf4524b4237d9337b8caa4e2341f946802a9ebf29c5cff5bfb1"
+    },
+    {
+      "file": "snapshot/verification/frame_012.jpg",
+      "source_time_seconds": 11,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b53128eed938f2341152d62f553cc46e05af992e6ea89786552afbad1d3072ad"
+    },
+    {
+      "file": "snapshot/verification/frame_013.jpg",
+      "source_time_seconds": 12,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "44f38acd28db164c71b65615a2f1179a5fae84f1036cc9f3a9625a732911e684"
+    },
+    {
+      "file": "snapshot/verification/frame_014.jpg",
+      "source_time_seconds": 13,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "58827d8f46dee6bf987e6b7d5e2fc7fdb7c85076c22b5abfd3977b879365d48e"
+    },
+    {
+      "file": "snapshot/verification/frame_015.jpg",
+      "source_time_seconds": 14,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "7e634815df1273c1a4d6e949296dc04c423ff9bcb2d205c515c4eaaf0f3af036"
+    },
+    {
+      "file": "snapshot/verification/frame_016.jpg",
+      "source_time_seconds": 15,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "659638db8213cadd751a4ec9d04b743fab34f9622704a5079fa919f2cb72566b"
+    },
+    {
+      "file": "snapshot/verification/frame_017.jpg",
+      "source_time_seconds": 16,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "96f000f71435654501d0cdf1fb38e4c95208ac6896b24223cac8f18ba4d55e7f"
+    },
+    {
+      "file": "snapshot/verification/frame_018.jpg",
+      "source_time_seconds": 17,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "74d47607821b1d2f28c178f6f7ad8c1f517191fcdf6a493b0761045bd0c69d81"
+    },
+    {
+      "file": "snapshot/verification/frame_019.jpg",
+      "source_time_seconds": 18,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "7a949c787134065c058d9d699a774e4b0698f1e55982765e419345fd3e602c3e"
+    },
+    {
+      "file": "snapshot/verification/frame_020.jpg",
+      "source_time_seconds": 19,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "61b1340ee378432ecc5fea10e0b41ddc6a8c3d02fd4640b9c495a8d76c6fabbe"
+    },
+    {
+      "file": "snapshot/verification/frame_021.jpg",
+      "source_time_seconds": 20,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "c0c2feb277fc8150b97dbcd31ce35b470200a1cd4c11f0d6ae37f98121044be0"
+    },
+    {
+      "file": "snapshot/verification/frame_022.jpg",
+      "source_time_seconds": 21,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "ae535d30c37bd9e30bd5117be211054316453a678c6b6a7634ed59ee72d11671"
+    },
+    {
+      "file": "snapshot/verification/frame_023.jpg",
+      "source_time_seconds": 22,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "54332884f1f62c3cef3d3a7c4fe7fa4e1881bc1cf26f18caca5f27609408dc76"
+    },
+    {
+      "file": "snapshot/verification/frame_024.jpg",
+      "source_time_seconds": 23,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "bd2fed4d5ce6620584c4f5f94c2dec44e7fc1f5f0d532e6ef68753bdc638524f"
+    },
+    {
+      "file": "snapshot/verification/frame_025.jpg",
+      "source_time_seconds": 24,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e0e06e6580459ca21c290c2400e8775bbc70189206e29f773039c9d3e2a72024"
+    },
+    {
+      "file": "snapshot/verification/frame_026.jpg",
+      "source_time_seconds": 25,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "37025fd0eed47f69d100027b1b796c7042b2049de6d4c8122f2f5e2700349de1"
+    },
+    {
+      "file": "snapshot/verification/frame_027.jpg",
+      "source_time_seconds": 26,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "220a29bce9e7e3e5c7f671375ef5d194e4a04103f3ad06bda67eb62465167b0f"
+    },
+    {
+      "file": "snapshot/verification/frame_028.jpg",
+      "source_time_seconds": 27,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b0289733d5c05eb8834530bc8904562ca6cbf2e5e68d79207656ad48c33f3d6a"
+    },
+    {
+      "file": "snapshot/verification/frame_029.jpg",
+      "source_time_seconds": 28,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "bca50d23496c7d22c0233769ee0f3a8a01b42b25a252a01c3765077389e66292"
+    },
+    {
+      "file": "snapshot/verification/frame_030.jpg",
+      "source_time_seconds": 29,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "8abb32c40a3c816ccf2ec45b23030b7f8b4fab555c24acb83e6461016d27a4b1"
+    },
+    {
+      "file": "snapshot/verification/frame_031.jpg",
+      "source_time_seconds": 30,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "d10bde5bd76c8d69be2c87095e9dfd09d7948f4d66329e7123bf7766d066c429"
+    },
+    {
+      "file": "snapshot/verification/frame_032.jpg",
+      "source_time_seconds": 31,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "dd3ac0aa019271ef92a234480ee44d8d446017133779bdc9135d0f64f1995f88"
+    },
+    {
+      "file": "snapshot/verification/frame_033.jpg",
+      "source_time_seconds": 32,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e48d45cafa21f3515d1f963f3c6a4d750ddc619f8456f17572c10aa2fd712270"
+    },
+    {
+      "file": "snapshot/verification/frame_034.jpg",
+      "source_time_seconds": 33,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "fccfe1a375350fc8fa250878d1908118ebb67f7cf5ce17ef96bcd9c408f529ab"
+    },
+    {
+      "file": "snapshot/verification/frame_035.jpg",
+      "source_time_seconds": 34,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "248383604deba308964df1a290a5c212248361511eacaa6680f4692a72fad6fa"
+    },
+    {
+      "file": "snapshot/verification/frame_036.jpg",
+      "source_time_seconds": 35,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "3932ba53a5b2ab8769532ca0412f15b323dbc03b70ee979d5971c03494fc9f0c"
+    },
+    {
+      "file": "snapshot/verification/frame_037.jpg",
+      "source_time_seconds": 36,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "a49b59eb7f14163fa8e963fedc2c8bcd59779262996182a13792df2d1dbe386e"
+    },
+    {
+      "file": "snapshot/verification/frame_038.jpg",
+      "source_time_seconds": 37,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e212963658a0d7a4d377cdaf23e794387ec3ae1a9ef6324e8554e136f306fe5d"
+    },
+    {
+      "file": "snapshot/verification/frame_039.jpg",
+      "source_time_seconds": 38,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "67f77ba7136af946f45f82571a90fbc44c9aa148c3107906181ad0e6cbb21e9d"
+    },
+    {
+      "file": "snapshot/verification/frame_040.jpg",
+      "source_time_seconds": 39,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "dff15c21e468f6e0bc27290f5b4a5396a133e161ca790d3fc208d1da88f0119e"
+    },
+    {
+      "file": "snapshot/verification/frame_041.jpg",
+      "source_time_seconds": 40,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "98ac3a75c5441e00d485200923d99bd2b9cb41001bbff96c50e46a93dd755aa6"
+    },
+    {
+      "file": "snapshot/verification/frame_042.jpg",
+      "source_time_seconds": 41,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "d7a66e262fce99b7940b0183d44909506ae1c1b8b18e00e114373360db51c007"
+    },
+    {
+      "file": "snapshot/verification/frame_043.jpg",
+      "source_time_seconds": 42,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "fe9e386c2f183c5ec7c43c7f36507603748ca6a15f792156d6215655f1bb3fbd"
+    },
+    {
+      "file": "snapshot/verification/frame_044.jpg",
+      "source_time_seconds": 43,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "121dc309ec0e465af73baa273ba3f38b9b562875fe451c45a2b7903bbbb08df9"
+    },
+    {
+      "file": "snapshot/verification/frame_045.jpg",
+      "source_time_seconds": 44,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "063ed7e7665f675e70c760d32a1976f1c279d48acc5eccc16616664d8ad681ba"
+    },
+    {
+      "file": "snapshot/verification/frame_046.jpg",
+      "source_time_seconds": 45,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "c2205dde23f0c6c1ca30f26e7b25dc4b5152ebbb0a79f99ad937009da3b59440"
+    },
+    {
+      "file": "snapshot/verification/frame_047.jpg",
+      "source_time_seconds": 46,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "a8928a39f9227ba58cef7a20202da591ee87a395bdd8a13727a58279b8dba9a9"
+    },
+    {
+      "file": "snapshot/verification/frame_048.jpg",
+      "source_time_seconds": 47,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "96b2e735a4b6e2fff929adaafa97c0c742246ebca0a1f827915284ec1e51cd81"
+    },
+    {
+      "file": "snapshot/verification/frame_049.jpg",
+      "source_time_seconds": 48,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "eae002b0b9e2b42d1b62337efd8c66083fd6d4f0cf875bd2401a3a6da02e7547"
+    },
+    {
+      "file": "snapshot/verification/frame_050.jpg",
+      "source_time_seconds": 49,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "97e1d192a44c0589db0716e51b3e20bcd4d0ce49cdeb42a50fee987060d353ad"
+    },
+    {
+      "file": "snapshot/verification/frame_051.jpg",
+      "source_time_seconds": 50,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "c71a3677693be583d735fb6eea8c9a15775477c0f90b08be11835bf02797bd14"
+    },
+    {
+      "file": "snapshot/verification/frame_052.jpg",
+      "source_time_seconds": 51,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "9230984e5fa67559c4a536c89376d03f06b2cf5e4c657234a36630b515b3e7d7"
+    },
+    {
+      "file": "snapshot/verification/frame_053.jpg",
+      "source_time_seconds": 52,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "4a68d3b502db859e22fb299af0be132042e45678d60e2b7156ba41dfdc9edcb4"
+    },
+    {
+      "file": "snapshot/verification/frame_054.jpg",
+      "source_time_seconds": 53,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "423b4835e285e8459ce299d22284ed7e4265214e34050031f5110d23d57fb994"
+    },
+    {
+      "file": "snapshot/verification/frame_055.jpg",
+      "source_time_seconds": 54,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "a3f643e7b4450645905f18fe6f9514e91b50624ac7ed71c4f988a52ad1f4681b"
+    },
+    {
+      "file": "snapshot/verification/frame_056.jpg",
+      "source_time_seconds": 55,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "cc15c11d357fd35dfbad6f11211271a95b37440e852c24d795d1823bf76755ad"
+    },
+    {
+      "file": "snapshot/verification/frame_057.jpg",
+      "source_time_seconds": 56,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b435c68b17247730a61c758c54fc4fbee6a7f3402131430c58d104f3e4bd05fe"
+    },
+    {
+      "file": "snapshot/verification/frame_058.jpg",
+      "source_time_seconds": 57,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "9adfa069d0b56baee72fb4d8ffa4f49ba71fe16e87189564726b453172795f89"
+    },
+    {
+      "file": "snapshot/verification/frame_059.jpg",
+      "source_time_seconds": 58,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e362bf586c677e70db9f8dcc3fa2db28c0c1ed330900f290bcf5626c7efaf709"
+    },
+    {
+      "file": "snapshot/verification/frame_060.jpg",
+      "source_time_seconds": 59,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "5511bd3201b96d400a32db597abad5781daf0f6764461ed35c6f37d35fbead31"
+    },
+    {
+      "file": "snapshot/verification/frame_061.jpg",
+      "source_time_seconds": 60,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "fed59450570ed653b79c795c7294338f81a3ba27c7d6c61bf0e52d88343a905d"
+    },
+    {
+      "file": "snapshot/verification/frame_062.jpg",
+      "source_time_seconds": 61,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "840cd4217f7326cff5dd455417c0abef9aa2ff0bc1f3652e6889bd769f344f6b"
+    },
+    {
+      "file": "snapshot/verification/frame_063.jpg",
+      "source_time_seconds": 62,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "08fc3acbabbb0980e83698af341e9545932b0d903cce741a26b8e2c5adc6b9bd"
+    },
+    {
+      "file": "snapshot/verification/frame_064.jpg",
+      "source_time_seconds": 63,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "bdd958671eb7869807794c7f00c46780aab001352e771c5f0f14acd5b846f33d"
+    },
+    {
+      "file": "snapshot/verification/frame_065.jpg",
+      "source_time_seconds": 64,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "73d88dd20c9e293fb0a8fcc4256191e0a8e93604a7b62256b24f7e7a309aef5e"
+    },
+    {
+      "file": "snapshot/verification/frame_066.jpg",
+      "source_time_seconds": 65,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "0647aef81229b48840d4739f77de7f3331d91a01c828ae6409fc28dfba5d85a1"
+    },
+    {
+      "file": "snapshot/verification/frame_067.jpg",
+      "source_time_seconds": 66,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "364bd7979bca7b98e1b8f1808503d2e3554923a1aa282dadd8c324d78fd0ef3d"
+    },
+    {
+      "file": "snapshot/verification/frame_068.jpg",
+      "source_time_seconds": 67,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "de852b68bb65ac9cd1b975a82c187ad0079127456edbb25676afcb3a5f4191e3"
+    },
+    {
+      "file": "snapshot/verification/frame_069.jpg",
+      "source_time_seconds": 68,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "569d07ba4106d30c45caf37f5cde67e070ab47f6f50d354c3fd1eaf0e424bc7e"
+    },
+    {
+      "file": "snapshot/verification/frame_070.jpg",
+      "source_time_seconds": 69,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "6039a53d8ddd298b7b90f1fe855aca8763f6a39fcaf7c912b671f380346ef131"
+    },
+    {
+      "file": "snapshot/verification/frame_071.jpg",
+      "source_time_seconds": 70,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "1cf31b06bbe0deaa39df6f6991ac9c1025741376c648fb74ea92101de4d76acf"
+    },
+    {
+      "file": "snapshot/verification/frame_072.jpg",
+      "source_time_seconds": 71,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "defd5171e7d36390cee577b013657c2c0625d15918c073d342f9765e1a64c749"
+    },
+    {
+      "file": "snapshot/verification/frame_073.jpg",
+      "source_time_seconds": 72,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e6362d287751777f9183c4281eea825dfe99759dd934f5dfccaabace6000c091"
+    },
+    {
+      "file": "snapshot/verification/frame_074.jpg",
+      "source_time_seconds": 73,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "2ca97bece2dd00c19918241876648b8d05fcdf988c319b35362df396b8f12681"
+    },
+    {
+      "file": "snapshot/verification/frame_075.jpg",
+      "source_time_seconds": 74,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "088615c17896324a3ccd6a5b632e9ff6c102b396c41c66e95466b9b7f25eeb93"
+    },
+    {
+      "file": "snapshot/verification/frame_076.jpg",
+      "source_time_seconds": 75,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "bf474f6f67f2e47472d4e5d6efc5a4db69782d342f5715e4b80277638ae9f89c"
+    },
+    {
+      "file": "snapshot/verification/frame_077.jpg",
+      "source_time_seconds": 76,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "7bf47ab168b9ca9241c97949758aab875e1e600fa2e2655d4d4408dd7a3ad98f"
+    },
+    {
+      "file": "snapshot/verification/frame_078.jpg",
+      "source_time_seconds": 77,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "2e633029f4151ace9ae97bb29eb0a3e9b279467c6fd0397605df8f8814101896"
+    },
+    {
+      "file": "snapshot/verification/frame_079.jpg",
+      "source_time_seconds": 78,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b967a35b0b53adc4b1b5b782667539cd2783a14e15b14a2beba61f708a77eaff"
+    },
+    {
+      "file": "snapshot/verification/frame_080.jpg",
+      "source_time_seconds": 79,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "95efc1eee00b43d9da1ca22d81041d2dec11492ecbe0f696aede0844721ad72d"
+    },
+    {
+      "file": "snapshot/verification/frame_081.jpg",
+      "source_time_seconds": 80,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "5d7a1822b41055f2d7c32b0072030997ff5debe9d864f564d1cca2379c0140dd"
+    },
+    {
+      "file": "snapshot/verification/frame_082.jpg",
+      "source_time_seconds": 81,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "a934c9f0d635cc46339ac91ea2ace81f059f227e0737eccbf21312c534a97d18"
+    },
+    {
+      "file": "snapshot/verification/frame_083.jpg",
+      "source_time_seconds": 82,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "2cddf58730aa815af7470c35a9595a7fb04ccedb9473e0127d1044ecaa5e97fd"
+    },
+    {
+      "file": "snapshot/verification/frame_084.jpg",
+      "source_time_seconds": 83,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "b6e32eeb74befdf7cab1db2af1c34be38cbdbed415bff01726abb29fe8a4ab68"
+    },
+    {
+      "file": "snapshot/verification/frame_085.jpg",
+      "source_time_seconds": 84,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "43f8f3733b3ce85929f0effb858e74a99db655b05bff0c717b45bb30b8d38360"
+    },
+    {
+      "file": "snapshot/verification/frame_086.jpg",
+      "source_time_seconds": 85,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "1d3fc2d60b7388d28bd560a796257d4faa47118cf472cbf347d62bd461ef1dcc"
+    },
+    {
+      "file": "snapshot/verification/frame_087.jpg",
+      "source_time_seconds": 86,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "d3963472891fd37b966bccf989dbcbf42c2a4414aef72b1137bdb4945588517e"
+    },
+    {
+      "file": "snapshot/verification/frame_088.jpg",
+      "source_time_seconds": 87,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e55e0a50e4e0d5bd485e0ff1699702d3858d41f037ee1555f3c006040118ff96"
+    },
+    {
+      "file": "snapshot/verification/frame_089.jpg",
+      "source_time_seconds": 88,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "ae25613f24f26b6e3ac013166564bd9fa70ef06565198606bfc1e3e745519703"
+    },
+    {
+      "file": "snapshot/verification/frame_090.jpg",
+      "source_time_seconds": 89,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "c1afcdba1a2b455d182be974bd5601a84e5079586154de4d3fed4be333f49470"
+    },
+    {
+      "file": "snapshot/verification/frame_091.jpg",
+      "source_time_seconds": 90,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "e3fb82024916a4013d9483a654b0ea38af2e73cc868607aefbb226e646722988"
+    },
+    {
+      "file": "snapshot/verification/frame_092.jpg",
+      "source_time_seconds": 91,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "cf907df43d7cc4caf5a295c91d3825390f19514a86feffe5a98000c5f39cb064"
+    },
+    {
+      "file": "snapshot/verification/frame_093.jpg",
+      "source_time_seconds": 92,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "1a1864481d7289827afccdcb196f63195c76c3d57dba0a94ba7835d84b4b8012"
+    },
+    {
+      "file": "snapshot/verification/frame_094.jpg",
+      "source_time_seconds": 93,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "2641ecedf6fb69fdbcdb26c518e49c59106d3b0de55cddca92d9e982fdb603d2"
+    },
+    {
+      "file": "snapshot/verification/frame_095.jpg",
+      "source_time_seconds": 94,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "283e4dc59d891af4a8afd48ab7ca2b6bc66bf235a156de3da4bbce1124e6ef18"
+    },
+    {
+      "file": "snapshot/verification/frame_096.jpg",
+      "source_time_seconds": 95,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "5c45b517c941af596849cfc56c820ae89fab008a8acf95b3dc7601adecf664c3"
+    },
+    {
+      "file": "snapshot/verification/frame_097.jpg",
+      "source_time_seconds": 96,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "d287bbb3ad74bb49fa738ee48bd0e9b0f0f02fa366d525a828194252703d1482"
+    },
+    {
+      "file": "snapshot/verification/frame_098.jpg",
+      "source_time_seconds": 97,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "f97cb953ed92f5bdde2c817d3bc8c684515d6a0045db6026e17bb6e3bf373963"
+    },
+    {
+      "file": "snapshot/verification/frame_099.jpg",
+      "source_time_seconds": 98,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "95c356addfe3d2fef801e2208a0edc5117430565923132dc7621121539169c76"
+    },
+    {
+      "file": "snapshot/verification/frame_100.jpg",
+      "source_time_seconds": 99,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "86620e668f2ff16ad9c29be660a39cfe91e6b7238bd716e40379e302c967a3d9"
+    },
+    {
+      "file": "snapshot/verification/frame_101.jpg",
+      "source_time_seconds": 100,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "a658587abe527f654c639c1de088a2e916e6d3fa6b12f033092a1d55bdd838c7"
+    },
+    {
+      "file": "snapshot/verification/frame_102.jpg",
+      "source_time_seconds": 101,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "8f16c890b7096046b1759b7b18925305fb669b7ff13fafa966ee4a2aeeb822bb"
+    },
+    {
+      "file": "snapshot/verification/frame_103.jpg",
+      "source_time_seconds": 102,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "cee558cf7810b601bc6cba52a2f1b3f498f669e712268db2a6986e100d8df29b"
+    },
+    {
+      "file": "snapshot/verification/frame_104.jpg",
+      "source_time_seconds": 103,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "cb308fddfe9bed63e84fdefb37a2230288d51928ac0631c7b4b49edd3f517862"
+    },
+    {
+      "file": "snapshot/verification/frame_105.jpg",
+      "source_time_seconds": 104,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "94e8ceb978fdabb402c166c3b82a019250224798b73184330703ca8239662b1d"
+    },
+    {
+      "file": "snapshot/verification/frame_106.jpg",
+      "source_time_seconds": 105,
+      "time_basis": "nominal whole-second extraction time relative to part_02.mp4; not original CCTV wall-clock time",
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "dc52805dc831a93b86962fe069546fbda84f597bfe2d0f7e810ad142bfdb57c1"
+    }
+  ],
+  "crops": [
+    {
+      "file": "snapshot/objs/moving_dark_vehicle_t000.jpg",
+      "source_snapshot": "snapshot/verification/frame_001.jpg",
+      "source_time_seconds": 0,
+      "crop_box_xyxy_px": [
+        380,
+        660,
+        850,
+        850
+      ],
+      "width_px": 470,
+      "height_px": 190,
+      "sha256": "13058b4ae74f0c8e4c3a0097c7a47c24793c4f637d030d5ebe4f37de82bd512a",
+      "purpose": "Foreground dark vehicle candidate at the opening view.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/pedestrian_candidate_t015.jpg",
+      "source_snapshot": "snapshot/verification/frame_016.jpg",
+      "source_time_seconds": 15,
+      "crop_box_xyxy_px": [
+        600,
+        650,
+        770,
+        860
+      ],
+      "width_px": 170,
+      "height_px": 210,
+      "sha256": "6b89b66810470b3d392d27ebe2a1a51dafcf4740a8436326239119ec9544ff4d",
+      "purpose": "Person-shaped figure in the lower-middle parking aisle; clothing and position visible.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/pedestrian_candidate_t039.jpg",
+      "source_snapshot": "snapshot/verification/frame_040.jpg",
+      "source_time_seconds": 39,
+      "crop_box_xyxy_px": [
+        540,
+        730,
+        760,
+        970
+      ],
+      "width_px": 220,
+      "height_px": 240,
+      "sha256": "441b91f3356cf6c2ffe593b54584a0c1abb57a0cc45ec4cd18b4474eb8235711",
+      "purpose": "Person-shaped figure in the lower foreground; correspondence with t=15 remains provisional.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/camera_reframe_t050.jpg",
+      "source_snapshot": "snapshot/verification/frame_051.jpg",
+      "source_time_seconds": 50,
+      "crop_box_xyxy_px": [
+        0,
+        300,
+        1920,
+        1080
+      ],
+      "width_px": 1920,
+      "height_px": 780,
+      "sha256": "1c5ca341a6cd1871e30eef227812d63dbf569a08ed40a90d7edad89821e574cc",
+      "purpose": "Wide parking scene after a substantial camera-view shift.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/road_vehicle_t070.jpg",
+      "source_snapshot": "snapshot/verification/frame_071.jpg",
+      "source_time_seconds": 70,
+      "crop_box_xyxy_px": [
+        650,
+        40,
+        1420,
+        330
+      ],
+      "width_px": 770,
+      "height_px": 290,
+      "sha256": "77fef8ddaa3a0bdb48105f189b04f536235abf0a4573fa6bcbea6bb1efc9be35",
+      "purpose": "Light-colored vehicle partly obscured by trees while on the far road.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/dark_vehicle_t097.jpg",
+      "source_snapshot": "snapshot/verification/frame_098.jpg",
+      "source_time_seconds": 97,
+      "crop_box_xyxy_px": [
+        1190,
+        500,
+        1920,
+        1030
+      ],
+      "width_px": 730,
+      "height_px": 530,
+      "sha256": "857290152cb87c6ac57bbd3e8123b7937f79d94a75e48c93e4db63abe66dd7cb",
+      "purpose": "Dark vehicle entering from the right side of the close view.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/pole_signs_t100.jpg",
+      "source_snapshot": "snapshot/verification/frame_101.jpg",
+      "source_time_seconds": 100,
+      "crop_box_xyxy_px": [
+        650,
+        0,
+        1300,
+        900
+      ],
+      "width_px": 650,
+      "height_px": 900,
+      "sha256": "abde31f1c081484a87577786be0248d151a080e1620583715fd35e3943f0b9ea",
+      "purpose": "Close view of a pole with several attached rectangular signs/placards; small markings are not transcribed.",
+      "annotation": "none; source-derived crop only"
+    },
+    {
+      "file": "snapshot/objs/scene_zoom_t053.jpg",
+      "source_snapshot": "snapshot/verification/frame_054.jpg",
+      "source_time_seconds": 53,
+      "crop_box_xyxy_px": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "width_px": 1920,
+      "height_px": 1080,
+      "sha256": "f3ccd8bf1411ac06d1113cfbd3983ddaf0ef451ee3a0f9b96a2a5bd2c3277746",
+      "purpose": "Beginning of the close view of empty parking spaces, hedge, trees and poles.",
+      "annotation": "none; source-derived crop only"
+    }
+  ],
+  "notes": [
+    "Crop coordinates are relative to the referenced full-frame snapshot, x/y pixel coordinates with right/bottom bounds exclusive.",
+    "Snapshots and crops are evidence artifacts; descriptions are manual observations and interpretations, not machine-derived labels.",
+    "Parent interval start is approximate from the duration split; parent-relative times may differ by small re-encoding/frame-boundary amounts."
+  ],
+  "disputes_state": "DISPUTES: NONE (initial packet pass; correspondence uncertainties are preserved in OI/TD and do not currently block this packet as a source record)"
+}

@@ -1,0 +1,93 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "timebase": "seconds relative to part_03.mp4; nominal whole-second samples",
+  "source_duration_seconds": 105.554,
+  "timeline": [
+    {
+      "time_seconds": 0,
+      "observation": "Tight view of two attached placards on a vertical pole; dark markings are visible but not reliably legible.",
+      "evidence": [
+        "snapshot/verification/frame_000.jpg",
+        "snapshot/objs/opening_sign_and_pole_t000.jpg"
+      ]
+    },
+    {
+      "time_seconds": 3,
+      "observation": "View begins widening; pole and placards become smaller in frame.",
+      "evidence": [
+        "snapshot/verification/frame_003.jpg",
+        "snapshot/objs/sign_pole_wider_view_t003.jpg"
+      ]
+    },
+    {
+      "time_seconds": 4,
+      "observation": "Road, hedge, curbed island and painted parking bays become visible as the field of view expands.",
+      "evidence": [
+        "snapshot/verification/frame_004.jpg"
+      ]
+    },
+    {
+      "time_seconds": 8,
+      "observation": "Parking-lot view includes multiple rows of parked vehicles; distant vehicle-like forms are visible near the right side.",
+      "evidence": [
+        "snapshot/verification/frame_008.jpg",
+        "snapshot/objs/first_wide_parking_view_t008.jpg"
+      ]
+    },
+    {
+      "time_seconds": 26,
+      "observation": "Wide parking lot is visible; many vehicles occupy marked bays and background skyline structures are visible.",
+      "evidence": [
+        "snapshot/verification/frame_026.jpg"
+      ]
+    },
+    {
+      "time_seconds": 40,
+      "observation": "View remains wide; parked vehicle rows and their relative positions are visible. Some changes between sampled frames are consistent with vehicle movement, but no complete trajectories are asserted.",
+      "evidence": [
+        "snapshot/verification/frame_040.jpg"
+      ]
+    },
+    {
+      "time_seconds": 60,
+      "observation": "Wide view continues. A number of vehicle-like forms occupy the same general rows; small changes in positions/orientation occur in sampled frames.",
+      "evidence": [
+        "snapshot/verification/frame_060.jpg",
+        "snapshot/objs/mid_lot_later_state_t060.jpg"
+      ]
+    },
+    {
+      "time_seconds": 87,
+      "observation": "A light-coloured elongated vehicle-like form is visible in a middle-left lane/row, with its orientation and position changing across nearby samples.",
+      "evidence": [
+        "snapshot/verification/frame_087.jpg"
+      ]
+    },
+    {
+      "time_seconds": 90,
+      "observation": "The light-coloured elongated vehicle-like form is farther across the middle-left portion of the view than in some earlier samples; exact path remains unresolved.",
+      "evidence": [
+        "snapshot/verification/frame_090.jpg",
+        "snapshot/objs/moving_light_vehicle_t090.jpg"
+      ]
+    },
+    {
+      "time_seconds": 100,
+      "observation": "Wide lot view persists; vehicle placements differ from the opening view, while many parked vehicles remain in rows.",
+      "evidence": [
+        "snapshot/verification/frame_100.jpg",
+        "snapshot/objs/late_lot_state_t100.jpg"
+      ]
+    },
+    {
+      "time_seconds": 104,
+      "observation": "Final sampled frame shows the wide parking-lot view continuing; no confirmed cut is visible within this final sampled instant.",
+      "evidence": [
+        "snapshot/verification/frame_104.jpg"
+      ]
+    }
+  ],
+  "sampling_note": "One frame per second is a sparse temporal sample. Intermediate motion, exact vehicle paths and identities are not fully recoverable from these samples alone.",
+  "identity_policy": "Movement is not duplication. Where continuity between similar vehicles is not established, retain uncertainty rather than force correspondence."
+}

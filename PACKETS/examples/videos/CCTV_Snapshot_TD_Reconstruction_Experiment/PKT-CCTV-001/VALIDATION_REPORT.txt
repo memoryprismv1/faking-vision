@@ -1,0 +1,19 @@
+FV VALIDATION REPORT — PKT-CCTV-001
+
+This is a separate structural/evidence-gate check after packet generation. It is not a claim that the packet is fully validated.
+
+PASS: JSON parse: OI.json
+PASS: JSON parse: MSRM.json
+PASS: JSON parse: TD.json
+PASS: JSON parse: PC.json
+PASS: JSON parse: TIR.json
+PASS: JSON parse: dispute.json
+PASS: JSON parse: snapshot/manifest.json
+PASS: Required video packet layers OI/MSRM/TD present
+PASS: Snapshot references point to existing verification files
+PASS: PC object IDs are packet-scoped
+FAIL / BLOCKED: Dispute gate — dispute.json is open; inventory completeness and distant-object ambiguity remain unresolved. Compilation/reconstruction must not proceed.
+NOT ESTABLISHED: Semantic inventory exhaustiveness — Manually enumerated 45 baseline vehicles; overlap and edge crops prevent a defensible exhaustive-coverage claim.
+PASS: OI evidence snapshot references
+PASS: TD entity references resolve to OI
+PASS: OI and PC packet-scoped object IDs correspond

@@ -1,0 +1,329 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "source_id": "CCTV-PART-02",
+  "timeline": [
+    {
+      "scene_id": "S01",
+      "start": 0.0,
+      "end": 48.0,
+      "visible": [
+        "PKT-CCTV-002-OBJ-005",
+        "PKT-CCTV-002-OBJ-006",
+        "PKT-CCTV-002-OBJ-007",
+        "PKT-CCTV-002-OBJ-008",
+        "PKT-CCTV-002-OBJ-009",
+        "PKT-CCTV-002-OBJ-010",
+        "PKT-CCTV-002-OBJ-011",
+        "PKT-CCTV-002-OBJ-012",
+        "PKT-CCTV-002-OBJ-013",
+        "PKT-CCTV-002-OBJ-014",
+        "PKT-CCTV-002-OBJ-015",
+        "PKT-CCTV-002-OBJ-016",
+        "PKT-CCTV-002-OBJ-017",
+        "PKT-CCTV-002-OBJ-018",
+        "PKT-CCTV-002-OBJ-019",
+        "PKT-CCTV-002-OBJ-020",
+        "PKT-CCTV-002-OBJ-021",
+        "PKT-CCTV-002-OBJ-022",
+        "PKT-CCTV-002-OBJ-023",
+        "PKT-CCTV-002-OBJ-024",
+        "PKT-CCTV-002-OBJ-025",
+        "PKT-CCTV-002-OBJ-026",
+        "PKT-CCTV-002-OBJ-027",
+        "PKT-CCTV-002-OBJ-028",
+        "PKT-CCTV-002-OBJ-029",
+        "PKT-CCTV-002-OBJ-030",
+        "PKT-CCTV-002-OBJ-031",
+        "PKT-CCTV-002-OBJ-032",
+        "PKT-CCTV-002-OBJ-033",
+        "PKT-CCTV-002-OBJ-034",
+        "PKT-CCTV-002-OBJ-001",
+        "PKT-CCTV-002-OBJ-002"
+      ],
+      "not_yet_observed_at_start": [
+        "PKT-CCTV-002-OBJ-003",
+        "PKT-CCTV-002-OBJ-004",
+        "PKT-CCTV-002-OBJ-035",
+        "PKT-CCTV-002-OBJ-036"
+      ],
+      "off_screen_at_end": [
+        "PKT-CCTV-002-OBJ-005",
+        "PKT-CCTV-002-OBJ-006",
+        "PKT-CCTV-002-OBJ-007",
+        "PKT-CCTV-002-OBJ-008",
+        "PKT-CCTV-002-OBJ-009",
+        "PKT-CCTV-002-OBJ-010",
+        "PKT-CCTV-002-OBJ-011",
+        "PKT-CCTV-002-OBJ-012",
+        "PKT-CCTV-002-OBJ-013",
+        "PKT-CCTV-002-OBJ-014",
+        "PKT-CCTV-002-OBJ-015",
+        "PKT-CCTV-002-OBJ-016",
+        "PKT-CCTV-002-OBJ-017",
+        "PKT-CCTV-002-OBJ-018",
+        "PKT-CCTV-002-OBJ-019",
+        "PKT-CCTV-002-OBJ-020",
+        "PKT-CCTV-002-OBJ-021",
+        "PKT-CCTV-002-OBJ-022",
+        "PKT-CCTV-002-OBJ-023",
+        "PKT-CCTV-002-OBJ-024",
+        "PKT-CCTV-002-OBJ-025",
+        "PKT-CCTV-002-OBJ-026",
+        "PKT-CCTV-002-OBJ-027",
+        "PKT-CCTV-002-OBJ-028",
+        "PKT-CCTV-002-OBJ-029",
+        "PKT-CCTV-002-OBJ-030",
+        "PKT-CCTV-002-OBJ-031",
+        "PKT-CCTV-002-OBJ-032",
+        "PKT-CCTV-002-OBJ-033",
+        "PKT-CCTV-002-OBJ-034",
+        "PKT-CCTV-002-OBJ-001",
+        "PKT-CCTV-002-OBJ-002"
+      ],
+      "changes": [
+        {
+          "entity_id": "PKT-CCTV-002-OBJ-001",
+          "event_interval_seconds": [
+            0,
+            10
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                0,
+                10
+              ],
+              "change": "Dark sedan-like vehicle changes position in the lower foreground across early samples; its later path and exact exit point are not resolved.",
+              "evidence_refs": [
+                "snapshot/objs/moving_dark_vehicle_t000.jpg",
+                "snapshot/verification/frame_001.jpg",
+                "snapshot/verification/frame_010.jpg"
+              ]
+            }
+          ],
+          "identity_status": "unresolved",
+          "off_screen_after_seconds": 10
+        },
+        {
+          "entity_id": "PKT-CCTV-002-OBJ-002",
+          "event_interval_seconds": [
+            15,
+            42
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                15,
+                20
+              ],
+              "change": "Human figure with light upper garment and dark lower garment visible in lower aisle.",
+              "evidence_refs": [
+                "snapshot/objs/pedestrian_candidate_t015.jpg",
+                "snapshot/verification/frame_015.jpg"
+              ]
+            },
+            {
+              "time_seconds_approx": [
+                35,
+                42
+              ],
+              "change": "A similar-looking figure is visible farther into the foreground with a modest leftward image-position shift. The sampled views are compatible with a continuous walk, but exact correspondence is not resolved.",
+              "evidence_refs": [
+                "snapshot/objs/pedestrian_candidate_t039.jpg",
+                "snapshot/verification/frame_040.jpg"
+              ]
+            }
+          ],
+          "identity_status": "provisional correspondence; unresolved",
+          "off_screen_after_seconds": 42
+        }
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_049.jpg"
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "start": 49.0,
+      "end": 51.0,
+      "visible": [],
+      "not_yet_observed_at_start": [],
+      "off_screen_at_end": [
+        "PKT-CCTV-002-OBJ-005",
+        "PKT-CCTV-002-OBJ-006",
+        "PKT-CCTV-002-OBJ-007",
+        "PKT-CCTV-002-OBJ-008",
+        "PKT-CCTV-002-OBJ-009",
+        "PKT-CCTV-002-OBJ-010",
+        "PKT-CCTV-002-OBJ-011",
+        "PKT-CCTV-002-OBJ-012",
+        "PKT-CCTV-002-OBJ-013",
+        "PKT-CCTV-002-OBJ-014",
+        "PKT-CCTV-002-OBJ-015",
+        "PKT-CCTV-002-OBJ-016",
+        "PKT-CCTV-002-OBJ-017",
+        "PKT-CCTV-002-OBJ-018",
+        "PKT-CCTV-002-OBJ-019",
+        "PKT-CCTV-002-OBJ-020",
+        "PKT-CCTV-002-OBJ-021",
+        "PKT-CCTV-002-OBJ-022",
+        "PKT-CCTV-002-OBJ-023",
+        "PKT-CCTV-002-OBJ-024",
+        "PKT-CCTV-002-OBJ-025",
+        "PKT-CCTV-002-OBJ-026",
+        "PKT-CCTV-002-OBJ-027",
+        "PKT-CCTV-002-OBJ-028",
+        "PKT-CCTV-002-OBJ-029",
+        "PKT-CCTV-002-OBJ-030",
+        "PKT-CCTV-002-OBJ-031",
+        "PKT-CCTV-002-OBJ-032",
+        "PKT-CCTV-002-OBJ-033",
+        "PKT-CCTV-002-OBJ-034",
+        "PKT-CCTV-002-OBJ-001",
+        "PKT-CCTV-002-OBJ-002"
+      ],
+      "changes": [
+        {
+          "entity_id": "CAMERA-VIEW-CHANGE",
+          "event_interval_seconds": [
+            49,
+            51
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                49,
+                51
+              ],
+              "change": "The image framing shifts substantially between samples; parked vehicles and the earlier foreground are displaced/out of frame because the view changes. Do not encode this as object departure.",
+              "evidence_refs": [
+                "snapshot/verification/frame_049.jpg",
+                "snapshot/verification/frame_050.jpg",
+                "snapshot/verification/frame_052.jpg"
+              ]
+            }
+          ],
+          "identity_status": "not an object identity; camera state observation"
+        }
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_049.jpg",
+        "snapshot/verification/frame_050.jpg",
+        "snapshot/verification/frame_052.jpg"
+      ]
+    },
+    {
+      "scene_id": "S03",
+      "start": 52.0,
+      "end": 98.0,
+      "visible": [
+        "PKT-CCTV-002-OBJ-035",
+        "PKT-CCTV-002-OBJ-036"
+      ],
+      "not_yet_observed_at_start": [
+        "PKT-CCTV-002-OBJ-003",
+        "PKT-CCTV-002-OBJ-004"
+      ],
+      "off_screen_at_end": [
+        "PKT-CCTV-002-OBJ-003",
+        "PKT-CCTV-002-OBJ-004"
+      ],
+      "changes": [
+        {
+          "entity_id": "PKT-CCTV-002-OBJ-003",
+          "event_interval_seconds": [
+            68,
+            72
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                68,
+                72
+              ],
+              "change": "Light-colored vehicle is partly visible behind tree trunks/foliage on the far road at approximately t=69–70; occlusion prevents a full trajectory record.",
+              "evidence_refs": [
+                "snapshot/objs/road_vehicle_t070.jpg",
+                "snapshot/verification/frame_069.jpg",
+                "snapshot/verification/frame_070.jpg",
+                "snapshot/verification/frame_071.jpg"
+              ]
+            }
+          ],
+          "identity_status": "unresolved",
+          "off_screen_after_seconds": 71
+        },
+        {
+          "entity_id": "PKT-CCTV-002-OBJ-004",
+          "event_interval_seconds": [
+            96,
+            98
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                96,
+                98
+              ],
+              "change": "Dark vehicle enters from the right edge of the lower foreground at t≈96–97, oriented toward the left, and is no longer visible in the t=98 sample.",
+              "evidence_refs": [
+                "snapshot/objs/dark_vehicle_t097.jpg",
+                "snapshot/verification/frame_096.jpg",
+                "snapshot/verification/frame_097.jpg",
+                "snapshot/verification/frame_098.jpg"
+              ]
+            }
+          ],
+          "identity_status": "separate packet-local candidate; no correspondence to OBJ-001 asserted",
+          "off_screen_after_seconds": 98
+        }
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_053.jpg",
+        "snapshot/verification/frame_070.jpg",
+        "snapshot/verification/frame_097.jpg"
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "start": 99.0,
+      "end": 105.6,
+      "visible": [
+        "PKT-CCTV-002-OBJ-035"
+      ],
+      "not_yet_observed_at_start": [],
+      "off_screen_at_end": [],
+      "changes": [
+        {
+          "entity_id": "PKT-CCTV-002-OBJ-035",
+          "event_interval_seconds": [
+            98,
+            100
+          ],
+          "observations": [
+            {
+              "time_seconds_approx": [
+                98,
+                100
+              ],
+              "change": "Camera zoom/reframe tightens to a pole with several attached placards. The lower placard contains high-contrast alphanumeric-looking marks, but blur prevents reliable transcription; no semantic meaning is committed.",
+              "evidence_refs": [
+                "snapshot/verification/frame_098.jpg",
+                "snapshot/objs/pole_signs_t100.jpg",
+                "snapshot/verification/frame_100.jpg"
+              ]
+            }
+          ],
+          "identity_status": "same pole across S03/S04 is supported by spatial continuity of the framing; placard contents unresolved"
+        }
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_099.jpg",
+        "snapshot/verification/frame_100.jpg",
+        "snapshot/verification/frame_105.jpg"
+      ]
+    }
+  ]
+}

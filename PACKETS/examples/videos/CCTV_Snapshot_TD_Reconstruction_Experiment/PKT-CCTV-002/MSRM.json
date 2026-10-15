@@ -1,0 +1,271 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "source_id": "CCTV-PART-02",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "start_seconds": 0.0,
+      "end_seconds": 48.0,
+      "scene_type": "wide-view tableau",
+      "camera_view": "Elevated wide view across a marked parking lot, several rows of parked vehicles, two white box-bodied trucks, landscaped islands, a far road, trees, utility structure/lines and sky.",
+      "background_description": "Paved parking surface with white bay markings and drive aisles; planted islands with curbs; tree line and hedge/green strip beyond the lot; pale road behind the lot; utility structure and overhead lines; sky. Background description is not an additional object inventory.",
+      "camera_and_overlay": "The view is wide and elevated. A dark overlay reading ID:001 appears at lower right. At the end of this interval the camera begins to reframe; exact mechanical pan/tilt/zoom sequence is not reconstructed from these snapshots.",
+      "entities": [
+        {
+          "id": "PKT-CCTV-002-OBJ-005",
+          "position": "far-left rear parking row; partly outside left frame in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-006",
+          "position": "rear row, left third; front facing camera in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-007",
+          "position": "rear row, left of center; front facing camera in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-008",
+          "position": "rear row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-009",
+          "position": "rear row, near center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-010",
+          "position": "rear row, near center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-011",
+          "position": "rear row, near center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-012",
+          "position": "rear row, center; tall rectangular cargo body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-013",
+          "position": "rear row, right of center; tall rectangular cargo body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-014",
+          "position": "rear row, right of center; light body and open-bed-like silhouette in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-015",
+          "position": "middle row, left edge; partially cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-016",
+          "position": "middle row, left side in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-017",
+          "position": "middle row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-018",
+          "position": "middle row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-019",
+          "position": "middle row, center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-020",
+          "position": "middle row, center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-021",
+          "position": "middle row, near center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-022",
+          "position": "middle row, center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-023",
+          "position": "middle row, just right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-024",
+          "position": "middle row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-025",
+          "position": "middle row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-026",
+          "position": "middle row, right side in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-027",
+          "position": "middle row, far right near planted island in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-028",
+          "position": "far-right edge near planted island; partly cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-029",
+          "position": "foreground row, left; partly cropped at bottom in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-030",
+          "position": "foreground row, left of center; parked facing away in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-031",
+          "position": "foreground row, center-left; rear visible in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-032",
+          "position": "foreground row, center-right; tall body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-033",
+          "position": "foreground row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-034",
+          "position": "foreground row, far right; partly cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+          "relationship_precision": "coarse image-region position in the wide view",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-001",
+          "position": "lower central foreground at opening",
+          "relationship_precision": "coarse image-region",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-002",
+          "position": "lower aisle, initially near center and later farther right",
+          "relationship_precision": "coarse image-region",
+          "confidence": "limited"
+        }
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "start_seconds": 49.0,
+      "end_seconds": 51.0,
+      "scene_type": "camera-reframing transition",
+      "camera_view": "The parking lot remains visible while the frame shifts substantially to a differently centered wide view.",
+      "background_description": "Same general parking-lot environment, but image framing changes between sampled seconds.",
+      "camera_and_overlay": "Camera viewpoint/reframing change is visible; this is not treated as a hard scene cut. The precise motion path between sampled frames is unresolved.",
+      "entities": []
+    },
+    {
+      "scene_id": "S03",
+      "start_seconds": 52.0,
+      "end_seconds": 98.0,
+      "scene_type": "close view of parking edge and far road",
+      "camera_view": "Tighter view of empty parking bays and painted lines in the foreground, curb and grass island, several vertical poles/trunks, hedge, green strip and road behind the hedge.",
+      "background_description": "The zoomed view includes paved parking bays, a curb-bordered grass island, hedge, trees, a strip of grass and the road beyond. The camera is mostly steady in this interval at this sampling rate.",
+      "camera_and_overlay": "The ID:001 overlay remains at lower right. A light vehicle is briefly partly visible behind trees around t=69–70; a dark vehicle crosses the lower-right foreground around t=96–97.",
+      "entities": [
+        {
+          "id": "PKT-CCTV-002-OBJ-003",
+          "position": "partly occluded on road behind hedge around t=69–70",
+          "relationship_precision": "coarse region; occluded",
+          "confidence": "limited"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-004",
+          "position": "enters from right edge in lower foreground around t=96–97",
+          "relationship_precision": "coarse image-region and sampled movement",
+          "confidence": "moderate"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-035",
+          "position": "pole with attached placards, near center from around t=60",
+          "relationship_precision": "coarse image-region",
+          "confidence": "moderate"
+        },
+        {
+          "id": "PKT-CCTV-002-OBJ-036",
+          "position": "dark vertical foreground structures",
+          "relationship_precision": "coarse image-region",
+          "confidence": "limited"
+        }
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "start_seconds": 99.0,
+      "end_seconds": 105.6,
+      "scene_type": "tight zoom on pole-mounted placards",
+      "camera_view": "Tight, soft-focus view of a pole with multiple rectangular placards against foliage.",
+      "background_description": "Out-of-focus foliage and the pole/placards dominate the image. Small markings are not transcribed.",
+      "camera_and_overlay": "A strong additional zoom/reframe occurs between t=98 and t=99. The ID:001 overlay remains at lower right.",
+      "entities": [
+        {
+          "id": "PKT-CCTV-002-OBJ-035",
+          "position": "centered pole and attached placards",
+          "relationship_precision": "tight view; text unreadable/uncertain",
+          "confidence": "moderate"
+        }
+      ]
+    }
+  ]
+}

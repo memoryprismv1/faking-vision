@@ -1,0 +1,290 @@
+{
+  "packet_id": "PKT-CCTV-001",
+  "source_id": "SRC-CCTV-001-PART-01",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "time_bounds_seconds": [
+        0.0,
+        18.0
+      ],
+      "entities": [
+        {
+          "id": "PKT-CCTV-001-OBJ-001",
+          "position": "far parking row, extreme left edge",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-002",
+          "position": "far parking row, left",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-003",
+          "position": "far parking row, left-centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-004",
+          "position": "far parking row, centre-left",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-005",
+          "position": "far parking row, centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-006",
+          "position": "far parking row, centre-left",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-007",
+          "position": "far parking row, centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-008",
+          "position": "far parking row, centre-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-009",
+          "position": "far parking row, right-centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-010",
+          "position": "far parking row, right-centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-011",
+          "position": "right-centre parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-012",
+          "position": "right-centre parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-013",
+          "position": "right-centre parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-014",
+          "position": "right of landscaped island",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-015",
+          "position": "right of landscaped island, rear",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-016",
+          "position": "right of landscaped island, rear",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-017",
+          "position": "far right parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-018",
+          "position": "left edge, middle parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-019",
+          "position": "left-middle parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-020",
+          "position": "left-middle parking row, foreground side",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-021",
+          "position": "left-middle parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-022",
+          "position": "left-centre parking row, rear",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-023",
+          "position": "left-centre parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-024",
+          "position": "centre-left parking row, rear",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-025",
+          "position": "centre-left parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-026",
+          "position": "centre parking row, rear",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-027",
+          "position": "centre parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-028",
+          "position": "centre-left parking row, front-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-029",
+          "position": "centre-right parking row, rear-left",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-030",
+          "position": "centre-right parking row, rear-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-031",
+          "position": "centre-right parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-032",
+          "position": "centre-right parking row, front-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-033",
+          "position": "centre-right parking row, front-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-034",
+          "position": "behind red SUV group",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-035",
+          "position": "right-centre parking row",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-036",
+          "position": "right-centre parking row, front",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-037",
+          "position": "foreground, extreme left edge",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-038",
+          "position": "foreground, left",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-039",
+          "position": "foreground, left-centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-040",
+          "position": "foreground, centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-041",
+          "position": "foreground, centre-right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-042",
+          "position": "foreground, right of red SUV",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-043",
+          "position": "foreground, right-centre",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-044",
+          "position": "foreground, far right",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-045",
+          "position": "foreground, extreme right edge",
+          "relationship_basis": "relative image region / parking-row structure; no metric coordinates inferred"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-046",
+          "position": "time-varying; see TD timeline and TIR",
+          "relationship_basis": "source frame position; approximate qualitative location only"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-047",
+          "position": "time-varying; see TD timeline and TIR",
+          "relationship_basis": "source frame position; approximate qualitative location only"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-048",
+          "position": "time-varying; see TD timeline and TIR",
+          "relationship_basis": "source frame position; approximate qualitative location only"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-049",
+          "position": "time-varying; see TD timeline and TIR",
+          "relationship_basis": "source frame position; approximate qualitative location only"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-050",
+          "position": "time-varying; see TD timeline and TIR",
+          "relationship_basis": "source frame position; approximate qualitative location only"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-051",
+          "position": "left-centre background, spans sky to parking area",
+          "relationship_basis": "qualitative image position"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-052",
+          "position": "foreground centre-left, between parked vehicles",
+          "relationship_basis": "qualitative image position"
+        },
+        {
+          "id": "PKT-CCTV-001-OBJ-053",
+          "position": "foreground centre-right, in front of red SUV",
+          "relationship_basis": "qualitative image position"
+        }
+      ],
+      "fixed_scene_structure": [
+        "parking-bay grid across the asphalt lot",
+        "landscaped island at right-centre",
+        "background access road behind the parking rows",
+        "tree line and shrubs beyond the lot",
+        "utility pole structure left of centre",
+        "two visible parking signposts in foreground",
+        "fixed elevated camera view"
+      ],
+      "precision_note": "Positions are qualitative image-region relationships only; no metric/world coordinates inferred."
+    }
+  ]
+}

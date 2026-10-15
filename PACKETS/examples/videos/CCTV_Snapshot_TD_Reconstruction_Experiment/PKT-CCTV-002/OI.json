@@ -1,0 +1,694 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "operation": "fv analyse",
+  "source_id": "CCTV-PART-02",
+  "inventory_status": "initial packet inventory; static vehicle candidates are coarse and scoped to the initial wide view; no cross-packet identity normalization performed",
+  "entities": [
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-001",
+      "category": "vehicle_candidate",
+      "properties": {
+        "appearance": "Dark sedan-like vehicle, low in the foreground; side view, dark body and light reflections.",
+        "spatial_summary": "Visible at the opening in the lower central area; its position changes across early samples and it is no longer visible in the same area later. Exact path and exit point are not resolved.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 10
+      },
+      "components": [],
+      "uncertainty": [
+        "Identity and direction are inferred only from sparse one-second samples; continuity after leaving the visible region is not established."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/moving_dark_vehicle_t000.jpg",
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_010.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-002",
+      "category": "person_candidate",
+      "properties": {
+        "appearance": "Human figure; light/white upper garment and dark lower garment; head and limbs visible in the wide view.",
+        "spatial_summary": "Observed in the lower-middle aisle around t=15 and farther into the foreground around t=39–42, with a modest leftward shift in image position. The apparent progression is compatible with one person walking, but continuous identity is not confirmed frame-by-frame.",
+        "first_observed_seconds": 15,
+        "last_observed_or_relevant_seconds": 42
+      },
+      "components": [],
+      "uncertainty": [
+        "Small visual scale and sparse sampling limit detail; identity correspondence across the interval remains provisional."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/pedestrian_candidate_t015.jpg",
+        "snapshot/objs/pedestrian_candidate_t039.jpg",
+        "snapshot/verification/frame_015.jpg",
+        "snapshot/verification/frame_040.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-003",
+      "category": "vehicle_candidate",
+      "properties": {
+        "appearance": "Light-colored vehicle with a taller rear/roof profile; partly hidden by tree trunks and foliage.",
+        "spatial_summary": "Briefly visible on the far road behind the hedge around t=69–70 in the close view; it is not visible in adjacent sampled frames with sufficient continuity to determine its full path.",
+        "first_observed_seconds": 69,
+        "last_observed_or_relevant_seconds": 71
+      },
+      "components": [],
+      "uncertainty": [
+        "Partial occlusion by trees and low temporal sampling; exact type, direction, and entry/exit times unresolved."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/road_vehicle_t070.jpg",
+        "snapshot/verification/frame_069.jpg",
+        "snapshot/verification/frame_070.jpg",
+        "snapshot/verification/frame_071.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-004",
+      "category": "vehicle_candidate",
+      "properties": {
+        "appearance": "Dark minivan/MPV-like vehicle; front and side visible, light-colored wheel.",
+        "spatial_summary": "Enters the close view from the right edge around t=96–97, moving toward the left; not visible in the sampled frame at t=98. No correspondence to the opening dark sedan is asserted.",
+        "first_observed_seconds": 96,
+        "last_observed_or_relevant_seconds": 98
+      },
+      "components": [],
+      "uncertainty": [
+        "Exact make/model and identity correspondence to any other vehicle are unresolved."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/dark_vehicle_t097.jpg",
+        "snapshot/verification/frame_096.jpg",
+        "snapshot/verification/frame_097.jpg",
+        "snapshot/verification/frame_098.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-005",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "partially cropped light vehicle; no reliable make/model detail established.",
+        "spatial_summary": "far-left rear parking row; partly outside left frame in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-006",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "white sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, left third; front facing camera in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-007",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "light silver sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, left of center; front facing camera in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-008",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "light gray compact vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-009",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark compact vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, near center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-010",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "red compact vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, near center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-011",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, near center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-012",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "white box-bodied truck; no reliable make/model detail established.",
+        "spatial_summary": "rear row, center; tall rectangular cargo body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-013",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "white box-bodied truck; no reliable make/model detail established.",
+        "spatial_summary": "rear row, right of center; tall rectangular cargo body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-014",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "white pickup-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "rear row, right of center; light body and open-bed-like silhouette in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-015",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, left edge; partially cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-016",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "light-colored SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, left side in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-017",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-018",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "blue-gray sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, left of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-019",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-020",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, center-left in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-021",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "gray vehicle candidate; no reliable make/model detail established.",
+        "spatial_summary": "middle row, near center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-022",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-023",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "light sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, just right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-024",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "red compact vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-025",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "red SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-026",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, right side in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-027",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "silver sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "middle row, far right near planted island in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-028",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "red sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "far-right edge near planted island; partly cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-029",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "light van-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, left; partly cropped at bottom in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-030",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, left of center; parked facing away in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-031",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "gray sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, center-left; rear visible in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-032",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark SUV-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, center-right; tall body in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-033",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "silver sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, right of center in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-034",
+      "category": "parked_vehicle_candidate",
+      "properties": {
+        "appearance": "dark sedan-like vehicle; no reliable make/model detail established.",
+        "spatial_summary": "foreground row, far right; partly cropped in the initial wide-view tableau. This packet-local identity is based on its visible position in the wide view; it is not a cross-packet identity.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 48
+      },
+      "components": [],
+      "uncertainty": [
+        "Vehicle identity is position-scoped within the opening wide view; later camera reframing removes it from view and does not imply departure."
+      ],
+      "evidence_refs": [
+        "snapshot/verification/frame_001.jpg",
+        "snapshot/verification/frame_025.jpg",
+        "snapshot/verification/frame_050.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-035",
+      "category": "structure_candidate",
+      "properties": {
+        "appearance": "Vertical dark pole with multiple small rectangular signs/placards attached; one lower placard has high-contrast alphanumeric-looking marks, not transcribed.",
+        "spatial_summary": "Near the center of the close view from t≈60 onward; becomes the target of a much tighter view at t≈99 and remains centered through the end.",
+        "first_observed_seconds": 59,
+        "last_observed_or_relevant_seconds": 105
+      },
+      "components": [],
+      "uncertainty": [
+        "The text/markings are blurred and are not semantically interpreted; no assumption is made about the purpose of the placards."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/pole_signs_t100.jpg",
+        "snapshot/verification/frame_070.jpg",
+        "snapshot/verification/frame_100.jpg"
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-002-OBJ-036",
+      "category": "structure_candidate",
+      "properties": {
+        "appearance": "Dark vertical pole/trunk-like structure crossing the foreground of the close view.",
+        "spatial_summary": "One of several vertical dark structures that occlude portions of the hedge and road in the close view; correspondence to the signed pole is not assumed.",
+        "first_observed_seconds": 52,
+        "last_observed_or_relevant_seconds": 98
+      },
+      "components": [],
+      "uncertainty": [
+        "The visual appearance alone does not establish whether all dark vertical structures are utility poles or tree trunks."
+      ],
+      "evidence_refs": [
+        "snapshot/objs/scene_zoom_t053.jpg",
+        "snapshot/verification/frame_070.jpg"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+{
+  "packet_id": "PKT-CCTV-001",
+  "source_id": "SRC-CCTV-001-PART-01",
+  "snapshots": [
+    {
+      "snapshot_id": "SNAP-000",
+      "path": "verification/V_000s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 0,
+      "source_frame_index": 0,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-003",
+      "path": "verification/V_003s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 3,
+      "source_frame_index": 90,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-004",
+      "path": "verification/V_004s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 4,
+      "source_frame_index": 120,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-008",
+      "path": "verification/V_008s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 8,
+      "source_frame_index": 240,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-009",
+      "path": "verification/V_009s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 9,
+      "source_frame_index": 270,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-012",
+      "path": "verification/V_012s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 12,
+      "source_frame_index": 360,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-015",
+      "path": "verification/V_015s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 15,
+      "source_frame_index": 450,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-016",
+      "path": "verification/V_016s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 16,
+      "source_frame_index": 480,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-018",
+      "path": "verification/V_018s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 18,
+      "source_frame_index": 540,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-020",
+      "path": "verification/V_020s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 20,
+      "source_frame_index": 600,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-022",
+      "path": "verification/V_022s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 22,
+      "source_frame_index": 660,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-024",
+      "path": "verification/V_024s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 24,
+      "source_frame_index": 720,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-026",
+      "path": "verification/V_026s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 26,
+      "source_frame_index": 780,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-028",
+      "path": "verification/V_028s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 28,
+      "source_frame_index": 840,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-032",
+      "path": "verification/V_032s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 32,
+      "source_frame_index": 960,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-033",
+      "path": "verification/V_033s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 33,
+      "source_frame_index": 990,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-035",
+      "path": "verification/V_035s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 35,
+      "source_frame_index": 1050,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-036",
+      "path": "verification/V_036s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 36,
+      "source_frame_index": 1080,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-037",
+      "path": "verification/V_037s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 37,
+      "source_frame_index": 1110,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-040",
+      "path": "verification/V_040s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 40,
+      "source_frame_index": 1200,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-042",
+      "path": "verification/V_042s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 42,
+      "source_frame_index": 1260,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-043",
+      "path": "verification/V_043s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 43,
+      "source_frame_index": 1290,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-044",
+      "path": "verification/V_044s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 44,
+      "source_frame_index": 1320,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-046",
+      "path": "verification/V_046s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 46,
+      "source_frame_index": 1380,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-047",
+      "path": "verification/V_047s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 47,
+      "source_frame_index": 1410,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-048",
+      "path": "verification/V_048s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 48,
+      "source_frame_index": 1440,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-050",
+      "path": "verification/V_050s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 50,
+      "source_frame_index": 1500,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-051",
+      "path": "verification/V_051s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 51,
+      "source_frame_index": 1530,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-052",
+      "path": "verification/V_052s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 52,
+      "source_frame_index": 1560,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-054",
+      "path": "verification/V_054s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 54,
+      "source_frame_index": 1620,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-056",
+      "path": "verification/V_056s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 56,
+      "source_frame_index": 1680,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-060",
+      "path": "verification/V_060s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 60,
+      "source_frame_index": 1800,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-061",
+      "path": "verification/V_061s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 61,
+      "source_frame_index": 1830,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-064",
+      "path": "verification/V_064s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 64,
+      "source_frame_index": 1920,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-068",
+      "path": "verification/V_068s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 68,
+      "source_frame_index": 2040,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-072",
+      "path": "verification/V_072s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 72,
+      "source_frame_index": 2160,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-076",
+      "path": "verification/V_076s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 76,
+      "source_frame_index": 2280,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-080",
+      "path": "verification/V_080s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 80,
+      "source_frame_index": 2400,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-084",
+      "path": "verification/V_084s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 84,
+      "source_frame_index": 2520,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-087",
+      "path": "verification/V_087s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 87,
+      "source_frame_index": 2610,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-088",
+      "path": "verification/V_088s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 88,
+      "source_frame_index": 2640,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-089",
+      "path": "verification/V_089s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 89,
+      "source_frame_index": 2670,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-092",
+      "path": "verification/V_092s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 92,
+      "source_frame_index": 2760,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-094",
+      "path": "verification/V_094s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 94,
+      "source_frame_index": 2820,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-095",
+      "path": "verification/V_095s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 95,
+      "source_frame_index": 2850,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-096",
+      "path": "verification/V_096s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 96,
+      "source_frame_index": 2880,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-097",
+      "path": "verification/V_097s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 97,
+      "source_frame_index": 2910,
+      "pass": "random_reconnaissance_pass",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-098",
+      "path": "verification/V_098s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 98,
+      "source_frame_index": 2940,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-100",
+      "path": "verification/V_100s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 100,
+      "source_frame_index": 3000,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-102",
+      "path": "verification/V_102s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 102,
+      "source_frame_index": 3060,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-104",
+      "path": "verification/V_104s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 104,
+      "source_frame_index": 3120,
+      "pass": "normal_global_pass_4s",
+      "preserved_source_frame": true
+    },
+    {
+      "snapshot_id": "SNAP-105",
+      "path": "verification/V_105s.jpg",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "source_time_seconds": 105,
+      "source_frame_index": 3150,
+      "pass": "adaptive_insertion_after_TIR_perturbation",
+      "preserved_source_frame": true
+    }
+  ],
+  "object_crops": {
+    "PKT-CCTV-001-OBJ-046": [
+      {
+        "path": "objs/silver_sedan_t020.jpg",
+        "source_time_seconds": 20,
+        "source_frame_index": 600,
+        "description": "Moving silver sedan in the central/right driving aisle",
+        "source_crop": true,
+        "analytical_overlay": false
+      },
+      {
+        "path": "objs/silver_sedan_t024.jpg",
+        "source_time_seconds": 24,
+        "source_frame_index": 720,
+        "description": "Same silver sedan farther left across the aisle",
+        "source_crop": true,
+        "analytical_overlay": false
+      }
+    ],
+    "PKT-CCTV-001-OBJ-047": [
+      {
+        "path": "objs/pedestrian_t022.jpg",
+        "source_time_seconds": 22,
+        "source_frame_index": 660,
+        "description": "Pedestrian moving toward the foreground near parked vehicles",
+        "source_crop": true,
+        "analytical_overlay": false
+      },
+      {
+        "path": "objs/pedestrian_t028.jpg",
+        "source_time_seconds": 28,
+        "source_frame_index": 840,
+        "description": "Pedestrian partly occluded by foreground red SUV",
+        "source_crop": true,
+        "analytical_overlay": false
+      }
+    ],
+    "PKT-CCTV-001-OBJ-048": [
+      {
+        "path": "objs/blue_vehicle_t042.jpg",
+        "source_time_seconds": 42,
+        "source_frame_index": 1260,
+        "description": "Blue vehicle on background access road",
+        "source_crop": true,
+        "analytical_overlay": false
+      },
+      {
+        "path": "objs/blue_vehicle_t050.jpg",
+        "source_time_seconds": 50,
+        "source_frame_index": 1500,
+        "description": "Blue vehicle farther left on background access road",
+        "source_crop": true,
+        "analytical_overlay": false
+      }
+    ],
+    "PKT-CCTV-001-OBJ-049": [
+      {
+        "path": "objs/white_pickup_t098.jpg",
+        "source_time_seconds": 98,
+        "source_frame_index": 2940,
+        "description": "White pickup on background access road",
+        "source_crop": true,
+        "analytical_overlay": false
+      },
+      {
+        "path": "objs/white_pickup_t105.jpg",
+        "source_time_seconds": 105,
+        "source_frame_index": 3150,
+        "description": "White pickup farther left on background access road",
+        "source_crop": true,
+        "analytical_overlay": false
+      }
+    ],
+    "PKT-CCTV-001-OBJ-050": [
+      {
+        "path": "objs/dark_sedan_t098.jpg",
+        "source_time_seconds": 98,
+        "source_frame_index": 2940,
+        "description": "Dark sedan moving through foreground driving aisle",
+        "source_crop": true,
+        "analytical_overlay": false
+      },
+      {
+        "path": "objs/dark_sedan_t105.jpg",
+        "source_time_seconds": 105,
+        "source_frame_index": 3150,
+        "description": "Dark sedan farther right in foreground driving aisle",
+        "source_crop": true,
+        "analytical_overlay": false
+      }
+    ]
+  },
+  "notes": [
+    "All verification images are unmodified source frames re-encoded as JPEG for packet storage.",
+    "Object crops are source-derived crops without analytical overlays.",
+    "Snapshot times are chunk-local seconds."
+  ]
+}

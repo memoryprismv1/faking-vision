@@ -1,0 +1,16 @@
+FAKING VISION — OPERATIONAL DISPOSITION NOTE
+
+Purpose
+This note applies the Making Vision v1/v2 principle that retained environmental information does not automatically deserve continuous operational attention. Objects and observations remain available for later use; attention is allocated according to events, property changes, uncertainty that affects the active task, and the possibility that later evidence changes relevance.
+
+CHUNK BOUNDARY RULE
+This packet covers only its own source chunk. A currently quiet or ordinary object is NOT deleted, forgotten, or globally dismissed. Its current disposition means only “no operational attention required in this chunk at present.” A later chunk may show the same object behaving unexpectedly or becoming relevant. Cross-chunk work must be allowed to promote previously deferred objects/observations again. Do not infer cross-chunk continuity or identity without evidence.
+
+DISPOSITION VOCABULARY
+- ACTIVE: investigate with available local evidence; preserve hypotheses and uncertainty.
+- DEFERRED: retain the observation/data, but do not spend current investigative effort absent a relevant change or task need.
+- RESOLVED AS NON-BLOCKING FOR THIS CHUNK: the question does not warrant further operational attention within this chunk. This is not a claim that the underlying object/identity is permanently irrelevant or globally resolved.
+- UNRESOLVED: evidence does not decide the question. It may be active or deferred.
+
+Making Vision application
+Do not repeatedly track or classify every stable background object merely to keep it in active attention. Preserve the scene information at an appropriate level; promote objects/events when something changes or when a later task makes them pertinent. Sampling gaps remain gaps, not proof of no change.

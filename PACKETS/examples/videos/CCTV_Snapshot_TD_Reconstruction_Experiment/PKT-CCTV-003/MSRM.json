@@ -1,0 +1,123 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "scenes": [
+    {
+      "scene_id": "PKT-CCTV-003-S01",
+      "start_seconds": 0,
+      "end_seconds": 3,
+      "view": "tight view of two placards on a vertical pole with vegetation behind",
+      "entities": [
+        {
+          "id": "PKT-CCTV-003-OBJ-001",
+          "position": "near image centre"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-002",
+          "position": "above OBJ-001"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-003",
+          "position": "vertical support through image centre"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-004",
+          "position": "background"
+        }
+      ],
+      "evidence": [
+        "snapshot/verification/frame_000.jpg",
+        "snapshot/verification/frame_003.jpg"
+      ]
+    },
+    {
+      "scene_id": "PKT-CCTV-003-S02",
+      "start_seconds": 4,
+      "end_seconds": 25,
+      "view": "camera view widens/reframes from the pole to show road, hedge, parking bays and vehicles; framing continues to change",
+      "entities": [
+        {
+          "id": "PKT-CCTV-003-OBJ-003",
+          "position": "near centre in early wide-out frames"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-004",
+          "position": "rear boundary"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-006",
+          "position": "behind hedge"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-007",
+          "position": "middle and lower field"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-008",
+          "position": "near pole/parking island"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-010",
+          "position": "lower edge"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-011",
+          "position": "middle rows"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-012",
+          "position": "far rows"
+        }
+      ],
+      "evidence": [
+        "snapshot/verification/frame_004.jpg",
+        "snapshot/verification/frame_008.jpg",
+        "snapshot/verification/frame_025.jpg"
+      ]
+    },
+    {
+      "scene_id": "PKT-CCTV-003-S03",
+      "start_seconds": 26,
+      "end_seconds": 104,
+      "view": "wide parking-lot view; parked vehicles occupy marked rows; sampled vehicle positions change locally",
+      "entities": [
+        {
+          "id": "PKT-CCTV-003-OBJ-004",
+          "position": "rear boundary"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-005",
+          "position": "behind lot"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-007",
+          "position": "central/lower field"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-010",
+          "position": "foreground row"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-011",
+          "position": "middle rows"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-012",
+          "position": "far rows"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-009",
+          "position": "moves laterally through middle-left area in later samples"
+        }
+      ],
+      "evidence": [
+        "snapshot/verification/frame_026.jpg",
+        "snapshot/verification/frame_042.jpg",
+        "snapshot/verification/frame_060.jpg",
+        "snapshot/verification/frame_090.jpg",
+        "snapshot/verification/frame_100.jpg"
+      ]
+    }
+  ],
+  "coordinate_policy": "relative image positions only; no metric world coordinates inferred"
+}

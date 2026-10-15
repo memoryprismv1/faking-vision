@@ -1,0 +1,121 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "identity_scope": "packet-local only; no cross-packet identity assignment",
+  "objects": [
+    {
+      "object_id": "PKT-CCTV-003-OBJ-001",
+      "oi_reference": "PKT-CCTV-003-OBJ-001",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "sign_or_placard_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-002",
+      "oi_reference": "PKT-CCTV-003-OBJ-002",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "sign_or_placard_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-003",
+      "oi_reference": "PKT-CCTV-003-OBJ-003",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vertical_pole_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-004",
+      "oi_reference": "PKT-CCTV-003-OBJ-004",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vegetation_region"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-005",
+      "oi_reference": "PKT-CCTV-003-OBJ-005",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "tree_region"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-006",
+      "oi_reference": "PKT-CCTV-003-OBJ-006",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "paved_road_region"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-007",
+      "oi_reference": "PKT-CCTV-003-OBJ-007",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "parking_lot_region"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-008",
+      "oi_reference": "PKT-CCTV-003-OBJ-008",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "parking_island_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-009",
+      "oi_reference": "PKT-CCTV-003-OBJ-009",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vehicle_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-010",
+      "oi_reference": "PKT-CCTV-003-OBJ-010",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vehicle_group_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-011",
+      "oi_reference": "PKT-CCTV-003-OBJ-011",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vehicle_group_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-012",
+      "oi_reference": "PKT-CCTV-003-OBJ-012",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "vehicle_group_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-013",
+      "oi_reference": "PKT-CCTV-003-OBJ-013",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "light_vehicle_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-014",
+      "oi_reference": "PKT-CCTV-003-OBJ-014",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "red_vehicle_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-015",
+      "oi_reference": "PKT-CCTV-003-OBJ-015",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "dark_vehicle_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-016",
+      "oi_reference": "PKT-CCTV-003-OBJ-016",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "light_vehicle_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-017",
+      "oi_reference": "PKT-CCTV-003-OBJ-017",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "utility_structure_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-018",
+      "oi_reference": "PKT-CCTV-003-OBJ-018",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "building_candidate"
+    },
+    {
+      "object_id": "PKT-CCTV-003-OBJ-019",
+      "oi_reference": "PKT-CCTV-003-OBJ-019",
+      "identity_status": "packet-local candidate; not globally resolved",
+      "category_as_recorded": "unresolved_vehicle_candidates"
+    }
+  ]
+}

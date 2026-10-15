@@ -1,0 +1,274 @@
+{
+  "packet_id": "PKT-CCTV-003",
+  "operation": "fv analyse",
+  "source_id": "CCTV-PART-03",
+  "inventory_status": "initial packet inventory; repeated parked-vehicle instances are partly grouped/unresolved; no cross-packet identity normalization performed",
+  "entities": [
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-001",
+      "category": "sign_or_placard_candidate",
+      "properties": {
+        "appearance": "Rectangular light-coloured placard with dark markings, attached to a vertical pole; markings not interpreted.",
+        "spatial_summary": "Near the central image region during the opening tight view; becomes small as the camera view widens.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 3
+      },
+      "components": [],
+      "uncertainty": [
+        "Text/markings are too unclear here for reliable transcription."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-002",
+      "category": "sign_or_placard_candidate",
+      "properties": {
+        "appearance": "Smaller light rectangular sign above the larger placard on the same visible pole.",
+        "spatial_summary": "Above OBJ-001 in the opening close view.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 3
+      },
+      "components": [],
+      "uncertainty": [
+        "Meaning and exact markings unresolved."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-003",
+      "category": "vertical_pole_candidate",
+      "properties": {
+        "appearance": "Tall, dark brown vertical pole supporting the visible placards.",
+        "spatial_summary": "Near the centre in the initial close view; shifts within the image as the camera reframes.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 8
+      },
+      "components": [],
+      "uncertainty": [
+        "Continuity is likely within the initial view, but no cross-packet identity claim is made."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-004",
+      "category": "vegetation_region",
+      "properties": {
+        "appearance": "Dense green vegetation/hedge with irregular top boundary.",
+        "spatial_summary": "Across the rear boundary of the parking area in the wide view.",
+        "first_observed_seconds": 0,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Individual plants are not separated into entities."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-005",
+      "category": "tree_region",
+      "properties": {
+        "appearance": "Multiple tree-like forms with leafy crowns behind the lot.",
+        "spatial_summary": "Rear of parking area; several crowns overlap visually.",
+        "first_observed_seconds": 4,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Individual tree identities/count are not resolved."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-006",
+      "category": "paved_road_region",
+      "properties": {
+        "appearance": "Dark paved horizontal strip behind the parking area.",
+        "spatial_summary": "Runs across the scene behind the hedge/parking islands depending on view.",
+        "first_observed_seconds": 3,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Exact road boundaries partly obscured by vegetation and framing."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-007",
+      "category": "parking_lot_region",
+      "properties": {
+        "appearance": "Large paved parking area with repeated white bay markings.",
+        "spatial_summary": "Occupies the central and lower field in wide views.",
+        "first_observed_seconds": 4,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "No exact dimensions or coordinates inferred."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-008",
+      "category": "parking_island_candidate",
+      "properties": {
+        "appearance": "Raised/curbed island with green ground cover near the pole.",
+        "spatial_summary": "Foreground/midground near pole in the early widening view.",
+        "first_observed_seconds": 3,
+        "last_observed_or_relevant_seconds": 26
+      },
+      "components": [],
+      "uncertainty": [
+        "Boundary detail is limited by camera movement and sampling."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-009",
+      "category": "vehicle_candidate",
+      "properties": {
+        "appearance": "Light-coloured elongated vehicle visible moving laterally across the lot in the later portion.",
+        "spatial_summary": "Crosses the middle-left portion of the lot in the sampled later view.",
+        "first_observed_seconds": 86,
+        "last_observed_or_relevant_seconds": 100
+      },
+      "components": [],
+      "uncertainty": [
+        "Identity continuity and precise route are provisional from one-second samples."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-010",
+      "category": "vehicle_group_candidate",
+      "properties": {
+        "appearance": "Cluster of parked vehicles in the nearest row; mixed light and dark body tones.",
+        "spatial_summary": "Lower edge/foreground of the wide parking-lot view.",
+        "first_observed_seconds": 26,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Individual boundaries overlap or are cut off by frame edges; not all members have separate IDs."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-011",
+      "category": "vehicle_group_candidate",
+      "properties": {
+        "appearance": "Cluster of parked vehicles in the middle rows.",
+        "spatial_summary": "Central parking bays; several light, grey and dark vehicles separated by painted lines.",
+        "first_observed_seconds": 8,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Individual identity and exact count are not committed for every vehicle."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-012",
+      "category": "vehicle_group_candidate",
+      "properties": {
+        "appearance": "Cluster of parked vehicles in the far rows.",
+        "spatial_summary": "Upper half of the parking area, nearer the vegetation boundary.",
+        "first_observed_seconds": 8,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Small scale and overlap limit reliable per-vehicle inventory."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-013",
+      "category": "light_vehicle_candidate",
+      "properties": {
+        "appearance": "Light-coloured boxy vehicle visible near the far-right side in the initial wide view.",
+        "spatial_summary": "Far/right part of lot in sampled wide frames.",
+        "first_observed_seconds": 8,
+        "last_observed_or_relevant_seconds": 42
+      },
+      "components": [],
+      "uncertainty": [
+        "Persistence and precise movement are unresolved."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-014",
+      "category": "red_vehicle_candidate",
+      "properties": {
+        "appearance": "Red/orange vehicle among parked vehicles in early wide view.",
+        "spatial_summary": "Lower-right area in early wide view; partially affected by framing.",
+        "first_observed_seconds": 8,
+        "last_observed_or_relevant_seconds": 42
+      },
+      "components": [],
+      "uncertainty": [
+        "No make/model or persistent identity claim."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-015",
+      "category": "dark_vehicle_candidate",
+      "properties": {
+        "appearance": "Dark vehicle-like form in a middle row.",
+        "spatial_summary": "Middle rows, slightly right of centre in the wide view.",
+        "first_observed_seconds": 26,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Could not confidently establish identity through all sampled views."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-016",
+      "category": "light_vehicle_candidate",
+      "properties": {
+        "appearance": "Light vehicle-like form in a row left of centre.",
+        "spatial_summary": "Left-of-centre middle rows.",
+        "first_observed_seconds": 26,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Generic appearance; distinct identity from similar vehicles is unresolved."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-017",
+      "category": "utility_structure_candidate",
+      "properties": {
+        "appearance": "Tall narrow structure with multiple projecting crosspieces or cables in the distant skyline.",
+        "spatial_summary": "Distant background near upper central region in wide views.",
+        "first_observed_seconds": 26,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Exact structure type is not determined from this evidence."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-018",
+      "category": "building_candidate",
+      "properties": {
+        "appearance": "Pale building-like rectangular region partly visible beyond the trees at the far left.",
+        "spatial_summary": "Far upper-left edge of wide view.",
+        "first_observed_seconds": 26,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Only part of the structure is visible."
+      ]
+    },
+    {
+      "canonical_id": "PKT-CCTV-003-OBJ-019",
+      "category": "unresolved_vehicle_candidates",
+      "properties": {
+        "appearance": "Additional vehicle-shaped forms visible across marked parking bays, not individually separated in this initial pass.",
+        "spatial_summary": "Distributed through the middle and far rows.",
+        "first_observed_seconds": 8,
+        "last_observed_or_relevant_seconds": 104
+      },
+      "components": [],
+      "uncertainty": [
+        "Inventory intentionally remains unresolved; no exact count or identities asserted."
+      ]
+    }
+  ]
+}

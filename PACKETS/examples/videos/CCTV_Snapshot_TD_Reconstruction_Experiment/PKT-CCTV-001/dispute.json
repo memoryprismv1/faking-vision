@@ -1,0 +1,60 @@
+{
+  "status": "deferred_nonblocking_for_this_chunk",
+  "disputes": [
+    {
+      "dispute_id": "D-001",
+      "issue": "Exhaustiveness of the baseline object inventory cannot be established from the current visual inspection where vehicles overlap or are clipped by image edges.",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "affected_layer_records": [
+        "OI.json",
+        "PC.json",
+        "MSRM.json"
+      ],
+      "snapshot_ids": [
+        "SNAP-000",
+        "SNAP-004",
+        "SNAP-008"
+      ],
+      "original_observation": "45 manually enumerated parked vehicle instances are represented; occlusion and edge crops may conceal additional semantic instances.",
+      "resolution_status": "RESOLVED AS NON-BLOCKING FOR THIS CHUNK",
+      "resolved_by": null,
+      "resolution_remark": "Inventory exhaustiveness is not established, but exhaustive enumeration of stable parked vehicles is not currently operationally required. Preserve the current instances/spatial evidence and uncertainty. Re-promote any vehicle or region if a relevant change occurs or another chunk makes it pertinent. This disposition does not certify completeness.",
+      "human_action_required": true,
+      "relevant_time_seconds": [
+        0.0,
+        8.0
+      ],
+      "operational_disposition": "DEFERRED",
+      "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+    },
+    {
+      "dispute_id": "D-002",
+      "issue": "Tiny distant shape(s) near background path cannot be reliably classified as person/object from retained evidence.",
+      "source_id": "SRC-CCTV-001-PART-01",
+      "affected_layer_records": [
+        "OI.json",
+        "TIR.json"
+      ],
+      "snapshot_ids": [
+        "SNAP-000",
+        "SNAP-018",
+        "SNAP-022"
+      ],
+      "original_observation": "Small distant shape(s) are visible near the path/road area; semantic identity is unresolved at source resolution.",
+      "resolution_status": "RESOLVED AS NON-BLOCKING FOR THIS CHUNK",
+      "resolved_by": null,
+      "resolution_remark": "Retain the distant shape(s) as low-confidence observations without forced classification. No current event/task makes further classification operationally necessary in this chunk. Re-promote if temporal evidence or a later chunk makes the candidate relevant.",
+      "human_action_required": true,
+      "relevant_time_seconds": [
+        0.0,
+        22.0
+      ],
+      "operational_disposition": "DEFERRED",
+      "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+    }
+  ],
+  "operational_policy": "Making Vision v1/v2: preserve data; allocate attention selectively; defer stable/background inventory questions when they do not affect the current chunk; re-promote when later evidence or another chunk makes them pertinent.",
+  "cross_chunk_caution": "No object or observation is permanently dismissed by a deferred disposition. Do not infer continuity/identity across chunks without evidence."
+}

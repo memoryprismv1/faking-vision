@@ -1,0 +1,667 @@
+{
+  "packet_id": "PKT-CCTV-001",
+  "purpose": "packet-scoped object declarations prepared for later fv merge; do not treat these IDs as global/canonical across packets",
+  "objects": [
+    {
+      "id": "PKT-CCTV-001-OBJ-001",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark grey vehicle, partly outside frame",
+        "baseline_location": "far parking row, extreme left edge"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-002",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white/light sedan",
+        "baseline_location": "far parking row, left"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-003",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white compact car",
+        "baseline_location": "far parking row, left-centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-004",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "silver/light sedan",
+        "baseline_location": "far parking row, centre-left"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-005",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark compact vehicle",
+        "baseline_location": "far parking row, centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-006",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "red pickup/utility vehicle",
+        "baseline_location": "far parking row, centre-left"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-007",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "black/dark SUV",
+        "baseline_location": "far parking row, centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-008",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white box truck with cab",
+        "baseline_location": "far parking row, centre-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-009",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark green/grey SUV",
+        "baseline_location": "far parking row, right-centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-010",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white box truck with cab",
+        "baseline_location": "far parking row, right-centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-011",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV, partly overlapped",
+        "baseline_location": "right-centre parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-012",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark blue/black SUV",
+        "baseline_location": "right-centre parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-013",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "tan/brown SUV",
+        "baseline_location": "right-centre parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-014",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "silver sedan",
+        "baseline_location": "right of landscaped island"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-015",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "silver coupe/sedan",
+        "baseline_location": "right of landscaped island, rear"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-016",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "light silver/white sedan",
+        "baseline_location": "right of landscaped island, rear"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-017",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "red sedan, partly cropped at right edge",
+        "baseline_location": "far right parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-018",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "grey vehicle, mostly cropped",
+        "baseline_location": "left edge, middle parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-019",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "light grey compact/crossover",
+        "baseline_location": "left-middle parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-020",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark hatchback/SUV",
+        "baseline_location": "left-middle parking row, foreground side"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-021",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark grey sedan",
+        "baseline_location": "left-middle parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-022",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV",
+        "baseline_location": "left-centre parking row, rear"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-023",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "blue/grey sedan",
+        "baseline_location": "left-centre parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-024",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV",
+        "baseline_location": "centre-left parking row, rear"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-025",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "black/dark sedan",
+        "baseline_location": "centre-left parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-026",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "grey sedan",
+        "baseline_location": "centre parking row, rear"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-027",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark sedan",
+        "baseline_location": "centre parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-028",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark sedan with bright grille; make not asserted",
+        "baseline_location": "centre-left parking row, front-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-029",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV",
+        "baseline_location": "centre-right parking row, rear-left"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-030",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV",
+        "baseline_location": "centre-right parking row, rear-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-031",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white sedan",
+        "baseline_location": "centre-right parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-032",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "red sedan",
+        "baseline_location": "centre-right parking row, front-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-033",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "red SUV",
+        "baseline_location": "centre-right parking row, front-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-034",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark SUV, partly occluded",
+        "baseline_location": "behind red SUV group"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-035",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "grey/tan SUV",
+        "baseline_location": "right-centre parking row"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-036",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "light silver sedan",
+        "baseline_location": "right-centre parking row, front"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-037",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white vehicle, mostly cropped",
+        "baseline_location": "foreground, extreme left edge"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-038",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white van/minivan",
+        "baseline_location": "foreground, left"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-039",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "grey sedan",
+        "baseline_location": "foreground, left-centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-040",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark grey sedan",
+        "baseline_location": "foreground, centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-041",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "red SUV",
+        "baseline_location": "foreground, centre-right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-042",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "silver sedan",
+        "baseline_location": "foreground, right of red SUV"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-043",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark grey sedan",
+        "baseline_location": "foreground, right-centre"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-044",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark blue/grey sedan",
+        "baseline_location": "foreground, far right"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-045",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark vehicle, partly cropped",
+        "baseline_location": "foreground, extreme right edge"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-046",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "silver/light silver four-door sedan",
+        "observed_behaviour": "moves from right side of parking aisle toward left across the aisle",
+        "first_observed_interval_seconds": [
+          18,
+          20
+        ],
+        "last_observed_interval_seconds": [
+          24,
+          28
+        ]
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-020",
+        "SNAP-024",
+        "SNAP-026",
+        "SNAP-028"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-047",
+      "category": "person",
+      "properties": {
+        "appearance": "one person; dark short-sleeved top and tan/light trousers, as visible at this resolution",
+        "observed_behaviour": "walks diagonally toward foreground/right, becomes partly occluded by foreground red SUV, then leaves visible frame"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-018",
+        "SNAP-022",
+        "SNAP-026",
+        "SNAP-028"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-048",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "small blue vehicle; precise type unresolved at distance",
+        "observed_behaviour": "travels along background access road from right/centre toward left, then becomes obscured/out of view"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-042",
+        "SNAP-046",
+        "SNAP-050",
+        "SNAP-054"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-049",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "white pickup truck",
+        "observed_behaviour": "travels along background access road from right toward left during end of segment"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-094",
+        "SNAP-098",
+        "SNAP-102",
+        "SNAP-105"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-050",
+      "category": "vehicle",
+      "properties": {
+        "appearance": "dark blue/black four-door sedan",
+        "observed_behaviour": "moves through foreground driving aisle toward the left; remains visible at segment end"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-095",
+        "SNAP-097",
+        "SNAP-098",
+        "SNAP-102",
+        "SNAP-105"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-051",
+      "category": "fixed_scene_object",
+      "properties": {
+        "appearance": "tall dark utility pole/frame with cross-members and insulators",
+        "baseline_location": "left-centre background, spans sky to parking area"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-052",
+      "category": "fixed_scene_object",
+      "properties": {
+        "appearance": "small rectangular parking sign on a post",
+        "baseline_location": "foreground centre-left, between parked vehicles"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    },
+    {
+      "id": "PKT-CCTV-001-OBJ-053",
+      "category": "fixed_scene_object",
+      "properties": {
+        "appearance": "small rectangular parking sign on a post",
+        "baseline_location": "foreground centre-right, in front of red SUV"
+      },
+      "source_packet_id": "PKT-CCTV-001",
+      "snapshot": [
+        "SNAP-000"
+      ]
+    }
+  ],
+  "identity_rule": "All IDs are packet-scoped. Merge must compare source evidence and continuity; same category or generic appearance alone is insufficient."
+}
