@@ -1,18 +1,21 @@
 # Source and provenance
 
-## Original video
+## Original media
 
-**Title:** BLK-HDPTZ12 Security Camera Parkng Lot Surveillance Video.webm  
-**Source:** [Wikimedia Commons file page](https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm)
+**Title:** BLK-HDPTZ12 Security Camera Parking Lot Surveillance Video.webm  
+**Source:** https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm
 
-Use the Commons file page as the authoritative location for the source description, author/source attribution, and current licensing metadata. Recheck the file page when redistributing the media; do not rely on this README alone as a licence record.
+Use the Commons file page as the authoritative location for the source description, attribution, and current licensing metadata.
 
-## Working derivatives
+## Repository availability
 
-The working session used three video segments of approximately 105.6 seconds each, plus snapshot manifests and packet-local TD records. A reconstruction MP4 and selected temporal contact sheets were generated as derivatives.
+The three working source segments (`part_01.webm`, `part_02.webm`, and `part_03.webm`) are not available in this GitHub repository because of GitHub file-size restrictions. They were used as packet-scoped inputs during the experiment. Do not imply that the source segments are included here.
 
-These derivatives are not replacements for the original source. Any interpretation should be traceable back to source frames and packet evidence.
+The reconstruction video **is available** in this directory as `FV_CCTV_snapshot_TD_reconstruction.mp4`. It is a derived review artefact built from packet TD records and preserved snapshots, not a replacement for the original source or a canonical FV compile.
 
-## Provenance limitations
+## Evidence boundaries
 
-This repository documentation commit does not contain the full reconstructed MP4 or all contact sheets. The separate working package contains those files and a checksum manifest. The source video remains available from the linked Commons page.
+- Packet-local TD records and snapshots ground the reconstruction.
+- Cross-packet correspondences remain provisional where evidence is not distinctive.
+- The reconstruction does not establish exhaustive frame coverage or resolve the packet disputes.
+- Consult each packet's own records, snapshot manifest, validation report, and dispute record for packet-level details.
