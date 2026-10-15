@@ -5,6 +5,18 @@ description: Operate Faking Vision (FV) for image and video analysis, visual inv
 
 # Faking Vision Agent Skill
 
+## Mandatory Making Vision prerequisite and promotion gate
+
+Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read the canonical Making Vision material:
+https://www.memoryprism.com/readings/making-vision
+
+Do not begin visual analysis on the assumption that this skill alone, general computer-vision knowledge, or a remembered summary substitutes for reading the canonical material. If the material cannot be accessed or read, state that limitation and do not claim the prerequisite was completed.
+
+Apply the Making Vision processing order: current sensory field/input and directly supported structure → candidate generation → candidate allocation and promotion → deeper processing. Keep candidate generation, promotion, recognition, identification, and object state distinct. Internal state and expectations may influence promotion but must not be misrepresented as external visual evidence.
+
+**Object promotion is a required gate before object counting or identity assignment.** Do not count every detected region as an object, assign identities, or build persistent correspondence from unpromoted candidates. Promote candidates only when supported by the available visual evidence; preserve uncertain, rejected, and unresolved candidates rather than forcing a count or identity. Promotion does not license adding unsupported semantic detail.
+
+
 
 # FV textarea command interface
 
