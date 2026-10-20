@@ -524,3 +524,22 @@ to packet semantics.
 - Added component-quality labels: high, weak, and transient.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
+
+## Image packet editing and environmental participation (v0.25 design addition)
+
+The initial `fv edit` scope is image packets only. This is an agent interaction convention, not a claim that a standalone executable exists.
+
+```text
+fv edit
+fv edit <object-name/object-id> --list
+fv edit <object-name/object-id> <property-id>
+```
+
+- No arguments lists available objects; `--list` lists the selected object's properties. The property form identifies a direct edit; syntax for supplying a new value remains open.
+- Direct edits require a sufficiently unique target and an applicable property. Never guess between ambiguous targets. Log successful edits only.
+- A separate environment packet describes environmental conditions and includes an array of objects undergoing behaviour changes due to those conditions. Environmental changes are logged, but setting a condition must not automatically invent object changes.
+- The edit log uses `edit_base: singleton` for one object and `edit_base: collection` for a collection. Collections are environment-only for now. Preserve target references and provenance when accumulating logs across appended packets.
+- Packets carry a dedicated FV version file identifying the version against which they are mapped; filename and schema remain undecided. Unversioned packets are legacy and mapped against an older FV version. A legacy packet without an environment packet remains usable; ignore the missing environment packet. Run `fv edit` on an older packet to enter the update workflow without falsifying legacy provenance.
+- A small JavaScript visual packet editor is future scope, not current implementation scope. Keep the packet model compatible with future object movement, property changes, and environmental manipulation; do not design the UI now.
+
+The environment schema, new-value syntax, edit-log fields, version-file format, and dependent-record update rules remain open.

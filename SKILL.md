@@ -3058,3 +3058,18 @@ to packet semantics.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
+
+## v0.25 design addition: image packet editing and environmental participation
+
+This addition records the proposed image-only `fv edit` workflow. It is a command convention for agent interaction, not a claim that an executable CLI exists.
+
+- `fv edit` lists all available objects in the image packet.
+- `fv edit <object-name/object-id> --list` lists the selected object's available properties.
+- `fv edit <object-name/object-id> <property-id>` identifies a direct property edit; syntax for supplying the new value remains unspecified.
+- A direct edit may proceed only if the target is sufficiently unique and the property exists and applies. Never guess between ambiguous objects. Record successful edits in the edit log; do not mark failed or unresolved operations as successful.
+- A separate environment packet describes environmental conditions and carries an array of objects undergoing behaviour changes due to those conditions. Examples include wind affecting trees and clothes on a clothesline, or rain affecting people with umbrellas, a wet/dripping dog, and visible raindrops. A condition change does not by itself authorize inventing changes to objects.
+- The edit log records `edit_base: singleton` for one object or `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve target references, prior entries, and provenance when logs are accumulated across appended packets.
+- Packets must carry a dedicated FV version file identifying the FV version against which they are mapped. The exact filename and schema remain open. Packets without version information are legacy packets mapped against an older FV version. A legacy packet without an environment packet remains usable; ignore the missing environment packet rather than rejecting it for that reason alone. Run `fv edit` on an older packet to enter the update workflow. Do not rewrite legacy provenance as though the packet were originally created under the current FV version.
+- A small JavaScript-based visual FV packet editor is a future goal: it should eventually allow moving objects, changing properties such as colour, and manipulating environmental conditions while persisting edits into packet data and the edit log. This is not current implementation scope. Do not design or implement its UI now.
+
+The exact environment schema, new-value command syntax, edit-log schema, version-file format, and rules for updating dependent records remain open design questions. The Working Process Specification remains authoritative.
