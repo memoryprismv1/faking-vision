@@ -123,3 +123,22 @@ FV is the operational framework for applying and testing those ideas in AI visua
 This repository is licensed under **CC BY-NC 4.0**.
 
 It is not an open-source software project. Non-commercial copying, sharing, study, and adaptation are permitted with attribution under the license. Commercial use requires separate permission.
+
+## Image packet editing and environmental participation (v0.25 design addition)
+
+The initial `fv edit` scope is image packets only. This is a proposed agent command interface, not a claim that a standalone executable already exists.
+
+```text
+fv edit
+fv edit <object-name/object-id> --list
+fv edit <object-name/object-id> <property-id>
+```
+
+- With no arguments, list available objects. With `--list`, list the selected object's available properties. The property form identifies a direct edit; the syntax for supplying a new value remains open.
+- Direct edits require a sufficiently unique target and an applicable property. Do not guess between ambiguous objects. Record successful edits in the edit log; do not mark failed or unresolved operations as successful.
+- A separate environment packet describes environmental conditions and includes an array of objects undergoing behaviour changes because of those conditions. Environmental edits are logged. Setting a condition does not by itself authorize inventing changes to affected objects.
+- The edit log records `edit_base: singleton` for a single-object target and `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
+- Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv edit` on an older packet to enter the update workflow without falsifying its legacy provenance.
+- A small JavaScript visual packet editor is a future goal, not current implementation scope. Keep packet and edit semantics compatible with eventual visual object movement, property changes, and environmental manipulation without designing the editor now.
+
+The environment packet schema, edit-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items.
