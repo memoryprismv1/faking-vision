@@ -3067,9 +3067,49 @@ This addition records the proposed image-only `fv edit` workflow. It is a comman
 - `fv edit <object-name/object-id> --list` lists the selected object's available properties.
 - `fv edit <object-name/object-id> <property-id>` identifies a direct property edit; syntax for supplying the new value remains unspecified.
 - A direct edit may proceed only if the target is sufficiently unique and the property exists and applies. Never guess between ambiguous objects. Record successful edits in the edit log; do not mark failed or unresolved operations as successful.
-- A separate environment packet describes environmental conditions and carries an array of objects undergoing behaviour changes due to those conditions. Examples include wind affecting trees and clothes on a clothesline, or rain affecting people with umbrellas, a wet/dripping dog, and visible raindrops. A condition change does not by itself authorize inventing changes to objects.
-- The edit log records `edit_base: singleton` for one object or `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve target references, prior entries, and provenance when logs are accumulated across appended packets.
-- Packets must carry a dedicated FV version file identifying the FV version against which they are mapped. The exact filename and schema remain open. Packets without version information are legacy packets mapped against an older FV version. A legacy packet without an environment packet remains usable; ignore the missing environment packet rather than rejecting it for that reason alone. Run `fv edit` on an older packet to enter the update workflow. Do not rewrite legacy provenance as though the packet were originally created under the current FV version.
-- A small JavaScript-based visual FV packet editor is a future goal: it should eventually allow moving objects, changing properties such as colour, and manipulating environmental conditions while persisting edits into packet data and the edit log. This is not current implementation scope. Do not design or implement its UI now.
+- A separate environment packet describes environmental conditions. A condition change does not by itself authorize inventing changes to objects.
+- The edit log records `edit_base: singleton` for one object or `edit_base: collection` for an environment collection. Preserve target references, prior entries, and provenance when logs are accumulated across appended packets.
+- Packets carry a dedicated FV version file identifying the version against which they are mapped. A packet without version information is legacy. A legacy packet without an environment packet remains usable; do not rewrite its provenance.
+- A browser-based packet editor is a separate implementation. It must preserve packet semantics and edit history.
 
-The exact environment schema, new-value command syntax, edit-log schema, version-file format, and rules for updating dependent records remain open design questions. The Working Process Specification remains authoritative.
+## v0.26 addition: environmental participation and object response
+
+### Core distinction
+
+An environmental edit can change scene conditions, the visible state of affected objects, and/or the behaviour or location of an object. Record these separately.
+
+Classify each affected object's response **for this edit**, not as a permanent ontological label:
+
+- **Passive response:** the represented change is to appearance or state, with no behaviour or spatial change asserted. Examples include wet surfaces, stronger glare, or vegetation showing heat stress.
+- **Active response:** the represented object changes behaviour or location in response to the new conditions. When location or spatial relation changes, update MSRM and record the before/after relation.
+
+Do not assume every living object necessarily moves under stress, or that non-living objects can never move. Use the source, task objective, explicit test expectations, object capabilities, constraints, and available evidence. Do not invent an unobserved response merely because it seems typical.
+
+### Environmental stress
+
+In `ENVIRONMENT.json`, use `environmental_stress` as one of the exact values `none`, `low`, or `high`. Do not use a free-form string such as `"high - triggers shelter seeking"` in this field. Explain the basis and uncertainty in an appropriate note or evidence field instead.
+
+Stress is a cue to inspect potentially affected objects, not by itself proof of a particular behaviour. Assess relevant objects in the affected area and record the scope of the check.
+
+### Record responsibilities
+
+- **ENVIRONMENT.json:** the edited environmental condition and its defined stress value.
+- **OI.json:** object identity and represented state. For an active response, record `behavior_before` and `behavior_after` when supported, the response/insulation state when applicable, and a concise rationale labelled as inference when it is not directly observed.
+- **MSRM.json:** current spatial relationships. When an edit changes an object's position or relationship, retain enough before/after information to audit the change. If no spatial change is asserted, do not fabricate one.
+- **edit_log.json:** the edit performed, changed properties, affected-object classification, provenance, validation outcome, and before/after record references. Use consistent object IDs across records; do not introduce duplicate or unresolvable identifiers.
+
+For the v0.26 edit log, use `affected_objects_passive` as an array of object IDs and `affected_objects_active` as an array of records containing at least `id`, the supported before/after response, and `msrm_changed`. These arrays describe the edit event; ENVIRONMENT.json remains the condition state. Do not maintain conflicting, independently edited copies of the same classifications.
+
+### Validation and audit
+
+- Fail a packet when its declared test expectation requires an active response and the packet/image contradicts that expectation; for example, the supplied negative Bermuda test explicitly expects a failure when the cat remains in direct harsh sun.
+- If stress is high but the correct response cannot be established from available evidence, mark the case unresolved or request review. Do not automatically declare all living objects invalid for remaining in place.
+- If an active response changes location, verify that OI, MSRM, edit_log, and the edited image agree. A log claiming shelter-seeking does not prove the rendered object is sheltered.
+- For passive responses, check the expected visible state change and ensure no unsupported movement or entity is added.
+- A validation report must distinguish JSON parsing, structural consistency, semantic validation, and independent visual audit. Never treat one as proof of the others.
+
+### Compatibility and provenance
+
+Keep the original version and provenance of legacy packets. When updating an older packet, record the new mapping/edit event without claiming it was originally authored under v0.26. Missing environment data in a legacy packet is not alone a reason to reject it.
+
+The bundled environmental test cases are fixtures, not blanket proof that the rules have been implemented. Image binaries must not be published under a claim of creator ownership or licence clearance unless source URLs and rights evidence support that claim.
