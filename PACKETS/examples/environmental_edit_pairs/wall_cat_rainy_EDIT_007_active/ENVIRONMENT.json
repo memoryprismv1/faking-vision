@@ -7,5 +7,6 @@
   "glare": "low wet reflections",
   "shadows": "diffuse due to overcast",
   "atmosphere": "wet rainy gloomy",
-  "environmental_stress": "high - triggers shelter seeking"
+  "environmental_stress": "high",
+  "environmental_stress_note": "High stress is part of this fixture's explicit shelter-seeking test condition; the enum records stress level, while the fixture/test expectation records the expected response."
 }
