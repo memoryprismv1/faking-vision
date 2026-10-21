@@ -1,0 +1,11 @@
+{
+  "sunlight": "overcast dark",
+  "sky": "dark stormy with rain clouds",
+  "precipitation": "heavy rainfall, rain streaks, puddles",
+  "wind": "moderate",
+  "temperature": "cool",
+  "glare": "low wet reflections",
+  "shadows": "diffuse due to overcast",
+  "atmosphere": "wet rainy gloomy",
+  "environmental_stress": "high - triggers shelter seeking"
+}

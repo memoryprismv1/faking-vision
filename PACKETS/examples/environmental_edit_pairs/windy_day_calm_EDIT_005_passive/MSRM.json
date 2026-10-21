@@ -1,0 +1,27 @@
+{
+  "reference": "edited_image.webp (asset withheld; see source_asset_manifest.json)",
+  "inherited_from": "windy_day_original",
+  "objects": {
+    "person": {
+      "x": 0.45,
+      "y": 0.55,
+      "relation": "same position as original"
+    },
+    "dog": {
+      "x": 0.48,
+      "y": 0.78,
+      "relation": "same position as original"
+    },
+    "sea": {
+      "x": 0.5,
+      "y": 0.45,
+      "relation": "same"
+    },
+    "ship": {
+      "x": 0.82,
+      "y": 0.42,
+      "relation": "same"
+    }
+  },
+  "msrm_change": "none - same positions"
+}

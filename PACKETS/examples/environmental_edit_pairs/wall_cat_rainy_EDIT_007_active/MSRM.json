@@ -1,0 +1,30 @@
+{
+  "reference": "edited_image.webp (asset withheld; see source_asset_manifest.json)",
+  "inherited_from": "wall_cat_pleasant_original",
+  "msrm_change": "living object position changed due to shelter seeking",
+  "objects": {
+    "wall": {
+      "x": 0.5,
+      "y": 0.7,
+      "change": "none - now wet"
+    },
+    "cat": {
+      "x": 0.22,
+      "y": 0.78,
+      "before": "on wall top x0.48 y0.6",
+      "after": "under bushes near wall x0.22 y0.78",
+      "change": "moved off wall to shelter",
+      "type": "active insulation"
+    },
+    "vegetation": {
+      "region": {
+        "x_min": 0,
+        "y_min": 0.35,
+        "x_max": 1,
+        "y_max": 0.78
+      },
+      "relation": "distributed foreground garden shrubs and planting bed; region rather than single point"
+    }
+  },
+  "validation_note": "reported PASS in submitted packet; not independently run"
+}

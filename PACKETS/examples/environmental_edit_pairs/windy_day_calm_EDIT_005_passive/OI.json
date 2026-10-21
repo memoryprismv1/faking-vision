@@ -1,0 +1,31 @@
+[
+  {
+    "id": "person",
+    "type": "person",
+    "description": "woman in long white dress with long red sash",
+    "pose": "standing facing left, holding straw hat with right hand (no need to brace)",
+    "dress_state": "hanging naturally straight down",
+    "sash_state": "hanging vertical down",
+    "hair_state": "calm not blowing",
+    "behavior": "relaxed standing"
+  },
+  {
+    "id": "dog",
+    "type": "animal - living - active",
+    "species": "terrier white and brown",
+    "behavior": "walking with head down sniffing sand - unchanged per v0.25 passive assumption",
+    "insulation_state": "none",
+    "appearance": "dry",
+    "note": "v0.25 treats as no wind effect - flagged as incomplete for living object"
+  },
+  {
+    "id": "sea",
+    "type": "environment - passive",
+    "state": "gentle waves"
+  },
+  {
+    "id": "ship",
+    "type": "object - passive",
+    "state": "distant cargo ship with dark smoke"
+  }
+]

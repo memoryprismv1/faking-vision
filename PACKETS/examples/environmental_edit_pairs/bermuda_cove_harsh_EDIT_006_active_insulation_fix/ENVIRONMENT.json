@@ -1,0 +1,13 @@
+{
+  "sunlight": "harsh high direct glaring sun, unpleasant sunny",
+  "sky": "clear intense blue with visible bright sun disk",
+  "light": "high contrast intense bright",
+  "glare": "high",
+  "shadows": "sharp dark strong",
+  "temperature": "hot",
+  "precipitation": "none",
+  "water_state": "bright sparkling with intense glare",
+  "vegetation_state": "sun-stressed yellowing drooping",
+  "atmosphere": "hot and uncomfortable oppressive",
+  "environmental_stress": "high - triggers active insulation in living objects"
+}

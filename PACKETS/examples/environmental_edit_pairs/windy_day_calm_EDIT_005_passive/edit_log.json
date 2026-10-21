@@ -1,0 +1,35 @@
+{
+  "edit_id": "EDIT_005",
+  "edit_base": "collection",
+  "target": "ENVIRONMENT",
+  "edit_type": "environment_edit",
+  "timestamp": "2026-10-20T12:15:00Z",
+  "property_changes": [
+    {
+      "property": "wind_condition",
+      "before": "strong windy",
+      "after": "calm"
+    },
+    {
+      "property": "sea_state",
+      "before": "choppy with whitecaps",
+      "after": "gentle small waves"
+    }
+  ],
+  "affected_objects_passive": [
+    "dress",
+    "sash",
+    "sea"
+  ],
+  "affected_objects_active": [
+    "person"
+  ],
+  "affected_objects": [
+    "person",
+    "dress",
+    "sash"
+  ],
+  "msrm_change": "none",
+  "provenance_note": "web image source URL/licence missing; see source_asset_manifest.json",
+  "version": "0.25"
+}

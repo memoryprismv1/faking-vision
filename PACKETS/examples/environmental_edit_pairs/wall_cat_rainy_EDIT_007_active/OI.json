@@ -1,0 +1,23 @@
+[
+  {
+    "id": "wall",
+    "type": "structure - passive",
+    "state": "wet, water dripping, puddles",
+    "appearance": "wet with reflections"
+  },
+  {
+    "id": "cat",
+    "type": "animal - living - active",
+    "behavior_before": "sitting on wall",
+    "behavior_after": "crouched under bushes near wall, under eave, seeking shelter, avoiding rain",
+    "insulation_state": "active shelter_seek - insulating from rain",
+    "appearance": "slightly wet fur, hunched",
+    "location_preference": "covered dry spot",
+    "reasoning": "cat moves under vegetation rather than staying exposed in heavy rain"
+  },
+  {
+    "id": "vegetation",
+    "type": "environment - passive",
+    "state": "wet, dripping"
+  }
+]
