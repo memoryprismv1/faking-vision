@@ -1,0 +1,45 @@
+{
+  "edit_id": "EDIT_006",
+  "edit_base": "collection",
+  "target": "ENVIRONMENT",
+  "edit_type": "environment_edit",
+  "timestamp": "2026-10-20T16:34:12Z",
+  "property_changes": [
+    {
+      "property": "sunlight",
+      "before": "pleasant filtered",
+      "after": "harsh glaring"
+    },
+    {
+      "property": "glare",
+      "before": "low",
+      "after": "high"
+    },
+    {
+      "property": "shadows",
+      "before": "soft",
+      "after": "strong"
+    },
+    {
+      "property": "temperature",
+      "before": "mild",
+      "after": "hot"
+    }
+  ],
+  "affected_objects_passive": [
+    "vegetation",
+    "water",
+    "house",
+    "ground"
+  ],
+  "affected_objects": [
+    "vegetation",
+    "water",
+    "house",
+    "ground",
+    "cat"
+  ],
+  "msrm_change": "none",
+  "version": "0.25",
+  "note": "living object treated as passive - known limitation"
+}

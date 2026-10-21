@@ -1,0 +1,35 @@
+[
+  {
+    "id": "house",
+    "type": "structure - passive",
+    "appearance": "harsh shadows",
+    "insulation_behavior": "none - passive"
+  },
+  {
+    "id": "chair",
+    "type": "object - passive",
+    "appearance": "sharp dark shadow",
+    "provides": "shade resource for active objects"
+  },
+  {
+    "id": "cat",
+    "type": "animal - living - active",
+    "species": "black and white shorthair",
+    "behavior_before": "sitting on wall / chair exposed",
+    "behavior_after": "crouched underneath white chair in its shadow, seeking shade, tucked in doorway shadow",
+    "insulation_state": "active shade_seek - insulating from heat",
+    "appearance": "normal but in shade, avoiding direct sun",
+    "location_preference": "shade, cool surface",
+    "reasoning": "cat moves to shade under harsh heat"
+  },
+  {
+    "id": "vegetation",
+    "type": "environment - passive",
+    "state": "sun-stressed yellowing"
+  },
+  {
+    "id": "water",
+    "type": "environment - passive",
+    "state": "bright glare"
+  }
+]

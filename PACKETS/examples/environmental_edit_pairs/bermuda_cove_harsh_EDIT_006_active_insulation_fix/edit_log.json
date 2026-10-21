@@ -1,0 +1,44 @@
+{
+  "edit_id": "EDIT_006_ACTIVE",
+  "edit_base": "collection",
+  "target": "ENVIRONMENT",
+  "edit_type": "environment_edit with active participation",
+  "timestamp": "2026-10-21T05:30:00Z",
+  "property_changes": [
+    {
+      "property": "sunlight",
+      "before": "pleasant filtered",
+      "after": "harsh glaring"
+    },
+    {
+      "property": "temperature",
+      "before": "mild",
+      "after": "hot"
+    }
+  ],
+  "affected_objects_passive": [
+    "vegetation",
+    "water",
+    "house",
+    "ground"
+  ],
+  "affected_objects_active": [
+    {
+      "id": "cat",
+      "before": {
+        "behavior": "sitting on chair exposed",
+        "position": "on chair"
+      },
+      "after": {
+        "behavior": "crouched under chair in shadow",
+        "position": "under chair shade",
+        "insulation": "shade_seek"
+      },
+      "msrm_changed": true
+    }
+  ],
+  "msrm_change": "required for living objects",
+  "version": "0.26-proposed",
+  "contribution_origin": "Meta; integration correction by ChatGPT",
+  "note": "supplied validation claim retained as claim, not independently verified"
+}

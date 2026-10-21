@@ -1,0 +1,100 @@
+{
+  "contribution_archive": "fv_individual_packets_with_images.zip",
+  "source_urls": null,
+  "source_urls_status": "not provided in packet metadata; required before media publication",
+  "copyright_holder": null,
+  "licence_or_permission": null,
+  "rights_status": "unverified",
+  "repository_media_status": "withheld pending source and licence review",
+  "note": "Hashes identify exact supplied files; they do not establish ownership, licence, or permission to redistribute. Duplicate paths share the same content hash.",
+  "unique_assets": [
+    {
+      "sha256": "b78472d805220586949660d4e3e401aa31418f4925e102c9d912a87517ab4e72",
+      "bytes": 706716,
+      "roles": [
+        "windy_day_original/original_image.webp",
+        "windy_day_calm_EDIT_005_passive/original_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1280,
+        1920
+      ]
+    },
+    {
+      "sha256": "8d4549daa9189822b3f4589e9ac24af473107c812b493298196d75bb5d038c64",
+      "bytes": 480348,
+      "roles": [
+        "windy_day_calm_EDIT_005_passive/edited_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1280,
+        1920
+      ]
+    },
+    {
+      "sha256": "8fd0bc91bd843bf2d7cea33feef3364a16435a12d4ddf095095a20eef7301986",
+      "bytes": 770024,
+      "roles": [
+        "bermuda_cove_pleasant_original/original_image.webp",
+        "bermuda_cove_harsh_EDIT_006_passive_old/original_image.webp",
+        "bermuda_cove_harsh_EDIT_006_active_insulation_fix/original_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "sha256": "e36fd7cf9b494b458633a7a20519fd7e9707eb333b87d51c7e6152c24de11284",
+      "bytes": 872538,
+      "roles": [
+        "bermuda_cove_harsh_EDIT_006_passive_old/edited_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "sha256": "0f9705ce1977f523e84d46359d0668dfcde9ba088aa269fb19a49da0328ead9a",
+      "bytes": 845190,
+      "roles": [
+        "bermuda_cove_harsh_EDIT_006_active_insulation_fix/edited_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "sha256": "7e058083861d4fb11b316e5266a3f61b1c01bb36977adf96ae7a96500a7eae79",
+      "bytes": 614092,
+      "roles": [
+        "wall_cat_pleasant_original/original_image.webp",
+        "wall_cat_rainy_EDIT_007_active/original_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    },
+    {
+      "sha256": "631404a2d1dcc7d4218ee238cce612f25d450070954937041a9608e0426c7c82",
+      "bytes": 709704,
+      "roles": [
+        "wall_cat_rainy_EDIT_007_active/edited_image.webp"
+      ],
+      "media": "WebP",
+      "dimensions": [
+        1920,
+        1280
+      ]
+    }
+  ]
+}

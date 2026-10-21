@@ -1,0 +1,43 @@
+{
+  "edit_id": "EDIT_007_ACTIVE",
+  "edit_base": "collection",
+  "target": "ENVIRONMENT",
+  "edit_type": "environment_edit with active participation - rainfall test",
+  "timestamp": "2026-10-21T05:30:00Z",
+  "property_changes": [
+    {
+      "property": "precipitation",
+      "before": "none",
+      "after": "heavy rainfall"
+    },
+    {
+      "property": "sky",
+      "before": "partly cloudy",
+      "after": "dark stormy"
+    }
+  ],
+  "affected_objects_passive": [
+    "wall",
+    "vegetation",
+    "ground"
+  ],
+  "affected_objects_active": [
+    {
+      "id": "cat",
+      "before": {
+        "position": "on wall",
+        "appearance": "dry"
+      },
+      "after": {
+        "position": "under bushes / under eave",
+        "appearance": "wet fur but sheltered",
+        "insulation": "shelter_seek"
+      },
+      "msrm_changed": true
+    }
+  ],
+  "msrm_change": "required - living object moves to shelter",
+  "version": "0.26-proposed",
+  "contribution_origin": "Meta; integration correction by ChatGPT",
+  "note": "supplied validation claim retained as claim, not independently verified"
+}

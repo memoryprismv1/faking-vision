@@ -1,0 +1,41 @@
+[
+  {
+    "id": "house",
+    "type": "structure - passive",
+    "description": "charming pink house with tall white chimney and teal shutters",
+    "lighting": "soft even",
+    "appearance": "soft light"
+  },
+  {
+    "id": "chair",
+    "type": "object - passive",
+    "description": "white wooden Adirondack chair on pink steps",
+    "shadow": "soft"
+  },
+  {
+    "id": "cat",
+    "type": "animal - living - active",
+    "species": "black and white domestic shorthair",
+    "behavior": "sitting on top of white wall / sitting on chair",
+    "insulation_state": "none - comfortable",
+    "appearance": "dry, relaxed",
+    "location_preference": "exposed pleasant sun is ok"
+  },
+  {
+    "id": "vegetation",
+    "type": "environment - passive",
+    "state": "lush green banana leaves, vibrant red hibiscus",
+    "appearance": "healthy"
+  },
+  {
+    "id": "water",
+    "type": "environment - passive",
+    "state": "calm blue bay with white sailboats",
+    "appearance": "moderate reflections"
+  },
+  {
+    "id": "lighthouse",
+    "type": "structure - passive",
+    "state": "white lighthouse on distant headland"
+  }
+]

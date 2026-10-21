@@ -1,0 +1,33 @@
+{
+  "reference": "edited_image.webp (asset withheld; see source_asset_manifest.json)",
+  "inherited_from": "bermuda_cove_pleasant_original",
+  "msrm_change": "none - same positions (v0.25 assumption)",
+  "objects": {
+    "house": {
+      "x": 0.4,
+      "y": 0.45
+    },
+    "chair": {
+      "x": 0.42,
+      "y": 0.65
+    },
+    "cat": {
+      "x": 0.48,
+      "y": 0.67,
+      "relation": "same as original - on chair"
+    },
+    "vegetation": {
+      "x": 0.5,
+      "y": 0.6
+    },
+    "water": {
+      "x": 0.7,
+      "y": 0.55
+    },
+    "lighthouse": {
+      "x": 0.85,
+      "y": 0.4
+    }
+  },
+  "validation_flag": "FAIL living object - cat would not remain in direct harsh sun"
+}

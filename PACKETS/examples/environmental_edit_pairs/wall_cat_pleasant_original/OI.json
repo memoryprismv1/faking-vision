@@ -1,0 +1,15 @@
+[
+  {
+    "id": "wall",
+    "type": "structure - passive",
+    "state": "low white garden wall, dry"
+  },
+  {
+    "id": "cat",
+    "type": "animal - living - active",
+    "behavior": "sitting confidently on top of wall",
+    "insulation_state": "none - comfortable",
+    "appearance": "dry relaxed",
+    "location_preference": "exposed is ok in pleasant"
+  }
+]

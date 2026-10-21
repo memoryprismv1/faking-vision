@@ -1,0 +1,37 @@
+[
+  {
+    "id": "house",
+    "type": "structure - passive",
+    "description": "pink house",
+    "lighting": "harsh shadows",
+    "appearance": "brighter with stronger shadows"
+  },
+  {
+    "id": "chair",
+    "type": "object - passive",
+    "description": "white chair",
+    "shadow": "sharp dark"
+  },
+  {
+    "id": "cat",
+    "type": "animal - living - active",
+    "behavior": "sitting on chair in direct harsh sun - PASSIVE TREATMENT (flagged as unrealistic)",
+    "insulation_state": "none - should be shade seeking but not modeled in 0.25",
+    "appearance": "normal"
+  },
+  {
+    "id": "vegetation",
+    "type": "environment - passive",
+    "state": "sun-stressed yellowing drooping"
+  },
+  {
+    "id": "water",
+    "type": "environment - passive",
+    "state": "bright glare"
+  },
+  {
+    "id": "lighthouse",
+    "type": "structure - passive",
+    "state": "white lighthouse high contrast"
+  }
+]

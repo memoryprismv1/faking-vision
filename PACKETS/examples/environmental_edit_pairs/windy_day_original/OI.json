@@ -1,0 +1,31 @@
+[
+  {
+    "id": "person",
+    "type": "person",
+    "description": "woman in long white dress with long red sash",
+    "pose": "standing facing left, holding straw hat with red ribbon with right hand",
+    "dress_state": "flowing streaming left in wind",
+    "sash_state": "blowing streaming left",
+    "hair_state": "blowing",
+    "behavior": "bracing against wind"
+  },
+  {
+    "id": "dog",
+    "type": "animal - living - active",
+    "species": "terrier white and brown",
+    "behavior": "walking with head down sniffing sand",
+    "insulation_state": "none",
+    "appearance": "dry",
+    "head_position": "down against wind"
+  },
+  {
+    "id": "sea",
+    "type": "environment - passive",
+    "state": "choppy turquoise with whitecaps"
+  },
+  {
+    "id": "ship",
+    "type": "object - passive",
+    "state": "distant cargo ship with dark smoke on horizon"
+  }
+]

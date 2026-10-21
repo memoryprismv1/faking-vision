@@ -1,0 +1,26 @@
+{
+  "reference": "original_image.webp (asset withheld; see source_asset_manifest.json)",
+  "objects": {
+    "person": {
+      "x": 0.45,
+      "y": 0.55,
+      "relation": "center standing on sand"
+    },
+    "dog": {
+      "x": 0.48,
+      "y": 0.78,
+      "relation": "near feet of person, sniffing"
+    },
+    "sea": {
+      "x": 0.5,
+      "y": 0.45,
+      "relation": "background behind person"
+    },
+    "ship": {
+      "x": 0.82,
+      "y": 0.42,
+      "relation": "distant horizon"
+    }
+  },
+  "consistency": "positions anchored"
+}

@@ -1,0 +1,14 @@
+{
+  "reference": "original_image.webp (asset withheld; see source_asset_manifest.json)",
+  "objects": {
+    "wall": {
+      "x": 0.5,
+      "y": 0.7
+    },
+    "cat": {
+      "x": 0.48,
+      "y": 0.6,
+      "relation": "on top of wall"
+    }
+  }
+}
