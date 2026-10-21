@@ -1339,9 +1339,9 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
-## v0.25 — Image packet editing and environmental participation
+## v0.26 — Environmental participation and object response
 
-The initial `fv edit` scope is image packets only. The command interface is an agent convention, not a claim that a standalone executable exists.
+The image-only `fv edit` commands remain an agent interaction convention, not a claim that a standalone executable exists.
 
 ```text
 fv edit
@@ -1349,14 +1349,23 @@ fv edit <object-name/object-id> --list
 fv edit <object-name/object-id> <property-id>
 ```
 
-With no arguments, list available objects. With `--list`, list the selected object's properties. The property form identifies a direct edit; syntax for supplying the new value remains unspecified. Do not proceed unless the target is sufficiently unique and the property is applicable. Never guess between ambiguous objects. Record successful edits in the edit log.
+Classify each object's response to the current environmental edit, rather than assigning a permanent passive/active essence:
 
-A separate environment packet describes environmental conditions and contains an array of objects undergoing behaviour changes due to those conditions. Examples include wind affecting trees and clothes on a clothesline, or rain affecting people with umbrellas, a wet/dripping dog, and raindrops. Environmental edits must be logged, but setting a condition does not itself justify inventing changes in affected objects.
+- **Passive response:** appearance/state changes without asserting a behaviour or position change.
+- **Active response:** behaviour or location changes in response to the conditions; update MSRM when spatial position/relation changes.
 
-The edit log records `edit_base` as `singleton` for one object or `collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
+Do not infer a mandatory response solely from the fact that an object is alive or that stress is high. Use source evidence, task/test expectations, the object's capabilities, and uncertainty. A high-stress edit prompts inspection of relevant objects. If an explicit test expects a response and the records or image contradict it, fail that test. Otherwise, if the correct response is underdetermined, mark it unresolved or request peer review instead of inventing behaviour.
 
-Packets must carry a dedicated FV version file identifying the version against which they are mapped; the exact filename and schema remain to be standardized. A packet with no version file is treated as a legacy packet mapped against an older FV version. A missing environment packet is acceptable in a legacy packet and can be ignored. Run `fv edit` on an older packet to enter the update workflow without falsifying legacy provenance.
+In `ENVIRONMENT.json`, `environmental_stress` must be exactly `none`, `low`, or `high`. Explanatory text belongs in an appropriate note/evidence field, not in this enum.
 
-A small JavaScript-based visual packet editor is future scope. It should eventually support moving objects, changing properties such as colour, and manipulating environmental conditions while persisting changes to packet data and the edit log. Do not design or implement the UI now.
+Keep records consistent:
+- ENVIRONMENT.json stores the condition state and stress value.
+- OI.json stores object state, supported before/after behaviour, applicable response state, and inference labels.
+- MSRM.json stores spatial state and auditable before/after detail when a spatial relation changes.
+- edit_log.json stores the edit event, changed properties, affected IDs, response classification, provenance, outcome, and before/after references. Use `affected_objects_passive` as object IDs and `affected_objects_active` as records keyed by `id`, with supported before/after details and `msrm_changed`.
 
-The environment schema, new-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items. The Working Process Specification is authoritative; this guidance supplements rather than overrides it.
+A successful validation/audit must check more than the packet's claims: if an edit log says the cat moved to shelter, the edited image must show it sheltered, and OI/MSRM/edit_log must agree. Keep JSON parsing, structural consistency, semantic validation, and independent visual audit as distinct checks.
+
+Preserve prior edit records and legacy version provenance. A legacy packet without an environment file is not invalid for that reason alone. Do not claim a web-sourced image is generated/owned/licence-cleared without evidence.
+
+This guidance supplements and does not override the Working Process Specification.
