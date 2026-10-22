@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FV Media Object Editor — MVP</title>
+<style>
+:root{color-scheme:dark;--bg:#101014;--panel:#1b1b22;--line:#393945;--text:#e7e7ec;--muted:#a4a4b1;--accent:#ff784f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,sans-serif}
+header{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}h1{font-size:18px;margin:0}header span{color:var(--muted);font-size:12px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;padding:14px;max-width:1500px;margin:auto}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;min-width:0}.stage{padding:0;overflow:hidden}
+canvas{display:block;width:100%;height:auto;max-height:72vh;background:#050507;object-fit:contain;touch-action:manipulation}
+.controls{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-top:1px solid var(--line);align-items:center}
+button,input,select{font:inherit;color:inherit;background:#282832;border:1px solid #484856;border-radius:5px;padding:7px}button{cursor:pointer}button:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#1b0c08;border-color:var(--accent);font-weight:700}
+label{display:block;color:var(--muted);font-size:12px;margin:10px 0 4px}input[type=file]{width:100%;font-size:12px}input[type=text],select{width:100%}input[type=color]{width:55px;height:34px;padding:2px}input[type=range]{width:100%;padding:0}
+.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0}.row input[type=text]{flex:1}
+small,.hint{color:var(--muted);font-size:12px}.status{white-space:pre-wrap;padding:9px;background:#111116;border-radius:6px;margin-top:10px;min-height:38px}
+#log{max-height:180px;overflow:auto;font-size:12px;padding-left:18px}h2{font-size:14px;margin:0 0 8px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>FV Media Object Editor</h1><span>Experimental MVP · real media in / rendered media out</span></header>
+<main>
+<section>
+<div class="panel stage">
+<canvas id="view" width="960" height="540" aria-label="Video frame editor"></canvas>
+<div class="controls">
+<button id="play">Play</button><button id="clear">Clear polygon</button><button id="key">Save shape keyframe</button>
+<span id="clock" class="hint">00:00.00</span><span class="hint">Click around the object to draw its mask.</span>
+</div>
+<div class="controls">
+<input id="seek" type="range" min="0" max="1000" value="0" aria-label="Video position" style="flex:1">
+<label style="margin:0;display:flex;align-items:center;gap:6px">Tint <input id="tint" type="color" value="#ff3d67"></label>
+<label style="margin:0;display:flex;align-items:center;gap:6px">Strength <input id="strength" type="range" min="0" max="100" value="70" style="width:100px"></label>
+</div>
+</div>
+<div class="panel" style="margin-top:12px">
+<h2>Render output</h2>
+<div class="row"><button class="primary" id="export">Export edited video (WebM)</button><button id="savePacket">Export edited packet JSON</button></div>
+<p class="hint">The exported video uses your mask keyframes and colour tint. Play the source video from start to finish to render it. Export is WebM, supported by this browser.</p>
+<div id="status" class="status">Load a video and an FV JSON packet to begin.</div>
+</div>
+</section>
+<aside>
+<div class="panel">
+<h2>1 · Load source</h2>
+<label for="videoFile">Video file</label><input id="videoFile" type="file" accept="video/*">
+<label for="packetFile">FV packet JSON (OI.json or bundle)</label><input id="packetFile" type="file" accept=".json,application/json">
+<label for="object">Existing packet object ID</label><select id="object" disabled><option>Load a packet first</option></select>
+<p class="hint">IDs are read from the loaded packet; no new object IDs are invented.</p>
+</div>
+<div class="panel" style="margin-top:12px">
+<h2>2 · Edit object property</h2>
+<label for="property">Property name</label><input id="property" type="text" value="colour">
+<label for="value">New value</label><div class="row"><input id="value" type="text" value="pink"><input id="valueColor" type="color" value="#ff3d67" title="Tint colour"></div>
+<button id="apply" class="primary" style="margin-top:10px;width:100%" disabled>Apply property edit</button>
+<p class="hint">The property is written into matching object records and logged. The visual colour edit is rendered only inside the hand-drawn mask.</p>
+</div>
+<div class="panel" style="margin-top:12px">
+<h2>3 · Shape keyframes</h2>
+<p class="hint">Draw a polygon on the frame and save it at several times as the object moves. Same-vertex-count shapes are interpolated between saved times. This is manual mask tracking, not automatic AI segmentation.</p>
+<div id="keyList" class="hint">No shape keyframes yet.</div>
+</div>
+<div class="panel" style="margin-top:12px">
+<h2>Edit log</h2><ol id="log"><li>No edits yet.</li></ol>
+</div>
+</aside>
+</main>
+<video id="source" playsinline muted style="display:none"></video>
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const video=$('source'), canvas=$('view'), ctx=canvas.getContext('2d',{willReadFrequently:true});
+let videoURL=null, packet=null, packetName='OI.json', keyframes=[], polygon=[], edits=[], rendering=false, recorder=null, chunks=[];
+const say = msg => $('status').textContent=msg;
+const fmt = t => {const m=Math.floor(t/60),s=(t%60).toFixed(2).padStart(5,'0');return String(m).padStart(2,'0')+':'+s};
+function sizeCanvas(){if(!video.videoWidth)return;canvas.width=video.videoWidth;canvas.height=video.videoHeight;draw()}
+function fitPoint(e){const r=canvas.getBoundingClientRect();return {x:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height))}}
+function currentShape(t=video.currentTime){
+ if(!keyframes.length)return polygon;
+ const sorted=[...keyframes].sort((a,b)=>a.time-b.time), before=sorted.filter(k=>k.time<=t).pop(), after=sorted.find(k=>k.time>=t);
+ if(!before)return sorted[0].points;if(!after)return before.points;if(before===after)return before.points;
+ if(before.points.length!==after.points.length)return before.points;
+ const f=(t-before.time)/(after.time-before.time);
+ return before.points.map((p,i)=>({x:p.x+(after.points[i].x-p.x)*f,y:p.y+(after.points[i].y-p.y)*f}));
+}
+function paintTint(points){
+ if(points.length<3)return;
+ const w=canvas.width,h=canvas.height;
+ const img=ctx.getImageData(0,0,w,h),d=img.data;
+ const poly=points.map(p=>({x:p.x*w,y:p.y*h})), color=$('tint').value.match(/[0-9a-f]{2}/gi).map(v=>parseInt(v,16)), a=Number($('strength').value)/100;
+ const minX=Math.max(0,Math.floor(Math.min(...poly.map(p=>p.x)))),maxX=Math.min(w-1,Math.ceil(Math.max(...poly.map(p=>p.x))));
+ const minY=Math.max(0,Math.floor(Math.min(...poly.map(p=>p.y)))),maxY=Math.min(h-1,Math.ceil(Math.max(...poly.map(p=>p.y))));
+ for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
+  let inside=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const pi=poly[i],pj=poly[j];if(((pi.y>y)!==(pj.y>y))&&(x<(pj.x-pi.x)*(y-pi.y)/(pj.y-pi.y)+pi.x))inside=!inside}
+  if(inside){const k=(y*w+x)*4;d[k]=d[k]*(1-a)+color[0]*a;d[k+1]=d[k+1]*(1-a)+color[1]*a;d[k+2]=d[k+2]*(1-a)+color[2]*a}
+ }
+ ctx.putImageData(img,0,0);
+}
+function draw(){
+ if(video.readyState>=2){ctx.drawImage(video,0,0,canvas.width,canvas.height);const p=currentShape();paintTint(p);
+  if(!rendering&&polygon.length){const pts=polygon; if(pts.length){ctx.save();ctx.strokeStyle='#ff784f';ctx.fillStyle='rgba(255,120,79,.14)';ctx.lineWidth=Math.max(2,canvas.width/500);ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x*canvas.width,p.y*canvas.height):ctx.moveTo(p.x*canvas.width,p.y*canvas.height));if(pts.length>=3){ctx.closePath();ctx.fill()}ctx.stroke();pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x*canvas.width,p.y*canvas.height,Math.max(3,canvas.width/240),0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill()});ctx.restore()}}
+ }
+ $('clock').textContent=fmt(video.currentTime||0);if(video.duration)$('seek').value=(video.currentTime/video.duration)*1000;
+ requestAnimationFrame(draw);
+}
+function collectIds(root){
+ const ids=new Set(), seen=new Set();
+ function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);if(!Array.isArray(v)&&typeof v.id==='string'&&v.id.trim())ids.add(v.id);for(const x of Object.values(v))walk(x)}
+ walk(root);return [...ids].sort();
+}
+function updateKeyList(){ $('keyList').innerHTML=keyframes.length?keyframes.slice().sort((a,b)=>a.time-b.time).map(k=>'<div>'+fmt(k.time)+' · '+k.points.length+' points <button data-time="'+k.time+'">Remove</button></div>').join(''):'No shape keyframes yet.'}
+function appendEdit(edit){edits.push({...edit,at:new Date().toISOString()});$('log').innerHTML=edits.map(e=>'<li>'+escapeHTML(e.description)+' <span class="hint">('+escapeHTML(e.at)+')</span></li>').join('')}
+function escapeHTML(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+$('videoFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;if(videoURL)URL.revokeObjectURL(videoURL);videoURL=URL.createObjectURL(f);video.src=videoURL;video.load();say('Video loaded: '+f.name);});
+video.addEventListener('loadedmetadata',()=>{sizeCanvas();say('Video ready ('+video.videoWidth+'×'+video.videoHeight+', '+fmt(video.duration)+'). Load the packet and choose an object ID.')});
+video.addEventListener('seeked',draw);
+$('packetFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{packet=JSON.parse(await f.text());packetName=f.name;const ids=collectIds(packet);$('object').innerHTML=ids.map(id=>'<option value="'+escapeHTML(id)+'">'+escapeHTML(id)+'</option>').join('');$('object').disabled=!ids.length;$('apply').disabled=!ids.length;say('Packet loaded: '+f.name+' · '+ids.length+' unique IDs found.');}catch(err){say('Could not parse JSON: '+err.message)}});
+canvas.addEventListener('click',e=>{if(video.readyState<2)return;polygon.push(fitPoint(e));draw()});
+$('play').onclick=()=>{if(video.paused){video.play();$('play').textContent='Pause'}else{video.pause();$('play').textContent='Play'}};
+video.addEventListener('pause',()=>{$('play').textContent='Play'});video.addEventListener('play',()=>{$('play').textContent='Pause'});
+$('seek').addEventListener('input',()=>{if(video.duration)video.currentTime=(Number($('seek').value)/1000)*video.duration});
+$('clear').onclick=()=>{polygon=[];draw()};
+$('key').onclick=()=>{if(polygon.length<3){say('Draw at least three polygon points first.');return}const t=video.currentTime;keyframes=keyframes.filter(k=>Math.abs(k.time-t)>.03);keyframes.push({time:t,points:polygon.map(p=>({...p}))});updateKeyList();appendEdit({type:'mask_keyframe',time:t,object_id:$('object').value,description:'Saved mask keyframe for '+$('object').value+' at '+fmt(t)});say('Mask keyframe saved at '+fmt(t)+'. Add more at later times to follow movement.')};
+$('keyList').addEventListener('click',e=>{if(e.target.dataset.time){const t=Number(e.target.dataset.time);keyframes=keyframes.filter(k=>k.time!==t);updateKeyList();draw()}});
+$('valueColor').addEventListener('input',()=>{$('tint').value=$('valueColor').value;draw()});$('tint').addEventListener('input',draw);$('strength').addEventListener('input',draw);
+function updateMatches(node,id,prop,val,refs=[]){
+ if(!node||typeof node!=='object')return;
+ if(!Array.isArray(node)&&node.id===id){node.properties=node.properties&&typeof node.properties==='object'?node.properties:{};node.properties[prop]=val;refs.push(node)}
+ for(const v of Object.values(node))updateMatches(v,id,prop,val,refs);
+ return refs;
+}
+$('apply').onclick=()=>{if(!packet)return;const id=$('object').value,prop=$('property').value.trim(),val=$('value').value;if(!id||!prop){say('Choose an object and enter a property name.');return}
+ const refs=updateMatches(packet,id,prop,val);if(!refs.length){say('No editable object record matched this ID.');return}
+ appendEdit({type:'property_edit',object_id:id,property:prop,value:val,description:id+' · '+prop+' → '+val});
+ say('Updated '+refs.length+' matching record(s) for '+id+'. The visual tint uses the mask and colour controls.');
+};
+$('savePacket').onclick=()=>{if(!packet){say('Load a packet first.');return}const out={format:'fv-media-edit-mvp-v1',source_packet:packetName,packet,media_edits:{object_id:$('object').value,property:$('property').value,value:$('value').value,tint:$('tint').value,strength:Number($('strength').value)/100,mask_keyframes:keyframes},edit_log:edits,limitations:['Mask polygons are manually authored; tracking is not automatic.','Shape interpolation requires matching vertex counts.','Property records are updated by matching object id; review packet semantics before treating output as authoritative.','Visual tint is a pixel blend inside the mask, not semantic recolouring or material reconstruction.']};download(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}),'fv-edited-packet.json');say('Edited packet bundle exported. Source packet was not overwritten.')};
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000)}
+$('export').onclick=async()=>{if(!video.src||!video.duration){say('Load a video first.');return}if(keyframes.length===0){say('Draw a mask and save at least one shape keyframe first.');return}
+ try{video.pause();video.currentTime=0;await new Promise(resolve=>video.addEventListener('seeked',resolve,{once:true}));const stream=canvas.captureStream(25);const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';recorder=new MediaRecorder(stream,{mimeType:mime});chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{download(new Blob(chunks,{type:mime}),'fv-edited-video.webm');rendering=false;say('Video export complete. Check the rendered result, especially at cuts and between mask keyframes.')};rendering=true;chunks=[];recorder.start();video.play();say('Rendering in real time… keep this tab open until export finishes.');video.onended=()=>{video.pause();if(recorder&&recorder.state!=='inactive')recorder.stop();video.onended=null};}catch(err){rendering=false;say('Video export failed: '+err.message)}};
+requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
