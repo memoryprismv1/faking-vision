@@ -4,7 +4,7 @@ Faking Vision (FV) is an operational framework and agent skill for explicit, aud
 
 FV provides procedures for examining images and video through visible components, relationships, temporal evidence, candidate formation, correspondence, targeted verification, adaptive sampling, and explicit uncertainty. It is designed to keep observation, interpretation, and commitment separate so that visual reasoning can be inspected rather than hidden inside a model's learned assumptions.
 
-**Publication record:** [Faking Vision on Zenodo](https://zenodo.org/records/22672967) · **Working repository and agent skill:** [memoryprismv1/faking-vision](https://github.com/memoryprismv1/faking-vision)
+**Publication record:** [Faking Vision on Zenodo](https://zenodo.org/records/22672967) · DOI: [10.5281/zenodo.22672967](https://doi.org/10.5281/zenodo.22672967) · **Working repository and agent skill:** [memoryprismv1/faking-vision](https://github.com/memoryprismv1/faking-vision)
 
 ## What FV does
 
@@ -128,7 +128,7 @@ It is not an open-source software project. Non-commercial copying, sharing, stud
 
 ## Image packet editing and environmental participation (v0.25–v0.26 design additions)
 
-The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow, not a claim that a standalone executable or browser-based packet editor already exists. The initial `fv edit` scope is image packets only.
+The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow. The repository also contains two experimental browser-based tools: `PACKETS/tools/FV_Edit_Visual_Workbench.html` and `PACKETS/tools/FV_Media_Object_Editor_MVP.html`. These are prototypes and have not been fully tested or validated; their presence does not make them authoritative packet writers. The initial `fv edit` workflow scope is image packets only.
 
 ```text
 fv edit
@@ -141,7 +141,7 @@ fv edit <object-name/object-id> <property-id>
 - A separate environment packet describes environmental conditions and includes an array of objects undergoing behaviour changes because of those conditions. Environmental edits are logged. Setting a condition does not by itself authorize inventing changes to affected objects.
 - The edit log records `edit_base: singleton` for a single-object target and `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
 - Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv edit` on an older packet to enter the update workflow without falsifying its legacy provenance.
-- A small JavaScript visual packet editor is a future goal, not current implementation scope. Keep packet and edit semantics compatible with eventual visual object movement, property changes, and environmental manipulation without designing the editor now.
+- The experimental Media Object Editor MVP accepts a video and FV JSON packet, supports manually drawn polygon keyframes and basic property edits, and can export packet data and a WebM recording where the browser supports it. It does not provide automatic segmentation or persistent object tracking; its visual tint is not semantic object-aware reconstruction. Interpolation can fail across scene cuts or major shape changes, and packet exports and visual output require separate review. The Visual Workbench is also experimental. Treat both tools as prototypes requiring evaluation, not validated or canonical FV implementations.
 
 The v0.26 environmental-participation rules additionally distinguish changes to environment conditions from affected-object responses:
 
