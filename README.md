@@ -4,6 +4,8 @@ Faking Vision (FV) is an operational framework and agent skill for explicit, aud
 
 FV provides procedures for examining images and video through visible components, relationships, temporal evidence, candidate formation, correspondence, targeted verification, adaptive sampling, and explicit uncertainty. It is designed to keep observation, interpretation, and commitment separate so that visual reasoning can be inspected rather than hidden inside a model's learned assumptions.
 
+**Publication record:** [Faking Vision on Zenodo](https://zenodo.org/records/22672967) · **Working repository and agent skill:** [memoryprismv1/faking-vision](https://github.com/memoryprismv1/faking-vision)
+
 ## What FV does
 
 FV supports a complete visual-investigation and reconstruction workflow:
@@ -124,9 +126,9 @@ This repository is licensed under **CC BY-NC 4.0**.
 
 It is not an open-source software project. Non-commercial copying, sharing, study, and adaptation are permitted with attribution under the license. Commercial use requires separate permission.
 
-## Image packet editing and environmental participation (v0.25 design addition)
+## Image packet editing and environmental participation (v0.25–v0.26 design additions)
 
-The initial `fv edit` scope is image packets only. This is a proposed agent command interface, not a claim that a standalone executable already exists.
+The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow, not a claim that a standalone executable or browser-based packet editor already exists. The initial `fv edit` scope is image packets only.
 
 ```text
 fv edit
@@ -140,5 +142,13 @@ fv edit <object-name/object-id> <property-id>
 - The edit log records `edit_base: singleton` for a single-object target and `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
 - Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv edit` on an older packet to enter the update workflow without falsifying its legacy provenance.
 - A small JavaScript visual packet editor is a future goal, not current implementation scope. Keep packet and edit semantics compatible with eventual visual object movement, property changes, and environmental manipulation without designing the editor now.
+
+The v0.26 environmental-participation rules additionally distinguish changes to environment conditions from affected-object responses:
+
+- Classify passive state/appearance changes separately from active behaviour or location changes, for each edit event rather than as a permanent object label.
+- Record condition and stress in `ENVIRONMENT.json`, supported object state/behaviour in `OI.json`, spatial changes in `MSRM.json`, and the edit plus provenance/validation information in `edit_log.json`.
+- Treat environmental stress as a cue to inspect affected objects, not proof of a particular behaviour. Preserve uncertainty and do not invent a response from typical expectations alone.
+- Validate structural consistency and semantic expectations separately from the independent visual audit; an edit log is not proof that the resulting image matches the intended state.
+- Preserve legacy packet provenance when mapping older packets to a later FV version.
 
 The environment packet schema, edit-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items.
