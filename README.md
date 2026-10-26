@@ -4,6 +4,8 @@ Faking Vision (FV) is an operational framework and agent skill for explicit, aud
 
 FV provides procedures for examining images and video through visible components, relationships, temporal evidence, candidate formation, correspondence, targeted verification, adaptive sampling, and explicit uncertainty. It is designed to keep observation, interpretation, and commitment separate so that visual reasoning can be inspected rather than hidden inside a model's learned assumptions.
 
+**Zenodo record:** [Faking Vision — publication record](https://zenodo.org/records/22672967) · **Source repository and agent skill:** [memoryprismv1/faking-vision](https://github.com/memoryprismv1/faking-vision)
+
 ## What FV does
 
 FV supports a complete visual-investigation and reconstruction workflow:
