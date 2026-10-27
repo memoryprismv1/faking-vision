@@ -91,3 +91,46 @@ Keep predictions auditable and avoid retrospective rewriting. Where numerical pr
 - No assumption that anomalous behaviour implies malicious intent.
 
 **Current outcome sought:** a disciplined experimental record of what FV/MV can anticipate, how it represents uncertainty and unknown outcomes, and how its predictions compare with what actually happens.
+
+## Origin and scope expansion
+
+The name **Minority Report** comes from the film. It is a prompt for exploring anticipatory capability, not a product specification or a commitment to reproduce the fictional system. The idea began with a simple question: given an image or short video segment, can FV/MV estimate what might happen next?
+
+This remains application-independent exploration. Do not start by choosing a product, user workflow, or deployment target. Develop and test the underlying capability first; possible uses can emerge as the capability and its limits become clearer. Thinking of a use case is not a commitment to build it.
+
+## Candidate application domains (illustrative, not a roadmap)
+
+The same broad capability—maintaining a distribution over plausible future states from visual evidence—could be relevant to:
+
+- **Home and security CCTV:** estimate likely whereabouts or next appearances when a person or animal leaves a camera's field of view, using observed transitions and camera coverage constraints.
+- **Live streams and wildlife observation:** anticipate possible next behaviours or events in an ongoing scene.
+- **Sports and traffic:** reason about possible movement, interactions, and developing events.
+- **Industrial monitoring and search/rescue:** anticipate state changes or possible movement from partial observations.
+- **Military situational awareness:** reason about possible movement and changes in a scene. Applications that support lethal targeting raise distinct safety and ethical issues and are not an implementation target for this exploratory note.
+
+These are possibilities, not requirements, priorities, or a list of projects to execute. No single application should prematurely dictate the general capability.
+
+## Two different prediction questions
+
+Keep these questions distinct:
+
+1. **Behavioural forecasting:** What might the observed object or scene do next? What are the plausible next states, interactions, or event chains?
+2. **Viewer-interest forecasting:** Given the current event and its possible continuations, how likely is a viewer to find the next moment worth watching?
+
+The second question arose while considering a puppy livestream: a puppy waking up may lead to movement, interaction, or simply going back to sleep. Predicting behaviour is not the same as deciding whether a person would want to watch it. This is a conceptual distinction, not a request to build notifications, a viewing product, or an engagement-optimisation system.
+
+Likewise, a proposed “where is the dog likely to be?” game for home CCTV is an example of evaluating predictions against later footage, not a committed project. The footage is not currently in hand; the cameras are understood to cover entrances, exits, and common areas. If such an experiment is ever run, camera blind spots and “not visible / location unknown” must be legitimate outcomes rather than reasons to invent a location.
+
+## General capability questions
+
+Across possible domains, investigate:
+
+- individual-object next-state prediction;
+- conditional interactions between objects or agents;
+- branching event chains and their dependencies;
+- prediction horizons and how new frames revise the distribution;
+- uncertainty, unknown outcomes, and behavioural anomalies;
+- retrospective evaluation without access to future frames at prediction time.
+
+The key question is not whether the system can make one lucky guess. It is whether it can maintain a useful, revisable distribution of plausible futures, represent what it does not know, and be evaluated against what actually happens.
+
