@@ -1341,7 +1341,12 @@ Folder depth is an operator-interface cost. Do not create folders for organizati
 
 ## v0.26 — Environmental participation and object response
 
-The image-only `fv edit` commands remain an agent interaction convention, not a claim that a standalone executable exists.
+This section consolidates the environmental-participation rules for the v0.26
+working-process specification. It supplements and does not override the
+canonical Working Process Specification.
+
+The image-only `fv edit` commands remain an agent interaction convention,
+not a claim that a standalone executable exists:
 
 ```text
 fv edit
@@ -1349,23 +1354,72 @@ fv edit <object-name/object-id> --list
 fv edit <object-name/object-id> <property-id>
 ```
 
-Classify each object's response to the current environmental edit, rather than assigning a permanent passive/active essence:
+### Response classification
 
-- **Passive response:** appearance/state changes without asserting a behaviour or position change.
-- **Active response:** behaviour or location changes in response to the conditions; update MSRM when spatial position/relation changes.
+Classify each object's response **for the current environmental edit**, not as
+a permanent passive/active essence:
 
-Do not infer a mandatory response solely from the fact that an object is alive or that stress is high. Use source evidence, task/test expectations, the object's capabilities, and uncertainty. A high-stress edit prompts inspection of relevant objects. If an explicit test expects a response and the records or image contradict it, fail that test. Otherwise, if the correct response is underdetermined, mark it unresolved or request peer review instead of inventing behaviour.
+- **Passive response:** the represented change is to appearance or state,
+  with no behaviour or spatial change asserted.
+- **Active response:** the represented object changes behaviour and/or
+  location in response to the changed conditions. Update MSRM whenever
+  position or spatial relation changes.
 
-In `ENVIRONMENT.json`, `environmental_stress` must be exactly `none`, `low`, or `high`. Explanatory text belongs in an appropriate note/evidence field, not in this enum.
+Do not infer a mandatory response solely because an object is alive or stress
+is high. Use source evidence, explicit task/test expectations, object
+capabilities and constraints, and available uncertainty. A high-stress edit
+prompts inspection of relevant objects in the affected area; it does not prove
+a particular behaviour. If an explicit test expects a response and the packet
+or image contradicts it, fail that test. If evidence does not determine the
+response, mark it unresolved or request peer review instead of inventing
+behaviour.
 
-Keep records consistent:
-- ENVIRONMENT.json stores the condition state and stress value.
-- OI.json stores object state, supported before/after behaviour, applicable response state, and inference labels.
-- MSRM.json stores spatial state and auditable before/after detail when a spatial relation changes.
-- edit_log.json stores the edit event, changed properties, affected IDs, response classification, provenance, outcome, and before/after references. Use `affected_objects_passive` as object IDs and `affected_objects_active` as records keyed by `id`, with supported before/after details and `msrm_changed`.
+### Environmental state and record responsibilities
 
-A successful validation/audit must check more than the packet's claims: if an edit log says the cat moved to shelter, the edited image must show it sheltered, and OI/MSRM/edit_log must agree. Keep JSON parsing, structural consistency, semantic validation, and independent visual audit as distinct checks.
+In `ENVIRONMENT.json`, `environmental_stress` must be exactly `none`,
+`low`, or `high`. Explanations, provenance, and uncertainty belong in an
+appropriate note/evidence field, not in this enum.
 
-Preserve prior edit records and legacy version provenance. A legacy packet without an environment file is not invalid for that reason alone. Do not claim a web-sourced image is generated/owned/licence-cleared without evidence.
+Keep records consistent and use the same object IDs across records:
 
-This guidance supplements and does not override the Working Process Specification.
+- **ENVIRONMENT.json:** the edited environmental condition and stress value.
+- **OI.json:** object identity/state and supported before/after behaviour;
+  include applicable response/insulation state when known. Distinguish direct
+  observation from inference; rationale is not source evidence.
+- **MSRM.json:** current spatial state. If position or spatial relation changes,
+  record auditable before/after information; do not fabricate a spatial change.
+- **edit_log.json:** edit event, changed properties, affected IDs, response
+  classification, provenance, outcome, and before/after references. Use
+  `affected_objects_passive` as an array of IDs and
+  `affected_objects_active` as records keyed by `id`, with supported
+  before/after response and `msrm_changed`.
+
+References must resolve or have a schema-approved explanation for omission.
+Conflicting copies of edit classifications are not allowed.
+
+### Validation and audit
+
+Keep these checks distinct: JSON parsing, structural consistency, FV semantic
+validation, and independent visual audit. Passing one does not imply passing
+another.
+
+Audit the represented result rather than trusting packet claims or generator
+explanations. For example, if the edit log says a cat moved to shelter, the
+edited image must actually show it sheltered, and OI/MSRM/edit_log must agree.
+For a passive response, check the expected visible state change and ensure
+unsupported movement or new entities were not invented.
+
+If a test explicitly declares an expected response, contradiction in packet
+data or the rendered image fails that test. If the response remains
+underdetermined, mark it unresolved or request review instead of applying a
+universal rule that every living object must move under stress.
+
+### Compatibility and provenance
+
+Preserve prior edit records and legacy version provenance. A legacy packet
+without an environment file is not invalid for that reason alone. When an
+older packet is updated, record the new mapping/edit event without implying
+that it was originally authored under v0.26.
+
+Do not claim a web-sourced image is generated by the contributor, owned, or
+licence-cleared without supporting source and rights evidence.
