@@ -169,6 +169,11 @@ stop and return the packet to the appropriate earlier operation.
 
 Compilation never resolves disputes.
 
+If the available environment cannot perform the actual rendering, produce
+the lossless compiled renderer specification rather than pretending that
+rendering occurred. This fallback applies to default compilation; prompt-only
+mode below always stops after producing the prompt artifact.
+
 #### Prompt-only output mode
 
 `fv compile --prompt [attached-packet.zip]` requests **only a compiled prompt
