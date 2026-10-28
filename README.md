@@ -88,9 +88,9 @@ The skill is designed so an AI agent can operate FV without requiring the user t
 
 **Agent skill:** `SKILL.md`
 
-**Authoritative process specification:** `SPECIFICATION/FV_Working_Process_Specification.docx`
+**Authoritative process specification:** [`SPECIFICATION/FV_Working_Process_Specification.md`](SPECIFICATION/FV_Working_Process_Specification.md)
 
-**Additional AI-agent guidance:** `SPECIFICATION/FV_Working_Process_Specification_AI_Agent_Additional_Guidance.md`
+The canonical specification includes the agent-facing requirements; `SKILL.md` provides the operational interface.
 
 **Example packets:** `PACKETS/examples/`
 
