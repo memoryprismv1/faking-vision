@@ -154,9 +154,9 @@ Example:
 
 ### `fv compile`
 
-Compile a **resolved and validated** FV packet into a reconstruction
-specification and perform the reconstruction when the required
-renderer/generator is available.
+Compile a **resolved and validated** FV packet. By default, compile the packet
+into a reconstruction specification and perform reconstruction when the
+required renderer/generator is available.
 
 Compilation is a fidelity boundary. It may translate packet content into
 renderer-specific syntax but may not add semantic content, world knowledge,
@@ -169,15 +169,44 @@ stop and return the packet to the appropriate earlier operation.
 
 Compilation never resolves disputes.
 
-If the available environment cannot perform the actual rendering, produce
-the lossless compiled renderer specification rather than pretending that
-rendering occurred.
+#### Prompt-only output mode
+
+`fv compile --prompt [attached-packet.zip]` requests **only a compiled prompt
+artifact** from the supplied FV packet. The ZIP is the input packet, not an
+instruction to render it.
+
+In this mode:
+
+- Apply the same validation, reconciliation, and `dispute.json` gates as
+  ordinary compilation. Do not emit a generator-ready prompt for a packet
+  that fails those gates.
+- Produce a lossless, generator-ready prompt/specification artifact using the
+  packet-to-renderer compilation rules below.
+- Preserve packet identities, closed object and background inventories,
+  scene membership, off-screen persistence, spatial relations, temporal order,
+  transitions, uncertainty, and explicit negative constraints.
+- Keep packet facts distinct from renderer-specific syntax and capability
+  limitations. Do not add undeclared semantic content to make the prompt sound
+  natural.
+- **Do not invoke an image or video generator, render, or claim that a
+  reconstruction occurred.** The operation ends when the prompt artifact is
+  produced.
+
+The prompt-only mode changes the output requested from compilation; it does
+not relax the compilation fidelity boundary or validation gates. It does not
+change the default behaviour of `fv compile`.
+
+If the available environment cannot create a file, return the complete prompt
+artifact as output and state that it was not saved as a file. Do not invent an
+artifact path.
 
 Examples:
 
 `fv compile`
 
 `fv compile this packet as a video`
+
+`fv compile --prompt [attached-packet.zip]`
 
 ### `fv audit`
 
