@@ -215,21 +215,36 @@ Examples:
 
 ### `fv audit`
 
-Independently audit a generated reconstruction against its FV packet and,
-where available, the source.
+Independently audit a reconstruction by comparing the original/expected FV
+packet with a separate FV packet produced by analysing the generated media.
+The generated-media analysis must inspect the media independently; do not use
+the expected packet as evidence for what is visible in the generated media.
 
-Do not use the generator's explanation as evidence.
+Keep three identities distinct: media generator, generated-media packet
+generator (analyst), and auditor. Use `packet_provenance.json` when present;
+legacy packets without it remain usable and have unknown provenance.
 
-Classify observed deviations using the FV audit framework, including
-inventory, identity, spatial, temporal, behaviour, style, unsupported-detail,
-and evaluator-uncertainty classes.
+Do not use the reconstruction generator's explanation as evidence. Do not
+rewrite either packet during audit.
 
-`fv audit` is an evaluation operation. It does not rewrite the packet merely
-because the reconstruction differs from it.
+Classify deviations using the FV failure taxonomy, including inventory,
+identity, spatial, temporal, behaviour, style, unsupported-detail, and
+evaluator-uncertainty classes. Record evidence references and category-specific
+counts, denominators, uncertainty, and rates.
+
+`fv audit` MUST create a downloadable `FV_AUDIT_REPORT.json` when file
+creation is available. The JSON report is the primary artifact; a readable
+summary is supplementary. Validate it against
+`SPECIFICATION/FV_Audit_Report_Schema.json`.
 
 Example:
 
-`fv audit`
+`fv audit [expected-packet.zip] [generated-media-packet.zip] [generated-media]`
+
+**TODO — batch processing:** a future `fv audit batch [audit-report.json ...]`
+operation will validate and aggregate existing audit files into agent-specific
+profiles. It is not implemented yet. See
+`SPECIFICATION/FV_Provenance_And_Audit.md`.
 
 ## Command interpretation rules
 
@@ -241,7 +256,8 @@ Example:
 - `fv resolve` means open dispute/ambiguity → reconciled or still-unresolved packet.
 - `fv validate` means packet → validation report.
 - `fv compile` means resolved + validated packet → lossless renderer specification and, where supported, reconstruction.
-- `fv audit` means reconstruction → independent FV evaluation against the packet/source.
+- `fv audit` means expected FV packet + independently analysed generated-media packet → independent packet-to-packet evaluation and downloadable JSON audit report.
+- `fv audit batch` is a documented future TODO for validating and aggregating existing JSON audit reports; it is not implemented.
 - Keep these boundaries separate. Do not silently combine operations.
 - A command may be followed by natural-language constraints or objectives;
   those modify the requested operation but do not change FV evidence rules.
@@ -267,8 +283,9 @@ the requested FV operation calls for an artifact.
   is available.
 - `fv compile` MUST create the compiled renderer specification and/or
   reconstruction artifact available to the environment.
-- `fv audit` MUST create the independent audit report/artifact when file
-  creation is available.
+- `fv audit` MUST create a downloadable JSON audit report when file
+  creation is available; the JSON is primary and the human-readable summary is
+  supplementary.
 - Human-readable chat summaries are supplementary.
 - Never replace an artifact with a prose dump of the artifact's intended
   contents.
@@ -329,7 +346,7 @@ to continue the chain.
 
 ## Operating rule
 
-This skill contains the complete v0.24 FV operating material and the textarea command/output contract. Use it directly; the user should not need to supply the FV specification separately. The three source documents are preserved verbatim in `references/` for provenance.
+This skill contains the complete v0.24 FV operating material and the textarea command/output contract. Use it directly; the user should not need to supply the FV specification separately. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and its two JSON schemas. The three source documents are preserved verbatim in `references/` for provenance.
 
 The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is the single authoritative FV specification. This skill is the operational interface and must not introduce rules that conflict with or are absent from the specification.
 
