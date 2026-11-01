@@ -13,3 +13,12 @@ The environmental edit-pair contribution originated with Meta and was integrated
 Some example packets may be supplied without original source media. Always check each example's provenance and validation status before treating it as suitable for reconstruction or publication.
 
 For creating a packet from an image or video, use the Working Process Specification in `../SPECIFICATION/`.
+
+
+## Packet provenance
+
+Newly generated packets include a root-level `packet_provenance.json` identifying the packet-generating agent and, where known, the media-generating system. The format is defined by `../SPECIFICATION/FV_Packet_Provenance_Schema.json`. Existing v0.24 packets without this file remain valid; their provenance is treated as unknown rather than guessed or retrofitted.
+
+## Audit reports
+
+Independent audits produce a downloadable `FV_AUDIT_REPORT.json` when file creation is available. Its schema is `../SPECIFICATION/FV_Audit_Report_Schema.json`. Batch aggregation of audit files is documented as a future TODO, not an implemented command.
