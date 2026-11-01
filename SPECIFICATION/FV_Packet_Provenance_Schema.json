@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/memoryprismv1/faking-vision/blob/main/SPECIFICATION/FV_Packet_Provenance_Schema.json",
+  "title": "FV Packet Provenance",
+  "description": "Additive provenance record for newly generated FV packets. Legacy packets may omit this file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "packet_id", "fv_spec_version", "packet_generator", "media"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "packet_id": { "type": "string", "minLength": 1 },
+    "fv_spec_version": { "type": "string", "minLength": 1 },
+    "packet_generator": { "$ref": "#/$defs/agent" },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["media_id", "media_type", "sha256", "media_generator", "embedded_provenance"],
+      "properties": {
+        "media_id": { "type": ["string", "null"] },
+        "media_type": { "type": ["string", "null"], "enum": ["image", "video", "audio", "other", null] },
+        "sha256": { "type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$" },
+        "media_generator": { "oneOf": [{ "$ref": "#/$defs/agent" }, { "type": "null" }] },
+        "embedded_provenance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["format", "validation_status"],
+            "properties": {
+              "format": { "type": "string" },
+              "validation_status": { "enum": ["valid", "invalid", "unverified", "not_present"] },
+              "issuer": { "type": ["string", "null"] },
+              "model_claim": { "type": ["string", "null"] },
+              "generated_at": { "type": ["string", "null"], "format": "date-time" },
+              "claim_reference": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent_id", "model_provider", "model_name", "model_version", "run_id", "generated_at", "identity_source"],
+      "properties": {
+        "agent_id": { "type": ["string", "null"] },
+        "model_provider": { "type": ["string", "null"] },
+        "model_name": { "type": ["string", "null"] },
+        "model_version": { "type": ["string", "null"] },
+        "run_id": { "type": ["string", "null"] },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "identity_source": { "enum": ["execution_record", "agent_declaration", "unknown"] }
+      }
+    }
+  }
+}
