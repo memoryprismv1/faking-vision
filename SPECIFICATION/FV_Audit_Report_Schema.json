@@ -5,28 +5,83 @@
   "description": "Machine-readable result of comparing an original FV packet with an independently analysed generated-media packet.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "audit_id", "created_at", "auditor", "inputs", "comparison", "metrics", "deviations", "limitations"],
+  "required": [
+    "schema_version",
+    "audit_id",
+    "created_at",
+    "auditor",
+    "inputs",
+    "comparison",
+    "metrics",
+    "deviations",
+    "limitations"
+  ],
   "properties": {
-    "schema_version": { "const": "1.0" },
-    "audit_id": { "type": "string", "minLength": 1 },
-    "created_at": { "type": "string", "format": "date-time" },
-    "auditor": { "$ref": "#/$defs/agent" },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "audit_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "auditor": {
+      "$ref": "#/$defs/agent"
+    },
     "inputs": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["expected_packet", "generated_media_packet", "generated_media"],
+      "required": [
+        "expected_packet",
+        "generated_media_packet",
+        "generated_media"
+      ],
       "properties": {
-        "expected_packet": { "$ref": "#/$defs/packet_ref" },
-        "generated_media_packet": { "$ref": "#/$defs/packet_ref" },
+        "expected_packet": {
+          "$ref": "#/$defs/packet_ref"
+        },
+        "generated_media_packet": {
+          "$ref": "#/$defs/packet_ref"
+        },
         "generated_media": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["media_id", "sha256", "media_type"],
+          "required": [
+            "media_id",
+            "sha256",
+            "media_type"
+          ],
           "properties": {
-            "media_id": { "type": ["string", "null"] },
-            "sha256": { "type": ["string", "null"] },
-            "media_type": { "type": ["string", "null"] },
-            "embedded_provenance_status": { "enum": ["valid", "invalid", "unverified", "not_present", "not_checked"] }
+            "media_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sha256": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "media_type": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "embedded_provenance_status": {
+              "enum": [
+                "valid",
+                "invalid",
+                "unverified",
+                "not_present",
+                "not_checked"
+              ]
+            }
           }
         }
       }
@@ -34,13 +89,31 @@
     "comparison": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["method", "expected_packet_id", "generated_media_packet_id", "audit_spec_version"],
+      "required": [
+        "method",
+        "expected_packet_id",
+        "generated_media_packet_id",
+        "audit_spec_version"
+      ],
       "properties": {
-        "method": { "const": "packet_to_packet" },
-        "expected_packet_id": { "type": "string" },
-        "generated_media_packet_id": { "type": "string" },
-        "audit_spec_version": { "type": "string" },
-        "notes": { "type": "array", "items": { "type": "string" } }
+        "method": {
+          "const": "packet_to_packet"
+        },
+        "expected_packet_id": {
+          "type": "string"
+        },
+        "generated_media_packet_id": {
+          "type": "string"
+        },
+        "audit_spec_version": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "metrics": {
@@ -48,17 +121,58 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["metric_code", "numerator", "denominator", "uncertain_units", "rate_percent", "unit_definition"],
+        "required": [
+          "metric_code",
+          "numerator",
+          "denominator",
+          "uncertain_units",
+          "rate_percent",
+          "unit_definition"
+        ],
         "properties": {
           "metric_code": {
-            "enum": ["omission_rate", "addition_rate", "identity_error_rate", "spatial_deviation_rate", "temporal_deviation_rate", "behaviour_deviation_rate", "style_deviation_rate", "unsupported_detail_rate", "evaluator_uncertainty_rate"]
+            "enum": [
+              "omission_rate",
+              "addition_rate",
+              "identity_error_rate",
+              "spatial_deviation_rate",
+              "temporal_deviation_rate",
+              "behaviour_deviation_rate",
+              "style_deviation_rate",
+              "unsupported_detail_rate",
+              "evaluator_uncertainty_rate"
+            ]
           },
-          "numerator": { "type": "integer", "minimum": 0 },
-          "denominator": { "type": "integer", "minimum": 0 },
-          "uncertain_units": { "type": "integer", "minimum": 0 },
-          "rate_percent": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
-          "unit_definition": { "type": "string", "minLength": 1 },
-          "scope": { "type": ["string", "null"] }
+          "numerator": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "denominator": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uncertain_units": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rate_percent": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "unit_definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       }
     },
@@ -67,23 +181,97 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["deviation_id", "class_code", "status", "description", "confidence", "evidence_refs"],
+        "required": [
+          "deviation_id",
+          "class_code",
+          "status",
+          "description",
+          "confidence",
+          "evidence_refs"
+        ],
         "properties": {
-          "deviation_id": { "type": "string" },
-          "class_code": { "enum": ["INV-O", "INV-C", "ID-S", "ID-M", "SP-D", "TM-D", "BH-D", "ST-D", "DET-U", "UNC"] },
-          "status": { "enum": ["confirmed", "unresolved", "rejected"] },
-          "description": { "type": "string" },
-          "timestamp_or_frame": { "type": ["string", "number", "null"] },
-          "location": { "type": ["string", "object", "null"] },
-          "expected_packet_ref": { "type": ["string", "null"] },
-          "generated_packet_ref": { "type": ["string", "null"] },
-          "confidence": { "enum": ["high", "medium", "low", "not_assessed"] },
-          "evidence_refs": { "type": "array", "items": { "type": "string" } },
-          "notes": { "type": ["string", "null"] }
+          "deviation_id": {
+            "type": "string"
+          },
+          "class_code": {
+            "enum": [
+              "INV-O",
+              "INV-C",
+              "ID-S",
+              "ID-M",
+              "SP-D",
+              "TM-D",
+              "BH-D",
+              "ST-D",
+              "DET-U",
+              "UNC"
+            ]
+          },
+          "status": {
+            "enum": [
+              "confirmed",
+              "unresolved",
+              "rejected"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "timestamp_or_frame": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "location": {
+            "type": [
+              "string",
+              "object",
+              "null"
+            ]
+          },
+          "expected_packet_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "generated_packet_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "not_assessed"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       }
     },
-    "limitations": { "type": "array", "items": { "type": "string" } },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": true,
@@ -94,24 +282,86 @@
     "agent": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["agent_id", "model_provider", "model_name", "model_version", "run_id", "identity_source"],
+      "required": [
+        "agent_id",
+        "model_provider",
+        "model_name",
+        "model_version",
+        "run_id",
+        "identity_source"
+      ],
       "properties": {
-        "agent_id": { "type": ["string", "null"] },
-        "model_provider": { "type": ["string", "null"] },
-        "model_name": { "type": ["string", "null"] },
-        "model_version": { "type": ["string", "null"] },
-        "run_id": { "type": ["string", "null"] },
-        "identity_source": { "enum": ["execution_record", "agent_declaration", "unknown"] }
+        "agent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "run_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identity_source": {
+          "enum": [
+            "execution_record",
+            "agent_declaration",
+            "unknown"
+          ]
+        },
+        "generated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
       }
     },
     "packet_ref": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["packet_id", "provenance_status"],
+      "required": [
+        "packet_id",
+        "provenance_status"
+      ],
       "properties": {
-        "packet_id": { "type": "string" },
-        "provenance_status": { "enum": ["present", "legacy_missing", "partial", "unknown"] },
-        "packet_provenance_ref": { "type": ["string", "null"] }
+        "packet_id": {
+          "type": "string"
+        },
+        "provenance_status": {
+          "enum": [
+            "present",
+            "legacy_missing",
+            "partial",
+            "unknown"
+          ]
+        },
+        "packet_provenance_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     }
   }
