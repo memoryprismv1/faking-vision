@@ -96,7 +96,7 @@ Assembly is not object-identity merge. Assembly may establish the spatial corres
 
 `fv compile` — compile a resolved and validated packet into a renderer-specific reconstruction specification and, where supported, perform reconstruction. Compilation is prohibited when the packet is invalid, reconciliation is incomplete, or dispute.json is open or invalid.
 
-`fv audit` — independently evaluate the generated reconstruction against the FV packet and, where available, the original source. Audit does not rewrite the packet merely because the result differs from it.
+`fv audit` — independently compare the original/expected FV packet with a separate FV packet produced by analysing the generated media. The generated-media packet must be created from the media independently, without using the expected packet as evidence for what is visible. The generated media remains available as audit evidence. Audit does not rewrite either packet. It produces a downloadable JSON audit report when file creation is available. See `SPECIFICATION/FV_Provenance_And_Audit.md` for provenance and report schemas.
 
 ### 3.1.1 Assemble versus merge
 
@@ -569,6 +569,8 @@ The purpose of PC object declarations is to prevent repeated object instantiatio
 
 Assign a stable packet_id before packet contents are generated. Use that packet_id consistently in packet metadata and in packet-scoped object IDs.
 
+For every newly generated packet, create the additive root-level `packet_provenance.json` using `FV_Packet_Provenance_Schema.json`. Record the packet-generating agent separately from the system that generated the source media. Unknown values remain null/unknown; do not infer them. Existing packets without this file remain valid under the backward-compatibility rule in section 10.1.
+
 ## 9.1 Build the initial inventory
 
 Filesystem discipline: folder structure is part of the operator interface. Do not create folders for organizational convenience. Before creating any folder not explicitly permitted by this specification, ask the operator for permission. No nested folder may be created inside `snapshot/verification/`, `snapshot/objs/`, or `snapshot/disputes/` without explicit permission. Extra folder depth is not a semantic layer and must not be introduced merely to separate artifact types.
@@ -639,6 +641,7 @@ Before export, freeze the semantic inventory. After inventory lock:
 
 FV_PACKET/
   README.txt
+  packet_provenance.json # required for newly generated packets; optional for legacy packets; records packet/media generator provenance
   PC.json                # optional generally; used when project-wide constants/object declarations are needed
   OI.json                # object/instance information
   MSRM.json              # spatial organization
@@ -653,6 +656,8 @@ FV_PACKET/
   AUDIO_COMPANION.txt    # optional; only when audio is intentionally included
 
 dispute.json is a packet-level flat file, not an OI or MSRM subfile. If no dispute exists, the packet may declare DISPUTES: NONE in its manifest/README instead of carrying an empty dispute file. If any dispute requires human intervention, the dispute file and its evidence references must be present.
+
+`packet_provenance.json` is an additive packet-level metadata file. It is mandatory for newly generated packets but may be absent from existing/legacy packets. Its absence MUST NOT invalidate a legacy packet; downstream operations must report provenance as unknown or legacy-missing. Do not retrofit old packets with guessed values. See `FV_Packet_Provenance_Schema.json`.
 
 FV_PACKET/
   README.txt
@@ -861,29 +866,37 @@ FINAL CLOSED-WORLD ASSERTION
 
 # 15. Reconstruction evaluation
 
-## 15.1 Independent audit
+## 15.1 Independent packet-to-packet audit
 
-The evaluator must inspect the generated image/video independently of the generator's explanation.
+The audit inputs are:
 
-1. Check object count and identity continuity.
+1. The original/expected FV packet: the reconstruction source of truth.
+2. The generated image/video.
+3. A separate FV packet produced by independently analysing the generated media. This generated-media packet must not use the expected packet as evidence for what is visible in the media.
 
-1. Check component inventory.
+Compare the expected packet with the generated-media packet. Keep the generated media available for inspecting and locating deviations. Do not use the reconstruction generator's explanation as evidence.
 
-1. Check scene occupancy.
+Keep three identities distinct:
+- media generator: the system that produced the image/video;
+- generated-media packet generator: the agent that independently analysed that media;
+- auditor: the agent that compares the two packets and produces the audit.
 
-1. Check spatial relationships.
+Use `packet_provenance.json` when available. Missing provenance in legacy packets is unknown, not a reason to reject the packet or invent an identity.
 
-1. Check temporal sequence and state changes.
+The evaluator must independently check:
 
-1. Check declared behaviour/action.
+1. Object count and identity continuity.
+1. Component inventory.
+1. Scene occupancy.
+1. Spatial relationships.
+1. Temporal sequence and state changes.
+1. Declared behaviour/action.
+1. Style/appearance constraints.
+1. Unsupported semantic additions.
+1. Background expansion.
+1. Every nontrivial deviation with evidence references to the media and relevant packet records.
 
-1. Check style/appearance constraints.
-
-1. Check unsupported semantic additions.
-
-1. Check whether background expansion has occurred.
-
-1. Record every nontrivial deviation with evidence.
+The audit does not rewrite either packet.
 
 ## 15.2 Scene occupancy accounting
 
@@ -930,6 +943,20 @@ For generated or re-rendered images, preserve the disputed output and the releva
 | resolution | Confirmed / unresolved / rejected. |
 
 Do not promote an evaluator's uncertain observation into a formal failure until supporting evidence is located.
+
+## 17.1 Downloadable JSON audit report
+
+When file creation is available, every `fv audit` MUST create a downloadable JSON report named `FV_AUDIT_REPORT.json`. The JSON report is the primary audit artifact; a human-readable chat summary is supplementary. Validate the report against `SPECIFICATION/FV_Audit_Report_Schema.json`.
+
+The report MUST identify the expected packet, generated-media packet, generated media, auditor, available packet/media provenance, audit specification version, and comparison method. It MUST preserve individual deviation records and evidence references. It MUST include category-specific numerators, denominators, uncertainty counts, rate percentages, and the unit definition used for each denominator.
+
+Calculate each rate as 100 × confirmed deviation units / assessable units. If the denominator is zero, report a null rate, not zero. Uncertain units remain separate; they are not silently counted as passes or failures. Do not combine unlike deviation classes into one overall score. Comparable rates require stable unit definitions and visible denominators.
+
+See `SPECIFICATION/FV_Provenance_And_Audit.md` for the complete report contract.
+
+## 17.2 TODO — batch processing of audit files
+
+Batch processing is planned but not implemented. Proposed interface: `fv audit batch [audit-report.json ...]`. It will validate existing reports, detect duplicate audit IDs, retain invalid/incompatible-file diagnostics, and aggregate matching metrics by packet generator, media generator, and auditor. Aggregation must pool numerators and denominators (not average percentages), preserve model/version and schema strata, and report sample size, coverage, and evaluator uncertainty. It must not re-audit media, rewrite source reports, or collapse unlike deviation classes into one unqualified score.
 
 # 18. Model-knowledge containment test
 
