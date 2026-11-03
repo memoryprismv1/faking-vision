@@ -61,8 +61,10 @@ def provenance_agents(report: dict[str, Any]) -> list[tuple[str, dict[str, Any]]
     """Read role snapshots when supplied; absent provenance remains unknown."""
     found: list[tuple[str, dict[str, Any]]] = []
     auditor = agent_record(report.get("auditor"))
-    if auditor:
-        found.append(("auditor", auditor))
+    found.append(("auditor", auditor or {
+        "agent_id": None, "model_provider": None,
+        "model_name": None, "model_version": None,
+    }))
 
     provenance = report.get("provenance")
     if isinstance(provenance, dict):
