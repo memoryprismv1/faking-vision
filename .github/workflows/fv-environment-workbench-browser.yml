@@ -22,6 +22,14 @@ jobs:
       - run: npm install --package-lock-only
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - name: Prepare real CCTV media excerpt
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          curl -fL --retry 3 -o "$RUNNER_TEMP/fv-cctv-source.webm" "https://commons.wikimedia.org/wiki/Special:Redirect/file/BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm"
+          ffmpeg -hide_banner -loglevel error -i "$RUNNER_TEMP/fv-cctv-source.webm" -ss 17 -t 14 -c copy -avoid_negative_ts make_zero "$RUNNER_TEMP/fv-cctv-real-clip.webm"
+          test -s "$RUNNER_TEMP/fv-cctv-real-clip.webm"
+          echo "FV_REAL_MEDIA_PATH=$RUNNER_TEMP/fv-cctv-real-clip.webm" >> "$GITHUB_ENV"
       - run: npm install --no-save http-server
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4

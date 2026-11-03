@@ -157,19 +157,18 @@ test('exports a WebM render after a saved mask keyframe', async ({ page }, testI
 });
 
 
-test('integrates a repository real-media clip with canonical_id packet entities', async ({ page }, testInfo) => {
-  test.setTimeout(180000);
-  const mediaPath = path.resolve(__dirname, '../../PACKETS/examples/videos/Alice_in_wonderland/omni_rendering.mp4');
-  const packetPath = path.resolve(__dirname, '../../PACKETS/examples/videos/Alice_in_wonderland/OI.json');
-  const [videoBytes, packetBytes] = await Promise.all([
-    fs.readFile(mediaPath),
-    fs.readFile(packetPath)
-  ]);
+test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
+  test.skip(!process.env.FV_REAL_MEDIA_PATH, 'CI supplies a short VP9/WebM excerpt from the documented source clip');
+  test.setTimeout(120000);
+  const videoBytes = await fs.readFile(process.env.FV_REAL_MEDIA_PATH);
+  const packetPath = path.resolve(__dirname, '../../PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json');
+  const packetBytes = await fs.readFile(packetPath);
+  const objectId = 'PKT-CCTV-001-OBJ-046';
 
   await page.goto(APP);
   await page.locator('#videoFile').setInputFiles({
-    name: 'alice-in-wonderland-real-clip.mp4',
-    mimeType: 'video/mp4',
+    name: 'cctv-part1-real-source-excerpt.webm',
+    mimeType: 'video/webm',
     buffer: videoBytes
   });
   await expect(page.locator('#status')).toContainText('Video ready (');
@@ -179,12 +178,13 @@ test('integrates a repository real-media clip with canonical_id packet entities'
     buffer: packetBytes
   });
   await expect(page.locator('#object')).toBeEnabled();
-  await expect(page.locator('#object')).toHaveValue('A1');
+  await page.locator('#object').selectOption(objectId);
+  await expect(page.locator('#object')).toHaveValue(objectId);
 
   await page.locator('#property').fill('editor_test');
-  await page.locator('#value').fill('canonical_id edit verified');
+  await page.locator('#value').fill('canonical_id edit verified on real CCTV media');
   await page.locator('#apply').click();
-  await expect(page.locator('#status')).toContainText('Updated 1 matching record(s) for A1');
+  await expect(page.locator('#status')).toContainText('Updated 1 matching record(s) for ' + objectId);
 
   await drawTriangle(page);
   await page.locator('#key').click();
@@ -192,11 +192,11 @@ test('integrates a repository real-media clip with canonical_id packet entities'
 
   const { target: packetTarget } = await saveDownload(page, '#savePacket', testInfo);
   const exported = JSON.parse(await fs.readFile(packetTarget, 'utf8'));
-  expect(exported.packet.entities.find(entity => entity.canonical_id === 'A1').properties.editor_test)
-    .toBe('canonical_id edit verified');
-  expect(exported.packet.entities.find(entity => entity.canonical_id === 'R1').properties.editor_test)
+  const entity = exported.packet.entities.find(item => item.canonical_id === objectId);
+  expect(entity.properties.editor_test).toBe('canonical_id edit verified on real CCTV media');
+  expect(exported.packet.entities.find(item => item.canonical_id !== objectId && item.properties?.editor_test))
     .toBeUndefined();
-  expect(exported.media_edits.object_id).toBe('A1');
+  expect(exported.media_edits.object_id).toBe(objectId);
   expect(exported.edit_log.map(edit => edit.type)).toContain('property_edit');
   expect(exported.edit_log.filter(edit => edit.type === 'mask_keyframe')).toHaveLength(1);
 
