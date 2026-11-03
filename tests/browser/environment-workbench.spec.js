@@ -171,3 +171,13 @@ test('environment edit writes only resolvable passive affected-object references
   }
   expect(bundle['ENVIRONMENT.json'].affected_objects_active.map(x => typeof x === 'string' ? x : x.id)).toContain('person_01');
 });
+
+
+test('environment edit appends to, rather than replaces, the prior edit history', async ({ page }, testInfo) => {
+  await loadFixture(page, 'Wall Cat · active shelter response');
+  const before = await exportBundle(page, testInfo);
+  await page.locator('#applyEnv').click();
+  const after = await exportBundle(page, testInfo);
+  expect(after['edit_log.json'].slice(0, before['edit_log.json'].length)).toEqual(before['edit_log.json']);
+  expect(after['edit_log.json']).toHaveLength(before['edit_log.json'].length + 1);
+});
