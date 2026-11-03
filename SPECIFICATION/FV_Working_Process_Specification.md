@@ -1043,6 +1043,8 @@ Use the same static environment photographed from materially different viewpoint
 
 The visual field is not an object inventory and must not be derived solely from already-recognised objects. It is an observer-conditioned domain of potential visual input; the actually observed structure is a separate record. The viewpoint identity is stored in viewpoint.json; its time-varying state and active intervals are recorded in TD. Do not assume a calibrated camera, exact 3D geometry, or known observer pose when the source does not provide it.
 
+A practical capture and comparison worksheet is provided in docs/observer-conditioned-visual-field-experiment.md. It is an experimental recording protocol, not a new normative packet schema or evidence that the experiment has been run.
+
 **Initial experiment:** photograph one unchanged staircase from the top, bottom, and an intermediate landing. Assign separate viewpoint IDs to the distinct observer perspectives, then compare their observer-conditioned fields and exposed structures. Analyse each image independently, then compare the fields and exposed structures. Evaluate whether FV can explain differences as consequences of viewpoint while preserving unresolved regions and correspondence uncertainty.
 
 This workstream is upstream of object promotion and complementary to existing visibility/occlusion and MSRM rules. The viewpoint record does not replace the visual-field representation or the observation record. It must not be conflated with per-object line-of-sight testing or with a camera's technical field-of-view metadata.
