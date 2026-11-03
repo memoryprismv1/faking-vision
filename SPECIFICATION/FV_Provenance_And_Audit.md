@@ -101,7 +101,25 @@ Validate the report against `FV_Audit_Report_Schema.json`. The report records:
 - category-specific numerator, denominator, uncertainty count, rate, and exact unit definition;
 - limitations and unavailable evidence.
 
-### 3.1 Rate calculation and comparability
+#### 3.0.1 Report provenance snapshot shape
+
+The optional top-level report `provenance` object may carry snapshots in this form:
+
+```json
+{
+  "expected_packet": {
+    "packet_generator": { "agent_id": "agent:...", "model_provider": "...", "model_name": "...", "model_version": "..." }
+  },
+  "generated_media_packet": {
+    "packet_generator": { "agent_id": "agent:...", "model_provider": "...", "model_name": "...", "model_version": "..." },
+    "media_generator": { "agent_id": "agent:...", "model_provider": "...", "model_name": "...", "model_version": "..." }
+  }
+}
+```
+
+These are snapshots of the packet generator and media generator records, not inferred identities. The `auditor` object remains the report's auditor identity. Missing snapshots are retained in batch profiles as unknown; do not backfill them from model familiarity or filenames.
+
+## 3.1 Rate calculation and comparability
 
 For each metric, calculate:
 
