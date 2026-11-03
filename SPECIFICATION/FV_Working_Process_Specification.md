@@ -954,9 +954,11 @@ Calculate each rate as 100 × confirmed deviation units / assessable units. If t
 
 See `SPECIFICATION/FV_Provenance_And_Audit.md` for the complete report contract.
 
-## 17.2 TODO — batch processing of audit files
+## 17.2 Batch aggregation reference utility
 
-Batch processing is planned but not implemented. Proposed interface: `fv audit batch [audit-report.json ...]`. It will validate existing reports, detect duplicate audit IDs, retain invalid/incompatible-file diagnostics, and aggregate matching metrics by packet generator, media generator, and auditor. Aggregation must pool numerators and denominators (not average percentages), preserve model/version and schema strata, and report sample size, coverage, and evaluator uncertainty. It must not re-audit media, rewrite source reports, or collapse unlike deviation classes into one unqualified score.
+A reference offline processor is provided at `TOOLS/fv_audit_batch.py`. It validates and aggregates existing audit JSON reports; it does not re-audit media, rewrite source reports, or provide a native skill-runtime command. The proposed `fv audit batch [audit-report.json ...]` interface remains experimental until the skill runtime can invoke the utility with attached files.
+
+The processor detects identical and conflicting duplicate audit IDs, retains invalid-report diagnostics, separates profiles by role, agent/model identity, FV audit specification and report schema versions, metric code, unit definition, and scope, and pools numerators and denominators before recalculating rates. Zero denominators yield null rates. See `SPECIFICATION/FV_Provenance_And_Audit.md` for invocation and boundaries; run `python -m unittest discover -s TOOLS -p 'test_*.py' -v` for the reference tests.
 
 ## 17.3 TODO — observer-conditioned visual field
 
@@ -2059,3 +2061,7 @@ In particular, a robot's ability to request or acquire a better view is an
 operational capability to test, not an assumption that every FV environment
 can move a camera or embodied system.
 
+
+## Supplementary provenance and audit-file processing
+
+Packet provenance, independent packet-to-packet audit reports, and batch aggregation are specified in `FV_Provenance_And_Audit.md`. The batch reference utility and its tests are under `TOOLS/`. These additions do not alter the core packet records or claim that the FV skill command runtime itself is a standalone CLI.
