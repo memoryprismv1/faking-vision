@@ -3,11 +3,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from jsonschema import Draft202012Validator
+
 from fv_audit_batch import aggregate
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "SPECIFICATION" / "FV_Audit_Report_Schema.json"
+BATCH_SCHEMA = ROOT / "SPECIFICATION" / "FV_Audit_Batch_Report_Schema.json"
 
 
 def report(audit_id="A-1", numerator=1, denominator=4, unit="object", agent="agent:a"):
@@ -83,6 +86,59 @@ class BatchAggregationTests(unittest.TestCase):
         result = self.run_batch([report(denominator=0, numerator=0)])
         profile = next(p for p in result["profiles"] if p["role"] == "auditor")
         self.assertIsNone(profile["rate_percent"])
+
+
+    def test_batch_output_matches_its_schema(self):
+        result = self.run_batch([report(), report("A-2", numerator=2, denominator=5)])
+        schema = json.loads(BATCH_SCHEMA.read_text(encoding="utf-8"))
+        validator = Draft202012Validator(schema)
+        errors = list(validator.iter_errors(result))
+        self.assertEqual(errors, [])
+
+    def test_invalid_report_is_retained_as_diagnostic(self):
+        result = self.run_batch([report(), {"schema_version": "unsupported"}])
+        self.assertEqual(result["valid_unique_audit_count"], 1)
+        self.assertEqual(result["invalid_report_count"], 1)
+        self.assertTrue(result["invalid_reports"][0]["errors"])
+
+    def test_profiles_keep_generator_and_auditor_roles_separate(self):
+        item = report()
+        item["provenance"]["generated_media_packet"] = {
+            "packet_generator": {
+                "agent_id": "agent:generated-analyst",
+                "model_provider": "Provider B",
+                "model_name": "Model B",
+                "model_version": "2",
+            },
+            "media_generator": {
+                "agent_id": "agent:media-generator",
+                "model_provider": "Provider C",
+                "model_name": "Video Model",
+                "model_version": "3",
+            },
+        }
+        result = self.run_batch([item])
+        roles = {profile["role"] for profile in result["profiles"]}
+        self.assertEqual(
+            roles,
+            {"auditor", "packet_generator_expected", "packet_generator_generated", "media_generator"},
+        )
+        generated = next(p for p in result["profiles"] if p["role"] == "packet_generator_generated")
+        self.assertEqual(generated["agent"]["agent_id"], "agent:generated-analyst")
+
+    def test_deviations_keep_source_audit_and_evidence_references(self):
+        item = report()
+        item["deviations"] = [{
+            "deviation_id": "D-1",
+            "class_code": "INV-O",
+            "status": "confirmed",
+            "description": "Undeclared object in generated media",
+            "confidence": "high",
+            "evidence_refs": ["frame:12"],
+        }]
+        result = self.run_batch([item])
+        self.assertEqual(result["deviations"][0]["audit_id"], "A-1")
+        self.assertEqual(result["deviations"][0]["evidence_refs"], ["frame:12"])
 
 
 if __name__ == "__main__":
