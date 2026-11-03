@@ -540,7 +540,7 @@ orientation and placement
 camera/frame relationships when they are part of the reconstruction target
 8.3 TD — Temporal Data
 TD is the authoritative temporal change layer. TD is operationally a diff log: it records what changed between temporal observations, when it changed, and which persistent identity the change belongs to. TD is mandatory for video. A video without TD is not a valid video reconstruction target; it must be treated/rendered as an image unless the experiment explicitly defines the source as independent images.
-For video, observation records are records within TD, not a required separate packet file. TD may contain the temporal baseline observations and the differences derived from them. Do not create an observation.json or observations.json file unless a future FV specification explicitly defines one. Each TD observation/interval references its active viewpoint_id where known; viewpoint state changes and switches are temporal events in TD.
+For video, observation records are records within TD, not a required separate packet file. TD may contain the temporal baseline observations and the differences derived from them. Do not create an observation.json or observations.json file unless a future FV specification explicitly defines one. Each TD observation/interval references its active viewpoint_id where known; viewpoint state changes and switches are temporal events in TD. For supported movement, TD may retain the same viewpoint ID with change type, source-supported `from`/`to` states, start/end time or frame, and duration at available precision. This is an illustrative event pattern, not a new mandatory TD schema; never invent positions or timing.
 scene/interval order
 start/end times or frame ranges
 entry/exit
