@@ -437,7 +437,7 @@ TD is the authoritative temporal change layer. TD is operationally a diff log: i
 
 For video, observation records are records within TD, not a required separate packet file. TD may contain the temporal baseline observations and the differences derived from them. Do not create an observation.json or observations.json file unless a future FV specification explicitly defines one.
 
-TD also owns viewpoint-conditioned temporal observations. Each observation/interval should reference its active `viewpoint_id` where known. Record viewpoint state baselines and supported changes in TD, not as OI entities. See section 10.1B. The viewpoint identity persists while the same observer/camera moves; distinct viewpoints are separately identified. A viewpoint switch is a temporal event, not an object-inventory event.
+TD also owns viewpoint-conditioned temporal observations. Each observation/interval should reference its active `viewpoint_id` where known. The initial viewpoint state is recorded in `viewpoint.json`; TD records supported viewpoint transitions over time, not as OI entities. See section 10.1B. The viewpoint identity persists while the same observer/camera moves; distinct viewpoints are separately identified. A viewpoint switch is a temporal event, not an object-inventory event.
 
 - scene/interval order
 
