@@ -139,7 +139,7 @@ Use the existing FV failure taxonomy: INV-O, INV-C, ID-S, ID-M, SP-D, TM-D, BH-D
 
 Do not promote an uncertain observation into a confirmed deviation without supporting evidence. Evaluator uncertainty remains visible in both the deviation list and the uncertainty metric.
 
-## 6. Batch aggregation reference implementation
+## 5. Batch aggregation reference implementation
 
 A reference batch processor is provided at `TOOLS/fv_audit_batch.py`. It is an offline aggregation utility, not a claim that a standalone FV CLI has been installed. Invoke it with Python 3.10+ and the dependency in `TOOLS/requirements.txt`:
 
