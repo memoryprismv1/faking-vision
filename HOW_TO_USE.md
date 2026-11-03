@@ -61,7 +61,7 @@ Some jobs can skip operations that are not needed. `resolve` is required when a 
 
 Give the AI the source image together with:
 
-the FV Working Process Specification contained in the FV skill (or the repository copy of `FV_Working_Process_Specification.docx`)
+the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
 
 The image-analysis path is:
 
@@ -120,7 +120,9 @@ The video path uses:
 **TD is mandatory for a video reconstruction target.** TD owns the video
 observation records; do not create a separate `observation.json` or
 `observations.json` unless a future FV specification explicitly defines
-one.
+one. Newly generated packets also include root-level `viewpoint.json`.
+TD references active viewpoint IDs and records supported viewpoint state
+changes and camera/viewpoint switches. A moving camera retains its ID.
 
 Video analysis should:
 
