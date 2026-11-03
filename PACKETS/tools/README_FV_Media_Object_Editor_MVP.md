@@ -36,4 +36,4 @@ This is a first working behaviour, not a full editor or authoritative FV packet 
 
 ## Next test
 
-Use a short, locally available clip with one clearly visible object and a packet containing that object's stable `canonical_id` or `id`. The repository's Alice in Wonderland media/packet pair is an available integration fixture. Verify: the selected ID, property record, mask keyframes, exported WebM, and edit log all agree. Then improve tracking based on the failure observed, rather than assuming it works.
+Use a short, locally available clip with one clearly visible object and a packet containing that object's stable `canonical_id` or `id`. The browser CI downloads a short VP9/WebM excerpt from the source CCTV clip documented in the CCTV experiment's SOURCE_AND_PROVENANCE.md, then tests it against the corresponding Part 1 packet. The source is hosted on Wikimedia Commons; its file page records the original WebM as VP9/Opus and identifies it as public domain. Verify: the selected ID, property record, mask keyframes, exported WebM, and edit log all agree. Then improve tracking based on the failure observed, rather than assuming it works.
