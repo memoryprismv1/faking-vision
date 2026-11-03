@@ -694,7 +694,7 @@ Legacy packets without viewpoint.json remain readable through a virtual `VP-DEFA
 {
   "entities": [
     {
-      "canonical_id": "A1",
+      "canonical_id": "OBJ-a1b2c3d4",
       "category": "figure",
       "properties": {
         "appearance": "dark coat",
@@ -704,7 +704,7 @@ Legacy packets without viewpoint.json remain readable through a virtual `VP-DEFA
       "uncertainty": []
     },
     {
-      "canonical_id": "C1",
+      "canonical_id": "OBJ-c1d2e3f4",
       "category": "capsule",
       "properties": {
         "appearance": "small enclosed vehicle"
@@ -718,10 +718,10 @@ Legacy packets without viewpoint.json remain readable through a virtual `VP-DEFA
 {
   "scenes": [
     {
-      "scene_id": "S01",
+      "scene_id": "SCN-01a2b3c4",
       "entities": [
-        {"id": "A1", "position": "left of center"},
-        {"id": "C1", "position": "right of A1"}
+        {"id": "OBJ-a1b2c3d4", "position": "left of center"},
+        {"id": "OBJ-c1d2e3f4", "position": "right of A1"}
       ]
     }
   ]
@@ -730,19 +730,19 @@ Legacy packets without viewpoint.json remain readable through a virtual `VP-DEFA
 {
   "timeline": [
     {
-      "scene_id": "S01",
+      "scene_id": "SCN-01a2b3c4",
       "start": 0,
       "end": 9,
-      "visible": ["A1", "C1"],
+      "visible": ["OBJ-a1b2c3d4", "OBJ-c1d2e3f4"],
       "off_screen": []
     },
     {
-      "scene_id": "S02",
+      "scene_id": "SCN-02b3c4d5",
       "start": 9,
       "end": 18,
-      "visible": ["A1"],
-      "off_screen": ["C1"],
-      "changes": [{"id": "A1", "change": "moved"}]
+      "visible": ["OBJ-a1b2c3d4"],
+      "off_screen": ["OBJ-c1d2e3f4"],
+      "changes": [{"id": "OBJ-a1b2c3d4", "change": "moved"}]
     }
   ]
 }
