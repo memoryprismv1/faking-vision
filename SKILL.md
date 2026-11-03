@@ -18,6 +18,17 @@ Apply the Making Vision processing order: current sensory field/input and direct
 
 
 
+## Viewpoint packet requirement (current specification)
+
+Apply the current authoritative Working Process Specification for viewpoint metadata:
+- Image: record viewpoint initialisation in root-level `viewpoint.json`.
+- Video: record initialisation in `viewpoint.json` and supported viewpoint transitions over time in TD.
+- Do not require same-scene multi-image comparisons, cross-view object matching, shared-scene hypotheses, or correspondence ledgers merely to record viewpoint metadata.
+- A continuous observer/camera retains its viewpoint ID while moving; a distinct observer/viewpoint receives a distinct ID when supported by evidence.
+- Preserve unknown position/orientation; do not invent coordinates or camera geometry.
+
+This current rule supersedes older embedded v0.24 wording below that places initial viewpoint state in TD or expands viewpoint metadata into a cross-view visual-field experiment.
+
 # FV textarea command interface
 
 The chat textarea is the FV command line. FV commands are always prefixed
