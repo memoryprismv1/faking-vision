@@ -181,3 +181,43 @@ test('environment edit appends to, rather than replaces, the prior edit history'
   expect(after['edit_log.json'].slice(0, before['edit_log.json'].length)).toEqual(before['edit_log.json']);
   expect(after['edit_log.json']).toHaveLength(before['edit_log.json'].length + 1);
 });
+
+
+test('canonical_id packet imports, edits, exports and re-imports without adding legacy IDs', async ({ page }, testInfo) => {
+  const canonicalId = 'PKT-CANONICAL-001-OBJ-001';
+  const input = {
+    bundle_format: 'fv-packet-bundle-v1',
+    packet_meta: { id: 'canonical_packet', fv_version: '0.26' },
+    'fv_version.json': { fv_version: '0.26' },
+    'ENVIRONMENT.json': { environmental_stress: 'none', affected_objects_passive: [], affected_objects_active: [] },
+    'OI.json': [{ canonical_id: canonicalId, category: 'vehicle', description: 'source description', properties: { appearance: 'silver sedan' } }],
+    'MSRM.json': { reference: 'relative-only', objects: { [canonicalId]: { x: 41, y: 62 } } },
+    'edit_log.json': []
+  };
+  await page.goto(APP);
+  await page.locator('#importInput').setInputFiles({
+    name: 'canonical-packet.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(input))
+  });
+  await expect(page.locator('#console')).toContainText('imported canonical-packet.json; 1 objects');
+  await expect(page.locator('#objectList')).toContainText(canonicalId);
+  await page.locator('[data-field="description"]').fill('edited through canonical identifier');
+  await page.locator('#saveObject').click();
+  const first = await exportBundle(page, testInfo);
+  const firstRecord = first['OI.json'][0];
+  expect(firstRecord.canonical_id).toBe(canonicalId);
+  expect(firstRecord.id).toBeUndefined();
+  expect(firstRecord.description).toBe('edited through canonical identifier');
+  expect(first['MSRM.json'].objects[canonicalId]).toEqual({ x: 41, y: 62 });
+  expect(first['edit_log.json'].at(-1).target).toBe(canonicalId);
+
+  const file = path.join(testInfo.outputDir, 'canonical-roundtrip.json');
+  await fs.writeFile(file, JSON.stringify(first));
+  await page.reload();
+  await page.locator('#importInput').setInputFiles(file);
+  const second = await exportBundle(page, testInfo);
+  expect(second['OI.json']).toEqual(first['OI.json']);
+  expect(second['MSRM.json']).toEqual(first['MSRM.json']);
+  expect(second['edit_log.json']).toEqual(first['edit_log.json']);
+});
