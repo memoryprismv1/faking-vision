@@ -192,34 +192,24 @@ test('integrates a repository real-media clip with canonical_id packet entities'
       fs.readFile(videoPath),
       fs.readFile(packetPath)
     ]);
-    const mediaReady = page.locator('#source').evaluate(video => new Promise(resolve => {
-      if (video.readyState >= 1 && video.videoWidth > 0) return resolve({ ok: true });
-      const onReady = () => finish({ ok: true });
-      const onError = () => finish({
-        ok: false,
-        code: video.error?.code ?? null,
-        message: video.error?.message ?? 'media decode failed'
-      });
-      const timer = setTimeout(() => finish({
-        ok: false,
-        code: video.error?.code ?? null,
-        message: 'metadata timeout'
-      }), 15000);
-      function finish(result) {
-        clearTimeout(timer);
-        video.removeEventListener('loadedmetadata', onReady);
-        video.removeEventListener('error', onError);
-        resolve(result);
-      }
-      video.addEventListener('loadedmetadata', onReady, { once: true });
-      video.addEventListener('error', onError, { once: true });
-    }));
     await page.locator('#videoFile').setInputFiles({
       name: path.basename(videoPath),
       mimeType: 'video/mp4',
       buffer: videoBytes
     });
-    const result = await mediaReady;
+    await page.waitForFunction(() => {
+      const video = document.querySelector('#source');
+      return video.readyState >= 1 || Boolean(video.error);
+    }, { timeout: 15000 }).catch(() => {});
+    const result = await page.locator('#source').evaluate(video => (
+      video.readyState >= 1 && video.videoWidth > 0
+        ? { ok: true }
+        : {
+            ok: false,
+            code: video.error?.code ?? null,
+            message: video.error?.message ?? 'metadata timeout'
+          }
+    ));
     if (result.ok) {
       selected = { ...candidate, packetBytes };
       break;
