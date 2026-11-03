@@ -101,3 +101,61 @@ test('exported packet bundle re-imports and preserves packet records', async ({ 
   }
   expect(second.media.included).toBe(false);
 });
+
+
+test('invalid environmental stress enum is rejected without replacing the packet', async ({ page }) => {
+  await loadFixture(page, 'Bermuda Cove · baseline');
+  const beforeTitle = await page.locator('#editedTitle').textContent();
+  const invalid = {
+    packet_meta: { id: 'invalid_stress' },
+    'fv_version.json': { fv_version: '0.26' },
+    'ENVIRONMENT.json': { environmental_stress: 'extreme' },
+    'OI.json': [{ id: 'cat_01' }],
+    'MSRM.json': { objects: { cat_01: { x: 1, y: 2 } } },
+    'edit_log.json': []
+  };
+  page.once('dialog', dialog => dialog.accept());
+  await page.locator('#importInput').setInputFiles({
+    name: 'invalid-stress.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(invalid))
+  });
+  await expect(page.locator('#console')).toContainText('environmental_stress must be exactly none, low, or high');
+  await expect(page.locator('#editedTitle')).toHaveText(beforeTitle);
+});
+
+test('missing required packet records and malformed MSRM map are rejected', async ({ page }) => {
+  await loadFixture(page, 'Bermuda Cove · baseline');
+  const beforeTitle = await page.locator('#editedTitle').textContent();
+  const cases = [
+    {
+      name: 'missing-oi.json',
+      data: {
+        'ENVIRONMENT.json': { environmental_stress: 'none' },
+        'MSRM.json': { objects: {} },
+        'edit_log.json': []
+      },
+      message: 'Expected ENVIRONMENT object, OI array, MSRM.objects map'
+    },
+    {
+      name: 'array-msrm.json',
+      data: {
+        'ENVIRONMENT.json': { environmental_stress: 'none' },
+        'OI.json': [{ id: 'cat_01' }],
+        'MSRM.json': { objects: [] },
+        'edit_log.json': []
+      },
+      message: 'Expected ENVIRONMENT object, OI array, MSRM.objects map'
+    }
+  ];
+  for (const item of cases) {
+    page.once('dialog', dialog => dialog.accept());
+    await page.locator('#importInput').setInputFiles({
+      name: item.name,
+      mimeType: 'application/json',
+      buffer: Buffer.from(JSON.stringify(item.data))
+    });
+    await expect(page.locator('#console')).toContainText(item.message);
+    await expect(page.locator('#editedTitle')).toHaveText(beforeTitle);
+  }
+});
