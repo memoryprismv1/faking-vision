@@ -157,79 +157,34 @@ test('exports a WebM render after a saved mask keyframe', async ({ page }, testI
 });
 
 
-test('integrates a repository real-media clip with canonical_id packet entities', async ({ page }, testInfo) => {
-  test.setTimeout(240000);
-  const candidates = [
-    {
-      video: '../../PACKETS/examples/videos/Alice_in_wonderland/omni_rendering.mp4',
-      packet: '../../PACKETS/examples/videos/Alice_in_wonderland/OI.json',
-      id: 'A1'
-    },
-    {
-      video: '../../PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/FV_CCTV_snapshot_TD_reconstruction.mp4',
-      packet: '../../PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json',
-      id: 'PKT-CCTV-001-OBJ-001'
-    },
-    {
-      video: '../../PACKETS/examples/videos/A_Trip_to_the_Moon_FV_Packet/omni_rendering.mp4',
-      packet: '../../PACKETS/examples/videos/A_Trip_to_the_Moon_FV_Packet/OI.json',
-      id: 'CHAR_ASTRONOMER_LEAD'
-    },
-    {
-      video: '../../PACKETS/examples/videos/Old_macdonald/omni_rendering.mp4',
-      packet: '../../PACKETS/examples/videos/Old_macdonald/OI.json',
-      id: 'CHAR_OLD_MACDONALD'
-    }
-  ];
+test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
+  test.skip(!process.env.FV_REAL_MEDIA_PATH, 'CI supplies a short VP9/WebM excerpt from the documented source clip');
+  test.setTimeout(120000);
+  const videoBytes = await fs.readFile(process.env.FV_REAL_MEDIA_PATH);
+  const packetPath = path.resolve(__dirname, '../../PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json');
+  const packetBytes = await fs.readFile(packetPath);
+  const objectId = 'PKT-CCTV-001-OBJ-046';
 
   await page.goto(APP);
-  let selected = null;
-  const failures = [];
-  for (const candidate of candidates) {
-    const videoPath = path.resolve(__dirname, candidate.video);
-    const packetPath = path.resolve(__dirname, candidate.packet);
-    const [videoBytes, packetBytes] = await Promise.all([
-      fs.readFile(videoPath),
-      fs.readFile(packetPath)
-    ]);
-    await page.locator('#videoFile').setInputFiles({
-      name: path.basename(videoPath),
-      mimeType: 'video/mp4',
-      buffer: videoBytes
-    });
-    await page.waitForFunction(() => {
-      const video = document.querySelector('#source');
-      return video.readyState >= 1 || Boolean(video.error);
-    }, { timeout: 15000 }).catch(() => {});
-    const result = await page.locator('#source').evaluate(video => (
-      video.readyState >= 1 && video.videoWidth > 0
-        ? { ok: true }
-        : {
-            ok: false,
-            code: video.error?.code ?? null,
-            message: video.error?.message ?? 'metadata timeout'
-          }
-    ));
-    if (result.ok) {
-      selected = { ...candidate, packetBytes };
-      break;
-    }
-    failures.push(path.basename(videoPath) + ': ' + result.message + ' (media error ' + result.code + ')');
-  }
-  expect(selected, 'No committed MP4 could be decoded by Chromium. ' + failures.join('; ')).not.toBeNull();
-
+  await page.locator('#videoFile').setInputFiles({
+    name: 'cctv-part1-real-source-excerpt.webm',
+    mimeType: 'video/webm',
+    buffer: videoBytes
+  });
+  await expect(page.locator('#status')).toContainText('Video ready (');
   await page.locator('#packetFile').setInputFiles({
     name: 'OI.json',
     mimeType: 'application/json',
-    buffer: selected.packetBytes
+    buffer: packetBytes
   });
   await expect(page.locator('#object')).toBeEnabled();
-  await expect(page.locator('#object')).toHaveValue(selected.id);
+  await page.locator('#object').selectOption(objectId);
+  await expect(page.locator('#object')).toHaveValue(objectId);
 
   await page.locator('#property').fill('editor_test');
-  await page.locator('#value').fill('canonical_id edit verified');
+  await page.locator('#value').fill('canonical_id edit verified on real CCTV media');
   await page.locator('#apply').click();
-  await expect(page.locator('#status')).toContainText('Updated 1 matching record(s) for ' + selected.id);
+  await expect(page.locator('#status')).toContainText('Updated 1 matching record(s) for ' + objectId);
 
   await drawTriangle(page);
   await page.locator('#key').click();
@@ -237,9 +192,11 @@ test('integrates a repository real-media clip with canonical_id packet entities'
 
   const { target: packetTarget } = await saveDownload(page, '#savePacket', testInfo);
   const exported = JSON.parse(await fs.readFile(packetTarget, 'utf8'));
-  const entity = exported.packet.entities.find(item => item.canonical_id === selected.id);
-  expect(entity.properties.editor_test).toBe('canonical_id edit verified');
-  expect(exported.media_edits.object_id).toBe(selected.id);
+  const entity = exported.packet.entities.find(item => item.canonical_id === objectId);
+  expect(entity.properties.editor_test).toBe('canonical_id edit verified on real CCTV media');
+  expect(exported.packet.entities.find(item => item.canonical_id !== objectId && item.properties?.editor_test))
+    .toBeUndefined();
+  expect(exported.media_edits.object_id).toBe(objectId);
   expect(exported.edit_log.map(edit => edit.type)).toContain('property_edit');
   expect(exported.edit_log.filter(edit => edit.type === 'mask_keyframe')).toHaveLength(1);
 
