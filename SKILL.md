@@ -663,6 +663,7 @@ FV_PACKET/
   README.txt
   PC.json                # optional generally; used when project-wide constants/object declarations are needed
   OI.json                # object/instance information
+  viewpoint.json         # observer/viewpoint identities; required for newly generated packets
   MSRM.json              # spatial organization
   TD.json                # temporal data; required for video; owns video observation records
   dispute.json           # packet-level dispute state and rendering gate
