@@ -86,11 +86,15 @@ def provenance_agents(report: dict[str, Any]) -> list[tuple[str, dict[str, Any]]
                 if marker not in seen:
                     found.append((role, record))
                     seen.add(marker)
-    if not found:
-        found.append(("unknown_role", {
-            "agent_id": None, "model_provider": None,
-            "model_name": None, "model_version": None,
-        }))
+    # Preserve missing roles explicitly. Absence of provenance must not
+    # silently remove an agent class from the batch's coverage accounting.
+    present_roles = {role for role, _ in found}
+    for role in ("packet_generator_expected", "packet_generator_generated", "media_generator"):
+        if role not in present_roles:
+            found.append((role, {
+                "agent_id": None, "model_provider": None,
+                "model_name": None, "model_version": None,
+            }))
     return found
 
 
