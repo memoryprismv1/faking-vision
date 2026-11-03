@@ -108,7 +108,7 @@ or be explicitly represented as inference/uncertainty.
 
 Give the AI the source video together with:
 
-the FV Working Process Specification contained in the FV skill (or the repository copy of `FV_Working_Process_Specification.docx`)
+the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
 
 The video path uses:
 
