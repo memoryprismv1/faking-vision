@@ -159,3 +159,15 @@ test('missing required packet records and malformed MSRM map are rejected', asyn
     await expect(page.locator('#editedTitle')).toHaveText(beforeTitle);
   }
 });
+
+
+test('environment edit writes only resolvable passive affected-object references', async ({ page }, testInfo) => {
+  await loadFixture(page, 'Windy Day · baseline with wind response');
+  await page.locator('#applyEnv').click();
+  const bundle = await exportBundle(page, testInfo);
+  const ids = new Set(bundle['OI.json'].map(o => o.id));
+  for (const id of bundle['ENVIRONMENT.json'].affected_objects_passive) {
+    expect(ids.has(typeof id === 'string' ? id : id.id)).toBe(true);
+  }
+  expect(bundle['ENVIRONMENT.json'].affected_objects_active.map(x => typeof x === 'string' ? x : x.id)).toContain('person_01');
+});
