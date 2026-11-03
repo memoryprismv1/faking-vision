@@ -13,7 +13,22 @@ Four user-supplied images, preserved outside the repository. Exact dimensions an
 | `pexels-blue-bird-7243222.jpg` | Bicycle / VP-BIKE-01 | 1365×2048 | `adcdb5f4d82877aad0eee2e213c6b3d6e0889c5a085ea891c01bc19c8b2ec342` |
 | `pexels-blue-bird-7243220.jpg` | Bicycle / VP-BIKE-02 | 1365×2048 | `e58ab84334104864fa1b548eaf737d17002739e69cc5736d6db2e66519bb3990` |
 
-Original files are not included here. Source URL, creator, and licence were not supplied and are not inferred from filenames.
+### Attribution and source provenance
+
+These four images were downloaded from Pexels. Photographer attribution is included even though the standard Pexels License does not require it:
+
+| Assets | Photographer credit | Pexels profile |
+|---|---|---|
+| `pexels-rdne-7464676.jpg`, `pexels-rdne-7464266.jpg` | Photo by **RDNE Stock project** on Pexels | https://www.pexels.com/@rdne/ |
+| `pexels-blue-bird-7243222.jpg`, `pexels-blue-bird-7243220.jpg` | Photo by **Blue Bird** on Pexels | https://www.pexels.com/@blue-bird/ |
+
+Source photo IDs are retained in the filenames. Individual photo-page URLs were not independently verified, so they are not fabricated here. Pexels recommends linking to the individual photo page when available and credits the photographer as “Photo by [name] on Pexels”.
+
+**License reference:** https://www.pexels.com/license/ — Pexels License. Attribution is appreciated but not required. The Pexels rules prohibit, among other things, implying endorsement by depicted people/brands and redistributing the photos as standalone stock or wallpaper content.
+
+**Important scope caution:** Pexels' current Terms/Help guidance also discusses restrictions on data mining, automated extraction, and use of Pexels content to build datasets or train/evaluate ML/AI models. These images were individually downloaded, not collected through the API or by automated scraping. However, this FV work is an AI/visual-analysis experiment, and the public guidance does not make the boundary for this specific one-off manual use sufficiently clear. Do not scale this into a dataset, publish or redistribute the source images, or treat Pexels attribution as permission for AI-model evaluation/training. Confirm applicability with Pexels before using these images for that purpose.
+
+Original image files are not included in this repository.
 
 ## Method
 
