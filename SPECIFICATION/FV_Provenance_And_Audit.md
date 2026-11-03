@@ -121,21 +121,26 @@ Use the existing FV failure taxonomy: INV-O, INV-C, ID-S, ID-M, SP-D, TM-D, BH-D
 
 Do not promote an uncertain observation into a confirmed deviation without supporting evidence. Evaluator uncertainty remains visible in both the deviation list and the uncertainty metric.
 
-## 5. TODO — batch processing of audit files
 
-**Planned; not implemented by this specification yet.**
+## 6. Batch aggregation reference implementation
 
-Add a batch operation (proposed interface: `fv audit batch [audit-report.json ...]`) that:
+A reference batch processor is provided at `TOOLS/fv_audit_batch.py`. It is an offline aggregation utility, not a claim that a standalone FV CLI has been installed. Invoke it with Python 3.10+ and the dependency in `TOOLS/requirements.txt`:
 
-- accepts multiple previously generated JSON audit reports;
-- validates each report against its declared schema version;
-- identifies duplicate audit IDs and avoids double-counting;
-- reports invalid, incomplete, or incompatible files without silently dropping them;
-- groups results separately by packet generator, media generator, and auditor;
-- stratifies by model/version and FV/audit schema versions;
-- pools numerators and denominators for matching metric definitions;
-- reports sample counts, coverage, evaluator uncertainty, and category-specific rates;
-- preserves links to the contributing reports and deviations;
-- emits a downloadable aggregate JSON report plus a human-readable summary.
+```sh
+python TOOLS/fv_audit_batch.py path/to/FV_AUDIT_REPORT.json another/FV_AUDIT_REPORT.json
+```
 
-Batch aggregation MUST NOT re-audit media, rewrite source reports, average percentages without denominators, or combine different deviation classes into one unqualified score.
+The utility writes `FV_AUDIT_BATCH_REPORT.json` and `FV_AUDIT_BATCH_SUMMARY.md` in the current directory. Use `--output`, `--summary`, or `--schema` to override those paths.
+
+Each input is checked against the current `FV_Audit_Report_Schema.json`. Invalid files are listed with validation/read errors and excluded from aggregation. Identical copies of one audit ID are counted once. If the same audit ID appears with different content, all copies of that ID are excluded pending manual reconciliation; the utility does not guess which is authoritative.
+
+Profiles are separated by role, declared agent identity/model version, audit specification version, report schema version, metric code, unit definition, and scope. Missing generator identities are retained as explicit unknown-role profiles rather than silently omitted. Numerators, denominators, and uncertain-unit counts are pooled; percentages are recomputed from pooled counts. Zero denominators yield a null rate.
+
+The batch report schema is `FV_Audit_Batch_Report_Schema.json`. The reference tests are in `TOOLS/test_fv_audit_batch.py`; run them with:
+
+```sh
+python -m pip install -r TOOLS/requirements.txt
+python -m unittest discover -s TOOLS -p 'test_*.py' -v
+```
+
+**Interface boundary:** this utility is a batch processor for existing report files. It does not perform visual analysis, regenerate reports, infer missing provenance, or change the meaning of `fv audit`. The skill-level command `fv audit batch` remains a proposed interface until the skill runtime can reliably invoke this utility with attached files.
