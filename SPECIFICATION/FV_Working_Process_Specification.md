@@ -958,6 +958,27 @@ See `SPECIFICATION/FV_Provenance_And_Audit.md` for the complete report contract.
 
 Batch processing is planned but not implemented. Proposed interface: `fv audit batch [audit-report.json ...]`. It will validate existing reports, detect duplicate audit IDs, retain invalid/incompatible-file diagnostics, and aggregate matching metrics by packet generator, media generator, and auditor. Aggregation must pool numerators and denominators (not average percentages), preserve model/version and schema strata, and report sample size, coverage, and evaluator uncertainty. It must not re-audit media, rewrite source reports, or collapse unlike deviation classes into one unqualified score.
 
+## 17.3 TODO — observer-conditioned visual field
+
+**Planned experimental workstream; not yet implemented as a packet model.**
+
+FV must distinguish the physical scene from the visual field available to an observer at a particular viewpoint. A change of observer position or orientation can expose different surfaces, boundaries, spatial relationships, and regions while the underlying scene remains unchanged.
+
+Use the same static environment photographed from materially different viewpoints (for example, the top, bottom, and middle of a staircase) to test whether FV can:
+
+- record the observer/camera position and orientation when known, and explicitly preserve uncertainty when they are not known;
+- describe the spatial extent and direction of the view, distinguishing the observer-conditioned field from the image's pixel crop or frame boundary;
+- record which scene regions, surfaces, boundaries, and structures are exposed in each view before semantic object promotion;
+- distinguish regions outside the visual field from regions inside the field but occluded, and from regions that are in the field but not reliably resolvable because of image quality or scale;
+- compare overlapping and newly exposed regions across viewpoints without treating a viewpoint change as a scene change;
+- reconcile multiple view-conditioned observations into a shared scene representation only where spatial correspondence is supported.
+
+The visual field is not an object inventory and must not be derived solely from already-recognised objects. It is an observer-conditioned domain of potential visual input; the actually observed structure is a separate record. Do not assume a calibrated camera, exact 3D geometry, or known observer pose when the source does not provide it.
+
+**Initial experiment:** photograph one unchanged staircase from the top, bottom, and an intermediate landing. Analyse each image independently, then compare the fields and exposed structures. Evaluate whether FV can explain differences as consequences of viewpoint while preserving unresolved regions and correspondence uncertainty.
+
+This workstream is upstream of object promotion and complementary to existing visibility/occlusion and MSRM rules. It must not be conflated with per-object line-of-sight testing or with a camera's technical field-of-view metadata.
+
 # 18. Model-knowledge containment test
 
 FV should actively test whether a renderer imports knowledge about what a scene category normally contains.
