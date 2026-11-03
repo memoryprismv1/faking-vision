@@ -17,7 +17,7 @@ Open `FV_Media_Object_Editor_MVP.html` in a current desktop browser. No server o
 ## What works in this MVP
 
 - Displays actual user-supplied video frames.
-- Reads object IDs from the loaded JSON rather than inventing IDs.
+- Reads existing `id` and `canonical_id` values from the loaded JSON rather than inventing IDs.
 - Lets the user author polygon mask keyframes on frames.
 - Interpolates polygon vertices between keyframes when the vertex counts match.
 - Blends a chosen tint into pixels inside the interpolated polygon and records a WebM render.
@@ -30,10 +30,10 @@ This is a first working behaviour, not a full editor or authoritative FV packet 
 - **Masking is manual.** There is no automatic segmentation, optical flow, or persistent-object tracker yet. The user must place keyframes as needed.
 - **The render is a pixel tint.** It is not semantic recolouring, texture reconstruction, or an object-aware fill.
 - Interpolation is only valid for masks with matching polygon vertex counts and may fail at scene cuts or shape changes.
-- The input packet is retained as a nested source object in the export bundle. Property changes are applied to records with the selected `id`; review the result before treating it as canonical OI/TD/MSRM data.
+- The input packet is retained as a nested source object in the export bundle. Property changes are applied to matching records using `canonical_id` (preferred) or `id`; review the result before treating it as canonical OI/TD/MSRM data.
 - WebM export depends on browser MediaRecorder support and runs in real time. Keep the tab open until it finishes.
 - Exported visual output and packet JSON must be audited separately. This tool does not claim FV semantic validation.
 
 ## Next test
 
-Use a short, locally available clip with one clearly visible object and a packet containing that object's stable ID. Verify: the selected ID, property record, mask keyframes, exported WebM, and edit log all agree. Then improve tracking based on the failure observed, rather than assuming it works.
+Use a short, locally available clip with one clearly visible object and a packet containing that object's stable `canonical_id` or `id`. The repository's Alice in Wonderland media/packet pair is an available integration fixture. Verify: the selected ID, property record, mask keyframes, exported WebM, and edit log all agree. Then improve tracking based on the failure observed, rather than assuming it works.
