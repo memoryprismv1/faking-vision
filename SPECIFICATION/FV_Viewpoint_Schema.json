@@ -4,6 +4,7 @@
   "title": "FV Viewpoint Records",
   "description": "Root-level viewpoint.json array. Identifies observers/viewpoints without assuming camera geometry.",
   "type": "array",
+  "minItems": 1,
   "items": {
     "type": "object",
     "additionalProperties": false,
