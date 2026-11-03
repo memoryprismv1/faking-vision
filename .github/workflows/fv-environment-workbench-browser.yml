@@ -19,11 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
       - run: npm install --package-lock-only
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm install --no-save http-server
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
