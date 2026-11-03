@@ -1,63 +1,38 @@
-# Paired-viewpoint image experiment
+# Pexels source record — viewpoint image candidates
 
-**Status: exploratory analysis complete; not independently peer-reviewed or validated.**
+**Status: quarantined; not an approved FV experiment dataset.**
 
-## Source set
+These four photographs were downloaded from Pexels and considered as possible inputs for a viewpoint-conditioned visual-analysis experiment. The images themselves are not stored in this repository.
 
-Four user-supplied images, preserved outside the repository. Exact dimensions and SHA-256:
+## Photographer attribution
 
-| Asset | Pair / viewpoint | Dimensions | SHA-256 |
-|---|---|---:|---|
-| `pexels-rdne-7464676.jpg` | Furniture / VP-FUR-01 | 2048×1365 | `8dd5e9dec28a74896e5de9f83faf4b71d974a04139ddd55f2a37572bf0811767` |
-| `pexels-rdne-7464266.jpg` | Furniture / VP-FUR-02 | 2048×1365 | `027439c63d32acde38b75b0ba33623d26e126c985dcf7149139abf0da9825394` |
-| `pexels-blue-bird-7243222.jpg` | Bicycle / VP-BIKE-01 | 1365×2048 | `adcdb5f4d82877aad0eee2e213c6b3d6e0889c5a085ea891c01bc19c8b2ec342` |
-| `pexels-blue-bird-7243220.jpg` | Bicycle / VP-BIKE-02 | 1365×2048 | `e58ab84334104864fa1b548eaf737d17002739e69cc5736d6db2e66519bb3990` |
+Pexels does not require attribution under its standard license, but recommends crediting the photographer and linking to the photo page where possible.
 
-Original files are not included here. Source URL, creator, and licence were not supplied and are not inferred from filenames.
+| Local source filename | Photographer credit | Profile |
+|---|---|---|
+| `pexels-rdne-7464676.jpg` | Photo by **RDNE Stock project** on Pexels | https://www.pexels.com/@rdne/ |
+| `pexels-rdne-7464266.jpg` | Photo by **RDNE Stock project** on Pexels | https://www.pexels.com/@rdne/ |
+| `pexels-blue-bird-7243222.jpg` | Photo by **Blue Bird** on Pexels | https://www.pexels.com/@blue-bird/ |
+| `pexels-blue-bird-7243220.jpg` | Photo by **Blue Bird** on Pexels | https://www.pexels.com/@blue-bird/ |
 
-## Method
+Pexels recommends the form “Photo by [photographer] on Pexels” and linking the photographer's name to the individual photo page. Individual photo-page URLs have not yet been verified, so only the supplied profile links are recorded here.
 
-Each image was first analysed independently. Only then were pairwise correspondences considered. Packet-local identities remain distinct; cross-view matches are hypotheses recorded below. Camera position, orientation, calibration, focal length, metric geometry, and physical dimensions are unknown.
+## License and AI/ML restriction
 
-## Pair A — furniture move
+- Pexels standard license: https://www.pexels.com/license/
+- Pexels Terms of Service: https://www.pexels.com/terms-of-service
+- Pexels AI and ML FAQ: https://help.pexels.com/hc/en-us/articles/27292485713945-AI-and-ML-FAQ
+- Pexels Terms and Conditions guidance: https://help.pexels.com/hc/en-us/articles/900005880463-What-are-the-Terms-and-Conditions
 
-Shared anchors: white interior walls, three arched windows, exposed wooden ceiling beams, plank floor, large dark-green tufted sofa, and two movers in dark teal/blue clothing.
+The standard Pexels license permits many ordinary uses without attribution and encourages photographer credit. However, Pexels' Terms also prohibit unauthorized data mining, extraction, scraping, and automated collection for machine-learning purposes. Pexels' current guidance explicitly discusses ML/AI model and dataset development, including evaluation.
 
-| Candidate | Assessment |
-|---|---|
-| Green sofa | Strong correspondence: distinctive upholstery, tufting, arms and wooden feet recur. Position/orientation relative to observer differs. |
-| Light-haired mover with dark headband | Strong person-level correspondence across views; pose and visible body area differ. |
-| Dark-haired, bearded mover | Strong person-level correspondence; first view is primarily a rear/partial view, second shows more of the person. |
-| Small teal armchair | Visible only in VP-FUR-01; disposition in VP-FUR-02 unknown. |
-| Two cardboard boxes | Visible only in VP-FUR-01; disposition in VP-FUR-02 unknown. |
+Because the proposed use here is an FV/AI visual-analysis experiment, the general stock-photo license is not enough to establish that this use is permitted. **Do not use these photographs as FV benchmark inputs, model-evaluation data, training data, or a published AI dataset unless Pexels confirms in writing that this specific use is allowed.** Photographer attribution does not grant that permission.
 
-**Interpretation:** this is a mixed viewpoint and scene-state-change pair. The sofa and people have moved. It is useful for testing continuity of the environment under changing object positions, but it does not isolate viewpoint effects. The chair and boxes must not be declared removed simply because they are not observed in the second image.
+## Disposition
 
-## Pair B — woman and bicycle
+- Source provenance and photographer attribution are retained for transparency.
+- The images are not committed to GitHub.
+- The proposed viewpoint experiment is suspended and this source set is excluded from FV test/evaluation datasets pending explicit permission.
+- Use appropriately licensed Wikimedia Commons material for the experiment instead, checking each file's individual license and attribution requirements.
 
-Shared anchors: red painted brick wall, woman with distinctive curly hair and consistent cream overshirt / striped top / white trousers, and silver bicycle with orange handlebar tape.
-
-| Candidate | Assessment |
-|---|---|
-| Woman | Strong cross-view candidate: distinctive appearance and clothing recur; pose differs. |
-| Bicycle | Strong cross-view candidate: silver frame and orange-taped handlebar recur. Full component-by-component identity is not verifiable in the tighter view. |
-| Brick wall | Strong scene-anchor correspondence: brick colour and mortar courses recur; exact camera pose unknown. |
-
-**Visibility:** VP-BIKE-01 shows most of the bicycle, with parts cut by the left/lower image boundaries and parts occluded by the woman. VP-BIKE-02 is closer and more oblique; only a limited handlebar/bicycle region is visible. The remaining bicycle is outside the supplied frame or occluded, not evidence of physical absence.
-
-**Interpretation:** this is the cleaner viewpoint-conditioned visibility test. The images are not known to be simultaneous. Do not infer camera motion, metric depth, hidden bicycle geometry, or exact dimensions.
-
-## FV distinctions under test
-
-- **Observed:** structure directly visible in the supplied image.
-- **Occluded:** inside the view but blocked by a nearer structure/person.
-- **Outside supplied frame:** not included in the image; do not equate this with physical absence.
-- **Unresolvable:** within the supplied image but insufficiently clear to classify reliably.
-
-Do not infer unseen parts from object category expectations. Do not merge packet-local IDs merely because correspondence is plausible. Preserve unresolved correspondences.
-
-## Initial conclusion
-
-Use the bicycle pair first for viewpoint-conditioned visibility and cross-view correspondence. Use the furniture pair second for mixed viewpoint plus scene-state change. Keep the two conditions separate in evaluation; pooling them would conceal which condition caused a failure.
-
-This is an exploratory image analysis, not a validated FV packet merge, general viewpoint model, or reconstruction audit.
+This record documents provenance and the reason for exclusion; it does not claim permission for AI/ML use.
