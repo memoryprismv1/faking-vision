@@ -11,7 +11,7 @@
     "properties": {
       "id": {
         "type": "string",
-        "pattern": "^VP-[A-Za-z0-9_-]+$",
+        "pattern": "^VP-(?!DEFAULT$)[A-Za-z0-9][A-Za-z0-9_-]*$",
         "description": "Stable typed viewpoint identifier. VP-DEFAULT is reserved for virtual legacy compatibility and must not be authored as a new viewpoint."
       },
       "observer": {
