@@ -68,6 +68,6 @@ The required import contract is: an ENVIRONMENT object, OI array with unique non
 
 ### Identifier and compatibility boundary
 
-This prototype's current editor bundle requires OI id fields and MSRM keys using those same IDs. It is not yet a direct editor for packets whose entities use canonical_id (for example, the CCTV and Alice in Wonderland packets). Those packets need an explicit, reversible adapter that preserves original identifiers and provenance; do not rename source packet IDs to fit the prototype.
+The editor accepts OI records using either `id` or `canonical_id`, preferring `id` when both are present and rejecting conflicting dual identifiers. For a canonical_id-only record, the editor creates an internal `id` alias for editing and removes that alias on export; the source `canonical_id` remains unchanged. MSRM keys and affected-object references must use the same stable identifier. This adapter changes only the editor's in-memory representation; it does not convert packet schemas, merge identities, or rewrite provenance.
 
 These details close the MVP's current interchange contract only. They do not establish a universal ENVIRONMENT schema, general typed edit language, canonical version migration, automatic dependent-record propagation, or authoritative FV validation.
