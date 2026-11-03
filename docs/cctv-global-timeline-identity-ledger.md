@@ -51,6 +51,27 @@ The table preserves gaps: packet-local sampling is sparse, and the global timeli
 |---|---|---|---|---|
 | PKT-CCTV-002-OBJ-035 | PKT-CCTV-003-OBJ-001, OBJ-002, OBJ-003 | One-to-many: composite pole/placards record to two placard candidates plus supporting pole | Packet 002 TD records the pole with attached placards in its final tight view; packet 003 opens on two placards attached to a vertical pole in the adjacent parent-source interval. Packet 003 separates the visual components that packet 002 represented as one structure candidate. Markings remain unreadable. | **Supported visual correspondence; composite-to-components.** Do not duplicate as three independent global physical objects without retaining the part-whole relation. |
 
+### 3.2 Boundary associations retained from earlier dense-review work
+
+The user's earlier CCTV boundary-review artifacts (dated 2026-10-14 and retained in the ChatGPT Library) contain additional evidence that is not represented in the three packet JSON files:
+
+| Boundary / candidate | Earlier review evidence | Decision to carry forward |
+|---|---|---|
+| PKT-CCTV-001 → PKT-CCTV-002: dark foreground sedan-like vehicle | 5-fps native-resolution review across P1 local 100.0–105.4 s and P2 local 0–6.0 s; a later sequential decode pass retained every third decoded frame through P1 100–105.5667 s and P2 0–3.0 s. Broad positional progression image-left is supported, but no full 30-fps track, reliable visibility bounds or independently checked box sequence exists. | **Strong provisional candidate, not confirmed global identity.** Keep packet-local IDs separate. |
+| PKT-CCTV-001 → PKT-CCTV-002: light-coloured pickup/utility-like vehicle | Earlier dense half-second crops and 5-fps boundary review describe a candidate moving image-left through the middle/background aisle. The downscaled overview and sparse samples do not establish unique identity or precise displacement. | **Provisional, weaker than the dark-sedan candidate.** No confirmed global identity. |
+| PKT-CCTV-002 → PKT-CCTV-003: sign-bearing support / attached marking | Separate boundary evidence reports matching sign arrangement, support, hedge texture and foreground crop in P2 terminal close-up and P3 first decoded frame. | **High-confidence scene-anchor correspondence**, not a vehicle-identity bridge. Preserve pole/placard part-whole relationship in packet-level ledger. |
+| PKT-CCTV-002 → PKT-CCTV-003: vehicles around rapid reframing | Earlier review explicitly leaves these unresolved; apparent disappearance/appearance around changed field of view is not motion evidence. | **No match made.** |
+
+The sequential extraction review used OpenCV decoding and frame indices but did not independently verify presentation timestamps; nominal times derived from the reported 30-fps rate must not be promoted to authoritative PTS. The 5-fps review omits five of every six source frames. Neither pass confirms a vehicle match. The earlier P1/P2 review records zero confirmed cross-chunk vehicle matches.
+
+Earlier evidence artifacts to preserve with this ledger:
+- `CCTV_FV_P1_P2_DENSE_SAMPLING_REVIEW.md` (5-fps, 0.2-s nominal samples)
+- `CCTV_FV_P1_P2_CONSECUTIVE_FRAME_PASS.md` (every third sequentially decoded frame; nominal timing)
+- `CCTV_FV_P2_P3_BOUNDARY_EVIDENCE.md` (sign-bearing support scene anchor)
+- `CCTV_FV_CROSS_CHUNK_CORRESPONDENCE_DECISIONS.md` and its JSON companion (provisional correspondence decisions)
+
+These are historical review derivatives, not original packet files and not an independent audit. They supplement the repo's packet records without authorizing mutation or merge.
+
 ### 3.2 Within-packet continuity only
 
 | Source record(s) | Relation | Status |
