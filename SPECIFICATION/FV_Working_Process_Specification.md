@@ -2038,3 +2038,8 @@ In particular, a robot's ability to request or acquire a better view is an
 operational capability to test, not an assumption that every FV environment
 can move a camera or embodied system.
 
+
+
+## Supplementary provenance and audit-file processing
+
+Packet provenance, independent packet-to-packet audit reports, and batch aggregation are specified in `FV_Provenance_And_Audit.md`. The batch reference utility and its tests are under `TOOLS/`. These additions do not alter the core packet records or claim that the FV skill command runtime itself is a standalone CLI.
