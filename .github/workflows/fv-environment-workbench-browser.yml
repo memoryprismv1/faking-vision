@@ -1,0 +1,33 @@
+name: FV environmental workbench browser tests
+
+on:
+  pull_request:
+    paths:
+      - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
+      - 'tests/browser/**'
+      - 'playwright.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/fv-environment-workbench-browser.yml'
+  workflow_dispatch:
+
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --package-lock-only
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm install --no-save http-server
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fv-environment-workbench-playwright-results
+          path: test-results/
+          if-no-files-found: ignore
