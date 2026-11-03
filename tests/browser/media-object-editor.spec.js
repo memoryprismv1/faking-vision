@@ -155,3 +155,55 @@ test('exports a WebM render after a saved mask keyframe', async ({ page }, testI
   expect([...bytes.subarray(0, 4)]).toEqual([0x1a, 0x45, 0xdf, 0xa3]);
   await expect(page.locator('#status')).toContainText('Video export complete');
 });
+
+
+test('integrates a repository real-media clip with canonical_id packet entities', async ({ page }, testInfo) => {
+  test.setTimeout(180000);
+  const mediaPath = path.resolve(__dirname, '../../PACKETS/examples/videos/Alice_in_wonderland/omni_rendering.mp4');
+  const packetPath = path.resolve(__dirname, '../../PACKETS/examples/videos/Alice_in_wonderland/OI.json');
+  const [videoBytes, packetBytes] = await Promise.all([
+    fs.readFile(mediaPath),
+    fs.readFile(packetPath)
+  ]);
+
+  await page.goto(APP);
+  await page.locator('#videoFile').setInputFiles({
+    name: 'alice-in-wonderland-real-clip.mp4',
+    mimeType: 'video/mp4',
+    buffer: videoBytes
+  });
+  await expect(page.locator('#status')).toContainText('Video ready (');
+  await page.locator('#packetFile').setInputFiles({
+    name: 'OI.json',
+    mimeType: 'application/json',
+    buffer: packetBytes
+  });
+  await expect(page.locator('#object')).toBeEnabled();
+  await expect(page.locator('#object')).toHaveValue('A1');
+
+  await page.locator('#property').fill('editor_test');
+  await page.locator('#value').fill('canonical_id edit verified');
+  await page.locator('#apply').click();
+  await expect(page.locator('#status')).toContainText('Updated 1 matching record(s) for A1');
+
+  await drawTriangle(page);
+  await page.locator('#key').click();
+  await expect(page.locator('#keyList')).toContainText('3 points');
+
+  const { target: packetTarget } = await saveDownload(page, '#savePacket', testInfo);
+  const exported = JSON.parse(await fs.readFile(packetTarget, 'utf8'));
+  expect(exported.packet.entities.find(entity => entity.canonical_id === 'A1').properties.editor_test)
+    .toBe('canonical_id edit verified');
+  expect(exported.packet.entities.find(entity => entity.canonical_id === 'R1').properties.editor_test)
+    .toBeUndefined();
+  expect(exported.media_edits.object_id).toBe('A1');
+  expect(exported.edit_log.map(edit => edit.type)).toContain('property_edit');
+  expect(exported.edit_log.filter(edit => edit.type === 'mask_keyframe')).toHaveLength(1);
+
+  const { target: videoTarget, download } = await saveDownload(page, '#export', testInfo);
+  expect(download.suggestedFilename()).toBe('fv-edited-video.webm');
+  const rendered = await fs.readFile(videoTarget);
+  expect(rendered.length).toBeGreaterThan(1000);
+  expect([...rendered.subarray(0, 4)]).toEqual([0x1a, 0x45, 0xdf, 0xa3]);
+  await expect(page.locator('#status')).toContainText('Video export complete');
+});
