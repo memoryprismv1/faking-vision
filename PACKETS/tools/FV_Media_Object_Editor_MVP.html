@@ -106,9 +106,10 @@ function draw(){
  $('clock').textContent=fmt(video.currentTime||0);if(video.duration)$('seek').value=(video.currentTime/video.duration)*1000;
  requestAnimationFrame(draw);
 }
+function objectIdOf(node){if(!node||typeof node!=='object'||Array.isArray(node))return null;if(typeof node.canonical_id==='string'&&node.canonical_id.trim())return node.canonical_id;if(typeof node.id==='string'&&node.id.trim())return node.id;return null}
 function collectIds(root){
  const ids=new Set(), seen=new Set();
- function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);if(!Array.isArray(v)&&typeof v.id==='string'&&v.id.trim())ids.add(v.id);for(const x of Object.values(v))walk(x)}
+ function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);const id=objectIdOf(v);if(id)ids.add(id);for(const x of Object.values(v))walk(x)}
  walk(root);return [...ids].sort();
 }
 function updateKeyList(){ $('keyList').innerHTML=keyframes.length?keyframes.slice().sort((a,b)=>a.time-b.time).map(k=>'<div>'+fmt(k.time)+' · '+k.points.length+' points <button data-time="'+k.time+'">Remove</button></div>').join(''):'No shape keyframes yet.'}
@@ -128,7 +129,7 @@ $('keyList').addEventListener('click',e=>{if(e.target.dataset.time){const t=Numb
 $('valueColor').addEventListener('input',()=>{$('tint').value=$('valueColor').value;draw()});$('tint').addEventListener('input',draw);$('strength').addEventListener('input',draw);
 function updateMatches(node,id,prop,val,refs=[]){
  if(!node||typeof node!=='object')return;
- if(!Array.isArray(node)&&node.id===id){node.properties=node.properties&&typeof node.properties==='object'?node.properties:{};node.properties[prop]=val;refs.push(node)}
+ if(objectIdOf(node)===id){node.properties=node.properties&&typeof node.properties==='object'?node.properties:{};node.properties[prop]=val;refs.push(node)}
  for(const v of Object.values(node))updateMatches(v,id,prop,val,refs);
  return refs;
 }
