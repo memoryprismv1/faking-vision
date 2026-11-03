@@ -241,10 +241,13 @@ Example:
 
 `fv audit [expected-packet.zip] [generated-media-packet.zip] [generated-media]`
 
-**TODO — batch processing:** a future `fv audit batch [audit-report.json ...]`
-operation will validate and aggregate existing audit files into agent-specific
-profiles. It is not implemented yet. See
-`SPECIFICATION/FV_Provenance_And_Audit.md`.
+**Batch audit:** a reference offline processor is provided at
+`TOOLS/fv_audit_batch.py`. It validates existing JSON reports and writes an
+aggregate JSON report plus a readable summary; it does not re-audit media or
+rewrite source reports. See `SPECIFICATION/FV_Provenance_And_Audit.md` for
+installation, invocation, duplicate handling, profile boundaries, and tests.
+The skill-level `fv audit batch` command remains a proposed interface until
+the skill runtime can invoke the utility with attached files.
 
 ## Command interpretation rules
 
