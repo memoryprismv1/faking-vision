@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/memoryprismv1/faking-vision/blob/main/SPECIFICATION/FV_Audit_Batch_Report_Schema.json",
+  "title": "FV Audit Batch Aggregate",
+  "description": "Aggregate of previously generated, individually validated FV audit reports. This schema does not validate or replace source audit reports.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_type",
+    "source_report_count",
+    "valid_unique_audit_count",
+    "invalid_report_count",
+    "duplicate_identical_group_count",
+    "duplicate_conflict_group_count",
+    "source_audits",
+    "profiles",
+    "deviations",
+    "invalid_reports",
+    "duplicate_identical_audits",
+    "duplicate_conflicts",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "report_type": {
+      "const": "fv_audit_batch"
+    },
+    "source_report_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "valid_unique_audit_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "invalid_report_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "duplicate_identical_group_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "duplicate_conflict_group_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_audits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "audit_id",
+          "source",
+          "audit_spec_version",
+          "schema_version"
+        ],
+        "properties": {
+          "audit_id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "audit_spec_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schema_version": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "agent",
+          "audit_spec_version",
+          "audit_schema_version",
+          "metric_code",
+          "unit_definition",
+          "numerator",
+          "denominator",
+          "uncertain_units",
+          "rate_percent",
+          "audit_count",
+          "contributing_audit_ids",
+          "contributing_reports"
+        ],
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "agent": {
+            "type": "object"
+          },
+          "audit_spec_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "audit_schema_version": {
+            "type": "string"
+          },
+          "metric_code": {
+            "type": "string"
+          },
+          "unit_definition": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "numerator": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "denominator": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uncertain_units": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rate_percent": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "audit_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "contributing_audit_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contributing_reports": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "deviations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "invalid_reports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "errors"
+        ],
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "duplicate_identical_audits": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "duplicate_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

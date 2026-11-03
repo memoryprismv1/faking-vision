@@ -1,0 +1,28 @@
+name: FV audit batch tests
+
+on:
+  push:
+    branches:
+      - feature/fv-audit-batch
+  pull_request:
+    paths:
+      - "TOOLS/**"
+      - "SPECIFICATION/FV_Audit_Report_Schema.json"
+      - "SPECIFICATION/FV_Audit_Batch_Report_Schema.json"
+      - ".github/workflows/fv-audit-batch.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install -r TOOLS/requirements.txt
+      - name: Run unit tests
+        run: python -m unittest discover -s TOOLS -p 'test_*.py' -v
+      - name: Check Python syntax
+        run: python -m py_compile TOOLS/fv_audit_batch.py TOOLS/test_fv_audit_batch.py
