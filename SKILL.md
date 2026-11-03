@@ -260,7 +260,7 @@ the skill runtime can invoke the utility with attached files.
 - `fv validate` means packet → validation report.
 - `fv compile` means resolved + validated packet → lossless renderer specification and, where supported, reconstruction.
 - `fv audit` means expected FV packet + independently analysed generated-media packet → independent packet-to-packet evaluation and downloadable JSON audit report.
-- `fv audit batch` is a documented future TODO for validating and aggregating existing JSON audit reports; it is not implemented.
+- `fv audit batch` is not a native skill-runtime command. The offline reference processor is `TOOLS/fv_audit_batch.py`; it validates and aggregates existing JSON reports when invoked with attached files. Do not claim the skill command itself is implemented.
 - Keep these boundaries separate. Do not silently combine operations.
 - A command may be followed by natural-language constraints or objectives;
   those modify the requested operation but do not change FV evidence rules.
