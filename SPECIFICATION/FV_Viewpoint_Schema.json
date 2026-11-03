@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/memoryprismv1/faking-vision/blob/main/SPECIFICATION/FV_Viewpoint_Schema.json",
+  "title": "FV Viewpoint Records",
+  "description": "Root-level viewpoint.json array. Identifies observers/viewpoints without assuming camera geometry.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "observer"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^VP-[A-Za-z0-9_-]+$",
+        "description": "Stable typed viewpoint identifier. VP-DEFAULT is reserved for virtual legacy compatibility and must not be authored as a new viewpoint."
+      },
+      "observer": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Generic observer kind, e.g. camera, human, robot, drone, telescope, unknown."
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "sensor": {
+        "type": "object",
+        "description": "Optional source-supported sensor/device metadata; do not infer missing properties.",
+        "additionalProperties": true
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Optional non-temporal, source-supported metadata.",
+        "additionalProperties": true
+      }
+    }
+  }
+}
