@@ -37,3 +37,13 @@ This is a first working behaviour, not a full editor or authoritative FV packet 
 ## Next test
 
 Use a short, locally available clip with one clearly visible object and a packet containing that object's stable `canonical_id` or `id`. The browser CI downloads a short VP9/WebM excerpt from the source CCTV clip documented in the CCTV experiment's SOURCE_AND_PROVENANCE.md, then tests it against the corresponding Part 1 packet. The source is hosted on Wikimedia Commons; its file page records the original WebM as VP9/Opus and identifies it as public domain. Verify: the selected ID, property record, mask keyframes, exported WebM, and edit log all agree. Then improve tracking based on the failure observed, rather than assuming it works.
+
+## Reusable viewpoint object (VPO)
+
+The editor now loads, creates, edits, and exports reusable camera-pose presets in the packet's root `viewpoint` array. It keeps source `initial_state` provenance separate from the render `pose`; a missing viewpoint array receives an explicitly labelled virtual render preset with unknown source state. Existing viewpoint records are preserved.
+
+The VPO controls cover position, intrinsic Y-X-Z yaw/pitch/roll in degrees, perspective/orthographic projection, perspective FOV, optional target, aspect ratio, and preset name. The editor records before/after pose values in its edit log. Saving the packet bundle persists the VPO along with the source packet; the input file is never overwritten.
+
+**Important limitation:** this is currently a portable pose editor and packet writer, not a 3D renderer. Changing the VPO does not transform pixels in the video canvas. A 2D image/video alone cannot provide arbitrary unseen geometry. The editor therefore does not claim to generate a geometrically correct new camera view. A future render adapter can consume the same VPO contract and must report when scene geometry is insufficient.
+
+The canonical frame and field semantics are specified in `SPECIFICATION/FV_Working_Process_Specification.md` and `SPECIFICATION/FV_Viewpoint_Schema.json`. The `fv edit viewpoint` skill command describes the matching command-line operation set; implementations must share these conventions and validation rules.

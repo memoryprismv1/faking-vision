@@ -145,6 +145,28 @@ Example:
 
 `fv resolve dispute D-014`
 
+### `fv edit viewpoint`
+
+Edit the packet's reusable viewpoint object (VPO) using the canonical viewpoint schema and coordinate convention.
+
+Supported operations:
+- `fv edit viewpoint list` — list source viewpoints and reusable render presets.
+- `fv edit viewpoint show <VP-ID>` — show the full viewpoint definition.
+- `fv edit viewpoint set <VP-ID> position x y z` — set camera position in the declared world frame.
+- `fv edit viewpoint set <VP-ID> orientation yaw pitch roll` — set intrinsic Y-X-Z camera rotation in degrees.
+- `fv edit viewpoint set <VP-ID> projection perspective|orthographic` — set projection.
+- `fv edit viewpoint set <VP-ID> fov degrees` — set perspective field of view.
+- `fv edit viewpoint set <VP-ID> target x y z` — set the look-at target.
+- `fv edit viewpoint save <VP-ID> as <name>` — save a named reusable preset/derived version.
+- `fv edit viewpoint default <VP-ID>` — set the packet's default render viewpoint.
+- `fv edit viewpoint reset <VP-ID>` — restore the selected preset's saved state.
+
+Every edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. The command and browser editor must produce equivalent packet state. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders instead of claiming exact camera movement.
+
+Example:
+
+`fv edit viewpoint set VP-AB12CD34 position 2 1 4`
+
 ### `fv validate`
 
 Validate the identified FV packet against the v0.24 packet rules.
