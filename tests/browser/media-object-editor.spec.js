@@ -176,6 +176,26 @@ test('draggable camera icon edits VPO, logs before/after and exports the changed
   expect(out.limitations.some(s => s.includes('does not reconstruct missing 3D geometry') && s.includes('new physical camera position'))).toBeTruthy();
 });
 
+
+test('loads a still image, drags the camera overlay, logs and exports the image viewpoint', async ({ page }, testInfo) => {
+  await page.goto(APP);
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jXioAAAAASUVORK5CYII=', 'base64');
+  await page.locator('#imageFile').setInputFiles({ name: 'viewpoint-source.png', mimeType: 'image/png', buffer: png });
+  await expect(page.locator('#status')).toContainText('Image ready');
+  await loadPacket(page);
+  await expect(page.locator('#cameraPin')).toBeVisible();
+  const before = await page.locator('#cameraPin').boundingBox();
+  await page.locator('#cameraPin').hover();
+  await page.mouse.down();
+  await page.mouse.move(before.x + before.width / 2 + 22, before.y + before.height / 2 + 12);
+  await page.mouse.up();
+  await expect(page.locator('#log')).toContainText('Updated VPO');
+  const { target } = await saveDownload(page, '#savePacket', testInfo);
+  const out = JSON.parse(await fs.readFile(target, 'utf8'));
+  expect(out.packet.viewpoint[0].pose.image_anchor.x).not.toBe(0.5);
+  expect(out.edit_log.some(e => e.type === 'viewpoint_edit')).toBeTruthy();
+});
+
 test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
   test.skip(!process.env.FV_REAL_MEDIA_PATH, 'CI supplies a short VP9/WebM excerpt from the documented source clip');
   test.setTimeout(120000);
