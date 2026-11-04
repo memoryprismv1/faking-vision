@@ -1015,6 +1015,56 @@ The initialisation states where/how the view is situated at the beginning, at th
 
 This metadata requirement does not require a matched set of images or a fixed scene. The viewpoint identity and initial state are defined in section 10.1B; temporal transitions are recorded in TD. The visual field, object inventory, and per-object visibility remain separate FV concerns and are not expanded by this requirement.
 
+## 17.4 Observer-conditioned visual access
+
+**Status: conceptual model for controlled testing; not yet a new mandatory packet schema.**
+
+A physical scene and an observer's accessible visual information are not the same thing. FV MUST keep the existence and spatial state of scene content separate from what is exposed, detected, recognised, interpreted, attended to, or selected from a particular viewpoint.
+
+Use the following distinctions when describing an observation:
+
+1. **Physical presence:** content supported as existing in the scene, whether or not visible from the current viewpoint.
+2. **Geometric exposure:** which parts of the scene/content fall within the observer's view and are not geometrically occluded, at the precision supported by the source.
+3. **Detection:** whether a visual candidate is registered by the observer/model. A present and exposed item may not be detected.
+4. **Recognition:** whether the detected candidate is correctly identified or categorised. Detection does not imply correct recognition.
+5. **Interpretation:** what structure, orientation, state, or meaning is inferred from the detected/recognised evidence. A visible item may be misread.
+6. **Attention/selection:** what the observer prioritises or acts upon. Visibility and recognition do not imply attention or selection.
+
+Do not collapse these stages. In particular:
+- absence from an observation is not proof of absence from the physical scene;
+- not detected is not the same as occluded or outside the field of view;
+- detected but unrecognised is not the same as hidden;
+- misrecognition is not a valid basis for changing the physical object inventory;
+- attention or selection priority is observer/task behaviour, not a property of the scene itself.
+
+### Viewpoint-conditioned appearance
+
+A fixed physical object or surface may produce different image evidence from different viewpoints. Perspective, foreshortening, visible surface, overlap, occlusion, distance, framing, and orientation can change while the physical scene remains unchanged. The observation MUST describe the evidence from the current viewpoint rather than force multiple views to look or resolve identically.
+
+For a 2D surface (for example, a marked page), use page/surface coordinates for content and observer position/orientation for the view. For a 3D scene (for example, a retail shelf), use scene coordinates for objects/surfaces and observer position/orientation for the view. Do not conflate scene coordinates, image/pixel coordinates, and observer coordinates. Record a coordinate frame and units only when they are known or explicitly defined by the experiment; otherwise use qualitative descriptions and preserve uncertainty.
+
+The observer viewpoint may be represented by a camera, a human eye, or a simplified directional/view-cone proxy such as a torch beam in a controlled demonstration. The proxy represents the observer's position and viewing direction for that experiment; do not silently model it as a separate illumination source. If actual illumination is independently varied, record that as a separate experimental condition.
+
+### Retail-shelf analogy: use and limits
+
+The retail-shelf analogy illustrates observer-relative exposure and selection priority: products may be physically present but differ in facing, occlusion, visual prominence, and likelihood of being selected from a shopper's approach direction. It is a useful conceptual example, not a universal quantitative law. FV MUST NOT assign an intrinsic 'eye-level', 'lower-shelf', 'hidden', 'locked-cabinet', or 'glitch' class to an object without a task-specific operational definition and evidence.
+
+The analogy's categories describe different mechanisms, not one visibility scale:
+- lower priority: visible/recognised but not selected;
+- hidden: not detected because it is outside the view, occluded, or otherwise insufficiently exposed (record the actual cause when known);
+- defended/costly: detected but action is deterred by expected interaction cost or risk;
+- glitch/misread: detected but orientation, identity, or structure is misinterpreted.
+
+These are observer/task outcomes and must not be written into the physical object record as intrinsic properties.
+
+### Controlled viewpoint test sequence
+
+Begin with a fixed 2D page/surface carrying a simple coordinate grid and a small set of known marks. Hold the page and its content fixed while varying only the observer/viewpoint position and orientation. Record the source image and viewpoint initialisation for each still image. Compare the resulting observations for changes in apparent shape, relative spacing, overlap, exposure, and readability. Do not require the analysis to reconstruct a single canonical appearance from all views.
+
+Then extend the same principle to a 3D arrangement such as a retail shelf. Hold products and their placements fixed while changing the observer's position/approach direction and height. Record which product surfaces/facings are exposed, partially occluded, or outside the view, and keep detection, recognition, and selection outcomes separate. Do not infer shopper attention or purchase choice from geometry alone.
+
+For video, record the initial viewpoint in viewpoint.json and supported viewpoint movement/reorientation in TD. If only a sequence of independent still images is available, treat them as separate image observations unless the experiment establishes a temporal source and ordering.
+
 # 18. Model-knowledge containment test
 
 FV should actively test whether a renderer imports knowledge about what a scene category normally contains.
