@@ -23,7 +23,7 @@ Test coordinate frame:
 Selected render pose:
 - Position: x=2.0, y=1.0, z=5.0 metres
 - Orientation: intrinsic Euler, rotation order Y-X-Z
-- Yaw: 15 degrees; pitch: -5 degrees; roll: 0 degrees
+- Yaw: 15 degrees; Pitch: -5 degrees; Roll: 0 degrees
 - Projection: perspective; field of view: 50 degrees
 - Target: x=0.0, y=1.0, z=0.0 metres
 - Aspect ratio: 16:9; framing fit: contain; centre: x=0.5, y=0.5
