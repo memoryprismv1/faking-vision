@@ -8,7 +8,7 @@ test('FV Edit camera drag changes VPO, logs it, exports and reloads it', async (
   const before = await page.locator('#cameraMarker').boundingBox();
   await page.locator('#cameraMarker').hover();
   await page.mouse.down();
-  await page.mouse.move(before.x + before.width / 2 + 55, before.y + before.height / 2 + 24);
+  await page.mouse.move(before.x + before.width / 2 + 55, before.y + before.height / 2 + 24, { steps: 6 });
   await page.mouse.up();
   await expect(page.locator('#viewX')).not.toHaveValue('0');
   const { target } = await (async () => {
