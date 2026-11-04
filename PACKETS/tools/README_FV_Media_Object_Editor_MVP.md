@@ -6,7 +6,7 @@ Experimental next step from the CSS-schematic FV Edit Visual Workbench.
 
 Open `FV_Media_Object_Editor_MVP.html` in a current desktop browser. No server or build step is required.
 
-1. Load a local video.
+1. Load a local video, or load a still image in the new image-viewpoint mode.
 2. Load an FV JSON file, such as an `OI.json` or an exported packet bundle.
 3. Select an existing object ID discovered in the packet.
 4. Draw a polygon around that object in the current frame.
@@ -40,7 +40,9 @@ Use a short, locally available clip with one clearly visible object and a packet
 
 ## Reusable viewpoint object (VPO)
 
-The editor now loads, creates, edits, and exports reusable camera-pose presets in the packet's root `viewpoint` array. It keeps source `initial_state` provenance separate from the render `pose`; a missing viewpoint array receives an explicitly labelled virtual render preset with unknown source state. Existing viewpoint records are preserved.
+The editor now accepts still-image input for viewpoint editing. A draggable camera icon overlays the loaded image; dragging it stores an image-relative `pose.image_anchor` in the selected VPO. The edit is logged and survives packet-bundle export/reload. This is an image-space camera marker/pose annotation, not a synthesized alternate perspective or pixel transformation.
+
+The editor also loads, creates, edits, and exports reusable camera-pose presets in the packet's root `viewpoint` array. It keeps source `initial_state` provenance separate from the render `pose`; a missing viewpoint array receives an explicitly labelled virtual render preset with unknown source state. Existing viewpoint records are preserved.
 
 The VPO controls cover position, intrinsic Y-X-Z yaw/pitch/roll in degrees, perspective/orthographic projection, perspective FOV, optional target, aspect ratio, and preset name. A draggable camera icon overlays the source frame as a camera-position control; dragging updates the position fields and commits/logs the VPO edit. The editor records before/after pose values in its edit log. Saving the packet bundle persists the VPO along with the source packet; the input file is never overwritten.
 
