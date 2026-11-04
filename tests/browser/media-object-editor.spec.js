@@ -173,7 +173,7 @@ test('draggable camera icon edits VPO, logs before/after and exports the changed
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
   expect(out.packet.viewpoint[0].pose.position.x).not.toBe(0);
   expect(out.edit_log.some(e => e.type === 'viewpoint_edit' && e.before && e.after)).toBeTruthy();
-  expect(out.limitations).toContain('A changed VPO does not render a new physical camera view from a 2D source.');
+  expect(out.limitations.some(s => s.includes('does not reconstruct missing 3D geometry') && s.includes('new physical camera position'))).toBeTruthy();
 });
 
 test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
