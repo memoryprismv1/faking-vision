@@ -169,6 +169,14 @@ test('draggable camera icon edits VPO, logs before/after and exports the changed
   await page.mouse.move(before.x + before.width / 2 + 45, before.y + before.height / 2 + 20);
   await page.mouse.up();
   await expect(page.locator('#log')).toContainText('Updated VPO');
+  await page.locator('#camYaw').fill('18');
+  await page.locator('#camPitch').fill('9');
+  await page.locator('#renderPerspective').click();
+  await expect(page.locator('#perspectiveOutput')).toBeVisible();
+  await expect(page.locator('#log')).toContainText('Generated planar perspective approximation');
+  const pngDownload = page.waitForEvent('download');
+  await page.locator('#downloadPerspective').click();
+  expect((await pngDownload).suggestedFilename()).toBe('fv-perspective-approximation.png');
   const { target } = await saveDownload(page, '#savePacket', testInfo);
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
   expect(out.packet.viewpoint[0].pose.position.x).not.toBe(0);
@@ -194,6 +202,7 @@ test('loads a still image, drags the camera overlay, logs and exports the image 
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
   expect(out.packet.viewpoint[0].pose.image_anchor.x).not.toBe(0.5);
   expect(out.edit_log.some(e => e.type === 'viewpoint_edit')).toBeTruthy();
+  expect(out.edit_log.some(e => e.type === 'perspective_image_render')).toBeTruthy();
 });
 
 test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
