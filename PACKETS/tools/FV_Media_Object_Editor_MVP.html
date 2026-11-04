@@ -130,8 +130,20 @@ function positionCameraPin(){const p=activeVPO?.pose?.position;if(!p)return;cons
  function commitVPO(){if(!activeVPO)return;const n=id=>Number($(id).value);if(['camX','camY','camZ','camYaw','camPitch','camRoll','camFov','camAspect'].some(id=>!Number.isFinite(n(id)))){say('Viewpoint values must be valid numbers.');return}if(n('camAspect')<=0||n('camFov')<=0||n('camFov')>=179){say('Aspect ratio must be positive and FOV must be between 0 and 179 degrees.');return}const before=JSON.stringify(activeVPO.pose);activeVPO.name=$('camName').value.trim()||activeVPO.id;activeVPO.role=activeVPO.role||'render_preset';activeVPO.coordinate_frame=activeVPO.coordinate_frame||{id:'FV-WORLD-1',handedness:'right',up_axis:'+Y',units:'scene_units'};activeVPO.pose={...(sourceKind==='image'?{image_anchor:{x:cameraDrag?.anchorX??activeVPO.pose.image_anchor?.x??0.5,y:cameraDrag?.anchorY??activeVPO.pose.image_anchor?.y??0.5}}:{}),position:{x:n('camX'),y:n('camY'),z:n('camZ')},orientation:{representation:'intrinsic_euler',yaw:n('camYaw'),pitch:n('camPitch'),roll:n('camRoll'),unit:'degrees',rotation_order:'Y-X-Z'},projection:$('camProjection').value,framing:{aspect_ratio:n('camAspect'),fit:'contain'}};if($('camProjection').value==='perspective')activeVPO.pose.field_of_view_degrees=n('camFov');else activeVPO.pose.orthographic_scale=activeVPO.pose.orthographic_scale||10;const t=['targetX','targetY','targetZ'].map(id=>$(id).value.trim());if(t.every(x=>x!=='')){activeVPO.pose.target={x:Number(t[0]),y:Number(t[1]),z:Number(t[2])}}else delete activeVPO.pose.target;appendEdit({type:'viewpoint_edit',viewpoint_id:activeVPO.id,before,after:JSON.stringify(activeVPO.pose),description:'Updated VPO '+activeVPO.id+' ('+activeVPO.name+')'});refreshVPO();say('VPO saved in the in-memory packet. Export the packet bundle to persist it.')}
 function objectIdOf(node){if(!node||typeof node!=='object'||Array.isArray(node))return null;if(typeof node.canonical_id==='string'&&node.canonical_id.trim())return node.canonical_id;if(typeof node.id==='string'&&node.id.trim())return node.id;return null}
 function collectIds(root){
- const ids=new Set(), seen=new Set();
- function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);const id=objectIdOf(v);if(id)ids.add(id);for(const x of Object.values(v))walk(x)}
+ const ids=new Set();
+ const addRecord=record=>{const id=objectIdOf(record);if(id)ids.add(id)};
+ if(Array.isArray(root)){root.forEach(addRecord);return [...ids].sort()}
+ const collections=new Set(['OI','entities','objects','object_inventory','objectInventory']);
+ const seen=new Set();
+ function walk(node,key=''){
+  if(!node||typeof node!=='object'||seen.has(node))return;seen.add(node);
+  if(collections.has(key)){
+   if(Array.isArray(node))node.forEach(addRecord);
+   else if(typeof node==='object')Object.values(node).forEach(addRecord);
+   return;
+  }
+  for(const [childKey,value] of Object.entries(node))if(collections.has(childKey))walk(value,childKey);
+ }
  walk(root);return [...ids].sort();
 }
 function updateKeyList(){ $('keyList').innerHTML=keyframes.length?keyframes.slice().sort((a,b)=>a.time-b.time).map(k=>'<div>'+fmt(k.time)+' · '+k.points.length+' points <button data-time="'+k.time+'">Remove</button></div>').join(''):'No shape keyframes yet.'}
