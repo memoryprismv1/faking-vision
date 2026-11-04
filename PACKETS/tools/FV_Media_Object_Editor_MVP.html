@@ -88,7 +88,6 @@ small,.hint{color:var(--muted);font-size:12px}.status{white-space:pre-wrap;paddi
 const $ = id => document.getElementById(id);
 const video=$('source'), canvas=$('view'), ctx=canvas.getContext('2d',{willReadFrequently:true});
 let videoURL=null, packet=null, packetName='OI.json', keyframes=[], polygon=[], edits=[], rendering=false, recorder=null, chunks=[], activeVPO=null, cameraDrag=null, imageSource=null, imageURL=null, sourceKind=null;
-let activeVPO=null;
 const say = msg => $('status').textContent=msg;
 const fmt = t => {const m=Math.floor(t/60),s=(t%60).toFixed(2).padStart(5,'0');return String(m).padStart(2,'0')+':'+s};
 function sizeCanvas(){if(!video.videoWidth)return;canvas.width=video.videoWidth;canvas.height=video.videoHeight;draw()}
