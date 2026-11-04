@@ -157,6 +157,25 @@ test('exports a WebM render after a saved mask keyframe', async ({ page }, testI
 });
 
 
+
+test('draggable camera icon edits VPO, logs before/after and exports the changed viewpoint', async ({ page }, testInfo) => {
+  const video = await makeVideo(page);
+  await loadEditor(page, video);
+  await loadPacket(page);
+  await expect(page.locator('#cameraPin')).toBeVisible();
+  const before = await page.locator('#cameraPin').boundingBox();
+  await page.locator('#cameraPin').hover();
+  await page.mouse.down();
+  await page.mouse.move(before.x + before.width / 2 + 45, before.y + before.height / 2 + 20);
+  await page.mouse.up();
+  await expect(page.locator('#log')).toContainText('Updated VPO');
+  const { target } = await saveDownload(page, '#savePacket', testInfo);
+  const out = JSON.parse(await fs.readFile(target, 'utf8'));
+  expect(out.packet.viewpoint[0].pose.position.x).not.toBe(0);
+  expect(out.edit_log.some(e => e.type === 'viewpoint_edit' && e.before && e.after)).toBeTruthy();
+  expect(out.limitations).toContain('A changed VPO does not render a new physical camera view from a 2D source.');
+});
+
 test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', async ({ page }, testInfo) => {
   test.skip(!process.env.FV_REAL_MEDIA_PATH, 'CI supplies a short VP9/WebM excerpt from the documented source clip');
   test.setTimeout(120000);
