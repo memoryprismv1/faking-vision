@@ -18,6 +18,10 @@ Apply the Making Vision processing order: current sensory field/input and direct
 
 
 
+## Observer-conditioned visual access (current specification)
+
+Keep these stages separate: physical presence → geometric exposure → detection → recognition → interpretation → attention/selection. Do not infer physical absence from non-detection, correct recognition from detection, or attention/selection from visibility. Different viewpoints may produce different apparent shapes, overlaps, exposed surfaces, and occlusions for the same fixed scene. See section 17.4 of the canonical specification. This is a conceptual/experimental model, not yet a new mandatory packet schema.
+
 ## Viewpoint packet requirement (current specification)
 
 Apply the current authoritative Working Process Specification for viewpoint metadata:
