@@ -1,0 +1,49 @@
+const { test, expect } = require('@playwright/test');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+
+const ROOT = path.resolve(__dirname, '../..');
+const PACKET = path.join(ROOT, 'PACKETS/examples/videos/Cat_jumping_backwards');
+const FIXTURE = path.join(ROOT, 'tests/fixtures/prompt-only-cat');
+const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
+
+test('prompt-only golden artifact preserves packet facts and selected render VPO', async () => {
+  const [oi, msrm, td, gate, validation, vpo, prompt] = await Promise.all([
+    readJson(path.join(PACKET, 'OI.json')),
+    readJson(path.join(PACKET, 'MSRM.json')),
+    readJson(path.join(PACKET, 'TD.json')),
+    readJson(path.join(PACKET, 'dispute.json')),
+    readJson(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt')),
+    readJson(path.join(FIXTURE, 'viewpoint.json')),
+    fs.readFile(path.join(FIXTURE, 'COMPILED_PROMPT.txt'), 'utf8')
+  ]);
+  expect(gate.status).toBe('resolved');
+  expect(validation.overall_status).toBe('VALID - resolved');
+  expect(validation.rendering_gate).toContain('PERMITTED');
+  expect(oi.entities).toHaveLength(1);
+  expect(prompt).toContain(oi.entities[0].canonical_id);
+  expect(prompt).toContain(oi.entities[0].label);
+  for (const scene of msrm.scenes) expect(prompt).toContain(scene.scene_id);
+  expect(prompt).toContain(td.timeline[1].changes[0].temporal_scaling.toString());
+  expect(vpo).toHaveLength(1);
+  const v = vpo[0];
+  expect(v.id).toBe('VP-TEST-0001');
+  expect(v.role).toBe('render_preset');
+  expect(v.initial_state.status).toBe('unknown');
+  expect(prompt).toContain(v.id);
+  expect(prompt).toContain(v.coordinate_frame.id);
+  expect(prompt).toContain('x=' + v.pose.position.x);
+  expect(prompt).toContain('y=' + v.pose.position.y);
+  expect(prompt).toContain('z=' + v.pose.position.z);
+  expect(prompt).toContain('Yaw: ' + v.pose.orientation.yaw + ' degrees');
+  expect(prompt).toContain('Pitch: ' + v.pose.orientation.pitch + ' degrees');
+  expect(prompt).toContain('Roll: ' + v.pose.orientation.roll + ' degrees');
+  expect(prompt).toContain(v.pose.orientation.rotation_order);
+  expect(prompt).toContain(v.pose.projection);
+  expect(prompt).toContain(String(v.pose.field_of_view_degrees));
+  expect(prompt).toContain('Source viewpoint initial_state');
+  expect(prompt).toContain('test-defined render viewpoint');
+  for (const required of ['unresolved','No second cat','No people','No props','No invented floor','APPROXIMATE / UNSUPPORTED','Do not invoke a generator','NO IMAGE OR VIDEO GENERATION HAS OCCURRED']) {
+    expect(prompt).toContain(required);
+  }
+});
