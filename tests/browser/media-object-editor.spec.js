@@ -189,7 +189,7 @@ test('loads a still image, drags the camera overlay, logs and exports the image 
   await page.goto(APP);
   const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jXioAAAAASUVORK5CYII=', 'base64');
   await page.locator('#imageFile').setInputFiles({ name: 'viewpoint-source.png', mimeType: 'image/png', buffer: png });
-  await expect(page.locator('#status')).toContainText('Image ready');
+  await expect(page.locator('#status')).toContainText('Still image loaded.');
   await loadPacket(page);
   await expect(page.locator('#cameraPin')).toBeVisible();
   const before = await page.locator('#cameraPin').boundingBox();
