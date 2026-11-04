@@ -101,7 +101,7 @@ test('loads real video and packet, edits only the selected object, saves keyfram
 
   const { target } = await saveDownload(page, '#savePacket', testInfo);
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
-  expect(out.format).toBe('fv-media-edit-mvp-v1');
+  expect(out.format).toBe('fv-media-edit-mvp-v2');
   expect(out.packet).toHaveLength(1);
   expect(out.packet[0].id).toBe('cat_01');
   expect(out.packet[0].properties.appearance).toBe('orange tabby');
@@ -195,7 +195,7 @@ test('loads a still image, drags the camera overlay, logs and exports the image 
   const before = await page.locator('#cameraPin').boundingBox();
   await page.locator('#cameraPin').hover();
   await page.mouse.down();
-  await page.mouse.move(before.x + before.width / 2 + 22, before.y + before.height / 2 + 12);
+  await page.mouse.move(before.x + before.width / 2 + 22, before.y + before.height / 2 + 12, { steps: 6 });
   await page.mouse.up();
   await expect(page.locator('#log')).toContainText('Updated VPO');
   const { target } = await saveDownload(page, '#savePacket', testInfo);
