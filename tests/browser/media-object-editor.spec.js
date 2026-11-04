@@ -101,10 +101,16 @@ test('loads real video and packet, edits only the selected object, saves keyfram
 
   const { target } = await saveDownload(page, '#savePacket', testInfo);
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
-  expect(out.format).toBe('fv-media-edit-mvp-v1');
-  expect(out.packet).toHaveLength(1);
-  expect(out.packet[0].id).toBe('cat_01');
-  expect(out.packet[0].properties.appearance).toBe('orange tabby');
+  expect(out.format).toBe('fv-media-edit-mvp-v2');
+  expect(out.packet.OI).toHaveLength(1);
+  expect(out.packet.OI[0].id).toBe('cat_01');
+  expect(out.packet.OI[0].properties.appearance).toBe('orange tabby');
+  expect(out.packet.viewpoint).toHaveLength(1);
+  expect(out.packet.viewpoint[0].role).toBe('render_preset');
+  expect(out.packet.viewpoint[0].initial_state.status).toBe('unknown');
+  expect(out.packet.viewpoint[0].pose.position.z).toBe(5);
+  expect(out.packet.viewpoint[0].pose.framing.aspect_ratio).toBeCloseTo(16/9, 3);
+  expect(out.edit_log.map(e => e.type)).toContain('viewpoint_edit');
   expect(out.media_edits.object_id).toBe('cat_01');
   expect(out.media_edits.mask_keyframes).toHaveLength(2);
   expect(out.edit_log.map(e => e.type)).toContain('property_edit');
@@ -206,4 +212,83 @@ test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', 
   expect(rendered.length).toBeGreaterThan(1000);
   expect([...rendered.subarray(0, 4)]).toEqual([0x1a, 0x45, 0xdf, 0xa3]);
   await expect(page.locator('#status')).toContainText('Video export complete');
+});
+
+
+test('creates, edits, switches and exports reusable viewpoint presets without changing OI', async ({ page }, testInfo) => {
+  const video = await makeVideo(page);
+  await loadEditor(page, video);
+  await loadPacket(page);
+  await expect(page.locator('#viewpoint')).toBeEnabled();
+  await expect(page.locator('#viewpoint option')).toHaveCount(1);
+
+  await page.locator('#camX').fill('2.5');
+  await page.locator('#camY').fill('1.25');
+  await page.locator('#camZ').fill('7');
+  await page.locator('#camYaw').fill('30');
+  await page.locator('#camPitch').fill('-10');
+  await page.locator('#camRoll').fill('5');
+  await page.locator('#camFov').fill('60');
+  await page.locator('#camAspect').fill('1.5');
+  await page.locator('#targetX').fill('0');
+  await page.locator('#targetY').fill('1');
+  await page.locator('#targetZ').fill('0');
+  await page.locator('#saveViewpoint').click();
+  await expect(page.locator('#status')).toContainText('VPO saved');
+
+  await page.locator('#newViewpoint').click();
+  await expect(page.locator('#viewpoint option')).toHaveCount(2);
+  const newId = await page.locator('#viewpoint').inputValue();
+  expect(newId).toMatch(/^VP-[A-F0-9]{12}$/);
+  await page.locator('#camZ').fill('9');
+  await page.locator('#saveViewpoint').click();
+  await page.locator('#viewpoint').selectOption({ index: 0 });
+  await expect(page.locator('#camZ')).toHaveValue('7');
+  await page.locator('#viewpoint').selectOption(newId);
+  await expect(page.locator('#camZ')).toHaveValue('9');
+
+  const { target } = await saveDownload(page, '#savePacket', testInfo);
+  const out = JSON.parse(await fs.readFile(target, 'utf8'));
+  expect(out.format).toBe('fv-media-edit-mvp-v2');
+  expect(out.packet.OI).toEqual(PACKET);
+  expect(out.packet.viewpoint).toHaveLength(2);
+  const first = out.packet.viewpoint[0];
+  expect(first.pose.position).toEqual({ x: 2.5, y: 1.25, z: 7 });
+  expect(first.pose.orientation).toMatchObject({
+    representation: 'intrinsic_euler', yaw: 30, pitch: -10, roll: 5,
+    unit: 'degrees', rotation_order: 'Y-X-Z'
+  });
+  expect(first.pose.projection).toBe('perspective');
+  expect(first.pose.field_of_view_degrees).toBe(60);
+  expect(first.pose.target).toEqual({ x: 0, y: 1, z: 0 });
+  expect(first.pose.framing.aspect_ratio).toBe(1.5);
+  expect(out.packet.viewpoint[1].pose.position.z).toBe(9);
+  expect(out.packet.viewpoint.filter(v => v.is_default)).toHaveLength(1);
+  expect(out.edit_log.filter(e => e.type === 'viewpoint_edit').length).toBeGreaterThanOrEqual(2);
+});
+
+test('loads an existing viewpoint.json record and preserves its source provenance', async ({ page }, testInfo) => {
+  const video = await makeVideo(page);
+  await loadEditor(page, video);
+  const packet = {
+    OI: PACKET,
+    viewpoint: [{
+      id: 'VP-SOURCE0001',
+      role: 'source',
+      observer: { type: 'camera' },
+      initial_state: { status: 'known', position: 'fixed tripod', orientation: 'level', basis: 'source metadata' }
+    }]
+  };
+  await page.locator('#packetFile').setInputFiles({
+    name: 'packet.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(packet))
+  });
+  await expect(page.locator('#viewpoint')).toBeEnabled();
+  await expect(page.locator('#viewpoint')).toHaveValue('VP-SOURCE0001');
+  await page.locator('#camX').fill('3');
+  await page.locator('#saveViewpoint').click();
+  const { target } = await saveDownload(page, '#savePacket', testInfo);
+  const out = JSON.parse(await fs.readFile(target, 'utf8'));
+  expect(out.packet.viewpoint[0].initial_state).toEqual(packet.viewpoint[0].initial_state);
+  expect(out.packet.viewpoint[0].role).toBe('source_and_render');
+  expect(out.packet.viewpoint[0].pose.position.x).toBe(3);
 });
