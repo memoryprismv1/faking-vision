@@ -132,7 +132,7 @@ function collectIds(root){
  const ids=new Set(), seen=new Set();
  // Object selection is scoped to the packet's OI. Viewpoint IDs and
  // coordinate-frame IDs are metadata, not semantic object identities.
- const inventory=Array.isArray(root)?root:(Array.isArray(root?.OI)?root.OI:[]);
+ const inventory=Array.isArray(root)?root:(Array.isArray(root?.OI)?root.OI:(Array.isArray(root?.entities)?root.entities:[]));
  function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);const id=objectIdOf(v);if(id)ids.add(id);for(const x of Object.values(v))walk(x)}
  walk(inventory);return [...ids].sort();
 }
