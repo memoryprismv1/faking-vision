@@ -43,7 +43,7 @@ test('prompt-only golden artifact preserves packet facts and selected render VPO
   expect(prompt).toContain(String(v.pose.field_of_view_degrees));
   expect(prompt).toContain('Source viewpoint initial_state');
   expect(prompt).toContain('test-defined render viewpoint');
-  for (const required of ['unresolved','No second cat','No people','No props','No invented floor','APPROXIMATE / UNSUPPORTED','Do not invoke a generator','NO IMAGE OR VIDEO GENERATION HAS OCCURRED']) {
+  for (const required of ['unresolved','No second cat','No people','No props','No invented floor','APPROXIMATE / UNSUPPORTED','Do not invoke a generator','complete output of prompt-only compilation']) {
     expect(prompt).toContain(required);
   }
 });
