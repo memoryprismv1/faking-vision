@@ -130,8 +130,11 @@ function commitVPO(){if(!activeVPO)return;const n=id=>Number($(id).value);if(['c
 function objectIdOf(node){if(!node||typeof node!=='object'||Array.isArray(node))return null;if(typeof node.canonical_id==='string'&&node.canonical_id.trim())return node.canonical_id;if(typeof node.id==='string'&&node.id.trim())return node.id;return null}
 function collectIds(root){
  const ids=new Set(), seen=new Set();
+ // Object selection is scoped to the packet's OI. Viewpoint IDs and
+ // coordinate-frame IDs are metadata, not semantic object identities.
+ const inventory=Array.isArray(root)?root:(Array.isArray(root?.OI)?root.OI:[]);
  function walk(v){if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);const id=objectIdOf(v);if(id)ids.add(id);for(const x of Object.values(v))walk(x)}
- walk(root);return [...ids].sort();
+ walk(inventory);return [...ids].sort();
 }
 function updateKeyList(){ $('keyList').innerHTML=keyframes.length?keyframes.slice().sort((a,b)=>a.time-b.time).map(k=>'<div>'+fmt(k.time)+' · '+k.points.length+' points <button data-time="'+k.time+'">Remove</button></div>').join(''):'No shape keyframes yet.'}
 function appendEdit(edit){edits.push({...edit,at:new Date().toISOString()});$('log').innerHTML=edits.map(e=>'<li>'+escapeHTML(e.description)+' <span class="hint">('+escapeHTML(e.at)+')</span></li>').join('')}
