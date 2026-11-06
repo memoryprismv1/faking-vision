@@ -128,6 +128,37 @@ Example:
 
 `fv create a reconstruction packet from this resolved packet`
 
+### `fv rebuild` (alias: `fv upgrade`)
+
+Upgrade an existing FV packet to the current authoritative specification version, or to the version explicitly supplied with `--to`.
+
+`fv rebuild [attached-packet.zip] [--to <FV-version>]`
+
+This is a version-migration operation, not a content-editing operation.
+
+- Preserve the supplied packet as the migration source and work on a separate rebuilt copy unless the user explicitly requests in-place replacement.
+- Inspect packet files, version markers, provenance, schemas, edit history, disputes, and validation reports. An unversioned packet is legacy; do not guess its exact authoring version.
+- Map the source structure to the target specification and distinguish mechanical transformations from compatibility handling and changes requiring re-analysis, human input, or `fv edit`.
+- Preserve identities, evidence references, scene membership, temporal order, uncertainty, negative constraints, disputes, and original provenance.
+- Never invent missing observations, object properties, camera geometry, coordinate frames, environmental conditions, object responses, timestamps, rights claims, or human resolutions to satisfy a newer schema.
+- Preserve the historical version claim. Record the new target mapping as a migration event; do not pretend the packet was originally authored under the target version.
+- Produce a rebuild report listing the source and target versions, inspected files, transformations, compatibility handling, unresolved items, required follow-up, and post-rebuild validation.
+- Run target-version `fv validate` on the rebuilt copy. Report structural validation, FV semantic validation, dispute/reconciliation readiness, and independent visual audit separately.
+- Do not resolve disputes or bypass compilation gates. A structurally upgraded packet may still require evidence work, human review, or `fv resolve`.
+
+Outcomes:
+- **UPGRADED — VALIDATED:** migration and target-version validation passed; compilation readiness remains a separate decision.
+- **UPGRADED — REVIEW REQUIRED:** structural migration completed, but evidence, semantic, dispute, or human-review requirements remain.
+- **BLOCKED:** safe migration requires missing source material, a specification decision, or human input.
+
+Use compatibility behaviour only where the target specification defines it. A legacy virtual `VP-DEFAULT` is not evidence of camera geometry and must not be materialized as invented pose data. Missing environment data alone does not invalidate a legacy packet. Do not invent a version-marker filename/schema while that format remains unspecified; record the target mapping in the rebuild report and flag the gap.
+
+`fv upgrade` is an alias for this same operation, not a separate workflow.
+
+Example:
+
+`fv rebuild [legacy-packet.zip] --to current`
+
 ### `fv resolve`
 
 Resolve an FV dispute, ambiguity, correspondence conflict, or competing
@@ -144,6 +175,12 @@ change a status field to make compilation possible.
 Example:
 
 `fv resolve dispute D-014`
+
+### `fv edit`
+
+Make an intentional, evidence-grounded change to existing packet content. Use the relevant edit operation for object properties, viewpoints, or environmental conditions. Record successful changes and their provenance in the packet's edit log; do not record failed or unresolved operations as successful.
+
+`fv edit` does not perform specification-version migration. Use `fv rebuild` (or its alias `fv upgrade`) to bring a legacy packet into alignment with a newer FV standard. Rebuilding does not replace intentional content edits.
 
 ### `fv edit viewpoint`
 
