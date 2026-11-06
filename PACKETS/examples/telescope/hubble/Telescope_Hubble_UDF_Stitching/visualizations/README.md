@@ -7,3 +7,4 @@ The images are supplied/generated visualizations. Numerical labels and depicted 
 ## Files
 
 - `01_hubble_udf_stitching.jpg` — Hubble exposure alignment and mosaic pipeline.
+- `02_hubble_udf_stitching_craft_poster.jpg` — Hubble deep-field stitching craft poster.
