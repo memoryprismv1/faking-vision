@@ -28,10 +28,20 @@ The textarea commands are operational boundaries, not claims that a standalone F
 | `fv assemble` | Put partial or overlapping observations together into a larger spatial/visual representation: LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, overlapping photographs, etc. | Registered/assembled representation with provenance and unresolved registration issues preserved. |
 | `fv merge` | Reconcile independently produced FV packets and compare packet-scoped object declarations. | Merged packet/object inventory with provenance preserved and identity normalization only where supported. |
 | `fv create` | Deliberately construct a new FV packet from established FV information or an explicit specification. | Requested packet type, including a reconstruction packet where applicable. |
+| `fv rebuild` (alias: `fv upgrade`) | Migrate an existing/legacy packet to a specified or current FV version while preserving historical provenance. | Separate rebuilt packet, migration report, and target-version validation result. |
+| `fv edit` | Make intentional changes to existing packet content, such as object properties, viewpoints, or environmental conditions. | Edited packet state with before/after values and provenance recorded; not a version-migration operation. |
 | `fv resolve` | Resolve an open dispute or competing interpretation. | Reconciled packet or explicitly still-unresolved packet, with resolution history preserved. |
 | `fv validate` | Check packet structure, evidence, consistency, disputes, and readiness. | Validation report; no silent repair. |
 | `fv compile` | Convert a **resolved and validated** packet into renderer instructions and, where supported, reconstruct. | Compiled renderer specification and/or reconstruction artifact. |
 | `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
+
+### Rebuild is not edit
+
+`fv rebuild` (also accepted as `fv upgrade`) migrates an existing packet's structure and representation to a target FV specification version. It preserves the original packet and its historical version claim, records the new mapping as a migration event, and validates the rebuilt copy against the target version. It must not invent missing evidence, resolve disputes, or imply that legacy content was originally authored under the newer standard.
+
+`fv edit` remains the operation for intentional changes to packet content: object properties, viewpoints, environmental conditions, and other supported edits. It does not perform version migration. Rebuild may identify a required content change that needs an explicit `fv edit`, human input, or source re-analysis; it must not silently perform those operations.
+
+Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the current authoritative FV version is the target. `fv upgrade` is an alias, not a separate workflow.
 
 ### The important distinctions
 
