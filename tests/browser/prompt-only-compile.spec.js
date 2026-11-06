@@ -7,23 +7,17 @@ const PACKET = path.join(ROOT, 'PACKETS/examples/videos/Cat_jumping_backwards');
 const FIXTURE = path.join(ROOT, 'tests/fixtures/prompt-only-cat');
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 
-// Contract-fixture check only. This repository currently defines fv compile
-// as an agent/skill interaction; it does not contain an executable prompt
-// compiler. This test validates the expected golden artifact against packet
-// facts, but does not claim to invoke or test a compiler implementation.
-test('prompt-only golden artifact contract preserves packet facts and selected render VPO', async () => {
-  const [oi, msrm, td, gate, validation, vpo, prompt] = await Promise.all([
+// Contract-fixture check only. The repository defines fv compile as an
+// agent/skill interaction; it does not contain an executable prompt compiler.
+// This test checks a representative golden prompt, not compiler execution.
+test('prompt-only golden fixture preserves packet facts and selected render VPO', async () => {
+  const [oi, msrm, td, vpo, prompt] = await Promise.all([
     readJson(path.join(PACKET, 'OI.json')),
     readJson(path.join(PACKET, 'MSRM.json')),
     readJson(path.join(PACKET, 'TD.json')),
-    readJson(path.join(PACKET, 'dispute.json')),
-    fs.readFile(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt'), 'utf8'),
     readJson(path.join(FIXTURE, 'viewpoint.json')),
     fs.readFile(path.join(FIXTURE, 'COMPILED_PROMPT.txt'), 'utf8')
   ]);
-  expect(gate.status).toBe('resolved');
-  expect(validation).toContain('VALID - resolved');
-  expect(validation).toContain('PERMITTED');
   expect(oi.entities).toHaveLength(1);
   expect(prompt).toContain(oi.entities[0].canonical_id);
   expect(prompt).toContain(oi.entities[0].label);
@@ -50,4 +44,23 @@ test('prompt-only golden artifact contract preserves packet facts and selected r
   for (const required of ['unresolved','No second cat','No additional people','No second cat, people, or props','No invented floor','APPROXIMATE / UNSUPPORTED','Do not invoke a generator','complete output of prompt-only compilation']) {
     expect(prompt).toContain(required);
   }
+});
+
+// Regression: a stale validation report and dispute.json status=resolved do
+// not override an incomplete reconciliation record. fv compile must fail
+// closed until post-reconciliation validation has actually been completed.
+test('legacy Cat packet is not compilation-ready while reconciliation validation is pending', async () => {
+  const [gate, reconciled, validation] = await Promise.all([
+    readJson(path.join(PACKET, 'dispute.json')),
+    readJson(path.join(PACKET, 'dispute.reconciled.json')),
+    fs.readFile(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt'), 'utf8')
+  ]);
+  expect(gate.status).toBe('resolved');
+  expect(validation).toContain('VALID - resolved');
+  expect(validation).toContain('PERMITTED');
+  expect(reconciled.status).toBe('resolved');
+  expect(reconciled.ai_reconciliation.validation_after_reconciliation).toBe('to be performed');
+  // The packet's historical validation claim is stale/incomplete relative to
+  // the reconciliation record. The agent-level compile gate must therefore
+  // block; this fixture must never be treated as a successful compile run.
 });
