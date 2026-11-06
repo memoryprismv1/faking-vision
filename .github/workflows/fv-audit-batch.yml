@@ -1,4 +1,4 @@
-name: FV audit batch tests
+name: FV provenance and audit tests
 
 on:
   push:
@@ -9,6 +9,8 @@ on:
       - "TOOLS/**"
       - "SPECIFICATION/FV_Audit_Report_Schema.json"
       - "SPECIFICATION/FV_Audit_Batch_Report_Schema.json"
+      - "SPECIFICATION/FV_Packet_Provenance_Schema.json"
+      - "TOOLS/test_fv_packet_provenance_schema.py"
       - ".github/workflows/fv-audit-batch.yml"
   workflow_dispatch:
 
@@ -25,4 +27,4 @@ jobs:
       - name: Run unit tests
         run: python -m unittest discover -s TOOLS -p 'test_*.py' -v
       - name: Check Python syntax
-        run: python -m py_compile TOOLS/fv_audit_batch.py TOOLS/test_fv_audit_batch.py
+        run: python -m py_compile TOOLS/fv_audit_batch.py TOOLS/test_fv_audit_batch.py TOOLS/test_fv_packet_provenance_schema.py
