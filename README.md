@@ -15,6 +15,8 @@ FV supports a complete visual-investigation and reconstruction workflow:
 * **Assemble** — register and combine partial or overlapping visual/spatial observations into a larger view or representation.
 * **Merge** — reconcile independently produced FV packets and normalize object identity only when the evidence supports equivalence.
 * **Create** — deliberately construct a new FV packet from established FV information or an explicit specification.
+* **Rebuild/upgrade** — migrate an existing or legacy packet to a target FV specification version while preserving its historical provenance.
+* **Edit** — make intentional changes to packet content; editing is not version migration.
 * **Resolve** — resolve packet disputes, ambiguities, and competing interpretations, including the required human-resolution and AI-reconciliation lifecycle.
 * **Validate** — check a packet for structural problems, contradictions, missing information, and unresolved disputes.
 * **Compile** — translate a resolved and validated packet into a lossless reconstruction specification and, where supported, perform the reconstruction.
@@ -58,11 +60,15 @@ fv investigate
 fv assemble
 fv merge
 fv create
+fv rebuild  # alias: fv upgrade
+fv edit
 fv resolve
 fv validate
 fv compile
 fv audit
 ```
+
+For an existing packet that needs a version migration, use `fv rebuild` (alias `fv upgrade`) before validation. Keep `fv edit` for intentional packet-content changes; it is not a migration catch-all. Rebuild preserves the source packet, records the target-version mapping, and validates a separate rebuilt copy. It must not invent missing evidence or resolve disputes.
 
 The normal reconstruction path is:
 
