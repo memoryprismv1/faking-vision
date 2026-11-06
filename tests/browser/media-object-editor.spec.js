@@ -57,6 +57,12 @@ async function loadPacket(page) {
   await expect(page.locator('#status')).toContainText('Packet loaded: OI.json');
   await expect(page.locator('#object')).toBeEnabled();
   await expect(page.locator('#object')).toHaveValue('cat_01');
+  // Legacy packet import must not silently materialize a render VPO.
+  await expect(page.locator('#viewpoint')).toBeDisabled();
+  await expect(page.locator('#cameraPin')).toBeHidden();
+  // Explicit user action instantiates the canonical VPO_DEFAULT template.
+  await page.locator('#newViewpoint').click();
+  await expect(page.locator('#viewpoint')).toBeEnabled();
 }
 
 async function drawTriangle(page) {
