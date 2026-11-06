@@ -1,65 +1,57 @@
 # FV prompt-compilation acceptance procedure
 
-**Status: agent-level acceptance is pending.** These are skill-runtime operations, not executable repository CLI commands. The Playwright tests do not invoke an FV agent and must not be reported as proof that `fv validate` or `fv compile --prompt` executed.
+**Status: agent-level acceptance is pending.** These are skill-runtime operations, not executable repository CLI commands. Playwright tests do not invoke an FV agent and must not be reported as proof that `fv validate` or `fv compile --prompt` executed.
 
 ## Acceptance boundary
 
-The test is for packet validation and prompt-only compilation. It does not test image generation, video generation, geometric novel-view synthesis, or visual reconstruction. No generator may be invoked during these tests.
+The test covers packet validation and prompt-only compilation, not image/video generation or visual reconstruction. No generator may be invoked.
 
-For each run, retain the exact input packet, complete validation report, complete prompt artifact (if produced), and a short run record identifying the FV skill/specification revision and agent/model. Do not overwrite the input packet.
+For each run, retain the exact input packet, validation report, prompt artifact (if produced), and run record identifying the FV skill/specification revision and agent/model. Do not overwrite the input packet.
 
-## Case A — unchanged source viewpoint
+## Case A — default render viewpoint, unchanged
 
-Use a valid image packet with a root-level `viewpoint.json` whose source viewpoint is unchanged and whose `initial_state` is explicitly represented. Do not create a new render pose or edit the VPO for this case.
+Use a valid image packet with a root-level `viewpoint.json` containing a source viewpoint record whose `initial_state` is preserved as supported by evidence, plus a separately defined render VPO with `role: render_preset` (or `source_and_render`), a complete pose and coordinate frame, and `is_default: true`.
 
-1. Run `fv validate [packet]`.
-2. Confirm the report separately records structural validity, semantic/evidence consistency, dispute/reconciliation state, rebuild assessment, and compilation readiness.
-3. Run `fv compile --prompt [same packet]`.
-4. Confirm the prompt preserves the exact source viewpoint identity and initial state. It must not invent a camera pose, coordinate frame, calibration, FOV, or physical geometry where the packet does not contain them.
-5. Confirm OI/MSRM/TD content, identities, uncertainty, and negative constraints are preserved. Confirm no generator was invoked and no rendered image is claimed.
+The default VPO may be a declared standard/test render pose. It is not a claim that the source camera occupied that pose. Do not edit it during this case.
 
-**Pass:** validation genuinely passes; compilation produces a prompt-only artifact; the viewpoint remains unchanged; unsupported camera geometry remains unknown; no source packet files are silently edited.
+1. Run `fv validate [packet]`. Confirm structural validity, semantic/evidence consistency, dispute/reconciliation state, rebuild assessment, and compilation readiness separately. Confirm the VPO schema and unique-default rule are checked.
+2. Run `fv compile --prompt [same packet]` without an explicit VPO selection.
+3. Confirm the compiler selects the record marked `is_default: true`, not merely the first array entry. The prompt must include that VPO's ID, coordinate convention, position, Y-X-Z orientation, projection, FOV/scale, framing, and target when present.
+4. Confirm source `initial_state` remains separately represented and is not replaced by the default render pose.
+5. Confirm OI/MSRM/TD, identities, uncertainty, and negative constraints are preserved. No generator is invoked and no rendered image is claimed.
 
-**Fail:** the agent substitutes a default pose, invents camera geometry, changes packet content, skips validation, or invokes a generator.
+**Pass:** validation passes; default VPO is selected and fully represented; source initialisation remains distinct; input packet is unchanged.
+
+**Fail:** compiler ignores `is_default`, chooses an arbitrary/first VPO, confuses source initialisation with render pose, invents/alters pose data, skips validation, or invokes a generator.
 
 ## Case B — legacy image packet without viewpoint.json
 
-Use an actual older image packet that predates the viewpoint-file requirement. Preserve it unchanged as the test input.
+Use an actual older image packet that predates the viewpoint-file requirement. Preserve it unchanged.
 
 1. Run `fv validate [legacy-packet]`.
-2. Confirm the agent applies only the documented legacy compatibility rule: an in-memory virtual `VP-DEFAULT` may represent the implicit viewpoint. It is not evidence of camera geometry and must not be written into the packet just by reading it.
-3. Confirm the rebuild assessment is explicit. A legacy packet is not automatically invalid solely because it lacks `viewpoint.json`; whether compilation can proceed depends on all other gates and documented compatibility.
-4. If validation and all compilation gates pass, run `fv compile --prompt [same legacy-packet]`.
-5. Confirm the prompt identifies `VP-DEFAULT` as a compatibility interpretation, preserves unknown position/orientation, and does not materialize a pose or invent FOV, calibration, or geometry.
-6. Compare the input packet before/after. No `viewpoint.json` or other file may be silently added.
+2. Confirm documented compatibility: virtual `VP-DEFAULT` may represent the implicit source viewpoint in memory. It is not a render VPO and carries no inferred camera geometry.
+3. Confirm the rebuild assessment is explicit. Missing `viewpoint.json` alone does not automatically invalidate a legacy packet.
+4. Run `fv compile --prompt [same legacy-packet]` only if all independent gates pass and a render VPO is otherwise available/explicitly selected. Do not silently convert `VP-DEFAULT` into a render pose.
+5. Confirm unknown source position/orientation remains unknown. Compare input before/after; no `viewpoint.json` may be silently written.
 
-**Pass:** the legacy packet is handled through documented compatibility without fabricating source metadata; compile proceeds only if all independent gates pass; original files remain unchanged.
+**Pass:** legacy source compatibility is honoured without fabricating a render VPO or source geometry; compilation proceeds only when a render viewpoint and all other gates are satisfied; original files remain unchanged.
 
-**Fail:** the agent rejects the packet solely for missing viewpoint metadata despite compatibility, writes a synthetic viewpoint record, invents pose data, or bypasses another failed gate.
+**Fail:** missing metadata alone causes rejection despite compatibility, `VP-DEFAULT` is treated as a render pose, a synthetic viewpoint is written, or another failed gate is bypassed.
 
 ## Case C — negative reconciliation gate
 
-The repository's `PACKETS/examples/videos/Cat_jumping_backwards/` packet is a deliberate negative fixture for this gate. Its `dispute.json` says `resolved`, and its historical validation report says `VALID - resolved`; however, `dispute.reconciled.json` still says `ai_reconciliation.validation_after_reconciliation: "to be performed"`.
+The repository's `PACKETS/examples/videos/Cat_jumping_backwards/` packet is a negative fixture. Its `dispute.json` says `resolved`, and its historical validation report says `VALID - resolved`; however, `dispute.reconciled.json` still says `ai_reconciliation.validation_after_reconciliation: "to be performed"`.
 
 1. Run `fv validate [packet]` against the current authoritative skill/specification.
 2. Run `fv compile --prompt [same packet]`.
-3. Confirm the agent does not treat the stale validation report and resolved status as sufficient. It must identify the pending post-reconciliation validation and block prompt production until that validation is actually performed and recorded.
+3. Confirm the agent identifies pending post-reconciliation validation and blocks prompt production until validation is actually performed and recorded.
 
 **Pass:** compilation is blocked and no generator-ready prompt is emitted.
 
-**Fail:** compilation proceeds based only on the stale validation text and `dispute.json`.
+**Fail:** compilation proceeds based only on stale validation text and `dispute.json`.
 
 ## Evidence record
 
-For each case, record:
+For each case, record case ID and packet hash; FV skill/specification revision; agent/model and date; exact validation and compile result; whether source files changed; whether any generator was invoked (must be no); and pass/fail with reviewer notes.
 
-- Case ID and exact packet path/hash.
-- FV skill commit and specification revision.
-- Agent/model identity and date.
-- Exact `fv validate` result, including rebuild assessment.
-- Exact `fv compile --prompt` result or explicit block reason.
-- Whether the source packet changed (diff/hash comparison).
-- Whether any image/video generator was invoked (must be no).
-- Pass/fail and reviewer notes.
-
-Do not mark Cases A or B passed until actual agent-level runs and their artifacts are attached. Case C is a fail-closed regression check; its repository fixture state alone is not proof that an agent correctly blocks compilation.
+Do not mark Cases A or B passed until actual agent-level runs and artifacts are attached. Case C's fixture state alone is not proof that an agent correctly blocks compilation.
