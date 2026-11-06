@@ -52,6 +52,24 @@ For a video, establish temporal structure and create the complete packet as
 actual packet files containing OI + MSRM + TD, with TD authoritative for the
 temporal record.
 
+For every newly generated packet, also create the root-level
+`packet_provenance.json` and validate it against
+`SPECIFICATION/FV_Packet_Provenance_Schema.json`. In its `media` object,
+include:
+- `attribution`: an object for attribution to the original source/creator;
+  leave its internal properties open and preserve only supplied information.
+- `organizations`: an array of organization objects.
+- `contributions`: an array with `username`, `email`, `organization`,
+  `timestamp`, and `role`. The role is the contributor's role in relation
+  to the current media. Optional contributor identifiers/type/notes may be
+  included when known.
+
+Do not infer missing people, organizations, roles, contact details, or
+timestamps. Use null for unavailable contribution values. These records
+describe attribution and contributions only; licence and rights metadata are
+not part of the current implementation. Legacy packets remain valid without
+retroactive additions.
+
 `fv analyse` is source analysis. Do not use it as a substitute for a
 question-driven investigation when the task is to pursue a specified object,
 event, relationship, or correspondence across observations.
