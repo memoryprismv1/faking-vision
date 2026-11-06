@@ -1,0 +1,170 @@
+name: Temporary HST NGC 104 source intake for FV
+
+on:
+  push:
+    branches:
+      - work/hubble-ngc104-fv
+
+permissions:
+  contents: read
+
+jobs:
+  source-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install archive and FITS inspection tools
+        run: python -m pip install --upgrade astroquery astropy matplotlib
+      - name: Retrieve original calibrated HST exposures and inspect headers
+        run: |
+          cat > intake.py <<'PY'
+          from astroquery.mast import Observations
+          from astropy.io import fits
+          from astropy.visualization import ZScaleInterval
+          import csv
+          import hashlib
+          import json
+          import pathlib
+          import shutil
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          import numpy as np
+
+          root = pathlib.Path("hubble-ngc104-intake")
+          source_dir = root / "source"
+          preview_dir = root / "previews"
+          source_dir.mkdir(parents=True, exist_ok=True)
+          preview_dir.mkdir(parents=True, exist_ok=True)
+
+          expected = [
+              "j9irw3fwq_flc.fits",
+              "j9irw4b1q_flc.fits",
+              "j9irw5kaq_flc.fits",
+          ]
+
+          observations = Observations.query_criteria(
+              obs_id=["j9irw3fwq", "j9irw4040", "j9irw5kaq"],
+              proposal_id=["10737"],
+              filters=["F606W"],
+          )
+          if len(observations) == 0:
+              raise RuntimeError("MAST returned no observations for the documented observation IDs.")
+
+          products = Observations.get_product_list(observations)
+          if "productFilename" not in products.colnames:
+              raise RuntimeError(f"MAST product table lacks productFilename: {products.colnames}")
+          selected = products[np.isin(np.asarray(products["productFilename"]).astype(str), expected)]
+          found = sorted(np.asarray(selected["productFilename"]).astype(str).tolist())
+          missing = sorted(set(expected) - set(found))
+          if missing:
+              raise RuntimeError(f"MAST did not return all three selected FLC products: {missing}")
+
+          manifest_download = Observations.download_products(
+              selected,
+              download_dir=str(root / "mast-download"),
+              cache=True,
+          )
+
+          downloaded = {}
+          for item in (root / "mast-download").rglob("*"):
+              if item.is_file() and item.name in expected:
+                  target = source_dir / item.name
+                  shutil.copy2(item, target)
+                  downloaded[item.name] = target
+
+          if set(downloaded) != set(expected):
+              raise RuntimeError(
+                  f"Expected exactly the three selected exposures; downloaded {sorted(downloaded)}"
+              )
+
+          records = []
+          interval = ZScaleInterval()
+          for filename in expected:
+              path = downloaded[filename]
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              with fits.open(path, memmap=True) as hdul:
+                  primary = hdul[0].header
+                  record = {
+                      "filename": filename,
+                      "archive_uri": f"mast:HST/product/{filename}",
+                      "sha256": digest,
+                      "bytes": path.stat().st_size,
+                      "telescope": primary.get("TELESCOP"),
+                      "instrument": primary.get("INSTRUME"),
+                      "detector": primary.get("DETECTOR"),
+                      "target": primary.get("TARGNAME"),
+                      "proposal_id": primary.get("PROPOSID"),
+                      "filter": primary.get("FILTER1"),
+                      "exposure_seconds": primary.get("EXPTIME"),
+                      "date_obs": primary.get("DATE-OBS"),
+                      "ra_targ_deg": primary.get("RA_TARG"),
+                      "dec_targ_deg": primary.get("DEC_TARG"),
+                      "orientation_deg": primary.get("PA_V3"),
+                      "science_extensions": [],
+                  }
+                  for extver in (1, 2):
+                      hdu = hdul[("SCI", extver)]
+                      arr = np.asarray(hdu.data, dtype=np.float32)
+                      valid = np.isfinite(arr)
+                      if not valid.any():
+                          raise RuntimeError(f"No finite SCI pixels in {filename}, SCI,{extver}")
+                      lo, hi = interval.get_limits(arr[valid])
+                      preview = np.clip((arr - lo) / (hi - lo), 0, 1)
+                      preview[~valid] = 0
+                      out_png = preview_dir / f"{path.stem}_chip{extver}.png"
+                      fig = plt.figure(figsize=(8, 8), dpi=160)
+                      ax = fig.add_axes([0, 0, 1, 1])
+                      ax.imshow(preview, origin="lower", cmap="gray", interpolation="nearest")
+                      ax.set_axis_off()
+                      fig.savefig(out_png, dpi=160, bbox_inches="tight", pad_inches=0)
+                      plt.close(fig)
+                      record["science_extensions"].append({
+                          "extver": extver,
+                          "shape": list(arr.shape),
+                          "bunit": hdu.header.get("BUNIT"),
+                          "wcsname": hdu.header.get("WCSNAME"),
+                          "orientat": hdu.header.get("ORIENTAT"),
+                          "preview": str(out_png),
+                      })
+              records.append(record)
+
+          (root / "source_manifest.json").write_text(
+              json.dumps({
+                  "dataset": "HST ACS/WFC NGC 104, proposal 10737, F606W",
+                  "selection_basis": "Three individual calibrated CTE-corrected FLC exposures documented in the STScI DrizzlePac multiple-visit alignment example.",
+                  "retrieval_method": "MAST Observations API via astroquery",
+                  "download_manifest_rows": len(manifest_download),
+                  "exposures": records,
+              }, indent=2) + "\n"
+          )
+          with (root / "source_inventory.csv").open("w", newline="") as f:
+              writer = csv.DictWriter(
+                  f,
+                  fieldnames=[
+                      "filename", "archive_uri", "sha256", "bytes", "telescope",
+                      "instrument", "detector", "target", "proposal_id", "filter",
+                      "exposure_seconds", "date_obs", "ra_targ_deg", "dec_targ_deg",
+                      "orientation_deg",
+                  ],
+              )
+              writer.writeheader()
+              for row in records:
+                  writer.writerow({k: row.get(k) for k in writer.fieldnames})
+
+          print(json.dumps({
+              "retrieved": expected,
+              "hashes": {r["filename"]: r["sha256"] for r in records},
+              "manifest": str(root / "source_manifest.json"),
+          }, indent=2))
+          PY
+          python intake.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hubble-ngc104-source-intake
+          path: hubble-ngc104-intake/
+          if-no-files-found: error
+          retention-days: 14
