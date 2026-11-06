@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/memoryprismv1/faking-vision/blob/main/SPECIFICATION/FV_Viewpoint_Schema.json",
   "title": "FV Viewpoint Records and Reusable Viewpoint Objects",
-  "description": "Root-level viewpoint.json array. Each record preserves source viewpoint initialisation and may also define a reusable, editable rendering viewpoint (VPO).",
+  "description": "Root-level viewpoint.json array. Each record preserves source viewpoint initialisation and may also define a reusable, editable rendering viewpoint (VPO). VPO_DEFAULT is the canonical default render-preset template; VP-DEFAULT is a separate legacy read-time compatibility identity and is not a record or render VPO.",
   "type": "array",
   "minItems": 1,
   "items": {
