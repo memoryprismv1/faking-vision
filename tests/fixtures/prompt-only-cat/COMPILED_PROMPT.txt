@@ -10,7 +10,7 @@ Preserve all packet uncertainty; do not silently upgrade evidence.
 
 VIEWPOINT SELECTION
 Selected render viewpoint: VP-TEST-0001
-Role: render_preset. This is a test-defined render viewpoint, not a pose
+Role: render_preset; is_default: true. This is the declared default render viewpoint, not a pose
 measured from the source video.
 Source viewpoint initial_state: unknown. No source camera position or
 orientation is asserted. Do not infer source pose from the render preset.
