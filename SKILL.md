@@ -218,6 +218,8 @@ applicable.
 Do not silently repair the packet. If repair is required, identify what must
 be reprocessed or changed.
 
+Also assess whether the packet may require migration to the current FV specification version. Include an explicit rebuild assessment in the validation report: **REBUILD NOT INDICATED**, **REBUILD MAY BE NEEDED**, **REBUILD RECOMMENDED**, **REBUILD REQUIRED**, or **ASSESSMENT INDETERMINATE**. Give the reason, affected records/rules, and next step. A legacy packet may remain valid under documented compatibility rules while still receiving a rebuild warning. Do not rebuild, rewrite version claims, or materialize compatibility placeholders during validation.
+
 Example:
 
 `fv validate`
@@ -238,6 +240,8 @@ incomplete, or `dispute.json` is open, missing, malformed, or inconsistent,
 stop and return the packet to the appropriate earlier operation.
 
 Compilation never resolves disputes.
+
+Compilation must also report the packet's rebuild assessment, using the same five outcomes as `fv validate`. If rebuild is **MAY BE NEEDED** or **RECOMMENDED**, compilation may proceed only when the packet independently passes all compilation gates and the target specification explicitly permits its legacy compatibility path; warn that no rebuild occurred. If rebuild is **REQUIRED**, stop before producing renderer instructions or a prompt and direct the operator to `fv rebuild` / `fv upgrade`, then `fv validate`, then retry. If assessment is **INDETERMINATE**, do not imply that the packet is current; stop if the uncertainty affects a required compilation rule, otherwise state the warning and compatibility boundary. Compilation never runs rebuild automatically.
 
 If the available environment cannot perform the actual rendering, produce
 the lossless compiled renderer specification rather than pretending that
