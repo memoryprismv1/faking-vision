@@ -40,3 +40,22 @@ test('FV Edit schematic explicitly does not claim to render a new camera image',
   await expect(page.locator('.banner')).toContainText('SCHEMATIC ONLY');
   await expect(page.locator('.banner')).toContainText('not an original/edited image rendering');
 });
+
+test('legacy packet import does not materialize a VPO; explicit action instantiates VPO_DEFAULT', async ({ page }, testInfo) => {
+  await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
+  const pending = page.waitForEvent('download');
+  await page.locator('#exportBtn').click();
+  const download = await pending;
+  const target = path.join(testInfo.outputDir, download.suggestedFilename());
+  await download.saveAs(target);
+  const bundle = JSON.parse(await fs.readFile(target, 'utf8'));
+  bundle.viewpoint = [];
+  await page.locator('#importInput').setInputFiles({ name: 'legacy-no-viewpoint.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(bundle)) });
+  await expect(page.locator('#cameraMarker')).toBeHidden();
+  await expect(page.locator('#saveViewpoint')).toBeDisabled();
+  await page.locator('#createDefaultVPO').click();
+  await expect(page.locator('#cameraMarker')).toBeVisible();
+  await expect(page.locator('#saveViewpoint')).toBeEnabled();
+  const viewpointId = await page.locator('#cameraMarker').getAttribute('data-viewpoint-id');
+  expect(viewpointId).toMatch(/^VP-[A-F0-9]{12}$/);
+});
