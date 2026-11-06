@@ -110,6 +110,14 @@ test('loads real video and packet, edits only the selected object, saves keyfram
   expect(out.packet.viewpoint[0].initial_state.status).toBe('unknown');
   expect(out.packet.viewpoint[0].pose.position.z).toBe(5);
   expect(out.packet.viewpoint[0].pose.framing.aspect_ratio).toBeCloseTo(16/9, 3);
+  const viewpointSchema = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../SPECIFICATION/FV_Viewpoint_Schema.json'), 'utf8'));
+  expect(viewpointSchema.items.properties.pose.properties.image_anchor.$ref).toBe('#/$defs/imageAnchor');
+  expect(viewpointSchema.$defs.imageAnchor.properties.x.maximum).toBe(1);
+  expect(viewpointSchema.items.properties.metadata.additionalProperties).toBe(true);
+  const viewpointSchema = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../SPECIFICATION/FV_Viewpoint_Schema.json'), 'utf8'));
+  expect(viewpointSchema.items.properties.pose.properties.image_anchor.$ref).toBe('#/$defs/imageAnchor');
+  expect(viewpointSchema.$defs.imageAnchor.properties.x.maximum).toBe(1);
+  expect(viewpointSchema.items.properties.metadata.additionalProperties).toBe(true);
   expect(out.edit_log.map(e => e.type)).toContain('viewpoint_edit');
   expect(out.media_edits.object_id).toBe('cat_01');
   expect(out.media_edits.mask_keyframes).toHaveLength(2);
@@ -207,6 +215,8 @@ test('loads a still image, drags the camera overlay, logs and exports the image 
   const { target } = await saveDownload(page, '#savePacket', testInfo);
   const out = JSON.parse(await fs.readFile(target, 'utf8'));
   expect(out.packet.viewpoint[0].pose.image_anchor.x).not.toBe(0.5);
+  expect(out.packet.viewpoint[0].metadata.planar_image_render.method).toBe('planar_affine_projection');
+  expect(out.packet.viewpoint[0].metadata.planar_image_render.limitation).toContain('No hidden-surface reconstruction');
   expect(out.edit_log.some(e => e.type === 'viewpoint_edit')).toBeTruthy();
   expect(out.edit_log.some(e => e.type === 'perspective_image_render')).toBeTruthy();
 });
