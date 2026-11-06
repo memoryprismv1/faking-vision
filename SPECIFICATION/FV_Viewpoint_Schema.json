@@ -224,12 +224,17 @@
                 "minimum": 0
               }
             }
+          },
+          "image_anchor": {
+            "$ref": "#/$defs/imageAnchor",
+            "description": "Normalized image-space location of the editor camera marker; this is not a physical camera position."
           }
         }
       },
       "metadata": {
         "type": "object",
-        "additionalProperties": true
+        "additionalProperties": true,
+        "description": "Editor and renderer annotations that do not alter the canonical camera pose."
       }
     }
   },
@@ -267,6 +272,26 @@
         },
         "y": {
           "type": "number"
+        }
+      }
+    },
+    "imageAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
         }
       }
     }
