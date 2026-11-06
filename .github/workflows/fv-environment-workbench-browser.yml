@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
+      - 'PACKETS/tools/FV_Media_Object_Editor_MVP.html'
+      - 'tests/browser/media-object-editor.spec.js'
+      - 'SPECIFICATION/FV_Viewpoint_Schema.json'
       - 'tests/browser/**'
       - 'playwright.config.js'
       - 'package.json'
