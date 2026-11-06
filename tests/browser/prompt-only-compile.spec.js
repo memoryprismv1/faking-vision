@@ -27,6 +27,7 @@ test('prompt-only golden fixture preserves packet facts and selected render VPO'
   const v = vpo[0];
   expect(v.id).toBe('VP-TEST-0001');
   expect(v.role).toBe('render_preset');
+  expect(v.is_default).toBe(true);
   expect(v.initial_state.status).toBe('unknown');
   expect(prompt).toContain(v.id);
   expect(prompt).toContain(v.coordinate_frame.id);
@@ -40,7 +41,7 @@ test('prompt-only golden fixture preserves packet facts and selected render VPO'
   expect(prompt).toContain(v.pose.projection);
   expect(prompt).toContain(String(v.pose.field_of_view_degrees));
   expect(prompt).toContain('Source viewpoint initial_state');
-  expect(prompt).toContain('test-defined render viewpoint');
+  expect(prompt).toContain('declared default render viewpoint');
   for (const required of ['unresolved','No second cat','No additional people','No second cat, people, or props','No invented floor','APPROXIMATE / UNSUPPORTED','Do not invoke a generator','complete output of prompt-only compilation']) {
     expect(prompt).toContain(required);
   }
