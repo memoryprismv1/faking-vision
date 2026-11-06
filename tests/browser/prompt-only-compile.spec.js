@@ -7,19 +7,23 @@ const PACKET = path.join(ROOT, 'PACKETS/examples/videos/Cat_jumping_backwards');
 const FIXTURE = path.join(ROOT, 'tests/fixtures/prompt-only-cat');
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 
-test('prompt-only golden artifact preserves packet facts and selected render VPO', async () => {
+// Contract-fixture check only. This repository currently defines fv compile
+// as an agent/skill interaction; it does not contain an executable prompt
+// compiler. This test validates the expected golden artifact against packet
+// facts, but does not claim to invoke or test a compiler implementation.
+test('prompt-only golden artifact contract preserves packet facts and selected render VPO', async () => {
   const [oi, msrm, td, gate, validation, vpo, prompt] = await Promise.all([
     readJson(path.join(PACKET, 'OI.json')),
     readJson(path.join(PACKET, 'MSRM.json')),
     readJson(path.join(PACKET, 'TD.json')),
     readJson(path.join(PACKET, 'dispute.json')),
-    readJson(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt')),
+    fs.readFile(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt'), 'utf8'),
     readJson(path.join(FIXTURE, 'viewpoint.json')),
     fs.readFile(path.join(FIXTURE, 'COMPILED_PROMPT.txt'), 'utf8')
   ]);
   expect(gate.status).toBe('resolved');
-  expect(validation.overall_status).toBe('VALID - resolved');
-  expect(validation.rendering_gate).toContain('PERMITTED');
+  expect(validation).toContain('VALID - resolved');
+  expect(validation).toContain('PERMITTED');
   expect(oi.entities).toHaveLength(1);
   expect(prompt).toContain(oi.entities[0].canonical_id);
   expect(prompt).toContain(oi.entities[0].label);
