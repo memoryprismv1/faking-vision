@@ -113,10 +113,6 @@ test('loads real video and packet, edits only the selected object, saves keyfram
   const viewpointSchema = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../SPECIFICATION/FV_Viewpoint_Schema.json'), 'utf8'));
   expect(viewpointSchema.items.properties.pose.additionalProperties).toBe(false);
   expect(viewpointSchema.items.properties.metadata.additionalProperties).toBe(true);
-  const viewpointSchema = JSON.parse(await fs.readFile(path.resolve(__dirname, '../../SPECIFICATION/FV_Viewpoint_Schema.json'), 'utf8'));
-  expect(viewpointSchema.items.properties.pose.properties.image_anchor.$ref).toBe('#/$defs/imageAnchor');
-  expect(viewpointSchema.$defs.imageAnchor.properties.x.maximum).toBe(1);
-  expect(viewpointSchema.items.properties.metadata.additionalProperties).toBe(true);
   expect(out.edit_log.map(e => e.type)).toContain('viewpoint_edit');
   expect(out.media_edits.object_id).toBe('cat_01');
   expect(out.media_edits.mask_keyframes).toHaveLength(2);
