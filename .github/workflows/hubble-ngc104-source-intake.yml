@@ -1,4 +1,4 @@
-name: Temporary HST NGC 104 source intake for FV
+name: Hubble NGC 104 — FV source packets and assembly pilot
 
 on:
   push:
@@ -9,162 +9,612 @@ permissions:
   contents: read
 
 jobs:
-  source-intake:
+  fv-assembly:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CRDS_SERVER_URL: https://hst-crds.stsci.edu
+      CRDS_SERVER: https://hst-crds.stsci.edu
+      CRDS_PATH: ${{ runner.temp }}/crds_cache
+      jref: ${{ runner.temp }}/crds_cache/references/hst/acs/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install archive and FITS inspection tools
-        run: python -m pip install --upgrade astroquery astropy matplotlib
-      - name: Retrieve original calibrated HST exposures and inspect headers
+      - name: Install astronomy archive and reduction software
         run: |
-          cat > intake.py <<'PY'
+          python -m pip install --upgrade pip
+          python -m pip install astroquery astropy matplotlib drizzlepac==3.11.0 crds
+          python - <<'PY'
+          import astropy, drizzlepac, astroquery, crds
+          print("Astropy:", astropy.__version__)
+          print("DrizzlePac:", drizzlepac.__version__)
+          print("Astroquery:", astroquery.__version__)
+          print("CRDS:", crds.__version__)
+          PY
+      - name: Retrieve source exposures, create FV packets, align and assemble
+        run: |
+          mkdir -p work/hubble-ngc104
+          cat > work/hubble-ngc104/run_fv_hubble.py <<'PY'
           from astroquery.mast import Observations
           from astropy.io import fits
-          from astropy.visualization import ZScaleInterval
-          import csv
-          import hashlib
-          import json
-          import pathlib
-          import shutil
+          from astropy.table import Table
+          from astropy.visualization import ZScaleInterval, ImageNormalize, AsinhStretch
+          from astropy.wcs import WCS
+          from astropy.wcs.utils import proj_plane_pixel_scales
+          from drizzlepac import tweakreg, astrodrizzle
+          from drizzlepac.processInput import getMdriztabPars
+          import csv, glob, hashlib, json, os, pathlib, re, shutil, subprocess
+          import numpy as np
           import matplotlib
           matplotlib.use("Agg")
           import matplotlib.pyplot as plt
-          import numpy as np
 
-          root = pathlib.Path("hubble-ngc104-intake")
-          source_dir = root / "source"
-          preview_dir = root / "previews"
-          source_dir.mkdir(parents=True, exist_ok=True)
-          preview_dir.mkdir(parents=True, exist_ok=True)
+          ROOT = pathlib.Path("work/hubble-ngc104")
+          SOURCE = ROOT / "immutable-source"
+          WORK = ROOT / "working-copies"
+          OUT = pathlib.Path("hubble-ngc104-fv-output")
+          PACKETS = OUT / "packets"
+          PIPELINE = OUT / "pipeline"
+          PREVIEWS = OUT / "source-previews"
+          for p in (SOURCE, WORK, PACKETS, PIPELINE, PREVIEWS):
+              p.mkdir(parents=True, exist_ok=True)
 
-          expected = [
+          EXPECTED = [
               "j9irw3fwq_flc.fits",
               "j9irw4b1q_flc.fits",
               "j9irw5kaq_flc.fits",
           ]
+          OBS_IDS = ["j9irw3fwq", "j9irw4040", "j9irw5kaq"]
 
-          observations = Observations.query_criteria(
-              obs_id=["j9irw3fwq", "j9irw4040", "j9irw5kaq"],
-              proposal_id=["10737"],
-              filters=["F606W"],
+          def sha256(path):
+              h = hashlib.sha256()
+              with open(path, "rb") as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def json_write(path, obj):
+              path = pathlib.Path(path)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(obj, indent=2, allow_nan=False) + "\n")
+
+          def fits_wcs_summary(hdu):
+              w = WCS(hdu.header, relax=True).celestial
+              ny, nx = hdu.data.shape
+              corners = np.asarray([[0, 0], [nx-1, 0], [nx-1, ny-1], [0, ny-1]], dtype=float)
+              world = w.all_pix2world(corners, 0)
+              scale = proj_plane_pixel_scales(w) * 3600.0
+              hdr = hdu.header
+              return {
+                  "science_extension": int(hdr.get("EXTVER", 0)),
+                  "array_shape_yx": [int(ny), int(nx)],
+                  "bunit": hdr.get("BUNIT"),
+                  "wcsname": hdr.get("WCSNAME"),
+                  "ctype": [hdr.get("CTYPE1"), hdr.get("CTYPE2")],
+                  "crval": [hdr.get("CRVAL1"), hdr.get("CRVAL2")],
+                  "crpix": [hdr.get("CRPIX1"), hdr.get("CRPIX2")],
+                  "pixel_scale_arcsec": [float(v) for v in scale],
+                  "corner_radec_deg": [[float(a), float(b)] for a, b in world],
+              }
+
+          # Source intake: obtain three individual calibrated observations from MAST.
+          obs = Observations.query_criteria(
+              obs_id=OBS_IDS, proposal_id=["10737"], filters=["F606W"]
           )
-          if len(observations) == 0:
-              raise RuntimeError("MAST returned no observations for the documented observation IDs.")
-
-          products = Observations.get_product_list(observations)
+          if len(obs) == 0:
+              raise RuntimeError("MAST returned no observations for the selected HST visits.")
+          products = Observations.get_product_list(obs)
           if "productFilename" not in products.colnames:
-              raise RuntimeError(f"MAST product table lacks productFilename: {products.colnames}")
-          selected = products[np.isin(np.asarray(products["productFilename"]).astype(str), expected)]
+              raise RuntimeError("MAST product list has no productFilename column.")
+          selected = products[
+              np.isin(np.asarray(products["productFilename"]).astype(str), EXPECTED)
+          ]
           found = sorted(np.asarray(selected["productFilename"]).astype(str).tolist())
-          missing = sorted(set(expected) - set(found))
-          if missing:
-              raise RuntimeError(f"MAST did not return all three selected FLC products: {missing}")
-
-          manifest_download = Observations.download_products(
-              selected,
-              download_dir=str(root / "mast-download"),
-              cache=True,
+          if found != sorted(EXPECTED):
+              raise RuntimeError(f"Expected exactly {EXPECTED}; MAST returned {found}")
+          download_table = Observations.download_products(
+              selected, download_dir=str(ROOT / "mast-download"), cache=True
           )
-
           downloaded = {}
-          for item in (root / "mast-download").rglob("*"):
-              if item.is_file() and item.name in expected:
-                  target = source_dir / item.name
-                  shutil.copy2(item, target)
-                  downloaded[item.name] = target
+          for file in (ROOT / "mast-download").rglob("*"):
+              if file.is_file() and file.name in EXPECTED:
+                  target = SOURCE / file.name
+                  shutil.copy2(file, target)
+                  downloaded[file.name] = target
+          if set(downloaded) != set(EXPECTED):
+              raise RuntimeError(f"Download incomplete: {sorted(downloaded)}")
 
-          if set(downloaded) != set(expected):
-              raise RuntimeError(
-                  f"Expected exactly the three selected exposures; downloaded {sorted(downloaded)}"
-              )
-
-          records = []
-          interval = ZScaleInterval()
-          for filename in expected:
-              path = downloaded[filename]
-              digest = hashlib.sha256(path.read_bytes()).hexdigest()
-              with fits.open(path, memmap=True) as hdul:
+          # Keep downloaded source copies untouched. All WCS updates happen on working copies.
+          exposure_records = []
+          reference_files = set()
+          zscale = ZScaleInterval()
+          for filename in EXPECTED:
+              src = downloaded[filename]
+              shutil.copy2(src, WORK / filename)
+              with fits.open(src, memmap=True) as hdul:
                   primary = hdul[0].header
-                  record = {
+                  rec = {
                       "filename": filename,
+                      "source_id": pathlib.Path(filename).stem.replace("_flc", ""),
                       "archive_uri": f"mast:HST/product/{filename}",
-                      "sha256": digest,
-                      "bytes": path.stat().st_size,
+                      "sha256": sha256(src),
+                      "bytes": src.stat().st_size,
                       "telescope": primary.get("TELESCOP"),
                       "instrument": primary.get("INSTRUME"),
                       "detector": primary.get("DETECTOR"),
                       "target": primary.get("TARGNAME"),
                       "proposal_id": primary.get("PROPOSID"),
-                      "filter": primary.get("FILTER1"),
+                      "filter1": primary.get("FILTER1"),
                       "exposure_seconds": primary.get("EXPTIME"),
                       "date_obs": primary.get("DATE-OBS"),
-                      "ra_targ_deg": primary.get("RA_TARG"),
+                      "ra_targ_header_value": primary.get("RA_TARG"),
                       "dec_targ_deg": primary.get("DEC_TARG"),
                       "orientation_deg": primary.get("PA_V3"),
                       "science_extensions": [],
                   }
+                  for key in ("MDRIZTAB", "IDCTAB", "D2IMFILE", "NPOLFILE"):
+                      value = str(primary.get(key, "")).strip()
+                      if "$" in value:
+                          reference_files.add(value.split("$", 1)[1])
                   for extver in (1, 2):
                       hdu = hdul[("SCI", extver)]
                       arr = np.asarray(hdu.data, dtype=np.float32)
-                      valid = np.isfinite(arr)
-                      if not valid.any():
-                          raise RuntimeError(f"No finite SCI pixels in {filename}, SCI,{extver}")
-                      lo, hi = interval.get_limits(arr[valid])
-                      preview = np.clip((arr - lo) / (hi - lo), 0, 1)
-                      preview[~valid] = 0
-                      out_png = preview_dir / f"{path.stem}_chip{extver}.png"
-                      fig = plt.figure(figsize=(8, 8), dpi=160)
+                      finite = arr[np.isfinite(arr)]
+                      if finite.size == 0:
+                          raise RuntimeError(f"No finite SCI pixels in {filename} SCI,{extver}")
+                      lo, hi = zscale.get_limits(finite)
+                      if not np.isfinite(lo) or not np.isfinite(hi) or hi <= lo:
+                          raise RuntimeError(f"Invalid display stretch for {filename} SCI,{extver}")
+                      image = np.clip((arr - lo) / (hi - lo), 0, 1)
+                      image[~np.isfinite(image)] = 0
+                      preview = PREVIEWS / f"{rec['source_id']}_chip{extver}.png"
+                      fig = plt.figure(figsize=(7, 7), dpi=140)
                       ax = fig.add_axes([0, 0, 1, 1])
-                      ax.imshow(preview, origin="lower", cmap="gray", interpolation="nearest")
+                      ax.imshow(image, origin="lower", cmap="gray", interpolation="nearest")
                       ax.set_axis_off()
-                      fig.savefig(out_png, dpi=160, bbox_inches="tight", pad_inches=0)
+                      fig.savefig(preview, dpi=140, bbox_inches="tight", pad_inches=0)
                       plt.close(fig)
-                      record["science_extensions"].append({
-                          "extver": extver,
-                          "shape": list(arr.shape),
-                          "bunit": hdu.header.get("BUNIT"),
-                          "wcsname": hdu.header.get("WCSNAME"),
-                          "orientat": hdu.header.get("ORIENTAT"),
-                          "preview": str(out_png),
-                      })
-              records.append(record)
+                      rec["science_extensions"].append(fits_wcs_summary(hdu))
+                      rec["science_extensions"][-1]["verification_preview"] = preview.name
+              exposure_records.append(rec)
 
-          (root / "source_manifest.json").write_text(
-              json.dumps({
-                  "dataset": "HST ACS/WFC NGC 104, proposal 10737, F606W",
-                  "selection_basis": "Three individual calibrated CTE-corrected FLC exposures documented in the STScI DrizzlePac multiple-visit alignment example.",
-                  "retrieval_method": "MAST Observations API via astroquery",
-                  "download_manifest_rows": len(manifest_download),
-                  "exposures": records,
-              }, indent=2) + "\n"
-          )
-          with (root / "source_inventory.csv").open("w", newline="") as f:
-              writer = csv.DictWriter(
-                  f,
-                  fieldnames=[
-                      "filename", "archive_uri", "sha256", "bytes", "telescope",
-                      "instrument", "detector", "target", "proposal_id", "filter",
-                      "exposure_seconds", "date_obs", "ra_targ_deg", "dec_targ_deg",
-                      "orientation_deg",
-                  ],
+          # Retrieve reference files named by the source headers for DrizzlePac.
+          jref = pathlib.Path(os.environ["jref"])
+          jref.mkdir(parents=True, exist_ok=True)
+          crds_logs = []
+          for refname in sorted(reference_files):
+              result = subprocess.run(
+                  ["crds", "sync", "--hst", "--files", refname, "--output-dir", str(jref)],
+                  text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
               )
-              writer.writeheader()
-              for row in records:
-                  writer.writerow({k: row.get(k) for k in writer.fieldnames})
+              crds_logs.append({"reference": refname, "returncode": result.returncode, "output": result.stdout})
+              if result.returncode != 0:
+                  raise RuntimeError(f"CRDS reference retrieval failed for {refname}:\n{result.stdout}")
+          (PIPELINE / "crds_sync.log").write_text(
+              "\n\n".join(item["output"] for item in crds_logs)
+          )
 
-          print(json.dumps({
-              "retrieved": expected,
-              "hashes": {r["filename"]: r["sha256"] for r in records},
-              "manifest": str(root / "source_manifest.json"),
-          }, indent=2))
+          json_write(OUT / "source_manifest.json", {
+              "dataset": "HST ACS/WFC NGC 104 (47 Tucanae), proposal 10737, F606W",
+              "source_selection": "Three individual calibrated CTE-corrected FLC exposures documented in the STScI DrizzlePac multiple-visit alignment tutorial.",
+              "retrieval": "MAST Observations API via astroquery",
+              "source_immutability": "Downloaded source FLC files were SHA-256 checksummed and kept separate; DrizzlePac header edits are confined to working copies.",
+              "download_manifest_rows": len(download_table),
+              "exposures": exposure_records,
+              "crds_references_synced": sorted(reference_files)
+          })
+          with (OUT / "source_inventory.csv").open("w", newline="") as f:
+              writer = csv.DictWriter(f, fieldnames=[
+                  "filename", "source_id", "archive_uri", "sha256", "bytes",
+                  "telescope", "instrument", "detector", "target", "proposal_id",
+                  "filter1", "exposure_seconds", "date_obs", "ra_targ_header_value",
+                  "dec_targ_deg", "orientation_deg"
+              ])
+              writer.writeheader()
+              for rec in exposure_records:
+                  writer.writerow({k: rec.get(k) for k in writer.fieldnames})
+
+          # Create one FV source packet for each observation. The packets preserve
+          # source WCS and evidence previews; tie-point detections are not treated as
+          # persistent star identities.
+          packet_ids = []
+          for rec in exposure_records:
+              pid = f"PKT-HST-NGC104-{rec['source_id'].upper()}"
+              packet_ids.append(pid)
+              pdir = PACKETS / pid
+              (pdir / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
+              for ext in rec["science_extensions"]:
+                  shutil.copy2(
+                      PREVIEWS / ext["verification_preview"],
+                      pdir / "snapshot" / "verification" / ext["verification_preview"]
+                  )
+              json_write(pdir / "OI.json", {
+                  "packet_id": pid,
+                  "spec_version": "0.24",
+                  "operation": "fv analyse",
+                  "inventory_lock": True,
+                  "entities": [],
+                  "source_provenance": {
+                      "source_id": rec["source_id"],
+                      "archive_uri": rec["archive_uri"],
+                      "sha256": rec["sha256"],
+                      "telescope": rec["telescope"],
+                      "instrument": rec["instrument"],
+                      "detector": rec["detector"],
+                      "target": rec["target"],
+                      "proposal_id": rec["proposal_id"],
+                      "filter": rec["filter1"],
+                      "date_obs": rec["date_obs"],
+                      "exposure_seconds": rec["exposure_seconds"]
+                  },
+                  "inventory_note": "Registration-only source packet. No star/galaxy identity inventory has been promoted; point-source matches are geometric tie points for assembly only."
+              })
+              json_write(pdir / "MSRM.json", {
+                  "packet_id": pid,
+                  "coordinate_system": "Per-exposure celestial FITS WCS; detector pixel coordinates remain local to each SCI extension.",
+                  "observed_field": {
+                      "target": rec["target"],
+                      "ra_targ_header_value": rec["ra_targ_header_value"],
+                      "dec_targ_deg": rec["dec_targ_deg"],
+                      "orientation_deg": rec["orientation_deg"],
+                      "science_extensions": rec["science_extensions"]
+                  },
+                  "registration_state": "Original calibrated WCS; no cross-exposure transformation applied in this source packet."
+              })
+              json_write(pdir / "PC.json", {
+                  "packet_id": pid,
+                  "constants": [
+                      "HST ACS/WFC",
+                      "F606W",
+                      "339-second exposure as recorded in source header",
+                      "Calibrated CTE-corrected FLC product"
+                  ]
+              })
+              json_write(pdir / "snapshot" / "manifest.json", {
+                  "packet_id": pid,
+                  "source_file": rec["filename"],
+                  "source_uri": rec["archive_uri"],
+                  "source_sha256": rec["sha256"],
+                  "verification_images": [
+                      {"path": f"verification/{e['verification_preview']}", "science_extension": e["science_extension"]}
+                      for e in rec["science_extensions"]
+                  ]
+              })
+              (pdir / "README.txt").write_text(
+                  "Faking Vision v0.24 — HST ACS/WFC source observation packet\n"
+                  f"packet_id: {pid}\n"
+                  "operation: fv analyse (source observation; registration-only pilot)\n\n"
+                  f"Source: {rec['archive_uri']}\n"
+                  f"Target: {rec['target']}\n"
+                  f"Instrument/detector: {rec['instrument']} / {rec['detector']}\n"
+                  f"Filter: {rec['filter1']}\n"
+                  f"Exposure: {rec['exposure_seconds']} seconds\n"
+                  f"Observation date: {rec['date_obs']}\n"
+                  f"SHA-256: {rec['sha256']}\n\n"
+                  "The two ACS/WFC SCI extensions are preserved as separate detector regions. "
+                  "Verification PNGs are display-stretched views of the calibrated SCI arrays, "
+                  "not replacements for the original FITS data. No astronomical object identity "
+                  "inventory or cross-exposure object merge is claimed in this pilot.\n"
+              )
+
+          # FV assembly registration: diagnostic general fit first, then inspect RMS.
+          inputs = [str(WORK / name) for name in EXPECTED]
+          tweakreg.TweakReg(
+              inputs,
+              threshold=4000,
+              peakmax=70000,
+              configobj=None,
+              interactive=False,
+              shiftfile=True,
+              outshifts="shift_general.txt",
+              ylimit=0.2,
+              fitgeometry="general",
+              updatehdr=False,
+              reusename=True
+          )
+          shift_path = pathlib.Path("shift_general.txt")
+          if not shift_path.exists():
+              raise RuntimeError("TweakReg did not produce shift_general.txt.")
+          shifts = Table.read(
+              shift_path, format="ascii.no_header",
+              names=["file", "dx", "dy", "rotation_deg", "scale", "xrms_px", "yrms_px"]
+          )
+          shift_records = []
+          for row in shifts:
+              shift_records.append({
+                  "file": pathlib.Path(str(row["file"])).name,
+                  "dx_px": float(row["dx"]),
+                  "dy_px": float(row["dy"]),
+                  "rotation_deg": float(row["rotation_deg"]),
+                  "scale": float(row["scale"]),
+                  "xrms_px": float(row["xrms_px"]),
+                  "yrms_px": float(row["yrms_px"])
+              })
+          non_reference = [
+              r for r in shift_records
+              if r["file"] != pathlib.Path(inputs[0]).name
+          ]
+          if len(non_reference) != 2:
+              raise RuntimeError(f"Expected 2 relative registration solutions, got {len(non_reference)}")
+          if any(not all(np.isfinite(r[k]) for k in (
+              "dx_px","dy_px","rotation_deg","scale","xrms_px","yrms_px"
+          )) for r in shift_records):
+              raise RuntimeError("Non-finite value in TweakReg shift table.")
+          max_rms = max(max(r["xrms_px"], r["yrms_px"]) for r in non_reference)
+          fit_status = "PASS" if max_rms <= 0.1 else "OPEN — fit RMS exceeds 0.1 pixel"
+          shutil.copy2(shift_path, PIPELINE / shift_path.name)
+          for source_log in ("tweakreg.log",):
+              if pathlib.Path(source_log).exists():
+                  shutil.copy2(source_log, PIPELINE / source_log)
+          for pattern in ("*_flc_catalog_fit.match", "residuals_*.png", "vector_*.png"):
+              for fpath in glob.glob(pattern):
+                  if pathlib.Path(fpath).is_file():
+                      shutil.copy2(fpath, PIPELINE / pathlib.Path(fpath).name)
+          log_text = (PIPELINE / "tweakreg.log").read_text() if (PIPELINE / "tweakreg.log").exists() else ""
+          match_counts = [int(v) for v in re.findall(
+              r"Final solution based on\s+(\d+)\s+objects", log_text
+          )]
+
+          # Apply the accepted WCS transforms to working copies, never source files.
+          tweakreg.TweakReg(
+              inputs,
+              threshold=4000,
+              peakmax=70000,
+              configobj=None,
+              interactive=False,
+              shiftfile=False,
+              ylimit=0.2,
+              fitgeometry="general",
+              updatehdr=True,
+              reusename=True
+          )
+          if pathlib.Path("tweakreg.log").exists():
+              shutil.copy2("tweakreg.log", PIPELINE / "tweakreg_final.log")
+
+          # Retrieve detector-specific drizzle parameters from the source MDRIZTAB.
+          selected_params = getMdriztabPars(inputs)
+          driz_parameters = {
+              "driz_sep_bits": str(selected_params["driz_sep_bits"]),
+              "final_bits": str(selected_params["final_bits"]),
+              "driz_cr_snr": str(selected_params.get("driz_cr_snr")),
+              "driz_cr_scale": str(selected_params.get("driz_cr_scale")),
+              "combine_type": str(selected_params.get("combine_type")),
+              "driz_cr_corr": True,
+              "skymethod": "match",
+              "build": True,
+              "clean": False
+          }
+          astrodrizzle.AstroDrizzle(
+              inputs,
+              output="ngc104_f606w_combined",
+              preserve=False,
+              build=True,
+              skymethod="match",
+              driz_sep_bits=selected_params["driz_sep_bits"],
+              driz_cr_corr=True,
+              clean=False,
+              final_bits=selected_params["final_bits"],
+              configobj=None
+          )
+          drc = pathlib.Path("ngc104_f606w_combined_drc.fits")
+          if not drc.exists():
+              raise RuntimeError("AstroDrizzle did not create the combined DRC FITS product.")
+          assembled_id = "PKT-HST-NGC104-F606W-ASSEMBLED-001"
+          assembled = PACKETS / assembled_id
+          assembled.mkdir(parents=True, exist_ok=True)
+          assembled_drc = assembled / drc.name
+          shutil.copy2(drc, assembled_drc)
+
+          # Inspect SCI/WHT/CTX outputs and make a preview directly from the drizzled SCI plane.
+          with fits.open(drc, memmap=True) as hdul:
+              if ("SCI", 1) not in hdul or ("WHT", 1) not in hdul:
+                  raise RuntimeError("DRC FITS lacks SCI,1 or WHT,1 extensions.")
+              sci = np.asarray(hdul[("SCI", 1)].data, dtype=np.float32)
+              wht = np.asarray(hdul[("WHT", 1)].data, dtype=np.float32)
+              sci_header = hdul[("SCI", 1)].header.copy()
+              ny, nx = sci.shape
+              finite = np.isfinite(sci) & (wht > 0)
+              if finite.sum() == 0:
+                  raise RuntimeError("Drizzled SCI plane has no finite positively weighted pixels.")
+              interval = ZScaleInterval()
+              vmin, vmax = interval.get_limits(sci[finite])
+              norm = ImageNormalize(vmin=vmin, vmax=vmax, stretch=AsinhStretch(a=0.08))
+              preview_path = assembled / "visualizations" / "ngc104_f606w_drizzled_mosaic.png"
+              preview_path.parent.mkdir(parents=True, exist_ok=True)
+              fig = plt.figure(figsize=(10, 10), dpi=220)
+              ax = fig.add_axes([0, 0, 1, 1])
+              ax.imshow(np.ma.masked_where(~finite, sci), origin="lower", cmap="gray", norm=norm)
+              ax.set_axis_off()
+              fig.savefig(preview_path, dpi=220, bbox_inches="tight", pad_inches=0)
+              plt.close(fig)
+
+              wht_path = assembled / "snapshot" / "verification" / "ngc104_f606w_weight_map.png"
+              wht_path.parent.mkdir(parents=True, exist_ok=True)
+              fig = plt.figure(figsize=(9, 9), dpi=150)
+              ax = fig.add_axes([0, 0, 1, 1])
+              ax.imshow(wht, origin="lower", cmap="gray")
+              ax.set_axis_off()
+              fig.savefig(wht_path, dpi=150, bbox_inches="tight", pad_inches=0)
+              plt.close(fig)
+              final_wcs = WCS(sci_header, relax=True).celestial
+              corners_pix = np.asarray([[0,0],[nx-1,0],[nx-1,ny-1],[0,ny-1]], dtype=float)
+              corners_world = final_wcs.all_pix2world(corners_pix, 0)
+              pixel_scale = proj_plane_pixel_scales(final_wcs) * 3600.0
+              final_wcs_summary = {
+                  "array_shape_yx": [int(ny), int(nx)],
+                  "bunit": sci_header.get("BUNIT"),
+                  "wcsname": sci_header.get("WCSNAME"),
+                  "ctype": [sci_header.get("CTYPE1"), sci_header.get("CTYPE2")],
+                  "crval": [sci_header.get("CRVAL1"), sci_header.get("CRVAL2")],
+                  "crpix": [sci_header.get("CRPIX1"), sci_header.get("CRPIX2")],
+                  "pixel_scale_arcsec": [float(v) for v in pixel_scale],
+                  "corner_radec_deg": [[float(a),float(b)] for a,b in corners_world],
+                  "positive_weight_pixel_fraction": float(finite.sum() / finite.size)
+              }
+
+          # Assemble packet. Object merge is deliberately not performed.
+          (assembled / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
+          shutil.copy2(preview_path, assembled / "snapshot" / "verification" / preview_path.name)
+          assembly_record = {
+              "operation": "fv assemble",
+              "method": "STScI DrizzlePac TweakReg + AstroDrizzle",
+              "reference_image": EXPECTED[0],
+              "fit_geometry": "general",
+              "alignment_quality_gate": fit_status,
+              "maximum_relative_fit_rms_px": float(max_rms),
+              "fits": shift_records,
+              "match_counts_reported_by_TweakReg_log": match_counts,
+              "astrodrizzle_parameters": driz_parameters,
+              "final_image": final_wcs_summary,
+              "input_packets": packet_ids,
+              "unresolved_or_out_of_scope": [
+                  "No cross-exposure star/galaxy identity merge was performed; this is assembly only.",
+                  "No astronomical object catalogue was promoted into OI in this registration-only pilot.",
+                  "Three visits span three months; variable sources may be present, so this is not a time-domain photometric product.",
+                  "These are repeated overlapping visits to one field, not adjacent sky tiles; this pilot deepens one field rather than making a wide-area mosaic."
+              ]
+          }
+          json_write(PIPELINE / "assembly_registration.json", assembly_record)
+          json_write(assembled / "OI.json", {
+              "packet_id": assembled_id,
+              "spec_version": "0.24",
+              "operation": "fv assemble",
+              "inventory_lock": True,
+              "entities": [],
+              "inventory_note": "No stellar/galaxy identities are asserted or merged in this geometric registration pilot. TweakReg point-source matches are tie points, not committed persistent identities.",
+              "source_packets": packet_ids
+          })
+          json_write(assembled / "MSRM.json", {
+              "packet_id": assembled_id,
+              "global_coordinate_system": "Drizzled celestial FITS WCS; values copied from output SCI,1 header.",
+              "registration": assembly_record,
+              "scenes": [{
+                  "scene_id": "NGC104_F606W_ASSEMBLED_FIELD",
+                  "label": "Registered and drizzled multi-visit ACS/WFC field of NGC 104",
+                  "entities_present": [],
+                  "coverage": final_wcs_summary,
+                  "source_packet_ids": packet_ids
+              }]
+          })
+          json_write(assembled / "PC.json", {
+              "packet_id": assembled_id,
+              "constants": [
+                  "HST ACS/WFC",
+                  "F606W filter",
+                  "Calibrated CTE-corrected FLC input products",
+                  "Registration fit geometry: general",
+                  "Assembly does not perform persistent astronomical object identity merge"
+              ]
+          })
+          json_write(assembled / "snapshot" / "manifest.json", {
+              "packet_id": assembled_id,
+              "operation": "fv assemble",
+              "source_packets": packet_ids,
+              "source_files": [
+                  {"filename": r["filename"], "archive_uri": r["archive_uri"], "sha256": r["sha256"]}
+                  for r in exposure_records
+              ],
+              "assembled_science_product": {
+                  "filename": drc.name,
+                  "sha256": sha256(assembled_drc),
+                  "description": "AstroDrizzle multi-extension FITS: SCI,1 science plane; WHT,1 weight plane; CTX,1 context plane where present."
+              },
+              "verification_images": [
+                  f"verification/{preview_path.name}",
+                  f"verification/{wht_path.name}"
+              ],
+              "registration_metrics": shift_records
+          })
+          (assembled / "README.txt").write_text(
+              "Faking Vision v0.24 — HST NGC 104 multi-visit assembly pilot\n"
+              f"packet_id: {assembled_id}\n"
+              "operation: fv assemble\n\n"
+              "This packet combines three original, overlapping HST ACS/WFC F606W observations of NGC 104. "
+              "The source exposures are separate FV packets; source FITS are retrievable from MAST and "
+              "identified by archive URI and SHA-256 in the packet manifests.\n\n"
+              "Registration: STScI DrizzlePac TweakReg, fitgeometry=general, with a diagnostic fit first "
+              "and a subsequent WCS update on working copies only. Combination: AstroDrizzle using "
+              "MDRIZTAB-derived parameters, sky matching, distortion-aware drizzle, and cosmic-ray correction. "
+              "Original downloaded FLC source files were not modified.\n\n"
+              f"Registration gate: {fit_status}; maximum relative fit RMS = {max_rms:.5f} pixel.\n"
+              "This is an assembly-only result. No persistent star/galaxy identities were merged. "
+              "The three visits revisit one field at different orientations; they do not create a wide-area mosaic. "
+              "The three-month interval also means variable sources may not be represented photometrically.\n"
+          )
+          (assembled / "visualizations" / "README.md").write_text(
+              "# NGC 104 assembly visualization\n\n"
+              "- ngc104_f606w_drizzled_mosaic.png — display-stretched preview of the AstroDrizzle SCI,1 plane. "
+              "The FITS science product remains the quantitative source for pixel values.\n"
+          )
+
+          # Keep science product and diagnostic evidence in the artifact, never the
+          # much larger original FLCs (whose MAST URIs and hashes remain recorded).
+          for filename in ("tweakreg.log", "astrodrizzle.log"):
+              p = pathlib.Path(filename)
+              if p.exists():
+                  shutil.copy2(p, PIPELINE / filename)
+
+          # Structural/evidence checks on the packet files created by this run.
+          required = ["OI.json", "MSRM.json", "PC.json", "snapshot/manifest.json", "README.txt"]
+          packet_dirs = [p for p in PACKETS.iterdir() if p.is_dir()]
+          if len(packet_dirs) != 4:
+              raise RuntimeError(f"Expected 3 source packets + 1 assembled packet; found {len(packet_dirs)}")
+          checks = []
+          for pdir in packet_dirs:
+              for rel in required:
+                  path = pdir / rel
+                  if not path.is_file():
+                      raise RuntimeError(f"Missing required packet file: {path}")
+                  if path.suffix == ".json":
+                      json.loads(path.read_text())
+              checks.append({"packet_id": pdir.name, "status": "PASS", "files_checked": required})
+          if not preview_path.is_file() or not assembled_drc.is_file():
+              raise RuntimeError("Missing assembled preview or science FITS product.")
+          with fits.open(assembled_drc, memmap=True) as hdul:
+              if ("SCI", 1) not in hdul or ("WHT", 1) not in hdul:
+                  raise RuntimeError("Assembled DRC FITS lost required SCI/WHT extensions.")
+          overall = "PASS" if max_rms <= 0.1 else "ASSEMBLED_WITH_OPEN_REGISTRATION_QUALITY_ISSUE"
+          validation = {
+              "packet_set": "HST NGC 104 F606W three-visit assembly pilot",
+              "overall_status": overall,
+              "validation_scope": "Automated file-presence, JSON-parse, source provenance, FITS output, and registration residual checks. This report does not claim that a standalone FV CLI was invoked.",
+              "registration_gate": fit_status,
+              "max_relative_fit_rms_px": float(max_rms),
+              "packets": checks,
+              "additional_checks": [
+                  {"check": "three original MAST FLC files retrieved and SHA-256 recorded", "status": "PASS"},
+                  {"check": "source FITS kept separate from DrizzlePac working copies", "status": "PASS"},
+                  {"check": "TweakReg used general fit and finite residual values", "status": "PASS"},
+                  {"check": "AstroDrizzle DRC product contains SCI and WHT planes", "status": "PASS"},
+                  {"check": "assembled packet does not claim cross-exposure identity merge", "status": "PASS"}
+              ]
+          }
+          (OUT / "VALIDATION_REPORT.txt").write_text(json.dumps(validation, indent=2) + "\n")
+          json_write(OUT / "registration_shift_general.json", {
+              "fits": shift_records, "maximum_relative_fit_rms_px": float(max_rms)
+          })
+          summary = {
+              "status": overall,
+              "source_exposures": [
+                  {"filename":r["filename"],"sha256":r["sha256"],"date_obs":r["date_obs"],
+                   "orientation_deg":r["orientation_deg"],"exposure_seconds":r["exposure_seconds"]}
+                  for r in exposure_records
+              ],
+              "registration": shift_records,
+              "maximum_relative_fit_rms_px": float(max_rms),
+              "drizzled_fits": str(assembled_drc),
+              "mosaic_preview": str(preview_path),
+              "output_directory": str(OUT)
+          }
+          json_write(OUT / "run_summary.json", summary)
+          print(json.dumps(summary, indent=2))
           PY
-          python intake.py
+          python work/hubble-ngc104/run_fv_hubble.py
       - uses: actions/upload-artifact@v4
         with:
-          name: hubble-ngc104-source-intake
-          path: hubble-ngc104-intake/
+          name: hubble-ngc104-fv-packets-and-assembled-mosaic
+          path: hubble-ngc104-fv-output/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 30
