@@ -105,6 +105,12 @@ test('loads real video and packet, edits only the selected object, saves keyfram
   expect(out.packet.OI).toHaveLength(1);
   expect(out.packet.OI[0].id).toBe('cat_01');
   expect(out.packet.OI[0].properties.appearance).toBe('orange tabby');
+  expect(out.packet.viewpoint).toHaveLength(1);
+  expect(out.packet.viewpoint[0].role).toBe('render_preset');
+  expect(out.packet.viewpoint[0].initial_state.status).toBe('unknown');
+  expect(out.packet.viewpoint[0].pose.position.z).toBe(5);
+  expect(out.packet.viewpoint[0].pose.framing.aspect_ratio).toBeCloseTo(16/9, 3);
+  expect(out.edit_log.map(e => e.type)).toContain('viewpoint_edit');
   expect(out.media_edits.object_id).toBe('cat_01');
   expect(out.media_edits.mask_keyframes).toHaveLength(2);
   expect(out.edit_log.map(e => e.type)).toContain('property_edit');
