@@ -1,0 +1,101 @@
+FV COMPILED RENDERER SPECIFICATION — PROMPT-ONLY TEST
+Packet: PKT-CAT-JUMP-BACK-001
+Compilation mode: fv compile --prompt
+Generation status: NOT REQUESTED — NO IMAGE OR VIDEO GENERATION HAS OCCURRED
+
+VALIDATION / RENDERING GATE
+Post-reconciliation validation: VALID - resolved.
+Rendering gate: PERMITTED - dispute.json status=resolved.
+Preserve all packet uncertainty; do not silently upgrade evidence.
+
+VIEWPOINT SELECTION
+Selected render viewpoint: VP-TEST-0001
+Role: render_preset; is_default: true. This is the declared default render viewpoint, not a pose
+measured from the source video.
+Source viewpoint initial_state: unknown. No source camera position or
+orientation is asserted. Do not infer source pose from the render preset.
+
+Test coordinate frame:
+- ID: TEST-WORLD-RH-YUP
+- Handedness: right; up axis: +Y; units: metres.
+- This is a test convention, not source-derived scene geometry.
+
+Selected render pose:
+- Position: x=2.0, y=1.0, z=5.0 metres
+- Orientation: intrinsic Euler, rotation order Y-X-Z
+- Yaw: 15 degrees; Pitch: -5 degrees; Roll: 0 degrees
+- Projection: perspective; field of view: 50 degrees
+- Target: x=0.0, y=1.0, z=0.0 metres
+- Aspect ratio: 16:9; framing fit: contain; centre: x=0.5, y=0.5
+
+RENDERER CAPABILITY / GEOMETRY LIMIT
+The source packet contains a 2D video description and scene-level spatial
+notes, not calibrated 3D reconstruction, depth, camera calibration, or
+complete scene geometry. The translated camera position cannot be guaranteed
+as a physically correct novel viewpoint. Mark true parallax, disocclusion,
+hidden-surface reconstruction, and geometry-dependent occlusion changes as
+APPROXIMATE / UNSUPPORTED. Do not claim exact novel-view reconstruction or
+fabricate missing surfaces.
+
+GLOBAL STYLE / PROJECT CONSTANTS
+- No style specified; preserve packet content only.
+- Project constants (PC): none.
+
+GLOBAL IDENTITY LEDGER AND CLOSED INVENTORY
+- Exactly one semantic object: PKT-CAT-JUMP-BACK-001-OBJ-001 — domestic cat
+  (Felis catus).
+- Same identity persists across S01 and S02; replay is not a second cat.
+- Background is unresolved and appearance-only.
+- No semantic background objects are authorized.
+- No additional people, animals, props, floor, ground, mat, or other
+  environmental objects may be introduced as packet facts.
+
+ENTITY APPEARANCE AND UNCERTAINTY
+- Quadruped mammalian form with Felis catus characteristics.
+- Exact fur colour/pattern, size, and calibrated trajectory are unresolved.
+- Body/limb component is described but not directly frame-verified.
+- Tail is probable/knowledge-supported but not directly observed here.
+- Preserve evidence levels and uncertainty. Do not invent coat colour,
+  markings, anatomy detail, or landing surface.
+
+SCENE S01 — ORIGINAL CLIP
+- Present identity: PKT-CAT-JUMP-BACK-001-OBJ-001.
+- Action: jumping backwards, supported by source description at L2
+  relational evidence level.
+- Position: estimated centre frame, low precision, not measured.
+- Background unresolved appearance-only; exact source camera pose unknown.
+- Only the single declared cat identity may appear.
+
+SCENE S02 — SLOW-MOTION REPLAY
+- Present identity: PKT-CAT-JUMP-BACK-001-OBJ-001 (same as S01).
+- Same backwards jump replayed at 0.25x speed.
+- Position low precision; background unresolved appearance-only.
+- Camera/framing described as same as S01; exact source camera pose unknown.
+- S01 to S02 is an ordered cut/replay boundary; exact time unresolved.
+- Only the single declared cat identity may appear.
+
+GLOBAL TEMPORAL RULES
+- TD is authoritative; preserve S01 before S02.
+- Preserve replay as same cat and same action, not a second instance.
+- Do not invent exact transition timestamp or elapsed interval.
+- Absence from a frame is not deletion; preserve off-screen persistence.
+
+EXPLICIT NEGATIVE CONSTRAINTS
+- No second cat, people, or props.
+- No invented floor, ground, mat, landing surface, fur colour, pattern,
+  background objects/location, audio, or dialogue.
+- No additional detail based on typical cat behaviour or scene convention.
+- Do not convert unresolved information into certainty.
+
+FINAL CLOSED-WORLD ASSERTION
+The only authorized semantic object is PKT-CAT-JUMP-BACK-001-OBJ-001.
+Background remains unresolved and appearance-only. Preserve identity,
+scene order, action, replay relationship, low-precision spatial information,
+and uncertainty. VP-TEST-0001 is a test-defined render preset, not evidence
+about the source camera. Without 3D geometry/depth, true translated novel-view
+rendering is unsupported or approximate.
+
+COMPILATION TERMINATION
+This artifact is the complete output of prompt-only compilation.
+Do not invoke a generator, render an image/video, or claim reconstruction.
+Generation and independent FV audit are separate downstream operations.

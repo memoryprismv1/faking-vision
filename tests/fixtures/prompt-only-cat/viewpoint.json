@@ -1,0 +1,51 @@
+[
+  {
+    "id": "VP-TEST-0001",
+    "name": "Test-defined translated camera pose",
+    "role": "render_preset",
+    "observer": {
+      "type": "camera"
+    },
+    "initial_state": {
+      "status": "unknown",
+      "description": "Source camera pose not established."
+    },
+    "coordinate_frame": {
+      "id": "TEST-WORLD-RH-YUP",
+      "handedness": "right",
+      "up_axis": "+Y",
+      "units": "metres"
+    },
+    "pose": {
+      "position": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      },
+      "orientation": {
+        "representation": "intrinsic_euler",
+        "yaw": 15,
+        "pitch": -5,
+        "roll": 0,
+        "unit": "degrees",
+        "rotation_order": "Y-X-Z"
+      },
+      "target": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "projection": "perspective",
+      "field_of_view_degrees": 50,
+      "framing": {
+        "aspect_ratio": 1.7777777777777777,
+        "fit": "contain",
+        "center": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    "is_default": true
+  }
+]
