@@ -265,7 +265,7 @@ In this mode:
   scene membership, off-screen persistence, spatial relations, temporal order,
   transitions, uncertainty, and explicit negative constraints.
 - Resolve the active render viewpoint from root-level `viewpoint.json` (or
-  the packet's canonical viewpoint field). Include the selected VPO ID, declared
+  the packet's canonical viewpoint field). If no VPO is explicitly selected and exactly one record has `is_default: true`, select that default render VPO; do not select the first array entry arbitrarily. If no default is declared and no VPO is explicitly selected, report that no render viewpoint is selected rather than inventing one. A default render VPO is distinct from the source observer's `initial_state` and does not rewrite or imply source-camera geometry. The legacy virtual `VP-DEFAULT` compatibility identity represents only an implicit source viewpoint; it is not a substitute for a render VPO. Include the selected VPO ID, declared
   coordinate-frame ID/convention/units, camera position, intrinsic Y-X-Z
   yaw/pitch/roll in degrees, projection, FOV or orthographic scale, target when
   present, aspect ratio, and framing. Do not substitute source `initial_state`
