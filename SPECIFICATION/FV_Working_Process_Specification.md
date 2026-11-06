@@ -735,7 +735,11 @@ For video, the initial state is recorded in `viewpoint.json`, and TD records sup
 
 A viewpoint transition is a change in the observer's spatial position, orientation, or view framing over time. Record only the kind and extent of change supported by the source, with the time/frame interval using the existing TD conventions. Do not infer physical coordinates from image-plane movement or apparent perspective changes. Viewpoint movement is not object movement and MUST NOT create or modify OI identities merely because the frame changes.
 
-A legacy packet without `viewpoint.json` remains readable. At read time, supply the virtual reserved ID `VP-DEFAULT` to represent the implicit viewpoint of the supplied image/video. This is a compatibility interpretation, not a claim that the camera or observer's geometry is known. It MUST NOT be written back into the legacy packet merely by reading it. Do not infer position, orientation, calibration, FOV, or camera movement for `VP-DEFAULT`. Legacy TD may reference `VP-DEFAULT` in an in-memory compatibility view, but do not alter the original packet or invent temporal viewpoint events.
+### Legacy viewpoint compatibility (separate from VPO_DEFAULT)
+
+A legacy packet without `viewpoint.json` remains readable. At read time, supply the virtual reserved ID `VP-DEFAULT` to represent only the implicit source viewpoint of the supplied image/video. This compatibility identity is not a viewpoint record, not a VPO, and not a render preset. It carries no inferred position, orientation, calibration, FOV, coordinate frame, geometry, or camera movement. It MUST NOT be written back into the legacy packet merely by reading it. Legacy TD may reference `VP-DEFAULT` in an in-memory compatibility view, but do not alter the original packet or invent temporal viewpoint events.
+
+`VP-DEFAULT` MUST NOT be converted into, substituted for, or used to instantiate `VPO_DEFAULT`. If no render VPO exists and none is explicitly selected, report that no render viewpoint is selected; do not fabricate one. `VPO_DEFAULT` may be instantiated only by an explicit packet-creation or editor action.
 
 Validate newly generated `viewpoint.json` against `SPECIFICATION/FV_Viewpoint_Schema.json`. No separate observations file is introduced; video observation and viewpoint-transition records remain within TD.
 
