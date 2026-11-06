@@ -54,21 +54,25 @@ temporal record.
 
 For every newly generated packet, also create the root-level
 `packet_provenance.json` and validate it against
-`SPECIFICATION/FV_Packet_Provenance_Schema.json`. In its `media` object,
-include:
+`SPECIFICATION/FV_Packet_Provenance_Schema.json`.
+
+The `media` object may also contain these **optional add-ons** when the
+relevant information is supplied or reliably available:
 - `attribution`: an object for attribution to the original source/creator;
   leave its internal properties open and preserve only supplied information.
 - `organizations`: an array of organization objects.
-- `contributions`: an array with `username`, `email`, `organization`,
-  `timestamp`, and `role`. The role is the contributor's role in relation
-  to the current media. Optional contributor identifiers/type/notes may be
-  included when known.
+- `contributions`: an array of contributor objects with `username`, `email`,
+  `organization`, `timestamp`, and `role`. The role is the contributor's
+  role in relation to the current media, not their general job title.
+  Optional contributor identifiers/type/notes may be included when known.
 
-Do not infer missing people, organizations, roles, contact details, or
-timestamps. Use null for unavailable contribution values. These records
-describe attribution and contributions only; licence and rights metadata are
-not part of the current implementation. Legacy packets remain valid without
-retroactive additions.
+These three add-ons are not required fields. Omit any of them when the
+information is unavailable; their absence does not affect packet validity or
+packet generation. Do not infer missing people, organizations, roles, contact
+details, or timestamps. Use null for unavailable values within a contribution
+record that is otherwise being recorded. These records describe attribution
+and contributions only; licence and rights metadata are not part of the
+current implementation. Do not retrofit legacy packets with guessed data.
 
 `fv analyse` is source analysis. Do not use it as a substitute for a
 question-driven investigation when the task is to pursue a specified object,
