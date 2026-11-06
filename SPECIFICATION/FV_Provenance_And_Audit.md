@@ -12,11 +12,14 @@ The record distinguishes:
 
 - `packet_generator`: the agent/process that produced this FV packet.
 - `media.media_generator`: the agent/process that generated the media being analysed, when known.
+- `media.attribution`: an object reserved for attribution to the original source/creator. Its internal properties are intentionally left open for later design.
+- `media.organizations`: an array of organization objects associated with the current media.
+- `media.contributions`: an array recording individual contributions to the current media.
 - The model is not the agent. Preserve both identities independently.
 
 The packet generator record carries `agent_id`, `model_provider`, `model_name`, `model_version`, `run_id`, `generated_at`, and `identity_source`. Use a stable agent identifier, not a display name where a stable identifier exists. Use UTC ISO 8601 timestamps.
 
-The media record carries a media identifier, SHA-256 when calculable, media type, media-generator record, and any embedded provenance observations (for example, C2PA Content Credentials). Embedded credentials are evidence about the media claim; they do not automatically identify the orchestrating agent or prove depicted content is true.
+The media record carries a media identifier, SHA-256 when calculable, media type, media-generator record, embedded provenance observations (for example, C2PA Content Credentials), attribution, organizations, and contributions. The attribution object is intentionally an open object for now; do not standardize or infer its internal properties. Each organization object carries a name and may carry an organization_id. Each contribution records username, email, organization, timestamp, and role; role means the contributor's role in relation to the current media, not their general job title. Optional contributor_id, contributor_type, and notes may be recorded when available. The contribution's organization value refers to organization_id when one is defined, otherwise the exact organization name. Embedded credentials are evidence about the media claim; they do not automatically identify the orchestrating agent or prove depicted content is true.
 
 Unknown means unknown. Do not infer an agent, model version, run ID, or generation time from visual appearance, filename, or model familiarity. Null is permitted for unavailable values. Set `identity_source` to `unknown` when no supported identity source exists.
 
@@ -66,12 +69,31 @@ Example:
         "generated_at": null,
         "claim_reference": null
       }
+    ],
+    "attribution": {},
+    "organizations": [
+      {
+        "organization_id": "org:example/lab",
+        "name": "Example Lab"
+      }
+    ],
+    "contributions": [
+      {
+        "username": "example-analyst",
+        "email": "analyst@example.invalid",
+        "organization": "org:example/lab",
+        "timestamp": "2026-11-01T06:10:00Z",
+        "role": "annotator",
+        "contributor_id": null,
+        "contributor_type": "person",
+        "notes": null
+      }
     ]
   }
 }
 ```
 
-The example values are illustrative. Do not copy them into real packets.
+The example values are illustrative. Do not copy them into real packets. The `attribution` object is intentionally empty because its properties have not yet been designed.
 
 ## 2. Independent audit inputs and comparison
 
