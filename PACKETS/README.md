@@ -17,7 +17,7 @@ For creating a packet from an image or video, use the Working Process Specificat
 
 ## Packet provenance
 
-Newly generated packets include a root-level `packet_provenance.json` identifying the packet-generating agent and, where known, the media-generating system. The format is defined by `../SPECIFICATION/FV_Packet_Provenance_Schema.json`. Existing v0.24 packets without this file remain valid; their provenance is treated as unknown rather than guessed or retrofitted.
+Newly generated packets include a root-level `packet_provenance.json` identifying the packet-generating agent and, where known, the media-generating system. Its media record also supports an `attribution` object for the original source/creator, an `organizations` array, and a `contributions` array recording people's roles in relation to the current media. The attribution object's internal properties are intentionally not yet standardized. The format is defined by `../SPECIFICATION/FV_Packet_Provenance_Schema.json`. Existing packets without this file remain valid; do not retrofit missing provenance or contribution data by guessing.
 
 ## Audit reports
 
