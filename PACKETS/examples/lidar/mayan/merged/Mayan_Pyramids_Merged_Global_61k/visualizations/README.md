@@ -8,3 +8,4 @@ The images are supplied/generated visualizations. Numerical labels and depicted 
 
 - `02_mayan_megacity_map.jpg` — Mayan global merged map visualization.
 - `01_mayan_lidar_stitching.jpg` — Mayan LiDAR stitching visualization.
+- `03_mayan_semantic_segmentation.jpg` — LiDAR semantic-segmentation visualization for the Mayan merged map.
