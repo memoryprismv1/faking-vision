@@ -15,8 +15,8 @@ jobs:
     env:
       CRDS_SERVER_URL: https://hst-crds.stsci.edu
       CRDS_SERVER: https://hst-crds.stsci.edu
-      CRDS_PATH: ${{ runner.temp }}/crds_cache
-      jref: ${{ runner.temp }}/crds_cache/references/hst/acs/
+      CRDS_PATH: ${{ github.workspace }}/crds_cache
+      jref: ${{ github.workspace }}/crds_cache/references/hst/acs/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
