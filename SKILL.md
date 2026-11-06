@@ -223,6 +223,17 @@ In this mode:
 - Preserve packet identities, closed object and background inventories,
   scene membership, off-screen persistence, spatial relations, temporal order,
   transitions, uncertainty, and explicit negative constraints.
+- Resolve the active render viewpoint from root-level `viewpoint.json` (or
+  the packet's canonical viewpoint field). Include the selected VPO ID, declared
+  coordinate-frame ID/convention/units, camera position, intrinsic Y-X-Z
+  yaw/pitch/roll in degrees, projection, FOV or orthographic scale, target when
+  present, aspect ratio, and framing. Do not substitute source `initial_state`
+  for the selected render `pose`.
+- State explicitly whether the target renderer can honour the requested camera
+  pose. If geometry/depth is insufficient for a physical viewpoint change from
+  a 2D source, mark the view as approximate/unsupported and identify the
+  missing information; never imply that prompt compilation itself generated
+  the image.
 - Keep packet facts distinct from renderer-specific syntax and capability
   limitations. Do not add undeclared semantic content to make the prompt sound
   natural.
