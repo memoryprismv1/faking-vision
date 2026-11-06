@@ -80,8 +80,8 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(json.dumps(obj, indent=2, allow_nan=False) + "\n")
 
-          def fits_wcs_summary(hdu):
-              w = WCS(hdu.header, relax=True).celestial
+          def fits_wcs_summary(hdu, hdul):
+              w = WCS(hdu.header, hdul, relax=True).celestial
               ny, nx = hdu.data.shape
               corners = np.asarray([[0, 0], [nx-1, 0], [nx-1, ny-1], [0, ny-1]], dtype=float)
               world = w.all_pix2world(corners, 0)
@@ -176,7 +176,7 @@ jobs:
                       ax.set_axis_off()
                       fig.savefig(preview, dpi=140, bbox_inches="tight", pad_inches=0)
                       plt.close(fig)
-                      rec["science_extensions"].append(fits_wcs_summary(hdu))
+                      rec["science_extensions"].append(fits_wcs_summary(hdu, hdul))
                       rec["science_extensions"][-1]["verification_preview"] = preview.name
               exposure_records.append(rec)
 
@@ -438,7 +438,7 @@ jobs:
               ax.set_axis_off()
               fig.savefig(wht_path, dpi=150, bbox_inches="tight", pad_inches=0)
               plt.close(fig)
-              final_wcs = WCS(sci_header, relax=True).celestial
+              final_wcs = WCS(sci_header, hdul, relax=True).celestial
               corners_pix = np.asarray([[0,0],[nx-1,0],[nx-1,ny-1],[0,ny-1]], dtype=float)
               corners_world = final_wcs.all_pix2world(corners_pix, 0)
               pixel_scale = proj_plane_pixel_scales(final_wcs) * 3600.0
