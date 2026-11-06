@@ -573,6 +573,14 @@ Assign a stable packet_id before packet contents are generated. Use that packet_
 
 For every newly generated packet, create the additive root-level `packet_provenance.json` using `FV_Packet_Provenance_Schema.json`. Record the packet-generating agent separately from the system that generated the source media. Unknown values remain null/unknown; do not infer them. Existing packets without this file remain valid under the backward-compatibility rule in section 10.1.
 
+The `media` object in `packet_provenance.json` may also contain three independent **optional add-ons**, when the relevant information is supplied or reliably available:
+
+- `attribution`: an object for attribution to the original source/creator. Its internal properties are deliberately left open for now; preserve supplied attribution information without inventing or normalizing fields.
+- `organizations`: an array of organization objects associated with the current media. Each organization has a `name` and may have an `organization_id`.
+- `contributions`: an array of contributor objects. Record `username`, `email`, `organization`, `timestamp`, and `role`. The role is the contributor's role in relation to the current media, not their general job title. Optional `contributor_id`, `contributor_type`, and `notes` may be included when known. A contribution's organization refers to `organization_id` when available, otherwise to the exact organization name.
+
+These add-ons are not required. Omit any or all of them when the information is unavailable; omission does not affect packet validity or packet generation. Do not infer a person, organization, role, contact detail, or timestamp. Use null for unavailable values within a contribution record that is otherwise being recorded. These fields record attribution and contributions; they do not establish licence, permission, copyright ownership, or other rights. Licence and rights metadata are outside the current implementation scope.
+
 ## 9.1 Build the initial inventory
 
 Filesystem discipline: folder structure is part of the operator interface. Do not create folders for organizational convenience. Before creating any folder not explicitly permitted by this specification, ask the operator for permission. No nested folder may be created inside `snapshot/verification/`, `snapshot/objs/`, or `snapshot/disputes/` without explicit permission. Extra folder depth is not a semantic layer and must not be introduced merely to separate artifact types.

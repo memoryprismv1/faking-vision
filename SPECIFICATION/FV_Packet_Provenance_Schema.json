@@ -122,6 +122,104 @@
               }
             }
           }
+        },
+        "attribution": {
+          "type": "object",
+          "description": "Attribution to the original source/creator. Its internal properties are intentionally not standardized yet.",
+          "additionalProperties": true
+        },
+        "organizations": {
+          "type": "array",
+          "description": "Organizations associated with the current media.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "organization_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "contributions": {
+          "type": "array",
+          "description": "People's contributions and roles in relation to the current media.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "username",
+              "email",
+              "organization",
+              "timestamp",
+              "role"
+            ],
+            "properties": {
+              "username": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "email": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "email"
+              },
+              "organization": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "References an organization_id when one is defined; otherwise use the exact organization name."
+              },
+              "timestamp": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "role": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The contributor's role in relation to this media, not their general job title."
+              },
+              "contributor_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Optional stable contributor identifier when available."
+              },
+              "contributor_type": {
+                "enum": [
+                  "person",
+                  "agent",
+                  "unknown"
+                ],
+                "description": "Optional contributor category."
+              },
+              "notes": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
         }
       }
     }
