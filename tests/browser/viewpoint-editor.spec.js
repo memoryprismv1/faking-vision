@@ -28,10 +28,11 @@ test('FV Edit camera drag changes VPO, logs it, exports and reloads it', async (
 
 test('FV Edit viewpoint command updates pose and records before/after', async ({ page }) => {
   await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
-  await page.locator('#command').fill('fv edit viewpoint set VP-DEFAULT01 position 2 1 5');
+  const viewpointId = await page.locator('#cameraMarker').getAttribute('data-viewpoint-id');
+  await page.locator('#command').fill(`fv edit viewpoint set ${viewpointId} position 2 1 5`);
   await page.locator('#runCommand').click();
   await expect(page.locator('#viewX')).toHaveValue('2');
-  await expect(page.locator('#history')).toContainText('VP-DEFAULT01');
+  await expect(page.locator('#history')).toContainText(viewpointId);
 });
 
 test('FV Edit schematic explicitly does not claim to render a new camera image', async ({ page }) => {
