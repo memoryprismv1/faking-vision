@@ -128,7 +128,7 @@ It is not an open-source software project. Non-commercial copying, sharing, stud
 
 ## Image packet editing and environmental participation (v0.25–v0.26 design additions)
 
-The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow. The repository also contains two experimental browser-based tools: `PACKETS/tools/FV_Edit_Visual_Workbench.html` and `PACKETS/tools/FV_Media_Object_Editor_MVP.html`. These are prototypes and have not been fully tested or validated; their presence does not make them authoritative packet writers. The initial `fv edit` workflow scope is image packets only.
+The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow. The separate `fv rebuild` / `fv upgrade` operation handles legacy packet version migration; it does not replace or absorb `fv edit`. The repository also contains two experimental browser-based tools: `PACKETS/tools/FV_Edit_Visual_Workbench.html` and `PACKETS/tools/FV_Media_Object_Editor_MVP.html`. These are prototypes and have not been fully tested or validated; their presence does not make them authoritative packet writers. The initial `fv edit` workflow scope is image packets only.
 
 ```text
 fv edit
@@ -140,7 +140,7 @@ fv edit <object-name/object-id> <property-id>
 - Direct edits require a sufficiently unique target and an applicable property. Do not guess between ambiguous objects. Record successful edits in the edit log; do not mark failed or unresolved operations as successful.
 - A separate environment packet describes environmental conditions and includes an array of objects undergoing behaviour changes because of those conditions. Environmental edits are logged. Setting a condition does not by itself authorize inventing changes to affected objects.
 - The edit log records `edit_base: singleton` for a single-object target and `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
-- Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv edit` on an older packet to enter the update workflow without falsifying its legacy provenance.
+- Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv rebuild` (or `fv upgrade`) on an older packet to enter the version-migration workflow without falsifying its legacy provenance. Use `fv edit` only for intentional content changes.
 - The experimental Media Object Editor MVP accepts a video and FV JSON packet, supports manually drawn polygon keyframes and basic property edits, and can export packet data and a WebM recording where the browser supports it. It does not provide automatic segmentation or persistent object tracking; its visual tint is not semantic object-aware reconstruction. Interpolation can fail across scene cuts or major shape changes, and packet exports and visual output require separate review. The Visual Workbench is also experimental. Treat both tools as prototypes requiring evaluation, not validated or canonical FV implementations.
 
 The v0.26 environmental-participation rules additionally distinguish changes to environment conditions from affected-object responses:
@@ -151,4 +151,4 @@ The v0.26 environmental-participation rules additionally distinguish changes to 
 - Validate structural consistency and semantic expectations separately from the independent visual audit; an edit log is not proof that the resulting image matches the intended state.
 - Preserve legacy packet provenance when mapping older packets to a later FV version.
 
-The environment packet schema, edit-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items.
+The environment packet schema, edit-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items. Until the version-marker filename/schema is standardized, rebuild must not invent one; record the target mapping in its rebuild report and flag the gap.
