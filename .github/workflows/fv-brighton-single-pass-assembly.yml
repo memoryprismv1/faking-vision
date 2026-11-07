@@ -1,0 +1,345 @@
+name: FV assemble — Brighton drone single-pass maplets
+
+on:
+  push:
+    branches:
+      - work/hubble-ngc104-fv
+    paths:
+      - ".github/workflows/fv-brighton-single-pass-assembly.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Retrieve original Brighton Beach dataset and verify archive
+        run: |
+          set -euo pipefail
+          mkdir -p work/brighton/source work/brighton/output
+          curl -fL --retry 4 --retry-delay 2 \
+            "https://codeload.github.com/pierotofy/drone_dataset_brighton_beach/zip/refs/heads/master" \
+            -o work/brighton/source/odm-brighton-beach.zip
+          echo "1c16cb6532760b2ecad1f787e48e88f8033d7e8d7177656f8578e115c16d6dd4  work/brighton/source/odm-brighton-beach.zip" | sha256sum -c -
+          unzip -q work/brighton/source/odm-brighton-beach.zip -d work/brighton/source
+          test "$(find work/brighton/source/drone_dataset_brighton_beach-master/images -maxdepth 1 -name 'DJI_*.JPG' | wc -l)" -eq 18
+          mkdir -p work/brighton/source/pass_19_24
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0024.JPG work/brighton/source/pass_19_24/
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0025.JPG work/brighton/source/pass_19_24/
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0026.JPG work/brighton/source/pass_19_24/
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0027.JPG work/brighton/source/pass_19_24/
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0028.JPG work/brighton/source/pass_19_24/
+          cp work/brighton/source/drone_dataset_brighton_beach-master/images/DJI_0029.JPG work/brighton/source/pass_19_24/
+
+      - name: Install image registration and metadata tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install opencv-contrib-python-headless==4.13.0.92 pillow numpy tifffile
+
+      - name: Register and assemble the six original views
+        run: |
+          python - <<'PY'
+          import cv2, hashlib, json, pathlib, shutil
+          from datetime import datetime
+          from PIL import Image, ImageDraw, ExifTags
+          import numpy as np
+
+          ROOT = pathlib.Path("work/brighton")
+          SRC = ROOT / "source/pass_19_24"
+          DATA = ROOT / "source/drone_dataset_brighton_beach-master"
+          OUT = ROOT / "output"
+          PACKETS = OUT / "packets"
+          PREVIEWS = OUT / "previews"
+          for p in (PACKETS, PREVIEWS):
+              p.mkdir(parents=True, exist_ok=True)
+
+          FILES = [f"DJI_{n:04d}.JPG" for n in range(24,30)]
+          ORIGINALS = [SRC / name for name in FILES]
+          ARCHIVE = ROOT / "source/odm-brighton-beach.zip"
+
+          def sha256(p):
+              h=hashlib.sha256()
+              with open(p,"rb") as f:
+                  for chunk in iter(lambda:f.read(1024*1024),b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def dms_to_deg(value, ref):
+              d,m,s = value
+              out = float(d) + float(m)/60.0 + float(s)/3600.0
+              return -out if ref in ("S","W") else out
+
+          def exif_record(path):
+              im=Image.open(path)
+              ex=im.getexif()
+              gpsraw=ex.get_ifd(34853)
+              gps={ExifTags.GPSTAGS.get(k,k):v for k,v in gpsraw.items()}
+              return {
+                "filename":path.name,
+                "width_px":im.width,
+                "height_px":im.height,
+                "camera_make":str(ex.get(271,"")).replace(chr(0),"").strip(),
+                "camera_model":str(ex.get(272,"")).replace(chr(0),"").strip(),
+                "datetime_original":ex.get(306),
+                "latitude_deg":dms_to_deg(gps["GPSLatitude"],gps["GPSLatitudeRef"]),
+                "longitude_deg":dms_to_deg(gps["GPSLongitude"],gps["GPSLongitudeRef"]),
+                "gps_altitude_m":float(gps["GPSAltitude"]),
+                "gps_altitude_ref":int(gps.get("GPSAltitudeRef",0)),
+                "orientation":ex.get(274),
+                "bytes":path.stat().st_size,
+                "sha256":sha256(path)
+              }
+
+          source_records=[exif_record(p) for p in ORIGINALS]
+          times=[datetime.strptime(x["datetime_original"],"%Y:%m:%d %H:%M:%S") for x in source_records]
+          gaps=[(times[i+1]-times[i]).total_seconds() for i in range(len(times)-1)]
+          models={x["camera_model"] for x in source_records}
+          if any(g <= 0 or g > 15 for g in gaps):
+              raise RuntimeError(f"Selected sequence is not time-contiguous: gaps={gaps}")
+          if len(models)!=1:
+              raise RuntimeError(f"Mixed camera models in one-pass selection: {models}")
+          if times[-1].date()!=times[0].date():
+              raise RuntimeError("Selected capture run crosses dates.")
+
+          sift=cv2.SIFT_create(nfeatures=5000)
+          pair_records=[]
+          for i in range(len(ORIGINALS)-1):
+              a=cv2.imread(str(ORIGINALS[i]),cv2.IMREAD_GRAYSCALE)
+              b=cv2.imread(str(ORIGINALS[i+1]),cv2.IMREAD_GRAYSCALE)
+              if a is None or b is None:
+                  raise RuntimeError("Failed to decode a source image.")
+              scale=1600/a.shape[1]
+              aa=cv2.resize(a,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA)
+              bb=cv2.resize(b,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA)
+              ka,da=sift.detectAndCompute(aa,None)
+              kb,db=sift.detectAndCompute(bb,None)
+              if da is None or db is None:
+                  raise RuntimeError(f"No SIFT descriptors for pair {FILES[i]} / {FILES[i+1]}")
+              matcher=cv2.BFMatcher(cv2.NORM_L2)
+              raw=matcher.knnMatch(da,db,k=2)
+              good=[m for m,n in raw if m.distance < 0.75*n.distance]
+              if len(good)<8:
+                  raise RuntimeError(f"Insufficient candidate matches for pair {FILES[i]} / {FILES[i+1]}: {len(good)}")
+              srcpts=np.float32([ka[m.queryIdx].pt for m in good]).reshape(-1,1,2)
+              dstpts=np.float32([kb[m.trainIdx].pt for m in good]).reshape(-1,1,2)
+              H,mask=cv2.findHomography(srcpts,dstpts,cv2.RANSAC,4.0)
+              if H is None or mask is None:
+                  raise RuntimeError(f"Homography estimation failed for pair {FILES[i]} / {FILES[i+1]}")
+              inliers=mask.ravel().astype(bool)
+              projected=cv2.perspectiveTransform(srcpts[inliers],H)
+              residual=np.linalg.norm(projected-dstpts[inliers],axis=2).ravel()
+              rms=float(np.sqrt(np.mean(residual**2))) if residual.size else None
+              pair_records.append({
+                "image_a":FILES[i],"image_b":FILES[i+1],
+                "features_a":len(ka),"features_b":len(kb),
+                "ratio_test_matches":len(good),
+                "homography_inliers":int(inliers.sum()),
+                "inlier_fraction":float(inliers.mean()),
+                "rms_reprojection_error_px_at_1600w":rms,
+                "homography_a_to_b":H.tolist()
+              })
+
+          images=[cv2.imread(str(p),cv2.IMREAD_COLOR) for p in ORIGINALS]
+          if any(im is None for im in images):
+              raise RuntimeError("OpenCV could not decode one or more source images.")
+          stitcher=cv2.Stitcher.create(cv2.Stitcher_SCANS)
+          stitcher.setPanoConfidenceThresh(0.3)
+          stitcher.setInterpolationFlags(cv2.INTER_LINEAR)
+          status=stitcher.estimateTransform(images)
+          if status!=cv2.Stitcher_OK:
+              raise RuntimeError(f"OpenCV SCANS estimateTransform failed: status={status}")
+          cameras=stitcher.cameras()
+          if len(cameras)!=len(images):
+              raise RuntimeError(f"OpenCV returned {len(cameras)} placements for {len(images)} images.")
+          status,mosaic=stitcher.composePanorama()
+          if status!=cv2.Stitcher_OK or mosaic is None:
+              raise RuntimeError(f"OpenCV SCANS composePanorama failed: status={status}")
+
+          mosaic_path=OUT/"brighton_pass_19_24_scans_mosaic.jpg"
+          if not cv2.imwrite(str(mosaic_path),mosaic,[cv2.IMWRITE_JPEG_QUALITY,94]):
+              raise RuntimeError("Could not write stitched mosaic.")
+
+          placements=[]
+          for rec,cam in zip(source_records,cameras):
+              placements.append({
+                "source_filename":rec["filename"],
+                "source_sha256":rec["sha256"],
+                "opencv_scans_transform_matrix":np.asarray(cam.R,dtype=float).tolist(),
+                "focal":float(cam.focal),
+                "aspect":float(cam.aspect),
+                "principal_point_px":[float(cam.ppx),float(cam.ppy)]
+              })
+
+          cell_w,cell_h=650,400
+          sheet=Image.new("RGB",(3*cell_w,2*cell_h),(24,28,34))
+          draw=ImageDraw.Draw(sheet)
+          draw.text((12,8),"Brighton Beach — six DJI views, 19:24 capture run",fill=(245,245,245))
+          for i,(name,im) in enumerate(zip(FILES,images)):
+              thumb=Image.fromarray(cv2.cvtColor(im,cv2.COLOR_BGR2RGB))
+              thumb.thumbnail((620,350))
+              x=(i%3)*cell_w+12
+              y=(i//3)*cell_h+28
+              sheet.paste(thumb,(x,y))
+              draw.text((x,y+355),name,fill=(240,240,240))
+          contact=PREVIEWS/"brighton-pass-19-24-source-maplets.jpg"
+          sheet.save(contact,quality=90)
+
+          source_packet_ids=[]
+          for i,rec in enumerate(source_records):
+              pid=f"PKT-BRIGHTON-1924-{rec['filename'].replace('.JPG','')}"
+              source_packet_ids.append(pid)
+              pdir=PACKETS/"source-maplets"/pid
+              (pdir/"snapshot").mkdir(parents=True,exist_ok=True)
+              (pdir/"OI.json").write_text(json.dumps({
+                "packet_id":pid,"spec_version":"0.24","operation":"fv analyse",
+                "inventory_lock":True,"entities":[],
+                "source_provenance":{
+                  "dataset":"OpenDroneMap Brighton Beach drone dataset",
+                  "source_archive":"odm-brighton-beach.zip",
+                  "source_archive_sha256":"1c16cb6532760b2ecad1f787e48e88f8033d7e8d7177656f8578e115c16d6dd4",
+                  "source_archive_member":f"drone_dataset_brighton_beach-master/images/{rec['filename']}",
+                  "image_sha256":rec["sha256"],
+                  "camera_make":rec["camera_make"],"camera_model":rec["camera_model"],
+                  "datetime_original":rec["datetime_original"]
+                },
+                "inventory_note":"Source-maplet packet. No persistent physical object identities have been promoted."
+              },indent=2)+"\n")
+              (pdir/"MSRM.json").write_text(json.dumps({
+                "packet_id":pid,"local_reference":"4000x2250 source-image pixel frame",
+                "maplet":{
+                  "image_dimensions_px":[rec["width_px"],rec["height_px"]],
+                  "viewpoint":{
+                    "latitude_deg":rec["latitude_deg"],
+                    "longitude_deg":rec["longitude_deg"],
+                    "gps_altitude_m":rec["gps_altitude_m"],
+                    "orientation":"not recorded in selected EXIF fields; do not infer camera heading"
+                  },
+                  "capture_time":rec["datetime_original"]
+                },
+                "registration_state":"Local viewpoint observation; global mosaic placement is recorded in the assembled packet."
+              },indent=2)+"\n")
+              (pdir/"PC.json").write_text(json.dumps({
+                "packet_id":pid,"constants":["DJI FC300S camera","Single 19:24 capture run","Original JPEG source"]
+              },indent=2)+"\n")
+              (pdir/"snapshot"/"manifest.json").write_text(json.dumps({
+                "packet_id":pid,
+                "source_archive_sha256":"1c16cb6532760b2ecad1f787e48e88f8033d7e8d7177656f8578e115c16d6dd4",
+                "source_archive_member":f"drone_dataset_brighton_beach-master/images/{rec['filename']}",
+                "source_image_sha256":rec["sha256"]
+              },indent=2)+"\n")
+              (pdir/"README.txt").write_text(
+                f"Brighton drone source maplet — {rec['filename']}\npacket_id: {pid}\n"
+                f"capture: {rec['datetime_original']}\n"
+                f"GPS: {rec['latitude_deg']}, {rec['longitude_deg']} at {rec['gps_altitude_m']} m\n"
+                f"SHA-256: {rec['sha256']}\n"
+                "Orientation/heading was not recovered from the selected EXIF fields.\n"
+              )
+
+          assembled_id="PKT-BRIGHTON-1924-SINGLE-PASS-ASSEMBLED-001"
+          assembled=PACKETS/"assembled"/assembled_id
+          (assembled/"snapshot"/"verification").mkdir(parents=True,exist_ok=True)
+          shutil.copy2(mosaic_path,assembled/mosaic_path.name)
+          shutil.copy2(contact,assembled/"snapshot"/"verification"/contact.name)
+          (assembled/"OI.json").write_text(json.dumps({
+            "packet_id":assembled_id,"spec_version":"0.24","operation":"fv assemble",
+            "inventory_lock":True,"entities":[],"source_maplets":source_packet_ids,
+            "inventory_note":"Geometric image-space assembly only; no physical-object identity merge or orthorectification is claimed."
+          },indent=2)+"\n")
+          (assembled/"MSRM.json").write_text(json.dumps({
+            "packet_id":assembled_id,
+            "global_coordinate_system":"OpenCV SCANS panorama pixel frame; not a georeferenced ground coordinate system.",
+            "assembly_engine":{
+              "name":"OpenCV Stitcher","mode":"SCANS","opencv_version":cv2.__version__,
+              "pano_confidence_threshold":0.3,"interpolation":"INTER_LINEAR"
+            },
+            "capture_run":{
+              "camera_model":list(models)[0],"capture_start":times[0].isoformat(),
+              "capture_end":times[-1].isoformat(),
+              "duration_seconds":(times[-1]-times[0]).total_seconds(),
+              "inter_capture_gaps_seconds":gaps,
+              "gps_positions":[{"file":r["filename"],"lat":r["latitude_deg"],"lon":r["longitude_deg"],"altitude_m":r["gps_altitude_m"]} for r in source_records]
+            },
+            "pairwise_registration":pair_records,"maplet_placements":placements,
+            "mosaic":{
+              "filename":mosaic_path.name,"sha256":sha256(mosaic_path),
+              "shape_yx_channels":list(mosaic.shape),"bytes":mosaic_path.stat().st_size
+            },
+            "limits":[
+              "Image-space mosaic only; no camera calibration, dense 3D reconstruction, DEM, or orthorectification was performed.",
+              "GPS coordinates are metadata observations, not control points used to georeference the panorama.",
+              "Camera heading was not present in the selected EXIF fields.",
+              "Perspective/parallax and terrain relief can make a single global planar mosaic locally imperfect.",
+              "The separate 16:31–16:34 and 19:24 capture groups in the full dataset were not mixed into this one-run assembly."
+            ]
+          },indent=2)+"\n")
+          (assembled/"PC.json").write_text(json.dumps({
+            "packet_id":assembled_id,
+            "constants":["DJI FC300S","Six 4000x2250 JPEG images","19:24:38–19:24:55 capture run","OpenCV SCANS mode","Pairwise SIFT diagnostics retained"]
+          },indent=2)+"\n")
+          (assembled/"snapshot"/"manifest.json").write_text(json.dumps({
+            "packet_id":assembled_id,"source_archive":"odm-brighton-beach.zip",
+            "source_archive_sha256":"1c16cb6532760b2ecad1f787e48e88f8033d7e8d7177656f8578e115c16d6dd4",
+            "source_packet_ids":source_packet_ids,
+            "source_images":[{"filename":r["filename"],"sha256":r["sha256"],"bytes":r["bytes"]} for r in source_records],
+            "assembled_mosaic":{"filename":mosaic_path.name,"sha256":sha256(mosaic_path)},
+            "maplet_placements":placements
+          },indent=2)+"\n")
+          (assembled/"README.txt").write_text(
+            "FV assembled maplet packet — Brighton Beach 19:24 single capture run\n"
+            f"packet_id: {assembled_id}\noperation: fv assemble\n\n"
+            "Six original DJI FC300S images from 19:24:38 to 19:24:55 were registered with OpenCV Stitcher SCANS mode into one larger image-space panorama. Individual image packets, per-image projective placements, adjacent-pair feature diagnostics, GPS/time metadata, and source hashes are retained.\n\n"
+            "This is not a georeferenced orthophoto or dense 3D model. No physical-object identity merge was performed.\n"
+          )
+
+          if len(source_packet_ids)!=6 or len(pair_records)!=5:
+              raise RuntimeError("Wrong number of source maplets or adjacent pair diagnostics.")
+          for p in PACKETS.rglob("*.json"):
+              json.loads(p.read_text())
+          expected={r["filename"]:r["sha256"] for r in source_records}
+          actual={p.name:sha256(p) for p in ORIGINALS}
+          if expected!=actual:
+              raise RuntimeError("Source image hash changed during processing.")
+          validation={
+            "status":"PASS_STRUCTURAL_AND_REGISTRATION_OUTPUTS",
+            "scope":"OpenCV SCANS completed; six source images/time/position records and per-image transformations were recorded; five adjacent SIFT/homography diagnostics were retained; packet JSON parsed and source hashes rechecked. Not a standalone FV CLI validation or orthophoto accuracy certification.",
+            "selected_capture_run":{"start":times[0].isoformat(),"end":times[-1].isoformat(),"duration_seconds":(times[-1]-times[0]).total_seconds(),"gaps_seconds":gaps},
+            "source_image_count":len(source_records),"pairwise_registration_count":len(pair_records),
+            "pairwise_inliers":[x["homography_inliers"] for x in pair_records],
+            "minimum_pairwise_inliers":min(x["homography_inliers"] for x in pair_records),
+            "mosaic_sha256":sha256(mosaic_path),"mosaic_shape_yx_channels":list(mosaic.shape),
+            "source_image_hashes_rechecked":True,"object_identity_merge_performed":False,"orthorectification_performed":False
+          }
+          (OUT/"VALIDATION_REPORT.json").write_text(json.dumps(validation,indent=2)+"\n")
+          (OUT/"SOURCE_INVENTORY.json").write_text(json.dumps(source_records,indent=2)+"\n")
+          shutil.copy2(ARCHIVE,OUT/"odm-brighton-beach-original-source.zip")
+          shutil.copy2(DATA/"LICENSE",OUT/"LICENSE")
+          (OUT/"README.md").write_text(
+            "# FV Assemble — Brighton Beach single-pass drone panorama\n\n"
+            "Six consecutive source views from one DJI FC300S capture run were assembled into an image-space panorama.\n\n"
+            f"- Capture: {times[0].strftime('%Y-%m-%d %H:%M:%S')} to {times[-1].strftime('%H:%M:%S')}\n"
+            f"- Input maplets: {len(source_records)}\n"
+            f"- Inter-capture gaps: {gaps}\n"
+            f"- Mosaic: {mosaic_path.name} ({mosaic.shape[1]} x {mosaic.shape[0]})\n"
+            f"- Mosaic SHA-256: {sha256(mosaic_path)}\n"
+            "- Engine: OpenCV Stitcher SCANS\n"
+            "- Original dataset archive and per-image hashes are retained.\n"
+            "- This is not an orthorectified/georeferenced product or 3D reconstruction.\n"
+            "- No standalone FV CLI was invoked.\n"
+          )
+          print(json.dumps(validation,indent=2))
+          PY
+
+      - name: Upload complete Brighton source maplet and assembly bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-brighton-single-pass-assembly
+          path: work/brighton/output/
+          if-no-files-found: error
+          retention-days: 30
