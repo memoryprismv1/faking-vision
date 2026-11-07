@@ -91,7 +91,7 @@ jobs:
                 "latitude_deg":dms_to_deg(gps["GPSLatitude"],gps["GPSLatitudeRef"]),
                 "longitude_deg":dms_to_deg(gps["GPSLongitude"],gps["GPSLongitudeRef"]),
                 "gps_altitude_m":float(gps["GPSAltitude"]),
-                "gps_altitude_ref":int(gps.get("GPSAltitudeRef",0)),
+                "gps_altitude_ref":(int.from_bytes(gps.get("GPSAltitudeRef",b"\\x00"),"big") if isinstance(gps.get("GPSAltitudeRef",0),bytes) else int(gps.get("GPSAltitudeRef",0))),
                 "orientation":ex.get(274),
                 "bytes":path.stat().st_size,
                 "sha256":sha256(path)
