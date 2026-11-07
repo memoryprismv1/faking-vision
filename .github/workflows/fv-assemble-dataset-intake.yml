@@ -1,0 +1,274 @@
+name: FV assemble — public dataset intake receipts
+
+on:
+  push:
+    branches:
+      - work/hubble-ngc104-fv
+    paths:
+      - ".github/workflows/fv-assemble-dataset-intake.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install preview and archive-inspection tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests numpy pillow tifffile
+      - name: Download, inspect and receipt public overlap datasets
+        run: |
+          mkdir -p intake-artifact/downloads intake-artifact/receipts intake-artifact/previews intake-artifact/source-notes
+          cat > /tmp/intake.py <<'PY'
+          import csv, hashlib, io, json, os, pathlib, re, shutil, tempfile, zipfile
+          from datetime import datetime, timezone
+          import requests
+          import numpy as np
+          from PIL import Image, ImageOps, ImageDraw
+          import tifffile
+
+          OUT = pathlib.Path("intake-artifact")
+          (OUT/"downloads").mkdir(parents=True, exist_ok=True)
+          (OUT/"receipts").mkdir(parents=True, exist_ok=True)
+          (OUT/"previews").mkdir(parents=True, exist_ok=True)
+          (OUT/"source-notes").mkdir(parents=True, exist_ok=True)
+
+          DATASETS = [
+            {
+              "id": "bigstitcher-2d-drosophila",
+              "title": "BigStitcher 2D multi-tile Drosophila larva microscopy",
+              "url": "https://preibischlab.mdc-berlin.de/BigStitcher/Grid_2d.zip",
+              "documentation": "https://imagej.net/plugins/bigstitcher/",
+              "expected_archive_mb": 2.8,
+              "expected": "Six 2D tiles, three channels per tile; documented regular 2-by-3 grid with 10% overlap.",
+              "test_value": "Small controlled multi-channel 2D tile assembly."
+            },
+            {
+              "id": "bigstitcher-3d-drosophila",
+              "title": "BigStitcher 3D confocal multi-tile Drosophila larva microscopy",
+              "url": "https://preibischlab.mdc-berlin.de/BigStitcher/Grid_3d.zip",
+              "documentation": "https://imagej.net/plugins/bigstitcher/",
+              "expected_archive_mb": 123,
+              "expected": "Six 3D confocal tiles, three channels distributed across files; documented BigStitcher example.",
+              "test_value": "Tests whether the assembly abstraction extends from 2D fields to volumetric local representations."
+            },
+            {
+              "id": "nist-mist-5x5-cy5",
+              "title": "NIST MIST 5x5 Cy5 fluorescence microscopy tile grid",
+              "url": "https://github.com/usnistgov/MIST/wiki/testdata/Small_Fluorescent_Test_Dataset.zip",
+              "documentation": "https://github.com/usnistgov/MIST",
+              "expected_archive_mb": 32,
+              "expected": "5x5 image tile grid, 10% overlap between consecutive tiles; row/column filenames; Cy5 fluorescence modality.",
+              "test_value": "Known-grid 25-tile microscopy assembly with published stitching tool and reference results."
+            },
+            {
+              "id": "odm-brighton-beach",
+              "title": "OpenDroneMap Brighton Beach drone photogrammetry survey",
+              "url": "https://codeload.github.com/pierotofy/drone_dataset_brighton_beach/zip/refs/heads/master",
+              "documentation": "https://opendronemap.org/odm/datasets/",
+              "expected_archive_mb": 62,
+              "expected": "ODM catalogue lists 18 aerial images (62 MB) with image GPS coordinates in EXIF.",
+              "test_value": "Real aerial acquisition sequence with changing camera position and overlapping ground coverage."
+            }
+          ]
+
+          def sha256(path):
+            h = hashlib.sha256()
+            with open(path, "rb") as f:
+              for chunk in iter(lambda: f.read(1024*1024), b""):
+                h.update(chunk)
+            return h.hexdigest()
+
+          def download(url, dst):
+            headers = {"User-Agent": "FV-public-dataset-intake/1.0"}
+            with requests.get(url, headers=headers, stream=True, timeout=(30, 300)) as r:
+              r.raise_for_status()
+              total = 0
+              with open(dst, "wb") as f:
+                for chunk in r.iter_content(1024*1024):
+                  if chunk:
+                    f.write(chunk)
+                    total += len(chunk)
+              return total, r.url, r.headers.get("content-type")
+
+          def safe_extract_selected(archive, dest):
+            dest.mkdir(parents=True, exist_ok=True)
+            names = []
+            with zipfile.ZipFile(archive) as z:
+              bad = z.testzip()
+              if bad:
+                raise RuntimeError(f"ZIP CRC failure at {bad}")
+              for info in z.infolist():
+                if info.is_dir():
+                  continue
+                p = pathlib.PurePosixPath(info.filename)
+                if p.is_absolute() or ".." in p.parts:
+                  continue
+                names.append({"path": info.filename, "bytes": info.file_size})
+                target = dest.joinpath(*p.parts)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with z.open(info) as src, open(target, "wb") as dst:
+                  shutil.copyfileobj(src, dst)
+            return names
+
+          def make_contact_sheet(files, outpath, title, max_items=30):
+            thumbs = []
+            for p in files:
+              try:
+                if p.suffix.lower() in (".tif", ".tiff"):
+                  arr = np.asarray(tifffile.imread(p))
+                  arr = np.squeeze(arr)
+                  while arr.ndim > 2:
+                    if arr.shape[-1] in (3,4) and arr.ndim == 3:
+                      break
+                    arr = np.nanmax(arr, axis=0)
+                  if arr.ndim == 2:
+                    good = arr[np.isfinite(arr)]
+                    if good.size == 0: continue
+                    lo, hi = np.percentile(good, [1, 99])
+                    if hi <= lo: hi = lo + 1
+                    arr = np.clip((arr-lo)/(hi-lo),0,1)
+                    arr = (arr*255).astype(np.uint8)
+                    im = Image.fromarray(arr, "L").convert("RGB")
+                  elif arr.ndim == 3:
+                    if arr.shape[0] in (3,4) and arr.shape[-1] not in (3,4):
+                      arr = np.moveaxis(arr,0,-1)
+                    if arr.shape[-1] not in (3,4): continue
+                    lo,hi=np.percentile(arr,[1,99])
+                    if hi<=lo: hi=lo+1
+                    arr=np.clip((arr-lo)/(hi-lo),0,1)
+                    im=Image.fromarray((arr[...,:3]*255).astype(np.uint8))
+                else:
+                  im = Image.open(p).convert("RGB")
+                im.thumbnail((220, 170))
+                thumbs.append((p.name, im.copy()))
+                if len(thumbs) >= max_items: break
+              except Exception:
+                continue
+            if not thumbs:
+              return None, 0
+            cols = 4
+            cell_w, cell_h = 250, 210
+            rows = (len(thumbs)+cols-1)//cols
+            sheet = Image.new("RGB",(cols*cell_w, rows*cell_h),(24,28,34))
+            draw = ImageDraw.Draw(sheet)
+            draw.text((16,10),title,fill=(245,245,245))
+            for i,(name,im) in enumerate(thumbs):
+              x=(i%cols)*cell_w+15
+              y=(i//cols)*cell_h+30
+              sheet.paste(im,(x,y))
+              draw.text((x,y+174),name[:35],fill=(235,235,235))
+            sheet.save(outpath)
+            return str(outpath), len(thumbs)
+
+          receipts=[]
+          for ds in DATASETS:
+            rid=ds["id"]
+            archive_path=OUT/"downloads"/(rid+".zip")
+            receipt={
+              "dataset_id": rid,
+              "title": ds["title"],
+              "source_url": ds["url"],
+              "documentation_url": ds["documentation"],
+              "catalogue_expected_archive_mb": ds["expected_archive_mb"],
+              "catalogue_or_documentation_description": ds["expected"],
+              "why_it_is_useful_for_fv_assemble": ds["test_value"],
+              "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
+              "status": "NOT_DOWNLOADED",
+            }
+            try:
+              n, final_url, content_type=download(ds["url"],archive_path)
+              receipt.update({
+                "status": "DOWNLOADED",
+                "final_url_after_redirects": final_url,
+                "content_type": content_type,
+                "archive_filename": archive_path.name,
+                "archive_bytes": n,
+                "archive_mib": round(n/(1024*1024),3),
+                "archive_sha256": sha256(archive_path),
+              })
+              if not zipfile.is_zipfile(archive_path):
+                raise RuntimeError("Downloaded response is not a ZIP archive (possible HTML/error response).")
+              temp=pathlib.Path(tempfile.mkdtemp(prefix=rid+"-"))
+              entries=safe_extract_selected(archive_path,temp)
+              receipt["archive_integrity"]="PASS (ZIP CRC test)"
+              receipt["archive_file_count"]=len(entries)
+              receipt["archive_files"]=entries[:300]
+              receipt["archive_inventory_truncated"]=len(entries)>300
+              receipt["total_uncompressed_bytes"]=sum(x["bytes"] for x in entries)
+              image_files=[p for p in temp.rglob("*") if p.is_file() and p.suffix.lower() in (".tif",".tiff",".jpg",".jpeg",".png")]
+              receipt["image_file_count"]=len(image_files)
+              receipt["image_formats"]=dict((ext,sum(p.suffix.lower()==ext for p in image_files)) for ext in sorted(set(p.suffix.lower() for p in image_files)))
+              preview_path=OUT/"previews"/(rid+"_contact_sheet.jpg")
+              preview, shown=make_contact_sheet(sorted(image_files),preview_path,ds["title"])
+              receipt["contact_sheet"]=preview.replace(str(OUT)+"/","") if preview else None
+              receipt["contact_sheet_items"]=shown
+              if "odm-brighton" in rid:
+                readmes=[p for p in temp.rglob("*") if p.is_file() and p.name.lower() in ("readme.md","license","license.txt")]
+                for src in readmes:
+                  dst=OUT/"source-notes"/(src.parent.name+"_"+src.name)
+                  shutil.copy2(src,dst)
+              shutil.rmtree(temp,ignore_errors=True)
+            except Exception as e:
+              receipt["status"]="FAILED_OR_INCOMPLETE"
+              receipt["error"]=f"{type(e).__name__}: {e}"
+              if archive_path.exists():
+                receipt["partial_archive_bytes"]=archive_path.stat().st_size
+                receipt["partial_archive_sha256"]=sha256(archive_path)
+            (OUT/"receipts"/(rid+".json")).write_text(json.dumps(receipt,indent=2)+"\\n")
+            receipts.append(receipt)
+            print(json.dumps({"dataset":rid,"status":receipt["status"],"bytes":receipt.get("archive_bytes"),"files":receipt.get("archive_file_count"),"images":receipt.get("image_file_count"),"error":receipt.get("error")},indent=2))
+
+          (OUT/"receipts"/"all_datasets.json").write_text(json.dumps(receipts,indent=2)+"\\n")
+          lines=[
+            "# FV Assemble — public dataset intake receipts",
+            "",
+            "These are source-intake receipts, not claims that FV assembly has already been run.",
+            "The original archive downloads are included in the downloads folder; contact sheets are display aids only.",
+            "",
+            "| Dataset | Status | Archive MiB | Files | Image files | SHA-256 |",
+            "|---|---:|---:|---:|---:|---|",
+          ]
+          for r in receipts:
+            lines.append(f"| {r['title']} | {r['status']} | {r.get('archive_mib','—')} | {r.get('archive_file_count','—')} | {r.get('image_file_count','—')} | {r.get('archive_sha256','—')} |")
+          lines += ["","## Dataset notes",""]
+          for r in receipts:
+            lines += [f"### {r['title']}",f"- Source: {r['source_url']}",f"- Documentation: {r['documentation_url']}",f"- Expected: {r['catalogue_or_documentation_description']}",f"- FV test value: {r['why_it_is_useful_for_fv_assemble']}",f"- Status: {r['status']}"]
+            if r.get("error"): lines.append(f"- Intake error: {r['error']}")
+            if r.get("contact_sheet"): lines.append(f"- Contact sheet: ../{r['contact_sheet']}")
+            if r.get("archive_sha256"): lines.append(f"- Archive SHA-256: {r['archive_sha256']}")
+            lines.append("")
+          lines += [
+            "## Important boundary",
+            "",
+            "No raw source has been committed to the FV repository. No packet has been promoted into PACKETS/examples.",
+            "The download, archive integrity, file inventory and contact sheets are evidence for deciding which examples deserve proper FV packet construction and assembly experiments.",
+            "Same-pass membership and actual overlap still require inspection of source metadata and media.",
+            ""
+          ]
+          (OUT/"receipts"/"RECEIPTS.md").write_text("\\n".join(lines))
+          with (OUT/"receipts"/"dataset_summary.csv").open("w",newline="") as f:
+            w=csv.DictWriter(f,fieldnames=["dataset_id","title","status","archive_bytes","archive_sha256","archive_file_count","image_file_count","contact_sheet","error"])
+            w.writeheader()
+            for r in receipts:
+              w.writerow({k:r.get(k) for k in w.fieldnames})
+          successes=sum(r["status"]=="DOWNLOADED" for r in receipts)
+          (OUT/"INTAKE_STATUS.txt").write_text(f"{successes}/{len(receipts)} datasets downloaded and ZIP-integrity checked. See receipts/RECEIPTS.md.\\n")
+          if successes==0:
+            raise SystemExit("No datasets downloaded successfully.")
+          PY
+          python /tmp/intake.py
+      - name: Upload downloadable intake bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-assemble-public-dataset-intake
+          path: intake-artifact/
+          if-no-files-found: error
+          retention-days: 30
