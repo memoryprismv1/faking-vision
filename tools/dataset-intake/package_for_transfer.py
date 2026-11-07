@@ -34,7 +34,7 @@ with bundle.open("rb") as f:
         parts.append({"path":p.name,"bytes":p.stat().st_size,"sha256":digest(p)})
         i+=1
 join_py="""from pathlib import Path
-import hashlib, zipfile
+import zipfile
 parts=sorted(Path(".").glob("source-part-*"))
 out=Path("fv-original-source-material.zip")
 with out.open("wb") as w:
@@ -56,14 +56,12 @@ print("Reassembled and CRC-verified:",out)
 },indent=2),encoding="utf-8")
 receipt=delivery/"fv-dataset-receipts.zip"
 with zipfile.ZipFile(receipt,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
-    candidates=[src/"RECEIPTS.md",src/"inspection/receipts.json",src/"inspection/receipts.csv",
-      src/"inspection/file_manifest.json",src/"inspection/hst_single_visit_receipt.json",
-      src/"inspection/usgs_3dep_ept_receipt.json"]
-    for p in candidates:
-        if p.is_file(): z.write(p,p.relative_to(src).as_posix())
-    for p in (src/"inspection").rglob("*"):
-        if p.is_file() and ("archive_inventory" in p.name or "previews" in p.parts):
-            z.write(p,p.relative_to(src).as_posix())
+    for p in sorted(src.rglob("*")):
+        if not p.is_file(): continue
+        rel=p.relative_to(src).as_posix()
+        if rel == "RECEIPTS.md" or rel.startswith("inspection/"):
+            # Keep inspection originals and contact sheets; skip no receipt data.
+            z.write(p,rel)
 print("SOURCE BUNDLE",bundle.stat().st_size,"bytes","sha256",h)
 print("CHUNKS",len(parts))
 print("RECEIPT ZIP",receipt.stat().st_size,"bytes")
