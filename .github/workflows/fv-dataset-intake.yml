@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/fv-dataset-intake.yml"
       - "tools/dataset-intake/collect.py"
+      - "tools/dataset-intake/collect_addons.py"
       - "tools/dataset-intake/package_for_transfer.py"
 permissions:
   contents: read
@@ -23,15 +24,18 @@ jobs:
       - name: Install inspection tools
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests astroquery astropy pillow tifffile numpy boto3 lazrs
-      - name: Download and inspect public datasets
+          python -m pip install requests astroquery astropy pillow tifffile numpy boto3 lazrs gdown
+      - name: Download and inspect baseline public datasets
         run: python tools/dataset-intake/collect.py intake
+      - name: Check overlap-specific source and correct HST visit grouping
+        run: python tools/dataset-intake/collect_addons.py intake
       - name: Prepare chunked original-source downloads and receipts
         run: python tools/dataset-intake/package_for_transfer.py intake
       - name: Verify receipt bundle and chunks
         run: |
           test -s intake/RECEIPTS.md
           test -s intake/inspection/receipts.json
+          test -s intake/inspection/addon_receipts.json
           test -s intake/delivery/fv-original-source-material.zip
           test -s intake/delivery/fv-dataset-receipts.zip
           test -s intake/delivery/transfer_manifest.json
