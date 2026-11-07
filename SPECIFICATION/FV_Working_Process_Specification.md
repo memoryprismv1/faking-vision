@@ -88,9 +88,9 @@ Assembly is not object-identity merge. Assembly may establish the spatial corres
 
 ### Biological grounding: viewpoint-oriented spatial integration
 
-FV's `assemble` operation is grounded in the biological model described by [Making Vision](https://www.memoryprism.com/readings/making-vision-v2): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
+FV's `assemble` operation is grounded in the biological model described by [Making Vision](https://www.memoryprism.com/readings/making-vision): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
 
-Making Vision uses **maplet / local inset** for a useful local spatial representation. A maplet is not simply a cropped photograph. It is local spatial information available from a particular viewpoint, related to the observer's current position and the spatial structure already available to the organism. Here, *maplet* is Making Vision project terminology for a local representation; it is not a claim that neuroscience has established a discrete neural module with that name.
+In this account, a **maplet** is a local spatial representation associated with a particular viewpoint. It is not simply a cropped photograph: it carries local spatial information related to the observer's position and the spatial structure available to the organism. Use *maplet* descriptively for this local representation; do not assume a particular neural implementation from the term alone.
 
 Several maplets can cover overlapping portions of the same place while differing in viewpoint, direction, visible extent, scale, resolution, occlusion, and available detail. Their overlap and shared spatial structure provide evidence for relating them. Integration relates these local representations and assembles them into a more cohesive spatial map that is not limited to any one viewpoint.
 
@@ -111,7 +111,7 @@ The assembled representation must remain traceable to its contributing local vie
 
 #### Assembly is not cross-dataset comparison
 
-Separate datasets that cover the same visual field—for example, historical and current observations—are distinct observations, not automatically pieces of one acquisition. Retain independent source packets, inspect whether they cover the same field, establish a justified common reference, and create a derived comparison/difference result linked to both. Inspect apparent differences for registration error, viewpoint, scale, resolution, illumination, season, sensor characteristics, processing differences, and unequal coverage. A pixel or point difference is not automatically a real-world change. Do not substitute ordinary within-pass assembly for this comparison workflow.
+Separate datasets that cover the same visual field—for example, historical and current observations—are distinct observations, not automatically pieces of one acquisition. The planned companion comparison workflow retains independent source packets, inspects whether they cover the same field, establishes a justified common reference, and derives a comparison/difference result linked to both. Apparent differences require inspection for registration error, viewpoint, scale, resolution, illumination, season, sensor characteristics, processing differences, and unequal coverage. A pixel or point difference is not automatically a real-world change. This is a distinct capability to develop and test; do not substitute ordinary within-pass assembly for it.
 
 #### Assembly is not object-identity merge
 
