@@ -222,11 +222,11 @@ jobs:
               if archive_path.exists():
                 receipt["partial_archive_bytes"]=archive_path.stat().st_size
                 receipt["partial_archive_sha256"]=sha256(archive_path)
-            (OUT/"receipts"/(rid+".json")).write_text(json.dumps(receipt,indent=2)+"\\n")
+            (OUT/"receipts"/(rid+".json")).write_text(json.dumps(receipt,indent=2)+"\n")
             receipts.append(receipt)
             print(json.dumps({"dataset":rid,"status":receipt["status"],"bytes":receipt.get("archive_bytes"),"files":receipt.get("archive_file_count"),"images":receipt.get("image_file_count"),"error":receipt.get("error")},indent=2))
 
-          (OUT/"receipts"/"all_datasets.json").write_text(json.dumps(receipts,indent=2)+"\\n")
+          (OUT/"receipts"/"all_datasets.json").write_text(json.dumps(receipts,indent=2)+"\n")
           lines=[
             "# FV Assemble — public dataset intake receipts",
             "",
@@ -253,14 +253,14 @@ jobs:
             "Same-pass membership and actual overlap still require inspection of source metadata and media.",
             ""
           ]
-          (OUT/"receipts"/"RECEIPTS.md").write_text("\\n".join(lines))
+          (OUT/"receipts"/"RECEIPTS.md").write_text("\n".join(lines))
           with (OUT/"receipts"/"dataset_summary.csv").open("w",newline="") as f:
             w=csv.DictWriter(f,fieldnames=["dataset_id","title","status","archive_bytes","archive_sha256","archive_file_count","image_file_count","contact_sheet","error"])
             w.writeheader()
             for r in receipts:
               w.writerow({k:r.get(k) for k in w.fieldnames})
           successes=sum(r["status"]=="DOWNLOADED" for r in receipts)
-          (OUT/"INTAKE_STATUS.txt").write_text(f"{successes}/{len(receipts)} datasets downloaded and ZIP-integrity checked. See receipts/RECEIPTS.md.\\n")
+          (OUT/"INTAKE_STATUS.txt").write_text(f"{successes}/{len(receipts)} datasets downloaded and ZIP-integrity checked. See receipts/RECEIPTS.md.\n")
           if successes==0:
             raise SystemExit("No datasets downloaded successfully.")
           PY
