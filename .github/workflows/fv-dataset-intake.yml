@@ -7,6 +7,7 @@ on:
       - ".github/workflows/fv-dataset-intake.yml"
       - "tools/dataset-intake/collect.py"
       - "tools/dataset-intake/collect_addons.py"
+      - "tools/dataset-intake/collect_corrected.py"
       - "tools/dataset-intake/package_for_transfer.py"
 permissions:
   contents: read
@@ -29,6 +30,8 @@ jobs:
         run: python tools/dataset-intake/collect.py intake
       - name: Check overlap-specific source and correct HST visit grouping
         run: python tools/dataset-intake/collect_addons.py intake
+      - name: Retry overlap-specific and single-visit samples with corrected selectors
+        run: python tools/dataset-intake/collect_corrected.py intake
       - name: Prepare chunked original-source downloads and receipts
         run: python tools/dataset-intake/package_for_transfer.py intake
       - name: Verify receipt bundle and chunks
@@ -36,6 +39,7 @@ jobs:
           test -s intake/RECEIPTS.md
           test -s intake/inspection/receipts.json
           test -s intake/inspection/addon_receipts.json
+          test -s intake/inspection/corrected_receipts.json
           test -s intake/delivery/fv-original-source-material.zip
           test -s intake/delivery/fv-dataset-receipts.zip
           test -s intake/delivery/transfer_manifest.json
