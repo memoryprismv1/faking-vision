@@ -82,9 +82,41 @@ The FV command interface names distinct operations. The commands are an operator
 
 `fv investigate` — pursue a specified object, event, relationship, correspondence, or question across one or more observations or media. Use TIR as the investigative workspace; promote only supported conclusions into authoritative packet records.
 
-`fv assemble` — register and combine partial or overlapping visual/spatial observations into a larger view or representation. Typical inputs include overlapping LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve source provenance and unresolved registration conflicts.
+`fv assemble` — integrate partial, viewpoint-dependent visual/spatial representations of a larger place or field into a more cohesive spatial representation. This includes overlapping media outputs from a generator, including outputs produced as an observer or sensor changes position or direction. Typical test material includes LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve the local-view/source relationships, provenance, and unresolved registration conflicts.
 
-Assembly is not object-identity merge. Assembly may establish the spatial correspondence required to place observations together, but it must not silently normalize object identity across inputs.
+Assembly is not object-identity merge. Assembly may establish the spatial correspondence required to place local representations together, but it must not silently normalize object identity across inputs.
+
+### Biological grounding: viewpoint-oriented spatial integration
+
+FV's `assemble` operation is grounded in the biological model described by [Making Vision](https://www.memoryprism.com/readings/making-vision-v2): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
+
+Making Vision uses **maplet / local inset** for a useful local spatial representation. A maplet is not simply a cropped photograph. It is local spatial information available from a particular viewpoint, related to the observer's current position and the spatial structure already available to the organism. Here, *maplet* is Making Vision project terminology for a local representation; it is not a claim that neuroscience has established a discrete neural module with that name.
+
+Several maplets can cover overlapping portions of the same place while differing in viewpoint, direction, visible extent, scale, resolution, occlusion, and available detail. Their overlap and shared spatial structure provide evidence for relating them. Integration relates these local representations and assembles them into a more cohesive spatial map that is not limited to any one viewpoint.
+
+FV applies this principle to media generators and their outputs. An input image, scan, exposure, tile, or other media piece can be treated as a partial representation of a larger field. The task is not merely to join file edges or blend pixels. It is to establish how the partial representations relate spatially and how they fit into the larger field. The assembled result may be an image, point cloud, surface, map, or another representation appropriate to the media; it need not be a photomosaic.
+
+A same-generator, same-acquisition-pass collection of overlapping outputs is a useful controlled assembly case. It is not the biological limit of the idea: viewpoint changes and movement can produce successive local representations of the same place from different directions and positions. The acquisition context must be recorded rather than assumed.
+
+#### Assembly procedure
+
+1. **Establish the local representations.** Identify each source piece or observation, its generator and acquisition context where known, and the local field it represents. Treat each as a source-grounded local view/maplet, not as an interchangeable tile.
+2. **Establish viewpoint and reference information.** Record the supported viewpoint, pose/orientation, coordinate frame, calibration, scale/resolution, acquisition order/time, coverage, and source limitations. Unknown values remain unknown.
+3. **Inspect overlap and correspondence.** Determine which areas or structures are shared between local views, which are visible from only one view, and where there are gaps. Use only correspondences supported by source evidence or justified calibration. Geometric tie points may support placement without becoming persistent object identities.
+4. **Register the local views.** Estimate or apply transformations into a common spatial reference using a method appropriate to the generator and media. Record the method, inputs, assumptions, residuals, and conflicts. Do not force a registration when evidence is insufficient.
+5. **Integrate into a cohesive representation.** Combine the registered views in a form appropriate to the data. Preserve which local views contribute to each region and retain their viewpoint-specific evidence.
+6. **Retain uncertainty and limits.** Preserve occlusions, uncovered areas, weak correspondences, registration conflicts, differing resolutions, and other limitations. Do not fill unseen regions or hide disagreement merely to make the result look continuous.
+
+The assembled representation must remain traceable to its contributing local views. Preserve source media unchanged, along with each view's provenance, viewpoint/reference information, coverage, transformations, and registration diagnostics. Overlap is evidence for relating representations; it is not permission to average away meaningful differences or erase the original views.
+
+#### Assembly is not cross-dataset comparison
+
+Separate datasets that cover the same visual field—for example, historical and current observations—are distinct observations, not automatically pieces of one acquisition. Retain independent source packets, inspect whether they cover the same field, establish a justified common reference, and create a derived comparison/difference result linked to both. Inspect apparent differences for registration error, viewpoint, scale, resolution, illumination, season, sensor characteristics, processing differences, and unequal coverage. A pixel or point difference is not automatically a real-world change. Do not substitute ordinary within-pass assembly for this comparison workflow.
+
+#### Assembly is not object-identity merge
+
+Assembly determines how local spatial representations fit together. It may establish that two regions or features occupy corresponding positions for registration, but it does not establish that similarly appearing entities are the same persistent object. Identity reconciliation remains a separate `fv merge` operation and must follow its evidence and uncertainty rules.
+
 
 `fv merge` — reconcile independently produced FV packets. Compare packet-scoped object declarations using source evidence, temporal continuity, properties, relationships, and preserved visual evidence before establishing normalized persistent identity. Preserve packet provenance throughout.
 
