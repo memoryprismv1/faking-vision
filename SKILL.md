@@ -98,19 +98,78 @@ Example:
 
 ### `fv assemble`
 
-Assemble partial or overlapping observations into a larger spatial or visual
-representation.
+**Biological grounding — viewpoint-oriented maplet integration**
 
-Use this for inputs such as overlapping LiDAR scans, telescope fields of
-view, aerial/satellite imagery, microscopy tiles, or overlapping
-photographs. Establish registration, overlap, coordinate alignment, and
-source correspondence as supported by the evidence.
+FV's assembly model follows the biological account of viewpoint-oriented
+vision. A moving observer looks in different directions and occupies
+different positions/spaces. It therefore acquires multiple local,
+viewpoint-dependent representations (maplets) of portions of the same
+place. Overlap and shared spatial structure let those maplets be related
+and integrated into a more cohesive spatial map that is not limited to
+any single viewpoint.
 
-Preserve source provenance and unresolved registration conflicts.
+Treat a maplet as a local spatial representation associated with a
+particular view/viewpoint, not merely as an arbitrary image crop or file
+tile. Its extent, detail, orientation, scale, occlusion, and relation to
+the observer/reference frame may differ from other maplets. The task of
+`fv assemble` is to establish how these partial representations fit
+together and integrate them while retaining their source and viewpoint
+relationships.
 
-`fv assemble` does not silently establish global object identity. If
-independently produced FV packets also need identity reconciliation, use
-`fv merge`.
+This is the conceptual grounding, not a claim that maplets are discrete
+neural modules or that all generators encode viewpoints in the same way.
+Adapt the representation and registration method to the media generator;
+do not impose image-specific assumptions on LiDAR, telescope data, or
+other media.
+
+**Operationally:**
+
+1. Identify each source piece/local representation, its generator and
+   acquisition context where known.
+2. Establish the supported viewpoint/reference information, coverage,
+   scale/resolution, calibration, pose/orientation, order/time, and
+   limitations. Unknown values remain unknown.
+3. Inspect overlap, gaps, occlusions, and shared structures. Use only
+   source-supported or justified correspondences.
+4. Register local representations into a common reference using an
+   appropriate domain-specific method. Record transformations,
+   assumptions, residuals, and conflicts.
+5. Integrate them into a larger cohesive representation appropriate to
+   the media, while retaining which source views contribute to each
+   region.
+6. Preserve unobserved areas, weak correspondences, viewpoint-specific
+   evidence, and unresolved conflicts. Do not invent missing content or
+   conceal disagreement to make the result look seamless.
+
+A same-generator, same-acquisition-pass set of overlapping outputs is a
+useful controlled assembly test. It is not the biological limit of the
+operation: viewpoint changes and movement can produce successive
+maplets of the same place across different directions and positions.
+Record the actual acquisition relationship; do not assume it.
+
+Keep original source media unchanged. Preserve provenance, viewpoint
+and reference information, coverage, transformations, and registration
+diagnostics. Geometric correspondence needed to place maplets does not
+establish persistent object identity.
+
+**Do not confuse assembly with comparison or merge:**
+
+- Separate datasets covering the same field (for example, historical
+  and current observations) are independent observations, not pieces
+  of one acquisition. Retain separate source packets and derive a
+  linked comparison/difference result only after inspecting and
+  registering them. A measured difference is not automatically a
+  real-world change; inspect registration, viewpoint, scale,
+  resolution, illumination, season, sensor, processing, and coverage
+  differences.
+- `fv assemble` integrates local spatial representations into a
+  larger map/view.
+- `fv merge` reconciles independently produced FV knowledge and may
+  normalize persistent object identity only when evidence supports it.
+
+See the authoritative Working Process Specification, section
+**Biological grounding: viewpoint-oriented spatial integration**, for
+the full rationale and procedure.
 
 Example:
 
