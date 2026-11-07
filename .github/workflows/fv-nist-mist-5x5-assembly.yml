@@ -1,0 +1,365 @@
+name: FV assemble — NIST MIST 5x5 microscopy grid
+
+on:
+  push:
+    branches:
+      - work/hubble-ngc104-fv
+    paths:
+      - ".github/workflows/fv-nist-mist-5x5-assembly.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download and verify original NIST test grid
+        run: |
+          set -euo pipefail
+          mkdir -p work/nist-mist/source work/nist-mist/output
+          curl -fL --retry 4 --retry-delay 2 \
+            "https://raw.githubusercontent.com/wiki/usnistgov/MIST/testdata/Small_Fluorescent_Test_Dataset.zip" \
+            -o work/nist-mist/source/Small_Fluorescent_Test_Dataset.zip
+          echo "5edcc164352761e16f59e83badd3971c2d4818dd96535125938f68739de99050  work/nist-mist/source/Small_Fluorescent_Test_Dataset.zip" | sha256sum -c -
+          unzip -q work/nist-mist/source/Small_Fluorescent_Test_Dataset.zip -d work/nist-mist/source
+          test "$(find work/nist-mist/source/Small_Fluorescent_Test_Dataset/image-tiles -maxdepth 1 -name 'img_r*_c*.tif' | wc -l)" -eq 25
+          test -f work/nist-mist/source/Small_Fluorescent_Test_Dataset/stitching-params.txt
+          cp work/nist-mist/source/Small_Fluorescent_Test_Dataset/stitching-params.txt work/nist-mist/output/
+
+      - name: Run NIST MIST 2.0.7 on the original 5x5 tile grid
+        run: |
+          set -euo pipefail
+          docker pull wipp/mist:2.0.7
+          docker run --rm \
+            -v "$PWD/work/nist-mist:/data" \
+            wipp/mist:2.0.7 \
+            --imageDir=/data/source/Small_Fluorescent_Test_Dataset/image-tiles \
+            --filenamePatternType=ROWCOL \
+            --filenamePattern="img_r{rrr}_c{ccc}.tif" \
+            --gridOrigin=UL \
+            --gridWidth=5 \
+            --gridHeight=5 \
+            --startTileRow=1 \
+            --startTileCol=1 \
+            --startRow=0 \
+            --startCol=0 \
+            --extentWidth=5 \
+            --extentHeight=5 \
+            --isTimeSlices=false \
+            --assembleNoOverlap=false \
+            --stageRepeatability=0 \
+            --horizontalOverlap=10 \
+            --verticalOverlap=10 \
+            --overlapUncertainty=5 \
+            --programType=java \
+            --outputFullImage=true \
+            --outputMeta=true \
+            --displayStitching=false \
+            --blendingMode=OVERLAY \
+            --outFilePrefix=nist-cy5- \
+            --outputPath=/data/output
+
+      - name: Build FV source maplet packets, assembled packet and receipts
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy pillow tifffile
+          cat > work/nist-mist/build_fv_bundle.py <<'PY'
+          import hashlib, json, pathlib, shutil
+          import numpy as np
+          import tifffile
+          from PIL import Image, ImageDraw
+
+          ROOT = pathlib.Path("work/nist-mist")
+          DATA = ROOT / "source/Small_Fluorescent_Test_Dataset"
+          TILES = DATA / "image-tiles"
+          OUT = ROOT / "output"
+          PACKETS = OUT / "packets"
+          PREVIEWS = OUT / "previews"
+          for p in (PACKETS, PREVIEWS):
+              p.mkdir(parents=True, exist_ok=True)
+
+          def sha256(p):
+              h = hashlib.sha256()
+              with open(p, "rb") as f:
+                  for chunk in iter(lambda: f.read(1024*1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def write_json(p, d):
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(json.dumps(d, indent=2, allow_nan=False) + "\n")
+
+          stitched = sorted(OUT.glob("*stitched-*.ome.tif")) + sorted(OUT.glob("*stitched-*.tif"))
+          if not stitched:
+              raise RuntimeError("MIST did not write a stitched TIFF.")
+          stitched = stitched[0]
+          global_positions = sorted(OUT.glob("*global-positions-*.txt"))
+          relative_positions = sorted(OUT.glob("*relative-positions-*.txt"))
+          statistics = sorted(OUT.glob("*statistics.txt"))
+          logs = sorted(OUT.glob("*log.txt"))
+          if not global_positions or not relative_positions:
+              raise RuntimeError("MIST did not write both global and relative position files.")
+
+          tile_records = []
+          display_tiles = []
+          for row in range(1, 6):
+              for col in range(1, 6):
+                  p = TILES / f"img_r{row:03d}_c{col:03d}.tif"
+                  if not p.is_file():
+                      raise RuntimeError(f"Missing expected maplet: {p}")
+                  with tifffile.TiffFile(p) as tf:
+                      arr = tf.asarray()
+                      page = tf.pages[0]
+                      description = page.description or ""
+                      xres = str(page.tags["XResolution"].value) if "XResolution" in page.tags else None
+                      yres = str(page.tags["YResolution"].value) if "YResolution" in page.tags else None
+                      resunit = str(page.tags["ResolutionUnit"].value) if "ResolutionUnit" in page.tags else None
+                  if arr.ndim != 2:
+                      raise RuntimeError(f"Expected 2D tile, got {arr.shape} for {p.name}")
+                  rec = {
+                      "tile_id": f"R{row:03d}-C{col:03d}",
+                      "filename": p.name,
+                      "row": row,
+                      "column": col,
+                      "array_shape_yx": list(arr.shape),
+                      "dtype": str(arr.dtype),
+                      "bytes": p.stat().st_size,
+                      "sha256": sha256(p),
+                      "imagej_description": description,
+                      "x_resolution_tag": xres,
+                      "y_resolution_tag": yres,
+                      "resolution_unit_tag": resunit,
+                      "source_archive_member": f"Small_Fluorescent_Test_Dataset/image-tiles/{p.name}",
+                      "local_reference": "tile-local pixel frame; physical stage origin/pose is not present in raw tile metadata"
+                  }
+                  tile_records.append(rec)
+
+                  vals = np.asarray(arr, dtype=np.float32)
+                  finite = vals[np.isfinite(vals)]
+                  if finite.size:
+                      lo, hi = np.percentile(finite, [1, 99])
+                      if hi <= lo: hi = lo + 1
+                      display = np.clip((vals-lo)/(hi-lo), 0, 1)
+                  else:
+                      display = np.zeros_like(vals)
+                  display_tiles.append((p.name, Image.fromarray((display*255).astype(np.uint8), "L").convert("RGB")))
+
+                  pid = f"PKT-NIST-MIST-CY5-R{row:03d}-C{col:03d}"
+                  pdir = PACKETS / "source-maplets" / pid
+                  (pdir / "snapshot").mkdir(parents=True, exist_ok=True)
+                  write_json(pdir / "OI.json", {
+                      "packet_id": pid, "spec_version": "0.24", "operation": "fv analyse",
+                      "inventory_lock": True, "entities": [],
+                      "source_provenance": {
+                          "source_dataset": "NIST MIST Small Fluorescent Test Dataset",
+                          "source_archive": "Small_Fluorescent_Test_Dataset.zip",
+                          "source_archive_sha256": "5edcc164352761e16f59e83badd3971c2d4818dd96535125938f68739de99050",
+                          "source_member": rec["source_archive_member"], "source_tile_sha256": rec["sha256"]
+                      },
+                      "inventory_note": "Source maplet packet for spatial assembly. No biological object identities are asserted or merged."
+                  })
+                  write_json(pdir / "MSRM.json", {
+                      "packet_id": pid, "local_reference": "tile-local pixel coordinates",
+                      "maplet": {
+                          "tile_id": rec["tile_id"], "grid_row": row, "grid_column": col,
+                          "array_shape_yx": rec["array_shape_yx"], "imagej_description": description,
+                          "x_resolution_tag": xres, "y_resolution_tag": yres, "resolution_unit_tag": resunit
+                      },
+                      "registration_state": "Unplaced local input tile. Global placement is produced by the subsequent MIST assembly operation."
+                  })
+                  write_json(pdir / "PC.json", {
+                      "packet_id": pid,
+                      "constants": [
+                          "NIST MIST Small Fluorescent Test Dataset", "Cy5 fluorescence microscopy tile",
+                          "25-tile 5x5 row-column grid", "Documented nominal 10 percent overlap"
+                      ]
+                  })
+                  write_json(pdir / "snapshot" / "manifest.json", {
+                      "packet_id": pid, "source_archive": "Small_Fluorescent_Test_Dataset.zip",
+                      "source_archive_member": rec["source_archive_member"],
+                      "source_tile_sha256": rec["sha256"], "source_tile_bytes": rec["bytes"]
+                  })
+                  (pdir / "README.txt").write_text(
+                      "FV source maplet packet — NIST MIST Cy5 tile grid\n"
+                      f"packet_id: {pid}\n"
+                      f"tile: {rec['filename']} (row {row}, column {col})\n"
+                      f"shape: {rec['array_shape_yx']} dtype: {rec['dtype']}\n"
+                      f"sha256: {rec['sha256']}\n"
+                      "One local tile observation; no global placement or object identity is asserted here.\n"
+                  )
+
+          # Contact sheet from untouched original maplets.
+          cell_w, cell_h = 285, 250
+          sheet = Image.new("RGB", (5*cell_w, 5*cell_h), (22,26,32))
+          draw = ImageDraw.Draw(sheet)
+          draw.text((12,8), "Original NIST MIST Cy5 input maplets — 5 x 5", fill=(245,245,245))
+          for i, (name, im) in enumerate(display_tiles):
+              im.thumbnail((260,210))
+              x = (i % 5)*cell_w + 12
+              y = (i // 5)*cell_h + 28
+              sheet.paste(im,(x,y))
+              draw.text((x,y+214),name,fill=(235,235,235))
+          source_sheet = PREVIEWS / "nist-cy5-source-maplets.jpg"
+          sheet.save(source_sheet, quality=92)
+
+          # Display preview; native TIFF remains the science output.
+          with tifffile.TiffFile(stitched) as tf:
+              mosaic = np.squeeze(tf.asarray())
+          if mosaic.ndim != 2:
+              raise RuntimeError(f"Unexpected stitched result shape: {mosaic.shape}")
+          finite = mosaic[np.isfinite(mosaic)]
+          if finite.size == 0:
+              raise RuntimeError("Stitched output has no finite pixels.")
+          lo, hi = np.percentile(finite,[1,99])
+          if hi <= lo: hi = lo + 1
+          display = np.clip((mosaic.astype(np.float32)-lo)/(hi-lo),0,1)
+          display[~np.isfinite(display)] = 0
+          preview = Image.fromarray((display*255).astype(np.uint8),"L")
+          preview.thumbnail((2200,2200))
+          mosaic_preview = PREVIEWS / "nist-cy5-mist-assembled-preview.png"
+          preview.save(mosaic_preview)
+
+          assembled_id = "PKT-NIST-MIST-CY5-5X5-ASSEMBLED-001"
+          assembled = PACKETS / "assembled" / assembled_id
+          (assembled / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
+          shutil.copy2(stitched, assembled / stitched.name)
+          for p in global_positions + relative_positions + statistics + logs:
+              shutil.copy2(p, assembled / p.name)
+          shutil.copy2(mosaic_preview, assembled / "snapshot" / "verification" / mosaic_preview.name)
+
+          write_json(assembled / "OI.json", {
+              "packet_id": assembled_id, "spec_version": "0.24", "operation": "fv assemble",
+              "inventory_lock": True, "entities": [],
+              "source_maplets": [f"PKT-NIST-MIST-CY5-R{r:03d}-C{c:03d}" for r in range(1,6) for c in range(1,6)],
+              "inventory_note": "Geometric tile registration and spatial integration only. Fluorescent structures have not been assigned persistent biological object identities."
+          })
+          write_json(assembled / "MSRM.json", {
+              "packet_id": assembled_id,
+              "global_coordinate_system": "MIST registered mosaic pixel frame. Absolute specimen stage origin/coordinates are not supplied by the source archive.",
+              "assembly_engine": {
+                  "name": "NIST Microscopy Image Stitching Tool (MIST)",
+                  "version": "2.0.7 Docker image",
+                  "program_type": "JAVA",
+                  "method_summary": "Pairwise image translations, stage mechanical model estimation, global translation optimisation, then blending.",
+                  "documentation_url": "https://pages.nist.gov/MIST/"
+              },
+              "grid": {
+                  "rows": 5, "columns": 5, "origin": "upper left",
+                  "filename_pattern": "img_r{rrr}_c{ccc}.tif",
+                  "nominal_horizontal_overlap_percent": 10,
+                  "nominal_vertical_overlap_percent": 10,
+                  "maplets": tile_records
+              },
+              "registration_outputs": {
+                  "global_positions_file": global_positions[0].name,
+                  "global_positions_sha256": sha256(global_positions[0]),
+                  "relative_positions_file": relative_positions[0].name,
+                  "relative_positions_sha256": sha256(relative_positions[0]),
+                  "statistics_file": statistics[0].name if statistics else None,
+                  "log_files": [p.name for p in logs]
+              },
+              "stitched_result": {
+                  "filename": stitched.name, "sha256": sha256(stitched),
+                  "array_shape_yx": list(mosaic.shape), "dtype": str(mosaic.dtype)
+              },
+              "unresolved_limits": [
+                  "The source tile metadata does not establish absolute stage coordinates or a physical specimen origin.",
+                  "The nominal overlaps are from NIST dataset documentation; measured translations are preserved in MIST position outputs.",
+                  "No cross-tile biological object identity reconciliation was performed."
+              ]
+          })
+          write_json(assembled / "PC.json", {
+              "packet_id": assembled_id,
+              "constants": [
+                  "NIST MIST Small Fluorescent Test Dataset", "Cy5 fluorescence microscopy",
+                  "One 5x5 grid acquisition", "25 source maplet packets",
+                  "Nominal 10 percent overlap between adjacent tiles", "MIST 2.0.7 CPU/Java processing"
+              ]
+          })
+          write_json(assembled / "snapshot" / "manifest.json", {
+              "packet_id": assembled_id, "operation": "fv assemble",
+              "source_archive": "Small_Fluorescent_Test_Dataset.zip",
+              "source_archive_sha256": "5edcc164352761e16f59e83badd3971c2d4818dd96535125938f68739de99050",
+              "source_maplet_count": len(tile_records),
+              "source_maplets": [
+                  {"packet_id":f"PKT-NIST-MIST-CY5-R{r:03d}-C{c:03d}",
+                   "filename":tile_records[(r-1)*5+(c-1)]["filename"],
+                   "sha256":tile_records[(r-1)*5+(c-1)]["sha256"]}
+                  for r in range(1,6) for c in range(1,6)
+              ],
+              "assembled_science_output": {
+                  "filename":stitched.name, "sha256":sha256(stitched),
+                  "array_shape_yx":list(mosaic.shape), "dtype":str(mosaic.dtype)
+              },
+              "registration_outputs": [
+                  {"filename":p.name,"sha256":sha256(p)}
+                  for p in global_positions + relative_positions + statistics + logs
+              ],
+              "verification_preview": f"verification/{mosaic_preview.name}"
+          })
+          (assembled / "README.txt").write_text(
+              "FV assembled maplet packet — NIST MIST 5x5 Cy5 microscopy grid\n"
+              f"packet_id: {assembled_id}\noperation: fv assemble\n\n"
+              "The 25 original TIFF tiles are separate local maplet/source packets. NIST MIST 2.0.7 was used as the domain-specific registration and assembly engine. MIST estimates pairwise translations, models stage mechanics, globally optimises tile positions, then blends the registered grid.\n\n"
+              f"Output: {stitched.name}\nSHA-256: {sha256(stitched)}\n"
+              f"Array shape: {list(mosaic.shape)}\n"
+              "Original source tiles remain unchanged. Global and relative position files, MIST logs/statistics, and source tile hashes are retained. No biological object identity merge is claimed.\n"
+          )
+
+          packet_dirs = [p for p in (PACKETS/"source-maplets").iterdir() if p.is_dir()]
+          if len(packet_dirs) != 25:
+              raise RuntimeError(f"Expected 25 source maplet packets, got {len(packet_dirs)}")
+          required = ["OI.json","MSRM.json","PC.json","snapshot/manifest.json","README.txt"]
+          checks=[]
+          for p in packet_dirs + [assembled]:
+              for rel in required:
+                  q=p/rel
+                  if not q.is_file(): raise RuntimeError(f"Missing {q}")
+                  if q.suffix==".json": json.loads(q.read_text())
+              checks.append({"packet_id":p.name,"status":"PASS","required_files":required})
+          if not global_positions[0].read_text(errors="replace").strip():
+              raise RuntimeError("MIST global-position file is empty.")
+          validation = {
+              "status": "PASS_STRUCTURAL_AND_OUTPUT_CHECKS",
+              "scope": "MIST execution completion, expected input count, archive SHA, per-tile hashes, packet file presence/JSON parse, stitched TIFF and registration-output presence. Not a standalone FV CLI validation or independent scientific certification.",
+              "source_archive_sha256": "5edcc164352761e16f59e83badd3971c2d4818dd96535125938f68739de99050",
+              "source_tile_count": len(tile_records),
+              "stitched_output": {"filename":stitched.name,"sha256":sha256(stitched),"shape_yx":list(mosaic.shape),"dtype":str(mosaic.dtype)},
+              "registration_outputs": [{"filename":p.name,"bytes":p.stat().st_size,"sha256":sha256(p)} for p in global_positions+relative_positions+statistics+logs],
+              "packets": checks,
+              "source_files_unchanged": True,
+              "object_identity_merge_performed": False
+          }
+          (OUT/"VALIDATION_REPORT.json").write_text(json.dumps(validation,indent=2)+"\n")
+          (OUT/"SOURCE_INVENTORY.json").write_text(json.dumps(tile_records,indent=2)+"\n")
+          shutil.copy2(ROOT/"source/Small_Fluorescent_Test_Dataset.zip",OUT/"Small_Fluorescent_Test_Dataset_source.zip")
+          (OUT/"README.md").write_text(
+              "# FV Assemble — NIST MIST 5x5 microscopy run\n\n"
+              "This bundle contains the original NIST tile archive, 25 source maplet packets, assembled packet, native MIST registration outputs, science TIFF, preview, and validation receipt.\n\n"
+              f"- Source maplets: {len(tile_records)}\n"
+              f"- Assembled mosaic: {stitched.name}\n"
+              f"- Mosaic SHA-256: {sha256(stitched)}\n"
+              f"- Mosaic shape: {list(mosaic.shape)}\n"
+              "- Processor: NIST MIST 2.0.7 (Java/CPU)\n"
+              "- Original source data were not modified.\n"
+              "- No standalone FV CLI was invoked.\n"
+              "- See VALIDATION_REPORT.json for exact validation scope.\n"
+          )
+          print(json.dumps(validation,indent=2))
+          PY
+          python work/nist-mist/build_fv_bundle.py
+
+      - name: Upload complete FV NIST MIST assembly bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-nist-mist-5x5-assembled-maplets
+          path: work/nist-mist/output/
+          if-no-files-found: error
+          retention-days: 30
