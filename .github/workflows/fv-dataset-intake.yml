@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/fv-dataset-intake.yml"
       - "tools/dataset-intake/collect.py"
+      - "tools/dataset-intake/package_for_transfer.py"
 permissions:
   contents: read
 jobs:
@@ -25,15 +26,78 @@ jobs:
           python -m pip install requests astroquery astropy pillow tifffile numpy boto3 lazrs
       - name: Download and inspect public datasets
         run: python tools/dataset-intake/collect.py intake
-      - name: Verify receipt bundle exists
+      - name: Prepare chunked original-source downloads and receipts
+        run: python tools/dataset-intake/package_for_transfer.py intake
+      - name: Verify receipt bundle and chunks
         run: |
           test -s intake/RECEIPTS.md
           test -s intake/inspection/receipts.json
-          test -s intake/inspection/file_manifest.json
-      - name: Upload downloadable receipt bundle and source samples
+          test -s intake/delivery/fv-original-source-material.zip
+          test -s intake/delivery/fv-dataset-receipts.zip
+          test -s intake/delivery/transfer_manifest.json
+      - name: Upload readable receipts and previews
         uses: actions/upload-artifact@v4
         with:
-          name: fv-overlapping-media-dataset-intake
-          path: intake/
+          name: fv-dataset-receipts
+          path: |
+            intake/RECEIPTS.md
+            intake/delivery/fv-dataset-receipts.zip
+            intake/delivery/transfer_manifest.json
           if-no-files-found: error
+          retention-days: 30
+      - name: Upload source bundle part 00
+        if: hashFiles('intake/delivery/source-part-00') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-00
+          path: intake/delivery/source-part-00
+          retention-days: 30
+      - name: Upload source bundle part 01
+        if: hashFiles('intake/delivery/source-part-01') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-01
+          path: intake/delivery/source-part-01
+          retention-days: 30
+      - name: Upload source bundle part 02
+        if: hashFiles('intake/delivery/source-part-02') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-02
+          path: intake/delivery/source-part-02
+          retention-days: 30
+      - name: Upload source bundle part 03
+        if: hashFiles('intake/delivery/source-part-03') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-03
+          path: intake/delivery/source-part-03
+          retention-days: 30
+      - name: Upload source bundle part 04
+        if: hashFiles('intake/delivery/source-part-04') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-04
+          path: intake/delivery/source-part-04
+          retention-days: 30
+      - name: Upload source bundle part 05
+        if: hashFiles('intake/delivery/source-part-05') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-05
+          path: intake/delivery/source-part-05
+          retention-days: 30
+      - name: Upload source bundle part 06
+        if: hashFiles('intake/delivery/source-part-06') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-06
+          path: intake/delivery/source-part-06
+          retention-days: 30
+      - name: Upload source bundle part 07
+        if: hashFiles('intake/delivery/source-part-07') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-source-bundle-part-07
+          path: intake/delivery/source-part-07
           retention-days: 30
