@@ -169,7 +169,9 @@ establish persistent object identity.
 
 See the authoritative Working Process Specification, section
 **Biological grounding: viewpoint-oriented spatial integration**, for
-the full rationale and procedure.
+the full rationale and procedure. The separate historical/current
+same-field comparison workflow is a planned companion capability; do
+not describe it as already implemented or validated.
 
 Example:
 
