@@ -1,9 +1,7 @@
 name: Hubble NGC 104 — FV source packets and assembly pilot
 
 on:
-  push:
-    branches:
-      - work/hubble-ngc104-fv
+  workflow_dispatch:
 
 permissions:
   contents: read
