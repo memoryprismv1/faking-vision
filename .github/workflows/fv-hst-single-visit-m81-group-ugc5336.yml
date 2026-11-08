@@ -3,7 +3,7 @@ name: FV Assemble — HST single-visit UGC 5336 (M81 group)
 on:
   push:
     branches:
-      - experiment/hst-single-visit-m81-group-ugc5336
+      - experiment/hst-single-visit-ngc3370
     paths:
       - ".github/workflows/fv-hst-single-visit-m81-group-ugc5336.yml"
   workflow_dispatch:
