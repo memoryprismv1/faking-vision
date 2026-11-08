@@ -1,0 +1,273 @@
+name: FV Assemble — Phalaborwa aerial survey
+
+on:
+  push:
+    branches:
+      - experiment/hst-single-visit-ngc3370
+    paths:
+      - ".github/workflows/fv-phalaborwa-assembly.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download original Phalaborwa survey from ODM data folder
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install gdown==6.5.1
+          mkdir -p work/phalaborwa/source
+          python -m gdown --folder --continue -O work/phalaborwa/source             "https://drive.google.com/drive/folders/1e1eA8LNpP4scYyDYdWd6UQ1qJ006iOXG"
+          test "$(find work/phalaborwa/source -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.tif' -o -iname '*.tiff' -o -iname '*.png' \) | wc -l)" -eq 36
+
+      - name: Install image registration and metadata tools
+        run: |
+          python -m pip install opencv-contrib-python-headless==4.13.0.92 pillow numpy
+
+      - name: Inspect all source views and attempt aerial image-space assembly
+        run: |
+          mkdir -p work/phalaborwa/output/previews work/phalaborwa/output/packets
+          python - <<'PY'
+          import cv2, hashlib, json, math, pathlib, shutil
+          from datetime import datetime
+          from PIL import Image, ImageDraw, ExifTags
+          import numpy as np
+
+          ROOT=pathlib.Path("work/phalaborwa")
+          SRC=ROOT/"source"
+          OUT=ROOT/"output"
+          PRE=OUT/"previews"
+          PACK=OUT/"packets"
+          EXIF_TAGS=ExifTags.TAGS
+          GPS_TAGS=ExifTags.GPSTAGS
+          EXT={".jpg",".jpeg",".tif",".tiff",".png"}
+
+          def sha(p):
+              h=hashlib.sha256()
+              with p.open("rb") as f:
+                  for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
+              return h.hexdigest()
+
+          def rational(v):
+              try: return float(v)
+              except Exception: return float(v.numerator)/float(v.denominator)
+
+          def dms(v):
+              return rational(v[0])+rational(v[1])/60+rational(v[2])/3600
+
+          def read_meta(p):
+              im=Image.open(p)
+              ex=im.getexif()
+              gpsraw=ex.get_ifd(34853)
+              gps={GPS_TAGS.get(k,k):v for k,v in gpsraw.items()}
+              lat=lon=None
+              if "GPSLatitude" in gps and "GPSLongitude" in gps:
+                  lat=dms(gps["GPSLatitude"])*(-1 if gps.get("GPSLatitudeRef")=="S" else 1)
+                  lon=dms(gps["GPSLongitude"])*(-1 if gps.get("GPSLongitudeRef")=="W" else 1)
+              return {
+                "filename":p.name,"relative_path":str(p.relative_to(SRC)),
+                "width_px":im.width,"height_px":im.height,
+                "camera_make":str(ex.get(271,"")).replace(chr(0),"").strip(),
+                "camera_model":str(ex.get(272,"")).replace(chr(0),"").strip(),
+                "datetime_original":ex.get(36867) or ex.get(306),
+                "latitude_deg":lat,"longitude_deg":lon,
+                "gps_altitude_m":rational(gps["GPSAltitude"]) if "GPSAltitude" in gps else None,
+                "bytes":p.stat().st_size,"sha256":sha(p)
+              }
+
+          files=sorted(p for p in SRC.rglob("*") if p.is_file() and p.suffix.lower() in EXT)
+          if len(files)!=36:
+              raise RuntimeError(f"Expected 36 source images, found {len(files)}")
+          records=[read_meta(p) for p in files]
+          if sum(r["latitude_deg"] is not None and r["longitude_deg"] is not None for r in records)!=36:
+              raise RuntimeError("Not all 36 images retained readable GPS coordinates.")
+
+          def parse_time(r):
+              raw=r.get("datetime_original")
+              if not raw: return None
+              for fmt in ("%Y:%m:%d %H:%M:%S","%Y-%m-%dT%H:%M:%S"):
+                  try: return datetime.strptime(raw,fmt)
+                  except ValueError: pass
+              return None
+
+          ordered=sorted(records,key=lambda r:(parse_time(r) is None,parse_time(r) or datetime.max,r["filename"]))
+          times=[parse_time(r) for r in ordered]
+          gaps=[(times[i+1]-times[i]).total_seconds() for i in range(len(times)-1)] if all(times) else []
+          gps=[(r["latitude_deg"],r["longitude_deg"]) for r in ordered]
+          def hav(a,b):
+              la1,lo1=map(math.radians,a); la2,lo2=map(math.radians,b)
+              q=math.sin((la2-la1)/2)**2+math.cos(la1)*math.cos(la2)*math.sin((lo2-lo1)/2)**2
+              return 6371000*2*math.asin(math.sqrt(q))
+          distances=[hav(gps[i],gps[i+1]) for i in range(len(gps)-1)]
+          audit={
+            "dataset":"OpenDroneMap Phalaborwa small overlap/sidelap survey",
+            "source_page":"https://github.com/OpenDroneMap/ODMdata",
+            "download_folder":"https://drive.google.com/drive/folders/1e1eA8LNpP4scYyDYdWd6UQ1qJ006iOXG",
+            "image_count":len(records),"geotagged_count":36,
+            "gps_bounds":{"min_lat":min(x[0] for x in gps),"max_lat":max(x[0] for x in gps),
+                          "min_lon":min(x[1] for x in gps),"max_lon":max(x[1] for x in gps)},
+            "capture_time_gaps_seconds":gaps,
+            "successive_gps_position_distances_m":{"min":min(distances),"median":float(np.median(distances)),"max":max(distances)},
+            "warning":"GPS position spacing is not a measurement of image-footprint overlap. Camera heading, footprint and overlap must be evaluated from imagery and available metadata.",
+            "images":ordered
+          }
+          (OUT/"SOURCE_INVENTORY.json").write_text(json.dumps(audit,indent=2)+"\n")
+
+          # Source contact sheet; each cell is an original view, not a transformed maplet.
+          cols=4; cw,ch=420,330
+          sheet=Image.new("RGB",(cols*cw,math.ceil(len(files)/cols)*ch),(24,28,34))
+          draw=ImageDraw.Draw(sheet)
+          draw.text((12,8),"Phalaborwa — original aerial survey views (36)",fill=(245,245,245))
+          for i,p in enumerate(files):
+              im=Image.open(p).convert("RGB"); im.thumbnail((cw-20,ch-48))
+              x=(i%cols)*cw+10; y=(i//cols)*ch+28
+              sheet.paste(im,(x,y)); draw.text((x,y+ch-42),p.name[:48],fill=(240,240,240))
+          sheet.save(PRE/"phalaborwa-original-contact-sheet.jpg",quality=90)
+
+          # Create immutable source maplet receipts and reduced working copies.
+          workimgs=[]
+          for idx,r in enumerate(ordered):
+              p=SRC/r["relative_path"]
+              pid=f"PKT-PHALABORWA-{idx+1:03d}"
+              pd=PACK/"source-maplets"/pid
+              (pd/"snapshot").mkdir(parents=True,exist_ok=True)
+              (pd/"OI.json").write_text(json.dumps({
+                "packet_id":pid,"spec_version":"0.24","operation":"fv analyse",
+                "inventory_lock":True,"entities":[],
+                "source_provenance":{"dataset":audit["dataset"],"source_page":audit["source_page"],
+                  "source_file":r["relative_path"],"source_sha256":r["sha256"]},
+                "inventory_note":"One original aerial view. No physical-object identity or global placement is asserted in this source packet."
+              },indent=2)+"\n")
+              (pd/"MSRM.json").write_text(json.dumps({
+                "packet_id":pid,"local_reference":"source image pixel frame",
+                "maplet":{"dimensions_px":[r["width_px"],r["height_px"]],
+                  "viewpoint_gps":{"latitude_deg":r["latitude_deg"],"longitude_deg":r["longitude_deg"],"altitude_m":r["gps_altitude_m"]},
+                  "capture_time":r["datetime_original"]},
+                "registration_state":"Unplaced source view; global image-space registration is attempted separately."
+              },indent=2)+"\n")
+              (pd/"PC.json").write_text(json.dumps({"packet_id":pid,"constants":["OpenDroneMap Phalaborwa survey","Original aerial image","GPS-tagged source"]},indent=2)+"\n")
+              (pd/"snapshot"/"manifest.json").write_text(json.dumps({"packet_id":pid,"source_file":r["relative_path"],"source_sha256":r["sha256"],"source_bytes":r["bytes"]},indent=2)+"\n")
+              (pd/"README.txt").write_text(f"Phalaborwa source maplet {idx+1}/36\nfile: {r['relative_path']}\nGPS: {r['latitude_deg']}, {r['longitude_deg']}\nSHA-256: {r['sha256']}\n")
+              img=cv2.imread(str(p),cv2.IMREAD_COLOR)
+              if img is None: raise RuntimeError(f"OpenCV could not decode {p}")
+              scale=min(1.0,1500/img.shape[1])
+              small=cv2.resize(img,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA) if scale<1 else img
+              workimgs.append(small)
+
+          # Adjacent registration diagnostics on reduced images.
+          sift=cv2.SIFT_create(nfeatures=5000)
+          pair=[]
+          for i in range(len(workimgs)-1):
+              a=cv2.cvtColor(workimgs[i],cv2.COLOR_BGR2GRAY)
+              b=cv2.cvtColor(workimgs[i+1],cv2.COLOR_BGR2GRAY)
+              ka,da=sift.detectAndCompute(a,None); kb,db=sift.detectAndCompute(b,None)
+              if da is None or db is None:
+                  pair.append({"image_a":ordered[i]["filename"],"image_b":ordered[i+1]["filename"],"status":"NO_DESCRIPTORS","features_a":len(ka),"features_b":len(kb)})
+                  continue
+              raw=cv2.BFMatcher(cv2.NORM_L2).knnMatch(da,db,k=2)
+              good=[m for m,n in raw if m.distance<0.75*n.distance]
+              rec={"image_a":ordered[i]["filename"],"image_b":ordered[i+1]["filename"],
+                   "features_a":len(ka),"features_b":len(kb),"ratio_test_matches":len(good)}
+              if len(good)>=8:
+                  srcp=np.float32([ka[m.queryIdx].pt for m in good]).reshape(-1,1,2)
+                  dstp=np.float32([kb[m.trainIdx].pt for m in good]).reshape(-1,1,2)
+                  H,mask=cv2.findHomography(srcp,dstp,cv2.RANSAC,4.0)
+                  if H is not None and mask is not None:
+                      inl=mask.ravel().astype(bool)
+                      proj=cv2.perspectiveTransform(srcp[inl],H)
+                      err=np.linalg.norm(proj-dstp[inl],axis=2).ravel()
+                      rec.update({"status":"HOMOGRAPHY_ESTIMATED","homography_inliers":int(inl.sum()),
+                                  "inlier_fraction":float(inl.mean()),
+                                  "rms_reprojection_error_px":float(np.sqrt(np.mean(err**2))),
+                                  "homography_a_to_b":H.tolist()})
+                  else: rec["status"]="HOMOGRAPHY_FAILED"
+              else: rec["status"]="INSUFFICIENT_MATCHES"
+              pair.append(rec)
+          (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\n")
+
+          # Try a single SCANS assembly of all 36 views. Keep diagnostics even if it fails.
+          stitcher=cv2.Stitcher.create(cv2.Stitcher_SCANS)
+          stitcher.setPanoConfidenceThresh(0.3)
+          stitcher.setInterpolationFlags(cv2.INTER_LINEAR)
+          status=stitcher.estimateTransform(workimgs)
+          assembly={"opencv_version":cv2.__version__,"mode":"SCANS","input_count":len(workimgs),
+                    "estimate_transform_status":int(status),"status_name":"OK" if status==cv2.Stitcher_OK else "FAILED"}
+          if status==cv2.Stitcher_OK:
+              cams=stitcher.cameras()
+              compose_status,mosaic=stitcher.composePanorama()
+              assembly["compose_status"]=int(compose_status)
+              if compose_status==cv2.Stitcher_OK and mosaic is not None:
+                  mp=OUT/"phalaborwa_scans_mosaic.jpg"
+                  if not cv2.imwrite(str(mp),mosaic,[cv2.IMWRITE_JPEG_QUALITY,94]):
+                      raise RuntimeError("Could not write mosaic")
+                  assembly.update({"status_name":"ASSEMBLED","mosaic_file":mp.name,
+                    "mosaic_shape_yx_channels":list(mosaic.shape),"mosaic_bytes":mp.stat().st_size,
+                    "mosaic_sha256":sha(mp),"camera_placements":[
+                      {"source":ordered[i]["filename"],"R":np.asarray(c.R).tolist(),"focal":float(c.focal),
+                       "aspect":float(c.aspect),"principal_point_px":[float(c.ppx),float(c.ppy)]}
+                      for i,c in enumerate(cams)]})
+              else:
+                  assembly["status_name"]="COMPOSE_FAILED"
+          (OUT/"ASSEMBLY_RESULT.json").write_text(json.dumps(assembly,indent=2)+"\n")
+
+          assembled_id="PKT-PHALABORWA-36-VIEW-ASSEMBLY"
+          ad=PACK/"assembled"/assembled_id
+          (ad/"snapshot"/"verification").mkdir(parents=True,exist_ok=True)
+          (ad/"OI.json").write_text(json.dumps({
+            "packet_id":assembled_id,"spec_version":"0.24","operation":"fv assemble",
+            "inventory_lock":True,"entities":[],
+            "source_maplets":[f"PKT-PHALABORWA-{i+1:03d}" for i in range(36)],
+            "inventory_note":"Aerial image-space assembly attempt. No physical-object identity merge, orthorectification or georeferencing is claimed."
+          },indent=2)+"\n")
+          (ad/"MSRM.json").write_text(json.dumps({
+            "packet_id":assembled_id,"global_coordinate_system":"OpenCV SCANS panorama pixel frame if assembly succeeds; GPS metadata is retained separately and is not used as ground control.",
+            "source_count":36,"source_gps_bounds":audit["gps_bounds"],
+            "registration_diagnostics":"PAIRWISE_REGISTRATION.json",
+            "assembly_result":assembly,
+            "limits":["GPS coordinates describe camera positions, not image-footprint corners.","No camera heading or calibrated ground footprint is inferred.","Image-space panorama is not an orthophoto or 3D reconstruction."]
+          },indent=2)+"\n")
+          (ad/"PC.json").write_text(json.dumps({"packet_id":assembled_id,"constants":["36 original GPS-tagged aerial views","OpenCV Stitcher SCANS attempt","Pairwise SIFT/homography diagnostics retained"]},indent=2)+"\n")
+          (ad/"snapshot"/"manifest.json").write_text(json.dumps({
+            "packet_id":assembled_id,"source_inventory":"SOURCE_INVENTORY.json",
+            "source_images":[{"file":r["relative_path"],"sha256":r["sha256"]} for r in ordered],
+            "assembly_result":"ASSEMBLY_RESULT.json","pairwise_registration":"PAIRWISE_REGISTRATION.json"
+          },indent=2)+"\n")
+          (ad/"README.txt").write_text("Phalaborwa 36-view aerial assembly attempt. Source packets preserve each original view. See ASSEMBLY_RESULT.json and PAIRWISE_REGISTRATION.json for measured results. GPS positions are not ground control; no orthorectification or physical-object identity merge is claimed.\n")
+
+          # Validate JSON and re-hash originals after processing.
+          for p in OUT.rglob("*.json"): json.loads(p.read_text())
+          recheck=[sha(SRC/r["relative_path"])==r["sha256"] for r in ordered]
+          if not all(recheck): raise RuntimeError("An original source image changed during processing.")
+          validation={"source_images":36,"geotagged_images":36,"source_hashes_rechecked":all(recheck),
+            "source_maplet_packets":36,"pairwise_adjacent_diagnostics":len(pair),
+            "pairwise_homography_successes":sum(x.get("status")=="HOMOGRAPHY_ESTIMATED" for x in pair),
+            "assembly":assembly,"status":"PASS_SOURCE_AND_PACKET_VALIDATION" if all(recheck) else "FAIL"}
+          (OUT/"VALIDATION_REPORT.json").write_text(json.dumps(validation,indent=2)+"\n")
+          (OUT/"README.md").write_text(
+            "# FV Assemble — Phalaborwa aerial survey\n\n"
+            "- Original images: 36\n- GPS-tagged images: 36\n"
+            "- Source maplet packets: 36\n- Adjacent pair diagnostics: 35\n"
+            f"- Pairwise homographies estimated: {validation['pairwise_homography_successes']}\n"
+            f"- Assembly result: {assembly['status_name']}\n\n"
+            "GPS camera positions are not ground-control points or image-footprint corners. A successful SCANS output is an image-space panorama, not an orthophoto, georeferenced map or 3D reconstruction. Originals are retained and their hashes rechecked.\n"
+          )
+          print(json.dumps(validation,indent=2))
+          PY
+
+      - name: Upload Phalaborwa source packets, diagnostics and assembly outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-phalaborwa-36-view-assembly
+          path: work/phalaborwa/output/
+          if-no-files-found: warn
+          retention-days: 30
