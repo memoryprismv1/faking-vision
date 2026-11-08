@@ -60,7 +60,7 @@ jobs:
           EXPECTED = [
               "ib1f19l6q_flt.fits",
               "ib1f19l7q_flt.fits",
-              "ib1f19l8q_flt.fits",
+              "ib1f19l9q_flt.fits",
               "ib1f19laq_flt.fits",
           ]
 
