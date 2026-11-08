@@ -55,7 +55,7 @@ jobs:
           for p in (SOURCE, WORK, PACKETS, PREVIEWS):
               p.mkdir(parents=True, exist_ok=True)
 
-          OBS_ID = "GO-10605-VISIT06-UGC5336"
+          MAST_QUERY = {"obs_collection": "HST", "proposal_id": 10605}
           EXPECTED = [
               "j9cm06j1q_flc.fits",
               "j9cm06j2q_flc.fits",
@@ -76,20 +76,25 @@ jobs:
               path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
 
           # This is one association/visit, not four independent visits.
-          obs = Observations.query_criteria(obs_collection="HST", proposal_id=10605, target_name="UGC-5336-1")
+          obs = Observations.query_criteria(**MAST_QUERY)
           if len(obs) == 0:
-              raise RuntimeError("MAST returned no HST observations for GO-10605 target UGC-5336-1")
-          print(f"MAST returned {len(obs)} observation rows for GO-10605 UGC-5336-1; selecting exact FLC products.")
+              raise RuntimeError(f"MAST returned no HST observations for proposal 10605: {MAST_QUERY}")
+          print(f"MAST returned {len(obs)} observation rows for proposal 10605; selecting only the four pre-acquired filenames.")
           products = Observations.get_product_list(obs)
-          selected = Observations.filter_products(
-              products,
-              productSubGroupDescription=["FLC"],
-              project=["CALACS"]
-          )
-          selected = selected[[str(x) in EXPECTED for x in selected["productFilename"]]]
-          found = sorted(str(x) for x in selected["productFilename"])
+          exact = products[[str(x) in EXPECTED for x in products["productFilename"]]]
+          found = sorted(str(x) for x in exact["productFilename"])
           if found != sorted(EXPECTED):
-              raise RuntimeError(f"Expected the four documented FLC products {EXPECTED}; MAST returned {found}")
+              raise RuntimeError(f"Expected the four pre-acquired FLC products {EXPECTED}; MAST returned {found}")
+          subgroups = sorted(set(str(x) for x in exact["productSubGroupDescription"]))
+          if subgroups != ["FLC"]:
+              raise RuntimeError(f"Exact filenames did not all resolve to FLC products; subgroup values: {subgroups}")
+          selected = exact
+          print("Exact MAST product rows:", [
+              {"filename": str(row["productFilename"]), "obs_id": str(row["obs_id"]),
+               "parent_obsid": int(row["parent_obsid"]), "proposal_id": str(row["proposal_id"]),
+               "subgroup": str(row["productSubGroupDescription"])}
+              for row in selected
+          ])
           manifest = Observations.download_products(
               selected, download_dir=str(ROOT / "mast-download"), cache=True
           )
@@ -120,6 +125,7 @@ jobs:
                       "sha256": sha256(src),
                       "bytes": src.stat().st_size,
                       "rootname": primary.get("ROOTNAME"),
+                      "proposal_id": primary.get("PROPOSID"),
                       "asn_id": primary.get("ASN_ID"),
                       "target": primary.get("TARGNAME"),
                       "instrument": primary.get("INSTRUME"),
@@ -145,6 +151,22 @@ jobs:
                   fig.savefig(preview, dpi=150, bbox_inches="tight", pad_inches=0)
                   plt.close(fig)
                   records.append(rec)
+
+          expected_metadata = {
+              "target": "UGC-5336",
+              "instrument": "ACS",
+              "detector": "WFC",
+              "filter": "F555W",
+              "proposal_id": "10605",
+          }
+          for rec in records:
+              for key, expected_value in expected_metadata.items():
+                  if str(rec[key]).strip().upper() != expected_value.upper():
+                      raise RuntimeError(
+                          f"{rec['filename']} has {key}={rec[key]!r}; expected {expected_value!r}"
+                      )
+          if len({rec["date_obs"] for rec in records}) != 1:
+              raise RuntimeError("The four exact source files do not share one DATE-OBS; refusing single-visit assembly.")
 
           # The STScI notebook uses the a-priori distortion-corrected WCS headerlet
           # for this dither association before AstroDrizzle. Select a common matching
@@ -259,7 +281,7 @@ jobs:
               write_json(pdir / "OI.json", {
                   "packet_id": pid, "spec_version": "0.24", "operation": "fv analyse",
                   "inventory_lock": True, "entities": [],
-                  "source_provenance": {k: rec[k] for k in ("filename","sha256","bytes","rootname","asn_id","target","instrument","detector","filter","date_obs","exposure_seconds")},
+                  "source_provenance": {k: rec[k] for k in ("filename","sha256","bytes","rootname","proposal_id","asn_id","target","instrument","detector","filter","date_obs","exposure_seconds")},
                   "inventory_note": "Registration-only source observation. No astronomical object identities are promoted."
               })
               write_json(pdir / "MSRM.json", {
@@ -312,7 +334,7 @@ jobs:
               f"packet_id: {assembled_id}\n"
               "Four overlapping dithered ACS/WFC F555W exposures from one visit were combined. "
               "This is a single-field, single-visit assembly, not a wide-area mosaic. "
-              "The original FLT files remain separately checksummed and unmodified. "
+              "The original FLC files remain separately checksummed and unmodified. "
               "No astronomical object identity merge is claimed.\n"
           )
 
@@ -322,7 +344,7 @@ jobs:
               shutil.copy2(SOURCE / rec["filename"], OUT / "immutable-source" / rec["filename"])
           write_json(OUT / "source_manifest.json", {
               "dataset": "HST ACS/WFC UGC 5336 (M81 group), Program 10605, Visit 06, F555W",
-              "mast_obs_id": OBS_ID,
+              "mast_query": MAST_QUERY,
               "source_files": records,
               "download_rows": len(manifest),
               "shared_apriori_headerlet": chosen,
