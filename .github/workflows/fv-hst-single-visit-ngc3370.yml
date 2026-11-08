@@ -1,0 +1,330 @@
+name: FV Assemble — HST single-visit NGC 3370
+
+on:
+  push:
+    branches:
+      - experiment/hst-single-visit-ngc3370
+    paths:
+      - ".github/workflows/fv-hst-single-visit-ngc3370.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  single-visit-assembly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      CRDS_SERVER_URL: https://hst-crds.stsci.edu
+      CRDS_SERVER: https://hst-crds.stsci.edu
+      CRDS_PATH: ${{ github.workspace }}/crds_cache
+      iref: ${{ github.workspace }}/crds_cache/references/hst/wfc3/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install HST retrieval and drizzle tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install astroquery astropy matplotlib drizzlepac stwcs crds
+      - name: Retrieve one visit, preserve sources, assemble and validate
+        run: |
+          cat > run_hst_single_visit.py <<'PY'
+          import csv, hashlib, json, pathlib, shutil, subprocess
+          import numpy as np
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          from astroquery.mast import Observations
+          from astropy.io import fits
+          from astropy.table import Table
+          from astropy.visualization import ZScaleInterval, ImageNormalize, AsinhStretch
+          from astropy.wcs import WCS
+          from astropy.wcs.utils import proj_plane_pixel_scales
+          from stwcs.wcsutil import headerlet
+          from drizzlepac import astrodrizzle
+
+          ROOT = pathlib.Path("hst-ngc3370-single-visit")
+          SOURCE = ROOT / "immutable-source"
+          WORK = ROOT / "working-copies"
+          OUT = pathlib.Path("fv-hst-ngc3370-output")
+          PACKETS = OUT / "packets"
+          PREVIEWS = OUT / "previews"
+          for p in (SOURCE, WORK, PACKETS, PREVIEWS):
+              p.mkdir(parents=True, exist_ok=True)
+
+          OBS_ID = "ib1f19010"
+          EXPECTED = [
+              "ib1f19l6q_flt.fits",
+              "ib1f19l7q_flt.fits",
+              "ib1f19l9q_flt.fits",
+              "ib1f19laq_flt.fits",
+          ]
+
+          def sha256(path):
+              h = hashlib.sha256()
+              with open(path, "rb") as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def write_json(path, value):
+              path = pathlib.Path(path)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+
+          # This is one association/visit, not four independent visits.
+          obs = Observations.query_criteria(obs_id=[OBS_ID])
+          if len(obs) != 1:
+              raise RuntimeError(f"Expected one MAST observation group for {OBS_ID}; got {len(obs)}")
+          products = Observations.get_product_list(obs)
+          selected = Observations.filter_products(
+              products,
+              productSubGroupDescription=["FLT"],
+              project=["CALWF3"]
+          )
+          found = sorted(str(x) for x in selected["productFilename"])
+          if found != sorted(EXPECTED):
+              raise RuntimeError(f"Expected the four documented FLT products {EXPECTED}; MAST returned {found}")
+          manifest = Observations.download_products(
+              selected, download_dir=str(ROOT / "mast-download"), cache=True
+          )
+          downloaded = {}
+          for p in (ROOT / "mast-download").rglob("*"):
+              if p.is_file() and p.name in EXPECTED:
+                  target = SOURCE / p.name
+                  shutil.copy2(p, target)
+                  downloaded[p.name] = target
+          if set(downloaded) != set(EXPECTED):
+              raise RuntimeError(f"Incomplete MAST download: {sorted(downloaded)}")
+
+          records = []
+          for name in EXPECTED:
+              src = downloaded[name]
+              work = WORK / name
+              shutil.copy2(src, work)
+              with fits.open(src, memmap=True) as hdul:
+                  primary = hdul[0].header
+                  sci = hdul[("SCI", 1)]
+                  data = np.asarray(sci.data, dtype=np.float32)
+                  finite = data[np.isfinite(data)]
+                  if finite.size == 0:
+                      raise RuntimeError(f"No finite science pixels in {name}")
+                  hdr = sci.header
+                  rec = {
+                      "filename": name,
+                      "sha256": sha256(src),
+                      "bytes": src.stat().st_size,
+                      "rootname": primary.get("ROOTNAME"),
+                      "asn_id": primary.get("ASN_ID"),
+                      "target": primary.get("TARGNAME"),
+                      "instrument": primary.get("INSTRUME"),
+                      "detector": primary.get("DETECTOR"),
+                      "filter": primary.get("FILTER"),
+                      "exposure_seconds": primary.get("EXPTIME"),
+                      "date_obs": primary.get("DATE-OBS"),
+                      "postarg1_arcsec": primary.get("POSTARG1"),
+                      "postarg2_arcsec": primary.get("POSTARG2"),
+                      "orientation_deg": hdr.get("ORIENTAT"),
+                      "science_shape_yx": list(data.shape),
+                      "wcsname": hdr.get("WCSNAME"),
+                  }
+                  z = ZScaleInterval()
+                  lo, hi = z.get_limits(finite)
+                  shown = np.clip((data - lo) / max(hi - lo, 1e-12), 0, 1)
+                  shown[~np.isfinite(shown)] = 0
+                  preview = PREVIEWS / (pathlib.Path(name).stem + ".png")
+                  fig = plt.figure(figsize=(7, 7), dpi=150)
+                  ax = fig.add_axes([0, 0, 1, 1])
+                  ax.imshow(shown, origin="lower", cmap="gray", interpolation="nearest")
+                  ax.set_axis_off()
+                  fig.savefig(preview, dpi=150, bbox_inches="tight", pad_inches=0)
+                  plt.close(fig)
+                  records.append(rec)
+
+          # The STScI notebook uses the a-priori distortion-corrected WCS headerlet
+          # for this dither association before AstroDrizzle. Select a common matching
+          # headerlet across all four exposures; never guess if none is shared.
+          wcs_lists = [headerlet.get_headerlet_kw_names(str(WORK / n), kw="WCSNAME") for n in EXPECTED]
+          common = set(wcs_lists[0])
+          for names in wcs_lists[1:]:
+              common.intersection_update(names)
+          candidates = sorted(n for n in common if "GSC240" in n.upper() and "FIT_REL" not in n.upper())
+          if not candidates:
+              candidates = sorted(n for n in common if n.upper().startswith("IDC_") and "FIT_REL" not in n.upper())
+          if not candidates:
+              raise RuntimeError("No common a-priori IDC headerlet across all four exposures; refusing to guess WCS.")
+          chosen = candidates[0]
+          for name in EXPECTED:
+              path = str(WORK / name)
+              names = headerlet.get_headerlet_kw_names(path, kw="WCSNAME")
+              ext = names.index(chosen) + 1
+              headerlet.restore_from_headerlet(
+                  path, hdrext=("HDRLET", ext), archive=False, force=False
+              )
+
+          # AstroDrizzle combines the four dithered, overlapping views of this one
+          # WFC3/IR field. It is a single-visit field assembly, not a wide-area mosaic.
+          input_files = [str(WORK / n) for n in EXPECTED]
+          mdz = fits.getval(input_files[0], "MDRIZTAB", ext=0).split("$")[-1]
+          iref = pathlib.Path(__import__("os").environ["iref"])
+          iref.mkdir(parents=True, exist_ok=True)
+          sync = subprocess.run(
+              ["crds", "sync", "--hst", "--files", mdz, "--output-dir", str(iref)],
+              text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+          )
+          (OUT / "crds_sync.log").write_text(sync.stdout)
+          if sync.returncode != 0:
+              raise RuntimeError("CRDS MDRIZTAB retrieval failed:\n" + sync.stdout)
+
+          astrodrizzle.AstroDrizzle(
+              input_files,
+              output="ngc3370_visit19_f160w",
+              preserve=False,
+              build=True,
+              clean=False,
+              skysub=True
+          )
+          drc = pathlib.Path("ngc3370_visit19_f160w_drc.fits")
+          if not drc.is_file():
+              raise RuntimeError("AstroDrizzle did not create the DRC science product.")
+
+          with fits.open(drc, memmap=True) as hdul:
+              if ("SCI", 1) not in hdul or ("WHT", 1) not in hdul:
+                  raise RuntimeError("DRC product is missing SCI,1 or WHT,1.")
+              sci = np.asarray(hdul[("SCI", 1)].data, dtype=np.float32)
+              wht = np.asarray(hdul[("WHT", 1)].data, dtype=np.float32)
+              valid = np.isfinite(sci) & np.isfinite(wht) & (wht > 0)
+              if not valid.any():
+                  raise RuntimeError("No finite, positively weighted science pixels in output.")
+              lo, hi = ZScaleInterval().get_limits(sci[valid])
+              norm = ImageNormalize(vmin=lo, vmax=hi, stretch=AsinhStretch(a=0.08))
+              mosaic_preview = OUT / "ngc3370_visit19_f160w_mosaic.png"
+              fig = plt.figure(figsize=(10, 10), dpi=180)
+              ax = fig.add_axes([0, 0, 1, 1])
+              ax.imshow(np.ma.masked_where(~valid, sci), origin="lower", cmap="gray", norm=norm)
+              ax.set_axis_off()
+              fig.savefig(mosaic_preview, dpi=180, bbox_inches="tight", pad_inches=0)
+              plt.close(fig)
+              wcs = WCS(hdul[("SCI", 1)].header, hdul, relax=True).celestial
+              ny, nx = sci.shape
+              corners = np.asarray([[0,0],[nx-1,0],[nx-1,ny-1],[0,ny-1]], dtype=float)
+              world = wcs.all_pix2world(corners, 0)
+              scale = proj_plane_pixel_scales(wcs) * 3600.0
+              summary = {
+                  "shape_yx": [int(ny), int(nx)],
+                  "pixel_scale_arcsec": [float(v) for v in scale],
+                  "corner_radec_deg": [[float(a), float(b)] for a,b in world],
+                  "positive_weight_fraction": float(valid.sum()/valid.size),
+              }
+              weight_preview = OUT / "ngc3370_visit19_weight.png"
+              fig = plt.figure(figsize=(8, 8), dpi=140)
+              ax = fig.add_axes([0, 0, 1, 1])
+              ax.imshow(wht, origin="lower", cmap="gray")
+              ax.set_axis_off()
+              fig.savefig(weight_preview, dpi=140, bbox_inches="tight", pad_inches=0)
+              plt.close(fig)
+
+          # Four source packets plus one assembled packet; no astronomical identity
+          # catalogue is invented. Point sources remain unpromoted observations.
+          source_packet_ids = []
+          for rec in records:
+              pid = "PKT-HST-NGC3370-" + rec["rootname"].upper()
+              source_packet_ids.append(pid)
+              pdir = PACKETS / pid
+              (pdir / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
+              shutil.copy2(PREVIEWS / (pathlib.Path(rec["filename"]).stem + ".png"),
+                           pdir / "snapshot" / "verification" / (pathlib.Path(rec["filename"]).stem + ".png"))
+              write_json(pdir / "OI.json", {
+                  "packet_id": pid, "spec_version": "0.24", "operation": "fv analyse",
+                  "inventory_lock": True, "entities": [],
+                  "source_provenance": {k: rec[k] for k in ("filename","sha256","bytes","rootname","asn_id","target","instrument","detector","filter","date_obs","exposure_seconds")},
+                  "inventory_note": "Registration-only source observation. No astronomical object identities are promoted."
+              })
+              write_json(pdir / "MSRM.json", {
+                  "packet_id": pid, "coordinate_system": "Original WFC3/IR detector WCS and local pixel coordinates",
+                  "observation_geometry": {k: rec[k] for k in ("postarg1_arcsec","postarg2_arcsec","orientation_deg","science_shape_yx","wcsname")}
+              })
+              write_json(pdir / "PC.json", {"packet_id": pid, "constants": ["HST WFC3/IR","F160W","Single visit IB1F19010"]})
+              write_json(pdir / "snapshot" / "manifest.json", {
+                  "packet_id": pid, "source_file": rec["filename"], "sha256": rec["sha256"],
+                  "verification_image": "verification/" + pathlib.Path(rec["filename"]).stem + ".png"
+              })
+              (pdir / "README.txt").write_text(
+                  "HST NGC 3370 single-visit source packet\n"
+                  f"packet_id: {pid}\nsource: MAST HST product {rec['filename']}\n"
+                  f"SHA-256: {rec['sha256']}\n"
+                  "This packet is a source observation for geometric assembly only.\n"
+              )
+
+          assembled_id = "PKT-HST-NGC3370-VISIT19-F160W-ASSEMBLED-001"
+          ap = PACKETS / assembled_id
+          (ap / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
+          shutil.copy2(drc, ap / drc.name)
+          shutil.copy2(mosaic_preview, ap / "snapshot" / "verification" / mosaic_preview.name)
+          shutil.copy2(weight_preview, ap / "snapshot" / "verification" / weight_preview.name)
+          write_json(ap / "OI.json", {
+              "packet_id": assembled_id, "spec_version": "0.24", "operation": "fv assemble",
+              "inventory_lock": True, "entities": [], "source_packets": source_packet_ids,
+              "inventory_note": "No star/galaxy identities are asserted or merged; this is single-visit geometric image assembly."
+          })
+          write_json(ap / "MSRM.json", {
+              "packet_id": assembled_id,
+              "global_coordinate_system": "Output celestial FITS WCS from AstroDrizzle SCI,1",
+              "assembly": {
+                  "method": "STScI DrizzlePac AstroDrizzle",
+                  "visit_association": "IB1F19010",
+                  "input_count": len(EXPECTED),
+                  "shared_apriori_headerlet": chosen,
+                  "coverage": summary,
+                  "source_packet_ids": source_packet_ids
+              }
+          })
+          write_json(ap / "PC.json", {"packet_id": assembled_id, "constants": ["HST WFC3/IR","F160W","One visit, four dithered exposures"]})
+          write_json(ap / "snapshot" / "manifest.json", {
+              "packet_id": assembled_id, "source_files": records,
+              "assembled_fits": {"filename": drc.name, "sha256": sha256(drc), "bytes": drc.stat().st_size},
+              "verification_images": [mosaic_preview.name, weight_preview.name]
+          })
+          (ap / "README.txt").write_text(
+              "FV Assemble — HST NGC 3370 single-visit experiment\n"
+              f"packet_id: {assembled_id}\n"
+              "Four overlapping dithered WFC3/IR F160W exposures from one visit were combined. "
+              "This is a single-field, single-visit assembly, not a wide-area mosaic. "
+              "The original FLT files remain separately checksummed and unmodified. "
+              "No astronomical object identity merge is claimed.\n"
+          )
+
+          # Preserve the four original calibrated FITS inputs alongside packets and output.
+          for rec in records:
+              shutil.copy2(SOURCE / rec["filename"], OUT / "immutable-source" / rec["filename"])
+          (OUT / "immutable-source").mkdir(parents=True, exist_ok=True)
+          write_json(OUT / "source_manifest.json", {
+              "dataset": "HST WFC3/IR NGC 3370, Program 11570, Visit 19, F160W",
+              "mast_obs_id": OBS_ID,
+              "source_files": records,
+              "download_rows": len(manifest),
+              "shared_apriori_headerlet": chosen,
+              "source_files_are_immutable": True
+          })
+          write_json(OUT / "assembly_summary.json", {
+              "status": "PASS",
+              "dataset": "NGC 3370 / Visit 19 / F160W",
+              "input_count": len(EXPECTED),
+              "output_fits": drc.name,
+              "output_sha256": sha256(drc),
+              "coverage": summary,
+              "identity_merge": "NOT PERFORMED",
+              "qualification": "Four dithered exposures from one visit; not a multi-visit or adjacent-sky-tile mosaic."
+          })
+          print(json.dumps({"status":"PASS","input_count":len(EXPECTED),"output":str(drc),"coverage":summary},indent=2))
+          PY
+          python run_hst_single_visit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fv-hst-ngc3370-single-visit-assembly
+          path: fv-hst-ngc3370-output/
+          if-no-files-found: error
+          retention-days: 30
