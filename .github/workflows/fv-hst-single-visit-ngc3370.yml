@@ -45,6 +45,7 @@ jobs:
           from astropy.wcs.utils import proj_plane_pixel_scales
           from stwcs.wcsutil import headerlet
           from drizzlepac import astrodrizzle
+          from drizzlepac.processInput import getMdriztabPars
 
           ROOT = pathlib.Path("hst-ngc3370-single-visit")
           SOURCE = ROOT / "immutable-source"
@@ -179,19 +180,27 @@ jobs:
           if sync.returncode != 0:
               raise RuntimeError("CRDS MDRIZTAB retrieval failed:\n" + sync.stdout)
 
+          selected_params = getMdriztabPars(input_files)
           astrodrizzle.AstroDrizzle(
               input_files,
               output="ngc3370_visit19_f160w",
               preserve=False,
               build=True,
               clean=False,
-              skysub=True
+              skysub=True,
+              driz_separate=False,
+              median=False,
+              blot=False,
+              driz_cr=False,
+              final_wcs=True,
+              final_rot=0.0,
+              **selected_params
           )
-          drc = pathlib.Path("ngc3370_visit19_f160w_drc.fits")
-          if not drc.is_file():
-              raise RuntimeError("AstroDrizzle did not create the DRC science product.")
+          drz = pathlib.Path("ngc3370_visit19_f160w_drz.fits")
+          if not drz.is_file():
+              raise RuntimeError("AstroDrizzle did not create the DRZ science product.")
 
-          with fits.open(drc, memmap=True) as hdul:
+          with fits.open(drz, memmap=True) as hdul:
               if ("SCI", 1) not in hdul or ("WHT", 1) not in hdul:
                   raise RuntimeError("DRC product is missing SCI,1 or WHT,1.")
               sci = np.asarray(hdul[("SCI", 1)].data, dtype=np.float32)
@@ -262,7 +271,7 @@ jobs:
           assembled_id = "PKT-HST-NGC3370-VISIT19-F160W-ASSEMBLED-001"
           ap = PACKETS / assembled_id
           (ap / "snapshot" / "verification").mkdir(parents=True, exist_ok=True)
-          shutil.copy2(drc, ap / drc.name)
+          shutil.copy2(drz, ap / drz.name)
           shutil.copy2(mosaic_preview, ap / "snapshot" / "verification" / mosaic_preview.name)
           shutil.copy2(weight_preview, ap / "snapshot" / "verification" / weight_preview.name)
           write_json(ap / "OI.json", {
@@ -285,7 +294,7 @@ jobs:
           write_json(ap / "PC.json", {"packet_id": assembled_id, "constants": ["HST WFC3/IR","F160W","One visit, four dithered exposures"]})
           write_json(ap / "snapshot" / "manifest.json", {
               "packet_id": assembled_id, "source_files": records,
-              "assembled_fits": {"filename": drc.name, "sha256": sha256(drc), "bytes": drc.stat().st_size},
+              "assembled_fits": {"filename": drz.name, "sha256": sha256(drz), "bytes": drz.stat().st_size},
               "verification_images": [mosaic_preview.name, weight_preview.name]
           })
           (ap / "README.txt").write_text(
@@ -313,13 +322,13 @@ jobs:
               "status": "PASS",
               "dataset": "NGC 3370 / Visit 19 / F160W",
               "input_count": len(EXPECTED),
-              "output_fits": drc.name,
-              "output_sha256": sha256(drc),
+              "output_fits": drz.name,
+              "output_sha256": sha256(drz),
               "coverage": summary,
               "identity_merge": "NOT PERFORMED",
               "qualification": "Four dithered exposures from one visit; not a multi-visit or adjacent-sky-tile mosaic."
           })
-          print(json.dumps({"status":"PASS","input_count":len(EXPECTED),"output":str(drc),"coverage":summary},indent=2))
+          print(json.dumps({"status":"PASS","input_count":len(EXPECTED),"output":str(drz),"coverage":summary},indent=2))
           PY
           python run_hst_single_visit.py
       - uses: actions/upload-artifact@v4
