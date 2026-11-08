@@ -1,0 +1,136 @@
+name: FV Assemble — BigStitcher OSF mirror intake
+
+on:
+  push:
+    branches:
+      - experiment/hst-single-visit-ngc3370
+    paths:
+      - ".github/workflows/fv-bigstitcher-osf-intake.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover BigStitcher files in the published OSF project
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests
+          mkdir -p bigstitcher-osf-intake/downloads bigstitcher-osf-intake/receipts
+          cat > /tmp/intake.py <<'PY'
+          import hashlib, json, pathlib, time, zipfile
+          import requests
+
+          OUT = pathlib.Path("bigstitcher-osf-intake")
+          API = "https://api.osf.io/v2/nodes/bufza/files/osfstorage/"
+          S = requests.Session()
+          S.headers.update({"User-Agent": "FakingVision-DataIntake/1.0", "Accept": "application/vnd.api+json"})
+
+          def get_json(url):
+              for attempt in range(5):
+                  r = S.get(url, timeout=(30, 120))
+                  if r.status_code in (429, 500, 502, 503, 504):
+                      time.sleep(2 ** attempt)
+                      continue
+                  r.raise_for_status()
+                  return r.json()
+              raise RuntimeError(f"OSF API remained unavailable: {url}")
+
+          def sha256(path):
+              h = hashlib.sha256()
+              with path.open("rb") as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          def crawl(url, seen=None):
+              seen = seen or set()
+              if url in seen:
+                  return []
+              seen.add(url)
+              payload = get_json(url)
+              found = []
+              for item in payload.get("data", []):
+                  attr = item.get("attributes", {})
+                  links = item.get("links", {})
+                  kind = attr.get("kind")
+                  record = {
+                      "id": item.get("id"),
+                      "name": attr.get("name"),
+                      "kind": kind,
+                      "size": attr.get("size"),
+                      "path": attr.get("materialized_path"),
+                      "download_url": links.get("download"),
+                  }
+                  found.append(record)
+                  if kind == "folder":
+                      related = item.get("relationships", {}).get("files", {}).get("links", {}).get("related", {}).get("href")
+                      if related:
+                          found.extend(crawl(related, seen))
+              nxt = payload.get("links", {}).get("next")
+              if nxt:
+                  found.extend(crawl(nxt, seen))
+              return found
+
+          inventory = crawl(API)
+          (OUT / "receipts").mkdir(parents=True, exist_ok=True)
+          (OUT / "downloads").mkdir(parents=True, exist_ok=True)
+          (OUT / "receipts/osf_inventory.json").write_text(json.dumps(inventory, indent=2) + "\n")
+          files = [x for x in inventory if x["kind"] == "file"]
+          targets = [x for x in files if x["name"] and (
+              "grid_2d" in x["name"].lower() or "grid_3d" in x["name"].lower()
+          )]
+          print("OSF files discovered:", len(files))
+          print("BigStitcher-named candidates:", json.dumps(targets, indent=2))
+          if not targets:
+              raise SystemExit("No Grid_2d/Grid_3d archive found in OSF project bufza; inventory retained.")
+
+          receipts = []
+          for item in targets:
+              url = item.get("download_url")
+              if not url:
+                  receipts.append({"source": item, "status": "NO_DOWNLOAD_LINK"})
+                  continue
+              dest = OUT / "downloads" / item["name"]
+              with S.get(url, stream=True, timeout=(30, 300)) as r:
+                  r.raise_for_status()
+                  with dest.open("wb") as f:
+                      for chunk in r.iter_content(1024 * 1024):
+                          if chunk:
+                              f.write(chunk)
+              rec = {
+                  "source": item, "status": "DOWNLOADED",
+                  "filename": dest.name, "bytes": dest.stat().st_size,
+                  "sha256": sha256(dest),
+                  "is_zip": zipfile.is_zipfile(dest),
+              }
+              if rec["is_zip"]:
+                  with zipfile.ZipFile(dest) as z:
+                      bad = z.testzip()
+                      rec["zip_crc_test"] = "PASS" if bad is None else f"FAIL: {bad}"
+                      rec["members"] = [{"name": i.filename, "bytes": i.file_size} for i in z.infolist() if not i.is_dir()]
+                  if bad:
+                      raise RuntimeError(f"ZIP CRC test failed: {dest.name}: {bad}")
+              else:
+                  raise RuntimeError(f"Downloaded candidate is not a ZIP: {dest.name}")
+              receipts.append(rec)
+              print(json.dumps(rec, indent=2))
+          (OUT / "receipts/download_receipts.json").write_text(json.dumps(receipts, indent=2) + "\n")
+          if not any(x.get("status") == "DOWNLOADED" and x.get("is_zip") and x.get("zip_crc_test") == "PASS" for x in receipts):
+              raise SystemExit("No valid BigStitcher ZIP archive downloaded.")
+          PY
+          python /tmp/intake.py
+      - name: Upload original downloads and receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-bigstitcher-osf-source-intake
+          path: bigstitcher-osf-intake/
+          if-no-files-found: error
+          retention-days: 30
