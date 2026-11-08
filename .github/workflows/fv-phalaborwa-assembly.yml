@@ -198,33 +198,59 @@ jobs:
               (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\\n")
           (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\n")
 
-          # Try a single SCANS assembly of all 36 views. Keep diagnostics even if it fails.
-          stitcher=cv2.Stitcher.create(cv2.Stitcher_SCANS)
-          stitcher.setPanoConfidenceThresh(0.3)
-          stitcher.setInterpolationFlags(cv2.INTER_LINEAR)
-          print("Starting global 36-view SCANS registration",flush=True)
-          status=stitcher.estimateTransform(workimgs)
-          print(f"Global SCANS estimateTransform status={status}",flush=True)
-          assembly={"opencv_version":cv2.__version__,"mode":"SCANS","input_count":len(workimgs),
-                    "estimate_transform_status":int(status),"status_name":"OK" if status==cv2.Stitcher_OK else "FAILED"}
-          if status==cv2.Stitcher_OK:
-              cams=stitcher.cameras()
-              print(f"Global camera solution contains {len(cams)} placements; composing panorama at 500px working width",flush=True)
-              compose_status,mosaic=stitcher.composePanorama()
-              print(f"composePanorama returned status={compose_status}",flush=True)
-              assembly["compose_status"]=int(compose_status)
-              if compose_status==cv2.Stitcher_OK and mosaic is not None:
-                  mp=OUT/"phalaborwa_scans_mosaic.jpg"
-                  if not cv2.imwrite(str(mp),mosaic,[cv2.IMWRITE_JPEG_QUALITY,94]):
-                      raise RuntimeError("Could not write mosaic")
-                  assembly.update({"status_name":"ASSEMBLED","mosaic_file":mp.name,
-                    "mosaic_shape_yx_channels":list(mosaic.shape),"mosaic_bytes":mp.stat().st_size,
-                    "mosaic_sha256":sha(mp),"camera_placements":[
-                      {"source":ordered[i]["filename"],"R":np.asarray(c.R).tolist(),"focal":float(c.focal),
-                       "aspect":float(c.aspect),"principal_point_px":[float(c.ppx),float(c.ppy)]}
-                      for i,c in enumerate(cams)]})
+          # Render bounded overlapping groups: one global canvas exceeds OpenCV remap limits.
+          group_size=6
+          overlap=1
+          groups=[]
+          start_idx=0
+          group_no=1
+          while start_idx<len(workimgs):
+              end_idx=min(start_idx+group_size,len(workimgs))
+              subset=workimgs[start_idx:end_idx]
+              group_files=[ordered[i]["filename"] for i in range(start_idx,end_idx)]
+              rec={"group":group_no,"start_index":start_idx,"end_index_exclusive":end_idx,
+                   "source_files":group_files,"input_count":len(subset),
+                   "overlap_with_previous":overlap if group_no>1 else 0}
+              print(f"Rendering local maplet group {group_no}: {group_files[0]} through {group_files[-1]}",flush=True)
+              st=cv2.Stitcher.create(cv2.Stitcher_SCANS)
+              st.setPanoConfidenceThresh(0.3)
+              st.setInterpolationFlags(cv2.INTER_LINEAR)
+              est=st.estimateTransform(subset)
+              rec["estimate_transform_status"]=int(est)
+              if est==cv2.Stitcher_OK:
+                  cams=st.cameras()
+                  rec["camera_placement_count"]=len(cams)
+                  compose_status,mosaic=st.composePanorama()
+                  rec["compose_status"]=int(compose_status)
+                  if compose_status==cv2.Stitcher_OK and mosaic is not None:
+                      name=f"phalaborwa_maplet_group_{group_no:02d}.jpg"
+                      mp=OUT/name
+                      if not cv2.imwrite(str(mp),mosaic,[cv2.IMWRITE_JPEG_QUALITY,94]):
+                          raise RuntimeError(f"Could not write {name}")
+                      rec.update({"status":"ASSEMBLED","mosaic_file":name,
+                        "mosaic_shape_yx_channels":list(mosaic.shape),"mosaic_bytes":mp.stat().st_size,
+                        "mosaic_sha256":sha(mp),
+                        "camera_placements":[{"source":group_files[i],"R":np.asarray(cam.R).tolist(),
+                          "focal":float(cam.focal),"aspect":float(cam.aspect),
+                          "principal_point_px":[float(cam.ppx),float(cam.ppy)]} for i,cam in enumerate(cams)]})
+                  else:
+                      rec["status"]="COMPOSE_FAILED"
               else:
-                  assembly["status_name"]="COMPOSE_FAILED"
+                  rec["status"]="REGISTRATION_FAILED"
+              groups.append(rec)
+              (OUT/"MAPLET_GROUPS.json").write_text(json.dumps(groups,indent=2)+"\n")
+              print(f"Local maplet group {group_no} result: {rec['status']}",flush=True)
+              if end_idx==len(workimgs): break
+              start_idx=end_idx-overlap
+              group_no+=1
+
+          assembly={"method":"overlapping bounded SCANS maplet groups",
+                    "opencv_version":cv2.__version__,"group_size":group_size,
+                    "overlap_views":overlap,"input_count":len(workimgs),
+                    "group_count":len(groups),
+                    "assembled_group_count":sum(g.get("status")=="ASSEMBLED" for g in groups),
+                    "groups":groups,
+                    "status_name":"LOCAL_MAPLETS_ASSEMBLED" if all(g.get("status")=="ASSEMBLED" for g in groups) else "PARTIAL_OR_FAILED"}
           (OUT/"ASSEMBLY_RESULT.json").write_text(json.dumps(assembly,indent=2)+"\n")
 
           assembled_id="PKT-PHALABORWA-36-VIEW-ASSEMBLY"
