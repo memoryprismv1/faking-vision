@@ -194,7 +194,7 @@ jobs:
                   pair.append({"image_a":ordered[i]["filename"],"image_b":ordered[i+1]["filename"],"status":"NO_DESCRIPTORS","features_a":len(ka),"features_b":len(kb)})
                   continue
               raw=cv2.BFMatcher(cv2.NORM_L2).knnMatch(da,db,k=2)
-              good=[m for m,n in raw if m.distance<0.75*n.distance]
+              good=[m for candidates in raw if len(candidates)>=2 for m,n in [candidates] if m.distance<0.75*n.distance]
               rec={"image_a":ordered[i]["filename"],"image_b":ordered[i+1]["filename"],
                    "features_a":len(ka),"features_b":len(kb),"ratio_test_matches":len(good)}
               if len(good)>=8:
