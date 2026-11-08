@@ -66,6 +66,7 @@ jobs:
           EXIF_TAGS=ExifTags.TAGS
           GPS_TAGS=ExifTags.GPSTAGS
           EXT={".jpg",".jpeg",".tif",".tiff",".png"}
+          EXPECTED_IMAGES=29
 
           def sha(p):
               h=hashlib.sha256()
@@ -101,11 +102,12 @@ jobs:
               }
 
           files=sorted(p for p in SRC.rglob("*") if p.is_file() and p.suffix.lower() in EXT)
-          if len(files)!=36:
-              raise RuntimeError(f"Expected 36 source images, found {len(files)}")
+          if len(files)!=EXPECTED_IMAGES:
+              raise RuntimeError(f"Expected {EXPECTED_IMAGES} source images, found {len(files)}")
           records=[read_meta(p) for p in files]
-          if sum(r["latitude_deg"] is not None and r["longitude_deg"] is not None for r in records)!=36:
-              raise RuntimeError("Not all 36 images retained readable GPS coordinates.")
+          geotagged_count=sum(r["latitude_deg"] is not None and r["longitude_deg"] is not None for r in records)
+          if geotagged_count!=EXPECTED_IMAGES:
+              raise RuntimeError(f"Expected GPS on all {EXPECTED_IMAGES} images; found {geotagged_count}.")
 
           def parse_time(r):
               raw=r.get("datetime_original")
@@ -126,9 +128,10 @@ jobs:
           distances=[hav(gps[i],gps[i+1]) for i in range(len(gps)-1)]
           audit={
             "dataset":"OpenDroneMap Mygla small overlap/sidelap survey",
-            "source_page":"https://github.com/OpenDroneMap/ODMdata",
-            "download_folder":"https://drive.google.com/drive/folders/1e1eA8LNpP4scYyDYdWd6UQ1qJ006iOXG",
-            "image_count":len(records),"geotagged_count":36,
+            "source_page":"https://github.com/merkato/odm_mygla_dataset",
+            "download_url":"https://codeload.github.com/merkato/odm_mygla_dataset/zip/refs/heads/master",
+            "image_count":len(records),"geotagged_count":geotagged_count,
+            "photographer":"Tomasz Nycz","source_license":"CC BY 3.0",
             "gps_bounds":{"min_lat":min(x[0] for x in gps),"max_lat":max(x[0] for x in gps),
                           "min_lon":min(x[1] for x in gps),"max_lon":max(x[1] for x in gps)},
             "capture_time_gaps_seconds":gaps,
@@ -142,7 +145,7 @@ jobs:
           cols=4; cw,ch=420,330
           sheet=Image.new("RGB",(cols*cw,math.ceil(len(files)/cols)*ch),(24,28,34))
           draw=ImageDraw.Draw(sheet)
-          draw.text((12,8),"Mygla — original aerial survey views (36)",fill=(245,245,245))
+          draw.text((12,8),"Mygla — original aerial survey views ({len(files)})",fill=(245,245,245))
           for i,p in enumerate(files):
               im=Image.open(p).convert("RGB"); im.thumbnail((cw-20,ch-48))
               x=(i%cols)*cw+10; y=(i//cols)*ch+28
@@ -172,13 +175,13 @@ jobs:
               },indent=2)+"\n")
               (pd/"PC.json").write_text(json.dumps({"packet_id":pid,"constants":["OpenDroneMap Mygla survey","Original aerial image","GPS-tagged source"]},indent=2)+"\n")
               (pd/"snapshot"/"manifest.json").write_text(json.dumps({"packet_id":pid,"source_file":r["relative_path"],"source_sha256":r["sha256"],"source_bytes":r["bytes"]},indent=2)+"\n")
-              (pd/"README.txt").write_text(f"Mygla source maplet {idx+1}/36\nfile: {r['relative_path']}\nGPS: {r['latitude_deg']}, {r['longitude_deg']}\nSHA-256: {r['sha256']}\n")
+              (pd/"README.txt").write_text(f"Mygla source maplet {idx+1}/{len(ordered)}\nfile: {r['relative_path']}\nGPS: {r['latitude_deg']}, {r['longitude_deg']}\nSHA-256: {r['sha256']}\n")
               img=cv2.imread(str(p),cv2.IMREAD_COLOR)
               if img is None: raise RuntimeError(f"OpenCV could not decode {p}")
               scale=min(1.0,500/img.shape[1])
               small=cv2.resize(img,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA) if scale<1 else img
               workimgs.append(small)
-              print(f"Prepared view {len(workimgs)}/36: {p.name} {img.shape[1]}x{img.shape[0]} -> {small.shape[1]}x{small.shape[0]}",flush=True)
+              print(f"Prepared view {len(workimgs)}/{len(ordered)}: {p.name} {img.shape[1]}x{img.shape[0]} -> {small.shape[1]}x{small.shape[0]}",flush=True)
 
           # Adjacent registration diagnostics on reduced images.
           sift=cv2.SIFT_create(nfeatures=1000)
@@ -210,7 +213,7 @@ jobs:
               else: rec["status"]="INSUFFICIENT_MATCHES"
               pair.append(rec)
               if (i+1)%5==0 or i==len(workimgs)-2:
-                  print(f"Adjacent registrations completed: {i+1}/35; latest={rec.get('status')}; matches={rec.get('ratio_test_matches',0)}",flush=True)
+                  print(f"Adjacent registrations completed: {i+1}/{len(workimgs)-1}; latest={rec.get('status')}; matches={rec.get('ratio_test_matches',0)}",flush=True)
               (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\\n")
           (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\n")
 
@@ -269,43 +272,43 @@ jobs:
                     "status_name":"LOCAL_MAPLETS_ASSEMBLED" if all(g.get("status")=="ASSEMBLED" for g in groups) else "PARTIAL_OR_FAILED"}
           (OUT/"ASSEMBLY_RESULT.json").write_text(json.dumps(assembly,indent=2)+"\n")
 
-          assembled_id="PKT-MYGLA-36-VIEW-ASSEMBLY"
+          assembled_id=f"PKT-MYGLA-{len(ordered)}-VIEW-ASSEMBLY"
           ad=PACK/"assembled"/assembled_id
           (ad/"snapshot"/"verification").mkdir(parents=True,exist_ok=True)
           (ad/"OI.json").write_text(json.dumps({
             "packet_id":assembled_id,"spec_version":"0.24","operation":"fv assemble",
             "inventory_lock":True,"entities":[],
-            "source_maplets":[f"PKT-MYGLA-{i+1:03d}" for i in range(36)],
+            "source_maplets":[f"PKT-MYGLA-{i+1:03d}" for i in range(len(ordered))],
             "inventory_note":"Aerial image-space assembly attempt. No physical-object identity merge, orthorectification or georeferencing is claimed."
           },indent=2)+"\n")
           (ad/"MSRM.json").write_text(json.dumps({
             "packet_id":assembled_id,"global_coordinate_system":"OpenCV SCANS panorama pixel frame if assembly succeeds; GPS metadata is retained separately and is not used as ground control.",
-            "source_count":36,"source_gps_bounds":audit["gps_bounds"],
+            "source_count":len(ordered),"source_gps_bounds":audit["gps_bounds"],
             "registration_diagnostics":"PAIRWISE_REGISTRATION.json",
             "assembly_result":assembly,
             "limits":["GPS coordinates describe camera positions, not image-footprint corners.","No camera heading or calibrated ground footprint is inferred.","Image-space panorama is not an orthophoto or 3D reconstruction."]
           },indent=2)+"\n")
-          (ad/"PC.json").write_text(json.dumps({"packet_id":assembled_id,"constants":["36 original GPS-tagged aerial views","OpenCV Stitcher SCANS attempt","Pairwise SIFT/homography diagnostics retained"]},indent=2)+"\n")
+          (ad/"PC.json").write_text(json.dumps({"packet_id":assembled_id,"constants":[f"{len(ordered)} original GPS-tagged aerial views","OpenCV Stitcher SCANS attempt","Pairwise SIFT/homography diagnostics retained"]},indent=2)+"\n")
           (ad/"snapshot"/"manifest.json").write_text(json.dumps({
             "packet_id":assembled_id,"source_inventory":"SOURCE_INVENTORY.json",
             "source_images":[{"file":r["relative_path"],"sha256":r["sha256"]} for r in ordered],
             "assembly_result":"ASSEMBLY_RESULT.json","pairwise_registration":"PAIRWISE_REGISTRATION.json"
           },indent=2)+"\n")
-          (ad/"README.txt").write_text("Mygla 36-view aerial assembly attempt. Source packets preserve each original view. See ASSEMBLY_RESULT.json and PAIRWISE_REGISTRATION.json for measured results. GPS positions are not ground control; no orthorectification or physical-object identity merge is claimed.\n")
+          (ad/"README.txt").write_text("Mygla {len(ordered)}-view aerial assembly attempt. Source packets preserve each original view. See ASSEMBLY_RESULT.json and PAIRWISE_REGISTRATION.json for measured results. GPS positions are not ground control; no orthorectification or physical-object identity merge is claimed.\n")
 
           # Validate JSON and re-hash originals after processing.
           for p in OUT.rglob("*.json"): json.loads(p.read_text())
           recheck=[sha(SRC/r["relative_path"])==r["sha256"] for r in ordered]
           if not all(recheck): raise RuntimeError("An original source image changed during processing.")
-          validation={"source_images":36,"geotagged_images":36,"source_hashes_rechecked":all(recheck),
-            "source_maplet_packets":36,"pairwise_adjacent_diagnostics":len(pair),
+          validation={"source_images":len(ordered),"geotagged_images":geotagged_count,"source_hashes_rechecked":all(recheck),
+            "source_maplet_packets":len(ordered),"pairwise_adjacent_diagnostics":len(pair),
             "pairwise_homography_successes":sum(x.get("status")=="HOMOGRAPHY_ESTIMATED" for x in pair),
             "assembly":assembly,"status":"PASS_SOURCE_AND_PACKET_VALIDATION" if all(recheck) else "FAIL"}
           (OUT/"VALIDATION_REPORT.json").write_text(json.dumps(validation,indent=2)+"\n")
           (OUT/"README.md").write_text(
             "# FV Assemble — Mygla aerial survey\n\n"
-            "- Original images: 36\n- GPS-tagged images: 36\n"
-            "- Source maplet packets: 36\n- Adjacent pair diagnostics: 35\n"
+            f"- Original images: {len(ordered)}\n- GPS-tagged images: {geotagged_count}\n"
+            f"- Source maplet packets: {len(ordered)}\n- Adjacent pair diagnostics: {len(pair)}\n"
             f"- Pairwise homographies estimated: {validation['pairwise_homography_successes']}\n"
             f"- Assembly result: {assembly['status_name']}\n\n"
             "GPS camera positions are not ground-control points or image-footprint corners. A successful SCANS output is an image-space panorama, not an orthophoto, georeferenced map or 3D reconstruction. Originals are retained and their hashes rechecked.\n"
@@ -317,7 +320,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fv-mygla-36-view-assembly
+          name: fv-mygla-29-view-assembly
           path: work/mygla/output/
           if-no-files-found: warn
           retention-days: 30
