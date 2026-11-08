@@ -159,12 +159,13 @@ jobs:
               (pd/"README.txt").write_text(f"Phalaborwa source maplet {idx+1}/36\nfile: {r['relative_path']}\nGPS: {r['latitude_deg']}, {r['longitude_deg']}\nSHA-256: {r['sha256']}\n")
               img=cv2.imread(str(p),cv2.IMREAD_COLOR)
               if img is None: raise RuntimeError(f"OpenCV could not decode {p}")
-              scale=min(1.0,1500/img.shape[1])
+              scale=min(1.0,1000/img.shape[1])
               small=cv2.resize(img,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA) if scale<1 else img
               workimgs.append(small)
+              print(f"Prepared view {len(workimgs)}/36: {p.name} {img.shape[1]}x{img.shape[0]} -> {small.shape[1]}x{small.shape[0]}",flush=True)
 
           # Adjacent registration diagnostics on reduced images.
-          sift=cv2.SIFT_create(nfeatures=5000)
+          sift=cv2.SIFT_create(nfeatures=1500)
           pair=[]
           for i in range(len(workimgs)-1):
               a=cv2.cvtColor(workimgs[i],cv2.COLOR_BGR2GRAY)
@@ -192,13 +193,18 @@ jobs:
                   else: rec["status"]="HOMOGRAPHY_FAILED"
               else: rec["status"]="INSUFFICIENT_MATCHES"
               pair.append(rec)
+              if (i+1)%5==0 or i==len(workimgs)-2:
+                  print(f"Adjacent registrations completed: {i+1}/35; latest={rec.get('status')}; matches={rec.get('ratio_test_matches',0)}",flush=True)
+              (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\\n")
           (OUT/"PAIRWISE_REGISTRATION.json").write_text(json.dumps(pair,indent=2)+"\n")
 
           # Try a single SCANS assembly of all 36 views. Keep diagnostics even if it fails.
           stitcher=cv2.Stitcher.create(cv2.Stitcher_SCANS)
           stitcher.setPanoConfidenceThresh(0.3)
           stitcher.setInterpolationFlags(cv2.INTER_LINEAR)
+          print("Starting global 36-view SCANS registration",flush=True)
           status=stitcher.estimateTransform(workimgs)
+          print(f"Global SCANS estimateTransform status={status}",flush=True)
           assembly={"opencv_version":cv2.__version__,"mode":"SCANS","input_count":len(workimgs),
                     "estimate_transform_status":int(status),"status_name":"OK" if status==cv2.Stitcher_OK else "FAILED"}
           if status==cv2.Stitcher_OK:
