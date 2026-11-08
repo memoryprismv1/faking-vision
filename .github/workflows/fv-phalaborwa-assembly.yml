@@ -159,13 +159,13 @@ jobs:
               (pd/"README.txt").write_text(f"Phalaborwa source maplet {idx+1}/36\nfile: {r['relative_path']}\nGPS: {r['latitude_deg']}, {r['longitude_deg']}\nSHA-256: {r['sha256']}\n")
               img=cv2.imread(str(p),cv2.IMREAD_COLOR)
               if img is None: raise RuntimeError(f"OpenCV could not decode {p}")
-              scale=min(1.0,1000/img.shape[1])
+              scale=min(1.0,500/img.shape[1])
               small=cv2.resize(img,None,fx=scale,fy=scale,interpolation=cv2.INTER_AREA) if scale<1 else img
               workimgs.append(small)
               print(f"Prepared view {len(workimgs)}/36: {p.name} {img.shape[1]}x{img.shape[0]} -> {small.shape[1]}x{small.shape[0]}",flush=True)
 
           # Adjacent registration diagnostics on reduced images.
-          sift=cv2.SIFT_create(nfeatures=1500)
+          sift=cv2.SIFT_create(nfeatures=1000)
           pair=[]
           for i in range(len(workimgs)-1):
               a=cv2.cvtColor(workimgs[i],cv2.COLOR_BGR2GRAY)
@@ -209,7 +209,9 @@ jobs:
                     "estimate_transform_status":int(status),"status_name":"OK" if status==cv2.Stitcher_OK else "FAILED"}
           if status==cv2.Stitcher_OK:
               cams=stitcher.cameras()
+              print(f"Global camera solution contains {len(cams)} placements; composing panorama at 500px working width",flush=True)
               compose_status,mosaic=stitcher.composePanorama()
+              print(f"composePanorama returned status={compose_status}",flush=True)
               assembly["compose_status"]=int(compose_status)
               if compose_status==cv2.Stitcher_OK and mosaic is not None:
                   mp=OUT/"phalaborwa_scans_mosaic.jpg"
