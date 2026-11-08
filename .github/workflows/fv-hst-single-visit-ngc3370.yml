@@ -59,7 +59,7 @@ jobs:
           EXPECTED = [
               "ib1f19l6q_flt.fits",
               "ib1f19l7q_flt.fits",
-              "ib1f19l9q_flt.fits",
+              "ib1f19l8q_flt.fits",
               "ib1f19laq_flt.fits",
           ]
 
@@ -298,9 +298,9 @@ jobs:
           )
 
           # Preserve the four original calibrated FITS inputs alongside packets and output.
+          (OUT / "immutable-source").mkdir(parents=True, exist_ok=True)
           for rec in records:
               shutil.copy2(SOURCE / rec["filename"], OUT / "immutable-source" / rec["filename"])
-          (OUT / "immutable-source").mkdir(parents=True, exist_ok=True)
           write_json(OUT / "source_manifest.json", {
               "dataset": "HST WFC3/IR NGC 3370, Program 11570, Visit 19, F160W",
               "mast_obs_id": OBS_ID,
