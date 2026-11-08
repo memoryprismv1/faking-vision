@@ -45,7 +45,6 @@ jobs:
           from astropy.wcs.utils import proj_plane_pixel_scales
           from stwcs.wcsutil import headerlet
           from drizzlepac import astrodrizzle
-          from drizzlepac.processInput import getMdriztabPars
 
           ROOT = pathlib.Path("hst-ngc3370-single-visit")
           SOURCE = ROOT / "immutable-source"
@@ -180,22 +179,31 @@ jobs:
           if sync.returncode != 0:
               raise RuntimeError("CRDS MDRIZTAB retrieval failed:\n" + sync.stdout)
 
-          selected_params = getMdriztabPars(input_files)
-          astrodrizzle.AstroDrizzle(
-              input_files,
-              output="ngc3370_visit19_f160w",
-              preserve=False,
-              build=True,
-              clean=False,
-              skysub=True,
-              driz_separate=False,
-              median=False,
-              blot=False,
-              driz_cr=False,
-              final_wcs=True,
-              final_rot=0.0,
-              **selected_params
-          )
+          # Let AstroDrizzle read the MDRIZTAB reference itself. Its public
+          # mdriztab=True interface merges table settings with these explicit
+          # overrides; do not unpack a second parameter dictionary alongside them.
+          import inspect
+          signature = inspect.signature(astrodrizzle.AstroDrizzle)
+          if "mdriztab" not in signature.parameters or not any(
+              p.kind == inspect.Parameter.VAR_KEYWORD for p in signature.parameters.values()
+          ):
+              raise RuntimeError(f"Unexpected AstroDrizzle API signature: {signature}")
+          drizzle_overrides = {
+              "output": "ngc3370_visit19_f160w",
+              "preserve": False,
+              "build": True,
+              "clean": False,
+              "skysub": True,
+              "driz_separate": False,
+              "median": False,
+              "blot": False,
+              "driz_cr": False,
+              "final_wcs": True,
+              "final_rot": 0.0,
+          }
+          if len(drizzle_overrides) != len(set(drizzle_overrides)):
+              raise RuntimeError("Duplicate AstroDrizzle override keys detected")
+          astrodrizzle.AstroDrizzle(input_files, mdriztab=True, **drizzle_overrides)
           drz = pathlib.Path("ngc3370_visit19_f160w_drz.fits")
           if not drz.is_file():
               raise RuntimeError("AstroDrizzle did not create the DRZ science product.")
