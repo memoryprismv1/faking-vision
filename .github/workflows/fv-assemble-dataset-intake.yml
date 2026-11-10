@@ -332,6 +332,7 @@ jobs:
             lazrs-python
             numpy
             scipy
+            pyproj
           cache-environment: true
           init-shell: bash
       - name: Recompute OBJ-001 local relief at 1 m, 2 m and 4 m
