@@ -19,7 +19,7 @@ jobs:
       CRDS_SERVER_URL: https://hst-crds.stsci.edu
       CRDS_SERVER: https://hst-crds.stsci.edu
       CRDS_PATH: ${{ github.workspace }}/crds_cache
-      iref: ${{ github.workspace }}/crds_cache/references/hst/acs/
+      jref: ${{ github.workspace }}/crds_cache/references/hst/jref/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -222,10 +222,10 @@ jobs:
           # ACS/WFC field. It is a single-visit field assembly, not a wide-area mosaic.
           input_files = [str(WORK / n) for n in EXPECTED]
           mdz = fits.getval(input_files[0], "MDRIZTAB", ext=0).split("$")[-1]
-          iref = pathlib.Path(__import__("os").environ["iref"])
-          iref.mkdir(parents=True, exist_ok=True)
+          jref = pathlib.Path(__import__("os").environ["jref"])
+          jref.mkdir(parents=True, exist_ok=True)
           sync = subprocess.run(
-              ["crds", "sync", "--hst", "--files", mdz, "--output-dir", str(iref)],
+              ["crds", "sync", "--hst", "--files", mdz, "--output-dir", str(jref)],
               text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
           )
           (OUT / "crds_sync.log").write_text(sync.stdout)
