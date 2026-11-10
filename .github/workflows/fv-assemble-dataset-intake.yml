@@ -64,9 +64,14 @@ jobs:
               cross=detail["profiles"]["minor"]
               z=[x["median_z_m"] for x in cross]
               if len(z)<10:raise SystemExit(f"Insufficient profile bins for {cid}")
-              mid=len(z)//2
-              if min(z[mid-5:mid+6])>min(z[:mid]) or min(z[mid-5:mid+6])>min(z[mid+1:]):
-                  raise SystemExit(f"Cross-profile trough test failed for {cid}")
+              trough_idx=int(np.argmin(z))
+              if trough_idx<5 or (len(z)-trough_idx-1)<5:
+                  raise SystemExit(f"Cross-profile trough lacks five observed bins on both sides for {cid}")
+              trough_z=float(z[trough_idx])
+              left_flank=float(np.median(z[:5]))
+              right_flank=float(np.median(z[-5:]))
+              if left_flank<trough_z+1.0 or right_flank<trough_z+1.0:
+                  raise SystemExit(f"Cross-profile trough lacks 1 m relief on both flanks for {cid}: left={left_flank}, trough={trough_z}, right={right_flank}")
               x0,y0,x1,y1=e["bounds_epsg3857_m"]
               entity_id="PKT-USGS-IA-EASTERN-1-ASSEMBLE-001-OBJ-"+("001" if cid.endswith("002") else "002")
               entities.append({
