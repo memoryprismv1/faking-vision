@@ -40,12 +40,11 @@ jobs:
           import json,pathlib,shutil,hashlib
           import jsonschema
           root=pathlib.Path("lidar-semantic-promotion")
-          packet_dirs=list((root/"input/packet").glob("PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"))
+          packet=root/"input/packet"
           candidate_reports=list((root/"input/candidates").rglob("terrain_candidates.json"))
           investigation_reports=list((root/"input/investigation").rglob("candidate_investigation.json"))
-          if len(packet_dirs)!=1 or len(candidate_reports)!=1 or len(investigation_reports)!=1:
-              raise SystemExit("Expected exactly one source packet, candidate report and candidate investigation report")
-          packet=packet_dirs[0]
+          if not (packet/"OI.json").exists() or len(candidate_reports)!=1 or len(investigation_reports)!=1:
+              raise SystemExit(f"Expected packet files and one candidate report/investigation: packet={list(packet.iterdir()) if packet.exists() else 'missing'}, candidates={candidate_reports}, investigations={investigation_reports}")
           candidates=json.loads(candidate_reports[0].read_text())
           investigation=json.loads(investigation_reports[0].read_text())
           oi=json.loads((packet/"OI.json").read_text())
