@@ -2069,7 +2069,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
   intake:
-    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') && !contains(github.event.head_commit.message, '[lidar-naip2019-context]') && !contains(github.event.head_commit.message, '[lidar-naip-timeseries]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') && !contains(github.event.head_commit.message, '[lidar-naip2019-context]') && !contains(github.event.head_commit.message, '[lidar-naip-timeseries]') && !contains(github.event.head_commit.message, '[lidar-historical-aerial]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -2471,5 +2471,56 @@ jobs:
         with:
           name: fv-usgs-ia-eastern-1-obj001-naip-temporal-context
           path: lidar-naip-timeseries/
+          if-no-files-found: error
+          retention-days: 30
+
+  lidar_historical_aerial:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-historical-aerial]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve pre-NAIP historical Iowa aerial photographs
+        run: |
+          python -m pip install requests pillow
+          mkdir -p lidar-historical-aerial
+          cat > /tmp/historic_aerial.py <<'PY'
+          import json,pathlib,hashlib,io
+          import requests
+          from PIL import Image
+          out=pathlib.Path("lidar-historical-aerial")
+          s=requests.Session();s.headers["User-Agent"]="FakingVision-LiDAR-historical-aerial-audit/1.0"
+          bounds=[-10181231.854368933,5067451.111650486,-10179731.854368933,5068951.111650486]
+          folder="https://ortho.gis.iastate.edu/arcgis/rest/services/ortho"
+          listing=s.get(folder,params={"f":"pjson"},timeout=90);listing.raise_for_status();listing=listing.json()
+          if "error" in listing: raise RuntimeError(json.dumps(listing["error"]))
+          services=listing.get("services",[])
+          candidates=[]
+          for decade in ("1930","1950","1960","1970","1980","1990"):
+              matches=[x for x in services if decade in x.get("name","") and x.get("type")=="ImageServer"]
+              if matches:
+                  candidates.extend(matches[:2])
+          results=[]
+          for item in candidates:
+              base="https://ortho.gis.iastate.edu/arcgis/rest/services/"+item["name"]+"/"+item["type"]
+              meta=s.get(base,params={"f":"pjson"},timeout=90);meta.raise_for_status();m=meta.json()
+              if "error" in m: continue
+              params={"bbox":",".join(map(str,bounds)),"bboxSR":3857,"imageSR":3857,"size":"2500,2500","format":"jpgpng","f":"image"}
+              r=s.get(base+"/exportImage",params=params,timeout=180);r.raise_for_status()
+              if not r.headers.get("content-type","").lower().startswith("image/"): continue
+              im=Image.open(io.BytesIO(r.content));im.load()
+              name=item["name"].split("/")[-1]+".jpg";(out/name).write_bytes(r.content)
+              results.append({"service":base,"service_name":m.get("name"),"description":m.get("description"),"copyright_text":m.get("copyrightText"),"image":{"file":name,"dimensions_px":list(im.size),"bytes":len(r.content),"sha256":hashlib.sha256(r.content).hexdigest(),"bbox_epsg3857":bounds}})
+          if not results: raise RuntimeError("No historical aerial ImageServer services found in Iowa OrthoServer folder")
+          report={"status":"HISTORICAL_AERIAL_CONTEXT_RETRIEVED","provider":"Iowa State University Geographic Information Systems Support & Research Facility / Iowa DNR data partners","folder":folder,"context_bbox_epsg3857":bounds,"historical_services":results,"limitations":["Historical photographs may have lower resolution and positional accuracy than orthorectified NAIP imagery.","Decade-level service names do not establish exact capture dates; consult the historical photo date layer or image metadata where available.","Historical photos are independent visual context, not bare-earth elevation measurements."]}
+          (out/"historical_aerial_receipt.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          PY
+          python /tmp/historic_aerial.py
+      - name: Upload historical aerial context and provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-obj001-historical-aerial-context
+          path: lidar-historical-aerial/
           if-no-files-found: error
           retention-days: 30
