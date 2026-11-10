@@ -12,6 +12,130 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_duplicate_detail:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-duplicate-detail]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable source extracts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-duplicate-detail/input
+          gh run download 42806517173 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-overlapping-laz-extracts \
+            --dir lidar-duplicate-detail/input
+      - name: Install PDAL and point-record inspection libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pdal
+          create-args: >-
+            -c conda-forge
+            pdal
+            python
+            numpy
+            laspy
+            lazrs-python
+          cache-environment: true
+          init-shell: bash
+      - name: Identify exact attribute conflicts and within-crop repeats
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/detail.py <<'PY'
+          import json, pathlib, subprocess
+          import laspy
+          import numpy as np
+
+          root=pathlib.Path("lidar-duplicate-detail")
+          inputs=root/"input"/"point-clouds"
+          out=root/"audit"
+          out.mkdir(parents=True,exist_ok=True)
+          q=json.loads((root/"input"/"source-metadata"/"query.json").read_text())
+          windows={x["id"]:x["bounds_xy"] for x in q["windows"]}
+          pairs=[("NW","NE"),("SW","SE"),("NW","SW"),("NE","SE")]
+
+          def crop(src,bounds,target):
+              x0,y0,x1,y1=bounds
+              spec={"pipeline":[
+                {"type":"readers.las","filename":str(src)},
+                {"type":"filters.crop","bounds":f"([{x0:.3f}, {x1:.3f}], [{y0:.3f}, {y1:.3f}])"},
+                {"type":"writers.las","filename":str(target),"compression":True}
+              ]}
+              p=target.with_suffix(".json");p.write_text(json.dumps(spec))
+              r=subprocess.run(["pdal","pipeline",str(p)],text=True,capture_output=True)
+              if r.returncode: raise RuntimeError(r.stderr[-4000:])
+              p.unlink()
+              return target
+
+          def keyarray(las):
+              a=np.empty(len(las),dtype=[("x","<i4"),("y","<i4"),("z","<i4")])
+              a["x"],a["y"],a["z"]=las.X,las.Y,las.Z
+              return a
+
+          def pyval(v):
+              x=v.item() if hasattr(v,"item") else v
+              if isinstance(x,(float,np.floating)) and not np.isfinite(x): return str(x)
+              return x
+
+          pair_reports=[]
+          for left,right in pairs:
+              a,b=windows[left],windows[right]
+              bounds=[max(a[0],b[0]),max(a[1],b[1]),min(a[2],b[2]),min(a[3],b[3])]
+              paths=[]
+              for label in [left,right]:
+                  p=inputs/f"ia_eastern_1_{label.lower()}.laz"
+                  cp=crop(p,bounds,out/f"{left.lower()}_{right.lower()}_{label.lower()}.laz")
+                  paths.append(cp)
+              with laspy.open(paths[0]) as f: la=f.read()
+              with laspy.open(paths[1]) as f: lb=f.read()
+              ka,kb=keyarray(la),keyarray(lb)
+              ua,ia,ca=np.unique(ka,return_index=True,return_counts=True)
+              ub,ib,cb=np.unique(kb,return_index=True,return_counts=True)
+              common,ia_u,ib_u=np.intersect1d(ua,ub,assume_unique=True,return_indices=True)
+              idxa,idxb=ia[ia_u],ib[ib_u]
+              dims=[d for d in la.point_format.dimension_names if d in lb.point_format.dimension_names and d not in ("X","Y","Z")]
+              conflicts=[]
+              for dim in dims:
+                  va=np.asarray(la[dim])[idxa];vb=np.asarray(lb[dim])[idxb]
+                  if np.issubdtype(va.dtype,np.floating):
+                      eq=np.isclose(va,vb,rtol=0,atol=0,equal_nan=True)
+                  else: eq=va==vb
+                  for k in np.flatnonzero(~eq):
+                      if len(conflicts)>=100: break
+                      xyz=common[k]
+                      rec=next((x for x in conflicts if x["xyz_integer"]==[int(xyz["x"]),int(xyz["y"]),int(xyz["z"])]),None)
+                      if rec is None:
+                          rec={"xyz_integer":[int(xyz["x"]),int(xyz["y"]),int(xyz["z"])],"dimensions":{}}
+                          conflicts.append(rec)
+                      rec["dimensions"][dim]={"left":pyval(va[k]),"right":pyval(vb[k])}
+              duplicate_a=int(len(ka)-len(ua));duplicate_b=int(len(kb)-len(ub))
+              pair_reports.append({
+                "pair":f"{left}-{right}","left_crop_count":len(ka),"right_crop_count":len(kb),
+                "left_internal_repeat_records":duplicate_a,"right_internal_repeat_records":duplicate_b,
+                "shared_xyz_count":len(common),"attribute_dimensions_compared":dims,
+                "conflicting_xyz_record_count":len(conflicts),"conflicts":conflicts
+              })
+              for p in paths:p.unlink()
+              print(json.dumps(pair_reports[-1],indent=2))
+
+          result={
+            "status":"DUPLICATE_DETAIL_INSPECTION_COMPLETE",
+            "pairs":pair_reports,
+            "deduplication_policy_recommendation":"Do not collapse conflicting point records automatically. Exact XYZ matches with identical full point attributes are safe duplicate candidates; retain conflict cases separately for review.",
+            "limitations":["Only shared overlap strips were inspected.","Conflict output is capped at 100 XYZ locations per pair; this run is diagnostic, not a deduplicated output."]
+          }
+          (out/"duplicate_detail_receipt.json").write_text(json.dumps(result,indent=2)+"\n")
+          PY
+          pdal --version
+          python /tmp/detail.py
+      - name: Upload duplicate detail receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-duplicate-detail
+          path: lidar-duplicate-detail/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_overlap_identity:
     if: ${{ contains(github.event.head_commit.message, '[lidar-overlap-audit]') }}
     runs-on: ubuntu-latest
