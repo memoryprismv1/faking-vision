@@ -38,6 +38,7 @@ jobs:
         run: |
           python - <<'PY'
           import json,pathlib,shutil,hashlib
+          import numpy as np
           import jsonschema
           root=pathlib.Path("lidar-semantic-promotion")
           packet=root/"input/packet"
