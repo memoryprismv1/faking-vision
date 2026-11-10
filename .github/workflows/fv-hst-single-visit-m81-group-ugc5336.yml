@@ -82,19 +82,37 @@ jobs:
           print(f"MAST returned {len(obs)} observation rows for proposal 10605; selecting only the four pre-acquired filenames.")
           products = Observations.get_product_list(obs)
           exact = products[[str(x) in EXPECTED for x in products["productFilename"]]]
-          found = sorted(str(x) for x in exact["productFilename"])
-          if found != sorted(EXPECTED):
-              raise RuntimeError(f"Expected the four pre-acquired FLC products {EXPECTED}; MAST returned {found}")
-          subgroups = sorted(set(str(x) for x in exact["productSubGroupDescription"]))
-          if subgroups != ["FLC"]:
-              raise RuntimeError(f"Exact filenames did not all resolve to FLC products; subgroup values: {subgroups}")
-          selected = exact
-          print("Exact MAST product rows:", [
-              {"filename": str(row["productFilename"]), "obs_id": str(row["obs_id"]),
-               "parent_obsid": int(row["parent_obsid"]), "proposal_id": str(row["proposal_id"]),
-               "subgroup": str(row["productSubGroupDescription"])}
-              for row in selected
-          ])
+          rows_by_name = {name: [] for name in EXPECTED}
+          for index, row in enumerate(exact):
+              rows_by_name[str(row["productFilename"])].append(index)
+          missing = sorted(name for name, indexes in rows_by_name.items() if not indexes)
+          if missing:
+              raise RuntimeError(f"MAST proposal query is missing exact expected FLC products: {missing}")
+          selected_indices = []
+          product_audit = []
+          for name in EXPECTED:
+              indexes = rows_by_name[name]
+              duplicate_rows = exact[indexes]
+              subgroup_values = sorted(set(str(x) for x in duplicate_rows["productSubGroupDescription"]))
+              proposal_values = sorted(set(str(x) for x in duplicate_rows["proposal_id"]))
+              uri_values = sorted(set(str(x) for x in duplicate_rows["dataURI"]))
+              if subgroup_values != ["FLC"] or proposal_values != ["10605"] or len(uri_values) != 1:
+                  raise RuntimeError(
+                      f"Conflicting duplicate MAST rows for {name}: "
+                      f"subgroups={subgroup_values}, proposals={proposal_values}, dataURIs={uri_values}"
+                  )
+              selected_indices.append(indexes[0])
+              product_audit.append({
+                  "filename": name,
+                  "duplicate_row_count": len(indexes),
+                  "obs_ids": sorted(set(str(x) for x in duplicate_rows["obs_id"])),
+                  "parent_obsids": sorted(set(int(x) for x in duplicate_rows["parent_obsid"])),
+                  "proposal_id": proposal_values[0],
+                  "subgroup": subgroup_values[0],
+                  "dataURI": uri_values[0],
+              })
+          selected = exact[selected_indices]
+          print("Unique exact MAST products and duplicate-row audit:", json.dumps(product_audit, indent=2))
           manifest = Observations.download_products(
               selected, download_dir=str(ROOT / "mast-download"), cache=True
           )
