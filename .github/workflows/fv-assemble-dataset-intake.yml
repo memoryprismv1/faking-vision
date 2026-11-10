@@ -52,7 +52,7 @@ jobs:
           src=files[0]
           low=[];high=[];class_counts={};n=0
           def record(p,i):
-              return {"x":float(p.x[i]),"y":float(p.y[i]),"z":float(p.z[i]),"classification":int(p.classification[i]),"intensity":int(p.intensity[i]),"gps_time":float(p.gps_time[i]),"point_source_id":int(p.point_source_id[i]),"return_number":int(p.return_number[i]),"number_of_returns":int(p.number_of_returns[i])}
+              return {"x":float(np.asarray(p.x)[i]),"y":float(np.asarray(p.y)[i]),"z":float(np.asarray(p.z)[i]),"classification":int(np.asarray(p.classification)[i]),"intensity":int(np.asarray(p.intensity)[i]),"gps_time":float(np.asarray(p.gps_time)[i]),"point_source_id":int(np.asarray(p.point_source_id)[i]),"return_number":int(np.asarray(p.return_number)[i]),"number_of_returns":int(np.asarray(p.number_of_returns)[i])}
           with laspy.open(src) as reader:
               hdr=reader.header
               crs=hdr.parse_crs()
