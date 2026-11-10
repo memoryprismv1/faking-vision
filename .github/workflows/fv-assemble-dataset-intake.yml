@@ -88,7 +88,7 @@ jobs:
                       chosen=np.flatnonzero((n+local)%sample_stride==0)
                       if len(chosen):
                           sample_parts.append(np.column_stack((x[chosen],y[chosen],z[chosen])))
-                          z_sample.extend(z[chosen].tolist())
+                          z_sample.extend(np.asarray(z)[chosen].tolist())
                   cls=np.asarray(pts.classification)
                   vals,cnts=np.unique(cls,return_counts=True)
                   for v,k in zip(vals,cnts):class_counts[str(int(v))]=class_counts.get(str(int(v)),0)+int(k)
