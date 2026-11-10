@@ -12,6 +12,150 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_candidate_investigation:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-candidate-investigation]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable source cloud and candidate observations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-candidate-investigation/input/source lidar-candidate-investigation/input/candidates
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-candidate-investigation/input/source
+          gh run download 42824718019 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-terrain-candidates \
+            --dir lidar-candidate-investigation/input/candidates
+      - name: Install point-record investigation libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            matplotlib
+          cache-environment: true
+          init-shell: bash
+      - name: Investigate strongest terrain candidates against all source returns
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/candidate_investigation.py <<'PY'
+          import hashlib,json,pathlib
+          import laspy,numpy as np
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          root=pathlib.Path("lidar-candidate-investigation")
+          srcs=list((root/"input/source").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          reports=list((root/"input/candidates").rglob("terrain_candidates.json"))
+          if len(srcs)!=1 or len(reports)!=1:raise RuntimeError(f"Expected one source and candidate report: {srcs}, {reports}")
+          src=srcs[0];prior=json.loads(reports[0].read_text())
+          h=hashlib.sha256()
+          with src.open("rb") as f:
+              for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+          source_hash=h.hexdigest()
+          if source_hash!=prior["source"]["sha256"]:raise RuntimeError("Candidate report and source cloud hash do not match")
+          out=root/"output";out.mkdir(parents=True,exist_ok=True);audit=root/"audit";audit.mkdir(parents=True,exist_ok=True)
+          selected=prior["candidates"][:5]
+          boxes=[c["observed_evidence"]["bounds_epsg3857_m"] for c in selected]
+          accum=[]
+          for c,b in zip(selected,boxes):
+              accum.append({"candidate":c,"bounds":b,"xyz":[],"classes":{},"returns":{},"source_ids":{},"intensity":[],"n":0})
+          with laspy.open(src) as r:
+              hdr=r.header
+              for pts in r.chunk_iterator(250_000):
+                  x=np.asarray(pts.x);y=np.asarray(pts.y);z=np.asarray(pts.z)
+                  cl=np.asarray(pts.classification);rn=np.asarray(pts.return_number);nr=np.asarray(pts.number_of_returns)
+                  sid=np.asarray(pts.point_source_id);inten=np.asarray(pts.intensity)
+                  for a in accum:
+                      x0,y0,x1,y1=a["bounds"]
+                      m=(x>=x0)&(x<=x1)&(y>=y0)&(y<=y1)
+                      if not np.any(m):continue
+                      a["n"]+=int(m.sum())
+                      for v,k in zip(*np.unique(cl[m],return_counts=True)):a["classes"][str(int(v))]=a["classes"].get(str(int(v)),0)+int(k)
+                      for v,k in zip(*np.unique(rn[m],return_counts=True)):a["returns"][str(int(v))]=a["returns"].get(str(int(v)),0)+int(k)
+                      for v,k in zip(*np.unique(sid[m],return_counts=True)):a["source_ids"][str(int(v))]=a["source_ids"].get(str(int(v)),0)+int(k)
+                      if len(a["intensity"])<500000:
+                          a["intensity"].extend(int(v) for v in inten[m][:max(0,500000-len(a["intensity"]))])
+                      # Store class-2 point coords only for terrain profiles; bounded by 4k m2 region.
+                      g=m&(cl==2)
+                      if np.any(g):
+                          a["xyz"].append(np.column_stack([x[g],y[g],z[g]]))
+          results=[]
+          for i,a in enumerate(accum):
+              c=a["candidate"];parts=a["xyz"]
+              p=np.concatenate(parts,axis=0) if parts else np.empty((0,3))
+              if len(p)<10:raise RuntimeError(f"Too few class-2 points for {c['candidate_id']}")
+              xy=p[:,:2];center=xy.mean(axis=0)
+              cov=np.cov((xy-center).T);ev,vec=np.linalg.eigh(cov);axes=vec[:,np.argsort(ev)[::-1]]
+              uv=(xy-center)@axes
+              # Profile along principal axis in 2 m bins, using median observed Z.
+              profiles={}
+              for axis_name,col in [("major",0),("minor",1)]:
+                  coord=uv[:,col];edges=np.arange(np.floor(coord.min()/2)*2,np.ceil(coord.max()/2)*2+2,2)
+                  ids=np.digitize(coord,edges)-1
+                  rows=[]
+                  for k in range(len(edges)-1):
+                      m=ids==k
+                      if int(m.sum())>=3:
+                          rows.append({"distance_m":float((edges[k]+edges[k+1])/2),"median_z_m":float(np.median(p[m,2])),"point_count":int(m.sum())})
+                  profiles[axis_name]=rows
+              intensity=np.asarray(a["intensity"],dtype=float)
+              res={
+                "candidate_id":c["candidate_id"],"source_bbox_epsg3857_m":a["bounds"],
+                "all_return_point_count":a["n"],"class_counts":a["classes"],
+                "return_number_counts":a["returns"],"point_source_id_counts":a["source_ids"],
+                "intensity_sample":{"n":int(len(intensity)),"median":float(np.median(intensity)) if len(intensity) else None,"p10":float(np.percentile(intensity,10)) if len(intensity) else None,"p90":float(np.percentile(intensity,90)) if len(intensity) else None},
+                "class2_profile_point_count":int(len(p)),
+                "principal_axis_angle_degrees":float(np.degrees(np.arctan2(axes[1,0],axes[0,0]))),
+                "profiles":profiles,
+                "interpretation":"Raw return composition and elevation profiles are descriptive evidence only. No landform or semantic object identity is promoted."
+              }
+              results.append(res)
+              fig,axs=plt.subplots(1,2,figsize=(13,4.5))
+              for ax,name in zip(axs,["major","minor"]):
+                  rows=profiles[name]
+                  if rows:
+                      ax.plot([q["distance_m"] for q in rows],[q["median_z_m"] for q in rows])
+                      ax.set_xlabel(f"{name.title()} axis distance (m)")
+                      ax.set_ylabel("Median class-2 Z (source metres)")
+                      ax.grid(True,alpha=.25)
+              fig.suptitle(f"{c['candidate_id']} — observed ground-return cross-sections")
+              fig.tight_layout();fig.savefig(out/f"{c['candidate_id']}_profiles.png",dpi=160);plt.close(fig)
+          report={
+            "status":"CANDIDATE_INVESTIGATION_COMPLETE",
+            "source":{"file":src.name,"sha256":source_hash,"point_count":int(hdr.point_count),"crs":hdr.parse_crs().to_string()},
+            "candidate_source":"fv-usgs-ia-eastern-1-terrain-candidates",
+            "investigated_candidate_count":len(results),
+            "investigation_method":"All source point returns inside each of the five largest candidate bounding boxes were counted by stored classification, return number and point_source_id. Class-2 points were used for major/minor axis median-Z profiles.",
+            "results":results,
+            "findings_limits":[
+              "LAS classification codes are retained as source values; this report does not assign semantic meaning to class 1 or class 2.",
+              "Point-source IDs and return numbers are reported, not interpreted as independent flight lines or sensor evidence without source documentation.",
+              "Profiles are bbox-based and include all class-2 points in each candidate rectangle, not only cells in the thresholded component.",
+              "No candidate is promoted to a stream, ditch, road, embankment, building or other semantic object.",
+              "Candidate set remains unresolved pending source imagery, wider-area continuity, and independently justified classification evidence."
+            ]
+          }
+          (audit/"candidate_investigation.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps({"status":report["status"],"source_sha256":source_hash,"investigated_candidate_count":len(results),"results":[{k:v for k,v in x.items() if k!="profiles"} for x in results],"findings_limits":report["findings_limits"]},indent=2))
+          PY
+          python /tmp/candidate_investigation.py
+      - name: Upload candidate investigation and profiles
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-candidate-investigation
+          path: |
+            lidar-candidate-investigation/output/
+            lidar-candidate-investigation/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_semantic_candidates:
     if: ${{ contains(github.event.head_commit.message, '[lidar-semantic-candidates]') }}
     runs-on: ubuntu-latest
