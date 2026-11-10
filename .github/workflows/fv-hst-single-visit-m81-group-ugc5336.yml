@@ -251,6 +251,7 @@ jobs:
               "median": False,
               "blot": False,
               "driz_cr": False,
+              "driz_combine": True,
               "final_wcs": True,
               "final_rot": 0.0,
           }
