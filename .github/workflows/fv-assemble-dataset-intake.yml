@@ -12,6 +12,119 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_fv_packet:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-fv-packet]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable assembled cloud and ground-grid evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-fv-packet/input/cloud lidar-fv-packet/input/ground-grid
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-fv-packet/input/cloud
+          gh run download 42822586174 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-observed-ground-grid \
+            --dir lidar-fv-packet/input/ground-grid
+      - name: Build FV assembly packet from verified spatial evidence
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib,shutil
+          root=pathlib.Path("lidar-fv-packet")
+          packet=root/"PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"
+          (packet/"snapshot/objs").mkdir(parents=True,exist_ok=True)
+          (packet/"audit").mkdir(parents=True,exist_ok=True)
+          clouds=list((root/"input/cloud").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(clouds)!=1: raise SystemExit(f"Expected exactly one deduplicated LAZ, found {clouds}")
+          cloud=clouds[0]
+          def sha256(p):
+              h=hashlib.sha256()
+              with p.open("rb") as f:
+                  for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
+              return h.hexdigest()
+          cloud_hash=sha256(cloud)
+          expected_cloud_hash="2991d84b6f87566eb587963a70c76d4f293365a327f6fd41935e2ba1dbc85249"
+          if cloud_hash!=expected_cloud_hash: raise SystemExit(f"Cloud checksum mismatch: {cloud_hash}")
+          cloud_copy=packet/"snapshot/objs/assembled_point_cloud.laz"
+          shutil.copy2(cloud,cloud_copy)
+          grid_receipts=list((root/"input/ground-grid").rglob("ground_surface_receipt.json"))
+          if len(grid_receipts)!=1: raise SystemExit(f"Expected one ground-grid receipt, found {grid_receipts}")
+          grid=json.loads(grid_receipts[0].read_text())
+          if grid["source_sha256"]!=cloud_hash: raise SystemExit("Ground grid does not reference this exact cloud")
+          image_files=list((root/"input/ground-grid").rglob("*.png"))
+          if len(image_files)!=2: raise SystemExit(f"Expected two ground-grid visualizations, found {image_files}")
+          for p in image_files: shutil.copy2(p,packet/"snapshot/objs"/p.name)
+          packet_id="PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"
+          windows=[
+            {"window_id":"NW","bounds_epsg3857_m":[-10180725.5,5067860.0,-10180225.5,5068360.0],"source_point_count":2223690,"source_sha256":"7bc4284e1e8f3fc0f408e0e27bf4ca9d5f63331d6cc56a509913dfb3140695"},
+            {"window_id":"NE","bounds_epsg3857_m":[-10180275.5,5067860.0,-10179775.5,5068360.0],"source_point_count":2343561,"source_sha256":"513e67758c689973dcb2ee13784fad83c32780e2f8eff596b276377cfdc8ada3"},
+            {"window_id":"SW","bounds_epsg3857_m":[-10180725.5,5067410.0,-10180225.5,5067910.0],"source_point_count":1006484,"source_sha256":"1d263deaac83cc9a5da967bddc683795e60394a25d04a13c83ca8c76b90e8eda"},
+            {"window_id":"SE","bounds_epsg3857_m":[-10180275.5,5067410.0,-10179775.5,5067910.0],"source_point_count":1540658,"source_sha256":"f91c677e1449c1665338c044a7cd81c492a0059cabd3dab2185d109a10ed680a"}
+          ]
+          msrm={
+            "packet_id":packet_id,
+            "global_coordinate_system":{"horizontal_crs":"EPSG:3857","horizontal_units":"metres","vertical_crs":"unresolved in source metadata","z_reference":"source Z values retained unchanged; no vertical datum or geoid conversion asserted"},
+            "registration":{"method":"coordinate-preserving assembly in the common source CRS","transform_applied":"none","pose_estimation":"not required; source coordinates already share EPSG:3857","icp_or_image_registration":"not performed","overlap_handling":"exact full-record duplicate removal, documented in assembly receipt","unresolved_registration_conflicts":[]},
+            "scenes":[{"scene_id":"ASSEMBLED_IA_EASTERN_1_950M","label":"Four overlapping 500 m source windows assembled into one 950 m × 950 m point-cloud extent","spatial_representation":{"point_cloud":"snapshot/objs/assembled_point_cloud.laz","point_count":6386838,"sha256":cloud_hash,"bounds_epsg3857_m":[-10180725.5,5067410.0,-10179775.5,5068360.0],"extent_m":[950,950]},"coverage":{"all_point_10m_grid":{"occupied_cells":9019,"total_cells":9025,"occupancy_fraction":0.9993351800554017},"observed_class_2_ground_2m_grid":{"occupied_cells":grid["grid"]["occupied_ground_cells"],"total_cells":grid["grid"]["total_cells"],"occupancy_fraction":grid["grid"]["occupancy_fraction"]}},"source_windows":[w["window_id"] for w in windows]}],
+            "source_windows":windows,
+            "provenance":{"upstream_artifact":"fv-usgs-ia-eastern-1-exact-record-deduplicated","upstream_run_id":42820788907,"source_ept":"https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/ept.json","source_dataset":"IA_Eastern_1_2019","source_point_count_before_dedup":7114393,"assembled_point_count_after_exact_record_dedup":6386838,"removed_exact_duplicate_records":727555,"source_window_step_m":450,"source_window_size_m":500,"nominal_overlap_m":50}
+          }
+          oi={
+            "packet_id":packet_id,"spec_version":"0.24","operation":"fv assemble",
+            "inventory_lock":False,
+            "inventory_status":"NOT_PERFORMED",
+            "inventory_scope":"This packet records spatial assembly of source LiDAR observations only. No semantic object analysis or object promotion has been performed. An empty entity list is not a claim that no objects exist.",
+            "source_provenance":{"dataset":"USGS 3DEP IA_Eastern_1_2019","source_ept":"https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/ept.json","source_crs":"EPSG:3857 horizontal; vertical reference unresolved","source_windows":windows,"assembled_point_cloud":{"path":"snapshot/objs/assembled_point_cloud.laz","point_count":6386838,"sha256":cloud_hash}},
+            "entities":[],
+            "assembly_vs_merge":{"assembly_did":"Preserve common source coordinates and combine four overlapping LiDAR windows into one spatial point-cloud representation; exact duplicate point records removed with an audit trail.","assembly_did_not":"Perform semantic object detection, assign object identities, classify unclassified points, estimate new transforms, infer a vertical datum, or normalize identities across independent packets."}
+          }
+          td={
+            "packet_id":packet_id,"spec_version":"0.24","operation":"fv assemble",
+            "note":"Assembly-step log records the four source windows entering the common-coordinate representation. It is not a claim of source acquisition time order.",
+            "timeline":[{"interval_id":f"ASSEMBLE_STEP_{i:04d}","scene_id":"ASSEMBLED_IA_EASTERN_1_950M","step_index":i,"action":f"Register source window {w['window_id']} by retaining its source EPSG:3857 coordinates; no pose correction applied.","visible":[],"provenance":{"source_window_id":w["window_id"],"source_point_count":w["source_point_count"],"source_sha256":w["source_sha256"]}} for i,w in enumerate(windows)]
+          }
+          pc={"packet_id":packet_id,"constants":[{"name":"horizontal_coordinate_reference","value":"EPSG:3857","units":"metres"},{"name":"vertical_reference","value":"unresolved in EPT/LAS metadata; source Z values preserved without conversion"},{"name":"source_format","value":"LAS 1.4 point format 6, compressed LAZ"},{"name":"ground_classification","value":"LAS classification code 2 used only for the observed-ground diagnostic grid; no reclassification performed"}]}
+          manifest={"packet_id":packet_id,"snapshots":{"assembled_point_cloud":"snapshot/objs/assembled_point_cloud.laz - exact-record-deduplicated source-coordinate point cloud","observed_ground_mean_z":"snapshot/objs/class2_ground_mean_z_2m.png - 2 m cell means from class-2 returns; empty cells remain NoData","observed_ground_within_cell_range":"snapshot/objs/class2_within_cell_z_range_2m.png - within-cell Z range from class-2 returns"}}
+          dispute={"packet_id":packet_id,"status":"none","disputes":[],"note":"No registration dispute was detected by this coordinate-preserving assembly. Semantic inventory is not performed and remains unlocked; this is not a rendering-ready packet."}
+          receipt={"status":"ASSEMBLY_PACKET_PROTOTYPE_CREATED","packet_id":packet_id,"cloud_sha256":cloud_hash,"cloud_point_count":6386838,"source_window_count":4,"ground_grid_source_sha256":grid["source_sha256"],"ground_class_point_count":grid["ground_point_count"],"ground_grid_occupancy":grid["grid"]["occupancy_fraction"],"checks":["source cloud SHA256 matched the upstream deduplicated artifact receipt","ground-grid receipt references the same cloud SHA256","all packet JSON files parse","point-cloud file copied byte-for-byte","source window checksums and point counts carried forward from extraction receipts"],"limitations":["No semantic object inventory performed; OI remains unlocked.","No ICP or pose estimation; assembly relies on common source coordinates.","Vertical datum unresolved; Z values are retained unchanged.","Ground grid is observed class-2 cell statistics, not a validated DTM or mesh.","No renderer compilation performed."]}
+          files={"MSRM.json":msrm,"OI.json":oi,"TD.json":td,"PC.json":pc,"snapshot/manifest.json":manifest,"dispute.json":dispute,"audit/ASSEMBLY_RECEIPT.json":receipt}
+          for name,obj in files.items():
+              p=packet/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(obj,indent=2)+"\n")
+          readme="""# USGS IA Eastern 1 — FV Assemble packet prototype
+
+          Packet ID: PKT-USGS-IA-EASTERN-1-ASSEMBLE-001
+          Operation: fv assemble
+          FV specification reference: 0.24
+
+          This packet is a source-grounded spatial assembly prototype. It combines four overlapping USGS 3DEP EPT windows in their common EPSG:3857 coordinates. No new transform was estimated or applied. Exact duplicate point records were removed upstream, with the immutable source cloud and checksums retained.
+
+          The packet deliberately does not claim semantic object recognition. OI.entities is empty and inventory_lock is false because semantic analysis has not been performed. Empty means not assessed, not that the landscape contains no objects.
+
+          The vertical reference is unresolved in the source metadata. Z values are preserved as supplied. The two ground-grid images show observed LAS class-2 returns only; empty cells remain NoData. They are not a validated bare-earth DTM.
+
+          Files: MSRM.json (spatial representation and registration), OI.json (inventory scope and provenance), TD.json (assembly steps), PC.json (project constants), dispute.json (current gate), snapshot/manifest.json (preserved evidence references), audit/ASSEMBLY_RECEIPT.json (checks and limitations).
+          """
+          (packet/"README.md").write_text(readme)
+          # Structural and cross-file consistency checks.
+          for name in ["MSRM.json","OI.json","TD.json","PC.json","dispute.json","snapshot/manifest.json","audit/ASSEMBLY_RECEIPT.json"]:
+              json.loads((packet/name).read_text())
+          assert msrm["scenes"][0]["spatial_representation"]["sha256"]==oi["source_provenance"]["assembled_point_cloud"]["sha256"]
+          assert td["timeline"] and len(td["timeline"])==4
+          assert oi["inventory_lock"] is False and oi["entities"]==[]
+          assert receipt["ground_grid_source_sha256"]==cloud_hash
+          assert sha256(cloud_copy)==cloud_hash
+          print(json.dumps({"status":"PACKET_STRUCTURAL_CHECKS_PASS","packet_id":packet_id,"files":sorted(files.keys()),"point_count":6386838,"cloud_sha256":cloud_hash,"ground_grid_occupancy":grid["grid"]["occupancy_fraction"]},indent=2))
+          PY
+      - name: Upload FV packet prototype
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-assemble-packet-prototype
+          path: lidar-fv-packet/PKT-USGS-IA-EASTERN-1-ASSEMBLE-001/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_ground_surface:
     if: ${{ contains(github.event.head_commit.message, '[lidar-ground-surface]') }}
     runs-on: ubuntu-latest
