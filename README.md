@@ -1,58 +1,97 @@
 # Faking Vision
 
-Faking Vision (FV) is an operational framework and agent skill for explicit, auditable visual investigation, analysis, reconstruction, and evaluation.
+## What if AI could see?
 
-FV provides procedures for examining images and video through visible components, relationships, temporal evidence, candidate formation, correspondence, targeted verification, adaptive sampling, and explicit uncertainty. It is designed to keep observation, interpretation, and commitment separate so that visual reasoning can be inspected rather than hidden inside a model's learned assumptions.
+What if AI could see, see as in actually see? I know it sounds absurd, but can you actually spoof vision in AI?
 
-**Publication record:** [Faking Vision on Zenodo](https://zenodo.org/records/22672967) · DOI: [10.5281/zenodo.22672967](https://doi.org/10.5281/zenodo.22672967) · **Working repository and agent skill:** [memoryprismv1/faking-vision](https://github.com/memoryprismv1/faking-vision)
+Not see in a strict computer vision sense, but see an image or video and analyse it in the way human minds do. Where are the boundaries? What is the object? What are the components of the objects? What is standing out? What makes no sense in the media? What is the placement of the objects? What is the background? And so on.
 
-## What FV does
+When we walk into a room, what do we actually see? What is nearby, what is placed where? You might not be doing this consciously, but it happens. You move your vision field, take in more information, create a maplet and add it to the entire map that was produced.
 
-FV supports a complete visual-investigation and reconstruction workflow:
+Sounds like pop sci, but it is not. Have you ever thought about how you can get to the bathroom half asleep without walking into ten things?
 
-* **Analyse** — examine a raw visual source and produce a structured FV packet.
-* **Investigate** — pursue a specified object, event, relationship, correspondence, or question across observations.
-* **Assemble** — register and combine partial or overlapping visual/spatial observations into a larger view or representation.
-* **Merge** — reconcile independently produced FV packets and normalize object identity only when the evidence supports equivalence.
-* **Create** — deliberately construct a new FV packet from established FV information or an explicit specification.
-* **Rebuild/upgrade** — migrate an existing or legacy packet to a target FV specification version while preserving its historical provenance.
-* **Edit** — make intentional changes to packet content; editing is not version migration.
-* **Resolve** — resolve packet disputes, ambiguities, and competing interpretations, including the required human-resolution and AI-reconciliation lifecycle.
-* **Validate** — check a packet for structural problems, contradictions, missing information, and unresolved disputes.
-* **Compile** — translate a resolved and validated packet into a lossless reconstruction specification and, where supported, perform the reconstruction.
-* **Audit** — independently evaluate a reconstruction against the FV packet and, where available, the original source.
+I spent a month figuring out how human vision works and then how to spoof it in an AI. My aim wasn't a grand plan. It was mostly to get AI to do a better job of media analysis for me. But once you do it, the possibilities become endless.
 
-These operations are deliberately separated. Analysis does not silently become reconstruction; assembly does not silently become identity merge; validation does not repair a packet; resolution does not bypass validation; compilation does not add semantic information; and audit does not rewrite the packet to accommodate a generated result.
+AI has great computing capacity. Harnessing and leveraging it in the visual sphere has extreme potential that is currently underexplored.
 
-## Visual investigation
+Sometimes when we read, we imagine the whole scene in our heads: the table there, the couch there, the characters here and there, what someone is wearing, what they are doing, etc. Faking Vision does the same thing with an image or video. It converts it into a map composed of different files (natively called an **FV packet**).
 
-FV does not treat visual analysis as a single act of recognition.
+An FV packet is auditable, reconstructable, etc.
 
-The process can begin with an observed component and maintain multiple candidates rather than immediately assigning an object name:
+## What can Faking Vision do?
 
-**component → candidate set → targeted search → verification or rejection**
+Faking Vision (FV) can do a lot of things. Things which I have tried:
 
-Identity investigations similarly begin as correspondence hypotheses. Components used for correspondence are assessed by evidence quality, and correspondence may be strengthened, weakened, rejected, or remain unresolved.
+- Analyse images and videos.
+- Editorialise a video for key events only. For example, CCTV footage cleaned down to when things actually happen.
+- Take mass overlapping media inputs and stitch together a cohesive structure. This includes sources such as LiDAR, telescopes and other systems which generate a lot of overlapping content.
+- Raise disputes when an AI has trouble recognising an object. This requires human intervention.
+- Create local object databases from CCTV footage provided in chunks.
+- Provide a collaborative space for AI generative work.
 
-For video, FV can use temporal structure, change, component emergence, behaviour, and evidence yield to determine where further investigation is warranted. Sampling is an analysis strategy, not permission to ignore meaningful changes.
+I haven't tried dashcam footage yet because I don't have any available files.
 
-FV preserves uncertainty when the source does not support a conclusion.
+FV can do a lot of things, things I would rather leave to a user to find.
 
-## Auditable reconstruction
+## How it works
+
+Faking Vision does not treat visual analysis as a single act of object recognition.
+
+It works through visible components, boundaries, spatial relationships, object properties, temporal evidence and correspondence. Instead of immediately deciding what something is, it can maintain candidates and investigate them further.
+
+A component can lead to multiple possible candidates. Further examination can strengthen or reject those candidates. If the available evidence is insufficient, uncertainty can be retained rather than forcing a recognition.
+
+For video, this also means looking at changes over time, object behaviour, events and relationships between frames.
+
+The output is an FV packet: a structured representation of the visual information, its objects, components, relationships and supporting evidence.
+
+The packet is the source of truth for reconstruction. A reconstruction should not silently introduce objects, components or relationships that were never established in the packet.
+
+## Making Vision and Faking Vision
+
+Faking Vision grew out of my exploration of how human vision works and how some of its processes could be reproduced in AI.
+
+**Making Vision** is the foundational work behind this exploration.
+
+[Making Vision – Reading](https://www.memoryprism.com/readings/making-vision)
+
+**Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing.
+
+[Faking Vision – GitHub Repository](https://github.com/memoryprismv1/faking-vision)
+
+## FV operations
+
+FV has a set of distinct operations. They are deliberately separated because analysing, editing, reconstructing and auditing media are different activities.
+
+| Operation         | Purpose                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| Analyse           | Examine an image or video and create an FV packet                                     |
+| Investigate       | Examine a particular object, event, relationship or question                          |
+| Assemble          | Combine partial or overlapping visual/spatial observations                            |
+| Merge             | Reconcile information from separate FV packets                                        |
+| Create            | Construct a new packet from established information or a specification                |
+| Rebuild / Upgrade | Migrate an existing packet to a newer FV specification                                |
+| Edit              | Make intentional changes to packet content                                            |
+| Resolve           | Handle disputes, ambiguities and competing interpretations                            |
+| Validate          | Check packet structure, contradictions and unresolved issues                          |
+| Compile           | Produce a reconstruction specification from a resolved packet                         |
+| Audit             | Compare a reconstruction against the packet and, where available, the original source |
+
+These operations are not interchangeable. For example, assembling overlapping observations is different from merging two packets. Validation does not repair a packet, and compilation does not resolve disputes.
+
+## The reconstruction principle
 
 The FV packet is the reconstruction source of truth.
 
-A reconstruction must not silently add semantic objects, components, relationships, motivations, world knowledge, or other information that was not supplied by the packet.
+A generator may translate packet information into its own format, but it should not add semantic information from its own learned assumptions.
 
-The packet-to-prompt or packet-to-renderer transformation is itself an auditable boundary. A renderer may translate FV information into its own syntax, but it may not use that translation as an opportunity to fill gaps from its learned world model.
+The resulting media can then be independently audited against the packet. The generator's own explanation is not evidence that its output is correct.
 
-Generated output is evaluated independently. The generator's explanation is not evidence for whether the reconstruction matches the packet.
+## Agent skill and commands
 
-## Agent skill
+FV includes an operational agent skill so that an AI agent can perform FV operations without requiring the user to repeatedly supply the underlying specifications.
 
-`SKILL.md` provides the operational agent interface for FV work.
-
-The FV textarea commands are:
+The command set is:
 
 ```text
 fv analyse
@@ -60,7 +99,8 @@ fv investigate
 fv assemble
 fv merge
 fv create
-fv rebuild  # alias: fv upgrade
+fv rebuild
+fv upgrade
 fv edit
 fv resolve
 fv validate
@@ -68,9 +108,9 @@ fv compile
 fv audit
 ```
 
-For an existing packet that needs a version migration, use `fv rebuild` (alias `fv upgrade`) before validation. Keep `fv edit` for intentional packet-content changes; it is not a migration catch-all. Rebuild preserves the source packet, records the target-version mapping, and validates a separate rebuilt copy. It must not invent missing evidence or resolve disputes.
+For full command details, including syntax, inputs, outputs, options, and operating restrictions, see the [FV command reference](commands.md).
 
-The normal reconstruction path is:
+The normal reconstruction workflow is:
 
 ```text
 analyse / investigate / assemble / merge / create
@@ -84,77 +124,26 @@ analyse / investigate / assemble / merge / create
                   audit
 ```
 
-Not every job requires every operation. In particular, **assemble** is for putting partial or overlapping observations of a larger view together, while **merge** is for reconciling knowledge contained in separate FV packets. **Compile is a hard fidelity gate:** it does not resolve disputes or repair invalid packets.
+Not every task requires every operation.
 
-The skill is designed so an AI agent can operate FV without requiring the user to repeatedly supply the underlying FV specification. The authoritative process specification remains the governing source for FV procedures and rules.
+## Repository and documentation
 
-## Repository structure
+- [GitHub repository](https://github.com/memoryprismv1/faking-vision)
+- [Command reference](commands.md)
+- [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
+- [Agent skill](SKILL.md)
+- [How to use FV](HOW_TO_USE.md)
+- Example packets: `PACKETS/examples/`
 
-**How to use the repository:** `HOW_TO_USE.md`
-
-**Agent skill:** `SKILL.md`
-
-**Authoritative process specification:** [`SPECIFICATION/FV_Working_Process_Specification.md`](SPECIFICATION/FV_Working_Process_Specification.md)
-
-The canonical specification includes the agent-facing requirements; `SKILL.md` provides the operational interface.
-
-**Example packets:** `PACKETS/examples/`
-
-The Working Process Specification is the authoritative FV process document. `SKILL.md`, `HOW_TO_USE.md`, and the additional AI-agent guidance provide operational access and supporting guidance; they do not silently override the authoritative specification.
-
-Making Vision is foundational to FV but is maintained separately. It is not duplicated in this repository.
-
-## Core principles
-
-* Observe before naming.
-* Do not turn plausibility into evidence.
-* Keep observation, interpretation, and packet commitment distinct.
-* Treat components as evidence, not identities.
-* Preserve candidate alternatives when the evidence supports them.
-* Search for discriminating evidence, not only confirming evidence.
-* Treat correspondence as a hypothesis before promoting it to identity.
-* Preserve uncertainty through the analysis pipeline.
-* Do not use later recognition to rewrite the evidence path that existed earlier.
-* Treat the packet as the reconstruction source of truth.
-* Do not add semantic content during reconstruction.
-* Independently audit generated results.
-
-## Relationship to Making Vision
-
-Making Vision provides the foundational visual-perception work behind FV and is maintained separately.
-https://www.memoryprism.com/readings/making-vision
-
-FV is the operational framework for applying and testing those ideas in AI visual investigation and reconstruction.
+The Working Process Specification is the authoritative process document. The agent skill and supporting documentation provide operational access and guidance.
 
 ## License
 
 This repository is licensed under **CC BY-NC 4.0**.
 
-It is not an open-source software project. Non-commercial copying, sharing, study, and adaptation are permitted with attribution under the license. Commercial use requires separate permission.
+Non-commercial copying, sharing, study and adaptation are permitted with attribution under the license. Commercial use requires separate permission.
 
-## Image packet editing and environmental participation (v0.25–v0.26 design additions)
+## Publication
 
-The `fv edit` interface and environmental participation rules are documented design additions to the agent workflow. The separate `fv rebuild` / `fv upgrade` operation handles legacy packet version migration; it does not replace or absorb `fv edit`. The repository also contains two experimental browser-based tools: `PACKETS/tools/FV_Edit_Visual_Workbench.html` and `PACKETS/tools/FV_Media_Object_Editor_MVP.html`. These are prototypes and have not been fully tested or validated; their presence does not make them authoritative packet writers. The initial `fv edit` workflow scope is image packets only.
-
-```text
-fv edit
-fv edit <object-name/object-id> --list
-fv edit <object-name/object-id> <property-id>
-```
-
-- With no arguments, list available objects. With `--list`, list the selected object's available properties. The property form identifies a direct edit; the syntax for supplying a new value remains open.
-- Direct edits require a sufficiently unique target and an applicable property. Do not guess between ambiguous objects. Record successful edits in the edit log; do not mark failed or unresolved operations as successful.
-- A separate environment packet describes environmental conditions and includes an array of objects undergoing behaviour changes because of those conditions. Environmental edits are logged. Setting a condition does not by itself authorize inventing changes to affected objects.
-- The edit log records `edit_base: singleton` for a single-object target and `edit_base: collection` for a collection target. Collections are environment-only for now. Preserve prior entries and provenance when logs are accumulated across appended packets.
-- Packets carry a dedicated FV version file identifying the version against which they are mapped. The exact filename and schema remain to be standardized. An unversioned packet is legacy and is treated as mapped against an older FV version. A missing environment packet is acceptable for a legacy packet and can be ignored. Run `fv rebuild` (or `fv upgrade`) on an older packet to enter the version-migration workflow without falsifying its legacy provenance. Use `fv edit` only for intentional content changes.
-- The experimental Media Object Editor MVP accepts a video and FV JSON packet, supports manually drawn polygon keyframes and basic property edits, and can export packet data and a WebM recording where the browser supports it. It does not provide automatic segmentation or persistent object tracking; its visual tint is not semantic object-aware reconstruction. Interpolation can fail across scene cuts or major shape changes, and packet exports and visual output require separate review. The Visual Workbench is also experimental. Treat both tools as prototypes requiring evaluation, not validated or canonical FV implementations.
-
-The v0.26 environmental-participation rules additionally distinguish changes to environment conditions from affected-object responses:
-
-- Classify passive state/appearance changes separately from active behaviour or location changes, for each edit event rather than as a permanent object label.
-- Record condition and stress in `ENVIRONMENT.json`, supported object state/behaviour in `OI.json`, spatial changes in `MSRM.json`, and the edit plus provenance/validation information in `edit_log.json`.
-- Treat environmental stress as a cue to inspect affected objects, not proof of a particular behaviour. Preserve uncertainty and do not invent a response from typical expectations alone.
-- Validate structural consistency and semantic expectations separately from the independent visual audit; an edit log is not proof that the resulting image matches the intended state.
-- Preserve legacy packet provenance when mapping older packets to a later FV version.
-
-The environment packet schema, edit-value syntax, exact edit-log fields, version-file schema, and dependent-record update rules remain open design items. Until the version-marker filename/schema is standardized, rebuild must not invent one; record the target mapping in its rebuild report and flag the gap.
+[Faking Vision – Zenodo](https://zenodo.org/records/22672967)  
+DOI: [10.5281/zenodo.22672967](https://doi.org/10.5281/zenodo.22672967)
