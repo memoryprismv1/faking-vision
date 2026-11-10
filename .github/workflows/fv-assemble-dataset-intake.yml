@@ -12,6 +12,124 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_record_identity:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-record-identity]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable source extracts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-record-identity/input
+          gh run download 42806517173 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-overlapping-laz-extracts \
+            --dir lidar-record-identity/input
+      - name: Install PDAL and point-record inspection libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pdal
+          create-args: >-
+            -c conda-forge
+            pdal
+            python
+            numpy
+            laspy
+            lazrs-python
+          cache-environment: true
+          init-shell: bash
+      - name: Compare complete point records, not just XYZ
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/record_identity.py <<'PY'
+          import json, pathlib, subprocess
+          import laspy
+          import numpy as np
+
+          root=pathlib.Path("lidar-record-identity")
+          inputs=root/"input"/"point-clouds"
+          out=root/"audit";out.mkdir(parents=True,exist_ok=True)
+          q=json.loads((root/"input"/"source-metadata"/"query.json").read_text())
+          windows={x["id"]:x["bounds_xy"] for x in q["windows"]}
+          pairs=[("NW","NE"),("SW","SE"),("NW","SW"),("NE","SE")]
+
+          def crop(src,bounds,target):
+              x0,y0,x1,y1=bounds
+              spec={"pipeline":[
+                {"type":"readers.las","filename":str(src)},
+                {"type":"filters.crop","bounds":f"([{x0:.3f}, {x1:.3f}], [{y0:.3f}, {y1:.3f}])"},
+                {"type":"writers.las","filename":str(target),"compression":True}
+              ]}
+              p=target.with_suffix(".json");p.write_text(json.dumps(spec))
+              r=subprocess.run(["pdal","pipeline",str(p)],text=True,capture_output=True)
+              if r.returncode: raise RuntimeError(r.stderr[-4000:])
+              p.unlink()
+              return target
+
+          def raw_records(las):
+              arr=np.ascontiguousarray(las.points.array)
+              return arr.view(np.dtype((np.void,arr.dtype.itemsize))).reshape(-1)
+
+          def xyz_records(las):
+              arr=np.empty(len(las),dtype=[("x","<i4"),("y","<i4"),("z","<i4")])
+              arr["x"],arr["y"],arr["z"]=las.X,las.Y,las.Z
+              return arr.view(np.dtype((np.void,arr.dtype.itemsize))).reshape(-1)
+
+          def multiset_intersection(a,b):
+              ua,ca=np.unique(a,return_counts=True)
+              ub,cb=np.unique(b,return_counts=True)
+              common,ia,ib=np.intersect1d(ua,ub,assume_unique=True,return_indices=True)
+              return int(np.minimum(ca[ia],cb[ib]).sum()),int(len(ua)),int(len(ub))
+
+          reports=[]
+          for left,right in pairs:
+              a,b=windows[left],windows[right]
+              bounds=[max(a[0],b[0]),max(a[1],b[1]),min(a[2],b[2]),min(a[3],b[3])]
+              paths=[]
+              for label in [left,right]:
+                  src=inputs/f"ia_eastern_1_{label.lower()}.laz"
+                  paths.append(crop(src,bounds,out/f"{left.lower()}_{right.lower()}_{label.lower()}.laz"))
+              with laspy.open(paths[0]) as f: la=f.read()
+              with laspy.open(paths[1]) as f: lb=f.read()
+              ra,rb=raw_records(la),raw_records(lb)
+              xa,xb=xyz_records(la),xyz_records(lb)
+              exact,ua,ub=multiset_intersection(ra,rb)
+              xyz_common,uxa,uxb=multiset_intersection(xa,xb)
+              report={
+                "pair":f"{left}-{right}",
+                "left_records":len(ra),"right_records":len(rb),
+                "left_unique_full_records":ua,"right_unique_full_records":ub,
+                "exact_full_record_multiset_intersection":exact,
+                "left_unique_xyz":uxa,"right_unique_xyz":uxb,
+                "xyz_multiset_intersection":xyz_common,
+                "full_record_overlap_fraction_of_left":exact/len(ra) if len(ra) else None,
+                "full_record_overlap_fraction_of_right":exact/len(rb) if len(rb) else None,
+                "same_xyz_but_not_same_full_record_count_estimate":max(0,xyz_common-exact),
+                "raw_point_record_dtype":str(la.points.array.dtype),
+                "interpretation":"Full point record equality includes all stored LAS point dimensions and extra bytes; multiset counts preserve repeated records."
+              }
+              reports.append(report);print(json.dumps(report,indent=2))
+              for p in paths:p.unlink()
+
+          result={
+            "status":"FULL_RECORD_IDENTITY_AUDIT_COMPLETE",
+            "dataset":"USGS 3DEP IA_Eastern_1_2019",
+            "pairs":reports,
+            "safe_deduplication_basis":"Only exact full-record duplicates, counted as a multiset, qualify as duplicate records in the tested overlap strips. XYZ-only matches remain distinct unless full records match.",
+            "limitations":["Only four pairwise overlap strips were tested; not the full four-window union.","Full-record byte identity is exact and intentionally does not merge semantically similar records."]
+          }
+          (out/"full_record_identity_receipt.json").write_text(json.dumps(result,indent=2)+"\n")
+          PY
+          pdal --version
+          python /tmp/record_identity.py
+      - name: Upload full point-record identity receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-full-record-identity
+          path: lidar-record-identity/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_duplicate_detail:
     if: ${{ contains(github.event.head_commit.message, '[lidar-duplicate-detail]') }}
     runs-on: ubuntu-latest
