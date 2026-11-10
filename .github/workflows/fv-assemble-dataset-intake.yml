@@ -12,6 +12,186 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_semantic_candidates:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-semantic-candidates]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable deduplicated point cloud
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-semantic-candidates/input
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-semantic-candidates/input
+      - name: Install point-cloud and morphology analysis libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            scipy
+            matplotlib
+            pyproj
+          cache-environment: true
+          init-shell: bash
+      - name: Analyse observed terrain structure and generate unresolved candidates
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/semantic_candidates.py <<'PY'
+          import hashlib,json,pathlib
+          import laspy,numpy as np
+          from scipy.ndimage import median_filter,distance_transform_edt,label
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          root=pathlib.Path("lidar-semantic-candidates")
+          files=list((root/"input").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(files)!=1: raise RuntimeError(f"Expected one immutable point cloud, got {files}")
+          src=files[0];out=root/"output";out.mkdir(parents=True,exist_ok=True)
+          audit=root/"audit";audit.mkdir(parents=True,exist_ok=True)
+          h=hashlib.sha256()
+          with src.open("rb") as f:
+              for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+          source_hash=h.hexdigest()
+          expected="2991d84b6f87566eb587963a70c76d4f293365a327f6fd41935e2ba1dbc85249"
+          if source_hash!=expected:raise RuntimeError(f"Immutable source checksum mismatch: {source_hash}")
+          with laspy.open(src) as r:
+              hdr=r.header;crs=hdr.parse_crs()
+              if crs is None:raise RuntimeError("Source CRS missing")
+              xmin,ymin=map(float,hdr.mins[:2]);xmax,ymax=map(float,hdr.maxs[:2])
+              cell=2.0;nx=int(np.ceil((xmax-xmin)/cell));ny=int(np.ceil((ymax-ymin)/cell));size=nx*ny
+              counts=np.zeros(size,dtype=np.int32);sums=np.zeros(size,dtype=np.float64)
+              classes={};n=0;ground_n=0
+              for pts in r.chunk_iterator(250_000):
+                  cls=np.asarray(pts.classification);vals,cnts=np.unique(cls,return_counts=True)
+                  for v,k in zip(vals,cnts):classes[str(int(v))]=classes.get(str(int(v)),0)+int(k)
+                  n+=len(pts);mask=cls==2
+                  if not np.any(mask):continue
+                  x=np.asarray(pts.x)[mask];y=np.asarray(pts.y)[mask];z=np.asarray(pts.z)[mask]
+                  ix=np.clip(((x-xmin)/cell).astype(np.int64),0,nx-1);iy=np.clip(((y-ymin)/cell).astype(np.int64),0,ny-1)
+                  idx=ix*ny+iy
+                  counts+=np.bincount(idx,minlength=size).astype(np.int32)
+                  sums+=np.bincount(idx,weights=z,minlength=size)
+                  ground_n+=len(z)
+          if n!=int(hdr.point_count):raise RuntimeError("Source point count changed")
+          if classes.get("2",0)!=ground_n:raise RuntimeError("Class-2 count mismatch")
+          count_grid=counts.reshape(nx,ny)
+          mean=np.divide(sums,counts,out=np.full(size,np.nan),where=counts>0).reshape(nx,ny)
+          valid=np.isfinite(mean)
+          # Fill only for the neighbourhood statistic. The candidate mask remains
+          # restricted to cells with observed class-2 returns; no filled cell is
+          # ever promoted as an observation.
+          nearest=distance_transform_edt(~valid,return_distances=False,return_indices=True)
+          filled=mean[tuple(nearest)]
+          # 11 cells = 22 m neighbourhood; median detrending reduces broad slope.
+          local=median_filter(filled,size=11,mode="nearest")
+          tpi=mean-local
+          residual=tpi[valid]
+          thresholds={
+            "negative_tpi_m":-1.0,
+            "positive_tpi_m":1.5,
+            "minimum_component_cells":8,
+            "minimum_component_area_m2":32.0,
+            "local_median_window_cells":11,
+            "cell_size_m":cell
+          }
+          candidates=[]
+          masks=[("negative_relief",valid&(tpi<=thresholds["negative_tpi_m"])),
+                 ("positive_relief",valid&(tpi>=thresholds["positive_tpi_m"]))]
+          for polarity,mask in masks:
+              lab,num=label(mask,structure=np.ones((3,3),dtype=np.uint8))
+              for k in range(1,num+1):
+                  ii,jj=np.where(lab==k);ncell=len(ii)
+                  if ncell<thresholds["minimum_component_cells"]:continue
+                  xx=xmin+(ii+0.5)*cell;yy=ymin+(jj+0.5)*cell
+                  cov=np.cov(np.column_stack([xx,yy]).T) if ncell>1 else np.zeros((2,2))
+                  eig=np.linalg.eigvalsh(cov);elong=float(np.sqrt(max(eig[-1],1e-9)/max(eig[0],1e-9)))
+                  vals=tpi[ii,jj]
+                  x0=float(xmin+ii.min()*cell);x1=float(xmin+(ii.max()+1)*cell)
+                  y0=float(ymin+jj.min()*cell);y1=float(ymin+(jj.max()+1)*cell)
+                  area=ncell*cell*cell
+                  if polarity=="negative_relief":
+                      hypotheses=["linear depression / possible drainage feature","natural swale or shallow valley","anthropogenic cut or ditch"]
+                  else:
+                      hypotheses=["elongated raised feature / possible embankment or ridge","natural ridge or local rise","built raised surface or platform"]
+                  candidates.append({
+                    "candidate_id":f"CAND-{polarity.upper()}-{len(candidates)+1:03d}",
+                    "observation_type":"spatial terrain-form candidate",
+                    "status":"unresolved_candidate_not_promoted",
+                    "polarity":polarity,
+                    "observed_evidence":{
+                      "occupied_2m_cells":int(ncell),"observed_cell_area_m2":float(area),
+                      "bounds_epsg3857_m":[x0,y0,x1,y1],
+                      "centroid_epsg3857_m":[float(xx.mean()),float(yy.mean())],
+                      "tpi_median_m":float(np.median(vals)),
+                      "tpi_min_m":float(np.min(vals)),"tpi_max_m":float(np.max(vals)),
+                      "elongation_ratio":elong,
+                      "source_layer":"LAS classification 2 only",
+                      "source_resolution_m":cell
+                    },
+                    "candidate_set":hypotheses,
+                    "discriminating_search":[
+                      "Inspect the source point returns and local cross-section at this region.",
+                      "Compare first/last return distribution and classifications without assuming class meaning.",
+                      "Check continuity beyond this 950 m crop before assigning a channel, ridge, road, ditch or constructed-feature identity.",
+                      "Do not promote a semantic object from terrain shape alone."
+                    ],
+                    "evidence_limit":"Candidate is derived from observed class-2 point elevations after local median detrending; this is not semantic classification or hydrological validation."
+                  })
+          candidates.sort(key=lambda x:(x["observed_evidence"]["observed_cell_area_m2"],abs(x["observed_evidence"]["tpi_median_m"])),reverse=True)
+          for i,c in enumerate(candidates,1):c["candidate_id"]=f"CAND-{c['polarity'].upper()}-{i:03d}"
+          # Visual evidence: TPI is calculated only where class-2 returns exist.
+          fig,ax=plt.subplots(figsize=(12,9))
+          im=ax.imshow(np.ma.masked_invalid(tpi.T),origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal",cmap="RdBu_r",vmin=-5,vmax=5)
+          ax.set(title="Observed class-2 local relief (2 m cells; 22 m median reference)",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="Local elevation residual (m)")
+          for c in candidates[:40]:
+              e=c["observed_evidence"];x0,y0,x1,y1=e["bounds_epsg3857_m"]
+              ax.add_patch(plt.Rectangle((x0,y0),x1-x0,y1-y0,fill=False,linewidth=0.6,edgecolor="black"))
+          fig.tight_layout();fig.savefig(out/"local_relief_candidate_regions.png",dpi=180);plt.close(fig)
+          # A count map makes the observation-support distribution visible.
+          fig,ax=plt.subplots(figsize=(12,9))
+          im=ax.imshow(np.ma.masked_where(count_grid.T==0,count_grid.T),origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal",norm="log")
+          ax.set(title="Observed class-2 point support per 2 m cell",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="Ground-class return count (log scale)")
+          fig.tight_layout();fig.savefig(out/"class2_point_support_2m.png",dpi=180);plt.close(fig)
+          result={
+            "status":"TERRAIN_CANDIDATE_ANALYSIS_COMPLETE",
+            "source":{"file":src.name,"sha256":source_hash,"point_count":n,"crs":crs.to_string(),"bounds_epsg3857_m":[xmin,ymin,xmax,ymax]},
+            "observed_class_counts":classes,"class2_point_count":ground_n,
+            "method":{"input":"only stored LAS classification code 2 returns","grid":"2 m cell mean Z; empty cells remain unobserved","local_reference":"22 m median filter; nearest-neighbour fill used only to calculate local reference near NoData; candidate mask restricted to observed cells","candidate_thresholds":thresholds,"no_interpolation_of_observations":True,"no_reclassification":True},
+            "candidate_count":len(candidates),
+            "candidates":candidates,
+            "interpretation_limits":[
+              "LAS classification code 2 was used as stored; the source class semantics are not independently validated here.",
+              "Candidate regions are geometric observations, not semantic object identities.",
+              "Local median detrending identifies relative relief, not hydrological flow or construction.",
+              "No building, road, ditch, stream, ridge, field boundary or other object has been promoted.",
+              "The crop is only 950 m by 950 m; candidate continuity beyond its boundary is unknown.",
+              "Vertical datum uncertainty remains unchanged from the source packet."
+            ],
+            "outputs":["local_relief_candidate_regions.png","class2_point_support_2m.png"]
+          }
+          (audit/"terrain_candidates.json").write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps({"status":result["status"],"source_sha256":source_hash,"class2_point_count":ground_n,"candidate_count":len(candidates),"candidates":candidates[:20],"thresholds":thresholds,"interpretation_limits":result["interpretation_limits"]},indent=2))
+          PY
+          python /tmp/semantic_candidates.py
+      - name: Upload unresolved terrain candidates and evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-terrain-candidates
+          path: |
+            lidar-semantic-candidates/output/
+            lidar-semantic-candidates/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_fv_packet:
     if: ${{ contains(github.event.head_commit.message, '[lidar-fv-packet]') }}
     runs-on: ubuntu-latest
