@@ -2069,7 +2069,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
   intake:
-    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') && !contains(github.event.head_commit.message, '[lidar-naip2019-context]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -2337,5 +2337,73 @@ jobs:
         with:
           name: fv-assemble-public-dataset-intake
           path: intake-artifact/
+          if-no-files-found: error
+          retention-days: 30
+
+  lidar_naip2019_context:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-naip2019-context]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve date-matched Iowa NAIP 2019 orthophoto context
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests pillow
+          mkdir -p lidar-naip2019-context
+          cat > /tmp/naip_context.py <<'PY'
+          import json, pathlib, hashlib, io
+          import requests
+          from PIL import Image
+          out=pathlib.Path("lidar-naip2019-context")
+          base="https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2019_CONUS/ImageServer"
+          bounds=[-10181231.854368933,5067451.111650486,-10179731.854368933,5068951.111650486]
+          target=[-10180539.85,5068111.12,-10180449.85,5068273.12]
+          s=requests.Session();s.headers["User-Agent"]="FakingVision-LiDAR-independent-imagery-audit/1.0"
+          info=s.get(base,params={"f":"pjson"},timeout=90);info.raise_for_status();metadata=info.json()
+          if metadata.get("name")!="NAIP2019_CONUS": raise RuntimeError("Unexpected imagery service: "+str(metadata.get("name")))
+          def export(box,name,size):
+              params={"bbox":",".join(map(str,box)),"bboxSR":3857,"imageSR":3857,"size":f"{size},{size}","format":"jpgpng","f":"image"}
+              r=s.get(base+"/exportImage",params=params,timeout=180);r.raise_for_status()
+              if not r.headers.get("content-type","").lower().startswith("image/"):
+                  raise RuntimeError("ImageServer returned non-image payload: "+r.text[:1000])
+              im=Image.open(io.BytesIO(r.content));im.load()
+              if im.width<100 or im.height<100: raise RuntimeError(f"Unexpected image dimensions: {im.size}")
+              path=out/name;path.write_bytes(r.content)
+              return {"file":name,"bytes":len(r.content),"sha256":hashlib.sha256(r.content).hexdigest(),"dimensions_px":list(im.size),"content_type":r.headers.get("content-type"),"bbox_epsg3857":box}
+          full=export(bounds,"naip_2019_iowa_obj001_context.jpg",2500)
+          # A close crop centred on the measured depression, with 100 m margin.
+          close=[target[0]-100,target[1]-100,target[2]+100,target[3]+100]
+          detail=export(close,"naip_2019_obj001_detail.jpg",800)
+          report={
+            "status":"NAIP_2019_CONTEXT_RETRIEVED",
+            "dataset":"USDA NAIP 2019 CONUS",
+            "service":base,
+            "service_name":metadata.get("name"),
+            "service_description":metadata.get("description"),
+            "service_spatial_reference":metadata.get("spatialReference"),
+            "target_source":"FV expanded USGS IA_Eastern_1_2019 LiDAR context extraction",
+            "context_bbox_epsg3857_m":bounds,
+            "obj001_bbox_epsg3857_m":target,
+            "imagery_year":2019,
+            "iowa_acquisition_window":"July–October 2019 (Iowa OrthoServer NAIP 2019 catalogue description)",
+            "exact_pixel_acquisition_date":"Not yet resolved from the returned mosaic service metadata; do not infer it from the year layer.",
+            "images":[full,detail],
+            "limitations":[
+              "This is independent 2D orthophotography, not elevation evidence.",
+              "Leaf-on aerial imagery can obscure ground beneath vegetation.",
+              "A visible linear or tonal feature alone cannot establish landform origin or function.",
+              "Exact acquisition date and source tile attribution remain to be checked before treating this as a date-specific corroboration."
+            ]
+          }
+          (out/"imagery_receipt.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          PY
+          python /tmp/naip_context.py
+      - name: Upload original orthophoto context and retrieval receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-obj001-naip-2019-context
+          path: lidar-naip2019-context/
           if-no-files-found: error
           retention-days: 30
