@@ -326,6 +326,7 @@ jobs:
             lazrs-python
             numpy
             scipy
+            pyproj
             matplotlib
           cache-environment: true
           init-shell: bash
