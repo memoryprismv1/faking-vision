@@ -12,6 +12,158 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_spatial_quality:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-spatial-quality]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact-record deduplicated cloud
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-spatial-quality/input
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-spatial-quality/input
+      - name: Install point-cloud analysis and plotting libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            matplotlib
+            pyproj
+          cache-environment: true
+          init-shell: bash
+      - name: Spatial coverage, vertical distribution and 3D preview
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/spatial_quality.py <<'PY'
+          import hashlib,json,pathlib,time
+          import laspy
+          import numpy as np
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+          from pyproj import CRS
+
+          root=pathlib.Path("lidar-spatial-quality")
+          files=list((root/"input").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(files)!=1: raise RuntimeError(f"Expected exactly one deduplicated LAZ, found {files}")
+          src=files[0]
+          out=root/"output";out.mkdir(parents=True,exist_ok=True)
+          audit=root/"audit";audit.mkdir(parents=True,exist_ok=True)
+          h=hashlib.sha256()
+          with src.open("rb") as f:
+              for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+          source_hash=h.hexdigest()
+
+          # First pass: exact extent, point count, Z distribution, class counts,
+          # and deterministic spatially distributed sample for a 3D preview.
+          sample_parts=[]
+          z_sample=[]
+          class_counts={}
+          n=0
+          xmin=ymin=zmin=float("inf");xmax=ymax=zmax=float("-inf")
+          sample_stride=40
+          with laspy.open(src) as reader:
+              header=reader.header
+              header_count=header.point_count
+              crs=header.parse_crs()
+              if crs is None: raise RuntimeError("Input cloud has no parseable CRS")
+              for pts in reader.chunk_iterator(250_000):
+                  x=pts.x;y=pts.y;z=pts.z
+                  if len(pts):
+                      xmin=min(xmin,float(np.min(x)));xmax=max(xmax,float(np.max(x)))
+                      ymin=min(ymin,float(np.min(y)));ymax=max(ymax,float(np.max(y)))
+                      zmin=min(zmin,float(np.min(z)));zmax=max(zmax,float(np.max(z)))
+                  if len(pts):
+                      local=np.arange(len(pts))
+                      chosen=np.flatnonzero((n+local)%sample_stride==0)
+                      if len(chosen):
+                          sample_parts.append(np.column_stack((x[chosen],y[chosen],z[chosen])))
+                          z_sample.extend(z[chosen].tolist())
+                  cls=np.asarray(pts.classification)
+                  vals,cnts=np.unique(cls,return_counts=True)
+                  for v,k in zip(vals,cnts):class_counts[str(int(v))]=class_counts.get(str(int(v)),0)+int(k)
+                  n+=len(pts)
+          if n!=header_count: raise RuntimeError(f"Read count {n} != header {header_count}")
+          sample=np.concatenate(sample_parts,axis=0)
+          bounds=[xmin,ymin,xmax,ymax]
+          width,height=xmax-xmin,ymax-ymin
+          if width<=0 or height<=0: raise RuntimeError("Degenerate XY extent")
+          # Grid diagnostics. Occupancy is measured from the actual point cloud,
+          # not assumed from the nominal extraction windows.
+          cell=10.0
+          nx=max(1,int(np.ceil(width/cell)));ny=max(1,int(np.ceil(height/cell)))
+          counts,xe,ye=np.histogram2d(sample[:,0],sample[:,1],bins=(nx,ny),range=((xmin,xmax),(ymin,ymax)))
+          # Correct sampled density to full-cloud approximate counts.
+          density=counts*sample_stride
+          zmin_grid=np.full((nx,ny),np.nan);zmax_grid=np.full((nx,ny),np.nan)
+          zsum=np.zeros((nx,ny));zcount=np.zeros((nx,ny),dtype=np.int64)
+          # second pass: exact per-cell min/max/mean and occupancy
+          with laspy.open(src) as reader:
+              for pts in reader.chunk_iterator(250_000):
+                  ix=np.clip(((pts.x-xmin)/width*nx).astype(int),0,nx-1)
+                  iy=np.clip(((pts.y-ymin)/height*ny).astype(int),0,ny-1)
+                  zz=np.asarray(pts.z)
+                  for a,b,v in zip(ix,iy,zz):
+                      if np.isnan(zmin_grid[a,b]) or v<zmin_grid[a,b]:zmin_grid[a,b]=v
+                      if np.isnan(zmax_grid[a,b]) or v>zmax_grid[a,b]:zmax_grid[a,b]=v
+                      zsum[a,b]+=v;zcount[a,b]+=1
+          zmean=np.divide(zsum,zcount,out=np.full_like(zsum,np.nan),where=zcount>0)
+          occupied=int(np.count_nonzero(zcount))
+          total_cells=nx*ny
+          zvals=np.asarray(z_sample)
+          stats={
+            "status":"SPATIAL_QUALITY_ANALYSIS_COMPLETE",
+            "source_file":src.name,"source_sha256":source_hash,"point_count":n,
+            "crs_wkt":crs.to_wkt(),"point_format_id":int(header.point_format.id),
+            "xy_bounds":[xmin,ymin,xmax,ymax],"xy_extent_m":[width,height],
+            "z_bounds_m":[zmin,zmax],
+            "z_percentiles_m":{str(p):float(np.percentile(zvals,p)) for p in [0,1,5,25,50,75,95,99,100]},
+            "classification_counts":class_counts,
+            "grid":{"cell_size_m":cell,"columns":nx,"rows":ny,"total_cells":total_cells,"occupied_cells":occupied,"occupancy_fraction":occupied/total_cells,"point_count_per_occupied_cell":{"min":int(zcount[zcount>0].min()),"median":float(np.median(zcount[zcount>0])),"max":int(zcount.max())}},
+            "sample_for_3d_preview":{"stride":sample_stride,"point_count":int(len(sample))},
+            "interpretation_limits":["Z percentiles use a deterministic spatially distributed point sample; exact Z extrema and per-cell statistics use all points.","Classification codes are reported as stored; no class semantics or ground classification are inferred.","A 10 m grid is a diagnostic summary, not a generated terrain surface or mesh.","No ground filtering, interpolation, smoothing, vertical correction, or synthetic geometry was applied."]
+          }
+          # Density image
+          fig,ax=plt.subplots(figsize=(10,8))
+          im=ax.imshow(np.log10(density.T+1),origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal")
+          ax.set(title="USGS IA Eastern 1 — point density (log10 sampled estimate)",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="log10(estimated points per 10 m cell + 1)")
+          fig.tight_layout();fig.savefig(out/"point_density_10m.png",dpi=180);plt.close(fig)
+          # Mean elevation grid
+          fig,ax=plt.subplots(figsize=(10,8))
+          im=ax.imshow(zmean.T,origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal")
+          ax.set(title="USGS IA Eastern 1 — mean elevation per occupied 10 m cell",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="Mean Z (source units)")
+          fig.tight_layout();fig.savefig(out/"mean_elevation_10m.png",dpi=180);plt.close(fig)
+          # 3D point preview; raw sampled observations, no surface invented.
+          fig=plt.figure(figsize=(12,9));ax=fig.add_subplot(111,projection="3d")
+          sc=ax.scatter(sample[:,0],sample[:,1],sample[:,2],c=sample[:,2],s=0.25,alpha=0.55)
+          ax.set(title="USGS IA Eastern 1 — sampled raw LiDAR points",xlabel="X (m)",ylabel="Y (m)",zlabel="Z (source units)")
+          fig.colorbar(sc,ax=ax,shrink=0.55,label="Z (source units)")
+          fig.tight_layout();fig.savefig(out/"raw_point_cloud_3d.png",dpi=180);plt.close(fig)
+          (audit/"spatial_quality_receipt.json").write_text(json.dumps(stats,indent=2)+"\n")
+          print(json.dumps(stats,indent=2))
+          PY
+          python /tmp/spatial_quality.py
+      - name: Upload spatial quality report and visual previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-spatial-quality
+          path: |
+            lidar-spatial-quality/output/
+            lidar-spatial-quality/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_exact_record_dedup:
     if: ${{ contains(github.event.head_commit.message, '[lidar-exact-dedup]') }}
     runs-on: ubuntu-latest
