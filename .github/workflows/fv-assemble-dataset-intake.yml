@@ -46,6 +46,7 @@ jobs:
           import hashlib, json, pathlib, sqlite3, time
           import laspy
           import numpy as np
+          from pyproj import CRS
 
           root=pathlib.Path("lidar-exact-dedup")
           inputs=root/"input"/"point-clouds"
@@ -126,8 +127,12 @@ jobs:
           with laspy.open(merged) as reader:
               verify_count=reader.header.point_count
               if verify_count!=total_out:raise RuntimeError(f"Output header count {verify_count} != written count {total_out}")
-              verify_format={"point_format_id":int(reader.header.point_format.id),"scales":[float(x) for x in reader.header.scales],"offsets":[float(x) for x in reader.header.offsets],"crs_wkt":crs_text(reader.header)}
-              if verify_format!=baseline:raise RuntimeError("Output header/CRS differs from input baseline")
+              output_crs=reader.header.parse_crs()
+              source_crs=CRS.from_wkt(baseline["crs_wkt"]) if baseline["crs_wkt"] else None
+              crs_ok=(output_crs is not None and source_crs is not None and output_crs.equals(source_crs))
+              verify_format={"point_format_id":int(reader.header.point_format.id),"scales":[float(x) for x in reader.header.scales],"offsets":[float(x) for x in reader.header.offsets],"crs_semantically_equal":crs_ok}
+              if verify_format["point_format_id"]!=baseline["point_format_id"] or verify_format["scales"]!=baseline["scales"] or verify_format["offsets"]!=baseline["offsets"] or not crs_ok:
+                  raise RuntimeError(f"Output header/CRS differs from source baseline: {verify_format}; baseline={baseline}")
           receipt={
             "status":"EXACT_FULL_RECORD_DEDUPLICATION_PASS",
             "dataset":"USGS 3DEP IA_Eastern_1_2019",
