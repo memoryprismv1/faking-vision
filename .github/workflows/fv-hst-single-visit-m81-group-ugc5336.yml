@@ -43,7 +43,6 @@ jobs:
           from astropy.visualization import ZScaleInterval, ImageNormalize, AsinhStretch
           from astropy.wcs import WCS
           from astropy.wcs.utils import proj_plane_pixel_scales
-          from stwcs.wcsutil import headerlet
           from drizzlepac import astrodrizzle
 
           ROOT = pathlib.Path("hst-m81-group-ugc5336-single-visit")
@@ -187,26 +186,37 @@ jobs:
           if len({rec["date_obs"] for rec in records}) != 1:
               raise RuntimeError("The four exact source files do not share one DATE-OBS; refusing single-visit assembly.")
 
-          # The STScI notebook uses the a-priori distortion-corrected WCS headerlet
-          # for this dither association before AstroDrizzle. Select a common matching
-          # headerlet across all four exposures; never guess if none is shared.
-          wcs_lists = [headerlet.get_headerlet_kw_names(str(WORK / n), kw="WCSNAME") for n in EXPECTED]
-          common = set(wcs_lists[0])
-          for names in wcs_lists[1:]:
-              common.intersection_update(names)
-          candidates = sorted(n for n in common if "GSC240" in n.upper() and "FIT_REL" not in n.upper())
-          if not candidates:
-              candidates = sorted(n for n in common if n.upper().startswith("IDC_") and "FIT_REL" not in n.upper())
-          if not candidates:
-              raise RuntimeError("No common a-priori IDC headerlet across all four exposures; refusing to guess WCS.")
-          chosen = candidates[0]
+          # ACS/WFC FLC inputs carry calibrated SCI-extension WCS and distortion
+          # reference metadata. Do not treat WCSNAME cards as embedded HDRLET HDUs:
+          # these files have no restorable headerlet extensions. Validate the native
+          # SCI WCS and IDCTAB reference, then let AstroDrizzle apply the calibrated
+          # distortion model. This preserves the actual input astrometry without
+          # inventing or importing a headerlet.
+          wcs_audit = []
           for name in EXPECTED:
               path = str(WORK / name)
-              names = headerlet.get_headerlet_kw_names(path, kw="WCSNAME")
-              ext = names.index(chosen) + 1
-              headerlet.restore_from_headerlet(
-                  path, hdrext=("HDRLET", ext), archive=False, force=False
-              )
+              with fits.open(path, memmap=True) as hdul:
+                  primary = hdul[0].header
+                  sci_header = hdul[("SCI", 1)].header
+                  idctab = str(primary.get("IDCTAB", "")).strip()
+                  if not idctab or idctab.upper() in ("N/A", "NONE"):
+                      raise RuntimeError(f"{name} has no usable IDCTAB reference; refusing distortion-uncorrected drizzle.")
+                  wcs = WCS(sci_header, hdul, relax=True).celestial
+                  if not wcs.has_celestial:
+                      raise RuntimeError(f"{name} has no celestial SCI WCS.")
+                  center = wcs.all_pix2world([[2047.5, 1023.5]], 0)[0]
+                  if not np.all(np.isfinite(center)):
+                      raise RuntimeError(f"{name} SCI WCS returns non-finite sky coordinates.")
+                  wcs_audit.append({
+                      "filename": name,
+                      "wcsname": sci_header.get("WCSNAME"),
+                      "ctype": list(wcs.wcs.ctype),
+                      "crval_deg": [float(x) for x in wcs.wcs.crval],
+                      "crpix": [float(x) for x in wcs.wcs.crpix],
+                      "center_radec_deg": [float(x) for x in center],
+                      "idctab": idctab,
+                  })
+          print("Native ACS SCI WCS and IDCTAB audit:", json.dumps(wcs_audit, indent=2))
 
           # AstroDrizzle combines the four dithered, overlapping views of this one
           # ACS/WFC field. It is a single-visit field assembly, not a wide-area mosaic.
@@ -337,7 +347,7 @@ jobs:
                   "method": "STScI DrizzlePac AstroDrizzle",
                   "visit_association": "GO-10605 Visit 06",
                   "input_count": len(EXPECTED),
-                  "shared_apriori_headerlet": chosen,
+                  "native_sci_wcs_audit": wcs_audit,
                   "coverage": summary,
                   "source_packet_ids": source_packet_ids
               }
@@ -366,7 +376,7 @@ jobs:
               "mast_query": MAST_QUERY,
               "source_files": records,
               "download_rows": len(manifest),
-              "shared_apriori_headerlet": chosen,
+              "native_sci_wcs_audit": wcs_audit,
               "source_files_are_immutable": True
           })
           write_json(OUT / "assembly_summary.json", {
