@@ -33,6 +33,7 @@ jobs:
         run: |
           python - <<'PY'
           import hashlib,json,pathlib,shutil
+          from datetime import datetime,timezone
           root=pathlib.Path("lidar-fv-packet")
           packet=root/"PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"
           (packet/"snapshot/objs").mkdir(parents=True,exist_ok=True)
@@ -90,7 +91,12 @@ jobs:
           manifest={"packet_id":packet_id,"snapshots":{"assembled_point_cloud":"snapshot/objs/assembled_point_cloud.laz - exact-record-deduplicated source-coordinate point cloud","observed_ground_mean_z":"snapshot/objs/class2_ground_mean_z_2m.png - 2 m cell means from class-2 returns; empty cells remain NoData","observed_ground_within_cell_range":"snapshot/objs/class2_within_cell_z_range_2m.png - within-cell Z range from class-2 returns"}}
           dispute={"packet_id":packet_id,"status":"none","disputes":[],"note":"No registration dispute was detected by this coordinate-preserving assembly. Semantic inventory is not performed and remains unlocked; this is not a rendering-ready packet."}
           receipt={"status":"ASSEMBLY_PACKET_PROTOTYPE_CREATED","packet_id":packet_id,"cloud_sha256":cloud_hash,"cloud_point_count":6386838,"source_window_count":4,"ground_grid_source_sha256":grid["source_sha256"],"ground_class_point_count":grid["ground_point_count"],"ground_grid_occupancy":grid["grid"]["occupancy_fraction"],"checks":["source cloud SHA256 matched the upstream deduplicated artifact receipt","ground-grid receipt references the same cloud SHA256","all packet JSON files parse","point-cloud file copied byte-for-byte","source window checksums and point counts carried forward from extraction receipts"],"limitations":["No semantic object inventory performed; OI remains unlocked.","No ICP or pose estimation; assembly relies on common source coordinates.","Vertical datum unresolved; Z values are retained unchanged.","Ground grid is observed class-2 cell statistics, not a validated DTM or mesh.","No renderer compilation performed."]}
-          files={"MSRM.json":msrm,"OI.json":oi,"TD.json":td,"PC.json":pc,"snapshot/manifest.json":manifest,"dispute.json":dispute,"audit/ASSEMBLY_RECEIPT.json":receipt}
+          packet_provenance={
+            "schema_version":"1.0","packet_id":packet_id,"fv_spec_version":"0.24",
+            "packet_generator":{"agent_id":"ChatGPT","model_provider":"OpenAI","model_name":"GPT-6","model_version":None,"run_id":None,"generated_at":datetime.now(timezone.utc).isoformat(),"identity_source":"agent_declaration"},
+            "media":{"media_id":"assembled_point_cloud.laz","media_type":"other","sha256":cloud_hash,"media_generator":None,"embedded_provenance":[],"attribution":{"publisher":"U.S. Geological Survey","program":"3D Elevation Program (3DEP)","dataset":"IA_Eastern_1_2019","source_url":"https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/ept.json"}}
+          }
+          files={"MSRM.json":msrm,"OI.json":oi,"TD.json":td,"PC.json":pc,"snapshot/manifest.json":manifest,"dispute.json":dispute,"packet_provenance.json":packet_provenance,"audit/ASSEMBLY_RECEIPT.json":receipt}
           for name,obj in files.items():
               p=packet/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(obj,indent=2)+"\n")
           readme="""# USGS IA Eastern 1 — FV Assemble packet prototype
@@ -109,7 +115,7 @@ jobs:
           """
           (packet/"README.md").write_text(readme)
           # Structural and cross-file consistency checks.
-          for name in ["MSRM.json","OI.json","TD.json","PC.json","dispute.json","snapshot/manifest.json","audit/ASSEMBLY_RECEIPT.json"]:
+          for name in ["MSRM.json","OI.json","TD.json","PC.json","dispute.json","packet_provenance.json","snapshot/manifest.json","audit/ASSEMBLY_RECEIPT.json"]:
               json.loads((packet/name).read_text())
           assert msrm["scenes"][0]["spatial_representation"]["sha256"]==oi["source_provenance"]["assembled_point_cloud"]["sha256"]
           assert td["timeline"] and len(td["timeline"])==4
