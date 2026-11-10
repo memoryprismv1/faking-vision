@@ -36,6 +36,7 @@ jobs:
             laspy
             lazrs-python
             numpy
+            pyproj
           cache-environment: true
           init-shell: bash
       - name: Exact full-record deduplication with conservation audit
