@@ -103,7 +103,7 @@ jobs:
                 ]
               })
           oi["inventory_status"]="PARTIAL_SOURCE_GROUNDED_MORPHOLOGY_PROMOTION"
-          oi["inventory_scope"]="Partial terrain-form inventory only. Two elongated topographic depressions are promoted from direct class-2 return geometry and cross-sectional evidence. This is not a complete semantic inventory of the landscape."
+          oi["inventory_scope"]="Partial terrain-form inventory only. One elongated topographic depression is promoted from direct class-2 return geometry and cross-sectional evidence. This is not a complete semantic inventory of the landscape."
           oi["entities"]=entities
           oi["unresolved_candidates"]=[x for x in candidates["candidates"] if x["candidate_id"] not in promoted_ids]
           oi["promotion_record"]={
