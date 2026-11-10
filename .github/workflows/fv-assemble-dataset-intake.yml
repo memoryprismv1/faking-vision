@@ -25,6 +25,7 @@ jobs:
           create-args: >-
             -c conda-forge
             pdal
+            requests
           cache-environment: true
           init-shell: bash
       - name: Extract four overlapping spatial windows from IA Eastern 1 EPT
@@ -97,7 +98,11 @@ jobs:
               if count is None:
                   # retain the complete PDAL summary for manual verification
                   count = "not-exposed-in-summary"
-              digest = hashlib.sha256(target.read_bytes()).hexdigest()
+              hasher = hashlib.sha256()
+              with target.open("rb") as source_file:
+                  for chunk in iter(lambda: source_file.read(1024 * 1024), b""):
+                      hasher.update(chunk)
+              digest = hasher.hexdigest()
               rec = {
                   "id": name, "file": str(target), "bytes": target.stat().st_size,
                   "sha256": digest, "point_count": count,
