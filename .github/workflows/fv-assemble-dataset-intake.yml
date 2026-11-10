@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - name: Install packet provenance schema validator
+        run: python -m pip install jsonschema
       - name: Download immutable assembled cloud and ground-grid evidence
         env:
           GH_TOKEN: ${{ github.token }}
@@ -34,6 +36,7 @@ jobs:
           python - <<'PY'
           import hashlib,json,pathlib,shutil
           from datetime import datetime,timezone
+          import jsonschema
           root=pathlib.Path("lidar-fv-packet")
           packet=root/"PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"
           (packet/"snapshot/objs").mkdir(parents=True,exist_ok=True)
@@ -117,6 +120,8 @@ jobs:
           # Structural and cross-file consistency checks.
           for name in ["MSRM.json","OI.json","TD.json","PC.json","dispute.json","packet_provenance.json","snapshot/manifest.json","audit/ASSEMBLY_RECEIPT.json"]:
               json.loads((packet/name).read_text())
+          provenance_schema=json.loads(pathlib.Path("SPECIFICATION/FV_Packet_Provenance_Schema.json").read_text())
+          jsonschema.validate(instance=packet_provenance,schema=provenance_schema)
           assert msrm["scenes"][0]["spatial_representation"]["sha256"]==oi["source_provenance"]["assembled_point_cloud"]["sha256"]
           assert td["timeline"] and len(td["timeline"])==4
           assert oi["inventory_lock"] is False and oi["entities"]==[]
