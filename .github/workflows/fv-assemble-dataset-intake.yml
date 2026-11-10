@@ -12,6 +12,151 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_semantic_promotion:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-semantic-promotion]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install packet schema validator
+        run: python -m pip install jsonschema
+      - name: Download immutable assembly packet and investigation evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-semantic-promotion/input/packet lidar-semantic-promotion/input/candidates lidar-semantic-promotion/input/investigation
+          gh run download 42823545930 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-assemble-packet-prototype \
+            --dir lidar-semantic-promotion/input/packet
+          gh run download 42824718019 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-terrain-candidates \
+            --dir lidar-semantic-promotion/input/candidates
+          gh run download 42825142778 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-candidate-investigation \
+            --dir lidar-semantic-promotion/input/investigation
+      - name: Promote only directly supported terrain morphology into OI
+        run: |
+          python - <<'PY'
+          import json,pathlib,shutil,hashlib
+          import jsonschema
+          root=pathlib.Path("lidar-semantic-promotion")
+          packet_dirs=list((root/"input/packet").glob("PKT-USGS-IA-EASTERN-1-ASSEMBLE-001"))
+          candidate_reports=list((root/"input/candidates").rglob("terrain_candidates.json"))
+          investigation_reports=list((root/"input/investigation").rglob("candidate_investigation.json"))
+          if len(packet_dirs)!=1 or len(candidate_reports)!=1 or len(investigation_reports)!=1:
+              raise SystemExit("Expected exactly one source packet, candidate report and candidate investigation report")
+          packet=packet_dirs[0]
+          candidates=json.loads(candidate_reports[0].read_text())
+          investigation=json.loads(investigation_reports[0].read_text())
+          oi=json.loads((packet/"OI.json").read_text())
+          msrm=json.loads((packet/"MSRM.json").read_text())
+          manifest=json.loads((packet/"snapshot/manifest.json").read_text())
+          provenance=json.loads((packet/"packet_provenance.json").read_text())
+          if candidates["source"]["sha256"]!=provenance["media"]["sha256"]:raise SystemExit("Candidate analysis source hash mismatch")
+          if investigation["source"]["sha256"]!=provenance["media"]["sha256"]:raise SystemExit("Investigation source hash mismatch")
+          # Two candidates have cross-axis profiles with a supported trough form.
+          # This promotes only the observable morphology, never its origin or function.
+          promoted_ids=["CAND-NEGATIVE_RELIEF-002","CAND-NEGATIVE_RELIEF-004"]
+          inv={x["candidate_id"]:x for x in investigation["results"]}
+          byid={x["candidate_id"]:x for x in candidates["candidates"]}
+          entities=[]
+          for cid in promoted_ids:
+              cand=byid[cid];detail=inv[cid];e=cand["observed_evidence"]
+              cross=detail["profiles"]["minor"]
+              z=[x["median_z_m"] for x in cross]
+              if len(z)<10:raise SystemExit(f"Insufficient profile bins for {cid}")
+              mid=len(z)//2
+              if min(z[mid-5:mid+6])>min(z[:mid]) or min(z[mid-5:mid+6])>min(z[mid+1:]):
+                  raise SystemExit(f"Cross-profile trough test failed for {cid}")
+              x0,y0,x1,y1=e["bounds_epsg3857_m"]
+              entity_id="PKT-USGS-IA-EASTERN-1-ASSEMBLE-001-OBJ-"+("001" if cid.endswith("002") else "002")
+              entities.append({
+                "canonical_id":entity_id,
+                "packet_scoped_id":entity_id,
+                "category":"terrain_form",
+                "label":"elongated topographic depression",
+                "properties":{
+                  "morphology":"Observed elongated depression with a concave cross-axis ground-return profile",
+                  "approximate_bbox_extent_m":[round(x1-x0,2),round(y1-y0,2)],
+                  "observed_thresholded_cell_area_m2":e["observed_cell_area_m2"],
+                  "local_topographic_position_median_m":e["tpi_median_m"],
+                  "cross_axis_observed_median_z_range_m":[min(z),max(z)],
+                  "cross_axis_profile_bin_count":len(z),
+                  "cross_axis_profile_resolution_m":2.0,
+                  "source_return_class_used":2,
+                  "source_point_cloud_sha256":provenance["media"]["sha256"],
+                  "evidence_level":"L1 direct source coordinates + L2 cross-sectional spatial relationship",
+                  "candidate_lineage":cid,
+                  "supporting_evidence_file":f"snapshot/objs/{cid}_profiles.png"
+                },
+                "components":[],
+                "uncertainty":[
+                  "Natural landform versus anthropogenic excavation is unresolved.",
+                  "Drainage, watercourse, road, ditch or other functional identity is not established.",
+                  "Extent and continuity beyond the 950 m source crop are unknown.",
+                  "Vertical reference remains as supplied by source metadata; no datum correction is asserted."
+                ]
+              })
+          oi["inventory_status"]="PARTIAL_SOURCE_GROUNDED_MORPHOLOGY_PROMOTION"
+          oi["inventory_scope"]="Partial terrain-form inventory only. Two elongated topographic depressions are promoted from direct class-2 return geometry and cross-sectional evidence. This is not a complete semantic inventory of the landscape."
+          oi["entities"]=entities
+          oi["unresolved_candidates"]=[x for x in candidates["candidates"] if x["candidate_id"] not in promoted_ids]
+          oi["promotion_record"]={
+            "promoted_candidate_ids":promoted_ids,
+            "promotion_basis":"Observed concave cross-axis median-Z profiles in the raw class-2 return points, with local-relief candidate support.",
+            "promotion_boundary":"Only the morphological class 'elongated topographic depression' is committed. Natural/artificial origin and function remain unresolved.",
+            "unresolved_candidate_count":len(oi["unresolved_candidates"])
+          }
+          oi["inventory_lock"]=False
+          scene=msrm["scenes"][0]
+          scene["terrain_forms"]=[
+            {"entity_id":e["packet_scoped_id"],"candidate_lineage":e["properties"]["candidate_lineage"],"bounds_epsg3857_m":byid[e["properties"]["candidate_lineage"]]["observed_evidence"]["bounds_epsg3857_m"],"centroid_epsg3857_m":byid[e["properties"]["candidate_lineage"]]["observed_evidence"]["centroid_epsg3857_m"],"orientation_axis_degrees":inv[e["properties"]["candidate_lineage"]]["principal_axis_angle_degrees"]}
+            for e in entities
+          ]
+          # Preserve supporting analysis and images inside the derived packet.
+          for name in ["terrain_candidates.json","candidate_investigation.json"]:
+              src=candidate_reports[0] if name=="terrain_candidates.json" else investigation_reports[0]
+              dest=packet/"audit"/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src,dest)
+          for cid in promoted_ids:
+              src=list((root/"input/investigation").rglob(f"{cid}_profiles.png"))
+              if len(src)!=1:raise SystemExit(f"Missing profile evidence for {cid}")
+              shutil.copy2(src[0],packet/"snapshot/objs"/src[0].name)
+          src_map=list((root/"input/candidates").rglob("local_relief_candidate_regions.png"))
+          if len(src_map)!=1:raise SystemExit("Missing candidate map")
+          shutil.copy2(src_map[0],packet/"snapshot/objs/local_relief_candidate_regions.png")
+          manifest["snapshots"]["terrain_candidate_map"]="snapshot/objs/local_relief_candidate_regions.png"
+          manifest["snapshots"]["promoted_terrain_forms"]=[f"snapshot/objs/{cid}_profiles.png" for cid in promoted_ids]
+          manifest["audit_evidence"]=["audit/terrain_candidates.json","audit/candidate_investigation.json"]
+          receipt={
+            "status":"PARTIAL_MORPHOLOGY_PROMOTION_COMPLETE",
+            "packet_id":oi["packet_id"],
+            "source_point_cloud_sha256":provenance["media"]["sha256"],
+            "promoted_entities":[{"entity_id":e["packet_scoped_id"],"label":e["label"],"candidate_lineage":e["properties"]["candidate_lineage"],"evidence_level":e["properties"]["evidence_level"],"uncertainty":e["uncertainty"]} for e in entities],
+            "unresolved_candidate_count":len(oi["unresolved_candidates"]),
+            "inventory_lock":False,
+            "checks":["candidate and investigation reports reference exact packet source SHA256","two selected cross-axis profiles pass trough-shape test","promoted claims restricted to observable morphology","source cloud unchanged","all packet JSON parses","packet provenance passes repository schema"],
+            "limitations":["No watercourse or drainage function promoted.","No natural/artificial origin promoted.","No building, road, ditch, embankment or land-use class promoted.","Inventory remains partial and unlocked."]
+          }
+          (packet/"audit/SEMANTIC_PROMOTION_RECEIPT.json").write_text(json.dumps(receipt,indent=2)+"\n")
+          for name,obj in [("OI.json",oi),("MSRM.json",msrm),("snapshot/manifest.json",manifest)]:
+              (packet/name).write_text(json.dumps(obj,indent=2)+"\n")
+          schema=json.loads(pathlib.Path("SPECIFICATION/FV_Packet_Provenance_Schema.json").read_text())
+          jsonschema.validate(instance=provenance,schema=schema)
+          for p in packet.rglob("*.json"):json.loads(p.read_text())
+          assert len(oi["entities"])==2 and len(oi["unresolved_candidates"])==len(candidates["candidates"])-2
+          assert oi["inventory_lock"] is False
+          cloud=packet/"snapshot/objs/assembled_point_cloud.laz"
+          h=hashlib.sha256(cloud.read_bytes()).hexdigest()
+          assert h==provenance["media"]["sha256"]
+          print(json.dumps({"status":receipt["status"],"promoted":receipt["promoted_entities"],"unresolved_candidate_count":receipt["unresolved_candidate_count"],"inventory_lock":False,"cloud_sha256":h},indent=2))
+          PY
+      - name: Upload derived FV packet with partial morphology inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-semantic-promotion-packet
+          path: lidar-semantic-promotion/input/packet/PKT-USGS-IA-EASTERN-1-ASSEMBLE-001/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_candidate_investigation:
     if: ${{ contains(github.event.head_commit.message, '[lidar-candidate-investigation]') }}
     runs-on: ubuntu-latest
