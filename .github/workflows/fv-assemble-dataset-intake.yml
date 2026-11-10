@@ -1435,7 +1435,7 @@ jobs:
               ua,ia=np.unique(ka,return_index=True)
               ub,ib=np.unique(kb,return_index=True)
               common,ia_u,ib_u=np.intersect1d(ua,ub,assume_unique=True,return_indices=True)
-              # Attribute comparison is limited to shared dimensions with stable names.
+              # Audit every adjacent 50 m overlap independently: exact stored XYZ sets first, then stable LAS attributes on shared XYZ. A spatial match alone does not authorize dropping records with differing attributes.
               attrs={}
               for name in ["intensity","classification","return_number","number_of_returns","gps_time","user_data","point_source_id"]:
                   va,vb=dim(la,name),dim(lb,name)
