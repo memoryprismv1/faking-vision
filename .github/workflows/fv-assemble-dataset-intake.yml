@@ -56,7 +56,7 @@ jobs:
           if investigation["source"]["sha256"]!=provenance["media"]["sha256"]:raise SystemExit("Investigation source hash mismatch")
           # Two candidates have cross-axis profiles with a supported trough form.
           # This promotes only the observable morphology, never its origin or function.
-          promoted_ids=["CAND-NEGATIVE_RELIEF-002","CAND-NEGATIVE_RELIEF-004"]
+          promoted_ids=["CAND-NEGATIVE_RELIEF-002"]
           inv={x["candidate_id"]:x for x in investigation["results"]}
           byid={x["candidate_id"]:x for x in candidates["candidates"]}
           entities=[]
@@ -74,7 +74,7 @@ jobs:
               if left_flank<trough_z+1.0 or right_flank<trough_z+1.0:
                   raise SystemExit(f"Cross-profile trough lacks 1 m relief on both flanks for {cid}: left={left_flank}, trough={trough_z}, right={right_flank}")
               x0,y0,x1,y1=e["bounds_epsg3857_m"]
-              entity_id="PKT-USGS-IA-EASTERN-1-ASSEMBLE-001-OBJ-"+("001" if cid.endswith("002") else "002")
+              entity_id="PKT-USGS-IA-EASTERN-1-ASSEMBLE-001-OBJ-"+"001"
               entities.append({
                 "canonical_id":entity_id,
                 "packet_scoped_id":entity_id,
@@ -139,7 +139,7 @@ jobs:
             "promoted_entities":[{"entity_id":e["packet_scoped_id"],"label":e["label"],"candidate_lineage":e["properties"]["candidate_lineage"],"evidence_level":e["properties"]["evidence_level"],"uncertainty":e["uncertainty"]} for e in entities],
             "unresolved_candidate_count":len(oi["unresolved_candidates"]),
             "inventory_lock":False,
-            "checks":["candidate and investigation reports reference exact packet source SHA256","two selected cross-axis profiles pass trough-shape test","promoted claims restricted to observable morphology","source cloud unchanged","all packet JSON parses","packet provenance passes repository schema"],
+            "checks":["candidate and investigation reports reference exact packet source SHA256","selected cross-axis profile passes the observed-flank trough test","promoted claims restricted to observable morphology","source cloud unchanged","all packet JSON parses","packet provenance passes repository schema"],
             "limitations":["No watercourse or drainage function promoted.","No natural/artificial origin promoted.","No building, road, ditch, embankment or land-use class promoted.","Inventory remains partial and unlocked."]
           }
           (packet/"audit/SEMANTIC_PROMOTION_RECEIPT.json").write_text(json.dumps(receipt,indent=2)+"\n")
@@ -148,7 +148,7 @@ jobs:
           schema=json.loads(pathlib.Path("SPECIFICATION/FV_Packet_Provenance_Schema.json").read_text())
           jsonschema.validate(instance=provenance,schema=schema)
           for p in packet.rglob("*.json"):json.loads(p.read_text())
-          assert len(oi["entities"])==2 and len(oi["unresolved_candidates"])==len(candidates["candidates"])-2
+          assert len(oi["entities"])==len(promoted_ids) and len(oi["unresolved_candidates"])==len(candidates["candidates"])-len(promoted_ids)
           assert oi["inventory_lock"] is False
           cloud=packet/"snapshot/objs/assembled_point_cloud.laz"
           h=hashlib.sha256(cloud.read_bytes()).hexdigest()
