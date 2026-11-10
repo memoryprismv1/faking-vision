@@ -159,7 +159,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fv-usgs-ia-eastern-1-semantic-promotion-packet
-          path: lidar-semantic-promotion/input/packet/PKT-USGS-IA-EASTERN-1-ASSEMBLE-001/
+          path: lidar-semantic-promotion/input/packet/
           if-no-files-found: error
           retention-days: 30
   lidar_ept_candidate_investigation:
