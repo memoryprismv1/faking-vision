@@ -4,14 +4,83 @@ on:
   push:
     branches:
       - work/hubble-ngc104-fv
+      - experiment/hst-single-visit-ngc3370
     paths:
       - ".github/workflows/fv-assemble-dataset-intake.yml"
 
 permissions:
   contents: read
 
+  lidar_ept_discovery:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-discovery]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Inspect USGS IA Eastern 1 EPT metadata and root hierarchy
+        run: |
+          python -m pip install --upgrade pip requests
+          mkdir -p lidar-ept-discovery
+          cat > /tmp/ept_discovery.py <<'PY'
+          import json, pathlib, requests
+          base = "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/"
+          headers = {"User-Agent": "FV-USGS-3DEP-EPT-discovery/1.0"}
+          def get_json(url):
+              r = requests.get(url, headers=headers, timeout=(20, 90))
+              r.raise_for_status()
+              return r.json()
+          ept_url = base + "ept.json"
+          ept = get_json(ept_url)
+          hierarchy_url = base + "ept-hierarchy/0-0-0-0.json"
+          hierarchy = get_json(hierarchy_url)
+          if not isinstance(hierarchy, dict) or not hierarchy:
+              raise RuntimeError("EPT root hierarchy is empty or malformed")
+          root_count = hierarchy.get("0-0-0-0")
+          if root_count is None:
+              raise RuntimeError("EPT root hierarchy lacks node 0-0-0-0")
+          report = {
+              "dataset": "IA_Eastern_1_2019",
+              "source": ept_url,
+              "hierarchy_source": hierarchy_url,
+              "ept": ept,
+              "root_hierarchy": hierarchy,
+              "root_point_count": root_count,
+              "hierarchy_entry_count": len(hierarchy),
+              "note": "Metadata discovery only; no point payloads downloaded."
+          }
+          pathlib.Path("lidar-ept-discovery/ept_inventory.json").write_text(json.dumps(report, indent=2) + "\n")
+          summary = {
+              "dataset": report["dataset"],
+              "bounds": ept.get("bounds"),
+              "boundsConforming": ept.get("boundsConforming"),
+              "boundsType": ept.get("boundsType"),
+              "schema": ept.get("schema"),
+              "srs": ept.get("srs"),
+              "points": ept.get("points"),
+              "span": ept.get("span"),
+              "dataType": ept.get("dataType"),
+              "hierarchyType": ept.get("hierarchyType"),
+              "root_point_count": root_count,
+              "hierarchy_entry_count": len(hierarchy),
+          }
+          pathlib.Path("lidar-ept-discovery/SUMMARY.json").write_text(json.dumps(summary, indent=2) + "\n")
+          print(json.dumps(summary, indent=2))
+          PY
+          python /tmp/ept_discovery.py
+      - name: Upload EPT discovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-ept-discovery
+          path: lidar-ept-discovery/
+          if-no-files-found: warn
+          retention-days: 30
 jobs:
   intake:
+    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
