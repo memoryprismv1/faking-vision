@@ -12,6 +12,116 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_ground_surface:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-ground-surface]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable deduplicated point cloud
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-ground-surface/input
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-ground-surface/input
+      - name: Install ground-surface analysis libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            matplotlib
+            pyproj
+          cache-environment: true
+          init-shell: bash
+      - name: Build observed-ground-only grid without interpolating gaps
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/ground_surface.py <<'PY'
+          import hashlib,json,pathlib
+          import laspy,numpy as np,matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          root=pathlib.Path("lidar-ground-surface")
+          files=list((root/"input").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(files)!=1:raise RuntimeError(f"Expected one deduplicated cloud, got {files}")
+          src=files[0];out=root/"output";out.mkdir(parents=True,exist_ok=True)
+          audit=root/"audit";audit.mkdir(parents=True,exist_ok=True)
+          h=hashlib.sha256()
+          with src.open("rb") as f:
+              for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+          source_hash=h.hexdigest()
+          # Exact XY bounds from header; use only LAS class 2 records, retaining
+          # the complete source cloud as the immutable input.
+          with laspy.open(src) as r:
+              hdr=r.header;crs=hdr.parse_crs()
+              if crs is None:raise RuntimeError("Missing CRS")
+              xmin,ymin=map(float,hdr.mins[:2]);xmax,ymax=map(float,hdr.maxs[:2])
+          cell=2.0
+          nx=int(np.ceil((xmax-xmin)/cell));ny=int(np.ceil((ymax-ymin)/cell))
+          size=nx*ny
+          counts=np.zeros(size,dtype=np.int64);sums=np.zeros(size,dtype=np.float64)
+          zmins=np.full(size,np.inf);zmaxs=np.full(size,-np.inf)
+          class_counts={};ground_n=0;all_n=0
+          with laspy.open(src) as r:
+              for pts in r.chunk_iterator(250_000):
+                  cls=np.asarray(pts.classification)
+                  vals,cnts=np.unique(cls,return_counts=True)
+                  for v,k in zip(vals,cnts):class_counts[str(int(v))]=class_counts.get(str(int(v)),0)+int(k)
+                  all_n+=len(pts)
+                  mask=cls==2
+                  if not np.any(mask):continue
+                  x=np.asarray(pts.x)[mask];y=np.asarray(pts.y)[mask];z=np.asarray(pts.z)[mask]
+                  ix=np.clip(((x-xmin)/cell).astype(np.int64),0,nx-1)
+                  iy=np.clip(((y-ymin)/cell).astype(np.int64),0,ny-1)
+                  idx=ix*ny+iy
+                  counts+=np.bincount(idx,minlength=size)
+                  sums+=np.bincount(idx,weights=z,minlength=size)
+                  np.minimum.at(zmins,idx,z);np.maximum.at(zmaxs,idx,z)
+                  ground_n+=len(z)
+          if all_n!=hdr.point_count:raise RuntimeError("Full point count changed during read")
+          mean=np.divide(sums,counts,out=np.full(size,np.nan),where=counts>0)
+          relief=np.where(counts>0,zmaxs-zmins,np.nan)
+          occupied=int(np.count_nonzero(counts));grid=mean.reshape(nx,ny)
+          fig,ax=plt.subplots(figsize=(10,8))
+          im=ax.imshow(grid.T,origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal")
+          ax.set(title="Observed class-2 points — 2 m cell mean Z (no interpolation)",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="Mean Z (source units)")
+          fig.tight_layout();fig.savefig(out/"class2_ground_mean_z_2m.png",dpi=180);plt.close(fig)
+          fig,ax=plt.subplots(figsize=(10,8))
+          im=ax.imshow(relief.reshape(nx,ny).T,origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal")
+          ax.set(title="Within-cell Z range of class-2 returns (2 m cells)",xlabel="X (EPSG:3857 metres)",ylabel="Y (EPSG:3857 metres)")
+          fig.colorbar(im,ax=ax,label="Max Z - min Z (source units)")
+          fig.tight_layout();fig.savefig(out/"class2_within_cell_z_range_2m.png",dpi=180);plt.close(fig)
+          report={
+            "status":"OBSERVED_GROUND_GRID_COMPLETE",
+            "source_file":src.name,"source_sha256":source_hash,
+            "input_point_count":all_n,"class_counts":class_counts,
+            "ground_class_code_used":2,"ground_point_count":ground_n,
+            "crs_wkt":crs.to_wkt(),"xy_bounds":[xmin,ymin,xmax,ymax],
+            "grid":{"cell_size_m":cell,"columns":nx,"rows":ny,"total_cells":size,"occupied_ground_cells":occupied,"occupancy_fraction":occupied/size,"empty_cells_left_as_nodata":size-occupied},
+            "outputs":["class2_ground_mean_z_2m.png","class2_within_cell_z_range_2m.png"],
+            "limitations":["Only records explicitly classified as LAS class 2 were used; all other classes remain in the source cloud.","The grid stores observed per-cell means only. Empty cells are NoData; no interpolation or mesh generation was performed.","This is a terrain-evidence diagnostic, not a validated bare-earth DTM."]
+          }
+          (audit/"ground_surface_receipt.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          PY
+          python /tmp/ground_surface.py
+      - name: Upload observed ground grid and receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-observed-ground-grid
+          path: |
+            lidar-ground-surface/output/
+            lidar-ground-surface/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_vertical_extremes:
     if: ${{ contains(github.event.head_commit.message, '[lidar-vertical-extremes]') }}
     runs-on: ubuntu-latest
