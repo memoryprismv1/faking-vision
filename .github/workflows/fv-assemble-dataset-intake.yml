@@ -12,6 +12,116 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_extract:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-extract]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDAL from conda-forge
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pdal
+          create-args: >-
+            -c conda-forge
+            pdal
+          cache-environment: true
+          init-shell: bash
+      - name: Extract four overlapping spatial windows from IA Eastern 1 EPT
+        shell: bash -el {0}
+        run: |
+          mkdir -p lidar-ept-extract/source-metadata lidar-ept-extract/point-clouds lidar-ept-extract/receipts
+          cat > /tmp/extract.py <<'PY'
+          import hashlib, json, math, pathlib, subprocess, requests
+          from datetime import datetime, timezone
+
+          BASE = "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/"
+          EPT_URL = BASE + "ept.json"
+          headers = {"User-Agent": "FV-USGS-3DEP-EPT-extract/1.0"}
+          response = requests.get(EPT_URL, headers=headers, timeout=(20, 90))
+          response.raise_for_status()
+          ept = response.json()
+          bounds = ept.get("boundsConforming") or ept["bounds"]
+          minx, miny, minz, maxx, maxy, maxz = map(float, bounds)
+          cx, cy = (minx + maxx) / 2, (miny + maxy) / 2
+
+          # Four 500 m square windows on a 450 m step: 10% overlap.
+          width, step = 500.0, 450.0
+          x0, y0 = cx - step / 2, cy - step / 2
+          windows = [
+              ("NW", x0, y0 + step, x0 + width, y0 + step + width),
+              ("NE", x0 + step, y0 + step, x0 + step + width, y0 + step + width),
+              ("SW", x0, y0, x0 + width, y0 + width),
+              ("SE", x0 + step, y0, x0 + step + width, y0 + width),
+          ]
+          out = pathlib.Path("lidar-ept-extract")
+          (out / "source-metadata" / "ept.json").write_text(json.dumps(ept, indent=2) + "\n")
+          (out / "source-metadata" / "query.json").write_text(json.dumps({
+              "source": EPT_URL,
+              "dataset": "IA_Eastern_1_2019",
+              "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
+              "ept_bounds_conforming": bounds,
+              "srs": ept.get("srs"),
+              "windows": [{"id": n, "bounds_xy": [a,b,c,d], "crs": "EPSG:3857"} for n,a,b,c,d in windows],
+              "window_width_m": width,
+              "step_m": step,
+              "overlap_m": width-step,
+              "note": "Four overlapping extracts streamed from public EPT; not original source LAZ tiles."
+          }, indent=2) + "\n")
+
+          receipts = []
+          for name, xmin, ymin, xmax, ymax in windows:
+              target = out / "point-clouds" / f"ia_eastern_1_{name.lower()}.laz"
+              pipeline = {
+                  "pipeline": [
+                      {"type": "readers.ept", "filename": EPT_URL,
+                       "bounds": f"([{xmin:.3f}, {xmax:.3f}], [{ymin:.3f}, {ymax:.3f}])",
+                       "requests": 8},
+                      {"type": "writers.las", "filename": str(target),
+                       "compression": True, "minor_version": 4, "dataformat_id": 6}
+                  ]
+              }
+              pfile = out / "receipts" / f"{name.lower()}_pipeline.json"
+              pfile.write_text(json.dumps(pipeline, indent=2) + "\n")
+              run = subprocess.run(["pdal", "pipeline", str(pfile)], text=True, capture_output=True)
+              if run.returncode:
+                  raise RuntimeError(f"PDAL extraction {name} failed: {run.stderr[-6000:]}")
+              if not target.exists() or target.stat().st_size == 0:
+                  raise RuntimeError(f"PDAL produced no LAZ output for {name}")
+              info = subprocess.run(["pdal", "info", str(target), "--summary"], text=True, capture_output=True)
+              if info.returncode:
+                  raise RuntimeError(f"PDAL info failed for {name}: {info.stderr[-4000:]}")
+              summary = json.loads(info.stdout)
+              md = summary.get("summary", summary)
+              count = md.get("num_points") or md.get("count")
+              if count is None:
+                  # retain the complete PDAL summary for manual verification
+                  count = "not-exposed-in-summary"
+              digest = hashlib.sha256(target.read_bytes()).hexdigest()
+              rec = {
+                  "id": name, "file": str(target), "bytes": target.stat().st_size,
+                  "sha256": digest, "point_count": count,
+                  "bounds_xy_epsg3857": [xmin, ymin, xmax, ymax],
+                  "pdal_summary": summary,
+              }
+              (out / "receipts" / f"{name.lower()}_receipt.json").write_text(json.dumps(rec, indent=2) + "\n")
+              receipts.append(rec)
+              print(json.dumps({k: rec[k] for k in ("id","bytes","sha256","point_count","bounds_xy_epsg3857")}, indent=2))
+
+          if len(receipts) != 4 or any(r["point_count"] == 0 for r in receipts):
+              raise RuntimeError("Expected four non-empty LAZ extracts.")
+          (out / "receipts" / "all_receipts.json").write_text(json.dumps(receipts, indent=2) + "\n")
+          print("Four overlapping point-cloud extracts completed; source EPT remains unchanged.")
+          PY
+          pdal --version
+          python /tmp/extract.py
+      - name: Upload four point-cloud extracts and provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-overlapping-laz-extracts
+          path: lidar-ept-extract/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_discovery:
     if: ${{ contains(github.event.head_commit.message, '[lidar-discovery]') }}
     runs-on: ubuntu-latest
@@ -80,7 +190,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
   intake:
-    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
