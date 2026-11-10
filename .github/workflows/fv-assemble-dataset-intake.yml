@@ -307,6 +307,134 @@ jobs:
             lidar-candidate-investigation/audit/
           if-no-files-found: error
           retention-days: 30
+  lidar_ept_obj001_context:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-obj001-context]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDAL and analysis libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            pdal
+            python
+            requests
+            laspy
+            lazrs-python
+            numpy
+            scipy
+            matplotlib
+          cache-environment: true
+          init-shell: bash
+      - name: Extract expanded EPT context around OBJ-001
+        shell: bash -el {0}
+        run: |
+          mkdir -p lidar-obj001-context/input lidar-obj001-context/output lidar-obj001-context/audit
+          cat > /tmp/obj001_context.py <<'PY'
+          import hashlib,json,pathlib,subprocess,requests
+          import laspy,numpy as np
+          from scipy.ndimage import median_filter,distance_transform_edt,label
+          import matplotlib
+          matplotlib.use("Agg")
+          import matplotlib.pyplot as plt
+          root=pathlib.Path("lidar-obj001-context")
+          ept="https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_Eastern_1_2019/ept.json"
+          meta=requests.get(ept,timeout=(20,90));meta.raise_for_status();e=meta.json()
+          # 1.5 km square centred on OBJ-001; retain source EPT coordinates.
+          cx,cy=-10180481.854368933,5068201.111650486
+          half=750.0;x0,y0,x1,y1=cx-half,cy-half,cx+half,cy+half
+          b=e.get("boundsConforming") or e["bounds"]
+          ex0,ey0,_,ex1,ey1,_=map(float,b)
+          bounds=[max(x0,ex0),max(y0,ey0),min(x1,ex1),min(y1,ey1)]
+          if bounds[2]<=bounds[0] or bounds[3]<=bounds[1]:raise RuntimeError("Target context does not intersect EPT bounds")
+          query={"source_ept":ept,"dataset":"IA_Eastern_1_2019","source_srs":e.get("srs"),
+            "target_center_epsg3857_m":[cx,cy],"requested_extent_m":[1500,1500],
+            "actual_bounds_epsg3857_m":bounds,
+            "note":"Fresh expanded EPT extraction; original extracts and packets are unchanged."}
+          (root/"audit"/"context_query.json").write_text(json.dumps(query,indent=2)+"\n")
+          target=root/"input"/"obj001_context.laz"
+          pipeline={"pipeline":[
+            {"type":"readers.ept","filename":ept,
+             "bounds":f"([{bounds[0]:.3f}, {bounds[2]:.3f}], [{bounds[1]:.3f}, {bounds[3]:.3f}])","requests":8},
+            {"type":"writers.las","filename":str(target),"compression":True,"minor_version":4,"dataformat_id":6}
+          ]}
+          pf=root/"audit"/"ept_context_pipeline.json";pf.write_text(json.dumps(pipeline,indent=2)+"\n")
+          run=subprocess.run(["pdal","pipeline",str(pf)],text=True,capture_output=True)
+          if run.returncode:raise RuntimeError(f"Expanded EPT extraction failed: {run.stderr[-6000:]}")
+          if not target.exists() or target.stat().st_size==0:raise RuntimeError("Expanded EPT extraction empty")
+          h=hashlib.sha256()
+          with target.open("rb") as f:
+            for q in iter(lambda:f.read(1024*1024),b""):h.update(q)
+          digest=h.hexdigest()
+          with laspy.open(target) as r:
+            hdr=r.header;crs=hdr.parse_crs()
+            if crs is None:raise RuntimeError("Expanded EPT output missing CRS")
+            n=int(hdr.point_count);xmin,ymin=map(float,hdr.mins[:2]);xmax,ymax=map(float,hdr.maxs[:2])
+          cell=2.0;nx=int(np.ceil((xmax-xmin)/cell));ny=int(np.ceil((ymax-ymin)/cell));size=nx*ny
+          counts=np.zeros(size,dtype=np.int32);sums=np.zeros(size,dtype=np.float64)
+          classes={};read_n=ground_n=0
+          with laspy.open(target) as r:
+            for pts in r.chunk_iterator(250_000):
+              read_n+=len(pts);cls=np.asarray(pts.classification)
+              vals,cnts=np.unique(cls,return_counts=True)
+              for v,k in zip(vals,cnts):classes[str(int(v))]=classes.get(str(int(v)),0)+int(k)
+              m=cls==2
+              if not np.any(m):continue
+              x=np.asarray(pts.x)[m];y=np.asarray(pts.y)[m];z=np.asarray(pts.z)[m]
+              ix=np.clip(((x-xmin)/cell).astype(np.int64),0,nx-1);iy=np.clip(((y-ymin)/cell).astype(np.int64),0,ny-1)
+              idx=ix*ny+iy
+              counts+=np.bincount(idx,minlength=size).astype(np.int32)
+              sums+=np.bincount(idx,weights=z,minlength=size)
+              ground_n+=len(z)
+          if read_n!=n:raise RuntimeError("Expanded cloud point-count mismatch")
+          mean=np.divide(sums,counts,out=np.full(size,np.nan),where=counts>0).reshape(nx,ny)
+          valid=np.isfinite(mean)
+          nearest=distance_transform_edt(~valid,return_distances=False,return_indices=True)
+          tpi=mean-median_filter(mean[tuple(nearest)],size=11,mode="nearest")
+          lab,num=label(valid&(tpi<=-1.0),structure=np.ones((3,3),dtype=np.uint8))
+          candidates=[]
+          tx0,ty0,tx1,ty1=-10180539.5,5068112.0,-10180449.5,5068274.0
+          for k in range(1,num+1):
+            ii,jj=np.where(lab==k)
+            if len(ii)*cell*cell<32:continue
+            bx=[float(xmin+ii.min()*cell),float(ymin+jj.min()*cell),float(xmin+(ii.max()+1)*cell),float(ymin+(jj.max()+1)*cell)]
+            cx2=float(xmin+(ii.mean()+.5)*cell);cy2=float(ymin+(jj.mean()+.5)*cell)
+            overlap_x=max(0,min(bx[2],tx1)-max(bx[0],tx0));overlap_y=max(0,min(bx[3],ty1)-max(bx[1],ty0))
+            candidates.append({"area_m2":float(len(ii)*cell*cell),"bounds_epsg3857_m":bx,
+              "centroid_epsg3857_m":[cx2,cy2],"median_tpi_m":float(np.median(tpi[ii,jj])),
+              "overlap_area_with_original_bbox_m2":float(overlap_x*overlap_y),
+              "distance_from_original_centroid_m":float(np.hypot(cx2-cx,cy2-cy))})
+          candidates.sort(key=lambda z:(z["overlap_area_with_original_bbox_m2"],z["area_m2"]),reverse=True)
+          fig,ax=plt.subplots(figsize=(12,10))
+          im=ax.imshow(np.ma.masked_invalid(tpi.T),origin="lower",extent=[xmin,xmax,ymin,ymax],aspect="equal",cmap="RdBu_r",vmin=-5,vmax=5)
+          ax.add_patch(plt.Rectangle((tx0,ty0),tx1-tx0,ty1-ty0,fill=False,edgecolor="black",linewidth=2))
+          ax.set(title="Expanded 1.5 km EPT context — observed class-2 local relief (2 m / 22 m reference)",xlabel="X EPSG:3857 (m)",ylabel="Y EPSG:3857 (m)")
+          fig.colorbar(im,ax=ax,label="Local elevation residual (m)")
+          fig.tight_layout();fig.savefig(root/"output"/"obj001_expanded_context_tpi.png",dpi=180);plt.close(fig)
+          report={"status":"OBJ001_EXPANDED_CONTEXT_ANALYSIS_COMPLETE","source_ept":ept,
+            "source_dataset":"IA_Eastern_1_2019","source_cloud_sha256":digest,"point_count":n,
+            "class2_point_count":ground_n,"class_counts":classes,"actual_bounds_epsg3857_m":bounds,
+            "grid":{"cell_size_m":cell,"local_median_window_cells":11,"local_median_window_m":22,
+              "observed_cells":int(valid.sum()),"negative_relief_components_over_32m2":len(candidates)},
+            "components_near_OBJ001":candidates[:15],
+            "interpretation_limits":["Only stored class 2 returns used for terrain relief; class semantics not independently validated.",
+              "Local reference uses nearest fill only to calculate median; candidate mask is restricted to observed cells.",
+              "No hydrological or anthropogenic function inferred.","Original source crop and semantic packet were not modified."]}
+          (root/"output"/"obj001_expanded_context.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          PY
+          pdal --version
+          python /tmp/obj001_context.py
+      - name: Upload expanded-context evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-obj001-expanded-context
+          path: lidar-obj001-context/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_scale_stability:
     if: ${{ contains(github.event.head_commit.message, '[lidar-scale-stability]') }}
     runs-on: ubuntu-latest
