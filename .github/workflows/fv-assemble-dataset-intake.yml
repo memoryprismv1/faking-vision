@@ -2361,6 +2361,16 @@ jobs:
           target=[-10180539.85,5068111.12,-10180449.85,5068273.12]
           s=requests.Session();s.headers["User-Agent"]="FakingVision-LiDAR-independent-imagery-audit/1.0"
           info=s.get(base,params={"f":"pjson"},timeout=90);info.raise_for_status();metadata=info.json()
+          catalog_params={
+            "geometry":json.dumps({"x":-10180482.413106795,"y":5068200.770485437,"spatialReference":{"wkid":3857}}),
+            "geometryType":"esriGeometryPoint","inSR":3857,"spatialRel":"esriSpatialRelIntersects",
+            "outFields":"*","returnGeometry":"false","returnIdsOnly":"false","f":"json"
+          }
+          catalog_response=s.get(base+"/query",params=catalog_params,timeout=90)
+          catalog_response.raise_for_status()
+          catalog=catalog_response.json()
+          if "error" in catalog: raise RuntimeError("NAIP raster catalog query failed: "+json.dumps(catalog["error"]))
+          catalog_features=catalog.get("features",[])
           if not str(metadata.get("name","")).endswith("NAIP2019_CONUS"): raise RuntimeError("Unexpected imagery service: "+str(metadata.get("name")))
           def export(box,name,size):
               params={"bbox":",".join(map(str,box)),"bboxSR":3857,"imageSR":3857,"size":f"{size},{size}","format":"jpgpng","f":"image"}
@@ -2382,6 +2392,7 @@ jobs:
             "service_name":metadata.get("name"),
             "service_description":metadata.get("description"),
             "service_spatial_reference":metadata.get("spatialReference"),
+            "raster_catalog_query":{"query_point_epsg3857":[-10180482.413106795,5068200.770485437],"feature_count":len(catalog_features),"features":catalog_features},
             "target_source":"FV expanded USGS IA_Eastern_1_2019 LiDAR context extraction",
             "context_bbox_epsg3857_m":bounds,
             "obj001_bbox_epsg3857_m":target,
