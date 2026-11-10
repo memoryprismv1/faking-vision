@@ -2361,7 +2361,7 @@ jobs:
           target=[-10180539.85,5068111.12,-10180449.85,5068273.12]
           s=requests.Session();s.headers["User-Agent"]="FakingVision-LiDAR-independent-imagery-audit/1.0"
           info=s.get(base,params={"f":"pjson"},timeout=90);info.raise_for_status();metadata=info.json()
-          if metadata.get("name")!="NAIP2019_CONUS": raise RuntimeError("Unexpected imagery service: "+str(metadata.get("name")))
+          if not str(metadata.get("name","")).endswith("NAIP2019_CONUS"): raise RuntimeError("Unexpected imagery service: "+str(metadata.get("name")))
           def export(box,name,size):
               params={"bbox":",".join(map(str,box)),"bboxSR":3857,"imageSR":3857,"size":f"{size},{size}","format":"jpgpng","f":"image"}
               r=s.get(base+"/exportImage",params=params,timeout=180);r.raise_for_status()
