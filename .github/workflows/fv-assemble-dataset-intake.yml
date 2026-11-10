@@ -2069,7 +2069,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
   intake:
-    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') && !contains(github.event.head_commit.message, '[lidar-naip2019-context]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[lidar-discovery]') && !contains(github.event.head_commit.message, '[lidar-extract]') && !contains(github.event.head_commit.message, '[lidar-naip2019-context]') && !contains(github.event.head_commit.message, '[lidar-naip-timeseries]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -2416,5 +2416,60 @@ jobs:
         with:
           name: fv-usgs-ia-eastern-1-obj001-naip-2019-context
           path: lidar-naip2019-context/
+          if-no-files-found: error
+          retention-days: 30
+
+  lidar_naip_timeseries:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-naip-timeseries]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve earlier and later NAIP imagery and exact flight-date polygons
+        run: |
+          python -m pip install requests pillow
+          mkdir -p lidar-naip-timeseries
+          cat > /tmp/naip_series.py <<'PY'
+          import json,pathlib,hashlib,io
+          import requests
+          from PIL import Image
+          out=pathlib.Path("lidar-naip-timeseries")
+          s=requests.Session();s.headers["User-Agent"]="FakingVision-LiDAR-temporal-context-audit/1.0"
+          bounds=[-10181231.854368933,5067451.111650486,-10179731.854368933,5068951.111650486]
+          target=[-10180539.85,5068111.12,-10180449.85,5068273.12]
+          point={"x":-10180482.413106795,"y":5068200.770485437,"spatialReference":{"wkid":3857}}
+          results=[]
+          for year in (2017,2021):
+              image_base=f"https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP{year}_CONUS/ImageServer"
+              date_base=f"https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP{year}_CONUS_AcquisitionDates/MapServer"
+              imeta=s.get(image_base,params={"f":"pjson"},timeout=90);imeta.raise_for_status();imeta=imeta.json()
+              if f"NAIP{year}_CONUS" not in imeta.get("name",""): raise RuntimeError("Unexpected image service "+str(imeta.get("name")))
+              dmeta=s.get(date_base,params={"f":"pjson"},timeout=90);dmeta.raise_for_status();dmeta=dmeta.json()
+              layers=dmeta.get("layers",[])
+              ia=[x for x in layers if x.get("name","").upper() in ("IA","IOWA")]
+              if len(ia)!=1: raise RuntimeError(f"Expected one Iowa date layer for {year}; found {ia}")
+              qparams={"geometry":json.dumps(point),"geometryType":"esriGeometryPoint","inSR":3857,"spatialRel":"esriSpatialRelIntersects","outFields":"*","returnGeometry":"false","f":"json"}
+              q=s.get(f"{date_base}/{ia[0]['id']}/query",params=qparams,timeout=90);q.raise_for_status();date_data=q.json()
+              if "error" in date_data: raise RuntimeError(json.dumps(date_data["error"]))
+              features=date_data.get("features",[])
+              if not features: raise RuntimeError(f"No {year} acquisition-date polygon intersects OBJ-001 centroid")
+              # Preserve all intersecting date polygons; overlapping flight strips may have multiple records.
+              ep=[bounds[0]-0,bounds[1]-0,bounds[2]+0,bounds[3]+0]
+              params={"bbox":",".join(map(str,ep)),"bboxSR":3857,"imageSR":3857,"size":"2500,2500","format":"jpgpng","f":"image"}
+              resp=s.get(image_base+"/exportImage",params=params,timeout=180);resp.raise_for_status()
+              if not resp.headers.get("content-type","").lower().startswith("image/"): raise RuntimeError(resp.text[:1000])
+              img=Image.open(io.BytesIO(resp.content));img.load()
+              name=f"naip_{year}_iowa_obj001_context.jpg";(out/name).write_bytes(resp.content)
+              results.append({"year":year,"image_service":image_base,"image_service_name":imeta.get("name"),"image_description":imeta.get("description"),"pixel_size_x":imeta.get("pixelSizeX"),"pixel_size_y":imeta.get("pixelSizeY"),"date_service":date_base,"iowa_layer":ia[0],"acquisition_date_features":features,"image":{"file":name,"dimensions_px":list(img.size),"bytes":len(resp.content),"sha256":hashlib.sha256(resp.content).hexdigest(),"bbox_epsg3857":bounds}})
+          report={"status":"NAIP_TEMPORAL_CONTEXT_RETRIEVED","target_centroid_epsg3857":point,"target_bbox_epsg3857":target,"context_bbox_epsg3857":bounds,"years":results,"limitations":["The date polygons intersecting the centroid identify capture dates for the indexed exposures; they do not guarantee every pixel in a mosaic export comes from only one exposure where overlaps exist.","Orthophotography cannot reveal bare-earth morphology beneath dense canopy.","Differences between years can reflect seasonal conditions, crop rotation, illumination, and acquisition geometry as well as real land-cover change."]}
+          (out/"temporal_imagery_receipt.json").write_text(json.dumps(report,indent=2)+"\n")
+          print(json.dumps(report,indent=2))
+          PY
+          python /tmp/naip_series.py
+      - name: Upload temporal imagery and exact acquisition-date evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-obj001-naip-temporal-context
+          path: lidar-naip-timeseries/
           if-no-files-found: error
           retention-days: 30
