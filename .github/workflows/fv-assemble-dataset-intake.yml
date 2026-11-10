@@ -12,6 +12,150 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_exact_record_dedup:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-exact-dedup]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable source extracts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-exact-dedup/input
+          gh run download 42806517173 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-overlapping-laz-extracts \
+            --dir lidar-exact-dedup/input
+      - name: Install point-cloud processing libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+          cache-environment: true
+          init-shell: bash
+      - name: Exact full-record deduplication with conservation audit
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/exact_dedup.py <<'PY'
+          import hashlib, json, pathlib, sqlite3, time
+          import laspy
+          import numpy as np
+
+          root=pathlib.Path("lidar-exact-dedup")
+          inputs=root/"input"/"point-clouds"
+          output=root/"output";audit=root/"audit"
+          output.mkdir(parents=True,exist_ok=True);audit.mkdir(parents=True,exist_ok=True)
+          names=["nw","ne","sw","se"]
+          files=[inputs/f"ia_eastern_1_{n}.laz" for n in names]
+          if not all(p.is_file() and p.stat().st_size for p in files):
+              raise RuntimeError("One or more immutable source LAZ files are missing/empty")
+
+          def sha256(p):
+              h=hashlib.sha256()
+              with p.open("rb") as f:
+                  for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+              return h.hexdigest()
+
+          headers=[laspy.open(p).header for p in files]
+          first=headers[0]
+          def crs_text(h):
+              c=h.parse_crs()
+              return c.to_wkt() if c else None
+          baseline={
+            "point_format_id":int(first.point_format.id),
+            "point_record_length":int(first.point_format.size),
+            "scales":[float(x) for x in first.scales],
+            "offsets":[float(x) for x in first.offsets],
+            "crs_wkt":crs_text(first)
+          }
+          for p,h in zip(files[1:],headers[1:]):
+              candidate={
+                "point_format_id":int(h.point_format.id),
+                "point_record_length":int(h.point_format.size),
+                "scales":[float(x) for x in h.scales],
+                "offsets":[float(x) for x in h.offsets],
+                "crs_wkt":crs_text(h)
+              }
+              if candidate!=baseline:
+                  raise RuntimeError(f"Header/CRS mismatch in {p.name}: {candidate} != {baseline}")
+
+          dbpath=audit/"exact_record_index.sqlite"
+          if dbpath.exists():dbpath.unlink()
+          db=sqlite3.connect(dbpath)
+          db.execute("PRAGMA journal_mode=WAL")
+          db.execute("PRAGMA synchronous=NORMAL")
+          db.execute("PRAGMA temp_store=FILE")
+          db.execute("CREATE TABLE seen (record BLOB PRIMARY KEY, first_source TEXT NOT NULL) WITHOUT ROWID")
+          merged=output/"ia_eastern_1_four_window_exact_record_deduplicated.laz"
+          per_source=[]
+          total_in=total_out=total_dupes=0
+          started=time.time()
+          with laspy.open(merged,mode="w",header=first) as writer:
+              for source,p in zip(names,files):
+                  source_in=source_out=0
+                  with laspy.open(p) as reader:
+                      for points in reader.chunk_iterator(100_000):
+                          arr=np.ascontiguousarray(points.array)
+                          keep=[]
+                          records=arr.tobytes()
+                          width=arr.dtype.itemsize
+                          for i in range(len(arr)):
+                              raw=records[i*width:(i+1)*width]
+                              cur=db.execute("INSERT OR IGNORE INTO seen(record,first_source) VALUES (?,?)",(sqlite3.Binary(raw),source))
+                              if cur.rowcount==1:keep.append(i)
+                          if keep:
+                              writer.write_points(points[np.asarray(keep,dtype=np.int64)])
+                          n=len(arr);k=len(keep)
+                          source_in+=n;source_out+=k
+                  source_dupes=source_in-source_out
+                  total_in+=source_in;total_out+=source_out;total_dupes+=source_dupes
+                  per_source.append({"source":source,"input_records":source_in,"written_unique_records":source_out,"exact_full_record_duplicates_suppressed":source_dupes})
+                  db.commit()
+                  print(json.dumps(per_source[-1]))
+          db.close()
+          if total_in!=7114393:
+              raise RuntimeError(f"Input count mismatch: {total_in}")
+          if total_in-total_dupes!=total_out:
+              raise RuntimeError("Record conservation arithmetic failed")
+          with laspy.open(merged) as reader:
+              verify_count=reader.header.point_count
+              if verify_count!=total_out:raise RuntimeError(f"Output header count {verify_count} != written count {total_out}")
+              verify_format={"point_format_id":int(reader.header.point_format.id),"scales":[float(x) for x in reader.header.scales],"offsets":[float(x) for x in reader.header.offsets],"crs_wkt":crs_text(reader.header)}
+              if verify_format!=baseline:raise RuntimeError("Output header/CRS differs from input baseline")
+          receipt={
+            "status":"EXACT_FULL_RECORD_DEDUPLICATION_PASS",
+            "dataset":"USGS 3DEP IA_Eastern_1_2019",
+            "deduplication_key":"byte-for-byte complete LAS point record (all stored dimensions)",
+            "header_and_crs_consistent":True,
+            "header":baseline,
+            "sources":per_source,
+            "input_record_count":total_in,
+            "output_record_count":total_out,
+            "exact_full_record_duplicates_suppressed":total_dupes,
+            "record_conservation":total_in==total_out+total_dupes,
+            "output":{"file":str(merged),"bytes":merged.stat().st_size,"sha256":sha256(merged),"point_count":verify_count},
+            "source_hashes":[{"file":p.name,"sha256":sha256(p)} for p in files],
+            "elapsed_seconds":round(time.time()-started,2),
+            "limitations":["Deduplication is exact full-record equality only; XYZ-only matches with any differing point-record byte are retained.","This is a bounded four-window test, not a claim about the entire USGS EPT collection."]
+          }
+          (audit/"exact_record_dedup_receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
+          print(json.dumps(receipt,indent=2))
+          PY
+          python /tmp/exact_dedup.py
+      - name: Upload deduplicated point cloud and audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-exact-record-deduplicated
+          path: |
+            lidar-exact-dedup/output/
+            lidar-exact-dedup/audit/exact_record_dedup_receipt.json
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_record_identity:
     if: ${{ contains(github.event.head_commit.message, '[lidar-record-identity]') }}
     runs-on: ubuntu-latest
