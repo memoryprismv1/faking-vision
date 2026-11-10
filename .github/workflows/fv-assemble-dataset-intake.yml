@@ -307,6 +307,135 @@ jobs:
             lidar-candidate-investigation/audit/
           if-no-files-found: error
           retention-days: 30
+  lidar_ept_scale_stability:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-scale-stability]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download immutable deduplicated point cloud
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-scale-stability/input
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-scale-stability/input
+      - name: Install point-cloud and scale-analysis libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            scipy
+          cache-environment: true
+          init-shell: bash
+      - name: Recompute OBJ-001 local relief at 1 m, 2 m and 4 m
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/scale_stability.py <<'PY'
+          import hashlib,json,pathlib
+          import laspy,numpy as np
+          from scipy.ndimage import median_filter,distance_transform_edt,label
+          root=pathlib.Path("lidar-scale-stability")
+          files=list((root/"input").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(files)!=1: raise RuntimeError(f"Expected one immutable cloud, got {files}")
+          src=files[0]
+          h=hashlib.sha256()
+          with src.open("rb") as f:
+              for b in iter(lambda:f.read(1024*1024),b""):h.update(b)
+          source_hash=h.hexdigest()
+          expected="2991d84b6f87566eb587963a70c76d4f293365a327f6fd41935e2ba1dbc85249"
+          if source_hash!=expected: raise RuntimeError(f"Source checksum mismatch: {source_hash}")
+          with laspy.open(src) as r:
+              hdr=r.header
+              if hdr.parse_crs() is None: raise RuntimeError("Missing source CRS")
+              xmin,ymin=map(float,hdr.mins[:2]);xmax,ymax=map(float,hdr.maxs[:2])
+              point_count=int(hdr.point_count)
+          # Fixed original 2 m candidate bounds; no re-selection at each scale.
+          target=(-10180539.5,5068112.0,-10180449.5,5068274.0)
+          results=[]
+          for cell in (1.0,2.0,4.0):
+              nx=int(np.ceil((xmax-xmin)/cell));ny=int(np.ceil((ymax-ymin)/cell));size=nx*ny
+              counts=np.zeros(size,dtype=np.int32);sums=np.zeros(size,dtype=np.float64)
+              read_n=ground_n=0
+              with laspy.open(src) as r:
+                  for pts in r.chunk_iterator(250_000):
+                      read_n+=len(pts)
+                      mask=np.asarray(pts.classification)==2
+                      if not np.any(mask):continue
+                      x=np.asarray(pts.x)[mask];y=np.asarray(pts.y)[mask];z=np.asarray(pts.z)[mask]
+                      ix=np.clip(((x-xmin)/cell).astype(np.int64),0,nx-1)
+                      iy=np.clip(((y-ymin)/cell).astype(np.int64),0,ny-1)
+                      idx=ix*ny+iy
+                      counts+=np.bincount(idx,minlength=size).astype(np.int32)
+                      sums+=np.bincount(idx,weights=z,minlength=size)
+                      ground_n+=len(z)
+              if read_n!=point_count:raise RuntimeError(f"Read {read_n}, expected {point_count}")
+              count_grid=counts.reshape(nx,ny)
+              mean=np.divide(sums,counts,out=np.full(size,np.nan),where=counts>0).reshape(nx,ny)
+              valid=np.isfinite(mean)
+              nearest=distance_transform_edt(~valid,return_distances=False,return_indices=True)
+              filled=mean[tuple(nearest)]
+              win=max(3,int(round(22.0/cell)))
+              if win%2==0:win+=1
+              local=median_filter(filled,size=win,mode="nearest")
+              tpi=mean-local
+              mask=valid&(tpi<=-1.0)
+              labs,nlab=label(mask,structure=np.ones((3,3),dtype=np.uint8))
+              tx0,ty0,tx1,ty1=target
+              target_cells=max(1,int(np.ceil((tx1-tx0)/cell))*int(np.ceil((ty1-ty0)/cell)))
+              candidates=[]
+              for k in range(1,nlab+1):
+                  ii,jj=np.where(labs==k)
+                  if len(ii)*cell*cell<32.0:continue
+                  x0=float(xmin+ii.min()*cell);x1=float(xmin+(ii.max()+1)*cell)
+                  y0=float(ymin+jj.min()*cell);y1=float(ymin+(jj.max()+1)*cell)
+                  ix0=max(0,int(np.floor((tx0-xmin)/cell)));ix1=min(nx,int(np.ceil((tx1-xmin)/cell)))
+                  iy0=max(0,int(np.floor((ty0-ymin)/cell)));iy1=min(ny,int(np.ceil((ty1-ymin)/cell)))
+                  overlap=int(np.count_nonzero(labs[ix0:ix1,iy0:iy1]==k))
+                  if overlap==0:continue
+                  cx=float(xmin+(ii.mean()+0.5)*cell);cy=float(ymin+(jj.mean()+0.5)*cell)
+                  candidates.append({
+                    "component_cells":int(len(ii)),"component_area_m2":float(len(ii)*cell*cell),
+                    "component_bounds_epsg3857_m":[x0,y0,x1,y1],
+                    "component_centroid_epsg3857_m":[cx,cy],
+                    "median_tpi_m":float(np.median(tpi[ii,jj])),
+                    "min_tpi_m":float(np.min(tpi[ii,jj])),
+                    "overlap_cells_with_fixed_original_bbox":overlap,
+                    "bbox_overlap_fraction_of_original_bbox_cells":float(overlap/target_cells)
+                  })
+              candidates.sort(key=lambda q:(q["overlap_cells_with_fixed_original_bbox"],q["component_area_m2"]),reverse=True)
+              results.append({
+                "cell_size_m":cell,"local_median_window_cells":win,"local_median_window_approx_m":win*cell,
+                "class2_point_count":ground_n,"observed_cells":int(valid.sum()),
+                "negative_relief_components_over_32m2":len(candidates),
+                "best_overlapping_components":candidates[:5],
+                "limits":["Class 2 is used as stored; semantics are not independently validated.",
+                  "Nearest-neighbour fill is used only for the local median reference; candidates remain restricted to observed cells.",
+                  "Fixed original bbox is used for cross-scale comparison; this is not a new semantic classification."]
+              })
+              print(json.dumps(results[-1],indent=2))
+          result={"status":"OBJ001_SCALE_STABILITY_ANALYSIS_COMPLETE","source_sha256":source_hash,
+            "source_point_count":point_count,"target_candidate_bbox_epsg3857_m":list(target),
+            "threshold_negative_tpi_m":-1.0,"minimum_component_area_m2":32.0,
+            "scales":results,
+            "interpretation":"Scale stability is assessed by persistence and overlap of observed negative-relief components against the fixed original candidate bbox; no semantic identity is inferred."}
+          out=root/"output";out.mkdir(parents=True,exist_ok=True)
+          (out/"obj001_scale_stability.json").write_text(json.dumps(result,indent=2)+"\n")
+          PY
+          python /tmp/scale_stability.py
+      - name: Upload scale-stability report
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-obj001-scale-stability
+          path: lidar-scale-stability/output/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_semantic_candidates:
     if: ${{ contains(github.event.head_commit.message, '[lidar-semantic-candidates]') }}
     runs-on: ubuntu-latest
