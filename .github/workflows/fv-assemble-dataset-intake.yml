@@ -12,6 +12,92 @@ permissions:
   contents: read
 
 jobs:
+  lidar_ept_vertical_extremes:
+    if: ${{ contains(github.event.head_commit.message, '[lidar-vertical-extremes]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact-record deduplicated cloud
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p lidar-vertical-extremes/input
+          gh run download 42820788907 --repo "$GITHUB_REPOSITORY" \
+            --name fv-usgs-ia-eastern-1-exact-record-deduplicated \
+            --dir lidar-vertical-extremes/input
+      - name: Install point-record inspection libraries
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: lidar
+          create-args: >-
+            -c conda-forge
+            python
+            laspy
+            lazrs-python
+            numpy
+            pyproj
+          cache-environment: true
+          init-shell: bash
+      - name: Inspect exact vertical extremes and classifications
+        shell: bash -el {0}
+        run: |
+          cat > /tmp/vertical_extremes.py <<'PY'
+          import heapq,json,pathlib
+          import laspy
+          import numpy as np
+          root=pathlib.Path("lidar-vertical-extremes")
+          files=list((root/"input").rglob("ia_eastern_1_four_window_exact_record_deduplicated.laz"))
+          if len(files)!=1:raise RuntimeError(f"Expected one cloud, got {files}")
+          src=files[0]
+          low=[];high=[];class_counts={};n=0
+          def record(p,i):
+              return {"x":float(p.x[i]),"y":float(p.y[i]),"z":float(p.z[i]),"classification":int(p.classification[i]),"intensity":int(p.intensity[i]),"gps_time":float(p.gps_time[i]),"point_source_id":int(p.point_source_id[i]),"return_number":int(p.return_number[i]),"number_of_returns":int(p.number_of_returns[i])}
+          with laspy.open(src) as reader:
+              hdr=reader.header
+              crs=hdr.parse_crs()
+              for pts in reader.chunk_iterator(250_000):
+                  z=np.asarray(pts.z)
+                  cls=np.asarray(pts.classification)
+                  vals,cnts=np.unique(cls,return_counts=True)
+                  for v,k in zip(vals,cnts):class_counts[str(int(v))]=class_counts.get(str(int(v)),0)+int(k)
+                  # Keep exact extrema and a bounded list of highest/lowest records.
+                  for i in np.argsort(z)[:min(100,len(z))]:
+                      low.append((float(z[i]),record(pts,i)))
+                  for i in np.argsort(z)[-min(100,len(z)):]:
+                      high.append((float(z[i]),record(pts,i)))
+                  low=heapq.nsmallest(100,low,key=lambda x:x[0])
+                  high=heapq.nlargest(100,high,key=lambda x:x[0])
+                  n+=len(pts)
+          low_records=[x[1] for x in low];high_records=[x[1] for x in sorted(high,key=lambda x:x[0],reverse=True)]
+          zlo=np.array([x["z"] for x in low_records]);zhi=np.array([x["z"] for x in high_records])
+          result={
+            "status":"VERTICAL_EXTREMES_AUDIT_COMPLETE",
+            "point_count":n,
+            "crs_wkt":crs.to_wkt() if crs else None,
+            "las_point_format":int(hdr.point_format.id),
+            "z_scale":float(hdr.scales[2]),
+            "exact_lowest_100":low_records,
+            "exact_highest_100":high_records,
+            "classification_counts":class_counts,
+            "extreme_classification_summary":{
+              "lowest_100":{k:sum(1 for x in low_records if str(x["classification"])==k) for k in class_counts},
+              "highest_100":{k:sum(1 for x in high_records if str(x["classification"])==k) for k in class_counts}
+            },
+            "warning":"Z extremes are exact stored coordinates. Their physical interpretation depends on source vertical reference metadata; no outlier is removed or reclassified."
+          }
+          out=root/"audit";out.mkdir(parents=True,exist_ok=True)
+          (out/"vertical_extremes_receipt.json").write_text(json.dumps(result,indent=2)+"\n")
+          print(json.dumps({"status":result["status"],"point_count":n,"lowest_10":low_records[:10],"highest_20":high_records[:20],"classification_counts":class_counts,"z_scale":result["z_scale"],"crs_wkt":result["crs_wkt"]},indent=2))
+          PY
+          python /tmp/vertical_extremes.py
+      - name: Upload vertical extremes audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: fv-usgs-ia-eastern-1-vertical-extremes
+          path: lidar-vertical-extremes/audit/
+          if-no-files-found: error
+          retention-days: 30
   lidar_ept_spatial_quality:
     if: ${{ contains(github.event.head_commit.message, '[lidar-spatial-quality]') }}
     runs-on: ubuntu-latest
