@@ -66,14 +66,27 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 
 ## Existing support implementation (not a CLI claim)
 
+**Offline audit/provenance utilities**
 - `TOOLS/fv_audit_batch.py`
 - `TOOLS/test_fv_audit_batch.py`
+- `TOOLS/test_fv_packet_provenance_schema.py`
 - `TOOLS/requirements.txt`
 - `SPECIFICATION/FV_Audit_Report_Schema.json`
 - `SPECIFICATION/FV_Audit_Batch_Report_Schema.json`
 - `.github/workflows/fv-audit-batch.yml`
 
-The workflow file currently runs on pushes to `feature/fv-audit-batch`, relevant pull requests, and manual dispatch. The latest `main` commit inspected (6d47e1f) returned no associated pull-request-triggered workflow runs through the available commit-run lookup. That lookup does not enumerate every workflow trigger. This is not evidence that the tests pass or fail; execution status remains unverified.
+**Browser editing prototypes and tests**
+- `PACKETS/tools/FV_Edit_Visual_Workbench.html` and its README/smoke test.
+- `PACKETS/tools/FV_Media_Object_Editor_MVP.html` and its README.
+- `tests/browser/viewpoint-editor.spec.js`
+- `tests/browser/environment-workbench.spec.js`
+- `tests/browser/media-object-editor.spec.js`
+- `playwright.config.js` and `package.json`
+- `.github/workflows/fv-environment-workbench-browser.yml`
+
+The browser editors are bounded prototypes. The Visual Workbench is schematic-only and its local checks are not the authoritative FV validator. The Media Object Editor uses manual masks and planar image approximation; it is not a full 3D renderer or semantic packet validator. The browser suite tests these bounded behaviors, not agent-level FV commands.
+
+The audit/provenance workflow runs on pushes to `feature/fv-audit-batch`, relevant pull requests, and manual dispatch. The browser workflow runs on relevant pull requests and manual dispatch. The latest `main` commit inspected (6d47e1f) returned no associated pull-request-triggered workflow runs through the available commit-run lookup. That lookup does not enumerate every workflow trigger. This is not evidence that tests pass or fail; execution status remains unverified.
 
 ## Branch review notes
 
