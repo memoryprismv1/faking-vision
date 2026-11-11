@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Made the actual failure target explicit in the active skill and how-to guide: coherent but wrong scene models, not just object misclassification, with corresponding evidence and uncertainty safeguards.
 - Added the unassigned consolidated-release-label clarification to the authoritative rebuild rule itself, not just the agent skill and operator guides.
 - Added `fv rebuild` and `fv edit` to the canonical operation model and included optional rebuild/upgrade in the specification's normal downstream path.
 - Traced the v0.25 edit-interface forms to merged PR #1 and aligned them across the authoritative operation model, active skill, and command reference. Recorded which v0.25 proposal details are superseded or MVP-specific; the standalone v0.25 history section remains a deliberate review item.
