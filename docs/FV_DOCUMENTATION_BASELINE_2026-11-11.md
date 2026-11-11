@@ -271,3 +271,13 @@ The first examples pass was followed by cross-file consistency checks on the env
 - Corrected the KITTI landscape visualization README, which listed two files no longer present in the folder.
 
 These remain targeted structural/documentation checks. The Wall Cat cross-state vegetation question, inventory completeness and visual correctness in CCTV Part 3 (its seven missing MSRM references have since been restored), KITTI global-building inventory gap, Mayan global-merge uncategorized count, source provenance gaps, and all claims requiring unavailable raw media remain unresolved. No authoritative FV semantic validator, exhaustive visual audit, or test/CI run was performed.
+
+
+## Follow-up: final example cross-reference and asset-inventory pass
+
+- CCTV Part 3: restored the seven OI candidates OBJ-013 through OBJ-019 to the appropriate MSRM scenes using only their recorded OI time ranges and spatial summaries. A fresh cross-reference check now finds all 19 OI IDs represented in MSRM, with no unknown IDs. Updated the packet README, family README, examples index and structural review report. Two active investigations remain; merge gate remains blocked.
+- Mayan assembly: removed the west-facing staircase from the observed component list because the record itself labelled it an expected component and no retained source evidence established it as present. It remains an unverified expected-component candidate. Corrected the visualization README and packet README: the workflow image previously listed is absent; the visualizations folder contains only its README.
+- Cat Jump: corrected the former post-resolution validation report. It had claimed snapshot directories existed, but the repository tree and manifest show that no snapshots were retained. The corrected report records PARTIAL status, notes that no TIR.json is present, and preserves the narrower fact that the human accepted metadata-only compilation for this experiment. The examples index now reflects that correction.
+- Five still-image packets: checked OI/MSRM entity references; all five inventories match their spatial records (15, 14, 16, 14 and 10 IDs respectively). This remains a structural check, not pixel-level re-analysis.
+
+No source-dependent uncertainty was silently resolved. No authoritative FV semantic validator, exhaustive visual audit, or test/CI run was performed.
