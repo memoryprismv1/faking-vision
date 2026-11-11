@@ -13,6 +13,8 @@ Examples are organized by reconstruction target or source family:
 
 ## Before using an example
 
+See the [examples index and evidence-status audit](examples/README.md) for a directory-by-directory guide to what each example demonstrates and what evidence is actually present.
+
 Examples have different evidence and verification levels. A folder's presence does not prove that source media were acquired, the described processing was executed, or the result was independently verified. Read the example README, provenance notes, manifests, disputes, and validation records before treating it as a reconstruction-ready packet.
 
 The environmental edit-pair contribution originated with Meta and was integrated and corrected by ChatGPT under [issue #2](https://github.com/memoryprismv1/faking-vision/issues/2). Its current branch version is metadata-only: source image URLs and licence/permission evidence were not provided, so image binaries are withheld pending provenance review. See the folder's README, asset manifest, and verification report before using the examples.
