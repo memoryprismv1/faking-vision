@@ -76,6 +76,10 @@ The repository has multiple active and historical branches. Comparisons against 
 
 No branch has been merged as part of this work. The working branch was created from `main`.
 
+## Making Vision source alignment
+
+The skill previously linked to the generic `/readings/making-vision` path, while the site now exposes separate V1 and V2 readings. The skill's processing/allocation distinctions align with V2, which explicitly separates candidate from object, promotion from attention, and promotion from recognition/persistence, and identifies internal state, needs, uncertainty, risk, and learned relevance as allocation variables. The skill and the repository's README/specification links now point to Making Vision V2. This is a source-alignment correction, not a claim that the Making Vision synthesis is an established biological mechanism.
+
 ## Viewpoint command gap
 
 The authoritative specification permits explicit instantiation of `VPO_DEFAULT`, and the browser-editor documentation describes a dedicated **New render preset / Instantiate VPO_DEFAULT** action. However, the current `fv edit viewpoint` textarea subcommand list has no corresponding instantiate/create syntax. The skill and command reference now state this boundary explicitly: do not invent a command; use an explicitly available editor action or ask for clarification. The missing command form remains a design decision, not an implementation claim.
