@@ -9,11 +9,14 @@ it.
 ## Foundational prerequisite: Making Vision
 
 Before performing visual analysis, investigation, assembly, merge,
-reconstruction, or audit, read the current
-[Making Vision V2 material](https://www.memoryprism.com/readings/making-vision-v2).
-The active agent skill treats this as a mandatory prerequisite. If it cannot
-be accessed, disclose that limitation and do not perform those visual
-operations; documentation-only work may continue.
+reconstruction, or audit, read both the current
+[Making Vision V2 material](https://www.memoryprism.com/readings/making-vision-v2)
+and the repository's [FV research foundations](docs/FV_RESEARCH_FOUNDATIONS.md).
+Making Vision is the architectural synthesis; the research document maps
+empirical/theoretical findings to FV procedures and states their limits. The
+active agent skill treats both as prerequisites. If either cannot be accessed,
+disclose that limitation and do not perform those visual operations;
+documentation-only work may continue.
 
 Use the processing architecture as an allocation model:
 
