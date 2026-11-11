@@ -128,9 +128,11 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Added `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md` and linked it from the README.
 - Clarified that dispute resolution is conditional in the normal workflow diagrams; it is required only when a dispute or ambiguity blocks downstream work.
 - Added `fv edit viewpoint` to the command-reference map.
 - Added required `viewpoint.json` metadata to the `fv analyse` command output contract.
+- Added an operation implementation/test status matrix, including the two browser editors, their limits, CI workflows, and pending agent-level acceptance.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
 - Clarified that viewpoint commands list/inspect source records but edit render VPO state only, preserving source `initial_state`.
@@ -154,6 +156,6 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
 - Verify CI using existing run evidence or a controlled test run on this working branch.
-- Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual.
+- Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual. An initial evidence-based status matrix is now in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`.
 - Discuss `fv query` separately before defining or implementing it.
 - Leave examples untouched until the final phase.
