@@ -80,7 +80,7 @@ Some jobs can skip operations that are not needed. `resolve` is required when a 
 
 Give the AI the source image together with:
 
-the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
+the current canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md`. The active skill links to this file but does not embed the full current specification. If the repository is unavailable to the agent, supply this specification; the separately archived v0.24 snapshot is historical reference only.
 
 The image-analysis path is:
 
@@ -127,7 +127,7 @@ or be explicitly represented as inference/uncertainty.
 
 Give the AI the source video together with:
 
-the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
+the current canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md`. The active skill links to this file but does not embed the full current specification. If the repository is unavailable to the agent, supply this specification; the separately archived v0.24 snapshot is historical reference only.
 
 The video path uses:
 
