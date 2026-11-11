@@ -182,7 +182,6 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Decide the consolidated target-version label used by default `fv rebuild` after reviewing the base v0.24 text and later normative additions.
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
-- Review version-history continuity: merged PR #1 contains the v0.25 image-edit design addition and the v0.26 section builds on it, but the current specification has no standalone v0.25 block. Current command forms are aligned; decide whether a concise historical v0.25 section should be restored without reviving superseded proposal details.
 - Decide whether validation/rebuild reports and audio transcripts need dedicated schemas; the artifact audit records the current gaps without creating speculative schemas.
 - Decide whether additional VPO fields should receive standard command syntax or remain editor-only schema fields.
 - Decide and document the consolidated target-version label for default `fv rebuild`; until then, use the specification's implicit-current wording and do not invent a release number.
