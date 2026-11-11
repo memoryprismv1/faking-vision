@@ -13,7 +13,7 @@ This example demonstrates a review video reconstructed from three packet-scoped 
 
 ## Interpretation
 
-This is not a canonical FV compile. The FV CLI was not run, disputes remain unresolved, and exhaustive frame-by-frame reconstruction was not performed. Packet-local timestamps do not by themselves establish continuous chronology across the three parts. Candidate identity correspondences remain provisional unless distinctive visual evidence supports them.
+This is not a canonical FV compile. The FV CLI was not run, some investigations remain active, and exhaustive frame-by-frame reconstruction was not performed. Packet-local timestamps do not by themselves establish continuous chronology across the three parts. Candidate identity correspondences remain provisional unless distinctive visual evidence supports them.
 
 Original source: https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm
 
@@ -23,5 +23,5 @@ Original source: https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Ca
 - The three source segments are not stored in this repository. Packet snapshots are retained, but they are sampled evidence, not the original video or proof of exhaustive frame coverage.
 - Packet-local timestamps do not establish a continuous timeline across segments. Use the parent-source offsets in each packet's provenance notes; do not infer identity continuity across parts without distinctive evidence.
 - A cross-reference check found that PKT-CCTV-003 declares 19 OI candidates, while its MSRM scenes reference only 12 of them. OBJ-013 through OBJ-019 are not currently spatially represented in MSRM. Treat this as an unresolved packet completeness gap.
-- PKT-CCTV-001 retains an open dispute; PKT-CCTV-003 has three open issues recorded in its dated addendum and dispute file. PKT-CCTV-002's local uncertainties remain provisional even though its packet-level dispute status is none.
+- PKT-CCTV-001 has two issues deferred as non-blocking for that chunk, not globally resolved; its older validation report's blocked-gate statement is stale. PKT-CCTV-003 has three dispute records: one deferred/non-blocking and two active/open. PKT-CCTV-002's local uncertainties remain provisional even though its packet-level dispute status is none.
 - This experiment remains a human-review reconstruction artefact, not a canonical FV compile, exhaustive reconstruction, or independently validated result.
