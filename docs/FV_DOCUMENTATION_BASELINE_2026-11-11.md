@@ -191,3 +191,10 @@ The inspected divergences show why branch names and apparent feature intent are 
 ## Remaining decisions
 
 - Consolidated FV target-version designation remains undecided: the current specification is a v0.24 base with later normative additions, not an explicitly numbered consolidated release. Rebuild must not infer v0.27 as the default target.
+
+
+## Follow-up: v0.25 history continuity review
+
+The baseline's open question about v0.25 has been investigated against the repository's commit history. The October 20, 2026 commit `7940131c` records the v0.25 design addition in `SKILL.md`, `README.md`, `HOW_TO_USE.md`, and supplementary AI-agent guidance. It defines the initial image-only `fv edit` interaction (list objects, list properties, identify a property edit), while leaving value-assignment syntax and several environment/edit-log/version-marker details open. The current Working Process Specification incorporates the core image-edit command convention in its command description; it does not contain a standalone v0.25 normative section.
+
+The subsequent v0.26 addition is explicitly normative and builds on the v0.25 image-edit design. The how-to guide now labels the v0.25 material as a design addition, records which early proposals remained unstandardized, and separates the v0.26 environmental-response rules as the current normative contract. No missing v0.25 specification section has been invented. The historical continuity question is therefore resolved as a documentation-status clarification, not as a request to reconstruct a separate release specification.
