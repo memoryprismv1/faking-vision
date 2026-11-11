@@ -301,10 +301,11 @@ specifies what to investigate, not what happened.
 
 ## 3. Investigate a visual question with FV
 
-Use `fv investigate` when you want to find out something about an object, event, relationship, correspondence, or question in supplied media—not only when comparing observations across multiple sources. A question can direct analysis of a single image or video just as readily as a multi-clip investigation.
+Use `fv investigate` when you want an object, event, relationship, or correspondence investigated in supplied media—not only when comparing observations across multiple sources. You can simply name the object (for example, investigate the kitten in this video); you do not need to formulate a question. You can also ask a specific question about it.
 
 Examples:
 
+- investigate the kitten in a video;
 - find out what a kitten did in a video and when each action occurred;
 - determine whether a white dog appears anywhere in an image;
 - determine whether a delivery person appeared during the period covered by CCTV;
