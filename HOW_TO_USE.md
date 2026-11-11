@@ -122,7 +122,7 @@ the current canonical Markdown specification at `SPECIFICATION/FV_Working_Proces
 
 The image-analysis path is:
 
-`source → observation → candidate generation → entity/component/appearance resolution → packet promotion → packet construction → validation → export`
+`source → observation → candidate generation → entity/component/appearance resolution → evidence-grounded packet commitment → packet construction → validation → export`
 
 ### Component candidature
 
@@ -193,13 +193,13 @@ Video analysis should:
 5.  Distinguish movement from duplication.
 6.  Distinguish occlusion and off-screen absence from deletion.
 7.  Record entry/exit and state/behaviour changes.
-8.  Promote evidence-supported temporal statements into **TD**.
+8.  Commit evidence-supported temporal statements to **TD**.
 9.  Preserve richer provisional investigation in **TIR** when needed.
 
 Every source frame actually captured or retained as an evidence observation
 must undergo the applicable FV image-analysis procedure: visual inventory,
 candidate generation, entity/component/appearance decision, identity
-assessment where temporal context permits, and evidence/packet promotion
+assessment where temporal context permits, and evidence assessment and packet commitment
 where warranted. Temporal sampling selects which frames to acquire; it does
 not replace analysis of a selected frame.
 
@@ -222,7 +222,7 @@ Speaker/voice attribution is optional and must be source-supported.
 5. Track transcription fidelity, cross-modal visual support, unresolved content, and timing/context mismatch cumulatively.
 6. Do not discard the transcript channel because of a small number of apparent errors.
 7. If a transcript claim identifies a potential gap, sample the relevant time/interval even if the claim is not yet visually supported, then update TIR.
-8. Promote only source-supported results into TD.
+8. Commit only source-supported results to TD.
 9. If commentary does not match the current scene, preserve the discrepancy rather than assuming it is false, satirical, fabricated, or intentionally misleading.
 
 ### TIR versus TD
@@ -238,7 +238,7 @@ the FV packet.
 TIR is not a weaker version of TD. It records the investigation from
 which evidence-supported temporal statements are derived. Provisional
 reasoning may be revised as new evidence is acquired; only supported
-statements are promoted into TD.
+statements are committed to TD.
 
 ### ATD
 
@@ -302,7 +302,7 @@ Examples:
 - investigate an appearance/disappearance or ambiguous event;
 - inspect multiple media for evidence relevant to one target.
 
-The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, and unresolved questions there. Promote only evidence-supported conclusions into the authoritative packet records.
+The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, and unresolved questions there. Commit only evidence-supported conclusions to the authoritative packet records.
 
 A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts.
 
