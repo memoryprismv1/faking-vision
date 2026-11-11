@@ -61,6 +61,31 @@ For a video, establish temporal structure and create the complete packet as
 actual packet files containing OI + MSRM + TD, with TD authoritative for the
 temporal record.
 
+
+For every source frame actually captured or retained as an evidence
+observation, perform the applicable FV image-analysis procedure: visual
+inventory, candidate generation, entity/component/appearance decision,
+identity assessment where temporal context permits, and evidence/packet
+promotion where warranted. Sampling selects which frames to acquire; it
+does not replace analysis of a selected frame.
+
+When audio is intentionally included in a video packet:
+- Preserve the source audio file together with the video identity and
+  relevant time alignment under the packet-level `audio/` directory.
+- Generate a timestamped `transcript.json` before the initial TIR/TD
+  temporal investigation. The transcript is provisional analysis, not
+  source-of-truth evidence and not a substitute for the audio file.
+- Assess transcription fidelity separately from visual/cross-modal support,
+  unresolved content, and timing/context mismatch. A narrated claim may
+  refer to an earlier, later, off-screen, or different scene state.
+- Use transcript segments as candidate cues for adaptive sampling, including
+  to locate possible gaps in TIR/TD before visual confirmation. Update TIR
+  with acquired observations; promote claims into TD only when source
+  evidence supports them.
+- Preserve uncertainty and discrepancies. Do not infer that commentary is
+  false, satirical, or untrustworthy merely because it does not match the
+  current visual interval. Do not invent unclear words or speaker attribution.
+
 For every newly generated packet, also create the root-level
 `packet_provenance.json` and validate it against
 `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
@@ -100,6 +125,12 @@ into authoritative packet records.
 A task objective may alter attention or sampling priority, but it is not
 source evidence and cannot supply missing identity, event, motivation, or
 temporal facts.
+
+When the investigation includes audio, assess the source audio and transcript
+cumulatively in TIR. Keep transcription fidelity distinct from visual
+cross-modal support, ambiguity, and timing/context mismatch. Transcript
+claims may direct adaptive sampling before visual support is established, but
+must not be promoted directly into TD without supporting source observations.
 
 Example:
 
@@ -311,6 +342,11 @@ applicable.
 
 Do not silently repair the packet. If repair is required, identify what must
 be reprocessed or changed.
+
+When audio is included, also verify that the audio file and `transcript.json`
+are present, source-aligned, and mutually traceable, and that TIR records the
+provisional transcript assessment and material discrepancies. Keep audio
+evidence and visual evidence as separate traceable streams.
 
 Also assess whether the packet may require migration to the current FV specification version. Include an explicit rebuild assessment in the validation report: **REBUILD NOT INDICATED**, **REBUILD MAY BE NEEDED**, **REBUILD RECOMMENDED**, **REBUILD REQUIRED**, or **ASSESSMENT INDETERMINATE**. Give the reason, affected records/rules, and next step. A legacy packet may remain valid under documented compatibility rules while still receiving a rebuild warning. Do not rebuild, rewrite version claims, or materialize compatibility placeholders during validation.
 
