@@ -20,4 +20,6 @@ The repository contains structured packet records, a snapshot manifest, a workfl
 
 The legacy README repeats figures such as 2,100 km², 61,000 structures, 100+ overlapping strips, and 30–50% overlap. These figures describe the cited research context or the supplied README; they do not demonstrate that this packet acquired or processed those inputs. The workflow image is illustrative, not a rendered survey result.
 
+An additional packet-level caution: OI records a west-facing staircase as a pyramid component while describing it as an “expected component”. Without the raw transect data or retained source evidence, this cannot be treated as an observed component. The OI's candidate/search narrative and the specific dimensions/orientations also remain unverified.
+
 Treat this as an assembly-contract illustration, not a verified reproduction of the PACUNAM survey or a completed 2,100 km² assembly.
