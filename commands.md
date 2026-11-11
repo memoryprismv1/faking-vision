@@ -175,6 +175,16 @@ fv rebuild [legacy-packet.zip]
 
 **Input:** The packet and the intended change, such as an object property, viewpoint, or environmental condition edit.
 
+**Image-packet interaction forms:**
+
+```text
+fv edit
+fv edit <object-name/object-id> --list
+fv edit <object-name/object-id> <property-id>
+```
+
+With no arguments, list available objects. With `--list`, list the selected object's properties. The property form identifies a direct edit target; the general syntax for supplying a new value is not standardized. Do not invent value-assignment syntax. These are agent interaction conventions, not evidence of a standalone CLI.
+
 **Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful. Preserve before/after information. For viewpoint edits, preserve source `initial_state`, validate the render VPO against `FV_Viewpoint_Schema.json`, and leave OI/MSRM scene content unchanged.
 
 The target must be sufficiently unambiguous. Do not guess between objects or properties. Preserve before/after information and applicable provenance.
