@@ -137,6 +137,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Clarified the Working Process Specification header's v0.24 base and later v0.26/v0.27 normative additions without inventing a consolidated release number.
 - Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
+- Exposed `fv edit viewpoint` as a subcommand in the README command list.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
