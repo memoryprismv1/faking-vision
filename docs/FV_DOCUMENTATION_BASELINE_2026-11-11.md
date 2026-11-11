@@ -50,7 +50,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 3. **The skill's `fv validate` instruction hard-coded validation against v0.24 packet rules.** This was inconsistent with the skill's migration assessment and current-specification authority. It now directs validation against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
 4. **The skill conflated Making Vision promotion with evidence-based object commitment.** Its initial rule said candidates should be promoted only when supported by visual evidence and made promotion a gate before object counting/identity assignment. Making Vision V2 defines promotion as allocation of additional processing; it can be driven by state, needs, uncertainty, risk, learned relevance, expectations, and environmental statistics, and can precede recognition or persistence. The skill now separates allocation/promotion from evidence-based entity and identity commitment, states that perturbation does not guarantee promotion, points to the current V2 material, preserves the prerequisite as a hard gate for visual operations, states that MV's unified architecture is a synthesis rather than an established named biological mechanism, and keeps learning distinct from persistence/storage.
 5. **The skill's self-contained-use claim depended on repository availability.** It said the user need not supply the specification, but the embedded full text is a historical v0.24 snapshot while the current specification is a separate repository file. The operating rule now says to read the current file when the repository is available and to disclose when it cannot be consulted; the historical snapshot is not a substitute.
-6. **The documentation set repeats substantial process material.** The current 1,601-line skill contains 545 lines of active instructions and a 1,055-line historical v0.24 specification snapshot, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content is now clearly marked, not silently treated as current policy. Whether to keep it embedded or move it to a separately retained reference remains open.
+6. **The documentation set repeated substantial process material.** The skill originally embedded a 1,055-line historical v0.24 specification snapshot alongside active instructions. The snapshot has now been moved verbatim into `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md`; `SKILL.md` retains a short historical-reference pointer. The active skill is now 561 lines, while the historical source remains preserved separately.
 
 ### Medium priority
 
@@ -140,11 +140,11 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Exposed `fv edit viewpoint` as a subcommand in the README command list.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
+- Preserved the historical v0.24 extraction verbatim in a separate specification reference and reduced the active skill from 1,601 to 561 lines.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
 
 ## Open work
 
-- Decide whether the 1,055-line historical v0.24 snapshot should remain embedded in `SKILL.md` or be moved to a separately retained reference file; do not remove it until standalone-skill packaging and acceptance-test requirements are settled.
 - Decide the consolidated target-version label used by default `fv rebuild` after reviewing the base v0.24 text and later normative additions.
 - Inspect skill/specification duplication and identify safe consolidation boundaries without losing the unfamiliar-AI acceptance procedure.
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
