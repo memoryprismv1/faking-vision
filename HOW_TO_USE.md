@@ -546,10 +546,6 @@ to packet semantics.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
-### v0.27: rebuild and version upgrade
-
-`fv rebuild` (alias: `fv upgrade`) migrates a packet to a specified or current FV specification version while preserving its historical evidence and provenance. It is separate from `fv edit`, validation, dispute resolution, and compilation. The rebuilt copy must be validated against the target version; migration does not imply compilation readiness.
-
 ## Image packet editing and environmental participation (v0.25-v0.26)
 
 The image-only `fv edit` interface is an agent interaction convention, not a claim that a standalone executable exists.
@@ -585,3 +581,7 @@ Keep the packet records consistent:
 Fail when an explicit test expectation is contradicted, such as the negative harsh-sun case requiring the exposed cat to be flagged. If high stress makes a response worth investigating but the evidence does not determine that response, mark it unresolved or request review rather than applying a universal rule. When a packet asserts active shelter/shade seeking, independently check that the object is actually sheltered in the edited image and that OI, MSRM, and the edit log agree.
 
 Keep syntax checks, structural checks, FV semantic validation, and independent visual audit as separate results. Preserve legacy packet provenance and do not treat missing environment data in a legacy packet as an automatic failure. Do not publish source images as creator-owned or licence-cleared without source URLs and rights evidence.
+
+### Change log — v0.27
+
+- Added `fv rebuild` / `fv upgrade` as a distinct packet-version migration operation. It preserves historical evidence/provenance and requires target-version validation; it does not replace editing, dispute resolution, or compilation.
