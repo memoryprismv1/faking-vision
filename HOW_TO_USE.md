@@ -86,6 +86,27 @@ The image-analysis path is:
 
 `source → observation → candidate generation → entity/component/appearance resolution → packet promotion → packet construction → validation → export`
 
+### Video and optional audio
+
+For each video frame actually captured or retained as an evidence observation,
+perform the applicable FV image-analysis procedure. Temporal sampling decides
+which frames to acquire; it does not replace image analysis of a selected
+frame.
+
+When audio is intentionally included, preserve the source audio and a
+timestamped `transcript.json` together under the packet-level `audio/`
+directory. Generate the transcript before the initial TIR/TD investigation.
+Treat it as provisional analysis, not as a substitute for listening to the
+source audio or as a source-of-truth record.
+
+TIR must assess transcription fidelity separately from visual/cross-modal
+support, ambiguity, and timing/context mismatch. Transcript segments may
+identify possible gaps and guide adaptive sampling before visual confirmation.
+Acquire the relevant source observations, update TIR, and promote claims into
+TD only when the retained source evidence supports them. Preserve mismatches
+and uncertainty; commentary may refer to an earlier, later, off-screen, or
+different scene state.
+
 ### Component candidature
 
 When an object is ambiguous, do not wait for whole-object recognition.
