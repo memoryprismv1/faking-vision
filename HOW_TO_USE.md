@@ -30,7 +30,7 @@ The textarea commands are operational boundaries, not claims that a standalone F
 | `fv create` | Deliberately construct a new FV packet from established FV information or an explicit specification. | Requested packet type, including a reconstruction packet where applicable. |
 | `fv rebuild` (alias: `fv upgrade`) | Migrate an existing/legacy packet to a specified or current FV version while preserving historical provenance. | Separate rebuilt packet, migration report, and target-version validation result. |
 | `fv edit` | Make intentional changes to existing packet content, such as object properties, viewpoints, or environmental conditions. | Edited packet state with before/after values and provenance recorded; not a version-migration operation. |
-| `fv edit viewpoint` | List, inspect, and edit source viewpoints or reusable render presets using the defined viewpoint subcommands. | Updated viewpoint record and edit-log entry, validated against the viewpoint schema. |
+| `fv edit viewpoint` | List/inspect source viewpoints and render VPOs; edit render-preset pose/state without changing source initialisation. | Updated render VPO state and edit-log entry, validated against the viewpoint schema. |
 | `fv resolve` | Resolve an open dispute or competing interpretation. | Reconciled packet or explicitly still-unresolved packet, with resolution history preserved. |
 | `fv validate` | Check packet structure, evidence, consistency, disputes, and readiness. | Validation report; no silent repair. |
 | `fv compile` | Convert a **resolved and validated** packet into renderer instructions and, where supported, reconstruct. | Compiled renderer specification and/or reconstruction artifact. |
