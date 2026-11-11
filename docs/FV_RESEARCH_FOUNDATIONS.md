@@ -9,7 +9,7 @@ Faking Vision (FV) is an operational framework intended to make AI systems perfo
 
 The failure target is not simply that a model sometimes names an object incorrectly. A model can produce a coherent but wrong scene model: miss or merge entities, lose components, misassign boundaries, overlook low-salience changes, confuse appearance with identity, infer physical scale from an uncalibrated image, or silently turn a plausible interpretation into an observed fact.
 
-This document records empirical and theoretical work relevant to those failures and maps it to FV procedures. It does **not** treat the Making Vision essay, FV's terminology, or any single paper as proof of a unified biological architecture.
+This document records a first set of empirical and theoretical work relevant to those failures and maps it to FV procedures; it is a working evidence map, not an exhaustive literature review. It does **not** treat the Making Vision essay, FV's terminology, or any single paper as proof of a unified biological architecture.
 
 ## Evidence and interpretation labels
 
@@ -107,6 +107,18 @@ These sources do **not** establish that:
 - findings from human or primate vision transfer directly to every AI model.
 
 Treat the architecture as a testable design synthesis. Use research to motivate procedures and test conditions; do not turn analogy into evidence.
+
+## Open research questions
+
+The following areas need further source review before FV makes stronger claims or adds new normative rules:
+
+- **Sensory-regime transitions:** distinguish immediate effects of deprivation, adaptation to predictable environments, and recalibration after a transition to a richer or more variable environment. The current evidence cited here does not establish a general transition rule.
+- **Social and collective visual ecology:** review how shared tasks, group vigilance, role specialisation, and information exchange alter what individuals monitor and report. The current military/police studies cover specific individual task contexts, not a general theory of collective perception.
+- **AI-specific perceptual failure modes:** expand controlled comparisons of shape/texture reliance, contour ownership, shadows, component relations, low-salience change detection, and viewpoint variation across current multimodal models.
+- **Long-term learning:** distinguish short-term sensorimotor or instruction effects from durable expertise and changes in future sampling strategies.
+- **Temporal and multi-camera evidence:** connect biological-motion and attention research to CCTV tracking, cross-view correspondence, and event reconstruction without treating motion similarity as identity proof.
+
+These are research tasks, not current FV requirements. Do not convert them into normative rules until the evidence and intended tests are documented.
 
 ## References
 
