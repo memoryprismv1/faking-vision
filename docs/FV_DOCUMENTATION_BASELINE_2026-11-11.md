@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Added `fv rebuild` and `fv edit` to the canonical operation model and included optional rebuild/upgrade in the specification's normal downstream path.
 - Traced the v0.25 edit-interface forms to merged PR #1 and aligned them across the authoritative operation model, active skill, and command reference. Recorded which v0.25 proposal details are superseded or MVP-specific; the standalone v0.25 history section remains a deliberate review item.
 - Updated the image-analysis pipeline to show selective candidate promotion as additional processing, followed by evidence-grounded packet commitment; added the same distinction to per-frame skill instructions.
 - Verified that the active skill's reduction from 1,590 to 622 lines reflects relocation of its embedded v0.24 extraction into `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md`; the historical specification body was checked against the original embedded text and retained.
