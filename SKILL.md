@@ -5,7 +5,7 @@ description: Operate Faking Vision (FV) for image and video analysis, visual inv
 
 # Faking Vision Agent Skill
 
-## Mandatory Making Vision prerequisite and candidate/allocation gates
+## Mandatory perceptual foundations and candidate/allocation gates
 
 Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read both:
 
