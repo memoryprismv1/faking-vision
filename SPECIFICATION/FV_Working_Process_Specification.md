@@ -1637,9 +1637,9 @@ A source timestamp, frame number, or derived source-time coordinate is temporal 
 
 If the source contains a visually displayed CCTV timestamp, that timestamp is visual evidence and should be read from the relevant source frame or snapshot only when the question requires it. The machine temporal coordinate and the visually displayed timestamp are distinct fields.
 
-# 33. Change log — v0.9
+## Change log — v0.9
 
-# 34. Change log — v0.10
+## Change log — v0.10
 
 • Added packet-level DISPUTES flat file for cases where automated analysis cannot reliably resolve what is present or how it should be represented and human intervention is required.
 
@@ -1685,7 +1685,7 @@ FV reconstruction experiments may intentionally use crude or ugly renderers. Aes
 
 FV experiments do not require prestigious, large, or specialized datasets. For exploratory work, prefer small, directly accessible material that permits rapid observation, modification, reconstruction, and failure analysis. Dataset prestige and scale are not FV requirements.
 
-# 35. Change log — v0.11
+## Change log — v0.11
 
 • Refined Adaptive Temporal Decomposition to explicitly support perturbation-driven adaptive sampling: lazy scanning by default, increased local sampling around TD clusters, recursive subdivision while perturbation persists, and relaxation when it subsides.
 
