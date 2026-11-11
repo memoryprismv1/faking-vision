@@ -34,7 +34,7 @@ The supplied archive contains seven distinct WebP image assets, but its packet m
 - Replaced unsupported image-ownership/licence claims with explicit unresolved provenance status.
 - Added the existing lighthouse's location to the old Bermuda Cove spatial record, so that the intentionally failing cat behaviour is not confounded by an unrelated missing spatial entry.
 - Restored the same lighthouse as an unchanged entity in the active Bermuda edit's OI and MSRM; the edit must not silently drop an off-focus baseline object.
-- Added a distributed-region record for vegetation in the rainy Wall Cat spatial record; it is a broad garden-shrub region, not a fabricated single-point coordinate.
+- Added a distributed-region record for vegetation in the rainy Wall Cat spatial record; it is a broad garden-shrub region, not a fabricated single-point coordinate. However, the pleasant baseline OI contains only wall and cat, while the rainy edit adds vegetation. Without the withheld source images, it is unknown whether vegetation was already present but omitted from the baseline or was introduced by the edit. Cross-state object persistence remains unresolved.
 - Kept the old passive Bermuda edit alongside the corrected active edit so the negative test remains available.
 - Clarified that Windy Day is not a purely passive edit: the person changes behaviour/posture, while the dog is explicitly left unchanged under the legacy v0.25 assumption. Treat that as a known incomplete behaviour model, not as a clean passive-only control.
 - Added a verification report and an asset manifest. JSON parsing and cross-record checks are not represented as full FV semantic or pixel-level validation.
