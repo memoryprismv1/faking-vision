@@ -164,7 +164,7 @@ If no target version is supplied, use the current authoritative FV specification
 **Example:**
 
 ```text
-fv rebuild [legacy-packet.zip] --to current
+fv rebuild [legacy-packet.zip]
 ```
 
 ## `fv edit`
