@@ -45,15 +45,16 @@ Finding: viewpoint editing is documented under `fv edit` in `commands.md`, but i
 
 1. **Historical specification embedded in the skill is not clearly separated from current instructions.** The skill's operating-rule paragraph described it as containing the "complete v0.24 FV operating material", then labelled the appended extraction "complete authoritative source". Meanwhile, current viewpoint instructions explicitly supersede older v0.24 wording. This creates an avoidable authority ambiguity for an unfamiliar agent.
 2. **Command reference map omits the explicit viewpoint subcommand.** Detailed syntax exists later in the same file, but the top-level command map does not expose it.
-3. **The documentation set repeats substantial process material.** The 1,590-line skill contains a 129,507-character historical specification extraction, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content should be clearly marked, not silently treated as current policy.
+3. **The skill's `fv validate` instruction hard-coded validation against v0.24 packet rules.** This was inconsistent with the skill's own migration assessment and current-specification authority. It now directs validation against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
+4. **The documentation set repeats substantial process material.** The 1,590-line skill contains a 129,507-character historical specification extraction, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content should be clearly marked, not silently treated as current policy.
 
 ### Medium priority
 
-4. **README lists `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README should make the relationship explicit.
-5. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
-6. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
-7. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
-8. **No `fv query` command is currently defined in the command map.** Temporal queryability is discussed in the specification and examples, but this does not establish a general-purpose query command.
+5. **README lists `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README should make the relationship explicit.
+6. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
+7. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
+8. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
+9. **No `fv query` command is currently defined in the command map.** Temporal queryability is discussed in the specification and examples, but this does not establish a general-purpose query command.
 
 ## Existing support implementation (not a CLI claim)
 
@@ -77,6 +78,7 @@ No branch has been merged as part of this work. The working branch was created f
 - Added `fv edit viewpoint` to the command-reference map.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
+- Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
 
 ## Open work
 
