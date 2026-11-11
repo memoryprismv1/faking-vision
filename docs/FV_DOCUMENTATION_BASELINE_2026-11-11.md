@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Completed an operational procedure cross-check against the canonical specification; expanded resolve/reconciliation state transitions and audit evidence/metric rules in the skill and command reference.
 - Aligned command interpretation and artifact-output contracts across `commands.md`, `SKILL.md`, and `HOW_TO_USE.md`; documented rebuild/edit/viewpoint artifacts, video ZIP delivery, and the non-native batch-audit boundary.
 - Added `docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md` and linked it from the README; it compares operation artifacts, confirmed schemas, and uncovered schema/command gaps.
 - Added `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md` and linked it from the README.
