@@ -102,7 +102,7 @@ These are design decisions, not automatic requests to create nine new schemas. T
 - Decide whether the transcript structure needs a formal schema; current rules require timestamped segments and traceability but do not establish a dedicated JSON Schema in this review.
 - Decide which additional VPO fields deserve standardized command syntax versus remaining editor-only schema fields.
 - Do not add a generic packet schema until its relationship to the existing OI/MSRM/TD structures and legacy compatibility is explicitly settled.
-- Keep `fv query` design separate from this artifact audit.
+- Treat question-directed analysis of supplied media as part of `fv investigate`; TD temporal queryability remains a packet capability and acceptance requirement, not a separate command.
 - Keep examples untouched until the final examples phase.
 
 
@@ -119,7 +119,7 @@ Corrections made on the working branch:
 - Clarified that video packets, like image packets, are packaged as ZIP deliverables when packaging is available.
 - Kept the command-interface distinction explicit: these are agent textarea commands, not evidence that a standalone CLI exists.
 
-A parity check confirms that the same 12 command forms are represented in the command reference, skill, and how-to command maps. The extra `fv audit batch` item remains explicitly marked as a non-native/proposed skill interface. `fv query` remains intentionally absent pending its separate design discussion.
+A parity check confirms that the same 12 command forms are represented in the command reference, skill, and how-to command maps. The extra `fv audit batch` item remains explicitly marked as a non-native/proposed skill interface. Question-directed analysis of supplied media is included in `fv investigate`; there is no separate `fv query` command.
 
 This follow-up changes documentation coverage only. It does not add schemas, alter packet semantics, change examples, run tests, or merge the branch.
 
