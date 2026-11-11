@@ -16,4 +16,6 @@ This example is intended to illustrate assembly of overlapping telescope exposur
 
 The legacy README claims 800 exposures, approximately 20-minute exposures, four dither positions, 90% overlap, 11.3 days of exposure, and approximately 10,000 galaxies. These are not independently verified by the packet files. The supplied workflow poster is illustrative and is not the assembled HUDF image or evidence that the stated registration/cosmic-ray/distortion processing was executed.
 
+The packet also has an internal inventory/spatial mismatch: OI declares two entities (a galaxy and a 10,000-galaxy cluster), but the MSRM scene's `entities_present` list contains only the first entity. The MSRM's `total_galaxies` value does not replace the missing entity reference. This must be reconciled against source evidence before the packet is used as a coherent example.
+
 Treat this as an assembly-contract illustration, not a reproduced HUDF reduction or validated astronomical catalogue.
