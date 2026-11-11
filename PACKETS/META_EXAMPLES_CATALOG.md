@@ -59,7 +59,7 @@ Verification caveat: the 1,101 raw scans and poses are not in the ZIP. Treat sca
 ### 5. KITTI merged global buildings
 Packet ID and exact global-ID claims are encoded in the packet files; the supplied ZIP contains `COMPILED_SPEC.json`, `MSRM.json`, `OI.json`, `PC.json`, `TD.json`, `dispute.json`, and `snapshot/manifest.json`, but no README.
 Purpose inferred from packet naming and contents: merge observations into persistent global building identities.
-Verification caveat: the archive includes multiple suffixed copies of core JSON files and manifests. Before publication, compare their hashes and preserve any genuinely different versions; do not publish packaging duplicates as distinct semantic artifacts. No raw KITTI source data is included.
+Verification caveat: the archive included multiple suffixed copies of core JSON files and manifests. Their Git blob hashes were compared; the suffixed copies were byte-identical to the canonical unsuffixed files and have been removed. The merged OI explicitly lists 12 global building records but declares 54 total identities; the compiled specification also declares 54 while its scene lists only the 12 shared IDs. The 42 singleton records are not explicitly represented. No raw KITTI source data is included, so the global merge remains incomplete and unverified.
 
 ### 6. Hubble Ultra Deep Field telescope stitching
 Packet ID: `PKT-TELESCOPE-HUDF-STITCH-001`
@@ -82,8 +82,8 @@ Packet ID: `PKT-CAT-JUMP-BACK-001`
 Supplied artifacts include `OI.json`, `MSRM.json`, `TD.json`, `PC.json`, `dispute.json`, `dispute.reconciled.json`, `COMPILED_SPEC.json`, `COMPILED_PROMPT.txt`, `README.txt`, `VALIDATION_REPORT.txt`, `VALIDATION_REPORT_POST_RESOLVE.txt`, and snapshot-related artifacts. The ZIP also contains suffixed duplicate-looking files such as `OI_1.json`, `README_1.txt`, and `MSRM_2.json`; inspect hashes and contents before deciding whether they are duplicates or distinct state versions.
 Sources named by README: Wikimedia Commons file page and transcoded media URL, plus the original Vimeo URL.
 Purpose described by Meta: video analysis with inventory lock, temporal decomposition, uncertainty, explicit disputes, reconciliation, validation, and compilation.
-Important lifecycle distinction: the pre-resolution validation report says open disputes block rendering and reports missing snapshot subdirectories; the post-resolution report says disputes were reconciled and rendering is permitted. Keep both reports and the reconciliation record; do not silently replace the earlier state or treat the later report as independent proof of visual correctness.
-Evidence limitation stated by README: direct pixel-level frame inspection was unavailable in the production environment. L1 visual evidence is explicitly limited and some temporal/correspondence claims remain provisional.
+Important lifecycle distinction: the initial validation report records open disputes and missing snapshot subdirectories. The human resolution accepted metadata-only analysis with uncertainty preserved, but the reconciliation record says post-reconciliation validation was still pending. The post-resolution report claims snapshot subdirectories exist, while the repository contains only a manifest that explicitly records that no snapshots were preserved. The post-resolution report is therefore inconsistent historical output, not proof of a completed validation.
+Evidence limitation stated by README: direct pixel-level frame inspection was unavailable in the production environment. The repository contains no source video or retained frame snapshots. L1 visual evidence is limited and temporal/correspondence claims remain provisional.
 
 ## Provenance and quality policy for this contribution
 
@@ -91,7 +91,7 @@ Evidence limitation stated by README: direct pixel-level frame inspection was un
 2. Record source URLs and dataset identifiers where supplied. Flag missing source links and acquisition records.
 3. Distinguish four states: source identified, source acquired, processing executed, result independently verified.
 4. Preserve original dispute files, reconciliations, pre-resolution and post-resolution reports, and packet manifests.
-5. Compare duplicate-looking files by content hash. Remove only packaging duplicates from the published tree; never discard a distinct lifecycle state.
+5. Compare duplicate-looking files by content hash. This review removed byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building examples, retaining canonical unsuffixed files. Shared boilerplate files repeated across different environmental packets and differently named semantic aliases were not removed. Never discard a distinct lifecycle state.
 6. Do not claim raw sensor media is included where the ZIP contains only structured packet artifacts.
 7. Retain provenance and uncertainty; do not silently promote unresolved claims or create global identities without documented correspondence evidence.
 
@@ -99,4 +99,4 @@ Evidence limitation stated by README: direct pixel-level frame inspection was un
 
 This catalog covers eight packet bundles represented in the supplied archives: Mayan LiDAR stitching, Mayan global merge, KITTI landscape assembly, KITTI Sequence 07 assembly, KITTI global buildings merge, Hubble Ultra Deep Field stitching, the three-part CCTV family plus merged global packet, and the cat-jumping video/lifecycle packet. Duplicate ZIP uploads were treated as repeat packaging, not new examples.
 
-This document is an inventory and provenance guide. It is not a claim that the raw sensor sources are included or that every processing step has been independently reproduced.
+This document is an inventory and provenance guide. It is not a claim that the raw sensor sources are included or that every processing step has been independently reproduced. The current example review also adds an evidence-status README to the CCTV Storage Crisis family and an incomplete-merge audit README to the KITTI global-building merge example.
