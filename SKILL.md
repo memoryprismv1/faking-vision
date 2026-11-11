@@ -283,6 +283,8 @@ Supported operations:
 
 Every edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. The command and browser editor must produce equivalent packet state. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders instead of claiming exact camera movement.
 
+`VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification.
+
 Example:
 
 `fv edit viewpoint set VP-AB12CD34 position 2 1 4`
