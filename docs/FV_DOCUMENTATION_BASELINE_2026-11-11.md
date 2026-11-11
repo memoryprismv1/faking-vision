@@ -183,3 +183,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual. An initial evidence-based status matrix is now in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`.
 - Discuss `fv query` separately before defining or implementing it.
 - Leave examples untouched until the final phase.
+
+## Remaining decisions
+
+- Consolidated FV target-version designation remains undecided: the current specification is a v0.24 base with later normative additions, not an explicitly numbered consolidated release. Rebuild must not infer v0.27 as the default target.
