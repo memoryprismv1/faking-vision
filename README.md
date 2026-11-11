@@ -114,6 +114,8 @@ The normal reconstruction workflow is:
 ```text
 analyse / investigate / assemble / merge / create
                     ↓
+          (optional rebuild/upgrade)
+                    ↓
                  resolve
                     ↓
                 validate
