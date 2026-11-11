@@ -499,6 +499,7 @@ the skill runtime can invoke the utility with attached files.
 
 ## Command interpretation rules
 
+- For textual command syntax, prefix operations with `fv`. Do not treat an ordinary sentence as an FV command unless the user clearly requests FV work. Natural-language objectives and constraints may follow a command; they change task focus or sampling priority, not source evidence.
 - `fv analyse` means raw source → FV analysis/packet.
 - `fv investigate` means specified visual question/object/event → investigative evidence path.
 - `fv assemble` means partial/overlapping observations → registered/assembled representation.
