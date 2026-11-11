@@ -301,21 +301,26 @@ specifies what to investigate, not what happened.
 
 ## 3. Investigate a visual question with FV
 
-Use `fv investigate` when the task is not simply to describe or packetize a source, but to answer a specified visual question.
+Use `fv investigate` when you want to find out something about an object, event, relationship, correspondence, or question in supplied media—not only when comparing observations across multiple sources. A question can direct analysis of a single image or video just as readily as a multi-clip investigation.
 
 Examples:
 
+- find out what a kitten did in a video and when each action occurred;
+- determine whether a white dog appears anywhere in an image;
+- determine whether a delivery person appeared during the period covered by CCTV;
 - track a specified object across multiple videos;
 - investigate whether two observed objects correspond;
 - determine when a relationship changed;
 - investigate an appearance/disappearance or ambiguous event;
 - inspect multiple media for evidence relevant to one target.
 
-The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, and unresolved questions there. Commit only evidence-supported conclusions to the authoritative packet records.
+The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, evidence paths, and unresolved questions there. Commit only evidence-supported conclusions to the authoritative packet records.
 
-A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts.
+For video, use temporal observations and adaptive sampling as needed to locate actions/events and their timing. Return the answer directly with relevant timestamps or intervals; the user should not have to open TD files to get an ordinary investigative finding. Report coverage gaps and uncertainty. Claim that something did not occur only when the available media coverage is adequate to support that conclusion.
 
-`fv investigate` should return the evidence path, relevant source observations, correspondence/component evidence, supported conclusions, and unresolved issues. If the investigation changes the packet, the affected packet must still pass the normal validation lifecycle.
+A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts. There is no separate `fv query` command or mode: question-directed analysis of supplied media is part of `fv investigate`.
+
+`fv investigate` should return the finding, evidence path, relevant source observations, correspondence/component evidence where relevant, supported conclusions, and unresolved issues. If the investigation changes the packet, the affected packet must still pass the normal validation lifecycle.
 
 ## 4. Assemble partial or overlapping observations
 
