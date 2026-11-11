@@ -105,6 +105,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Clarified that dispute resolution is conditional in the normal workflow diagrams; it is required only when a dispute or ambiguity blocks downstream work.
 - Added `fv edit viewpoint` to the command-reference map.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
@@ -123,7 +124,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 - Inspect skill/specification duplication and identify safe consolidation boundaries without losing the unfamiliar-AI acceptance procedure.
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
-- Review command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
+- Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
 - Verify CI using existing run evidence or a controlled test run on this working branch.
 - Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual.
 - Discuss `fv query` separately before defining or implementing it.
