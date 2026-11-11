@@ -124,7 +124,19 @@ event, relationship, or correspondence across observations.
 ### `fv investigate`
 
 Investigate a specified object, event, relationship, correspondence, or
-question across one or more visual observations or media.
+question in supplied media or across one or more observations/media. This
+includes ordinary questions such as what an object did in a video and when,
+or whether a specified object appears in an image.
+
+The question directs attention and sampling; it does not determine the
+answer. Examine the supplied media directly. For video, use temporal
+observations and adaptive sampling as needed to locate relevant actions/events
+and their timing. Return the finding directly, with timestamps/intervals and
+evidence references where applicable. Do not require the user to inspect TD
+files to obtain the answer. Report coverage gaps and uncertainty; claim
+absence only when media coverage is adequate to support it. No separate
+`fv query` command or mode is needed: question-directed media analysis is
+part of `fv investigate`.
 
 Use TIR as the investigative workspace. Preserve hypotheses, competing
 interpretations, rejected hypotheses, sampling decisions, evidence paths,
@@ -141,9 +153,15 @@ cross-modal support, ambiguity, and timing/context mismatch. Transcript
 claims may direct adaptive sampling before visual support is established, but
 must not be committed to TD without supporting source observations.
 
-Example:
+Examples:
 
 `fv investigate this person across these CCTV clips`
+
+`fv investigate what the kitten did in this video and when`
+
+`fv investigate whether a white dog appears anywhere in this image`
+
+`fv investigate whether a delivery person appeared during the covered CCTV period`
 
 ### `fv assemble`
 
@@ -501,7 +519,7 @@ the skill runtime can invoke the utility with attached files.
 
 - For textual command syntax, prefix operations with `fv`. Do not treat an ordinary sentence as an FV command unless the user clearly requests FV work. Natural-language objectives and constraints may follow a command; they change task focus or sampling priority, not source evidence.
 - `fv analyse` means raw source → FV analysis/packet.
-- `fv investigate` means specified visual question/object/event → investigative evidence path.
+- `fv investigate` means investigate a specified object/event/question in supplied media → evidence-grounded findings (including timing where relevant) and an investigative evidence path. There is no separate `fv query` command.
 - `fv assemble` means partial/overlapping observations → registered/assembled representation.
 - `fv merge` means independent FV packets → reconciled packet/object inventory with provenance preserved.
 - `fv create` means established information/specification → newly constructed FV packet.
