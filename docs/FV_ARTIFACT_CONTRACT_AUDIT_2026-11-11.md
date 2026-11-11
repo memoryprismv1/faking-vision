@@ -218,3 +218,6 @@ These forms remain in the how-to guide and are now also stated in the current op
 The merged v0.25 design also described an environment record, edit-base distinctions, and a proposed version-marker file. The current v0.26 normative addition refines environmental response representation and edit-log fields; v0.27 explicitly keeps version-marker filename/schema unspecified and separates migration (`fv rebuild`) from content editing. The Visual Workbench's `edit_base` field remains part of its constrained MVP interchange format, not a general FV packet schema.
 
 The current Working Process Specification's v0.26 heading says it builds on v0.25, but no standalone v0.25 section remains. The content needed for current operation is now represented in the command model and v0.26/v0.27 rules; whether to restore a concise historical v0.25 section for version-history continuity remains a documentation decision, not a reason to copy obsolete proposal details wholesale.
+
+
+The canonical operation model and downstream path now include `fv rebuild` / `fv upgrade` as an optional migration stage before dispute resolution, validation, and compilation. This aligns the specification's operation sequence with the skill, command reference, and how-to guide. Rebuild remains conditional and does not replace content editing or dispute resolution.
