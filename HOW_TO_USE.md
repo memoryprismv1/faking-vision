@@ -1,6 +1,6 @@
 # How to Use Faking Vision
 
-**v0.24 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
+**Historical v0.24 change note:** temporal analysis separated Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence. Later normative additions and current operating rules are documented below and in the authoritative Working Process Specification.
 
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
