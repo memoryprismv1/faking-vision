@@ -36,7 +36,7 @@ BOUNDARIES
 - This is initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No vehicle make/model, person identity, placard meaning, exact world coordinates, or unsupported persistent vehicle identity is asserted.
 
-DISPUTES: NONE at packet level. Local uncertainties and provisional correspondence are preserved in OI/TD; no identity merge or reconstruction compilation is authorized by this statement.
+DISPUTES: THREE OPEN ISSUES at packet level (see the dated status addendum and dispute.json). Local uncertainties and provisional correspondence are preserved in OI/TD; the merge gate remains blocked. No identity merge or reconstruction compilation is authorized.
 
 
 HONEST STATUS ADDENDUM (2026-10-14)
