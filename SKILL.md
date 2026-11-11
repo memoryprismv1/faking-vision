@@ -276,7 +276,7 @@ Make an intentional, evidence-grounded change to existing packet content. Use th
 
 ### `fv edit viewpoint`
 
-Edit the packet's reusable viewpoint object (VPO) using the canonical viewpoint schema and coordinate convention.
+List and inspect source viewpoint records and reusable render VPOs. The `set`, `save`, `default`, and `reset` operations modify the active/render pose or render-preset state only; preserve source `initial_state` as provenance. Do not treat a source-only viewpoint as an editable render VPO.
 
 Supported operations:
 - `fv edit viewpoint list` — list source viewpoints and reusable render presets.
