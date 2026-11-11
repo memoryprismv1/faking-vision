@@ -141,7 +141,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Exposed `fv edit viewpoint` as a subcommand in the README command list.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
-- Preserved the historical v0.24 extraction verbatim in a separate specification reference and reduced the active skill from 1,601 to 561 lines.
+- Preserved the historical v0.24 extraction verbatim in a separate specification reference, linked it from the README, and reduced the active skill from 1,601 to 561 lines.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
 
 ## Open work
