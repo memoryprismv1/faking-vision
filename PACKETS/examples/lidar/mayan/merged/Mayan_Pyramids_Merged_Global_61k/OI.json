@@ -11,7 +11,7 @@
         "PKT-FLIGHT-001-OBJ-001",
         "PKT-FLIGHT-002-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "15.0m",
@@ -26,7 +26,7 @@
         "PKT-FLIGHT-009-OBJ-001",
         "PKT-FLIGHT-010-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "15.3m",
@@ -41,7 +41,7 @@
         "PKT-FLIGHT-017-OBJ-001",
         "PKT-FLIGHT-018-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "15.6m",
@@ -56,7 +56,7 @@
         "PKT-FLIGHT-025-OBJ-001",
         "PKT-FLIGHT-026-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "15.9m",
@@ -71,7 +71,7 @@
         "PKT-FLIGHT-033-OBJ-001",
         "PKT-FLIGHT-034-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "16.2m",
@@ -86,7 +86,7 @@
         "PKT-FLIGHT-041-OBJ-001",
         "PKT-FLIGHT-042-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "16.5m",
@@ -101,7 +101,7 @@
         "PKT-FLIGHT-049-OBJ-001",
         "PKT-FLIGHT-050-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "16.8m",
@@ -116,7 +116,7 @@
         "PKT-FLIGHT-057-OBJ-001",
         "PKT-FLIGHT-058-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "17.1m",
@@ -131,7 +131,7 @@
         "PKT-FLIGHT-065-OBJ-001",
         "PKT-FLIGHT-066-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "17.4m",
@@ -146,7 +146,7 @@
         "PKT-FLIGHT-073-OBJ-001",
         "PKT-FLIGHT-074-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "17.7m",
@@ -161,7 +161,7 @@
         "PKT-FLIGHT-081-OBJ-001",
         "PKT-FLIGHT-082-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "18.0m",
@@ -176,7 +176,7 @@
         "PKT-FLIGHT-089-OBJ-001",
         "PKT-FLIGHT-090-OBJ-001"
       ],
-      "correspondence_quality": "high - rectangular base 40x40m, cardinal, causeway 2km, IoU 0.82",
+      "correspondence_quality": "legacy claim: high; not independently verifiable because source flight transects and contributing packet evidence are not included",
       "properties": {
         "base": "40x40m",
         "height": "18.3m",
