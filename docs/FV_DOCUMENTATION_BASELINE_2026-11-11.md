@@ -93,6 +93,21 @@ The command descriptions also blurred source viewpoint records and editable rend
 
 The authoritative specification permits explicit instantiation of `VPO_DEFAULT`, and the browser-editor documentation describes a dedicated **New render preset / Instantiate VPO_DEFAULT** action. However, the current `fv edit viewpoint` textarea subcommand list has no corresponding instantiate/create syntax. The skill and command reference now state this boundary explicitly: do not invent a command; use an explicitly available editor action or ask for clarification. The missing command form remains a design decision, not an implementation claim.
 
+## Additional branch review
+
+### `docs/zenodo-record-and-v026-summary`
+
+This branch is one commit ahead and 85 behind current `main`. Its README contains a more expansive capability summary, but it also points to an obsolete `.docx` specification path and presents an older command list that omits rebuild/upgrade and viewpoint editing. Its content was reviewed but not imported wholesale; current `main` remains the base for this cleanup.
+
+### Dataset and assembly implementation branches
+
+- `work/fv-dataset-receipts-20261107`: 9 commits ahead, 2 behind; adds a dataset-intake workflow and collection/packaging scripts.
+- `experiment/hst-single-visit-ngc3370`: 75 commits ahead, 6 behind; adds multiple source-intake and assembly workflows for HST and other datasets.
+- `archive/fv-assemble-preservation-2026-11-07`: 12 commits ahead, 6 behind; adds selected assembly workflows and a preservation checkpoint.
+- `chore/workbench-docs-and-audit` and `spec/prompt-only-compile-mode` are behind current `main` with no unique file changes in the comparison.
+
+These are implementation/experiment branches, not documentation replacements. Their workflows and data receipts should be reviewed in the relevant later implementation/example phase. None was merged or cherry-picked.
+
 ## Divergent branch comparison — findings
 
 ### `fix/viewpoint-init-transition-scope`
