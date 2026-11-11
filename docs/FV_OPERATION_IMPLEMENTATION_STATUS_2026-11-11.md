@@ -23,7 +23,7 @@ The `fv` textarea commands are agent-level operation requests, not standalone sh
 | `fv merge` | Specified | Merge rules and example merged packets exist. | No general-purpose packet-merge engine identified on current `main`. Similarity or matching IDs alone are not identity proof. |
 | `fv create` | Specified | Packet creation rules and packet schemas exist. | No dedicated packet-generation executable identified. This remains an agent-level operation. |
 | `fv rebuild` / `fv upgrade` | Normative v0.27 workflow specified | Command, migration boundaries, report requirements, and post-migration validation are documented. | No packet-migration implementation or agent-level acceptance evidence identified. |
-| `fv edit` | Specified | Two client-side browser prototypes exist: the schematic Visual Workbench and the Media Object Editor MVP. | Limited editing prototypes, not a general FV packet editor, authoritative validator, or full reconstruction workbench. |
+| `fv edit` | Specified | Two client-side browser prototypes exist: the schematic Visual Workbench and the Media Object Editor MVP. | Limited editing prototypes, not a general FV packet editor, authoritative validator, or full reconstruction workbench. Their version selectors/defaults remain v0.25/v0.26-era; neither implements the v0.27 rebuild workflow. |
 | `fv edit viewpoint` | Specified; VPO schema and `VPO_DEFAULT` template exist | Browser UI supports VPO creation/editing, import/export, and edit logs. Browser tests cover camera/VPO behavior. | The Visual Workbench text console currently parses viewpoint `set position` and `set orientation` only. The broader command forms are not all implemented in that console. Explicit `VPO_DEFAULT` creation is a UI action, not a defined textarea subcommand. |
 | `fv resolve` | Human-resolution and AI-reconciliation lifecycle specified | Dispute records and lifecycle examples exist. | No general-purpose automatic dispute resolver identified. Human decisions must not be fabricated by an agent. |
 | `fv validate` | Structural, semantic, evidence, dispute, and rebuild-assessment requirements specified | Limited editor-level checks exist; JSON schemas and schema-validation tests exist for provenance/audit artifacts. | The browser workbench's `fv validate` is an editor-level structural/reference check, not the authoritative full FV semantic validator. Agent-level acceptance remains unverified. |
@@ -41,7 +41,7 @@ Files:
 - `PACKETS/tools/README_FV_Edit_Visual_Workbench.md`
 - `PACKETS/tools/fv-editor-smoke-test.mjs`
 
-The workbench is a client-only schematic editor. It provides seven fixtures, environment/object editing, edit logs, JSON bundle import/export, editor-level checks, and a camera/VPO metadata affordance. Its scene view uses CSS shapes and markers; it is not a source-image renderer. The documented Node smoke test checks syntax, fixtures, IDs/references, bundle round-tripping, stress derivation, negative controls, and UI affordances. It is not the authoritative FV validator or browser end-to-end test.
+The workbench is a client-only schematic editor. It provides seven fixtures, environment/object editing, edit logs, JSON bundle import/export, editor-level checks, and a camera/VPO metadata affordance. Its version selector covers v0.25 and v0.26-proposed, not v0.27. Its scene view uses CSS shapes and markers; it is not a source-image renderer. The documented Node smoke test checks syntax, fixtures, IDs/references, bundle round-tripping, stress derivation, negative controls, and UI affordances. It is not the authoritative FV validator or browser end-to-end test.
 
 Its command console currently handles:
 - `fv edit viewpoint set <VP-ID> position x y z`
@@ -57,7 +57,7 @@ Files:
 - `PACKETS/tools/FV_Media_Object_Editor_MVP.html`
 - `PACKETS/tools/README_FV_Media_Object_Editor_MVP.md`
 
-The MVP loads user-supplied video or still images, supports manual polygon mask keyframes, interpolates compatible polygons, applies a pixel tint, exports WebM, edits selected packet properties, and edits/exports VPO records. Its still-image perspective output is a planar affine approximation; it does not reconstruct hidden surfaces, depth, parallax, or occlusion. It is not an authoritative FV packet writer or semantic validator. VPO creation is an explicit UI action.
+The MVP loads user-supplied video or still images, supports manual polygon mask keyframes, interpolates compatible polygons, applies a pixel tint, exports WebM, edits selected packet properties, and edits/exports VPO records. Its import defaults to v0.26 when version metadata is absent and does not implement v0.27 migration. Its still-image perspective output is a planar affine approximation; it does not reconstruct hidden surfaces, depth, parallax, or occlusion. It is not an authoritative FV packet writer or semantic validator. VPO creation is an explicit UI action.
 
 ## Automated test inventory
 
