@@ -349,7 +349,7 @@ analyse / investigate / assemble / merge / create
                   audit
 ```
 
-Not every task requires every operation. Use only the operations needed for the task and the packet's state.
+Not every task requires every operation. Use only the operations needed for the task and the packet's state. An intentional `fv edit` may be needed when packet content must change; it is a separate operation, not a mandatory stage in every reconstruction path. Validate affected packet records before compilation.
 
 In particular:
 
