@@ -203,3 +203,18 @@ A further contextual review found two remaining clarity issues:
 The specification now reserves **promotion** for allocating additional processing attention. Candidate verification describes what inspection establishes (strengthened, weakened, rejected, or unresolved); temporal tracking is described as allocating tracking effort; packet records receive source-supported conclusions through packet commitment. The skill's per-frame procedure and the how-to image-analysis path make the sequence explicit: candidate generation → selective promotion where warranted → component/relationship verification and alternative search → classification/identity decisions where supported → packet commitment.
 
 No examples were changed. No tests were run and no merge was performed.
+
+
+## Follow-up: v0.25 edit-interface provenance and version-history gap
+
+Reviewed merged PR #1 ("Document image packet editing and environmental participation") and its v0.25 design addition. The original agent interaction forms are:
+
+- `fv edit` — list available objects;
+- `fv edit <object-name/object-id> --list` — list the selected object's properties;
+- `fv edit <object-name/object-id> <property-id>` — identify a direct property edit, with generic value-assignment syntax left unspecified.
+
+These forms remain in the how-to guide and are now also stated in the current operation model, command reference, and active skill. They are agent interaction conventions, not evidence of a standalone CLI. The Visual Workbench prototype has its own limited value-entry syntax; that does not standardize the general FV command language.
+
+The merged v0.25 design also described an environment record, edit-base distinctions, and a proposed version-marker file. The current v0.26 normative addition refines environmental response representation and edit-log fields; v0.27 explicitly keeps version-marker filename/schema unspecified and separates migration (`fv rebuild`) from content editing. The Visual Workbench's `edit_base` field remains part of its constrained MVP interchange format, not a general FV packet schema.
+
+The current Working Process Specification's v0.26 heading says it builds on v0.25, but no standalone v0.25 section remains. The content needed for current operation is now represented in the command model and v0.26/v0.27 rules; whether to restore a concise historical v0.25 section for version-history continuity remains a documentation decision, not a reason to copy obsolete proposal details wholesale.
