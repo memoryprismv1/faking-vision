@@ -101,6 +101,7 @@ fv merge
 fv create
 fv rebuild (alias: fv upgrade)
 fv edit
+  fv edit viewpoint (subcommand)
 fv resolve
 fv validate
 fv compile
