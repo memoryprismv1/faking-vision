@@ -18,6 +18,12 @@ active agent skill treats both as prerequisites. If either cannot be accessed,
 disclose that limitation and do not perform those visual operations;
 documentation-only work may continue.
 
+## What FV is intended to prevent
+
+The failure target is not just incorrect object naming. An AI can produce a coherent but wrong scene model: it may miss or merge entities, lose components, misassign boundaries, overlook low-salience changes, confuse appearance with identity, infer physical scale from an uncalibrated image, or silently turn a plausible interpretation into an observed fact.
+
+Do not treat fluent description or a plausible scene narrative as proof of complete analysis. FV preserves source-supported structure, alternatives, uncertainty, temporal evidence, calibration assumptions, and the boundary between observation, inference, and packet commitment. Reconstruction is then independently audited against the packet.
+
 Use the processing architecture as an allocation model:
 
 `current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence`
