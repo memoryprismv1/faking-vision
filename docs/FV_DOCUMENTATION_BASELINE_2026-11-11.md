@@ -217,3 +217,16 @@ The active skill and how-to guide now identify the research map separately from 
 - Added the textual `fv` prefix/activation rule to the skill to match the command reference.
 
 The 12 defined operations remain aligned across `SKILL.md`, `commands.md`, and `HOW_TO_USE.md`. `fv query` remains intentionally undefined pending discussion.
+
+## Follow-up: final cross-document verification
+
+The final operator/agent documentation pass checked the README, active skill, command reference, how-to guide, current Working Process Specification, artifact-contract audit, operation-status matrix, and research-foundations reference on the working branch.
+
+- Corrected the active skill's downstream command sequence to include optional `fv rebuild` / `fv upgrade` before conditional dispute resolution and validation. This brings its sequence into line with the README, command reference, how-to guide, and authoritative specification. Rebuild remains a separately requested migration, not an automatic step.
+- Rechecked 18 internal Markdown link references across the eight primary documentation files; all 10 unique internal target paths resolve on the working branch.
+- Recounted the automated test definitions in the inspected files: 22 Playwright tests (4 viewpoint editor, 11 environment workbench, 7 media object editor) and 14 Python unit tests (9 audit-batch, 5 provenance-schema). This verifies the inventory counts only; no tests were run and no pass is claimed.
+- Rechecked the operation-status matrix against its test inventory and workflow descriptions. It continues to distinguish specified agent operations, bounded browser prototypes, offline audit aggregation, and pending agent-level acceptance.
+- Rechecked the normal reconstruction path and terminology across the five principal operational documents. The optional rebuild stage and the distinction between candidate promotion and evidence-supported packet commitment are represented consistently.
+- No example packet, test implementation, schema, or runtime code was changed in this follow-up.
+
+CI remains unverified: the branch has no pull request, the branch-specific Actions lookup returned no workflow runs, and no manual dispatch was performed. Test definitions and local documentation checks must not be described as executed CI.
