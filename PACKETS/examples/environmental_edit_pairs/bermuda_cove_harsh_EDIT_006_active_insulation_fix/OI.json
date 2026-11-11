@@ -31,5 +31,10 @@
     "id": "water",
     "type": "environment - passive",
     "state": "bright glare"
+  },
+  {
+    "id": "lighthouse",
+    "type": "structure - passive",
+    "state": "white lighthouse on distant headland"
   }
 ]
