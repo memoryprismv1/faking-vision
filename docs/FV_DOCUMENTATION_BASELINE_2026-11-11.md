@@ -282,3 +282,10 @@ These remain targeted structural/documentation checks. The Wall Cat cross-state 
 - KITTI Sequence 00 landscape and Sequence 07 assembly packets: checked OI/MSRM references; both four-entity inventories match their single scene records. Their source scans, calibration/pose inputs and reproducible registration logs remain absent.
 
 No source-dependent uncertainty was silently resolved. No authoritative FV semantic validator, exhaustive visual audit, or test/CI run was performed.
+
+
+- KITTI global-building merge: added two explicit open disputes for the 54-vs-12 inventory mismatch and source-component provenance that does not resolve to records in the two source OIs. The legacy compiled-spec draft is constrained to the 12 represented identities; the other 42 are retained only as an unverified legacy count and cannot be rendered as invented entities. Merge gate is BLOCKED.
+- Mayan global merge: added two explicit open disputes for the 55,000 uncategorized remainder and absent source-flight/contributing-packet correspondence evidence. Merge gate is BLOCKED.
+- Hubble HUDF assembly: qualified the legacy 800-exposure/10,000-galaxy timeline and registration claims as unverified, and added two open disputes for missing reproducible exposure provenance and unsupported astronomical inventory/count claims. The acceptance gate is BLOCKED (not labelled a merge gate because this is an assembly example).
+- CCTV Part 2: independently checked its manifest against the repository tree. All 106 declared full-frame snapshots and all eight declared crops exist; all crop source-frame references resolve. Its missing PC/TIR/dispute records remain explicit in the packet README and were not fabricated during this pass.
+- Reconstruction briefs: A Trip to the Moon's MSRM relations resolve all on-screen OI scene members; the capsule's absence from S04/S05 spatial relations is intentional because OI marks it off-screen but persistent. Old MacDonald's OI/MSRM placements match across all five scenes, including persistent landmarks and the farmer in S04.
