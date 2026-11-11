@@ -21,3 +21,8 @@ The packet is the source of truth for the visual target. A renderer consumes str
 The repository contains `omni_rendering.mp4`, a generated experiment output. It does not contain a source video or source-audio recording used to derive the packet. This is a packet-to-generation experiment, not an example of source-media analysis or audio-enabled FV investigation.
 
 No independent packet-to-video audit report is included here. Do not treat the presence of the rendered MP4 as proof that the output satisfies every packet constraint.
+
+
+## Packet consistency review
+
+The OI declares the farm landmarks present across all five scenes, and TD explicitly says the environment persists. The original MSRM only placed those landmarks in scene_01, and omitted the farmer from scene_04. The spatial records have been amended to carry the same global farm landmarks through scenes_02–05 and to retain the farmer in the widened scene_04 view. Where the exact screen position is not specified, the record says so rather than inventing one. This is a structural correction; the generated MP4 has not been independently audited against the packet.
