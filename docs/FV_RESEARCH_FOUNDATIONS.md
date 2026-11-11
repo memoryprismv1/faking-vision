@@ -85,7 +85,7 @@ This document records empirical and theoretical work relevant to those failures 
 The research above motivates the following design constraints. These are FV procedures, not claims that an AI reproduces the human visual system.
 
 1. **Observe before naming.** Preserve visible boundaries, regions, contours, components, texture, shading, relative position, occlusion, and motion before semantic classification.
-2. **Separate evidence levels.** Distinguish direct image/video evidence, relational derivation from observed elements, calibrated inference using declared anchors or external measurements, and unsupported extrapolation. Never silently promote the last category into a fact.
+2. **Separate evidence levels.** Distinguish direct image/video evidence, relational derivation from observed elements, calibrated inference using declared anchors or external measurements, and unsupported extrapolation. Never silently reclassify the last category as a fact.
 3. **Generate candidates without premature collapse.** A component may support several candidates. Preserve alternatives and the evidence that would discriminate between them.
 4. **Allocate processing selectively.** Promotion changes processing priority only. It does not increase confidence, establish identity, or authorize packet commitment.
 5. **Verify with discriminating evidence.** Search for components and relationships that could strengthen or falsify candidates, not only for confirming details.
