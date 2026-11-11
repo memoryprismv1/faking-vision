@@ -8,7 +8,8 @@
     {
       "scene_id": "HUDF_ENTIRE",
       "entities_present": [
-        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-001"
+        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-001",
+        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-002"
       ],
       "total_galaxies": 10000
     }
