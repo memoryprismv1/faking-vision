@@ -75,7 +75,7 @@ Sub-packets: `Part1_00-00_to_11-23`, `Part2_11-23_to_22-46`, `Part3_22-46_to_34-
 Supplied artifacts across the family include per-packet `OI.json`, `TD.json`, `TIR.json`, `MSRM.json`, `PC.json`, `dispute.json`, and `snapshot/manifest.json`; the merged packet additionally includes `COMPILED_SPEC.json` and the canonical merged `TIR.json`. Each part and the merged packet has a `README.txt`.
 Purpose described by Meta: divide a long recording into three temporal segments, then reconcile object identities and a unified timeline across the segments.
 Source named by README: a full, unedited Kelly Thomas confrontation video. The README calls it CCTV; the source type and original publication/source URL still need verification.
-Verification caveat: the actual video is not in the supplied ZIP. The claimed source size, duration, identities, and 10,000x storage reduction are descriptions in the README, not independently verified results. Preserve the part boundaries and merged timeline together.
+Verification caveat: the actual video is not in the supplied ZIP. The claimed source size, duration, identities, and 10,000x storage reduction are not independently verified. Merged OI/TIR abbreviated packet references were corrected to full part IDs; the unsupported personal name “Officer Ramos” was removed; bitrate arithmetic was corrected to 108 GB/day at 10 Mbps and 54 GB/day at 5 Mbps per camera. Preserve the part boundaries and merged timeline together.
 
 ### 8. Cat jumping backwards video packet and dispute lifecycle
 Packet ID: `PKT-CAT-JUMP-BACK-001`
