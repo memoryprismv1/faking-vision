@@ -158,7 +158,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Marked the opening v0.24 temporal-analysis note in `HOW_TO_USE.md` as historical.
 - Clarified the provenance/audit document's historical v0.24 origin and its current supplementary role.
 - Clarified the Working Process Specification header's v0.24 base and later v0.26/v0.27 normative additions without inventing a consolidated release number.
-- Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
+- Normalized the skill's rebuild syntax to `[packet]`, made the examples use the implicit current-version target rather than the ambiguous literal `current`, and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
 - Exposed `fv edit viewpoint` as a subcommand in the README command list.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
@@ -172,6 +172,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
 - Review version-history continuity: v0.25 is referenced as the predecessor of v0.26 but has no standalone normative section in the current specification; determine whether this is intentional or a missing historical record.
+- Decide and document the consolidated target-version label for default `fv rebuild`; until then, use the specification's implicit-current wording and do not invent a release number.
 - Verify CI using existing run evidence or a controlled test run on this working branch.
 - Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual. An initial evidence-based status matrix is now in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`.
 - Discuss `fv query` separately before defining or implementing it.
