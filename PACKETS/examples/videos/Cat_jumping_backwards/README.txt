@@ -17,10 +17,10 @@ duration: 19s, dimensions: 1920x1080, transcode: VP9 480P 574kbps
 
 ## Packet contents and lifecycle
 
-The retained canonical packet files are `OI.json`, `MSRM.json`, `TD.json`, `PC.json`, `dispute.json`, `dispute.reconciled.json`, `COMPILED_SPEC.json`, `COMPILED_PROMPT.txt`, `snapshot/manifest.json`, and the validation reports.
+The retained packet files are `OI.json`, `MSRM.json`, `TD.json`, `PC.json`, `dispute.json`, `dispute.reconciled.json`, `COMPILED_SPEC.json`, `COMPILED_PROMPT.txt`, `snapshot/manifest.json`, and the validation reports. **There is no `TIR.json` in this folder.** The reconciliation file preserves the three dispute records and human decisions, but it is not a complete persistent TIR.
 
 The initial validation report records three snapshot-directory checks as failures and blocks rendering while disputes are open. The human resolution later accepted metadata-only analysis with uncertainty preserved and released the dispute gate; it did not add source frames or upgrade the evidence.
 
-**Validation warning:** `VALIDATION_REPORT_POST_RESOLVE.txt` claims that `snapshot/verification`, `snapshot/objs`, and `snapshot/disputes` exist and reports the packet as valid. That claim conflicts with the repository tree and the snapshot manifest, which records that no snapshots were preserved. The reconciliation record also says post-reconciliation validation was still “to be performed”. Treat the post-resolution report as inconsistent historical output, not proof of a completed validation.
+**Validation correction:** the former `VALIDATION_REPORT_POST_RESOLVE.txt` claimed that `snapshot/verification`, `snapshot/objs`, and `snapshot/disputes` existed and reported the packet as valid. Those directories are absent, the manifest records no retained snapshots, and the reconciliation record says validation was still “to be performed”. The post-resolution report has been corrected to withdraw the overall VALID claim and record the actual partial status. Human permission to compile this metadata-only experiment remains recorded; it is not visual verification or full packet validation.
 
 No FV executable/CLI was run. Do not describe this packet as visually verified, exhaustively analysed, or independently audited. The compilation artefacts are retained as an experimental prompt/specification, not evidence that the source was faithfully reconstructed.
