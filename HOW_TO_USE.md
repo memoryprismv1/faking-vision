@@ -546,6 +546,10 @@ to packet semantics.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
+### v0.27: rebuild and version upgrade
+
+`fv rebuild` (alias: `fv upgrade`) migrates a packet to a specified or current FV specification version while preserving its historical evidence and provenance. It is separate from `fv edit`, validation, dispute resolution, and compilation. The rebuilt copy must be validated against the target version; migration does not imply compilation readiness.
+
 ## Image packet editing and environmental participation (v0.25-v0.26)
 
 The image-only `fv edit` interface is an agent interaction convention, not a claim that a standalone executable exists.
