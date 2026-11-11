@@ -517,7 +517,7 @@ to continue the chain.
 
 ## Operating rule
 
-This skill contains the complete v0.24 FV operating material and the textarea command/output contract. Use it directly; the user should not need to supply the FV specification separately. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and its two JSON schemas. The three source documents are preserved verbatim in `references/` for provenance.
+This skill contains the agent-facing operating instructions and textarea command/output contract. Use it directly; the user should not need to supply the FV specification separately. The current Working Process Specification is authoritative. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. Historical specification text retained later in this file is reference material only and must not override current instructions.
 
 The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is the single authoritative FV specification. This skill is the operational interface and must not introduce rules that conflict with or are absent from the specification.
 
@@ -532,9 +532,9 @@ When operating FV:
 - independently audit generated results rather than trusting generator explanations;
 - when the source material does not support a conclusion, preserve the uncertainty or dispute rather than filling the gap from world knowledge.
 
-## Complete authoritative source
+## Historical v0.24 specification snapshot — reference only
 
-The following is the complete extracted text of the v0.24 Working Process Specification.
+The following is a preserved historical extraction of the v0.24 Working Process Specification. It is retained for provenance and change-history context; it is **not** the current operating authority. Apply the current `SPECIFICATION/FV_Working_Process_Specification.md` and the current instructions at the beginning of this skill whenever wording differs.
 
 ---
 
