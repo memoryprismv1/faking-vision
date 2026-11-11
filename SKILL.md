@@ -287,13 +287,16 @@ Example:
 Resolve an FV dispute, ambiguity, correspondence conflict, or competing
 interpretation.
 
-Use the existing dispute lifecycle. Where human intervention is required,
-the human supplies the resolution information; the AI then reconciles the
-packet against the cited evidence and human changes, preserves provenance,
-and validates the affected records.
+Use the existing dispute lifecycle. Where human intervention is required:
 
-An open or invalid dispute remains a reconstruction gate. Do not merely
-change a status field to make compilation possible.
+1. Preserve the original automated observation, uncertainty, evidence references, and dispute history. Human additions are later resolution information; never present them as evidence that the AI originally knew the answer.
+2. The human supplies the resolution information and may add or correct object information or other relevant packet detail. The human does not directly declare the packet reconciled.
+3. Return the packet to the AI. Read `dispute.json`, inspect the cited source evidence and referenced snapshots, and review the human-supplied changes.
+4. Reconcile the packet against the human resolution and supporting evidence. At minimum, update OI and PC where justified; update other packet fields only where a justified dependency is established. Preserve provenance.
+5. Determine whether every recorded dispute is resolved, then validate the affected packet records.
+6. If all disputes are resolved and validation passes, preserve the detailed history by moving the existing `dispute.json` to `dispute.reconciled.json`, then create a new small `dispute.json` containing the aggregate resolved state. If any dispute remains unresolved or validation fails, keep the detailed `dispute.json` in place with aggregate status `open`.
+
+The lifecycle is human resolution → AI evidence review and reconciliation → packet validation → dispute-state update. An open or invalid dispute remains a reconstruction gate. Do not merely change a status field to make compilation possible.
 
 Example:
 
