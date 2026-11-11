@@ -34,6 +34,7 @@ The textarea commands are operational boundaries, not claims that a standalone F
 | `fv resolve` | Resolve an open dispute or competing interpretation. | Reconciled packet or explicitly still-unresolved packet, with resolution history preserved. |
 | `fv validate` | Check packet structure, evidence, consistency, disputes, and readiness. | Validation report; no silent repair. |
 | `fv compile` | Convert a **resolved and validated** packet into renderer instructions and, where supported, reconstruct. | Compiled renderer specification and/or reconstruction artifact. |
+| `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
 
 
 ### Validation and compilation report rebuild status
@@ -42,7 +43,6 @@ Both `fv validate` and `fv compile` must explicitly say whether a packet may nee
 
 A legacy packet can still validate and compile through an expressly documented compatibility path. In that case, report the rebuild warning without falsely failing the packet. If migration is required to satisfy a target rule, `fv compile` stops and directs the operator to `fv rebuild` / `fv upgrade`, then validate again. Neither validation nor compilation silently rebuilds or edits the packet.
 
-| `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
 
 ### Rebuild is not edit
 
