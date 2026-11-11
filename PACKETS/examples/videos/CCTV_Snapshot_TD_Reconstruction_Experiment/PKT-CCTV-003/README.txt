@@ -25,7 +25,7 @@ FV METHOD AND EVIDENCE
 
 PACKET CONTENTS
 - OI.json: 19 packet-scoped object/region candidates; repeated vehicles are partly grouped or explicitly unresolved rather than assigned unsupported individual identities.
-- MSRM.json: scene intervals and coarse relative spatial organization across the changing camera view.
+- MSRM.json: scene intervals and coarse relative spatial organization across the changing camera view. Current cross-reference check found that seven OI candidates (OBJ-013 through OBJ-019) are not referenced by any MSRM scene; their spatial placement is therefore not represented in the current MSRM.
 - TD.json: ordered temporal observations with snapshot evidence references and explicit sampling limits.
 - snapshot/manifest.json: source lineage, timestamps, hashes and crop provenance.
 - snapshot/verification/: 105 full-frame snapshots.
