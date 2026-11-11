@@ -355,18 +355,22 @@ Use `fv create` when the required packet is being constructed from already estab
 
 The command may be used to create a reconstruction packet or other explicitly supported packet type. It must not manufacture visual facts. Any supplied inference, external knowledge, or test instruction must remain distinguishable from source-derived evidence.
 
-## 7. Create FV packets from existing literature
+## 7. Analyse published media
 
-When a published image or video is the source material, treat the
-published material as the source and apply the normal FV analysis
-process.
+When an image or video published in a paper, report, archive, or other
+literature source is the visual input, use `fv analyse`. The published
+media is the source to be inspected; the surrounding text is provenance
+and context, not a substitute for what the image or video visibly shows.
 
-Keep the literature/source identity and the evidence supporting packet
-assertions traceable. Do not add scene content because it is typical of
-the source category or supplied by outside knowledge.
+Keep the publication identity and precise media locator (figure, page,
+frame, timestamp, or crop where available) traceable. If the publication
+also supplies measurements, annotations, or interpretations, record
+those as externally supplied information and keep them distinct from
+direct visual observations. Do not add scene content because it is
+typical of the source category or asserted by the accompanying text.
 
-The resulting packet can then be used independently as a reconstruction
-representation.
+Use `fv create` only when constructing a packet from already established
+FV information or an explicit packet specification, as described above.
 
 ## 8. Packet closure, identity, and uncertainty
 
