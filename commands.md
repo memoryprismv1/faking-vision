@@ -11,7 +11,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 | Command | Use it for | Main result |
 |---|---|---|
 | `fv analyse` | Analyse a raw image or video source | FV analysis packet |
-| `fv investigate` | Pursue a visual question, object, event, relationship, or correspondence | Investigation record and supported packet updates |
+| `fv investigate` | Investigate an object, event, relationship, correspondence, or question in supplied media, including what happened and when | Evidence-grounded findings, relevant timing, investigation record and supported packet updates |
 | `fv assemble` | Integrate partial or overlapping observations into a larger spatial/visual representation | Registered or assembled representation |
 | `fv merge` | Reconcile independently produced FV packets | Merged packet or object inventory |
 | `fv create` | Construct a packet from established FV information or an explicit specification | Newly created FV packet |
