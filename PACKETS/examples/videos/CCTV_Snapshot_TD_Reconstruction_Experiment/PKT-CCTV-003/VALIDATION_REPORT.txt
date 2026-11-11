@@ -1,23 +1,34 @@
-FV PACKET STRUCTURAL VALIDATION — PKT-CCTV-003
+FV PACKET STRUCTURAL REVIEW — PKT-CCTV-003
 
-This is a structural check, not certification of visual completeness or correctness.
+Review date: 2026-11-11
+Scope: JSON structure and selected cross-file references. This is not an authoritative FV validator run or a certification of visual completeness/correctness.
 
-OI.json: PASS JSON parse
-MSRM.json: PASS JSON parse
-TD.json: PASS JSON parse
-PC.json: PASS JSON parse
-TIR.json: PASS JSON parse
-dispute.json: PASS JSON parse
-snapshot/manifest.json: PASS JSON parse
-snapshot/verification/frame_000.jpg: PASS exists
-snapshot/verification/frame_104.jpg: PASS exists
-OI/PC packet-local ID sets: PASS match
-OI inventory completeness: NOT ESTABLISHED
-merge gate: FAIL / BLOCKED — open disputes
+JSON syntax:
+- OI.json: PASS (19 packet-scoped entities)
+- MSRM.json: PASS (3 scenes)
+- TD.json: PASS (11 temporal observations)
+- PC.json: PASS (19 packet-local declarations)
+- TIR.json: PASS
+- dispute.json: PASS
+- snapshot/manifest.json: PASS
 
-OI entities: 19
-PC packet-local declarations: 19
-Preserved full-frame snapshots declared: 105
-Open disputes: 3
+Cross-file checks:
+- OI/PC packet-local ID sets: PASS; 19/19 IDs match.
+- OI/MSRM scene references: PASS after correction; all 19 OI entity IDs are represented in one or more MSRM scenes; no unknown MSRM IDs.
+- Scene entity counts: S01=4, S02=11, S03=14. These counts include entities persistent across scene intervals; they are not additive unique-object counts.
+- TD evidence paths: retained manifest-declared snapshot and crop paths were checked in the packet folder during the broader CCTV experiment review.
+- Snapshot samples: 105 full-frame files are declared for nominal seconds 0 through 104. This does not establish continuous coverage or exhaustive event capture.
 
-RESULT: STRUCTURALLY CHECKED WITH BLOCKERS. Do not merge/compile as settled. No FV CLI was run.
+Investigation and dispute status:
+- One inventory-completeness dispute is RESOLVED AS NON-BLOCKING FOR THIS CHUNK (deferred; not a claim of completeness).
+- Two investigations remain ACTIVE/OPEN: the moving light-coloured vehicle-like form, and the opening camera/view change.
+- Merge gate: BLOCKED while active investigations remain open.
+- OI inventory completeness: NOT ESTABLISHED.
+
+Limits:
+- One-second sampling cannot establish all intermediate motion or complete trajectories.
+- Vehicle identity and continuity remain provisional; no cross-packet identity normalization is performed.
+- The camera/view-change mechanism is unresolved.
+- No FV executable/CLI or authoritative semantic validator was run.
+
+RESULT: STRUCTURAL CROSS-REFERENCE CHECK PASSES; SEMANTIC COMPLETENESS IS NOT ESTABLISHED; MERGE GATE REMAINS BLOCKED.
