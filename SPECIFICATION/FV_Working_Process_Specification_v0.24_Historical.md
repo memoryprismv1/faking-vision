@@ -7,7 +7,6 @@
 For current rules, use `SPECIFICATION/FV_Working_Process_Specification.md`. Later normative additions and current operating requirements take precedence over this historical snapshot.
 
 ---
-
 FAKING VISION
 Working Process Specification — Rewritten (v0.24)
 Ground-up operational specification for image/video analysis, FV packet generation, reconstruction, prompt compilation, and evidence-grade evaluation.
