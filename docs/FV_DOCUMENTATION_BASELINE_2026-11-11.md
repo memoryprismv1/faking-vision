@@ -15,6 +15,7 @@ Status: initial audit; no examples changed.
 5. `HOW_TO_USE.md` — human-facing operating guide.
 6. `README.md` — project overview and navigation.
 7. `PACKETS/README.md` and `PACKETS/META_EXAMPLES_CATALOG.md` — packet conventions and example provenance.
+8. `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md` — preserved historical extract only; not current authority.
 
 ## Baseline size
 
