@@ -19,7 +19,7 @@ Integrator: ChatGPT
 - Made the unresolved provenance state explicit; no source URL or licence is invented.
 - Added the lighthouse spatial entry to the old Bermuda Cove packet using the coordinate already recorded in the baseline packet.
 - Restored the unchanged lighthouse in both OI and MSRM of the active Bermuda Cove edit; a follow-up cross-reference check found it had been dropped from that corrected packet.
-- Added a distributed-region entry for garden vegetation to the rainy Wall Cat spatial record. This records a broad region rather than asserting an unsupported point location.
+- Added a distributed-region entry for garden vegetation to the rainy Wall Cat spatial record. This records a broad region rather than asserting an unsupported point location. Cross-state audit found that vegetation is absent from the pleasant baseline OI but present in the rainy edit OI/MSRM; because source images are withheld, it cannot be determined whether the baseline omitted a pre-existing feature or the edit introduced it. This is unresolved.
 - Clarified the Windy Day edit's legacy limitation: the person changes state while the dog is left unchanged, so this is not a pure passive-only edit.
 
 ## Results and limits
