@@ -59,7 +59,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 8. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** The PC subsections and the v0.9–v0.11 changelog order are now corrected, along with the misplaced audio headings. Other historical section numbering remains unchanged pending a separate review.
 9. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
 10. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
-11. **No `fv query` command is currently defined.** The specification defines temporal queryability through TD and includes temporal-query acceptance tests, but it does not define a general-purpose `fv query` operation or syntax.
+11. **Question-directed media analysis belongs to `fv investigate`, not a separate `fv query` command.** TD temporal queryability remains a packet capability and acceptance test; users can ask what an object did and when directly against supplied media without opening TD files.
 12. **The normal workflow diagrams implied that `resolve` was always required**, although the accompanying prose made it conditional on a blocking dispute or ambiguity. The README, command reference, how-to guide, and current specification now label it `resolve if required`.
 13. **The viewpoint command descriptions blurred source viewpoint records and render VPOs.** They now distinguish inspection of both from editing render-preset pose/state while preserving source `initial_state`.
 14. **The `fv analyse` command output contract omitted required `viewpoint.json` metadata.** The command reference now includes source-supported viewpoint initialisation and video viewpoint transitions in TD.
@@ -188,7 +188,7 @@ The following items remain open or are deliberately deferred. Items already comp
 - **Viewpoint command surface:** decide whether additional schema-supported VPO fields should receive standard text-command syntax or remain editor-only.
 - **Consolidated release label:** the current authoritative specification remains a v0.24 base with later normative additions, including v0.26 and v0.27. The default rebuild target is correctly defined as the current authoritative specification itself; the absence of a consolidated numeric label does not block that operation. Decide on a release label only when a numbered consolidated release is needed. Do not infer v0.27 as the consolidated target.
 - **Divergent implementation branches:** review unique branch content in the later implementation/dataset phase. The documentation pass records the branch comparisons but does not merge or cherry-pick them.
-- **`fv query`:** discuss its purpose, inputs, outputs, and relationship to ordinary TD questions before defining or implementing it.
+- **`fv investigate` question-directed media use:** resolved by including single-image/video questions and timestamped object/event findings in the existing investigation operation. No separate `fv query` command will be defined.
 - **Examples:** leave example cleanup until the final phase, as planned.
 
 The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; `fv query` remains intentionally outside that set.
@@ -216,7 +216,7 @@ The active skill and how-to guide now identify the research map separately from 
 - Corrected the how-to heading to match its five listed correctness dimensions.
 - Added the textual `fv` prefix/activation rule to the skill to match the command reference.
 
-The 12 defined operations remain aligned across `SKILL.md`, `commands.md`, and `HOW_TO_USE.md`. `fv query` remains intentionally undefined pending discussion.
+The 12 defined operations remain aligned across `SKILL.md`, `commands.md`, and `HOW_TO_USE.md`. Question-directed analysis of supplied media is documented under `fv investigate`; no separate `fv query` command is defined.
 
 ## Follow-up: final cross-document verification
 
