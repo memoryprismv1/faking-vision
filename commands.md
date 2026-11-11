@@ -17,6 +17,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 | `fv create` | Construct a packet from established FV information or an explicit specification | Newly created FV packet |
 | `fv rebuild` / `fv upgrade` | Migrate an existing packet to a target FV specification version | Rebuilt packet and migration report |
 | `fv edit` | Make an intentional change to packet content | Edited packet state and edit record |
+| `fv edit viewpoint` | Inspect or edit viewpoint definitions and render presets | Updated viewpoint state and edit record |
 | `fv resolve` | Address a dispute or competing interpretation | Reconciled or explicitly unresolved packet state |
 | `fv validate` | Check a packet | Validation report |
 | `fv compile` | Compile a resolved and validated packet for reconstruction | Renderer specification and, where supported, reconstruction |
@@ -177,7 +178,7 @@ The target must be sufficiently unambiguous. Do not guess between objects or pro
 
 ### Viewpoint editing
 
-The viewpoint subcommands have defined forms:
+The `fv edit viewpoint` subcommand has defined forms:
 
 | Operation | Syntax | Purpose |
 |---|---|---|
