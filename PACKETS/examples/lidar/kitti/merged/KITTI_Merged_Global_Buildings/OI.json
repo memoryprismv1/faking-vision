@@ -246,5 +246,12 @@
     }
   ],
   "total_global_identities": 54,
-  "merge_rule": "Only when evidence supports equivalence - not by category alone"
+  "merge_rule": "Only when evidence supports equivalence - not by category alone",
+  "inventory_audit": {
+    "represented_global_identity_records": 12,
+    "legacy_declared_total": 54,
+    "unrepresented_declared_identity_count": 42,
+    "unrepresented_identity_status": "not enumerated; no source-backed records; do not infer or instantiate",
+    "merge_status": "incomplete; dispute.json merge_gate BLOCKED"
+  }
 }
