@@ -498,6 +498,9 @@ the requested FV operation calls for an artifact.
   and correspondence decisions preserved.
 - `fv create` MUST create the requested FV packet as actual packet files when
   the environment supports file creation.
+- `fv rebuild` / `fv upgrade` MUST preserve the source packet, create a separate rebuilt copy and migration report, and run target-version validation. Report migration, structural validation, FV semantic validation, dispute/reconciliation readiness, and independent visual audit separately. Do not overwrite the source unless the user explicitly requests in-place replacement.
+- `fv edit` MUST preserve the edited packet state and edit-log provenance; record only successful changes as successful.
+- `fv edit viewpoint` MUST preserve source `initial_state`, validate the VPO against `FV_Viewpoint_Schema.json`, and leave OI/MSRM scene content unchanged.
 - `fv resolve` MUST preserve the dispute/resolution record and the
   reconciled packet state as artifacts when applicable.
 - `fv validate` MUST create a validation report artifact when file creation
