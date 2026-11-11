@@ -57,7 +57,7 @@ Faking Vision grew out of my exploration of how human vision works and how some 
 
 Making Vision is the architectural synthesis, not a substitute for empirical research. The [FV research foundations](docs/FV_RESEARCH_FOUNDATIONS.md) map independent perceptual and AI studies to the operational procedures and distinguish findings from design translations and open hypotheses.
 
-**Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing.
+**Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing. It operationalises selected perceptual principles; it does not claim to reproduce the biological visual system.
 
 [Faking Vision – GitHub Repository](https://github.com/memoryprismv1/faking-vision)
 
