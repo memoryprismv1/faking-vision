@@ -50,7 +50,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 
 The media record may include optional attribution, organization, and contributor information when supplied or reliably available. Do not infer missing people, roles, organizations, contact details, timestamps, licences, or rights claims. Omit unavailable optional add-ons; do not retrofit legacy packets with guessed information.
 
-**Boundary:** Analyse is source analysis. Use `fv investigate` when the task is to pursue a specified question, object, event, relationship, or correspondence across observations.
+**Boundary:** Analyse is general source analysis and packet creation. Use `fv investigate` when the user wants a finding about a specified object, event, relationship, correspondence, or question in supplied media. No separate `fv query` command is defined; question-directed media analysis belongs to `fv investigate`.
 
 **Example:**
 
@@ -60,13 +60,13 @@ fv analyse [attached image or video]
 
 ## `fv investigate`
 
-**Purpose:** Investigate a specified object, event, relationship, correspondence, or question across one or more visual observations or media.
+**Purpose:** Investigate a specified object, event, relationship, correspondence, or question in supplied media or across multiple observations/media. This includes straightforward questions about what an object did and when.
 
-**Input:** The question or target to investigate, plus the relevant observations or media.
+**Input:** The target or question and the relevant source media/observations. The question directs attention and sampling; it does not dictate the answer.
 
-**Output:** A persistent TIR (Temporal Investigation Record) containing the investigative evidence path. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Commit only source-supported conclusions to authoritative packet records; a chat summary is supplementary to the investigation record.
+**Output:** A direct, evidence-grounded finding with relevant timestamps or intervals where applicable, plus a persistent TIR (Temporal Investigation Record) when the investigation produces a result that needs to be retained. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. A chat answer should identify material coverage gaps or uncertainty; it must not require the user to inspect TD files to obtain the finding. Commit only source-supported conclusions to authoritative packet records.
 
-A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
+For video, use temporal observations and adaptive sampling as needed to locate relevant actions/events and their timing. Report absence only when the available media coverage is adequate to support it; otherwise report that the result is inconclusive or coverage is incomplete. A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
 
 When audio is included, assess transcription fidelity separately from visual/cross-modal support, ambiguity, and timing/context mismatch in TIR. Transcript segments may guide adaptive sampling before visual confirmation, but claims enter TD only when supported by acquired source observations.
 
@@ -74,6 +74,9 @@ When audio is included, assess transcription fidelity separately from visual/cro
 
 ```text
 fv investigate this person across these CCTV clips
+fv investigate what the kitten did in this video and when
+fv investigate whether a white dog appears anywhere in this image
+fv investigate whether a delivery person appeared during the covered CCTV period
 ```
 
 ## `fv assemble`
