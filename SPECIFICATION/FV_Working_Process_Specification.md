@@ -88,7 +88,7 @@ Assembly is not object-identity merge. Assembly may establish the spatial corres
 
 ### Biological grounding: viewpoint-oriented spatial integration
 
-FV's `assemble` operation is grounded in the biological model described by [Making Vision](https://www.memoryprism.com/readings/making-vision): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
+FV's `assemble` operation is grounded in the biological model described by [Making Vision V2](https://www.memoryprism.com/readings/making-vision-v2): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
 
 In this account, a **maplet** is a local spatial representation associated with a particular viewpoint. It is not simply a cropped photograph: it carries local spatial information related to the observer's position and the spatial structure available to the organism. Use *maplet* descriptively for this local representation; do not assume a particular neural implementation from the term alone.
 
