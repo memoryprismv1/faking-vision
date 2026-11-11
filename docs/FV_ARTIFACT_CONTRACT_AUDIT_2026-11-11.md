@@ -148,3 +148,10 @@ No packet semantics or schemas were changed. Examples remain untouched; the prev
 The active skill already makes current Making Vision V2 a mandatory prerequisite for visual operations and distinguishes promotion from recognition, identity, and packet commitment. The how-to guide did not surface that prerequisite clearly. Added a concise section covering the required reading, the selective-allocation architecture, the distinction between promotion and packet commitment, preservation of supported structure under identity uncertainty, and the status of Making Vision as a working synthesis rather than an established neural theory.
 
 This is a documentation alignment change; no visual operation was performed and no research claim was independently expanded in this pass.
+
+
+## Follow-up: rebuild target-version ambiguity
+
+The canonical specification header states that the document has a v0.24 base with later normative additions, including v0.26 and v0.27, but does not declare a separately consolidated release number. The rebuild command's default-target wording could otherwise tempt an agent to treat the latest labelled addition as the consolidated target.
+
+The skill and command reference now explicitly prohibit that inference. If no target is supplied and no single authoritative target label is designated, the agent must report the target as unresolved and request a version decision or mark migration blocked. This preserves the existing version-designation decision rather than silently deciding it during documentation cleanup.
