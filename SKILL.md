@@ -280,7 +280,7 @@ Use compatibility behaviour only where the target specification defines it. `VPO
 
 Example:
 
-`fv rebuild [legacy-packet.zip] --to current`
+`fv rebuild [legacy-packet.zip]`
 
 ### `fv resolve`
 
