@@ -310,6 +310,13 @@ Example:
 
 Make an intentional, evidence-grounded change to existing packet content. Use the relevant edit operation for object properties, viewpoints, or environmental conditions. Record successful changes and their provenance in the packet's edit log; do not record failed or unresolved operations as successful.
 
+For image-packet interaction:
+- `fv edit` with no arguments lists available objects.
+- `fv edit <object-name/object-id> --list` lists the selected object's properties.
+- `fv edit <object-name/object-id> <property-id>` identifies a direct property edit. The general value-assignment syntax is not standardized; do not invent it.
+
+Require an unambiguous target and applicable property. Preserve successful edits with before/after information and provenance. These are agent interaction conventions, not a standalone CLI. `fv edit viewpoint` is a separate defined subcommand.
+
 `fv edit` does not perform specification-version migration. Use `fv rebuild` (or its alias `fv upgrade`) to bring a legacy packet into alignment with a newer FV standard. Rebuilding does not replace intentional content edits.
 
 ### `fv edit viewpoint`
