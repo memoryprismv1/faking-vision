@@ -24,7 +24,7 @@ The temporal procedure used a 4-second global pass, a separate 14-position odd-s
 Known limitations
 The parking scene is dense; some vehicles overlap or are cropped at the frame boundaries. The 45-vehicle baseline inventory is manually enumerated and not independently proven exhaustive. Small distant objects and precise movement boundaries remain uncertain. The interaction between the pedestrian and silver sedan is unresolved; no contact is asserted. Audio was not analysed for this visual experiment. These limitations are not silently repaired.
 
-Disputes: OPEN — inventory completeness and distant-object ambiguity require further review before any claim of exhaustive reconstruction coverage.
+Disputes: both issues are DEFERRED / RESOLVED AS NON-BLOCKING FOR THIS CHUNK in dispute.json. This is not a global resolution or an exhaustiveness certification; retain the uncertainty and re-promote if later evidence or a task makes it relevant.
 
 OPERATIONAL DISPOSITION (Making Vision v1/v2)
 See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory and low-priority identity questions may be DEFERRED rather than treated as blocking. This is chunk-local only: later chunks may promote the same object or question again. Deferred is not deleted, forgotten, or globally resolved. Active event/view-change investigations remain open.
