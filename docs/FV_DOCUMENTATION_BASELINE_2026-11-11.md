@@ -45,10 +45,11 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 
 ### High priority
 
+4. **The skill conflated Making Vision promotion with evidence-based object commitment.** Its initial rule said candidates should be promoted only when supported by visual evidence and made promotion a gate before object counting/identity assignment. Making Vision V2 defines promotion as allocation of additional processing; it can be driven by state, needs, uncertainty, risk, learned relevance, expectations, and environmental statistics, and can precede recognition or persistence. The skill now separates allocation/promotion from evidence-based entity and identity commitment, and points to the current V2 material.
 1. **Historical specification embedded in the skill is not clearly separated from current instructions.** The skill's operating-rule paragraph described it as containing the "complete v0.24 FV operating material", then labelled the appended extraction "complete authoritative source". Meanwhile, current viewpoint instructions explicitly supersede older v0.24 wording. This creates an avoidable authority ambiguity for an unfamiliar agent.
 2. **Command reference map omits the explicit viewpoint subcommand.** Detailed syntax exists later in the same file, but the top-level command map does not expose it.
 3. **The skill's `fv validate` instruction hard-coded validation against v0.24 packet rules.** This was inconsistent with the skill's own migration assessment and current-specification authority. It now directs validation against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
-4. **The documentation set repeats substantial process material.** The 1,590-line skill contains a 129,507-character historical specification extraction, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content should be clearly marked, not silently treated as current policy.
+5. **The documentation set repeats substantial process material.** The 1,590-line skill contains a 129,507-character historical specification extraction, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content should be clearly marked, not silently treated as current policy.
 
 ### Medium priority
 
