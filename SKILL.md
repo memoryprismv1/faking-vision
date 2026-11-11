@@ -471,6 +471,9 @@ the skill runtime can invoke the utility with attached files.
 - `fv assemble` means partial/overlapping observations → registered/assembled representation.
 - `fv merge` means independent FV packets → reconciled packet/object inventory with provenance preserved.
 - `fv create` means established information/specification → newly constructed FV packet.
+- `fv rebuild` / `fv upgrade` means an existing packet → separate migrated copy, migration report, and target-version validation; it does not edit source content or resolve disputes.
+- `fv edit` means an intentional packet-content change with before/after values and provenance.
+- `fv edit viewpoint` means inspect source viewpoints/render VPOs or edit the render pose without rewriting source `initial_state`.
 - `fv resolve` means open dispute/ambiguity → reconciled or still-unresolved packet.
 - `fv validate` means packet → validation report.
 - `fv compile` means resolved + validated packet → lossless renderer specification and, where supported, reconstruction.
@@ -504,6 +507,10 @@ the requested FV operation calls for an artifact.
 - `fv audit` MUST create a downloadable JSON audit report when file
   creation is available; the JSON is primary and the human-readable summary is
   supplementary.
+
+The offline `fv_audit_batch.py` utility produces a separate aggregate JSON
+report and readable summary. It is not a native skill command and does not
+re-audit media. Do not claim that `fv audit batch` is implemented.
 - Human-readable chat summaries are supplementary.
 - Never replace an artifact with a prose dump of the artifact's intended
   contents.
