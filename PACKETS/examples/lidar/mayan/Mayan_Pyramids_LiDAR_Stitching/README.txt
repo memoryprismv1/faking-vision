@@ -14,7 +14,7 @@ The example is intended to illustrate assembly of overlapping airborne LiDAR fli
 
 ## What is present and what is missing
 
-The repository contains structured packet records, a snapshot manifest, a workflow visualization, and a separate merged-packet example. It does not contain the raw LiDAR point clouds, flight-line list, calibration/registration inputs, or a reproducible processing log for this assembly.
+The repository contains structured packet records, a snapshot manifest, and a separate merged-packet example. The visualizations directory currently contains only its README; the previously listed workflow image is absent from the repository tree. It does not contain the raw LiDAR point clouds, flight-line list, calibration/registration inputs, or a reproducible processing log for this assembly.
 
 ## Verification limits
 
