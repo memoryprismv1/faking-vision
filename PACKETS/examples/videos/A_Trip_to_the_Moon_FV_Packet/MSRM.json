@@ -44,6 +44,11 @@
           "CHAR_ASTRONOMER_02",
           "right_of",
           "OBJ_CANNON"
+        ],
+        [
+          "CHAR_ASTRONOMER_03",
+          "beside",
+          "OBJ_CANNON"
         ]
       ]
     },
@@ -65,6 +70,11 @@
           "CHAR_ASTRONOMER_03",
           "behind",
           "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "center_of",
+          "BG_MOON_SURFACE"
         ]
       ]
     },
@@ -128,6 +138,11 @@
           "CHAR_ASTRONOMER_03",
           "right_of",
           "CHAR_ASTRONOMER_LEAD"
+        ],
+        [
+          "CHAR_ASTRONOMER_LEAD",
+          "center_of",
+          "BG_EARTH_RETURN"
         ]
       ]
     }
