@@ -188,5 +188,13 @@
   "total_global_pyramids": 1200,
   "total_global_causeways": 1800,
   "total_global_plazas": 3000,
-  "note": "Full 61k not listed in OI for brevity - sample 12 shown, total counts preserved. Each global retains 3 packet_scoped_ids average (overlap 40%)"
+  "note": "Full 61k not listed in OI for brevity - sample 12 shown, total counts preserved. Each global retains 3 packet_scoped_ids average (overlap 40%)",
+  "inventory_audit": {
+    "sampled_global_identity_records": 12,
+    "legacy_declared_global_total": 61000,
+    "typed_aggregate_total": 6000,
+    "uncategorized_remainder": 55000,
+    "uncategorized_remainder_status": "not categorized or represented as explicit global identities; do not infer categories",
+    "merge_status": "illustrative only; dispute.json merge_gate BLOCKED"
+  }
 }
