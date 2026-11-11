@@ -227,11 +227,11 @@ For video, component emergence, disappearance, movement, or interaction may trig
 
 Do not use later whole-object recognition to retroactively rewrite the earlier candidature record. The investigation must preserve the forward evidence path that existed when each candidate was considered.
 
-Candidate verification is component- and relationship-based. A candidate may be promoted for additional processing when the observed bundle of components and relationships is sufficiently diagnostic for the task. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
+Candidate verification is component- and relationship-based. Allocate additional processing to a candidate when its salience, uncertainty, task relevance, anomaly, or explanatory potential warrants closer inspection. The resulting inspection may strengthen, weaken, reject, or leave the candidate unresolved; the allocation decision itself does not establish its identity or evidential status. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
 
 Search should be targeted by the candidate set. Once a component creates candidature, ask what additional source evidence would distinguish the candidates, then inspect for that evidence. Do not search only for confirming evidence for the first candidate; where feasible, include evidence that could discriminate between or falsify the alternatives.
 
-- the evidence supporting the promotion or rejection decision.
+- the evidence supporting the allocation decision and any resulting strengthening, weakening, or rejection;
 
 - whether the candidate was strengthened, weakened, rejected, or remains unresolved;
 
@@ -367,7 +367,7 @@ For every candidate that may persist, maintain a temporal ledger.
 
 Do not track every declared component merely because it exists. Component tracking is triggered by component behaviour when that behaviour creates enough perturbation or uncertainty to matter to the FV representation.
 
-A component may remain an inventory/property detail while behaviourally irrelevant. Promote it to a temporal tracking target only when its change, movement, interaction, deformation, state transition, or other behaviour materially affects the scene representation, an object state, a relationship, an action, reconstruction fidelity, or an unresolved temporal question.
+A component may remain an inventory/property detail while behaviourally irrelevant. Allocate temporal tracking effort to it only when its change, movement, interaction, deformation, state transition, or other behaviour materially affects the scene representation, an object state, a relationship, an action, reconstruction fidelity, or an unresolved temporal question.
 
 Examples: a visible wheel does not automatically require wheel tracking; wheel rotation that materially explains vehicle behaviour may require local tracking. A person's hand does not automatically become a tracked component; a hand reaching for, contacting, or manipulating another object may make the hand's behaviour information-bearing. A decorative button that changes without affecting represented structure need not be tracked.
 
@@ -2132,8 +2132,8 @@ For a difficult or ambiguous source, consider separate analytical passes:
 - **Broad-scene pass:** establish major structures and relationships.
 - **Candidate-focused pass:** inspect one uncertain or consequential candidate
   and the components or relationships that would distinguish alternatives.
-- **Alternative-promotion pass:** change which candidate or relationship gets
-  attention and test whether the scene interpretation changes.
+- **Alternative-allocation pass:** redirect attention to a different candidate or
+  relationship and test whether the scene interpretation changes.
 - **Consistency pass:** check the resulting interpretations against the same
   source evidence and preserve unresolved alternatives.
 
