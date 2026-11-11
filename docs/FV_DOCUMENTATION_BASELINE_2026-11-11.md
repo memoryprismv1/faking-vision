@@ -53,11 +53,11 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 
 ### Medium priority
 
-5. **README initially listed `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README now labels `fv upgrade` as an alias.
-6. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
-7. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
-8. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
-9. **No `fv query` command is currently defined in the command map.** Temporal queryability is discussed in the specification and examples, but this does not establish a general-purpose query command.
+6. **README initially listed `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README now labels `fv upgrade` as an alias.
+7. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
+8. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
+9. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
+10. **No `fv query` command is currently defined in the command map.** Temporal queryability is discussed in the specification and examples, but this does not establish a general-purpose query command.
 
 ## Existing support implementation (not a CLI claim)
 
