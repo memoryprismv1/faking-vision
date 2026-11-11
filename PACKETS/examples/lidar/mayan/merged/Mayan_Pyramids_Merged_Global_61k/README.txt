@@ -15,8 +15,11 @@ This example is intended to illustrate the distinction between:
 
 The legacy README names the PACUNAM LiDAR Initiative and claims 100+ flight-transect packets as merge inputs. Those input packets, raw point clouds, flight identifiers, and reproducible correspondence evidence are not included here. The source reference and survey context do not establish that this example processed those inputs.
 
-## Verification limits
+## Packet consistency and verification limits
 
-The legacy README claims 61,000 persistent global identities, specific correspondence-quality thresholds, and a large storage-reduction ratio. These are unverified packet/README assertions. The presence of an OI file and a merged-map visualization does not independently establish the claimed identity count, correspondence quality, source coverage, or storage equivalence.
+- OI contains a 12-identity sample. MSRM originally listed only three of those IDs; it has been updated to list all 12 sample identities. This is a structural cross-reference correction, not a verification of their existence in the source survey.
+- OI declares 61,000 total global structures, but the three typed totals shown (1,200 pyramids, 1,800 causeways, 3,000 plazas) account for only 6,000. The remaining 55,000 are not categorized in this packet. Do not assume a complete inventory.
+- The correspondence-quality strings and TIR claim of 100+ source TIRs / 61,000 correspondence investigations are legacy claims. They are now explicitly qualified as unverified because the source flight transects, contributing packets, and correspondence evidence are absent.
+- The legacy README also claims specific correspondence thresholds and a large storage-reduction ratio. These are not independently established. The merged-map visualizations do not prove source coverage or correspondence correctness.
 
-Treat this as a conceptual merge example only. Do not cite the 61,000 count, the 100+ input count, or the storage-reduction figure as a reproduced result.
+Treat this as a conceptual merge example only. Do not cite the 61,000 count, the 100+ input count, the correspondence-quality claims, or the storage-reduction figure as reproduced results.
