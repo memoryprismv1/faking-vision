@@ -191,3 +191,15 @@ The detailed historical v0.24 dispute lifecycle, typed identifiers, viewpoint ru
 
 
 The how-to image-analysis pipeline and the skill's per-frame procedure were also updated to make the sequence operationally visible: candidate generation → selective promotion for additional processing where warranted → candidate verification/alternative search → evidence-grounded packet commitment. Promotion remains selective and does not itself establish an object identity or packet fact.
+
+
+## Follow-up: tighten selective-allocation terminology and section structure
+
+A further contextual review found two remaining clarity issues:
+
+- The operation-to-artifact matrix described investigation as supporting "promotion into authoritative packet records". This was corrected to **evidence-supported packet commitment**.
+- The specification's component-driven candidature subsection heading appeared after the material it governed. The heading was moved before the subsection content.
+
+The specification now reserves **promotion** for allocating additional processing attention. Candidate verification describes what inspection establishes (strengthened, weakened, rejected, or unresolved); temporal tracking is described as allocating tracking effort; packet records receive source-supported conclusions through packet commitment. The skill's per-frame procedure and the how-to image-analysis path make the sequence explicit: candidate generation → selective promotion where warranted → component/relationship verification and alternative search → classification/identity decisions where supported → packet commitment.
+
+No examples were changed. No tests were run and no merge was performed.
