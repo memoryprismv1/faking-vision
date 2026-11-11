@@ -143,7 +143,7 @@ fv rebuild [packet] [--to <FV-version>]
 fv upgrade [packet] [--to <FV-version>]
 ```
 
-If no target version is supplied, use the current authoritative FV specification version only when that version has a single explicit designation. The current Working Process Specification describes a v0.24 base with later normative additions but no separately consolidated release number; do not infer that the target is v0.27. If no single target designation is available, report the target as unresolved and request a version decision or mark migration blocked. `fv upgrade` is an alias for the same operation, not a separate workflow.
+If no target version is supplied, use the current authoritative Working Process Specification itself as the target, as the normative rebuild rule directs. Its header describes a v0.24 base with later normative additions, including v0.26 and v0.27, but does not assign a consolidated release number. Record this target description in the migration report without inventing a release label or treating v0.27 alone as the consolidated version. The consolidated release label remains an open versioning decision; its absence does not by itself block migration to the current authoritative specification. `fv upgrade` is an alias for the same operation, not a separate workflow.
 
 **Input:** An existing FV packet and, optionally, the target FV version.
 
