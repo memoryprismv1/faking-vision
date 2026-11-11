@@ -521,7 +521,7 @@ to continue the chain.
 
 This skill contains the agent-facing operating instructions and textarea command/output contract. Use it directly; the user should not need to supply the FV specification separately. The current Working Process Specification is authoritative. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. Historical specification text retained later in this file is reference material only and must not override current instructions.
 
-The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is the single authoritative FV specification. This skill is the operational interface and must not introduce rules that conflict with or are absent from the specification.
+The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. The canonical Making Vision material is the foundational perceptual source that this skill operationalizes; its required reading and the candidate-promotion gate are skill prerequisites, not replacements for FV packet rules. This skill may provide agent-facing procedures and guardrails grounded in Making Vision, but it must not contradict the Working Process Specification or silently redefine its packet requirements.
 
 When operating FV:
 - preserve FV terminology and distinctions;
