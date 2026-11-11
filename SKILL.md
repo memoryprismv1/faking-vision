@@ -5,18 +5,25 @@ description: Operate Faking Vision (FV) for image and video analysis, visual inv
 
 # Faking Vision Agent Skill
 
-## Mandatory Making Vision prerequisite and promotion gate
+## Mandatory Making Vision prerequisite and candidate/promotion gates
 
-Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read the canonical Making Vision material:
-https://www.memoryprism.com/readings/making-vision
+Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read the current canonical Making Vision material:
 
-Do not begin visual analysis on the assumption that this skill alone, general computer-vision knowledge, or a remembered summary substitutes for reading the canonical material. If the material cannot be accessed or read, state that limitation and do not claim the prerequisite was completed.
+https://www.memoryprism.com/readings/making-vision-v2
 
-Apply the Making Vision processing order: current sensory field/input and directly supported structure → candidate generation → candidate allocation and promotion → deeper processing. Keep candidate generation, promotion, recognition, identification, and object state distinct. Internal state and expectations may influence promotion but must not be misrepresented as external visual evidence.
+Making Vision V2 retains the central V1 architecture and clarifies several distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. If the V2 material cannot be accessed or read, state that limitation; do not claim the prerequisite was completed.
 
-**Object promotion is a required gate before object counting or identity assignment.** Do not count every detected region as an object, assign identities, or build persistent correspondence from unpromoted candidates. Promote candidates only when supported by the available visual evidence; preserve uncertain, rejected, and unresolved candidates rather than forcing a count or identity. Promotion does not license adding unsupported semantic detail.
+Apply the Making Vision processing architecture:
 
+current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence.
 
+This is an allocation architecture, not a rigid serial vision algorithm. Persistent knowledge, spatial structure, expectations, task relevance, uncertainty, learned relevance, environmental statistics, current needs, physiological/internal state, energy, risk, and anticipated consequences can affect what receives additional processing. Keep those allocation influences distinct from evidence about what is externally present in the source.
+
+**Promotion is not recognition, identification, object confirmation, or persistence.** Promotion means that a candidate, state, region, or event warrants additional processing. It can precede stable classification, naming, complete identification, or storage. A promoted candidate may remain ambiguous, be rejected after investigation, or be useful for action without being named.
+
+**Keep processing allocation separate from packet commitment.** Do not count every detected region as an object, assign persistent identity, or establish correspondence merely because something was noticed or promoted. Commit an entity, identity, or correspondence to authoritative packet records only when the source evidence supports that decision. Preserve candidates, alternatives, rejected hypotheses, and unresolved identity where appropriate. Promotion itself does not license adding unsupported semantic detail.
+
+Do not discard directly supported visual structure merely because object identity is unknown. Boundaries, free space, relative position, movement, obstacles, and other source-supported structure can be useful before stable object recognition. Record what the source supports and keep semantic uncertainty explicit.
 
 ## Viewpoint packet requirement (current specification)
 
