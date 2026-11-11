@@ -21,4 +21,4 @@ These are material internal completeness and evidence gaps. The 54-identity tota
 
 ## Status
 
-Keep this packet as an **incomplete merge-structure example**. Do not present it as a completed or validated global-building merge until the inventory is made internally complete, source evidence is linked, and correspondence decisions can be independently reviewed. Duplicate suffixed files that were byte-identical to canonical files have been removed; the canonical unsuffixed records are retained.
+Keep this packet as an **incomplete merge-structure example**. `dispute.json` now records two open blockers and sets the merge gate to BLOCKED. The compiled-spec draft has been constrained to the 12 identities actually listed; the legacy 54 total and 42 singleton identities are retained only as unverified claims, not renderable inventory. Do not present this as a completed or validated global-building merge until the inventory is made internally complete, source evidence is linked, and correspondence decisions can be independently reviewed. Duplicate suffixed files that were byte-identical to canonical files have been removed; the canonical unsuffixed records are retained.
