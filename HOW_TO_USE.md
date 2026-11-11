@@ -72,7 +72,7 @@ If a packet contains an open dispute, failed reconciliation, or failed validatio
 
 A typical reconstruction path is:
 
-`analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → resolve → validate → compile → audit`
+`analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → (resolve if required) → validate → compile → audit`
 
 Some jobs can skip operations that are not needed. `resolve` is required when a dispute or unresolved issue blocks the requested downstream operation. `validate` is the final packet gate before `compile`.
 
