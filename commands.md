@@ -195,6 +195,8 @@ The `fv edit viewpoint` subcommand has defined forms:
 
 Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
 
+`VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification.
+
 **Example:**
 
 ```text
