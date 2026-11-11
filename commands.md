@@ -44,6 +44,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 - For an image: the complete FV packet as actual packet files, packaged as a ZIP. The ZIP is the primary deliverable.
 - For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record.
 - For every newly generated packet: root-level `packet_provenance.json`, validated against `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
+- For every newly generated image/video packet: root-level `viewpoint.json` with source-supported initialisation. For video, record supported viewpoint transitions in TD. Preserve unknown position/orientation; do not invent camera geometry.
 
 The media record may include optional attribution, organization, and contributor information when supplied or reliably available. Do not infer missing people, roles, organizations, contact details, timestamps, licences, or rights claims. Omit unavailable optional add-ons; do not retrofit legacy packets with guessed information.
 
