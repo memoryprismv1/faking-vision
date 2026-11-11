@@ -1,21 +1,22 @@
-Faking Vision MERGE Packet v0.24 - 61,000 Mayan Structures Persistent IDs
-packet_id: PKT-MAYAN-MERGE-61K-001
-operation: fv merge - reconcile 100+ flight transect packets into global persistent identities
+# Maya-region LiDAR global-identity merge example
 
-Source: PACUNAM LiDAR Initiative 2,100km2, 61,000 structures
-Inputs: 100+ assemble packets (each flight line 10km x 0.5km)
-Each packet-scoped pyramid: PKT-MAYAN-LIDAR-STITCH-001-OBJ-001 etc.
-Now merge into global canonical IDs PYR-GLOBAL-001..61000, CAUSEWAY-GLOBAL-001.. etc.
+Packet ID: `PKT-MAYAN-MERGE-61K-001`
+Operation intended: `fv merge`
+Specification label in supplied packet: v0.24
 
-Procedure per v0.24 0. and 5.1.1:
-- Assembly answered: how do partial LiDAR strips fit together into 2,100km2 landscape? (fv assemble)
-- Merge answers: what established info refers to same underlying entities? (fv merge)
-- Correspondence investigation: component = rectangular base + cardinal orientation + causeway connection + height + adjacent plaza
-- Quality: high = same base 40x40m +/-2m, same orientation +/-5deg, causeway connects, IoU >0.7; weak = base similar but orientation differs; transient = only one flight line sees it (edge)
-- Provenance: each global pyramid retains flight IDs where it was observed
+## Intended demonstration
 
-Result: 61,000 global persistent identities normalized, not duplicated. Example: pyramid seen in flight_001, flight_002, flight_003 (overlap 40%) -> single global ID PYR-GLOBAL-001 with 3 packet_scoped_ids
+This example is intended to illustrate the distinction between:
 
-This addresses storage: 2,100km2 at 12pts/m2 = 25.2B points -> petabytes raw. FV merged packet = few MB with 61k semantic entities + relationships - 100000x reduction while preserving auditable evidence
+- `fv assemble`: register local flight-line/maplet observations into a shared spatial representation; and
+- `fv merge`: investigate whether packet-scoped declarations refer to the same underlying entity, then normalize identity only where evidence supports equivalence.
 
-Generated: 2026-10-12T06:36:11.099417
+## Source and input status
+
+The legacy README names the PACUNAM LiDAR Initiative and claims 100+ flight-transect packets as merge inputs. Those input packets, raw point clouds, flight identifiers, and reproducible correspondence evidence are not included here. The source reference and survey context do not establish that this example processed those inputs.
+
+## Verification limits
+
+The legacy README claims 61,000 persistent global identities, specific correspondence-quality thresholds, and a large storage-reduction ratio. These are unverified packet/README assertions. The presence of an OI file and a merged-map visualization does not independently establish the claimed identity count, correspondence quality, source coverage, or storage equivalence.
+
+Treat this as a conceptual merge example only. Do not cite the 61,000 count, the 100+ input count, or the storage-reduction figure as a reproduced result.
