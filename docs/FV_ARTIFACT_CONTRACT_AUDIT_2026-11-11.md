@@ -188,3 +188,6 @@ The active `SKILL.md` is substantially shorter than the original `main` version 
 - The historical file's extracted specification body matches the corresponding v0.24 body formerly embedded in `main`'s skill through 98,484 characters; the remaining difference is the old skill's appended canonical-specification material, now represented by the current standalone Working Process Specification and agent-facing instructions.
 
 The detailed historical v0.24 dispute lifecycle, typed identifiers, viewpoint rules, and other historical material remain available in the dedicated historical file. The current specification remains the operating authority. The line-count reduction is therefore a relocation/separation, not evidence that the research and historical specification were deleted.
+
+
+The how-to image-analysis pipeline and the skill's per-frame procedure were also updated to make the sequence operationally visible: candidate generation → selective promotion for additional processing where warranted → candidate verification/alternative search → evidence-grounded packet commitment. Promotion remains selective and does not itself establish an object identity or packet fact.
