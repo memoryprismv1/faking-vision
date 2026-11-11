@@ -91,7 +91,7 @@ Evidence limitation stated by README: direct pixel-level frame inspection was un
 2. Record source URLs and dataset identifiers where supplied. Flag missing source links and acquisition records.
 3. Distinguish four states: source identified, source acquired, processing executed, result independently verified.
 4. Preserve original dispute files, reconciliations, pre-resolution and post-resolution reports, and packet manifests.
-5. Compare duplicate-looking files by content hash. This review removed byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building examples, retaining canonical unsuffixed files. Shared boilerplate files repeated across different environmental packets and differently named semantic aliases were not removed. Never discard a distinct lifecycle state.
+5. Compare duplicate-looking files by content hash. This review removed byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building examples, retaining canonical unsuffixed files. Shared boilerplate files repeated across different environmental packets were retained. The byte-identical `TIR_MERGED_UNIFIED.json` alias in the CCTV Storage Crisis merged packet was removed; canonical `TIR.json` remains. Never discard a distinct lifecycle state.
 6. Do not claim raw sensor media is included where the ZIP contains only structured packet artifacts.
 7. Retain provenance and uncertainty; do not silently promote unresolved claims or create global identities without documented correspondence evidence.
 
