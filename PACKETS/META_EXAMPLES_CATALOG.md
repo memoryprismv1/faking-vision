@@ -38,7 +38,7 @@ Operation: `fv merge`
 Supplied artifacts: `OI.json`, `MSRM.json`, `PC.json`, `TD.json`, `TIR.json`, `dispute.json`, `snapshot/manifest.json`, and `README.txt`.
 Purpose described by Meta: reconcile overlapping flight-transect packets into persistent global identities, with provenance back to flight IDs and correspondence quality labels.
 Source named in README: PACUNAM LiDAR Initiative; the README claims 2,100 km² and 61,000 structures.
-Verification caveat: no underlying point clouds or input assembly packets are included. The claim that 61,000 persistent identities were normalized, and the claimed storage-reduction figures, are not established by the included files alone. Preserve as an example claim until inputs and computation can be inspected.
+Verification caveat: no underlying point clouds or input assembly packets are included. The packet contains a 12-identity sample and MSRM now lists all 12 sampled OI IDs. The three typed totals (1,200 pyramids, 1,800 causeways, 3,000 plazas) account for 6,000 structures; the remaining 55,000 of the claimed 61,000 are not categorized. The claim that 61,000 persistent identities were normalized, and the claimed storage-reduction figures, are not established by the included files alone.
 
 ### 3. KITTI LiDAR assembled landscape
 Packet ID: `PKT-KITTI-ASSEMBLE-001`
