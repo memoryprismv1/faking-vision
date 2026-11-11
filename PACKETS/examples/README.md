@@ -18,11 +18,11 @@ The source-page author and licence statements in these five READMEs were checked
 
 | Example | What it demonstrates | Evidence/status boundary |
 |---|---|---|
-| `videos/A_Trip_to_the_Moon_FV_Packet/` | Closed-inventory, multi-background reconstruction brief based on a public-domain film | Original film and source frames are not included; authored reconstruction target, not source analysis |
+| `videos/A_Trip_to_the_Moon_FV_Packet/` | Closed-inventory, multi-background reconstruction brief based on a public-domain film | Original film and source frames are not included; three missing OI/MSRM relations were added from declared scene states; authored target, not source analysis |
 | `videos/Alice_in_wonderland/` | Text-derived reconstruction brief from a public-domain literary excerpt | Historical informal v0.4 packet layout; not current-schema guidance and not source-media analysis |
 | `videos/Cat_jumping_backwards/` | Historical video analysis, dispute, and compile-prompt lifecycle | Metadata-only analysis; no source video or retained snapshots. Post-resolution validation report conflicts with the repository tree and reconciliation record; see its README |
-| `videos/CCTV_Snapshot_TD_Reconstruction_Experiment/` | Three packet-scoped CCTV analyses, sampled frame evidence, and a human-review reconstruction | Source segments are not stored. The reconstruction is not a canonical FV compile. PKT-CCTV-003 has seven OI candidates not represented in MSRM |
-| `videos/Old_macdonald/` | Structured five-scene video reconstruction target | Generated output MP4 is present; no source video or source-audio recording. AUDIO_COMPANION.txt is direction only, not a transcript |
+| `videos/CCTV_Snapshot_TD_Reconstruction_Experiment/` | Three packet-scoped CCTV analyses, sampled frame evidence, and a human-review reconstruction | Source segments are not stored. The reconstruction is not a canonical FV compile. PKT-CCTV-003 has seven OI candidates not represented in MSRM; Part 1's older validation blocked-gate line is stale relative to its deferred/non-blocking dispute records; Part 2 has no retained TIR/PC/dispute files, and the segment manifests' parent intervals and encoded durations do not exactly agree |
+| `videos/Old_macdonald/` | Structured five-scene video reconstruction target | Generated output MP4 is present; persistent farm landmarks and the farmer's scene_04 placement were made explicit in MSRM; output not independently audited. AUDIO_COMPANION.txt is direction only, not a transcript |
 
 ## CCTV — legacy multi-part storage example
 
@@ -39,7 +39,7 @@ Do not present the numbers or processing claims in these examples as reproduced 
 
 ## Environmental edit pairs — metadata-only contribution
 
-`environmental_edit_pairs/` contains packet metadata for three environmental-change scenarios and their before/after states, including a deliberately failing negative example. The seven image binaries are withheld because the contribution did not include source-page URLs or licence/permission evidence. The asset manifest records hashes and filenames; it does not grant redistribution rights. See the folder README and verification report.
+`environmental_edit_pairs/` contains packet metadata for three environmental-change scenarios and their before/after states, including a deliberately failing negative example. The seven image binaries are withheld because the contribution did not include source-page URLs or licence/permission evidence. The asset manifest records hashes and filenames; it does not grant redistribution rights. The active Bermuda edit's omitted lighthouse has been restored. The rainy Wall Cat edit adds a vegetation entity absent from the baseline OI; with source images withheld, whether this was omitted baseline content or a newly introduced object remains unresolved. See the folder README and verification report.
 
 ## Shared viewpoint sample
 
