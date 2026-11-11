@@ -6,7 +6,7 @@ This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
 it.
 
-## Foundational prerequisite: Making Vision
+## Foundational prerequisites: Making Vision and research
 
 Before performing visual analysis, investigation, assembly, merge,
 reconstruction, or audit, read both the current
