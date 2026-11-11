@@ -585,7 +585,7 @@ Generate the transcript before the initial temporary temporal investigation and 
 
 When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
 
-## 8.6 Snapshots — preserved visual evidence
+## 8.7 Snapshots — preserved visual evidence
 
 Snapshots are preserved source-derived visual evidence selected for inspection, verification, transition analysis, ambiguity, dispute resolution, or audit. The term is media-neutral and replaces source-specific language such as saved_frames.
 
@@ -1447,7 +1447,7 @@ These must not be collapsed. A generator failure may actually be a packet error 
 
 # 30. Final acceptance test
 
-## 29.1 Packet merge identity test
+## 30.1 Packet merge identity test
 
 When multiple packets describe temporally adjacent material from the same source/world, merge must compare packet-scoped object declarations rather than assuming local IDs are globally identical. The merge process must preserve source packet provenance, test continuity and visual evidence, and only then establish a normalised persistent object identity.
 
@@ -1469,11 +1469,11 @@ The specification passes only when an unfamiliar AI can use it as an executable 
 
 1. Any undocumented step that the AI must be taught separately is a specification gap.
 
-30.1 Additional acceptance test: temporal queryability
+## 30.2 Additional acceptance test: temporal queryability
 
 Give an unfamiliar AI a valid video packet and ask temporal questions whose answers are explicitly encoded in TD, such as 'When did the light turn green?' The AI must retrieve the answer from TD rather than infer it from OI, MSRM, the scene category, or external world knowledge. Then ask a question whose answer is not encoded. The AI must report insufficient temporal information rather than fabricate an answer.
 
-## 30.2 Command-interface acceptance test
+## 30.3 Command-interface acceptance test
 
 An unfamiliar AI should be able to interpret the FV command interface without undocumented instructions. Given a raw source, `fv analyse` must invoke the source-analysis procedure. Given a specified question over one or more observations, `fv investigate` must preserve an explicit investigative evidence path. Given partial or overlapping spatial observations, `fv assemble` must perform source-grounded registration/assembly without silently normalizing object identity. Given independent packets, `fv merge` must preserve packet provenance and test identity equivalence before normalization. Given established information, `fv create` must construct the requested packet without inventing visual facts. Given an open dispute, `fv resolve` must follow the required resolution lifecycle. `fv validate` must report readiness without silently repairing the packet. `fv compile` must refuse unresolved or invalid input. `fv audit` must independently evaluate the result.
 
