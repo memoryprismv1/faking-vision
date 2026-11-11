@@ -41,6 +41,8 @@ Finding at baseline: viewpoint editing was documented under `fv edit` in `comman
 
 ## Findings
 
+The command-reference comparison also found a formatting defect in `HOW_TO_USE.md`: the `fv audit` row sat outside the command-map table after a prose subsection. It has been moved back into the table. The README reconstruction path now shows the optional rebuild/upgrade step already documented in the command reference and how-to guide.
+
 ### High priority
 
 1. **Historical specification embedded in the skill is not clearly separated from current instructions.** The skill's operating-rule paragraph described it as containing the "complete v0.24 FV operating material", then labelled the appended extraction "complete authoritative source". Meanwhile, current viewpoint instructions explicitly supersede older v0.24 wording. This creates an avoidable authority ambiguity for an unfamiliar agent.
@@ -90,6 +92,8 @@ The inspected divergences show why branch names and apparent feature intent are 
 ## Changes made in this audit pass
 
 - Added `fv edit viewpoint` to the command-reference map.
+- Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
+- Added the optional rebuild/upgrade step to the README reconstruction path.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
