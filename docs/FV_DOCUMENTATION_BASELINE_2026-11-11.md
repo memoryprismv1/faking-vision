@@ -49,6 +49,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 2. **The command reference map omitted the explicit viewpoint subcommand.** Detailed syntax existed later in the same file, but the top-level command map did not expose it. The map now includes `fv edit viewpoint`.
 3. **The skill's `fv validate` instruction hard-coded validation against v0.24 packet rules.** This was inconsistent with the skill's migration assessment and current-specification authority. It now directs validation against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
 4. **The skill conflated Making Vision promotion with evidence-based object commitment.** Its initial rule said candidates should be promoted only when supported by visual evidence and made promotion a gate before object counting/identity assignment. Making Vision V2 defines promotion as allocation of additional processing; it can be driven by state, needs, uncertainty, risk, learned relevance, expectations, and environmental statistics, and can precede recognition or persistence. The skill now separates allocation/promotion from evidence-based entity and identity commitment, states that perturbation does not guarantee promotion, points to the current V2 material, preserves the prerequisite as a hard gate for visual operations, and states that MV's unified architecture is a synthesis rather than an established named biological mechanism.
+5. **The skill's self-contained-use claim depended on repository availability.** It said the user need not supply the specification, but the embedded full text is a historical v0.24 snapshot while the current specification is a separate repository file. The operating rule now says to read the current file when the repository is available and to disclose when it cannot be consulted; the historical snapshot is not a substitute.
 5. **The documentation set repeats substantial process material.** The 1,590-line skill contains a 129,507-character historical specification extraction, while the current authoritative specification is maintained separately. This is a maintainability and drift risk; the historical content should be clearly marked, not silently treated as current policy.
 
 ### Medium priority
@@ -114,7 +115,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Clarified the Working Process Specification header's v0.24 base and later v0.26/v0.27 normative additions without inventing a consolidated release number.
 - Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
-- Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
+- Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
 
