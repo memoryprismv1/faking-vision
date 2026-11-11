@@ -6,6 +6,34 @@ This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
 it.
 
+## Foundational prerequisite: Making Vision
+
+Before performing visual analysis, investigation, assembly, merge,
+reconstruction, or audit, read the current
+[Making Vision V2 material](https://www.memoryprism.com/readings/making-vision-v2).
+The active agent skill treats this as a mandatory prerequisite. If it cannot
+be accessed, disclose that limitation and do not perform those visual
+operations; documentation-only work may continue.
+
+Use the processing architecture as an allocation model:
+
+`current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence`
+
+Promotion means that a candidate, state, region, or event warrants additional
+processing. It is not recognition, identification, confirmation of an object,
+or permission to commit a persistent identity to the FV packet. A promoted
+candidate may remain ambiguous or be rejected after further investigation.
+
+Keep processing allocation separate from packet commitment. Preserve directly
+supported boundaries, free space, relative position, movement, and other
+visual structure even when object identity is unknown. Commit entities,
+identities, and correspondences only when source evidence supports them.
+
+Making Vision is a working architectural synthesis, not an established
+published biological theory. Treat its constructs as testable architecture;
+do not present promotion, maplets, or the unified selective-allocation model
+as established neural mechanisms.
+
 ## FV artifact output
 
 FV operations produce actual artifacts, not merely prose responses.
