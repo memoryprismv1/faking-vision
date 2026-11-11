@@ -109,7 +109,7 @@ Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the cur
 
 **Create is not analyse.**
 
-`analyse` derives a packet from a source through the FV observation procedure. `create` constructs a packet from information that has already been established or explicitly specified. Existing packet-creation workflows, including packets derived from supplied literature, remain subject to evidence/uncertainty rules and must not turn external knowledge into visual evidence.
+`analyse` derives a packet from a source through the FV observation procedure. `create` constructs a packet from information that has already been established or explicitly specified. If supplied literature contains already established structured information, `create` may construct a packet from that information while preserving its provenance and evidence status. If a published image or video is the visual source to be inspected, use `fv analyse` instead. In either case, external knowledge must not be turned into direct visual evidence.
 
 **Compile is not resolve.**
 
