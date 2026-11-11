@@ -33,3 +33,8 @@ Status and limits:
 - The packet files define a reconstruction test, not an analysis of the original film.
 - No source frames, source video, or independent visual audit are included here.
 - Treat the declared scene progression and object inventory as the authored reconstruction brief; do not cite it as a verified inventory of every object in the film.
+
+
+## Packet consistency review
+
+A cross-reference check found three OI scene members without an explicit MSRM relation: Astronomer 03 in S02, the Moon-surface background in S03, and the Earth-return background in S06. These relations have now been added from the corresponding OI scene states. The capsule is deliberately marked off-screen but persistent in S04/S05; its lack of an on-screen spatial relation in those scenes is intentional. This is a structural consistency correction, not a source-film audit.
