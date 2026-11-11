@@ -11,13 +11,15 @@ Before performing any visual analysis, investigation, assembly, merge, reconstru
 
 https://www.memoryprism.com/readings/making-vision-v2
 
-Making Vision V2 retains the central V1 architecture and clarifies several distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. If the V2 material cannot be accessed or read, state that limitation; do not claim the prerequisite was completed.
+Making Vision V2 retains the central V1 architecture and clarifies several distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. If the V2 material cannot be accessed or read, state that limitation and do not perform visual analysis, investigation, assembly, merge, reconstruction, or audit until the prerequisite is completed. Documentation-only work may continue; do not claim the prerequisite was completed.
 
 Apply the Making Vision processing architecture:
 
 current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence.
 
 This is an allocation architecture, not a rigid serial vision algorithm. Persistent knowledge, spatial structure, expectations, task relevance, uncertainty, learned relevance, environmental statistics, current needs, physiological/internal state, energy, risk, and anticipated consequences can affect what receives additional processing. Keep those allocation influences distinct from evidence about what is externally present in the source.
+
+Treat Making Vision as a working architectural synthesis, not an established published biological theory. Do not present constructs such as promotion, maplet/local inset, or the unified selective-allocation architecture as established neural mechanisms. When making scientific claims, distinguish independent evidence for component mechanisms from Making Vision's synthesis and testable predictions.
 
 **Promotion is not recognition, identification, object confirmation, or persistence.** Promotion means that a candidate, state, region, or event warrants additional processing. It can precede stable classification, naming, complete identification, or storage. A promoted candidate may remain ambiguous, be rejected after investigation, or be useful for action without being named.
 
