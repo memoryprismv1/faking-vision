@@ -224,18 +224,13 @@ fv resolve dispute D-014
 
 ## `fv validate`
 
-When audio is included, verify that the audio file and `transcript.json` are
-present, source-aligned, and mutually traceable; check that TIR preserves the
-provisional transcript assessment and material discrepancies. Audio and
-visual evidence remain separate evidence streams.
-
-
-
 **Purpose:** Check an FV packet against the applicable authoritative FV specification.
 
 **Input:** The packet to validate.
 
 **Checks and output:** Produce a validation report covering applicable structural problems, missing required fields, contradictions, inventory problems, evidence consistency, unresolved disputes, and reconciliation state. Also assess whether the packet may need migration to the current FV specification version.
+
+When audio is included, verify that the audio file and `transcript.json` are present, source-aligned, and mutually traceable; check that TIR preserves the provisional transcript assessment and material discrepancies. Audio and visual evidence remain separate evidence streams.
 
 The rebuild assessment must use one of these outcomes and explain the reason, affected records/rules, and next step:
 
