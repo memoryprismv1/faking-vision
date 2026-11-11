@@ -117,16 +117,17 @@ record that is otherwise being recorded. These records describe attribution
 and contributions only; licence and rights metadata are not part of the
 current implementation. Do not retrofit legacy packets with guessed data.
 
-`fv analyse` is source analysis. Do not use it as a substitute for a
-question-driven investigation when the task is to pursue a specified object,
-event, relationship, or correspondence across observations.
+`fv analyse` is general source analysis and packet creation. Use
+`fv investigate` when the user wants a specified object, event, relationship,
+or correspondence investigated in supplied media, whether that is one source
+or multiple observations.
 
 ### `fv investigate`
 
 Investigate a specified object, event, relationship, correspondence, or
-question in supplied media or across one or more observations/media. This
-includes ordinary questions such as what an object did in a video and when,
-or whether a specified object appears in an image.
+question in supplied media or across one or more observations/media. The user may simply name an object in the media, or ask a question about it.
+Investigate the target itself and report the source-supported findings; this
+includes what it did in a video and when, or whether it appears in an image.
 
 The question directs attention and sampling; it does not determine the
 answer. Examine the supplied media directly. For video, use temporal
@@ -156,6 +157,8 @@ must not be committed to TD without supporting source observations.
 Examples:
 
 `fv investigate this person across these CCTV clips`
+
+`fv investigate the kitten in this video`
 
 `fv investigate what the kitten did in this video and when`
 
