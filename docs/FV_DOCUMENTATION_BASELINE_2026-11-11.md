@@ -76,6 +76,10 @@ The repository has multiple active and historical branches. Comparisons against 
 
 No branch has been merged as part of this work. The working branch was created from `main`.
 
+## Version-label and rebuild-target clarity
+
+The Working Process Specification's title still labels the base text v0.24, while later sections contain normative v0.26 and v0.27 additions. The highest explicit normative addition is v0.27, but the document does not state a single consolidated current-version label at the top. Because `fv rebuild` defaults to the current authoritative version, the version designation should be made explicit in a separate review rather than inferred or silently rewritten. The provenance/audit document now clarifies that it originated as a v0.24 extension but remains a supplementary contract referenced by the current specification. The skill's rebuild syntax has also been normalized to the generic `[packet]` form used by the specification and command reference.
+
 ## Making Vision source alignment
 
 The skill previously linked to the generic `/readings/making-vision` path, while the site now exposes separate V1 and V2 readings. The skill's processing/allocation distinctions align with V2, which explicitly separates candidate from object, promotion from attention, and promotion from recognition/persistence, and identifies internal state, needs, uncertainty, risk, and learned relevance as allocation variables. The skill and the repository's README/specification links now point to Making Vision V2. This is a source-alignment correction, not a claim that the Making Vision synthesis is an established biological mechanism.
@@ -103,6 +107,8 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Added `fv edit viewpoint` to the command-reference map.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
+- Clarified the provenance/audit document's historical v0.24 origin and its current supplementary role.
+- Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
