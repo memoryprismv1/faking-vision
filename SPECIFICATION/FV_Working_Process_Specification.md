@@ -124,6 +124,10 @@ Assembly determines how local spatial representations fit together. It may estab
 
 `fv create` — deliberately construct a new FV packet from established FV information or an explicit specification. This includes a reconstruction packet where applicable. Creation must not manufacture unsupported visual facts or convert external knowledge into visual evidence.
 
+\`fv rebuild [packet] [--to <FV-version>]\` — migrate an existing packet to the current authoritative Working Process Specification, or to the explicit target supplied with `--to`. Preserve the source packet, create a separate rebuilt copy unless replacement is explicitly requested, record the migration, and validate the rebuilt copy. Rebuild is not content editing, source re-analysis, dispute resolution, or compilation.
+
+`fv edit` — make an intentional, evidence-grounded change to existing packet content. For image-packet interaction, `fv edit` with no arguments lists available objects; `fv edit <object-name/object-id> --list` lists the selected object's properties; and `fv edit <object-name/object-id> <property-id>` identifies a direct property edit. The general value-assignment syntax is not standardized; do not invent it. Require an unambiguous target and applicable property, and preserve successful edits with before/after information and provenance. `fv edit viewpoint` is a defined subcommand with its own viewpoint/VPO operations and constraints.
+
 `fv resolve` — resolve packet disputes, ambiguities, correspondence conflicts, or competing interpretations. Where human intervention is required, follow the existing human-resolution → AI-reconciliation → packet-validation lifecycle. An open dispute remains a rendering gate.
 
 `fv validate` — validate packet structure, evidence traceability, consistency, inventory closure, and dispute/reconciliation state. Validation does not silently repair the packet.
