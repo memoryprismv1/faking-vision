@@ -68,6 +68,8 @@ fv analyse [attached image or video]
 
 A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
 
+When audio is included, assess transcription fidelity separately from visual/cross-modal support, ambiguity, and timing/context mismatch in TIR. Transcript segments may guide adaptive sampling before visual confirmation, but claims enter TD only when supported by acquired source observations.
+
 **Example:**
 
 ```text
