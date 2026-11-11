@@ -14,6 +14,12 @@ Before performing any visual analysis, investigation, assembly, merge, reconstru
 
 Making Vision V2 clarifies distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. It is an architectural synthesis, not a substitute for the research sources. If either prerequisite cannot be accessed or read, state that limitation and do not perform visual analysis, investigation, assembly, merge, reconstruction, or audit until both are available. Documentation-only work may continue; do not claim either prerequisite was completed.
 
+## FV failure model
+
+The target failure is not simply an incorrect object name. An AI can produce a coherent but wrong scene model by missing or merging entities, losing components, misassigning boundaries, overlooking low-salience changes, confusing appearance with identity, inferring physical scale from an uncalibrated image, or silently converting a plausible interpretation into an observed fact.
+
+Do not treat fluent description, scene coherence, or successful naming as proof of complete or correct analysis. Preserve directly visible structure, candidate alternatives, boundary/figure-ground uncertainty, temporal evidence, calibration assumptions, and the distinction between observation, inference, and packet commitment. Use independent reconstruction audit to test whether the packet's declared scene structure survives generation.
+
 Apply the Making Vision processing architecture:
 
 current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence.
