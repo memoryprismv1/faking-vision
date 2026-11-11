@@ -60,6 +60,9 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 9. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
 10. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
 11. **No `fv query` command is currently defined.** The specification defines temporal queryability through TD and includes temporal-query acceptance tests, but it does not define a general-purpose `fv query` operation or syntax.
+12. **The normal workflow diagrams implied that `resolve` was always required**, although the accompanying prose made it conditional on a blocking dispute or ambiguity. The README, command reference, how-to guide, and current specification now label it `resolve if required`.
+13. **The viewpoint command descriptions blurred source viewpoint records and render VPOs.** They now distinguish inspection of both from editing render-preset pose/state while preserving source `initial_state`.
+14. **The `fv analyse` command output contract omitted required `viewpoint.json` metadata.** The command reference now includes source-supported viewpoint initialisation and video viewpoint transitions in TD.
 
 ## Existing support implementation (not a CLI claim)
 
