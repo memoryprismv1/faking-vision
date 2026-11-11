@@ -1,10 +1,10 @@
 FAKING VISION — CCTV PART 1 PACKET
 
 Packet ID: PKT-CCTV-001
-Source segment: part_01.webm (included at packet root; preserved source segment)
+Source segment: part_01.webm (used as the packet-scoped analysis input; the source video is not present in this repository)
 Source ID: SRC-CCTV-001-PART-01
 Duration: 105.600 s
-Frame size/rate: 1920x1080 at 30 fps; VP9 source stream; VP9 source stream
+Frame size/rate: 1920x1080 at 30 fps; VP9 source stream
 
 Operation: manual FV-style analyse procedure; no FV executable/CLI was invoked. This packet has not been certified as exhaustive or compilation-ready.
 
@@ -30,4 +30,4 @@ OPERATIONAL DISPOSITION (Making Vision v1/v2)
 See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory and low-priority identity questions may be DEFERRED rather than treated as blocking. This is chunk-local only: later chunks may promote the same object or question again. Deferred is not deleted, forgotten, or globally resolved. Active event/view-change investigations remain open.
 
 Source integrity note
-The included part_01.webm is the source segment used to verify the packet snapshot time/frame mapping. Packet analysis remains provisional: the retained sampling is not a full frame-by-frame inspection, and the open dispute gate remains in force.
+The source segment is not included in this repository. The retained snapshots and manifest support inspection of the packet's sampled evidence and source-time mapping, but they do not replace the source video or establish exhaustive frame coverage. Packet analysis remains provisional.
