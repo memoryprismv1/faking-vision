@@ -346,6 +346,8 @@ Every edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, prese
 
 `VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification. If interacting with the current Visual Workbench text console, use only its implemented viewpoint `set position` and `set orientation` forms; other VPO fields are exposed through browser UI controls, not that console.
 
+The viewpoint schema also defines projection-specific `orthographic_scale`, framing (`aspect_ratio`, `fit`, optional center/notes), coordinate-frame metadata, and optional tolerances. The command syntax does not standardize edits for all of these fields. An orthographic projection is not valid merely because `projection` is set to `orthographic`: the required scale, coordinate frame, and framing must also be present. Until command syntax is defined, use a schema-valid editor action or request clarification.
+
 Example:
 
 `fv edit viewpoint set VP-AB12CD34 position 2 1 4`
