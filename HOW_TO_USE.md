@@ -599,7 +599,7 @@ to packet semantics.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
-## Image packet editing and environmental participation (v0.25-v0.26)
+## Image packet editing — v0.25 design addition
 
 The image-only `fv edit` interface is an agent interaction convention, not a claim that a standalone executable exists.
 
@@ -610,6 +610,8 @@ fv edit <object-name/object-id> <property-id>
 ```
 
 With no arguments, list available objects. With `--list`, list the selected object's properties. The property form identifies a direct edit; syntax for supplying the new value remains unspecified. Do not proceed unless the target is sufficiently unique and the property is applicable. Never guess between ambiguous objects. Record successful edits only.
+
+The v0.25 design also proposed a separate environment packet, `edit_base` values (`singleton` or `collection`), and a dedicated FV version-marker file. Their schemas and dependent-record rules were left open. Treat those as historical design proposals, not established packet requirements: the v0.26 normative addition below defines the current environmental record responsibilities, while the current rebuild rules prohibit inventing an undocumented version-marker file.
 
 ### v0.26: classify an object's response to an environmental edit
 
