@@ -89,7 +89,7 @@ The resulting media can then be independently audited against the packet. The ge
 
 ## Agent skill and commands
 
-FV includes an operational agent skill so that an AI agent can perform FV operations without requiring the user to repeatedly supply the underlying specifications.
+FV includes an operational agent skill. When the repository is available to the agent, it can read the current authoritative specification directly rather than requiring the user to repeatedly supply it. If the repository is unavailable, the agent must ask for the current specification; the skill's historical v0.24 reference is not a substitute.
 
 The command set is:
 
