@@ -187,7 +187,7 @@ With no arguments, list available objects. With `--list`, list the selected obje
 
 **Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful. Preserve before/after information. For viewpoint edits, preserve source `initial_state`, validate the render VPO against `FV_Viewpoint_Schema.json`, and leave OI/MSRM scene content unchanged.
 
-The target must be sufficiently unambiguous. Do not guess between objects or properties. Preserve before/after information and applicable provenance.
+The target must be sufficiently unambiguous. Do not guess between objects or properties.
 
 **Boundary:** Edit changes packet content; it does not perform specification-version migration. Use `fv rebuild` or `fv upgrade` for migration. The general value-assignment syntax for every object/property edit is not fully standardized; do not invent unsupported syntax.
 
@@ -208,7 +208,7 @@ The `fv edit viewpoint` subcommand has defined forms:
 | Set default | `fv edit viewpoint default <VP-ID>` | Set the packet's default render viewpoint |
 | Reset | `fv edit viewpoint reset <VP-ID>` | Restore the selected preset's saved state |
 
-Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. Edits apply to the active/render pose, not to the source viewpoint's initial-state provenance. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
+Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. List/show may inspect source viewpoint records and render VPOs; set/save/default/reset operations modify an editable render VPO or active render pose only. Do not treat a source-only viewpoint record as an editable render VPO. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
 
 `VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification. The current Visual Workbench text console parses only viewpoint `set position` and `set orientation`; use the broader browser UI controls for other supported VPO fields rather than claiming the console implements every listed form.
 
@@ -279,6 +279,7 @@ fv validate [packet]
 - Do not resolve disputes or repair an invalid packet during compilation.
 - Translate packet content into renderer-specific syntax without adding semantic content, world knowledge, props, motivations, genre conventions, or other undeclared information.
 - Include the required rebuild assessment. If rebuild is **REBUILD REQUIRED**, stop and direct the operator to rebuild/upgrade, validate, and retry. If rebuild may be needed or recommended, continue only where the packet independently passes all compilation gates and the target specification permits its compatibility path; state that no rebuild occurred.
+- If the assessment is **ASSESSMENT INDETERMINATE**, do not imply that the packet is current. Stop if the uncertainty affects a required compilation rule and identify the missing information; otherwise continue only with an explicit warning and the applicable compatibility boundary.
 - If rendering is unavailable, produce the lossless compiled renderer specification rather than pretending a reconstruction occurred.
 
 ### Prompt-only mode
