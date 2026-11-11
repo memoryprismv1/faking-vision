@@ -37,7 +37,7 @@ Status: initial audit; no examples changed.
 | `HOW_TO_USE.md` | Same core operations as command reference |
 | `README.md` | Includes rebuild and upgrade as separate list entries; upgrade is an alias |
 
-Finding: viewpoint editing is documented under `fv edit` in `commands.md`, but is absent from its command map. This makes the command discoverability inconsistent even though the detailed syntax exists.
+Finding at baseline: viewpoint editing was documented under `fv edit` in `commands.md`, but absent from its command map. The command map has now been corrected.
 
 ## Findings
 
@@ -50,7 +50,7 @@ Finding: viewpoint editing is documented under `fv edit` in `commands.md`, but i
 
 ### Medium priority
 
-5. **README lists `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README should make the relationship explicit.
+5. **README initially listed `fv rebuild` and `fv upgrade` as separate commands**, while the skill and command reference define upgrade as an alias. The README now labels `fv upgrade` as an alias.
 6. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
 7. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
 8. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
@@ -96,9 +96,8 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Open work
 
-- Reconcile README command labels and alias wording.
 - Inspect skill/specification duplication and identify safe consolidation boundaries without losing the unfamiliar-AI acceptance procedure.
-- Compare the unique content of relevant divergent branches against current `main`; do not merge.
+- Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Review command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
 - Verify CI using existing run evidence or a controlled test run on this working branch.
 - Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual.
