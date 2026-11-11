@@ -71,7 +71,7 @@ The textarea commands are operational boundaries, not claims that a standalone F
 | Command | Use it for | Main result |
 |---|---|---|
 | `fv analyse` | Analyse a raw image, video, CCTV sequence, LiDAR-camera sequence, scientific sequence, animation, or other visual source. | Source-grounded FV analysis packet. |
-| `fv investigate` | Pursue a specified object, event, relationship, correspondence, or question across one or more observations/media. | Investigation record/report and, where appropriate, packet updates. |
+| `fv investigate` | Investigate a specified object, event, relationship, correspondence, or question in supplied media or across observations; return findings and relevant timing. | Evidence-grounded findings, investigation record/report when retained, and packet updates where appropriate. |
 | `fv assemble` | Put partial or overlapping observations together into a larger spatial/visual representation: LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, overlapping photographs, etc. | Registered/assembled representation with provenance and unresolved registration issues preserved. |
 | `fv merge` | Reconcile independently produced FV packets and compare packet-scoped object declarations. | Merged packet/object inventory with provenance preserved and identity normalization only where supported. |
 | `fv create` | Deliberately construct a new FV packet from established FV information or an explicit specification. | Requested packet type, including a reconstruction packet where applicable. |
