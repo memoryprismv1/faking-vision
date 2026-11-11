@@ -58,7 +58,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 8. **The Working Process Specification contains legacy version/change-log material and later sections whose numbering/order is not strictly sequential.** Preserve historical content; improve navigation rather than renumbering or deleting without a separate review.
 9. **The command interface is an AI-agent textarea interface, not a standalone FV CLI.** This distinction is already stated in `commands.md` and `HOW_TO_USE.md`; retain it prominently and avoid describing these commands as executable shell commands.
 10. **`fv audit batch` is not an implemented skill command.** The offline Python batch aggregation utility, JSON schema, tests, and workflow exist; the agent-level command remains proposed pending reliable skill-runtime invocation.
-11. **No `fv query` command is currently defined in the command map.** Temporal queryability is discussed in the specification and examples, but this does not establish a general-purpose query command.
+11. **No `fv query` command is currently defined.** The specification defines temporal queryability through TD and includes temporal-query acceptance tests, but it does not define a general-purpose `fv query` operation or syntax.
 
 ## Existing support implementation (not a CLI claim)
 
@@ -128,6 +128,8 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Open work
 
+- Decide whether the 1,055-line historical v0.24 snapshot should remain embedded in `SKILL.md` or be moved to a separately retained reference file; do not remove it until standalone-skill packaging and acceptance-test requirements are settled.
+- Decide the consolidated target-version label used by default `fv rebuild` after reviewing the base v0.24 text and later normative additions.
 - Inspect skill/specification duplication and identify safe consolidation boundaries without losing the unfamiliar-AI acceptance procedure.
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
