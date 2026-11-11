@@ -12,7 +12,7 @@ PASS: JSON parse: snapshot/manifest.json
 PASS: Required video packet layers OI/MSRM/TD present
 PASS: Snapshot references point to existing verification files
 PASS: PC object IDs are packet-scoped
-FAIL / BLOCKED: Dispute gate — dispute.json is open; inventory completeness and distant-object ambiguity remain unresolved. Compilation/reconstruction must not proceed.
+DISPUTE-STATE CORRECTION: the current dispute.json marks both listed issues DEFERRED / RESOLVED AS NON-BLOCKING FOR THIS CHUNK. The earlier FAIL / BLOCKED line is stale relative to the current dispute record. Deferral is not global resolution or inventory-completeness certification; preserve uncertainty and re-promote if relevant.
 NOT ESTABLISHED: Semantic inventory exhaustiveness — Manually enumerated 45 baseline vehicles; overlap and edge crops prevent a defensible exhaustive-coverage claim.
 PASS: OI evidence snapshot references
 PASS: TD entity references resolve to OI
