@@ -577,6 +577,10 @@ Commands may be issued in separate turns. The normal downstream path is:
 
 then, when required:
 
+`fv rebuild` / `fv upgrade` (optional packet-version migration)
+
+then, when required:
+
 `fv resolve`
 
 then:
@@ -597,6 +601,9 @@ Not every operation is required for every job. In particular:
 - `merge` is for reconciling independently produced FV knowledge;
 - `create` is for deliberately constructing a packet from established
   information or an explicit specification;
+- `rebuild` / `upgrade` is an optional, separately requested packet-version
+  migration; it preserves the source packet and does not replace editing or
+  dispute resolution;
 - `resolve` is required when a dispute or ambiguity blocks downstream work;
 - `compile` requires a resolved, validated packet and never performs
   resolution or repair.
