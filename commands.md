@@ -17,7 +17,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 | `fv create` | Construct a packet from established FV information or an explicit specification | Newly created FV packet |
 | `fv rebuild` / `fv upgrade` | Migrate an existing packet to a target FV specification version | Rebuilt packet and migration report |
 | `fv edit` | Make an intentional change to packet content | Edited packet state and edit record |
-| `fv edit viewpoint` | Inspect or edit viewpoint definitions and render presets | Updated viewpoint state and edit record |
+| `fv edit viewpoint` | List/inspect source viewpoints and render VPOs; edit render-preset pose/state | Updated render VPO state and edit record |
 | `fv resolve` | Address a dispute or competing interpretation | Reconciled or explicitly unresolved packet state |
 | `fv validate` | Check a packet | Validation report |
 | `fv compile` | Compile a resolved and validated packet for reconstruction | Renderer specification and, where supported, reconstruction |
@@ -193,7 +193,7 @@ The `fv edit viewpoint` subcommand has defined forms:
 | Set default | `fv edit viewpoint default <VP-ID>` | Set the packet's default render viewpoint |
 | Reset | `fv edit viewpoint reset <VP-ID>` | Restore the selected preset's saved state |
 
-Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
+Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. Edits apply to the active/render pose, not to the source viewpoint's initial-state provenance. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
 
 `VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification.
 
