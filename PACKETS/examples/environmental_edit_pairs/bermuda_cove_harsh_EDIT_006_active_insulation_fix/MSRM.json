@@ -30,6 +30,11 @@
       "x": 0.7,
       "y": 0.55,
       "change": "none"
+    },
+    "lighthouse": {
+      "x": 0.85,
+      "y": 0.4,
+      "change": "none - inherited from baseline"
     }
   },
   "validation_note": "reported PASS in submitted packet; not independently run"
