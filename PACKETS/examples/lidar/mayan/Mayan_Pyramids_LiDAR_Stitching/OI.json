@@ -31,18 +31,14 @@
           "component_id": "PKT-MAYAN-LIDAR-STITCH-001-COMP-002",
           "type": "summit",
           "description": "flat summit 10x10m"
-        },
-        {
-          "component_id": "PKT-MAYAN-LIDAR-STITCH-001-COMP-003",
-          "type": "staircase",
-          "description": "west-facing staircase, 2m width - expected component"
         }
       ],
       "behaviour": {
         "static": "pyramid - no movement, but discovered via vegetation stripping"
       },
       "uncertainty": [
-        "Exact construction date unresolved - 250-900AD Classic period, requires excavation"
+        "Exact construction date unresolved - 250-900AD Classic period, requires excavation",
+        "A west-facing staircase is listed only as an expected architectural component in component_candidature_record.expected_components. It is not established by retained source evidence and is not part of the observed component inventory."
       ]
     },
     {
