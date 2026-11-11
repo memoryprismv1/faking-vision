@@ -142,7 +142,7 @@ For cross-media identity, keep TIR ambiguous until correspondence is supported:
 - if correspondence remains unresolved, record the competing candidates and what discriminating component/relationship should be searched for;
 - if the said object is the same object across multiple investigated media, search for expected/discriminating components and relationships;
 - do not treat an unobserved expected component as negative evidence when the view is occluded, cropped, blurred, too small, or otherwise uninformative;
-- promote correspondence to persistent identity only when source evidence supports it.
+- commit a correspondence as persistent identity only when source evidence supports it.
 
 The resulting FV packet uses:
 
@@ -155,7 +155,7 @@ The resulting FV packet uses:
 
 Keep observation, interpretation, and packet commitment distinct.
 Observe visible structure before semantic naming where identity is
-uncertain. Do not promote something into the closed reconstruction
+uncertain. Do not commit something to the closed reconstruction
 inventory merely because it is plausible or typical.
 
 Every material packet assertion must remain traceable to source evidence
