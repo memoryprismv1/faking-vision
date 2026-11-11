@@ -64,10 +64,12 @@ temporal record.
 
 For every source frame actually captured or retained as an evidence
 observation, perform the applicable FV image-analysis procedure: visual
-inventory, candidate generation, entity/component/appearance decision,
-identity assessment where temporal context permits, and evidence assessment and packet commitment
-where warranted. Sampling selects which frames to acquire; it
-does not replace analysis of a selected frame.
+inventory, candidate generation, selective promotion of candidates for
+additional processing where warranted, entity/component/appearance decision,
+identity assessment where temporal context permits, evidence assessment,
+and packet commitment where warranted. Promotion allocates processing; it
+does not itself establish an object identity or packet fact. Sampling selects
+which frames to acquire; it does not replace analysis of a selected frame.
 
 When audio is intentionally included in a video packet:
 - Preserve the source audio file together with the video identity and
