@@ -141,3 +141,10 @@ Corrections made:
 The review confirmed that the skill's rebuild assessment and compile gates already cover the five canonical outcomes, including compatibility handling, required-rebuild stop, and indeterminate assessment. No change to those rules was needed.
 
 No packet semantics or schemas were changed. Examples remain untouched; the previously recorded dispute-ID example discrepancy remains deferred. No tests were run and no merge was performed.
+
+
+## Follow-up: foundational prerequisite in the how-to guide
+
+The active skill already makes current Making Vision V2 a mandatory prerequisite for visual operations and distinguishes promotion from recognition, identity, and packet commitment. The how-to guide did not surface that prerequisite clearly. Added a concise section covering the required reading, the selective-allocation architecture, the distinction between promotion and packet commitment, preservation of supported structure under identity uncertainty, and the status of Making Vision as a working synthesis rather than an established neural theory.
+
+This is a documentation alignment change; no visual operation was performed and no research claim was independently expanded in this pass.
