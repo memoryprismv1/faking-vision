@@ -133,6 +133,7 @@ Not every task requires every operation.
 - [GitHub repository](https://github.com/memoryprismv1/faking-vision)
 - [Command reference](commands.md)
 - [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
+- [Historical v0.24 specification snapshot](SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md) (reference only)
 - [Agent skill](SKILL.md)
 - [How to use FV](HOW_TO_USE.md)
 - Example packets: `PACKETS/examples/`
