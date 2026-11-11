@@ -10,10 +10,20 @@ it.
 
 FV operations produce actual artifacts, not merely prose responses.
 
-- `fv analyse` creates the structured FV packet as files and packages the packet as a ZIP for delivery. The ZIP is the primary deliverable; human-readable analysis is supplementary.
+- `fv analyse` creates the structured FV packet as files and packages image and video packets as a ZIP when packaging is available. The ZIP is the primary deliverable; human-readable analysis is supplementary.
+- `fv investigate` preserves a persistent investigation record/report when the investigation produces a result that needs to be retained.
+- `fv assemble` creates the registered/assembled representation and retains source-view relationships, provenance, transformations, diagnostics, and unresolved conflicts.
+- `fv merge` creates the reconciled packet/object inventory and preserves packet-scoped identities, provenance, and correspondence decisions.
+- `fv create` creates the requested packet as actual files when file creation is available.
+- `fv rebuild` / `fv upgrade` creates a separate rebuilt packet and migration report, then validates the rebuilt copy against the target specification. The original packet remains preserved unless an in-place replacement is explicitly requested.
+- `fv edit` preserves the edited packet and edit-log provenance, including before/after information for successful changes.
+- `fv edit viewpoint` preserves the source viewpoint initialisation, records the render-pose edit, validates against the viewpoint schema, and does not change OI/MSRM scene content.
+- `fv resolve` preserves the dispute/resolution record and reconciled packet state when applicable.
 - `fv validate` produces a validation report artifact and does not silently repair the packet.
 - `fv compile` produces the compiled renderer specification and/or reconstruction artifact available to the environment.
-- `fv audit` produces an independent audit artifact.
+- `fv audit` produces an independent JSON audit artifact when file creation is available; the JSON report is primary and a human-readable summary is supplementary.
+
+**Batch audit is separate:** the offline `TOOLS/fv_audit_batch.py` utility aggregates existing audit reports. It is not a native `fv audit batch` skill command and does not re-audit media.
 
 When file creation and packaging are available, do not substitute a textual dump of the packet for the packet ZIP. Do not simulate file creation by printing what the files would contain.
 
