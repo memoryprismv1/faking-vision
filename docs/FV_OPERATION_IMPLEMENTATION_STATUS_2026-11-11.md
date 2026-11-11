@@ -30,7 +30,6 @@ The `fv` textarea commands are agent-level operation requests, not standalone sh
 | `fv compile` | Renderer-neutral compilation and `--prompt` mode specified | Compiled specifications/prompts and an agent-level acceptance procedure exist. | No general renderer adapter or generator integration established. Prompt-compilation agent acceptance is explicitly pending. |
 | `fv audit` | Independent packet-to-packet audit and JSON report schema specified | Audit report schema and report contract exist. | No general automated media auditor identified. The batch utility below does not perform audits. |
 | `fv audit batch` | Proposed as an agent-level interface; explicitly not a native skill-runtime command | `TOOLS/fv_audit_batch.py`, aggregate schema, nine unit tests, and GitHub Actions workflow exist. | Implemented offline utility validates and aggregates existing reports; it does not re-audit media or rewrite source reports. |
-| `fv query` | TD temporal queryability and temporal-query acceptance checks are specified | TD examples demonstrate answering temporal questions when the required evidence is recorded. | No general-purpose `fv query` command, parser, or runtime is defined. Command design remains a separate discussion. |
 
 ## Browser editor implementations
 
@@ -94,5 +93,5 @@ the current command syntax exposes.
 2. Do not describe editor-level checks as authoritative `fv validate`.
 3. Do not describe the batch processor as `fv audit`; it only validates/aggregates existing audit reports.
 4. Do not claim the browser command console supports every viewpoint command form.
-5. Keep `fv query` undesigned until its purpose, inputs, output, and relationship to ordinary TD questions are discussed.
+5. Treat question-directed analysis of supplied media as part of `fv investigate`; TD temporal queryability remains a packet capability and acceptance requirement, not a separate user-facing command.
 6. Example packet review and cleanup remain a separate later phase; no example files were changed in this status review.
