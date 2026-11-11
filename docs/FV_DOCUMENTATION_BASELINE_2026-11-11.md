@@ -78,7 +78,7 @@ No branch has been merged as part of this work. The working branch was created f
 
 ## Version-label and rebuild-target clarity
 
-The Working Process Specification's title still labels the base text v0.24, while later sections contain normative v0.26 and v0.27 additions. The highest explicit normative addition is v0.27, but the document does not state a single consolidated current-version label at the top. Because `fv rebuild` defaults to the current authoritative version, the version designation should be made explicit in a separate review rather than inferred or silently rewritten. The provenance/audit document now clarifies that it originated as a v0.24 extension but remains a supplementary contract referenced by the current specification. The skill's rebuild syntax has also been normalized to the generic `[packet]` form used by the specification and command reference.
+The Working Process Specification's title still labels the base text v0.24, while later sections contain normative v0.26 and v0.27 additions. The highest explicit normative addition is v0.27. The header now states that the base text is v0.24 and later normative additions include v0.26 and v0.27, without inventing a consolidated release number. Because `fv rebuild` defaults to the current authoritative version, the consolidated target-version designation remains an explicit open decision rather than something to infer or silently rewrite. The provenance/audit document now clarifies that it originated as a v0.24 extension but remains a supplementary contract referenced by the current specification. The skill's rebuild syntax has also been normalized to the generic `[packet]` form used by the specification and command reference.
 
 ## Making Vision source alignment
 
@@ -111,6 +111,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Added the Making Vision research-status boundary so the synthesis is not presented as an established biological mechanism.
 - Marked the opening v0.24 temporal-analysis note in `HOW_TO_USE.md` as historical.
 - Clarified the provenance/audit document's historical v0.24 origin and its current supplementary role.
+- Clarified the Working Process Specification header's v0.24 base and later v0.26/v0.27 normative additions without inventing a consolidated release number.
 - Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
