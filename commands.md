@@ -60,7 +60,7 @@ fv analyse [attached image or video]
 
 ## `fv investigate`
 
-**Purpose:** Investigate a specified object, event, relationship, correspondence, or question in supplied media or across multiple observations/media. This includes straightforward questions about what an object did and when.
+**Purpose:** Investigate a specified object, event, relationship, correspondence, or question in supplied media or across multiple observations/media. The user may simply name an object in the media, or ask a question about it. Investigate the target itself and report source-supported findings, including what it did and when where relevant.
 
 **Input:** The target or question and the relevant source media/observations. The question directs attention and sampling; it does not dictate the answer.
 
@@ -74,6 +74,7 @@ When audio is included, assess transcription fidelity separately from visual/cro
 
 ```text
 fv investigate this person across these CCTV clips
+fv investigate the kitten in this video
 fv investigate what the kitten did in this video and when
 fv investigate whether a white dog appears anywhere in this image
 fv investigate whether a delivery person appeared during the covered CCTV period
