@@ -178,22 +178,20 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Preserved the historical v0.24 extraction verbatim in a separate specification reference, linked it from the README, and reduced the active skill from 1,601 to 561 lines at extraction; subsequent operational additions bring it to 597 lines.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
 
-## Open work
+## Open work at documentation-phase checkpoint
 
-- Decide the consolidated target-version label used by default `fv rebuild` after reviewing the base v0.24 text and later normative additions.
-- Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
-- Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
-- Decide whether validation/rebuild reports and audio transcripts need dedicated schemas; the artifact audit records the current gaps without creating speculative schemas.
-- Decide whether additional VPO fields should receive standard command syntax or remain editor-only schema fields.
-- Decide and document the consolidated target-version label for default `fv rebuild`; until then, use the specification's implicit-current wording and do not invent a release number.
-- Verify CI using existing run evidence or a controlled test run on this working branch.
-- Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual. An initial evidence-based status matrix is now in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`.
-- Discuss `fv query` separately before defining or implementing it.
-- Leave examples untouched until the final phase.
+The following items remain open or are deliberately deferred. Items already completed by the follow-up reviews below are not repeated here.
 
-## Remaining decisions
+- **CI execution evidence:** no workflow run or combined status is recorded for `work/fv-docs-skill-cleanup-20261111`. The branch has no pull request. The browser workflow is triggered by relevant pull requests or manual dispatch; the audit/provenance workflow is triggered by pushes to `feature/fv-audit-batch`, relevant pull requests, or manual dispatch. A branch-specific Actions run lookup returned zero runs and the commit's combined status returned no status entries. No manual dispatch was performed. Treat CI as **unverified**, not passed.
+- **Agent acceptance:** the operation definitions and implementation boundaries are documented, but agent-level acceptance remains pending where identified in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Test-file presence is not evidence of a passing run.
+- **Artifact schemas:** decide separately whether validation/rebuild reports and audio transcripts need dedicated schemas. The artifact-contract audit records the current gaps; no speculative schemas have been added.
+- **Viewpoint command surface:** decide whether additional schema-supported VPO fields should receive standard text-command syntax or remain editor-only.
+- **Consolidated release label:** the current authoritative specification remains a v0.24 base with later normative additions, including v0.26 and v0.27. The default rebuild target is correctly defined as the current authoritative specification itself; the absence of a consolidated numeric label does not block that operation. Decide on a release label only when a numbered consolidated release is needed. Do not infer v0.27 as the consolidated target.
+- **Divergent implementation branches:** review unique branch content in the later implementation/dataset phase. The documentation pass records the branch comparisons but does not merge or cherry-pick them.
+- **`fv query`:** discuss its purpose, inputs, outputs, and relationship to ordinary TD questions before defining or implementing it.
+- **Examples:** leave example cleanup until the final phase, as planned.
 
-- Consolidated FV target-version designation remains undecided: the current specification is a v0.24 base with later normative additions, not an explicitly numbered consolidated release. Rebuild must not infer v0.27 as the default target.
+The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; `fv query` remains intentionally outside that set.
 
 
 ## Follow-up: v0.25 history continuity review
