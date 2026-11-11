@@ -221,3 +221,6 @@ The current Working Process Specification's v0.26 heading says it builds on v0.2
 
 
 The canonical operation model and downstream path now include `fv rebuild` / `fv upgrade` as an optional migration stage before dispute resolution, validation, and compilation. This aligns the specification's operation sequence with the skill, command reference, and how-to guide. Rebuild remains conditional and does not replace content editing or dispute resolution.
+
+
+The authoritative v0.27 rebuild rule now carries the same target-label clarification: when the current Working Process Specification is the default target, the report describes its v0.24 base and later normative additions and records that the consolidated release label is unassigned. The agent must not invent a version number or treat v0.27 alone as the consolidated version.
