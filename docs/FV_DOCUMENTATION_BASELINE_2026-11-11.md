@@ -35,7 +35,7 @@ Status: initial audit; no examples changed.
 | `commands.md` | analyse, investigate, assemble, merge, create, rebuild, edit, resolve, validate, compile, audit |
 | `SKILL.md` | Same core operations, plus explicit `fv edit viewpoint` subcommand |
 | `HOW_TO_USE.md` | Same core operations as command reference |
-| `README.md` | Includes rebuild and upgrade as separate list entries; upgrade is an alias |
+| `README.md` | At baseline, listed rebuild and upgrade as separate entries; upgrade is an alias |
 
 Finding at baseline: viewpoint editing was documented under `fv edit` in `commands.md`, but absent from its command map. The command map has now been corrected.
 
@@ -45,7 +45,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 
 ### High priority
 
-4. **The skill conflated Making Vision promotion with evidence-based object commitment.** Its initial rule said candidates should be promoted only when supported by visual evidence and made promotion a gate before object counting/identity assignment. Making Vision V2 defines promotion as allocation of additional processing; it can be driven by state, needs, uncertainty, risk, learned relevance, expectations, and environmental statistics, and can precede recognition or persistence. The skill now separates allocation/promotion from evidence-based entity and identity commitment, points to the current V2 material, preserves the prerequisite as a hard gate for visual operations, and states that MV's unified architecture is a synthesis rather than an established named biological mechanism.
+1. **Historical specification embedded Making Vision promotion with evidence-based object commitment.** Its initial rule said candidates should be promoted only when supported by visual evidence and made promotion a gate before object counting/identity assignment. Making Vision V2 defines promotion as allocation of additional processing; it can be driven by state, needs, uncertainty, risk, learned relevance, expectations, and environmental statistics, and can precede recognition or persistence. The skill now separates allocation/promotion from evidence-based entity and identity commitment, points to the current V2 material, preserves the prerequisite as a hard gate for visual operations, and states that MV's unified architecture is a synthesis rather than an established named biological mechanism.
 1. **Historical specification embedded in the skill is not clearly separated from current instructions.** The skill's operating-rule paragraph described it as containing the "complete v0.24 FV operating material", then labelled the appended extraction "complete authoritative source". Meanwhile, current viewpoint instructions explicitly supersede older v0.24 wording. This creates an avoidable authority ambiguity for an unfamiliar agent.
 2. **Command reference map omits the explicit viewpoint subcommand.** Detailed syntax exists later in the same file, but the top-level command map does not expose it.
 3. **The skill's `fv validate` instruction hard-coded validation against v0.24 packet rules.** This was inconsistent with the skill's own migration assessment and current-specification authority. It now directs validation against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
@@ -107,6 +107,9 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Added `fv edit viewpoint` to the command-reference map.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
+- Updated the Making Vision links to V2 and separated processing allocation/promotion from evidence-based packet commitment.
+- Added the Making Vision research-status boundary so the synthesis is not presented as an established biological mechanism.
+- Marked the opening v0.24 temporal-analysis note in `HOW_TO_USE.md` as historical.
 - Clarified the provenance/audit document's historical v0.24 origin and its current supplementary role.
 - Normalized the skill's rebuild syntax to `[packet]` and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
