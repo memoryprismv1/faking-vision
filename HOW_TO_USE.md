@@ -529,7 +529,7 @@ Human resolution does not directly repair the packet. The affected
 analysis/packet records must be reprocessed and validated before the
 dispute can be cleared.
 
-## 14. Three distinct correctness questions
+## 14. Five distinct correctness questions
 
 Keep these separate:
 
