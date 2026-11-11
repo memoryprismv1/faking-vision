@@ -134,6 +134,7 @@ Not every task requires every operation.
 - [Command reference](commands.md)
 - [Operation implementation status](docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md)
 - [Documentation audit and cleanup baseline](docs/FV_DOCUMENTATION_BASELINE_2026-11-11.md)
+- [Artifact contract and schema coverage audit](docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md)
 - [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
 - [Historical v0.24 specification snapshot](SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md) (reference only)
 - [Agent skill](SKILL.md)
