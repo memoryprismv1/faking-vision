@@ -7,11 +7,12 @@ description: Operate Faking Vision (FV) for image and video analysis, visual inv
 
 ## Mandatory Making Vision prerequisite and candidate/allocation gates
 
-Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read the current canonical Making Vision material:
+Before performing any visual analysis, investigation, assembly, merge, reconstruction, or audit, obtain and read both:
 
-https://www.memoryprism.com/readings/making-vision-v2
+- The current canonical [Making Vision V2 material](https://www.memoryprism.com/readings/making-vision-v2), which is the user's architectural synthesis.
+- `docs/FV_RESEARCH_FOUNDATIONS.md`, which maps empirical and theoretical vision research to FV procedures and distinguishes reported findings from design translations and open hypotheses.
 
-Making Vision V2 retains the central V1 architecture and clarifies several distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. If the V2 material cannot be accessed or read, state that limitation and do not perform visual analysis, investigation, assembly, merge, reconstruction, or audit until the prerequisite is completed. Documentation-only work may continue; do not claim the prerequisite was completed.
+Making Vision V2 clarifies distinctions that matter to FV, especially current sensory information versus persistent knowledge, candidate versus object, promotion versus attention, and learning versus storage. It is an architectural synthesis, not a substitute for the research sources. If either prerequisite cannot be accessed or read, state that limitation and do not perform visual analysis, investigation, assembly, merge, reconstruction, or audit until both are available. Documentation-only work may continue; do not claim either prerequisite was completed.
 
 Apply the Making Vision processing architecture:
 
@@ -600,7 +601,7 @@ to continue the chain.
 
 This skill contains the agent-facing operating instructions and textarea command/output contract. When used with the repository, read and apply `SPECIFICATION/FV_Working_Process_Specification.md`; the user should not need to supply that file separately. When the repository file is unavailable, state that the complete current specification cannot be consulted. Do not treat the embedded historical v0.24 snapshot as a substitute for the current specification. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. The separately preserved historical v0.24 snapshot is reference material only and must not override current instructions.
 
-The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. The canonical Making Vision material is the foundational perceptual source that this skill operationalizes; its required reading and the candidate/promotion distinction are skill prerequisites, not replacements for FV packet rules. This skill may provide agent-facing procedures and guardrails grounded in Making Vision, but it must not contradict the Working Process Specification or silently redefine its packet requirements.
+The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. `docs/FV_RESEARCH_FOUNDATIONS.md` is the research-to-design reference: consult it for the empirical/theoretical basis and limits of perceptual procedures, without treating its summaries as a substitute for primary sources. Making Vision is the user's architectural synthesis, not empirical proof. The skill operationalizes both while preserving the distinction between research findings, FV design translations, and hypotheses; neither may override or silently redefine the Working Process Specification.
 
 When operating FV:
 - preserve FV terminology and distinctions;
