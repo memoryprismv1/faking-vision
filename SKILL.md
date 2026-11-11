@@ -259,6 +259,8 @@ Upgrade an existing FV packet to the current authoritative specification version
 
 This is a version-migration operation, not a content-editing operation.
 
+**Target-version designation caution:** The current Working Process Specification identifies its base as v0.24 and includes later normative additions, including v0.26 and v0.27, but explicitly does not declare a separately consolidated release number. Do not infer that the consolidated target is v0.27 merely because that is the latest labelled addition. If `--to` is omitted and no single authoritative target version is explicitly designated, report the target designation as unresolved and request the version decision or mark the migration blocked; do not invent a version label.
+
 - Preserve the supplied packet as the migration source and work on a separate rebuilt copy unless the user explicitly requests in-place replacement.
 - Inspect packet files, version markers, provenance, schemas, edit history, disputes, and validation reports. An unversioned packet is legacy; do not guess its exact authoring version.
 - Map the source structure to the target specification and distinguish mechanical transformations from compatibility handling and changes requiring re-analysis, human input, or `fv edit`.
