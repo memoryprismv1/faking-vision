@@ -16,36 +16,36 @@
         "PKT-CCTV-STORAGE-PART2-001-OBJ-001",
         "PKT-CCTV-STORAGE-PART3-001-OBJ-001"
       ],
-      "quality": "high",
+      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
       "label": "Same individual across all 3 parts"
     },
     {
       "global_id": "PERSON-GLOBAL-002",
       "packet_scoped_ids": [
-        "PART1-OBJ-002",
-        "PART2-OBJ-002",
-        "PART3-OBJ-002"
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-002",
+        "PKT-CCTV-STORAGE-PART2-001-OBJ-002",
+        "PKT-CCTV-STORAGE-PART3-001-OBJ-002"
       ],
-      "quality": "high",
-      "label": "Officer Ramos - same across parts"
+      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
+      "label": "Person B / uniformed officer candidate; personal identity/name not established by the retained packet evidence"
     },
     {
       "global_id": "PERSON-GLOBAL-003",
       "packet_scoped_ids": [
-        "PART1-OBJ-003",
-        "PART2-OBJ-003",
-        "PART3-OBJ-003"
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-003",
+        "PKT-CCTV-STORAGE-PART2-001-OBJ-003",
+        "PKT-CCTV-STORAGE-PART3-001-OBJ-003"
       ],
-      "quality": "high"
+      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
     },
     {
       "global_id": "STRUCTURE-GLOBAL-001",
       "packet_scoped_ids": [
-        "PART1-OBJ-004",
-        "PART2-OBJ-004",
-        "PART3-OBJ-004"
+        "PKT-CCTV-STORAGE-PART1-001-OBJ-004",
+        "PKT-CCTV-STORAGE-PART2-001-OBJ-004",
+        "PKT-CCTV-STORAGE-PART3-001-OBJ-004"
       ],
-      "quality": "high - static structure, no movement"
+      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
     }
   ],
   "total_global": 4,
