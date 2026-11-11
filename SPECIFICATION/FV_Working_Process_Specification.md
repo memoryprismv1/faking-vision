@@ -2,6 +2,8 @@ FAKING VISION
 
 Working Process Specification — Rewritten (v0.24)
 
+**Document status:** The base text is v0.24 and the document includes later normative additions, including v0.26 and v0.27. Those additions retain their own historical labels; this note does not declare a separately consolidated release number.
+
 Ground-up operational specification for image/video analysis, FV investigation, assembly, packet merge, packet generation, reconstruction, prompt compilation, and evidence-grade evaluation.
 
 Acceptance test: Give this document, an image or video, and no prior FV knowledge to an unfamiliar AI instance. It must be able to analyse the source and produce a valid FV packet. Conversely, given this document and a valid FV packet, it must be able to produce or attempt a reconstruction without inventing semantic content.
