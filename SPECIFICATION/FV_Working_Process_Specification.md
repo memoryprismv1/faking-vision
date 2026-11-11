@@ -146,7 +146,7 @@ Assembly determines how local spatial representations fit together. It may estab
 
 ### 3.1.3 Reconstruction command gate
 
-The normal downstream path is: `analyse / investigate / assemble / merge / create → (resolve if required) → validate → compile → audit`. Not every job requires every operation. `compile` is a hard fidelity gate and never performs dispute resolution or packet repair. If the packet is not resolved and validated, return it to the appropriate earlier operation.
+The normal downstream path is: `analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → (resolve if required) → validate → compile → audit`. Not every job requires every operation. Rebuild is used only when packet-version migration is needed; it does not replace content editing or dispute resolution. `compile` is a hard fidelity gate and never performs dispute resolution or packet repair. If the packet is not resolved and validated, return it to the appropriate earlier operation.
 
 # 4. Source intake
 
