@@ -64,7 +64,7 @@ The command-reference comparison also found a formatting defect in `HOW_TO_USE.m
 13. **The viewpoint command descriptions blurred source viewpoint records and render VPOs.** They now distinguish inspection of both from editing render-preset pose/state while preserving source `initial_state`.
 14. **The `fv analyse` command output contract omitted required `viewpoint.json` metadata.** The command reference now includes source-supported viewpoint initialisation and video viewpoint transitions in TD.
 15. **The active skill and command guides underexposed the normative audio-enabled video procedure.** They omitted timestamped transcript creation before initial TIR/TD, cumulative transcription-fidelity versus cross-modal assessment, transcript-guided adaptive sampling, and the rule that selected source frames receive full FV image analysis. The skill, command reference, and how-to guide now expose these requirements.
-16. **Several specification headings obscured the structure of normative material.** The audio transcript subsection appeared after its body; audio packet requirements were formatted as headings; PC subsections appeared in reverse order; and v0.11 changelog appeared before v0.9/v0.10. These were structurally repaired without changing the underlying requirements. The snapshot subsection is now 8.7 (following 8.6 audio), and the final acceptance-test subsections are numbered 30.1–30.3.
+16. **Several specification headings obscured the structure of normative material.** The audio transcript subsection appeared after its body; audio packet requirements were formatted as headings; PC subsections appeared in reverse order; and v0.11 changelog appeared before v0.9/v0.10. These were structurally repaired without changing the underlying requirements. The snapshot subsection is now 8.7 (following 8.6 audio), the final acceptance-test subsections are numbered 30.1–30.3, and the v0.9–v0.11 change logs are nested subsections rather than duplicate numbered chapters.
 
 ## Existing support implementation (not a CLI claim)
 
@@ -149,7 +149,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Added required `viewpoint.json` metadata to the `fv analyse` command output contract.
 - Added an operation implementation/test status matrix, including the two browser editors, their limits, CI workflows, and pending agent-level acceptance.
 - Added audio-enabled video requirements and selected-frame analysis guidance to the active skill, command reference, and how-to guide.
-- Repaired audio subsection hierarchy, PC subsection order, chronological v0.9–v0.11 change-log order, snapshot subsection numbering, and final acceptance-test numbering in the current specification.
+- Repaired audio subsection hierarchy, PC subsection order, chronological v0.9–v0.11 change-log order and heading level, snapshot subsection numbering, and final acceptance-test numbering in the current specification.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
 - Clarified that viewpoint commands list/inspect source records but edit render VPO state only, preserving source `initial_state`.
