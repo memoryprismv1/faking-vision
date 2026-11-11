@@ -73,6 +73,20 @@ The repository has multiple active and historical branches. Comparisons against 
 
 No branch has been merged as part of this work. The working branch was created from `main`.
 
+## Divergent branch comparison — findings
+
+### `fix/viewpoint-init-transition-scope`
+
+This branch is divergent from current `main` (5 commits ahead, 25 behind at inspection). Its viewpoint schema is an earlier 90-line source-viewpoint-only form; current `main` has a 276-line schema that also defines reusable viewpoint objects (VPO), render roles, defaults, and coordinate-frame details. The branch also lacks the current maplet-grounded assembly expansion in the Working Process Specification and lacks newer provenance instructions in the skill. Do not cherry-pick or merge this branch as a whole.
+
+### `feature/fv-audit-batch-clean` and `feature/fv-audit-batch`
+
+Both are divergent from current `main`. The batch utility and batch-report schema match current `main` line-for-line in the inspected versions. The branch test file is shorter (90 lines versus 146 on `main`); current `main` adds batch-output-schema validation and invalid-report diagnostic tests. Current `main` also contains newer packet media provenance add-ons (attribution, organizations, contributions) that are not present in the branch version of the provenance document. These branches are not a better replacement for current `main`.
+
+### General branch handling
+
+The inspected divergences show why branch names and apparent feature intent are insufficient evidence for merging. Compare file content and current authority before considering individual changes. No branch content was merged or cherry-picked.
+
 ## Changes made in this audit pass
 
 - Added `fv edit viewpoint` to the command-reference map.
