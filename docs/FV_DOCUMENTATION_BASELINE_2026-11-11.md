@@ -208,3 +208,14 @@ The subsequent v0.26 addition is explicitly normative and builds on the v0.25 im
 A review of the active skill and canonical specification found that the Making Vision V2 architectural synthesis was prominent, but the empirical/theoretical research that motivates several FV procedures was not collected in an accessible research-to-design reference. Added `docs/FV_RESEARCH_FOUNDATIONS.md` to map peer-reviewed work on change blindness and visual monitoring, expertise-shaped visual sampling, border ownership and figure-ground organisation, component/shape cues, shadows, biological motion, and calibrated size anchoring to FV operating requirements. Sensory-regime adaptation is explicitly retained as a working hypothesis rather than a settled finding.
 
 The active skill and how-to guide now identify the research map separately from Making Vision: the former summarises evidence and limits; the latter is the user's architectural synthesis. The README links the research reference. The Working Process Specification remains authoritative for FV packet and operation contracts. The new research map does not override it or claim that FV reproduces human neural mechanisms.
+
+
+## Follow-up: command and operator-guide consistency pass
+
+- Aligned the skill with the command reference's viewpoint-schema coverage boundary: orthographic poses require the schema's scale, coordinate-frame, and framing data; the current text console does not implement all schema fields.
+- Clarified that published images/videos are analysed with `fv analyse`; `fv create` is for packets constructed from already established information or an explicit packet specification. Literature metadata and published interpretations remain distinct from direct visual evidence.
+- Aligned the how-to analysis pipeline with the skill's candidate verification, entity/component/appearance decision, and supported identity-resolution gates before packet commitment.
+- Corrected the how-to heading to match its five listed correctness dimensions.
+- Added the textual `fv` prefix/activation rule to the skill to match the command reference.
+
+The 12 defined operations remain aligned across `SKILL.md`, `commands.md`, and `HOW_TO_USE.md`. `fv query` remains intentionally undefined pending discussion.
