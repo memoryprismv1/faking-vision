@@ -99,8 +99,7 @@ fv investigate
 fv assemble
 fv merge
 fv create
-fv rebuild
-fv upgrade
+fv rebuild (alias: fv upgrade)
 fv edit
 fv resolve
 fv validate
