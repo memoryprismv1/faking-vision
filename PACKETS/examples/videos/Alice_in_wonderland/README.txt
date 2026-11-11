@@ -55,8 +55,11 @@ KNOWN LIMITATIONS / UNRESOLVED
 
 FORMAT
 ------
-JSON files below. Version: FV-packet-schema, informal v0.4 (per MR's Working
-Process Specification, Faking Vision).
+The original packet labels its format "FV-packet-schema, informal v0.4". This is
+a historical prototype label, not a current FV specification version or a
+claim of conformance with the current packet contract. The identifier scheme
+and field layout are retained for historical comparison; do not treat them as
+a current-schema template.
 
 FILES
 -----
@@ -64,3 +67,9 @@ PC.json     — project-wide style constants (minimal, declared)
 OI.json     — object/instance inventory
 MSRM.json   — spatial relationships within the single scene
 TD.json     — temporal diff log (the chase, the watch-check, the exit)
+
+STATUS
+------
+This is a text-derived reconstruction brief, not an image/video analysis packet.
+The source is the quoted public-domain literary excerpt; no source video or
+independent visual audit is included.
