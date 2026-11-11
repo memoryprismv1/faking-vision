@@ -301,9 +301,10 @@ fv compile --prompt [attached-packet.zip]
 - Analyse the generated media independently. Do not use the expected packet as evidence for what is visible in the generated media.
 - Keep the media generator, generated-media packet generator/analyst, and auditor identities distinct. Use `packet_provenance.json` when present; legacy packets without it remain usable with unknown provenance.
 - Do not use the reconstruction generator's explanation as evidence.
-- Do not rewrite either packet during the audit.
+- Do not rewrite either packet during the audit. Keep the generated media available for inspecting and locating deviations.
 - Classify deviations using the FV failure taxonomy, including inventory, identity, spatial, temporal, behaviour, style, unsupported-detail, and evaluator-uncertainty classes.
-- Record evidence references and category-specific counts, denominators, uncertainty, and rates.
+- Each material deviation must reference source-media evidence (frame/time/region/crop where applicable) and relevant expected/generated packet records where possible.
+- Record category-specific numerator, denominator, uncertainty count, rate, and exact unit definition/scope. Calculate `100 * numerator / denominator`; use null for a zero denominator. Do not count uncertain units as passes or failures, or collapse unlike categories into one overall percentage.
 
 When file creation is available, create `FV_AUDIT_REPORT.json` as the primary downloadable artifact and validate it against `SPECIFICATION/FV_Audit_Report_Schema.json`. A readable summary is supplementary.
 
