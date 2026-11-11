@@ -82,7 +82,7 @@ The FV command interface names distinct operations. The commands are an operator
 
 `fv analyse` — analyse a raw visual source and produce a source-grounded FV analysis packet. For video, TD is mandatory for a video reconstruction target.
 
-`fv investigate` — pursue a specified object, event, relationship, correspondence, or question across one or more observations or media. Use TIR as the investigative workspace; promote only supported conclusions into authoritative packet records.
+`fv investigate` — pursue a specified object, event, relationship, correspondence, or question across one or more observations or media. Use TIR as the investigative workspace; commit only supported conclusions to authoritative packet records.
 
 `fv assemble` — integrate partial, viewpoint-dependent visual/spatial representations of a larger place or field into a more cohesive spatial representation. This includes overlapping media outputs from a generator, including outputs produced as an observer or sensor changes position or direction. Typical test material includes LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve the local-view/source relationships, provenance, and unresolved registration conflicts.
 
@@ -223,7 +223,7 @@ For each potentially meaningful structure, create a candidate record.
 
 Example: if a fruit is initially observed only as a small red rounded form, the evidence may support strawberry, raspberry, or another candidate rather than a single identity. Surface structures, aggregate-unit structure, a leafy calyx, or other diagnostic components can then be searched for to distinguish candidates. The fruit name is not evidence until the visible component bundle supports it.
 
-For video, component emergence, disappearance, movement, or interaction may trigger adaptive sampling or behaviour-triggered component tracking when the component materially changes candidature, identity, relationship, or uncertainty. Record the candidature trajectory in TIR; promote only source-supported conclusions into TD.
+For video, component emergence, disappearance, movement, or interaction may trigger adaptive sampling or behaviour-triggered component tracking when the component materially changes candidature, identity, relationship, or uncertainty. Record the candidature trajectory in TIR; commit only source-supported conclusions to TD.
 
 Do not use later whole-object recognition to retroactively rewrite the earlier candidature record. The investigation must preserve the forward evidence path that existed when each candidate was considered.
 
@@ -303,13 +303,13 @@ Useful TIR wording includes:
 
 • “If the said object is the same object across multiple investigated media, search for [expected/discriminating component or relationship].”
 
-Do not promote a correspondence hypothesis to a committed persistent identity until the available evidence supports that resolution. If continuity cannot be established, retain separate candidates or unresolved identity as appropriate.
+Do not commit a correspondence hypothesis as a persistent identity until the available evidence supports that resolution. If continuity cannot be established, retain separate candidates or unresolved identity as appropriate.
 
 Record the evidence used for the identity decision.
 
-## 5.5 Pass 5 — packet promotion
+## 5.5 Pass 5 — packet commitment
 
-Only after observation and candidate resolution should information be promoted into the reconstruction packet.
+Only after observation and candidate resolution should information be committed to the reconstruction packet. This is distinct from candidate/object promotion, which allocates additional processing effort and does not itself establish a packet fact.
 
 Recognition is not a prerequisite for packet construction. A novel object may first be represented structurally and remain unnamed. Naming can be added later when supported.
 
@@ -335,7 +335,7 @@ Start by identifying meaningful temporal units. A temporal unit may be a continu
 
 ### 6.1.1 Audio transcript as a provisional temporal cue
 
-If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Promote a resulting statement into TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
+If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Commit a resulting statement to TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
 
 A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
 
@@ -353,7 +353,7 @@ Sampling density must be adaptive. Begin with a lazy/coarse temporal scan. When 
 
 Every source frame that FV actually captures or retains as an evidence observation must undergo the default FV image-analysis procedure. Temporal sampling determines which source frames are acquired as evidence; it does not replace image analysis of those frames with mere frame retention.
 
-For each selected frame, perform the applicable image-analysis passes: visual inventory, candidate generation, entity/component/appearance decision, identity assessment where temporal context permits, and packet/evidence promotion as warranted. The resulting frame-level analysis must be available to TIR and may update OI, MSRM, TD, uncertainty, disputes, or other packet records where justified.
+For each selected frame, perform the applicable image-analysis passes: visual inventory, candidate generation, entity/component/appearance decision, identity assessment where temporal context permits, and evidence assessment and packet commitment as warranted. The resulting frame-level analysis must be available to TIR and may update OI, MSRM, TD, uncertainty, disputes, or other packet records where justified.
 
 A selected frame is therefore both source evidence and an FV image-analysis observation. A packet must not treat a captured frame as semantically unanalysed merely because the temporal sampler selected it. Conversely, frames that were never selected need not receive the same full FV image-analysis treatment.
 
@@ -371,7 +371,7 @@ A component may remain an inventory/property detail while behaviourally irreleva
 
 Examples: a visible wheel does not automatically require wheel tracking; wheel rotation that materially explains vehicle behaviour may require local tracking. A person's hand does not automatically become a tracked component; a hand reaching for, contacting, or manipulating another object may make the hand's behaviour information-bearing. A decorative button that changes without affecting represented structure need not be tracked.
 
-Component tracking is therefore **perturbation-triggered, not inventory-triggered**. The tracking decision and its evidence should be recorded in TIR, and any promoted component state/change should enter TD only when supported by the retained observations.
+Component tracking is therefore **perturbation-triggered, not inventory-triggered**. The tracking decision and its evidence should be recorded in TIR, and any resulting component state/change should be committed to TD only when supported by the retained observations.
 
 | **Field** | **Required content** |
 | --- | --- |
@@ -575,13 +575,13 @@ audio/
     transcript.json
 ```
 
-If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and promote the result into TD only when the source supports it.
+If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and commit the result to TD only when the source supports it.
 
 A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Scene-by-scene visual disagreement must therefore be recorded as a timing/context discrepancy unless the source evidence establishes that the commentary is false. Do not infer satire, fabrication, or speaker intent merely from a mismatch.
 
 The temporal investigation must test the transcript against the source audio and the visual evidence. TIR should maintain cumulative assessment of at least two distinct properties: transcription fidelity (whether the transcript represents the audio accurately) and cross-modal support (whether narrated claims correspond to visual evidence), alongside unresolved/ambiguous content and timing/context mismatches. This assessment is not a binary transcript-valid/invalid gate: isolated transcription or interpretation errors do not by themselves invalidate an otherwise useful audio channel.
 
-Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be promoted directly into TD merely because the transcript contains a claim.
+Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be committed directly to TD merely because the transcript contains a claim.
 
 When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
 
@@ -633,7 +633,7 @@ Filesystem discipline: folder structure is part of the operator interface. Do no
 
 ## 9.2 Build OI
 
-1. Create an OI entry for every promoted object/instance.
+1. Create an OI entry for every object/instance committed to the packet.
 
 1. Add only properties supported by source evidence or explicitly authorized project instructions.
 
@@ -1055,7 +1055,7 @@ For generated or re-rendered images, preserve the disputed output and the releva
 | confidence | High / medium / low. |
 | resolution | Confirmed / unresolved / rejected. |
 
-Do not promote an evaluator's uncertain observation into a formal failure until supporting evidence is located.
+Do not classify an evaluator's uncertain observation as a formal failure until supporting evidence is located.
 
 ## 17.1 Downloadable JSON audit report
 
@@ -1143,7 +1143,7 @@ For every video packet, test whether TD supports at least the following classes 
 
 ☐ Uncertain candidates retained as unresolved where necessary.
 
-☐ OI built from promoted entities only.
+☐ OI built from entities committed to the packet only.
 
 ☐ MSRM built from observed spatial relationships.
 
@@ -1575,7 +1575,7 @@ Where temporal evidence cannot be resolved confidently, retain the relevant sour
 
 - Retain evidence around important relationship changes.
 
-- Retain evidence where later observations promote or refine an object/component.
+- Retain evidence where later observations support or refine an object/component.
 
 - Do not retain every frame simply because a fixed-rate policy selected it.
 
@@ -1633,7 +1633,7 @@ Adaptive temporal sampling may use Change Propensity (CP) as an attention-prior 
 
 ## 32.11 Temporal timestamps are index metadata
 
-A source timestamp, frame number, or derived source-time coordinate is temporal index metadata attached to an observation or TD record. It is not itself a visual object and must not be promoted or repeatedly represented as scene content merely because its displayed value changes from frame to frame.
+A source timestamp, frame number, or derived source-time coordinate is temporal index metadata attached to an observation or TD record. It is not itself a visual object and must not be committed or repeatedly represented as scene content merely because its displayed value changes from frame to frame.
 
 If the source contains a visually displayed CCTV timestamp, that timestamp is visual evidence and should be read from the relevant source frame or snapshot only when the question requires it. The machine temporal coordinate and the visually displayed timestamp are distinct fields.
 
@@ -1747,7 +1747,7 @@ Clarified that object-database use, packet merge, and object-database normalisat
 
 • Made TD the owner of video observation records; no separate observation.json/observations.json is required.
 
-Information should be promoted from TIR into TD only when the evidence supports the corresponding official temporal statement. Provisional reasoning should remain distinguishable from committed packet facts.
+Information should be committed from TIR to TD only when the evidence supports the corresponding official temporal statement. Provisional reasoning should remain distinguishable from committed packet facts.
 
 TIR is therefore not a temporary or inferior version of TD. It is the record of the investigation from which the official TD record is derived. The AI may use TIR freely as an analytical workspace and may revise, extend, or contradict provisional entries as new evidence is acquired.
 
