@@ -65,8 +65,8 @@ temporal record.
 For every source frame actually captured or retained as an evidence
 observation, perform the applicable FV image-analysis procedure: visual
 inventory, candidate generation, entity/component/appearance decision,
-identity assessment where temporal context permits, and evidence/packet
-promotion where warranted. Sampling selects which frames to acquire; it
+identity assessment where temporal context permits, and evidence assessment and packet commitment
+where warranted. Sampling selects which frames to acquire; it
 does not replace analysis of a selected frame.
 
 When audio is intentionally included in a video packet:
@@ -80,7 +80,7 @@ When audio is intentionally included in a video packet:
   refer to an earlier, later, off-screen, or different scene state.
 - Use transcript segments as candidate cues for adaptive sampling, including
   to locate possible gaps in TIR/TD before visual confirmation. Update TIR
-  with acquired observations; promote claims into TD only when source
+  with acquired observations; commit claims to TD only when source
   evidence supports them.
 - Preserve uncertainty and discrepancies. Do not infer that commentary is
   false, satirical, or untrustworthy merely because it does not match the
@@ -119,8 +119,8 @@ question across one or more visual observations or media.
 
 Use TIR as the investigative workspace. Preserve hypotheses, competing
 interpretations, rejected hypotheses, sampling decisions, evidence paths,
-and unresolved questions there. Promote only source-supported conclusions
-into authoritative packet records.
+and unresolved questions there. Commit only source-supported conclusions
+to authoritative packet records.
 
 A task objective may alter attention or sampling priority, but it is not
 source evidence and cannot supply missing identity, event, motivation, or
@@ -130,7 +130,7 @@ When the investigation includes audio, assess the source audio and transcript
 cumulatively in TIR. Keep transcription fidelity distinct from visual
 cross-modal support, ambiguity, and timing/context mismatch. Transcript
 claims may direct adaptive sampling before visual support is established, but
-must not be promoted directly into TD without supporting source observations.
+must not be committed to TD without supporting source observations.
 
 Example:
 
@@ -591,7 +591,7 @@ to continue the chain.
 
 This skill contains the agent-facing operating instructions and textarea command/output contract. When used with the repository, read and apply `SPECIFICATION/FV_Working_Process_Specification.md`; the user should not need to supply that file separately. When the repository file is unavailable, state that the complete current specification cannot be consulted. Do not treat the embedded historical v0.24 snapshot as a substitute for the current specification. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. The separately preserved historical v0.24 snapshot is reference material only and must not override current instructions.
 
-The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. The canonical Making Vision material is the foundational perceptual source that this skill operationalizes; its required reading and the candidate-promotion gate are skill prerequisites, not replacements for FV packet rules. This skill may provide agent-facing procedures and guardrails grounded in Making Vision, but it must not contradict the Working Process Specification or silently redefine its packet requirements.
+The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. The canonical Making Vision material is the foundational perceptual source that this skill operationalizes; its required reading and the candidate/promotion distinction are skill prerequisites, not replacements for FV packet rules. This skill may provide agent-facing procedures and guardrails grounded in Making Vision, but it must not contradict the Working Process Specification or silently redefine its packet requirements.
 
 When operating FV:
 - preserve FV terminology and distinctions;
