@@ -45,6 +45,8 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 - For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record.
 - For every newly generated packet: root-level `packet_provenance.json`, validated against `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
 - For every newly generated image/video packet: root-level `viewpoint.json` with source-supported initialisation. For video, record supported viewpoint transitions in TD. Preserve unknown position/orientation; do not invent camera geometry.
+- For video frames actually captured/retained as evidence, perform the applicable FV image-analysis procedure; sampling does not replace analysis of a selected frame.
+- When audio is intentionally included: preserve the source audio and timestamped `transcript.json` together under packet-level `audio/`; create the transcript before initial TIR/TD investigation. Treat it as a provisional sampling cue, assess transcription fidelity separately from cross-modal support and timing/context mismatch, and promote claims into TD only when source evidence supports them.
 
 The media record may include optional attribution, organization, and contributor information when supplied or reliably available. Do not infer missing people, roles, organizations, contact details, timestamps, licences, or rights claims. Omit unavailable optional add-ons; do not retrofit legacy packets with guessed information.
 
@@ -221,6 +223,13 @@ fv resolve dispute D-014
 ```
 
 ## `fv validate`
+
+When audio is included, verify that the audio file and `transcript.json` are
+present, source-aligned, and mutually traceable; check that TIR preserves the
+provisional transcript assessment and material discrepancies. Audio and
+visual evidence remain separate evidence streams.
+
+
 
 **Purpose:** Check an FV packet against the applicable authoritative FV specification.
 
