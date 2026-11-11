@@ -289,7 +289,7 @@ Example:
 
 ### `fv validate`
 
-Validate the identified FV packet against the v0.24 packet rules.
+Validate the identified FV packet against the current authoritative Working Process Specification and the packet's declared version/compatibility rules.
 
 Validation is not reconstruction and is not an independent reconstruction
 audit.
