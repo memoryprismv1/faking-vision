@@ -88,7 +88,7 @@ A legacy packet can still validate and compile through an expressly documented c
 
 `fv edit` remains the operation for intentional changes to packet content: object properties, viewpoints, environmental conditions, and other supported edits. It does not perform version migration. Rebuild may identify a required content change that needs an explicit `fv edit`, human input, or source re-analysis; it must not silently perform those operations.
 
-Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the current authoritative FV version is the target. `fv upgrade` is an alias, not a separate workflow.
+Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the current authoritative Working Process Specification itself is the target. Its v0.24 base and later normative additions are not assigned a consolidated release number, so describe that target in the migration report without inventing a new version label. The missing consolidated label does not by itself block migration. `fv upgrade` is an alias, not a separate workflow.
 
 ### The important distinctions
 
