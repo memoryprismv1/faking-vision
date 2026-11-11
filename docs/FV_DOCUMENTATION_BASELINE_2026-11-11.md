@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Corrected an over-restrictive rebuild-target caution: absent `--to`, the normative rule selects the current authoritative Working Process Specification itself. The report must describe its v0.24 base and later normative additions without inventing a consolidated release label; the missing label alone does not block migration.
 - Added the mandatory Making Vision V2 prerequisite and candidate/promotion-versus-packet-commitment distinction to the how-to guide, matching the active skill.
 - Completed an operational procedure cross-check against the canonical specification; expanded resolve/reconciliation state transitions and audit evidence/metric rules in the skill and command reference.
 - Aligned command interpretation and artifact-output contracts across `commands.md`, `SKILL.md`, and `HOW_TO_USE.md`; documented rebuild/edit/viewpoint artifacts, video ZIP delivery, and the non-native batch-audit boundary.
