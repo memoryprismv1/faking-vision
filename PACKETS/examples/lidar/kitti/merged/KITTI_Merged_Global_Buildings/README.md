@@ -14,6 +14,7 @@ This packet is intended to demonstrate reconciliation of packet-scoped building 
 - The same OI declares `total_global_identities: 54`.
 - `COMPILED_SPEC.json` also declares 54 identities and describes 12 shared buildings plus 42 singletons, but its scene inventory lists only the 12 shared IDs. The 42 singleton identities are not explicitly represented in the merged OI or scene inventory.
 - The packet references two source assembly packets, but the presence of those folders does not establish the claimed cross-sequence correspondence. The source scans, calibration/pose evidence, and reproducible merge log are not included.
+- The 12 global records cite component-level provenance such as `building_0` through `building_11` under each source packet's `OBJ-002` building-cluster entity. Neither source OI actually declares those building components (the Sequence 00 cluster has an empty `components` array; Sequence 07 has no component list). The cited component-level source records therefore do not resolve to explicit source OI components.
 - The snapshot manifest contains only the packet ID; it does not identify visual evidence files.
 
 These are material internal completeness and evidence gaps. The 54-identity total and the 12 high-confidence correspondences are assertions in the supplied packet, not independently verified results.
