@@ -36,7 +36,7 @@ Apply the current authoritative Working Process Specification for viewpoint meta
 - A continuous observer/camera retains its viewpoint ID while moving; a distinct observer/viewpoint receives a distinct ID when supported by evidence.
 - Preserve unknown position/orientation; do not invent coordinates or camera geometry.
 
-This current rule supersedes older embedded v0.24 wording below that places initial viewpoint state in TD or expands viewpoint metadata into a cross-view visual-field experiment.
+This current rule supersedes older v0.24 wording preserved in `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md` that places initial viewpoint state in TD or expands viewpoint metadata into a cross-view visual-field experiment.
 
 # FV textarea command interface
 
@@ -528,7 +528,7 @@ to continue the chain.
 
 ## Operating rule
 
-This skill contains the agent-facing operating instructions and textarea command/output contract. When used with the repository, read and apply `SPECIFICATION/FV_Working_Process_Specification.md`; the user should not need to supply that file separately. When the repository file is unavailable, state that the complete current specification cannot be consulted. Do not treat the embedded historical v0.24 snapshot as a substitute for the current specification. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. Historical specification text retained later in this file is reference material only and must not override current instructions.
+This skill contains the agent-facing operating instructions and textarea command/output contract. When used with the repository, read and apply `SPECIFICATION/FV_Working_Process_Specification.md`; the user should not need to supply that file separately. When the repository file is unavailable, state that the complete current specification cannot be consulted. Do not treat the embedded historical v0.24 snapshot as a substitute for the current specification. Packet provenance and JSON audit requirements are additionally defined in `SPECIFICATION/FV_Provenance_And_Audit.md` and their JSON schemas. The separately preserved historical v0.24 snapshot is reference material only and must not override current instructions.
 
 The source hierarchy is: `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative for FV packet structure, operations, evidence rules, and reconstruction gates. The canonical Making Vision material is the foundational perceptual source that this skill operationalizes; its required reading and the candidate-promotion gate are skill prerequisites, not replacements for FV packet rules. This skill may provide agent-facing procedures and guardrails grounded in Making Vision, but it must not contradict the Working Process Specification or silently redefine its packet requirements.
 
