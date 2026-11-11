@@ -64,7 +64,7 @@ Finding: viewpoint editing is documented under `fv edit` in `commands.md`, but i
 - `SPECIFICATION/FV_Audit_Batch_Report_Schema.json`
 - `.github/workflows/fv-audit-batch.yml`
 
-The workflow file currently runs on pushes to `feature/fv-audit-batch`, relevant pull requests, and manual dispatch. The latest `main` commit inspected (6d47e1f) returned no associated workflow runs through the available commit-run lookup. This is not evidence that the tests pass or fail; execution status remains unverified.
+The workflow file currently runs on pushes to `feature/fv-audit-batch`, relevant pull requests, and manual dispatch. The latest `main` commit inspected (6d47e1f) returned no associated pull-request-triggered workflow runs through the available commit-run lookup. That lookup does not enumerate every workflow trigger. This is not evidence that the tests pass or fail; execution status remains unverified.
 
 ## Branch review notes
 
