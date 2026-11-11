@@ -176,3 +176,15 @@ The current Working Process Specification, active skill, command reference, and 
 - **Packet commitment:** recording a source-supported conclusion in authoritative packet structures such as OI or TD. It requires evidence and is not implied by noticing or promoting a candidate.
 
 Renamed the specification's Pass 5 heading to "packet commitment", added the distinction at that boundary, and updated agent-facing and operator-facing language. Remaining uses of "promote" refer to selective processing, candidate attention/tracking, or historical change-log wording, rather than packet commitment.
+
+
+## Verification: historical specification material was relocated, not discarded
+
+The active `SKILL.md` is substantially shorter than the original `main` version because the embedded v0.24 specification extraction was separated from the agent-facing operating instructions. This was checked rather than assumed:
+
+- Original `main` skill: 1,590 lines.
+- Working-branch skill: 622 lines.
+- Working-branch `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md`: 1,043 lines.
+- The historical file's extracted specification body matches the corresponding v0.24 body formerly embedded in `main`'s skill through 98,484 characters; the remaining difference is the old skill's appended canonical-specification material, now represented by the current standalone Working Process Specification and agent-facing instructions.
+
+The detailed historical v0.24 dispute lifecycle, typed identifiers, viewpoint rules, and other historical material remain available in the dedicated historical file. The current specification remains the operating authority. The line-count reduction is therefore a relocation/separation, not evidence that the research and historical specification were deleted.
