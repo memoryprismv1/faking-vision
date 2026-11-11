@@ -33,7 +33,7 @@ The source-page author and licence statements in these five READMEs were checked
 - `lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/` and `KITTI_Sequence07_Assembled/`: packet records and visualizations are present; raw scans, calibration/pose files, and reproducible registration logs are not.
 - `lidar/kitti/merged/KITTI_Merged_Global_Buildings/`: incomplete merge example. OI lists 12 global records but declares 54 identities; the other 42 are not explicitly represented. See its README.
 - `lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/` and `lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/`: source context and packet claims are present, but raw flight transects and reproducible processing/correspondence evidence are absent. The stitching OI also records an “expected” staircase as a component without source evidence establishing it as observed.
-- `telescope/hubble/Telescope_Hubble_UDF_Stitching/`: packet records and a workflow visualization are present, but original exposures and reproducible processing are absent. OI declares two entities while the MSRM scene lists only one.
+- `telescope/hubble/Telescope_Hubble_UDF_Stitching/`: packet records and a workflow visualization are present, but original exposures and reproducible processing are absent. OI declares a galaxy and a 10,000-galaxy cluster; the missing cluster reference has now been added to MSRM, but source exposures and the claimed count remain unverified.
 
 Do not present the numbers or processing claims in these examples as reproduced results.
 
