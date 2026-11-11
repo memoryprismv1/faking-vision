@@ -217,7 +217,9 @@ fv edit viewpoint set VP-AB12CD34 position 2 1 4
 
 **Input:** The relevant dispute, ambiguity, or competing interpretation, together with any required human resolution information and cited evidence.
 
-**Procedure and output:** Follow the existing dispute lifecycle. Where human intervention is required, the human supplies the resolution information. The AI then reconciles the packet against the cited evidence and human changes, preserves provenance, and validates affected records. The resulting packet and resolution history must retain whether the issue was resolved or remains unresolved.
+**Procedure and output:** Preserve the original automated observation, uncertainty, evidence references, and dispute history. Where human intervention is required, the human supplies resolution information but does not declare the packet reconciled. The AI then reads `dispute.json`, inspects cited source evidence and snapshots, reviews the human changes, and reconciles the packet. At minimum, update OI and PC where justified; update other packet records only where a justified dependency is established. Preserve provenance and distinguish later human additions from the AI's original observations.
+
+After reconciliation, validate the affected packet records. If every dispute is resolved and validation passes, move the detailed `dispute.json` to `dispute.reconciled.json` and create a new small `dispute.json` with aggregate status `resolved`. If any dispute remains unresolved or validation fails, keep the detailed `dispute.json` in place with aggregate status `open`. The packet and resolution history must preserve whether the issue was resolved or remains unresolved.
 
 **Boundary:** An open or invalid dispute remains a reconstruction gate. Do not merely change a status field to make compilation possible.
 
