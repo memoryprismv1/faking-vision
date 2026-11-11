@@ -26,7 +26,7 @@ The source-page author and licence statements in these five READMEs were checked
 
 ## CCTV — legacy multi-part storage example
 
-`cctv/CCTV_Storage_Crisis/` contains three part records and a merged record intended to demonstrate cross-part identity reconciliation. The source identity, source URL, duration, part boundaries, and event summaries are unverified; no source recording or source-derived snapshots are included. The claimed global-identity count, correspondence quality, unified timeline, and storage-reduction figure are not independently established. See the family README before use.
+`cctv/CCTV_Storage_Crisis/` contains three part records and a merged record intended to demonstrate cross-part identity reconciliation. The source identity, source URL, duration, part boundaries, and event summaries are unverified; no source recording or source-derived snapshots are included. The merged OI/TIR now uses resolvable full packet-scoped IDs, but the four global correspondences remain unverified; an unsupported personal name was removed and the 10/5 Mbps storage arithmetic was corrected. The claimed 10,000x reduction is not an evidence-equivalent comparison. See the family README before use.
 
 ## LiDAR and telescope — assembly/merge illustrations
 
