@@ -161,7 +161,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Normalized the skill's rebuild syntax to `[packet]`, made the examples use the implicit current-version target rather than the ambiguous literal `current`, and added the v0.27 rebuild workflow to the how-to guide.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
 - Exposed `fv edit viewpoint` as a subcommand in the README command list.
-- Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest.
+- Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative and its availability requirement is honest; clarified the same dependency in README and how-to guide.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
 - Preserved the historical v0.24 extraction verbatim in a separate specification reference, linked it from the README, and reduced the active skill from 1,601 to 561 lines at extraction; subsequent operational additions bring it to 597 lines.
 - Removed a hard-coded v0.24 validation target from the active skill command and tied validation to the current authoritative specification and declared packet compatibility.
