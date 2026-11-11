@@ -155,3 +155,12 @@ This is a documentation alignment change; no visual operation was performed and 
 The canonical specification header states that the document has a v0.24 base with later normative additions, including v0.26 and v0.27, but does not declare a separately consolidated release number. The rebuild command's default-target wording could otherwise tempt an agent to treat the latest labelled addition as the consolidated target.
 
 The skill and command reference now explicitly prohibit that inference. If no target is supplied and no single authoritative target label is designated, the agent must report the target as unresolved and request a version decision or mark migration blocked. This preserves the existing version-designation decision rather than silently deciding it during documentation cleanup.
+
+
+## Correction: implicit-current rebuild target
+
+A subsequent cross-file consistency check found that the previous follow-up's instruction to block or defer rebuild when no consolidated release label exists was stricter than the normative v0.27 rebuild text. That text explicitly says that, when `--to` is omitted, the current authoritative FV specification is the target.
+
+The skill, command reference, and how-to guide now follow that rule: use the current authoritative Working Process Specification itself as the target, and describe it in the migration report as a v0.24 base with later normative additions (including v0.26 and v0.27), without inventing a consolidated release number. The missing consolidated label remains an open versioning/documentation decision, but does not by itself block migration to the current authoritative specification.
+
+This correction supersedes the earlier sentence in this audit's "rebuild target-version ambiguity" follow-up that directed the agent to request a version decision or mark migration blocked solely because no consolidated release label was assigned.
