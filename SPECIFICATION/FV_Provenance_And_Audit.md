@@ -1,6 +1,6 @@
 # FV Provenance, Independent Audit and Audit Files
 
-This document defines the additive provenance record and machine-readable audit output. It extends FV v0.24 without invalidating existing packets or changing OI, MSRM, TD, PC, or dispute semantics.
+This document defines the additive provenance record and machine-readable audit output. It was introduced as an extension to FV v0.24 and remains a supplementary contract referenced by the current Working Process Specification. It does not invalidate existing packets or change OI, MSRM, TD, PC, or dispute semantics.
 
 ## 1. Packet provenance
 
