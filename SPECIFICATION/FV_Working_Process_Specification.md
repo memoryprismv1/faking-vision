@@ -335,7 +335,7 @@ Start by identifying meaningful temporal units. A temporal unit may be a continu
 
 ### 6.1.1 Audio transcript as a provisional temporal cue
 
-## If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Promote a resulting statement into TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
+If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Promote a resulting statement into TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
 
 A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
 
@@ -501,19 +501,19 @@ Example TD diff: 00:14.2→00:14.6, traffic_light_01.color = yellow→green. A q
 
 Using PC as an object database is an architectural capability to be tested, not a claim that the methodology has already been validated. Continuous same-camera footage split into temporally adjacent files is the intended experimental material for testing object reuse, packet merge, and object-database normalisation.
 
-### 8.4.3 Object database status
+### 8.4.1 PC as a canonical object database
 
-The snapshot property is an additive property of an existing PC object declaration. Adding it must not change the existing PC structure, field organization, or semantics. If no visual evidence is available or needed, the property may be absent.
-
-A PC object may include a snapshot property containing references to preserved visual evidence for that canonical object. Snapshot references provide visual grounding for inspection, comparison, merge, and later normalisation; they do not replace the canonical PC declaration and do not turn snapshots into canonical definitions.
+PC may also serve as the project’s canonical object database when a project declares reusable visual objects as genuine project-wide constants. This is a functional use of the existing PC structure, not a new packet layer or a replacement for PC.
 
 ### 8.4.2 Snapshot property for PC objects
 
 An object declared in PC remains in the existing PC object/declaration structure. Do not reorganize PC, introduce a separate object-database container, or move existing PC information merely to support this use. Object-database capability is additive.
 
-PC may also serve as the project’s canonical object database when a project declares reusable visual objects as genuine project-wide constants. This is a functional use of the existing PC structure, not a new packet layer or a replacement for PC.
+### 8.4.3 Object database status
 
-### 8.4.1 PC as a canonical object database
+The snapshot property is an additive property of an existing PC object declaration. Adding it must not change the existing PC structure, field organization, or semantics. If no visual evidence is available or needed, the property may be absent.
+
+A PC object may include a snapshot property containing references to preserved visual evidence for that canonical object. Snapshot references provide visual grounding for inspection, comparison, merge, and later normalisation; they do not replace the canonical PC declaration and do not turn snapshots into canonical definitions.
 
 ## 8.5 Disputes — packet-level human-intervention and rendering-gate layer
 
