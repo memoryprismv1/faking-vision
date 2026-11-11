@@ -36,7 +36,7 @@ BOUNDARIES
 - This is initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No vehicle make/model, person identity, placard meaning, exact world coordinates, or unsupported persistent vehicle identity is asserted.
 
-DISPUTES: THREE OPEN ISSUES at packet level (see the dated status addendum and dispute.json). Local uncertainties and provisional correspondence are preserved in OI/TD; the merge gate remains blocked. No identity merge or reconstruction compilation is authorized.
+DISPUTES: THREE DISPUTE RECORDS at packet level: one inventory-completeness item is deferred/non-blocking for this chunk; two investigations remain open and active (moving light-coloured vehicle-like form; opening camera/view change). The merge gate remains blocked. No identity merge or reconstruction compilation is authorized.
 
 
 HONEST STATUS ADDENDUM (2026-10-14)
