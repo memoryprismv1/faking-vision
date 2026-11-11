@@ -116,7 +116,7 @@ analyse / investigate / assemble / merge / create
                     ↓
           (optional rebuild/upgrade)
                     ↓
-                 resolve
+       (resolve if required)
                     ↓
                 validate
                     ↓
