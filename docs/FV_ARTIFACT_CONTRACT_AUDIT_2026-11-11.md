@@ -224,3 +224,10 @@ The canonical operation model and downstream path now include `fv rebuild` / `fv
 
 
 The authoritative v0.27 rebuild rule now carries the same target-label clarification: when the current Working Process Specification is the default target, the report describes its v0.24 base and later normative additions and records that the consolidated release label is unassigned. The agent must not invent a version number or treat v0.27 alone as the consolidated version.
+
+
+## Follow-up: research foundations integration check
+
+The branch contains `docs/FV_RESEARCH_FOUNDATIONS.md`, a research-to-design reference covering change detection/visual sampling, border ownership and figure-ground organisation, component/shape cues, shadows, biological motion, scale calibration, and sensory-regime change as a separately labelled working hypothesis. It distinguishes empirical findings, theories/models, FV design translations, and hypotheses, and explicitly states what the research does not establish.
+
+The active skill and how-to guide both require the research reference alongside Making Vision V2 before visual operations; the README links it. The source hierarchy is explicit: the research document motivates and bounds FV design choices but does not override the Working Process Specification. Selected recent and comparative references were checked against their publication records; the 2026 shape-cue study and the 2025-online/2026-issue visual-sampling study are correctly dated and their DOI/title details match. No new biological-mechanism claim was added.
