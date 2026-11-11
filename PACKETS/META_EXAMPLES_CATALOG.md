@@ -30,7 +30,7 @@ Operation: `fv assemble`
 Supplied artifacts: `OI.json`, `MSRM.json`, `TD.json`, `TIR.json`, `COMPILED_SPEC.json`, `PC.json`, `dispute.json`, `snapshot/manifest.json`, `README.txt`, and `VALIDATION_REPORT.txt`.
 Purpose described by Meta: assemble overlapping airborne LiDAR flight transects into a larger landscape; preserve flight-line provenance and distinguish assembly from global entity merge.
 Source named in README: PACUNAM LiDAR Initiative (Guatemala), 2018; Garrison et al., *Science* (2018), “Spatiotemporal patterns of Maya urbanism”; Mirador Basin Project is also mentioned.
-Verification caveat: the packet describes the source and method, but the supplied archive does not contain the raw LiDAR transects or a rendered assembled landscape. Its validation report's “VALID” status is a packet claim, not independent verification of the survey or assembly.
+Verification caveat: the packet describes the source and method, but the supplied archive does not contain the raw LiDAR transects or a rendered assembled landscape. Its validation report's “VALID” status is a packet claim, not independent verification of the survey or assembly. OI also records a west-facing staircase as a component while labelling it an expected component; without source evidence, that component must not be treated as observed.
 
 ### 2. Mayan Pyramids merged global packet
 Packet ID: `PKT-MAYAN-MERGE-61K-001`
@@ -67,7 +67,7 @@ Operation: `fv assemble`
 Supplied artifacts: `OI.json`, `MSRM.json`, `PC.json`, `TD.json`, `TIR.json`, `dispute.json`, `snapshot/manifest.json`, and `README.txt`.
 Purpose described by Meta: assemble overlapping telescope exposures into a larger deep-field view, with exposure-level provenance; distinguish exposure assembly from later persistent-galaxy merge.
 Source named in README: Hubble Space Telescope Ultra Deep Field, 2003–2004.
-Verification caveat: the Hubble exposures, archive identifiers, exposure list, and assembled image are not included. README figures such as exposure count, overlap, and field dimensions require source-level confirmation before being treated as verified.
+Verification caveat: the Hubble exposures, archive identifiers, exposure list, and assembled image are not included. README figures such as exposure count, overlap, and field dimensions require source-level confirmation before being treated as verified. The OI declares two entities, but the MSRM scene lists only one in `entities_present`; the inventory/spatial mismatch remains unresolved.
 
 ### 7. CCTV storage-crisis temporal parts and global merge
 Packet family: `CCTV_Storage_Crisis`.
