@@ -82,7 +82,7 @@ The FV command interface names distinct operations. The commands are an operator
 
 `fv analyse` — analyse a raw visual source and produce a source-grounded FV analysis packet. For video, TD is mandatory for a video reconstruction target.
 
-`fv investigate` — pursue a specified object, event, relationship, correspondence, or question across one or more observations or media. Use TIR as the investigative workspace; commit only supported conclusions to authoritative packet records.
+`fv investigate` — investigate a specified object, event, relationship, correspondence, or question in supplied media or across one or more observations/media. The question may direct analysis of a single source (for example, whether an object appears in an image or what an animal did in a video and when) or an investigation across sources. Return evidence-grounded findings and relevant timing directly; use TIR as the investigative workspace and commit only supported conclusions to authoritative packet records. No separate `fv query` command or mode is defined.
 
 `fv assemble` — integrate partial, viewpoint-dependent visual/spatial representations of a larger place or field into a more cohesive spatial representation. This includes overlapping media outputs from a generator, including outputs produced as an observer or sensor changes position or direction. Typical test material includes LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve the local-view/source relationships, provenance, and unresolved registration conflicts.
 
@@ -1475,7 +1475,9 @@ The specification passes only when an unfamiliar AI can use it as an executable 
 
 ## 30.2 Additional acceptance test: temporal queryability
 
-Give an unfamiliar AI a valid video packet and ask temporal questions whose answers are explicitly encoded in TD, such as 'When did the light turn green?' The AI must retrieve the answer from TD rather than infer it from OI, MSRM, the scene category, or external world knowledge. Then ask a question whose answer is not encoded. The AI must report insufficient temporal information rather than fabricate an answer.
+Give an unfamiliar AI a valid video packet and ask temporal questions whose answers are explicitly encoded in TD, such as 'When did the light turn green?' The AI must retrieve the answer from TD rather than infer it from OI, MSRM, the scene category, or external world knowledge. Then ask a question whose answer is not encoded. The AI must report insufficient temporal information rather than fabricate an answer. This is an acceptance test for the packet's temporal evidence and the agent's ability to investigate it; it does not define a separate `fv query` command.
+
+For source-media investigation, give the AI a raw image or video and ask a question about a specified object or event (for example, whether a white dog appears in the image, or what a kitten did in the video and when). The AI must investigate the supplied media, return the supported finding with relevant timestamps/evidence, and state when coverage or sampling is insufficient. The user must not need to inspect TD files to obtain the answer.
 
 ## 30.3 Command-interface acceptance test
 
