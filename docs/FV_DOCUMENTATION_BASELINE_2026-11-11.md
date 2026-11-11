@@ -75,6 +75,10 @@ The repository has multiple active and historical branches. Comparisons against 
 
 No branch has been merged as part of this work. The working branch was created from `main`.
 
+## Viewpoint command gap
+
+The authoritative specification permits explicit instantiation of `VPO_DEFAULT`, and the browser-editor documentation describes a dedicated **New render preset / Instantiate VPO_DEFAULT** action. However, the current `fv edit viewpoint` textarea subcommand list has no corresponding instantiate/create syntax. The skill and command reference now state this boundary explicitly: do not invent a command; use an explicitly available editor action or ask for clarification. The missing command form remains a design decision, not an implementation claim.
+
 ## Divergent branch comparison — findings
 
 ### `fix/viewpoint-init-transition-scope`
@@ -93,6 +97,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 - Added `fv edit viewpoint` to the command-reference map.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
+- Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
 - Added the optional rebuild/upgrade step to the README reconstruction path.
 - Reworded the skill's operating-rule paragraph so the current Working Process Specification is explicitly authoritative.
 - Relabelled the embedded v0.24 extraction as a historical snapshot/reference, not current operating authority.
