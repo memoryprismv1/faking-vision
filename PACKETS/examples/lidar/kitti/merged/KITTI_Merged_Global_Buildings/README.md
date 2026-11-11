@@ -1,0 +1,23 @@
+# KITTI global-building merge example
+
+Packet ID: `PKT-KITTI-MERGE-001`
+Operation intended: `fv merge`
+Specification label in supplied packet: v0.24
+
+## Intended demonstration
+
+This packet is intended to demonstrate reconciliation of packet-scoped building declarations from two KITTI assembly examples (Sequence 00 and Sequence 07), preserving source packet IDs and recording correspondence evidence before assigning global identities.
+
+## Evidence and consistency audit
+
+- The merged OI explicitly contains 12 entries in `global_buildings_normalized`.
+- The same OI declares `total_global_identities: 54`.
+- `COMPILED_SPEC.json` also declares 54 identities and describes 12 shared buildings plus 42 singletons, but its scene inventory lists only the 12 shared IDs. The 42 singleton identities are not explicitly represented in the merged OI or scene inventory.
+- The packet references two source assembly packets, but the presence of those folders does not establish the claimed cross-sequence correspondence. The source scans, calibration/pose evidence, and reproducible merge log are not included.
+- The snapshot manifest contains only the packet ID; it does not identify visual evidence files.
+
+These are material internal completeness and evidence gaps. The 54-identity total and the 12 high-confidence correspondences are assertions in the supplied packet, not independently verified results.
+
+## Status
+
+Keep this packet as an **incomplete merge-structure example**. Do not present it as a completed or validated global-building merge until the inventory is made internally complete, source evidence is linked, and correspondence decisions can be independently reviewed. Duplicate suffixed files that were byte-identical to canonical files have been removed; the canonical unsuffixed records are retained.
