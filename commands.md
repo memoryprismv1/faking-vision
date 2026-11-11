@@ -46,7 +46,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 - For every newly generated packet: root-level `packet_provenance.json`, validated against `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
 - For every newly generated image/video packet: root-level `viewpoint.json` with source-supported initialisation. For video, record supported viewpoint transitions in TD. Preserve unknown position/orientation; do not invent camera geometry.
 - For video frames actually captured/retained as evidence, perform the applicable FV image-analysis procedure; sampling does not replace analysis of a selected frame.
-- When audio is intentionally included: preserve the source audio and timestamped `transcript.json` together under packet-level `audio/`; create the transcript before initial TIR/TD investigation. Treat it as a provisional sampling cue, assess transcription fidelity separately from cross-modal support and timing/context mismatch, and promote claims into TD only when source evidence supports them.
+- When audio is intentionally included: preserve the source audio and timestamped `transcript.json` together under packet-level `audio/`; create the transcript before initial TIR/TD investigation. Treat it as a provisional sampling cue, assess transcription fidelity separately from cross-modal support and timing/context mismatch, and commit claims to TD only when source evidence supports them.
 
 The media record may include optional attribution, organization, and contributor information when supplied or reliably available. Do not infer missing people, roles, organizations, contact details, timestamps, licences, or rights claims. Omit unavailable optional add-ons; do not retrofit legacy packets with guessed information.
 
@@ -64,7 +64,7 @@ fv analyse [attached image or video]
 
 **Input:** The question or target to investigate, plus the relevant observations or media.
 
-**Output:** A persistent investigation record/report when the investigation produces a result that needs to be retained. Use TIR (Temporal Investigation Record) as the investigative workspace. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Promote only source-supported conclusions into authoritative packet records.
+**Output:** A persistent investigation record/report when the investigation produces a result that needs to be retained. Use TIR (Temporal Investigation Record) as the investigative workspace. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Commit only source-supported conclusions to authoritative packet records.
 
 A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
 
