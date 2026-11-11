@@ -1932,7 +1932,7 @@ Change log — v0.19
 
 - Defined component candidature as an evidence-preserving alternative to immediate whole-object recognition.
 
-- Added required candidature/verification fields for observed components, candidate alternatives, discriminating components/relationships, search results, and promotion/rejection status.
+- Added required candidature/verification fields for observed components, candidate alternatives, discriminating components/relationships, search results, and processing-allocation/candidate-outcome status.
 
 - Clarified that later whole-object recognition must not retroactively rewrite the earlier evidence path.
 
