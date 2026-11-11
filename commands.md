@@ -64,7 +64,7 @@ fv analyse [attached image or video]
 
 **Input:** The question or target to investigate, plus the relevant observations or media.
 
-**Output:** A persistent investigation record/report when the investigation produces a result that needs to be retained. Use TIR (Temporal Investigation Record) as the investigative workspace. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Commit only source-supported conclusions to authoritative packet records.
+**Output:** A persistent TIR (Temporal Investigation Record) containing the investigative evidence path. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Commit only source-supported conclusions to authoritative packet records; a chat summary is supplementary to the investigation record.
 
 A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
 
@@ -78,9 +78,9 @@ fv investigate this person across these CCTV clips
 
 ## `fv assemble`
 
-**Purpose:** Combine partial or overlapping visual/spatial observations into a larger, more cohesive representation.
+**Purpose:** Integrate partial, viewpoint-dependent spatial representations into a larger, more cohesive representation.
 
-**Input:** Source pieces or local representations that cover portions of a larger view or place. Examples include overlapping LiDAR scans, telescope fields, aerial imagery, microscopy tiles, and overlapping photographs.
+**Input:** Source pieces or local representations that cover portions of a larger view or place. Examples include overlapping LiDAR scans, telescope fields, aerial imagery, microscopy tiles, and overlapping photographs. Treat each as a local view/maplet associated with its supported viewpoint and spatial information, not as an interchangeable image crop or file tile. Maplets may differ in viewpoint, direction, coverage, scale, resolution, occlusion, and detail.
 
 **Procedure and output:**
 1. Identify each source piece, its generator, and acquisition context where known.
@@ -90,7 +90,7 @@ fv investigate this person across these CCTV clips
 5. Integrate the pieces while preserving which source views contribute to each region.
 6. Preserve unobserved areas, weak correspondences, viewpoint-specific evidence, and unresolved conflicts.
 
-**Boundary:** Assembly integrates local spatial representations. It is not merely a comparison of separate datasets, and geometric correspondence does not establish persistent object identity. It is also not `fv merge`.
+**Boundary:** Assembly integrates local spatial representations into a cohesive map/view; it is not merely joining file edges or blending pixels. Separate historical/current datasets covering the same field are independent observations, not automatically pieces of one acquisition; comparison is a distinct companion workflow, not an established assembly result. Geometric correspondence does not establish persistent object identity. It is also not `fv merge`.
 
 **Example:**
 
@@ -292,7 +292,7 @@ fv compile --prompt [attached-packet.zip]
 
 This mode produces only a compiled, generator-ready prompt/specification artifact. The packet ZIP is input, not an instruction to render.
 
-Prompt-only mode applies the same validation, reconciliation, and dispute gates as ordinary compilation. Preserve packet identities, inventories, scene membership, spatial relations, temporal order, transitions, uncertainty, negative constraints, and viewpoint information. State renderer limitations and missing geometry where relevant. Do not invoke an image/video generator or claim that an image was generated. The operation ends when the prompt artifact is produced.
+Prompt-only mode applies the same validation, reconciliation, and dispute gates as ordinary compilation. Preserve packet identities, closed object and background inventories, scene membership, off-screen persistence, spatial relations, temporal order, transitions, uncertainty, negative constraints, and viewpoint information. State renderer limitations and missing geometry where relevant. Do not invoke an image/video generator or claim that an image was generated. The operation ends when the prompt artifact is produced.
 
 **Examples:**
 
