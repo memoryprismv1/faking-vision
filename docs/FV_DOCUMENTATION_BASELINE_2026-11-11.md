@@ -189,7 +189,7 @@ The following items remain open or are deliberately deferred. Items already comp
 - **Consolidated release label:** the current authoritative specification remains a v0.24 base with later normative additions, including v0.26 and v0.27. The default rebuild target is correctly defined as the current authoritative specification itself; the absence of a consolidated numeric label does not block that operation. Decide on a release label only when a numbered consolidated release is needed. Do not infer v0.27 as the consolidated target.
 - **Divergent implementation branches:** review unique branch content in the later implementation/dataset phase. The documentation pass records the branch comparisons but does not merge or cherry-pick them.
 - **`fv investigate` question-directed media use:** resolved by including single-image/video questions and timestamped object/event findings in the existing investigation operation. No separate `fv query` command will be defined.
-- **Examples:** leave example cleanup until the final phase, as planned.
+- **Examples:** the final examples phase is now underway; the targeted provenance, packaging, and cross-reference review is recorded below and in `PACKETS/examples/README.md`.
 
 The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; question-directed media analysis is included in `fv investigate`, not listed as a separate operation.
 
@@ -237,3 +237,19 @@ CI remains unverified: the branch has no pull request, the branch-specific Actio
 The discussion of a possible `fv query` command is resolved. The intended behaviour is ordinary investigation of a specified object or question in supplied media: for example, whether a white dog appears in an image, whether a delivery person appeared during a CCTV coverage period, or what a kitten did in a video and when. This belongs to `fv investigate`, including single-source image/video investigations as well as investigations across multiple observations.
 
 The investigator returns the finding directly, with relevant timestamps/intervals and evidence references where applicable. It uses TIR for retained investigative reasoning and TD for authoritative temporal evidence; users do not need to open TD files to obtain ordinary findings. Coverage gaps and uncertainty must be stated, and absence must not be asserted without adequate coverage. Temporal queryability remains a packet capability and acceptance test, not a separate user-facing command. The command map, skill, how-to guide, implementation-status inventory, and current specification have been aligned to this decision. No example files were changed.
+
+
+## Follow-up: final examples audit and cleanup
+
+The examples phase was kept until the end, after the documentation, skill, command-reference, and `fv investigate` scope work. The review has now:
+
+- Added `PACKETS/examples/README.md` as a directory-level index distinguishing reconstruction briefs, source-media analysis, sampled evidence, metadata-only examples, and incomplete/illustrative packets.
+- Updated `PACKETS/README.md` to link the index and to describe the offline audit-batch utility accurately.
+- Compared Git blob hashes and removed 38 byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building folders. Removed the byte-identical `TIR_MERGED_UNIFIED.json` alias from the CCTV Storage Crisis merged folder; canonical `TIR.json` remains. Shared version/provenance boilerplate repeated across distinct environmental packets and the reused operational-disposition note in separate CCTV packet folders were retained.
+- Corrected the viewpoint sample to include the required `initial_state.status` with an explicit unknown source pose.
+- Corrected example READMEs where source availability, processing, or validation had been overstated: CCTV Storage Crisis, KITTI assembly, Mayan LiDAR, Hubble UDF, Cat jumping backwards, and CCTV Part 1. Added a family README for CCTV Storage Crisis and an audit README for the incomplete KITTI global-building merge.
+- Recorded that the Cat post-resolution validation report claims snapshot folders exist even though the repository contains only a manifest that says no snapshots were preserved; the reconciliation record also says post-resolution validation was still pending. The report is retained as inconsistent historical output, not accepted as proof of validation.
+- Recorded an OI/MSRM gap in Hubble UDF (two OI entities, one listed in the MSRM scene), a seven-entity OI/MSRM gap in CCTV Part 3, and the unverified “expected staircase” component in the Mayan LiDAR OI. The KITTI global-building merge declares 54 identities but explicitly records only 12.
+- Checked the five image examples' source-page author/licence statements against their Wikimedia Commons pages and cross-checked OI/MSRM references: all five checked inventories have matching entity references and no duplicate IDs.
+
+These checks are targeted, not a full FV semantic validation. No exhaustive pixel-level re-analysis, full reproduction of LiDAR/telescope processing, or full validation of every example packet was performed. Missing source media and unverified claims remain clearly labelled rather than repaired by invention. No runtime or test code was changed, no tests/CI were run, and no merge was performed.
