@@ -79,6 +79,15 @@ There are 22 Playwright tests and 14 Python unit tests in the inspected files. T
 
 No manual workflow dispatch was performed during this audit. Available commit-run lookup did not provide a complete repository-wide workflow history; CI status is therefore **unverified**, not passed or failed.
 
+## Artifact contract cross-reference
+
+The machine-readable schema and operation-output coverage is audited separately in
+`docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md`. In particular, the presence
+of provenance, viewpoint, and audit schemas does not mean that the full packet,
+validation report, TIR, dispute, compile output, or rebuild report has a
+dedicated JSON Schema. The viewpoint schema also supports more VPO fields than
+the current command syntax exposes.
+
 ## Documentation implications
 
 1. Keep the distinction between agent-level commands and repository tools explicit.
