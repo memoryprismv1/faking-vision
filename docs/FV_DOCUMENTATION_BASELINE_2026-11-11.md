@@ -87,6 +87,8 @@ The skill previously linked to the generic `/readings/making-vision` path, while
 
 ## Viewpoint command gap
 
+The command descriptions also blurred source viewpoint records and editable render VPOs. The list/show operations can inspect both, but edits change the active/render pose and must preserve source `initial_state` as provenance. The skill and both command maps now state that boundary.
+
 The authoritative specification permits explicit instantiation of `VPO_DEFAULT`, and the browser-editor documentation describes a dedicated **New render preset / Instantiate VPO_DEFAULT** action. However, the current `fv edit viewpoint` textarea subcommand list has no corresponding instantiate/create syntax. The skill and command reference now state this boundary explicitly: do not invent a command; use an explicitly available editor action or ask for clarification. The missing command form remains a design decision, not an implementation claim.
 
 ## Divergent branch comparison — findings
@@ -109,6 +111,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Added `fv edit viewpoint` to the command-reference map.
 - Moved the `fv audit` command row into the `HOW_TO_USE.md` command-map table.
 - Documented the missing textarea syntax for explicit `VPO_DEFAULT` instantiation without inventing a command.
+- Clarified that viewpoint commands list/inspect source records but edit render VPO state only, preserving source `initial_state`.
 - Updated the Making Vision links to V2 and separated processing allocation/promotion from evidence-based packet commitment.
 - Added the Making Vision research-status boundary so the synthesis is not presented as an established biological mechanism.
 - Marked the opening v0.24 temporal-analysis note in `HOW_TO_USE.md` as historical.
