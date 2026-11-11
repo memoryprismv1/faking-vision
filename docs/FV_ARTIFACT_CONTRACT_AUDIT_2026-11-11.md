@@ -164,3 +164,15 @@ A subsequent cross-file consistency check found that the previous follow-up's in
 The skill, command reference, and how-to guide now follow that rule: use the current authoritative Working Process Specification itself as the target, and describe it in the migration report as a v0.24 base with later normative additions (including v0.26 and v0.27), without inventing a consolidated release number. The missing consolidated label remains an open versioning/documentation decision, but does not by itself block migration to the current authoritative specification.
 
 This correction supersedes the earlier sentence in this audit's "rebuild target-version ambiguity" follow-up that directed the agent to request a version decision or mark migration blocked solely because no consolidated release label was assigned.
+
+
+## Follow-up: distinguish object promotion from packet commitment
+
+A terminology collision remained between Making Vision's **promotion** (allocation of additional processing effort) and older FV wording such as "packet promotion" or "promote conclusions into TD" (committing evidence-supported information to authoritative packet records).
+
+The current Working Process Specification, active skill, command reference, and how-to guide now distinguish these operations:
+
+- **Candidate/object promotion:** selective allocation for additional inspection or analysis. It changes processing priority, not evidential certainty or packet status.
+- **Packet commitment:** recording a source-supported conclusion in authoritative packet structures such as OI or TD. It requires evidence and is not implied by noticing or promoting a candidate.
+
+Renamed the specification's Pass 5 heading to "packet commitment", added the distinction at that boundary, and updated agent-facing and operator-facing language. Remaining uses of "promote" refer to selective processing, candidate attention/tracking, or historical change-log wording, rather than packet commitment.
