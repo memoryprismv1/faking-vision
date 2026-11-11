@@ -227,6 +227,8 @@ For video, component emergence, disappearance, movement, or interaction may trig
 
 Do not use later whole-object recognition to retroactively rewrite the earlier candidature record. The investigation must preserve the forward evidence path that existed when each candidate was considered.
 
+## 5.2.1 Component-driven candidature and verification
+
 Candidate verification is component- and relationship-based. Allocate additional processing to a candidate when its salience, uncertainty, task relevance, anomaly, or explanatory potential warrants closer inspection. The resulting inspection may strengthen, weaken, reject, or leave the candidate unresolved; the allocation decision itself does not establish its identity or evidential status. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
 
 Search should be targeted by the candidate set. Once a component creates candidature, ask what additional source evidence would distinguish the candidates, then inspect for that evidence. Do not search only for confirming evidence for the first candidate; where feasible, include evidence that could discriminate between or falsify the alternatives.
@@ -248,8 +250,6 @@ For each component-driven candidature, record at minimum:
 A component is evidence, not an identity. A single component may support several candidates. Candidate generation must preserve the alternatives actually supported by the observed component and context; it must not collapse immediately to the most familiar object.
 
 When an object identity is uncertain, a visible component may be used to generate a bounded set of object candidates. Do not require whole-object recognition before candidature. The operational direction is: component → candidate set → targeted search for expected components/relationships → candidate verification or rejection.
-
-## 5.2.1 Component-driven candidature and verification
 
 ## 5.3 Pass 3 — entity/component/appearance decision
 
