@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Added `docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md` and linked it from the README; it compares operation artifacts, confirmed schemas, and uncovered schema/command gaps.
 - Added `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md` and linked it from the README.
 - Clarified that dispute resolution is conditional in the normal workflow diagrams; it is required only when a dispute or ambiguity blocks downstream work.
 - Added `fv edit viewpoint` to the command-reference map.
@@ -172,6 +173,8 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
 - Review version-history continuity: v0.25 is referenced as the predecessor of v0.26 but has no standalone normative section in the current specification; determine whether this is intentional or a missing historical record.
+- Decide whether validation/rebuild reports and audio transcripts need dedicated schemas; the artifact audit records the current gaps without creating speculative schemas.
+- Decide whether additional VPO fields should receive standard command syntax or remain editor-only schema fields.
 - Decide and document the consolidated target-version label for default `fv rebuild`; until then, use the specification's implicit-current wording and do not invent a release number.
 - Verify CI using existing run evidence or a controlled test run on this working branch.
 - Review the status of every operation: specified, implemented in a tool, experimentally demonstrated, or still conceptual. An initial evidence-based status matrix is now in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`.
