@@ -7,29 +7,20 @@ description: A domestic cat (Felis catus) jumping backwards. Slow-motion replay 
 date: 23 October 2016, Author: Mary Qin, Source: https://vimeo.com/188592921
 duration: 19s, dimensions: 1920x1080, transcode: VP9 480P 574kbps
 
-Source intake limitations (FV 4.1/4.2/4.3):
-- Direct pixel-level frame inspection not available in current environment (download blocked). Analysis based on Wikimedia Commons metadata and file description.
-- Visible image boundaries, pixel dimensions known (1920x1080), aspect ratio 16:9
-- Quality: VP9 transcode available, but original source quality not verified
-- Temporal structure: original clip + slow-motion replay (1/4 speed) - two-phase structure noted in description
-- No audio indicated
-- Therefore: Level 1 direct visual evidence is LIMITED. Level 2 relational evidence is PROVISIONAL. Level 5 unresolved preserved for background, spatial layout, exact motion trajectory.
+## Source and evidence limitations
 
-FV procedure used:
-- Pass 1 visual inventory: component identified as quadruped mammalian form with felis_catus characteristics
-- Pass 2 candidate generation: component → candidate set {cat, felis_catus domestic}
-- Pass 3 entity/component/appearance decision: cat promoted to object instance, texture/shadow as appearance
-- Pass 4 identity resolution: single persistent identity across both intervals, correspondence hypothesis strengthened by continuity of form but not fully verified due to lack of direct frame evidence (quality: weak for correspondence due to lack of discriminating component inspection)
-- Pass 5 packet promotion: OI + MSRM + TD built
+- Direct pixel-level frame inspection was unavailable during the original packet production because source download was blocked. The analysis relied on Wikimedia metadata and the file description.
+- The repository contains no source video and no retained frame snapshots. `snapshot/manifest.json` explicitly records that no snapshots were preserved.
+- The original/replay transition is ordered but not precisely timestamped. Do not invent the transition time.
+- Background and spatial layout remain unresolved; do not add props or setting details from world knowledge.
+- The packet's object identity and action interpretation remain limited by the absence of direct frame evidence.
 
-ATD (Adaptive Temporal Decomposition) applied conceptually:
-- Initial intervals: S01 original jump, S02 slow-motion replay
-- No further subdivision justified without direct frame perturbation evidence
+## Packet contents and lifecycle
 
-Packet files:
-- OI.json, MSRM.json, TD.json (mandatory for video), dispute.json (rendering gate), PC.json not used (no genuine project-wide constants)
-- snapshot/ structure per v0.24: lowercase snapshot/manifest.json optional, verification/, objs/, disputes/ - no nested folders
+The retained canonical packet files are `OI.json`, `MSRM.json`, `TD.json`, `PC.json`, `dispute.json`, `dispute.reconciled.json`, `COMPILED_SPEC.json`, `COMPILED_PROMPT.txt`, `snapshot/manifest.json`, and the validation reports.
 
-Inventory lock: closed for this packet version. No new semantic entities may be introduced by renderer.
-Version: v0.24 compliant
-Generated: 2026-10-12T05:28:03.937199
+The initial validation report records three snapshot-directory checks as failures and blocks rendering while disputes are open. The human resolution later accepted metadata-only analysis with uncertainty preserved and released the dispute gate; it did not add source frames or upgrade the evidence.
+
+**Validation warning:** `VALIDATION_REPORT_POST_RESOLVE.txt` claims that `snapshot/verification`, `snapshot/objs`, and `snapshot/disputes` exist and reports the packet as valid. That claim conflicts with the repository tree and the snapshot manifest, which records that no snapshots were preserved. The reconciliation record also says post-reconciliation validation was still “to be performed”. Treat the post-resolution report as inconsistent historical output, not proof of a completed validation.
+
+No FV executable/CLI was run. Do not describe this packet as visually verified, exhaustively analysed, or independently audited. The compilation artefacts are retained as an experimental prompt/specification, not evidence that the source was faithfully reconstructed.
