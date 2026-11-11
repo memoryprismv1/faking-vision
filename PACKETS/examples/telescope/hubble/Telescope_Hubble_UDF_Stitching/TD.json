@@ -3,11 +3,14 @@
   "timeline": [
     {
       "interval_id": "EXPOSURE_001",
-      "action": "20min exposure"
+      "action": "20min exposure",
+      "evidence_status": "legacy packet claim; not independently verified because source exposures and processing records are absent"
     },
     {
       "interval_id": "ASSEMBLED_HUDF",
-      "action": "800 exposures stitched -> 10k galaxies"
+      "action": "800 exposures stitched -> 10k galaxies",
+      "evidence_status": "legacy packet claim; not independently verified because source exposures and processing records are absent"
     }
-  ]
+  ],
+  "scope_note": "This timeline records legacy workflow claims, not a verified exposure chronology or observed event timeline."
 }
