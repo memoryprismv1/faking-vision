@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Verified that the active skill's reduction from 1,590 to 622 lines reflects relocation of its embedded v0.24 extraction into `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md`; the historical specification body was checked against the original embedded text and retained.
 - Disambiguated Making Vision candidate/object promotion (processing allocation) from FV packet commitment (evidence-supported entry into OI/TD); updated the specification, skill, commands, and how-to language.
 - Corrected an over-restrictive rebuild-target caution: absent `--to`, the normative rule selects the current authoritative Working Process Specification itself. The report must describe its v0.24 base and later normative additions without inventing a consolidated release label; the missing label alone does not block migration.
 - Added the mandatory Making Vision V2 prerequisite and candidate/promotion-versus-packet-commitment distinction to the how-to guide, matching the active skill.
