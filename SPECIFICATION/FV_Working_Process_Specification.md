@@ -333,17 +333,17 @@ Start by identifying meaningful temporal units. A temporal unit may be a continu
 
 1. Inspect intervals around every meaningful appearance, disappearance, movement, or state change.
 
+### 6.1.1 Audio transcript as a provisional temporal cue
+
 ## If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Promote a resulting statement into TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
 
-## A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
+A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
 
-## The temporary TIR must independently assess the transcript against the source audio and the visual source evidence. Track the audio/transcript channel cumulatively rather than using a binary keep/discard decision. At minimum distinguish: transcription fidelity (whether the transcript accurately represents the audio); visual/cross-modal support (whether a narrated claim corresponds to visual evidence); unresolved or ambiguous content; and timing/context mismatch where audio-supported commentary does not correspond scene-by-scene with the current visual interval.
+The temporary TIR must independently assess the transcript against the source audio and the visual source evidence. Track the audio/transcript channel cumulatively rather than using a binary keep/discard decision. At minimum distinguish: transcription fidelity (whether the transcript accurately represents the audio); visual/cross-modal support (whether a narrated claim corresponds to visual evidence); unresolved or ambiguous content; and timing/context mismatch where audio-supported commentary does not correspond scene-by-scene with the current visual interval.
 
-## Use the transcript during temporal investigation as an additional cue for adaptive sampling. A transcript segment may identify a time or interval that deserves visual inspection, including an event, action, relationship, or other claim that was not captured by the initial temporal observations. The claim does not need to be visually supported yet; identifying a potential gap is itself a reason to acquire the relevant source observation.
+Use the transcript during temporal investigation as an additional cue for adaptive sampling. A transcript segment may identify a time or interval that deserves visual inspection, including an event, action, relationship, or other claim that was not captured by the initial temporal observations. The claim does not need to be visually supported yet; identifying a potential gap is itself a reason to acquire the relevant source observation.
 
-## When audio is intentionally included, generate a timestamped transcript before the initial temporary TIR/TD temporal investigation. The transcript is a provisional analytical variable, not a source-of-truth record and not a substitute for listening to the source audio.
-
-## 6.1.1 Audio transcript as a provisional temporal cue
+When audio is intentionally included, generate a timestamped transcript before the initial temporary TIR/TD temporal investigation. The transcript is a provisional analytical variable, not a source-of-truth record and not a substitute for listening to the source audio.
 
 ## 6.2 Temporal sampling
 
@@ -557,31 +557,33 @@ dispute.json is the current actionable/rendering-gate state. dispute.reconciled.
 
 The reconciliation lifecycle is: AI analysis → dispute.json = open → rendering blocked → human reviews source/evidence and adds or corrects packet information → packet returned to AI → AI reads dispute.json + human changes + source/evidence → OI / PC updated as justified → packet validation → dispute.json moved to dispute.reconciled.json → new small dispute.json = resolved → rendering permitted.
 
-## When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable, and that the temporal investigation records the provisional transcript assessment and any material discrepancies.
+## 8.6 Audio evidence and transcript
 
-## AUDIO_COMPANION.txt may continue to provide human-readable audio notes, but it does not replace the audio file or transcript.json when a transcript is intentionally included.
+When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable, and that the temporal investigation records the provisional transcript assessment and any material discrepancies.
 
-## Audio and visual evidence are separate evidence streams. A transcript may inform OI, TD, disputes, or other packet fields, but those fields must remain traceable to the audio segment or visual evidence that supports them. When audio and visual evidence disagree, preserve the conflict and use the existing uncertainty/dispute process rather than silently privileging one stream.
+AUDIO_COMPANION.txt may continue to provide human-readable audio notes, but it does not replace the audio file or transcript.json when a transcript is intentionally included.
 
-## The packet must preserve the relationship between the audio file and the source video, including source identity and relevant time alignment. transcript.json should contain timestamped transcript segments and, where supported, speaker/voice attribution and transcription uncertainty. Do not invent words that are not supported by the audio. If speech is unclear, preserve the uncertainty rather than silently normalising it.
+Audio and visual evidence are separate evidence streams. A transcript may inform OI, TD, disputes, or other packet fields, but those fields must remain traceable to the audio segment or visual evidence that supports them. When audio and visual evidence disagree, preserve the conflict and use the existing uncertainty/dispute process rather than silently privileging one stream.
 
-## audio/
+The packet must preserve the relationship between the audio file and the source video, including source identity and relevant time alignment. transcript.json should contain timestamped transcript segments and, where supported, speaker/voice attribution and transcription uncertainty. Do not invent words that are not supported by the audio. If speech is unclear, preserve the uncertainty rather than silently normalising it.
+
+Use an optional packet-level audio/ directory:
+
+```text
+audio/
     source.<original-extension>
     transcript.json
+```
 
-## Use an optional packet-level audio/ directory:
+If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and promote the result into TD only when the source supports it.
 
-## If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and promote the result into TD only when the source supports it.
+A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Scene-by-scene visual disagreement must therefore be recorded as a timing/context discrepancy unless the source evidence establishes that the commentary is false. Do not infer satire, fabrication, or speaker intent merely from a mismatch.
 
-## A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Scene-by-scene visual disagreement must therefore be recorded as a timing/context discrepancy unless the source evidence establishes that the commentary is false. Do not infer satire, fabrication, or speaker intent merely from a mismatch.
+The temporal investigation must test the transcript against the source audio and the visual evidence. TIR should maintain cumulative assessment of at least two distinct properties: transcription fidelity (whether the transcript represents the audio accurately) and cross-modal support (whether narrated claims correspond to visual evidence), alongside unresolved/ambiguous content and timing/context mismatches. This assessment is not a binary transcript-valid/invalid gate: isolated transcription or interpretation errors do not by themselves invalidate an otherwise useful audio channel.
 
-## The temporal investigation must test the transcript against the source audio and the visual evidence. TIR should maintain cumulative assessment of at least two distinct properties: transcription fidelity (whether the transcript represents the audio accurately) and cross-modal support (whether narrated claims correspond to visual evidence), alongside unresolved/ambiguous content and timing/context mismatches. This assessment is not a binary transcript-valid/invalid gate: isolated transcription or interpretation errors do not by themselves invalidate an otherwise useful audio channel.
+Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be promoted directly into TD merely because the transcript contains a claim.
 
-## Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be promoted directly into TD merely because the transcript contains a claim.
-
-## When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
-
-## 8.6 Audio evidence and transcript
+When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
 
 ## 8.6 Snapshots — preserved visual evidence
 
