@@ -30,6 +30,7 @@ PACKET CONTENTS
 - snapshot/manifest.json: source lineage, timestamps, snapshot/crop hashes and crop provenance.
 - snapshot/verification/: 106 full-frame snapshots.
 - snapshot/objs/: eight source-derived evidence crops.
+- No PC.json, TIR.json, or dispute.json is included in this packet folder. The README's “DISPUTES: NONE” is a prose status, not a retained machine-readable dispute record. The process log describes targeted manual review, but no separate TIR preserves its hypotheses, decisions, and unresolved questions; do not infer a complete investigation trail from the TD and snapshot manifest alone.
 
 BOUNDARIES
 - This packet is not merged with Part 1. IDs are packet-local and must not be treated as cross-packet identities.
