@@ -104,3 +104,21 @@ These are design decisions, not automatic requests to create nine new schemas. T
 - Do not add a generic packet schema until its relationship to the existing OI/MSRM/TD structures and legacy compatibility is explicitly settled.
 - Keep `fv query` design separate from this artifact audit.
 - Keep examples untouched until the final examples phase.
+
+
+## Follow-up: operator-facing command/artifact alignment
+
+Reviewed the command map and artifact-output sections in `commands.md`, `SKILL.md`, and `HOW_TO_USE.md`.
+
+Corrections made on the working branch:
+
+- Added explicit `fv rebuild` / `fv upgrade` interpretation and artifact requirements to the active skill: preserve the source packet, create a separate rebuilt copy and migration report, and validate the target copy. Keep migration, structural validation, FV semantic validation, dispute/reconciliation readiness, and independent visual audit as separate outcomes.
+- Added explicit `fv edit` and `fv edit viewpoint` artifact requirements to the skill. Successful edits retain before/after information and provenance; viewpoint edits preserve source `initial_state`, validate the VPO schema, and do not alter OI/MSRM scene content.
+- Expanded the how-to artifact summary to cover all operations in its command map rather than only analyse, validate, compile, and audit.
+- Added the batch-audit boundary to the how-to: the offline utility aggregates existing reports and is not a native skill-runtime command.
+- Clarified that video packets, like image packets, are packaged as ZIP deliverables when packaging is available.
+- Kept the command-interface distinction explicit: these are agent textarea commands, not evidence that a standalone CLI exists.
+
+A parity check confirms that the same 12 command forms are represented in the command reference, skill, and how-to command maps. The extra `fv audit batch` item remains explicitly marked as a non-native/proposed skill interface. `fv query` remains intentionally absent pending its separate design discussion.
+
+This follow-up changes documentation coverage only. It does not add schemas, alter packet semantics, change examples, run tests, or merge the branch.
