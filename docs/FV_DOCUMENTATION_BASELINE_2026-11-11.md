@@ -191,7 +191,7 @@ The following items remain open or are deliberately deferred. Items already comp
 - **`fv investigate` question-directed media use:** resolved by including single-image/video questions and timestamped object/event findings in the existing investigation operation. No separate `fv query` command will be defined.
 - **Examples:** leave example cleanup until the final phase, as planned.
 
-The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; `fv query` remains intentionally outside that set.
+The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; question-directed media analysis is included in `fv investigate`, not listed as a separate operation.
 
 
 ## Follow-up: v0.25 history continuity review
@@ -230,3 +230,10 @@ The final operator/agent documentation pass checked the README, active skill, co
 - No example packet, test implementation, schema, or runtime code was changed in this follow-up.
 
 CI remains unverified: the branch has no pull request, the branch-specific Actions lookup returned no workflow runs, and no manual dispatch was performed. Test definitions and local documentation checks must not be described as executed CI.
+
+
+## Follow-up: question-directed media investigation
+
+The discussion of a possible `fv query` command is resolved. The intended behaviour is ordinary investigation of a specified object or question in supplied media: for example, whether a white dog appears in an image, whether a delivery person appeared during a CCTV coverage period, or what a kitten did in a video and when. This belongs to `fv investigate`, including single-source image/video investigations as well as investigations across multiple observations.
+
+The investigator returns the finding directly, with relevant timestamps/intervals and evidence references where applicable. It uses TIR for retained investigative reasoning and TD for authoritative temporal evidence; users do not need to open TD files to obtain ordinary findings. Coverage gaps and uncertainty must be stated, and absence must not be asserted without adequate coverage. Temporal queryability remains a packet capability and acceptance test, not a separate user-facing command. The command map, skill, how-to guide, implementation-status inventory, and current specification have been aligned to this decision. No example files were changed.
