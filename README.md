@@ -53,7 +53,7 @@ Faking Vision grew out of my exploration of how human vision works and how some 
 
 **Making Vision** is the foundational work behind this exploration.
 
-[Making Vision – Reading](https://www.memoryprism.com/readings/making-vision)
+[Making Vision V2 – Reading](https://www.memoryprism.com/readings/making-vision-v2)
 
 **Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing.
 
