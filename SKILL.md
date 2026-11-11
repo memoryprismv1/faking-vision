@@ -222,7 +222,7 @@ Example:
 
 Upgrade an existing FV packet to the current authoritative specification version, or to the version explicitly supplied with `--to`.
 
-`fv rebuild [attached-packet.zip] [--to <FV-version>]`
+`fv rebuild [packet] [--to <FV-version>]`
 
 This is a version-migration operation, not a content-editing operation.
 
