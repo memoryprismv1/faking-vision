@@ -1,30 +1,41 @@
 {
   "packet_id": "PKT-CAT-JUMP-BACK-001",
-  "validation_time": "2026-10-12T05:30:23.101809",
+  "validation_time": "2026-11-11",
   "spec_version": "0.24",
   "post_reconciliation": true,
+  "review_note": "Corrective review of the legacy post-resolution report. The previous report claimed snapshot/verification, snapshot/objs, and snapshot/disputes existed, but those directories are absent from the repository tree. The snapshot manifest records that no frame snapshots were retained. The previous overall VALID status is therefore withdrawn.",
   "checks": [
     {
       "check": "dispute_status_resolved",
       "status": "PASS",
-      "details": "dispute.json status=resolved, dispute.reconciled.json preserved"
+      "details": "dispute.json status=resolved; dispute.reconciled.json retains the original disputes and the human's acceptance of metadata-only analysis for this experimental packet."
     },
     {
-      "check": "reconciliation_preserved_provenance",
+      "check": "reconciliation_record",
       "status": "PASS",
-      "details": "Original disputes archived, human resolution recorded, OI not rewritten"
+      "details": "Original dispute history and human decisions are retained. The reconciliation record itself says validation_after_reconciliation was 'to be performed'; the former post-resolution validation did not establish the claimed snapshot structure."
     },
     {
       "check": "inventory_still_locked",
       "status": "PASS",
-      "details": "OI inventory_lock still True"
+      "details": "OI inventory_lock is true; the one OI entity is referenced by both MSRM scenes and both TD intervals."
     },
     {
       "check": "snapshot_structure",
-      "status": "PASS",
-      "details": "snapshot/verification, objs, disputes exist, no nested folders"
+      "status": "FAIL",
+      "details": "snapshot/manifest.json records no retained snapshots. snapshot/verification, snapshot/objs, and snapshot/disputes are not present as directories in the repository tree."
+    },
+    {
+      "check": "persistent_investigation_record",
+      "status": "NOT PRESENT",
+      "details": "No TIR.json exists in this packet folder. dispute.reconciled.json preserves the three dispute records and human resolution, but is not a substitute for a complete persistent TIR."
+    },
+    {
+      "check": "source_media_inspection",
+      "status": "NOT PERFORMED",
+      "details": "The source video is not included and direct frame inspection was not performed. Object appearance, exact trajectory, background, and original/replay transition time remain limited or unresolved as recorded in OI/MSRM/TD."
     }
   ],
-  "overall_status": "VALID - resolved",
-  "rendering_gate": "PERMITTED - dispute.json status=resolved"
+  "overall_status": "PARTIAL - human accepted metadata-only analysis for this experiment; full snapshot structure and source-level validation are not established.",
+  "rendering_gate": "The human resolution explicitly permitted compilation with uncertainty preserved for this experiment. This permission is not a claim of visual verification, complete packet validation, or snapshot retention."
 }
