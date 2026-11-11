@@ -1607,6 +1607,8 @@ Sampling effort should therefore behave approximately as: quiet interval → low
 
 If an explicit task objective is supplied by the experiment, it may alter sampling priority. The task objective is an external analysis instruction, not source evidence. It may specify what to track or investigate, but it must not supply identities, events, motivations, or missing temporal facts. Goal-directed sampling and evidence acquisition remain separate.
 
+### 32.10.1 Change Propensity, Current Change, and Change Generators
+
 CP, EY, and change-generator identity serve different functions: SCP/CCP control where attention is directed; EY records what evidence is actually being produced; change_generator_obj_ids records the supported source relationship responsible for propagation. They must not be collapsed into one score.
 
 Incongruity may be recorded when an initially low expected change state produces unexpectedly meaningful evidence. Operationally, this is an expectation/observation mismatch that warrants additional investigation; it is not an object identity and must not be used to manufacture one.
@@ -1627,23 +1629,13 @@ Static Change Propensity (SCP) is the baseline propensity assigned to an object 
 
 Adaptive temporal sampling may use Change Propensity (CP) as an attention-prior mechanism. CP is not a source fact and must not be treated as an importance score or as observed change. Its purpose is to provide a shortcut for deciding what to look at first when attention is limited.
 
-## 32.10.1 Change Propensity, Current Change, and Change Generators
+
 
 ## 32.11 Temporal timestamps are index metadata
 
 A source timestamp, frame number, or derived source-time coordinate is temporal index metadata attached to an observation or TD record. It is not itself a visual object and must not be promoted or repeatedly represented as scene content merely because its displayed value changes from frame to frame.
 
 If the source contains a visually displayed CCTV timestamp, that timestamp is visual evidence and should be read from the relevant source frame or snapshot only when the question requires it. The machine temporal coordinate and the visually displayed timestamp are distinct fields.
-
-# 35. Change log — v0.11
-
-• Refined Adaptive Temporal Decomposition to explicitly support perturbation-driven adaptive sampling: lazy scanning by default, increased local sampling around TD clusters, recursive subdivision while perturbation persists, and relaxation when it subsides.
-
-• Added a merge-sort-like chunking strategy as an implementation pattern for locating temporal perturbations efficiently without making fixed-rate sampling the FV model.
-
-• Clarified that sampling density is a dynamic implementation parameter driven by observed perturbation rate/concentration and must be empirically calibrated.
-
-• Clarified that frame numbers and source timestamps are temporal index metadata, not visual objects; displayed CCTV timestamps remain source visual evidence and are inspected only when needed.
 
 # 33. Change log — v0.9
 
@@ -1692,6 +1684,16 @@ FV reconstruction experiments may intentionally use crude or ugly renderers. Aes
 ## 32.15 Experimental material selection
 
 FV experiments do not require prestigious, large, or specialized datasets. For exploratory work, prefer small, directly accessible material that permits rapid observation, modification, reconstruction, and failure analysis. Dataset prestige and scale are not FV requirements.
+
+# 35. Change log — v0.11
+
+• Refined Adaptive Temporal Decomposition to explicitly support perturbation-driven adaptive sampling: lazy scanning by default, increased local sampling around TD clusters, recursive subdivision while perturbation persists, and relaxation when it subsides.
+
+• Added a merge-sort-like chunking strategy as an implementation pattern for locating temporal perturbations efficiently without making fixed-rate sampling the FV model.
+
+• Clarified that sampling density is a dynamic implementation parameter driven by observed perturbation rate/concentration and must be empirically calibrated.
+
+• Clarified that frame numbers and source timestamps are temporal index metadata, not visual objects; displayed CCTV timestamps remain source visual evidence and are inspected only when needed.
 
 ## Change log — v0.12
 
