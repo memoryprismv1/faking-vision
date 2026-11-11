@@ -122,7 +122,7 @@ the current canonical Markdown specification at `SPECIFICATION/FV_Working_Proces
 
 The image-analysis path is:
 
-`source → observation → candidate generation → entity/component/appearance resolution → evidence-grounded packet commitment → packet construction → validation → export`
+`source → observation/structural inventory → candidate generation → selective promotion for additional processing → candidate verification and alternative search → evidence-grounded packet commitment → packet construction → validation → export`
 
 ### Component candidature
 
