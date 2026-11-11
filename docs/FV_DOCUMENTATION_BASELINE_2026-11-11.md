@@ -143,6 +143,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 
 ## Changes made in this audit pass
 
+- Traced the v0.25 edit-interface forms to merged PR #1 and aligned them across the authoritative operation model, active skill, and command reference. Recorded which v0.25 proposal details are superseded or MVP-specific; the standalone v0.25 history section remains a deliberate review item.
 - Updated the image-analysis pipeline to show selective candidate promotion as additional processing, followed by evidence-grounded packet commitment; added the same distinction to per-frame skill instructions.
 - Verified that the active skill's reduction from 1,590 to 622 lines reflects relocation of its embedded v0.24 extraction into `SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md`; the historical specification body was checked against the original embedded text and retained.
 - Disambiguated Making Vision candidate/object promotion (processing allocation) from FV packet commitment (evidence-supported entry into OI/TD); updated the specification, skill, commands, and how-to language.
@@ -179,7 +180,7 @@ The inspected divergences show why branch names and apparent feature intent are 
 - Decide the consolidated target-version label used by default `fv rebuild` after reviewing the base v0.24 text and later normative additions.
 - Continue reviewing the unique content of relevant divergent branches against current `main`; do not merge.
 - Continue reviewing command syntax, inputs, outputs, and constraints across skill/reference/how-to-use.
-- Review version-history continuity: v0.25 is referenced as the predecessor of v0.26 but has no standalone normative section in the current specification; determine whether this is intentional or a missing historical record.
+- Review version-history continuity: merged PR #1 contains the v0.25 image-edit design addition and the v0.26 section builds on it, but the current specification has no standalone v0.25 block. Current command forms are aligned; decide whether a concise historical v0.25 section should be restored without reviving superseded proposal details.
 - Decide whether validation/rebuild reports and audio transcripts need dedicated schemas; the artifact audit records the current gaps without creating speculative schemas.
 - Decide whether additional VPO fields should receive standard command syntax or remain editor-only schema fields.
 - Decide and document the consolidated target-version label for default `fv rebuild`; until then, use the specification's implicit-current wording and do not invent a release number.
