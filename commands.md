@@ -42,7 +42,7 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 
 **Output:**
 - For an image: the complete FV packet as actual packet files, packaged as a ZIP. The ZIP is the primary deliverable.
-- For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record.
+- For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record. Package the video packet as a ZIP when file packaging is available; the ZIP is the primary deliverable.
 - For every newly generated packet: root-level `packet_provenance.json`, validated against `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
 - For every newly generated image/video packet: root-level `viewpoint.json` with source-supported initialisation. For video, record supported viewpoint transitions in TD. Preserve unknown position/orientation; do not invent camera geometry.
 - For video frames actually captured/retained as evidence, perform the applicable FV image-analysis procedure; sampling does not replace analysis of a selected frame.
@@ -175,7 +175,7 @@ fv rebuild [legacy-packet.zip]
 
 **Input:** The packet and the intended change, such as an object property, viewpoint, or environmental condition edit.
 
-**Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful.
+**Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful. Preserve before/after information. For viewpoint edits, preserve source `initial_state`, validate the render VPO against `FV_Viewpoint_Schema.json`, and leave OI/MSRM scene content unchanged.
 
 The target must be sufficiently unambiguous. Do not guess between objects or properties. Preserve before/after information and applicable provenance.
 
