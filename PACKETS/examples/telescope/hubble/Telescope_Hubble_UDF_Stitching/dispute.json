@@ -1,7 +1,6 @@
 {
   "packet_id": "PKT-TELESCOPE-HUDF-STITCH-001",
   "status": "open",
-  "merge_gate": "BLOCKED",
   "disputes": [
     {
       "dispute_id": "HUDF-DSP-001",
@@ -30,5 +29,6 @@
       "required_resolution": "Link source exposures/catalogue records and identify the basis for the individual galaxy classification and aggregate count, or keep these as explicitly unverified illustrative claims.",
       "operational_disposition": "ACTIVE"
     }
-  ]
+  ],
+  "acceptance_gate": "BLOCKED"
 }
