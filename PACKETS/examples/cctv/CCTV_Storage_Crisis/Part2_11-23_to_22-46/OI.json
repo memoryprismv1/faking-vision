@@ -4,10 +4,10 @@
   "operation": "fv analyse - part of CCTV split",
   "inventory_lock": true,
   "source_provenance": {
-    "original_file": "Full, unedited Kelly Thomas confrontation video (35 min.).webm",
+    "original_file": "Legacy source label (unverified): Full, unedited Kelly Thomas confrontation video (35 min.).webm",
     "part": "Part 2 11:23 to 22:46",
-    "original_duration": "34min10s",
-    "part_duration": "683s",
+    "original_duration": "Legacy claim: 34min10s (not independently verified)",
+    "part_duration": "Legacy part label: 683s (source segment not included for verification)",
     "storage_note": "Legacy source-size claim: 61.4 MB for 34 min 10 s is approximately 1.8 MB/min. Illustrative bitrate arithmetic (decimal units): 10 Mbps = 4.5 GB/hour = 108 GB/day per camera; 5 Mbps = 2.25 GB/hour = 54 GB/day. These are bitrate calculations, not measured CCTV deployment rates."
   },
   "entities": [
