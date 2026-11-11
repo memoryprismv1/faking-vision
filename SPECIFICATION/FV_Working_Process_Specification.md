@@ -227,7 +227,7 @@ For video, component emergence, disappearance, movement, or interaction may trig
 
 Do not use later whole-object recognition to retroactively rewrite the earlier candidature record. The investigation must preserve the forward evidence path that existed when each candidate was considered.
 
-Candidate verification is component- and relationship-based. A candidate may be promoted when the observed bundle of components and relationships is sufficiently diagnostic for the task. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
+Candidate verification is component- and relationship-based. A candidate may be promoted for additional processing when the observed bundle of components and relationships is sufficiently diagnostic for the task. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
 
 Search should be targeted by the candidate set. Once a component creates candidature, ask what additional source evidence would distinguish the candidates, then inspect for that evidence. Do not search only for confirming evidence for the first candidate; where feasible, include evidence that could discriminate between or falsify the alternatives.
 
@@ -412,7 +412,7 @@ The observation record is the bridge between raw source and packet. It must pres
 | interpretation | possible branch |
 | confidence | medium |
 | alternatives | shadow / branch |
-| packet disposition | unresolved; not promoted as object |
+| packet disposition | unresolved; not committed as object |
 | evidence reference | frame 298 crop / image region |
 
 The analyst must be able to answer: 'What in the source caused this packet field to exist?' If the answer is only 'because that is what the scene normally contains,' the field is not source-grounded.
