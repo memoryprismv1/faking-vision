@@ -243,3 +243,5 @@ The example corpus contains 15 packet-level `dispute.json` files. A branch-wide 
 The Making Vision chunk-level attention decision is now kept separate from dispute resolution. `operational_disposition: DEFERRED` means the question need not receive current chunk-local attention; it does not mean the underlying dispute is resolved. Deferred items retain `resolution_status: OPEN`, so the canonical aggregate status remains `open` and the rendering/compilation gate remains blocked. No new aggregate dispute status was added to the specification.
 
 This is a structural/contract normalization of example records and documentation. It does not certify semantic completeness, source coverage, cross-chunk identity, or reconstruction readiness for these examples.
+
+The three CCTV Snapshot TD packets are also explicitly marked as legacy v0.24 records without current root-level `viewpoint.json` and `packet_provenance.json`. The packet READMEs now preserve those omissions as unknowns and prohibit synthesizing camera geometry or source provenance. This is a compatibility/documentation boundary, not a migration or validation claim.
