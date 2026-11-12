@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 255 / 309 media files (255 images, 0 videos)
-- Remaining: 50 images and 4 videos (54 media files)
+- Reviewed: 265 / 309 media files (265 images, 0 videos)
+- Remaining: 40 images and 4 videos (44 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -522,7 +522,24 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_053.jpg` | Pedestrian has moved out of the visible crop. Numerous vehicles remain; multiple registration plates are visible and some appear readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle registration plates; mask before publication unless explicit permission is documented** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_054.jpg` | Similar parking-lot view with numerous vehicles; no pedestrian discernible. Multiple registration plates are visible, some readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle registration plates; mask before publication unless explicit permission is documented** |
 
+## Batch 52 — CCTV-003 verification frames (10 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_055.jpg` | Elevated parking-lot view. Two people are visible beside a light-colored vehicle at the lower-left/center; heads and upper bodies are visible, one person partly occluded by the vehicle/door. Numerous vehicle registration plates are visible and several are readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: people and readable vehicle plates; mask/replace people and plates before publication unless explicit permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_056.jpg` | Same parking-lot scene; two people remain beside the light-colored vehicle, with heads/upper bodies visible. Multiple plates remain readable. Generic `ID:001` overlay. | **Strong privacy flag: people and readable vehicle plates; mask/replace both before publication unless permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_057.jpg` | Two people are clearly visible beside the vehicle, one standing near the driver-side area and another leaning/standing at the open door; heads and upper bodies visible. Numerous registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: two people and readable vehicle plates; mask/replace both before publication unless permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_058.jpg` | Same two people beside the vehicle, one partly occluded by the open door; heads and upper bodies visible. Multiple registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: two people and readable vehicle plates; mask/replace both before publication unless permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_059.jpg` | Two people remain beside the open vehicle door. A dark sedan is also moving through the lot; occupant not clearly discernible. Numerous parked-vehicle plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: people and readable vehicle plates; mask/replace both before publication unless permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_060.jpg` | Two people remain at the open vehicle; one leans into the passenger compartment. A dark sedan crosses the central driving lane; occupant detail is not clear. Numerous parked-vehicle plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: people and readable vehicle plates; mask/replace both before publication unless permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_061.jpg` | Dark sedan continues across the lot. One person remains partly visible beside the open vehicle door, with head/upper-body area partly obscured by the adjacent vehicle. Numerous registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: partial person and readable vehicle plates; mask plates and assess person crop before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_062.jpg` | Moving sedan has progressed toward the left side. A person is still partly visible/occluded beside the open vehicle at the lower-left. Numerous registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: partial person and readable vehicle plates; mask plates and assess person crop before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_063.jpg` | Sedan is nearly out of frame at the left. A small portion of a person remains visible beside the open vehicle, largely occluded. Numerous registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: partial person and readable vehicle plates; mask plates and assess person crop before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_064.jpg` | Sedan has exited. A person remains partly visible behind/next to the open vehicle door; only a limited portion of the upper body is visible. Numerous registration plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: partial person and readable vehicle plates; mask plates and assess person crop before publication** |
+
 ## Next
+
+Continue with `PKT-CCTV-003/snapshot/verification/frame_065.jpg` onward. Batch size increased to 10 images; retain this size if visual clarity permits. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
 Continue with `PKT-CCTV-003/snapshot/verification/frame_055.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
