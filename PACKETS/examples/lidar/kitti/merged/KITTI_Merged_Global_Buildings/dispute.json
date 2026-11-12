@@ -1,5 +1,36 @@
 {
   "packet_id": "PKT-KITTI-MERGE-001",
-  "status": "none",
-  "disputes": []
+  "status": "open",
+  "merge_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "KITTI-MERGE-DSP-001",
+      "topic": "Global identity inventory does not match the compiled inventory",
+      "issue": "OI lists 12 global_buildings_normalized records and declares 54 total_global_identities. COMPILED_SPEC declares 54 but lists only the 12 shared identities in its scene inventory; the 42 singleton identities (BUILDING-GLOBAL-013..054) have no explicit OI records or scene membership.",
+      "evidence": [
+        "OI.json: global_buildings_normalized and total_global_identities",
+        "COMPILED_SPEC.json: global_identity_ledger and scene inventory",
+        "README.md: evidence and consistency audit"
+      ],
+      "required_resolution": "Either supply explicit, provenance-backed records and scene membership for the 42 singleton identities, or revise the declared total and compiled inventory to the identities actually represented. Do not infer or generate the missing identities.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "This merged packet only; do not treat the count as established by source datasets.",
+      "resolution_status": "OPEN"
+    },
+    {
+      "dispute_id": "KITTI-MERGE-DSP-002",
+      "topic": "Global correspondence provenance does not resolve to source packet components",
+      "issue": "The 12 global records cite building_0 through building_11 components under source packet OBJ-002 entities, but the cited source OI component records are absent. Source scans, calibration/pose evidence and reproducible merge logs are also not retained here.",
+      "evidence": [
+        "OI.json: packet_scoped_provenance",
+        "KITTI Sequence 00 source OI: OBJ-002 components array empty",
+        "KITTI Sequence 07 source OI: no corresponding component list",
+        "snapshot/manifest.json: packet ID only"
+      ],
+      "required_resolution": "Provide source component declarations and source evidence with resolvable IDs, or withdraw the component-level provenance and correspondence claims. Re-review correspondence from retained data before assigning global identities.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "This merged packet only; category or label similarity is not sufficient for identity merge.",
+      "resolution_status": "OPEN"
+    }
+  ]
 }

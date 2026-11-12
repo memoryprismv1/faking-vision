@@ -67,6 +67,18 @@
         {
           "id": "PKT-CCTV-003-OBJ-012",
           "position": "far rows"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-013",
+          "position": "far/right part of lot in sampled wide frames"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-014",
+          "position": "lower-right area in early wide view; partially affected by framing"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-019",
+          "position": "distributed through the middle and far rows; individual instances unresolved"
         }
       ],
       "evidence": [
@@ -108,6 +120,34 @@
         {
           "id": "PKT-CCTV-003-OBJ-009",
           "position": "moves laterally through middle-left area in later samples"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-013",
+          "position": "far/right part of lot in sampled wide frames"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-014",
+          "position": "lower-right area in early wide view; partially affected by framing"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-015",
+          "position": "middle rows, slightly right of centre in the wide view"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-016",
+          "position": "left-of-centre middle rows"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-017",
+          "position": "distant background near upper central region in wide views"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-018",
+          "position": "far upper-left edge of wide view"
+        },
+        {
+          "id": "PKT-CCTV-003-OBJ-019",
+          "position": "distributed through the middle and far rows; individual instances unresolved"
         }
       ],
       "evidence": [

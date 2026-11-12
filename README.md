@@ -53,9 +53,11 @@ Faking Vision grew out of my exploration of how human vision works and how some 
 
 **Making Vision** is the foundational work behind this exploration.
 
-[Making Vision – Reading](https://www.memoryprism.com/readings/making-vision)
+[Making Vision V2 – Reading](https://www.memoryprism.com/readings/making-vision-v2)
 
-**Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing.
+Making Vision is the architectural synthesis, not a substitute for empirical research. The [FV research foundations](docs/FV_RESEARCH_FOUNDATIONS.md) map independent perceptual and AI studies to the operational procedures and distinguish findings from design translations and open hypotheses.
+
+**Faking Vision** takes those ideas into an operational framework for visual investigation, media analysis, reconstruction and auditing. It operationalises selected perceptual principles; it does not claim to reproduce the biological visual system.
 
 [Faking Vision – GitHub Repository](https://github.com/memoryprismv1/faking-vision)
 
@@ -89,7 +91,7 @@ The resulting media can then be independently audited against the packet. The ge
 
 ## Agent skill and commands
 
-FV includes an operational agent skill so that an AI agent can perform FV operations without requiring the user to repeatedly supply the underlying specifications.
+FV includes an operational agent skill. When the repository is available to the agent, it can read the current authoritative specification directly rather than requiring the user to repeatedly supply it. If the repository is unavailable, the agent must ask for the current specification; the skill's historical v0.24 reference is not a substitute.
 
 The command set is:
 
@@ -99,9 +101,9 @@ fv investigate
 fv assemble
 fv merge
 fv create
-fv rebuild
-fv upgrade
+fv rebuild (alias: fv upgrade)
 fv edit
+  fv edit viewpoint (subcommand)
 fv resolve
 fv validate
 fv compile
@@ -115,7 +117,9 @@ The normal reconstruction workflow is:
 ```text
 analyse / investigate / assemble / merge / create
                     ↓
-                 resolve
+          (optional rebuild/upgrade)
+                    ↓
+       (resolve if required)
                     ↓
                 validate
                     ↓
@@ -130,7 +134,12 @@ Not every task requires every operation.
 
 - [GitHub repository](https://github.com/memoryprismv1/faking-vision)
 - [Command reference](commands.md)
+- [Operation implementation status](docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md)
+- [Documentation audit and cleanup baseline](docs/FV_DOCUMENTATION_BASELINE_2026-11-11.md)
+- [Artifact contract and schema coverage audit](docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md)
+- [Research foundations and operational evidence map](docs/FV_RESEARCH_FOUNDATIONS.md)
 - [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
+- [Historical v0.24 specification snapshot](SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md) (reference only)
 - [Agent skill](SKILL.md)
 - [How to use FV](HOW_TO_USE.md)
 - Example packets: `PACKETS/examples/`

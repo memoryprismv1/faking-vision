@@ -30,10 +30,15 @@ PACKET CONTENTS
 - snapshot/manifest.json: source lineage, timestamps, snapshot/crop hashes and crop provenance.
 - snapshot/verification/: 106 full-frame snapshots.
 - snapshot/objs/: eight source-derived evidence crops.
+- No PC.json or TIR.json is included in this packet folder. `dispute.json` now records three active issues: provisional pedestrian correspondence, unresolved camera-view transitions, and the limits of one-second sampling. The process log and TD preserve some observations, but they do not substitute for a persistent TIR; do not infer a complete investigation trail from the TD and snapshot manifest alone.
 
 BOUNDARIES
 - This packet is not merged with Part 1. IDs are packet-local and must not be treated as cross-packet identities.
 - The packet is an initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No make/model, person identity, sign meaning, or cross-view identity is asserted beyond the retained visual evidence.
 
-DISPUTES: NONE at packet level. Local uncertainties and provisional correspondence are preserved in OI/TD; no identity merge or reconstruction compilation is authorized by this statement.
+DISPUTES: THREE OPEN INVESTIGATIONS in dispute.json. The analysis is partial and the merge gate is BLOCKED. No identity merge or reconstruction compilation is authorized.
+
+
+LEGACY METADATA BOUNDARY
+This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.

@@ -1,5 +1,35 @@
 {
   "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
-  "status": "none",
-  "disputes": []
+  "status": "open",
+  "assembly_gate": "BLOCKED_FOR_REPRODUCTION",
+  "disputes": [
+    {
+      "dispute_id": "MAYAN-LIDAR-STITCH-DSP-001",
+      "topic": "Exact flight-line acquisitions and stitching evidence are absent",
+      "issue": "The packet cites the PACUNAM initiative and research publication but does not identify the exact flight acquisitions or retain raw point clouds, flight-line list, calibration/registration inputs or reproducible processing log. The 2,100 km² and 100+ flight-line assembly claims are not demonstrated by this packet.",
+      "evidence": [
+        "README.txt: source context and missing inputs",
+        "OI.json: source_provenance and assembly_status",
+        "TD.json: legacy flight-line workflow outline",
+        "snapshot/manifest.json: packet ID only"
+      ],
+      "required_resolution": "Identify the contributing flight acquisitions and retain or durably reference raw data, calibration, registration parameters, overlap evidence and processing logs. Rebuild the assembly history from actual inputs.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
+    },
+    {
+      "dispute_id": "MAYAN-LIDAR-STITCH-DSP-002",
+      "topic": "Archaeological classification and legacy validation result lack source evidence",
+      "issue": "The TIR retains provisional pyramid/causeway hypotheses and a natural-hill rejection, while OI gives specific dimensions/orientations and the validation report claims VALID. No raw LiDAR evidence is retained to independently review these decisions; the report therefore overstates what the repository can establish.",
+      "evidence": [
+        "OI.json: entity dimensions, classification and component candidature",
+        "TIR.json: provisional hypotheses and rejected candidate",
+        "VALIDATION_REPORT.txt: overall_status VALID",
+        "README.txt: dimensions/orientations remain unverified"
+      ],
+      "required_resolution": "Retain source point-cloud regions and measurable observations supporting each geometric claim; separate observed morphology from archaeological interpretation; rerun validation against actual source data. Until then, keep the candidate classification unresolved and validation blocked.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
+    }
+  ]
 }

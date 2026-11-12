@@ -1,7 +1,19 @@
 {
   "packet_id": "PKT-KITTI-ASSEMBLE-001",
-  "snapshots": {
-    "assembled_map_top_down": "snapshot/objs/assembled_map.png - height-colored top-down view 1200x800m",
-    "craft_project": "See artifact HTML"
-  }
+  "snapshot_status": "NO SNAPSHOT OBJECTS RETAINED IN THIS FOLDER",
+  "snapshots": [],
+  "legacy_references_not_present": [
+    {
+      "artifact": "snapshot/objs/assembled_map.png",
+      "status": "NOT PRESENT",
+      "note": "Legacy manifest description only; no matching file exists in the current repository tree."
+    },
+    {
+      "artifact": "craft project HTML",
+      "status": "NOT PRESENT",
+      "note": "Legacy reference only; no artifact HTML is retained in this packet folder."
+    }
+  ],
+  "visualization_location": "visualizations/ (separate illustrative assets; not source-derived snapshots or a reproducible assembled point cloud)",
+  "provenance_limit": "No raw source scans, calibration/pose inputs, source-aligned point-cloud snapshots or reproducible registration log are retained."
 }

@@ -1,6 +1,12 @@
 {
   "packet_id": "PKT-CCTV-MERGE-001",
-  "constants": [
-    "CCTV fixed camera - no movement, static background"
-  ]
+  "constants": [],
+  "legacy_assumptions": [
+    {
+      "claim": "CCTV fixed camera - no movement, static background",
+      "status": "UNVERIFIED legacy assumption",
+      "reason": "Source video and source-aligned frames are absent; camera stability cannot be independently checked."
+    }
+  ],
+  "verification_status": "No packet-wide camera/background invariant is committed. Reassess from source footage before treating the camera as fixed."
 }

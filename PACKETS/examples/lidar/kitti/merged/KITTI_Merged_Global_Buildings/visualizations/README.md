@@ -7,4 +7,4 @@ The images are supplied/generated visualizations. Numerical labels and depicted 
 ## Files
 
 - `06_kitti_persistent_building_ids.jpg` — Cross-scan persistent building identity merge.
-- `07_kitti_54_building_map.jpg` — Merged building map poster.
+- `07_kitti_54_building_map.jpg` — Merged building map poster labelled as 54 buildings. That count is not supported by the current packet inventory, which explicitly lists 12 global records while declaring 54 total identities; treat the poster's count as an unverified legacy claim.

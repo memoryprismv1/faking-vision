@@ -1,6 +1,18 @@
 name: FV environmental workbench browser tests
 
 on:
+  push:
+    branches:
+      - work/fv-docs-skill-cleanup-20261111
+    paths:
+      - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
+      - 'PACKETS/tools/FV_Media_Object_Editor_MVP.html'
+      - 'tests/browser/**'
+      - 'SPECIFICATION/FV_Viewpoint_Schema.json'
+      - 'playwright.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/fv-environment-workbench-browser.yml'
   pull_request:
     paths:
       - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
@@ -17,6 +29,7 @@ on:
 jobs:
   chromium:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,7 +47,10 @@ jobs:
           test -s "$RUNNER_TEMP/fv-cctv-real-clip.webm"
           echo "FV_REAL_MEDIA_PATH=$RUNNER_TEMP/fv-cctv-real-clip.webm" >> "$GITHUB_ENV"
       - run: npm install --no-save http-server
-      - run: npm run test:e2e
+      - name: List discovered browser tests
+        run: npx playwright test --list
+      - name: Run browser tests
+        run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1,23 +1,27 @@
 {
   "packet_id": "PKT-KITTI-ASSEMBLE-001",
-  "constants": [
+  "constants": [],
+  "legacy_input_parameter_claims": [
     {
       "name": "Tr_velo_to_cam",
-      "description": "Velodyne to camera 0 extrinsic from calib.txt",
-      "value": "4x4 transform - genuine project-wide constant per v0.24"
+      "description": "Velodyne-to-camera-0 extrinsic allegedly from calib.txt; no actual 4x4 matrix or calibration file is retained.",
+      "status": "UNVERIFIED"
     },
     {
       "name": "R0_rect",
-      "description": "Rectification matrix"
+      "description": "Rectification matrix referenced but not supplied.",
+      "status": "UNVERIFIED"
     },
     {
       "name": "P2, P3",
-      "description": "Camera projection matrices"
+      "description": "Camera projection matrices referenced but not supplied.",
+      "status": "UNVERIFIED"
     },
     {
-      "name": "Velodyne HDL-64E config",
-      "description": "64 beams, 10Hz, 360 deg FOV, max range 120m"
+      "name": "Velodyne HDL-64E configuration",
+      "description": "64 beams, 10 Hz, 360-degree FOV and 120 m range are legacy packet claims; exact acquisition/configuration is not established.",
+      "status": "UNVERIFIED"
     }
   ],
-  "note": "These are genuine project-wide constants per FV 8.4 - allowed in PC.json"
+  "note": "No calibration or sensor parameter is committed as a verified packet-wide constant. Populate PC constants only from the exact acquired source dataset and retained calibration records."
 }

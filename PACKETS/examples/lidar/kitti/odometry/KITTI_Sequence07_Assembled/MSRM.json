@@ -16,5 +16,8 @@
         "area": "1500m x 900m"
       }
     }
-  ]
+  ],
+  "coverage_status": "legacy claim; scan count, point count and area are not independently verified",
+  "registration_status": "not reproducible from retained repository inputs",
+  "coordinate_system_status": "legacy ENU/origin claim; Sequence 07 pose file is absent"
 }

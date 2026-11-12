@@ -2,7 +2,7 @@
   "packet_id": "PKT-KITTI-MERGE-001",
   "spec_version": "0.24",
   "operation": "fv merge",
-  "compilation_type": "lossless compiled renderer spec for merged global map",
+  "compilation_type": "incomplete legacy renderer-spec draft; not an executable or validated lossless compilation",
   "global_identity_ledger": {
     "closed_object_inventory": [
       "BUILDING-GLOBAL-001",
@@ -16,11 +16,12 @@
       "BUILDING-GLOBAL-009",
       "BUILDING-GLOBAL-010",
       "BUILDING-GLOBAL-011",
-      "BUILDING-GLOBAL-012",
-      "BUILDING-GLOBAL-013..054 (unique)"
+      "BUILDING-GLOBAL-012"
     ],
-    "total": 54,
-    "provenance": "Each global ID preserves packet-scoped IDs from 00 and 07"
+    "total": 12,
+    "provenance": "The 12 sample IDs retain legacy packet-scoped provenance strings, but the cited source component records do not resolve in source OI; correspondence is unverified.",
+    "legacy_declared_total_unverified": 54,
+    "inventory_gap": "42 additional identities are asserted in legacy metadata but have no explicit OI records or scene membership; they are not part of this closed inventory."
   },
   "scenes": [
     {
@@ -39,12 +40,13 @@
         "BUILDING-GLOBAL-011",
         "BUILDING-GLOBAL-012"
       ],
-      "note": "Final merged map 1500x1200m, 12 shared buildings with high confidence correspondence, 42 singletons"
+      "note": "12 shared building IDs are listed in this scene. A legacy claim of 42 additional singleton IDs is not represented and must not be rendered as entities."
     }
   ],
   "negative_instructions": [
-    "Do NOT add new buildings not in OI - closed inventory 54 total",
-    "Do NOT duplicate shared buildings - GID-B001..012 are single persistent identities seen in both sequences",
-    "Do NOT invent building heights beyond packet - use median Z from packet"
-  ]
+    "Do NOT instantiate the 42 unrepresented legacy singleton identities.",
+    "Do NOT treat the 12 legacy correspondence claims as independently verified; source component records are missing.",
+    "Do NOT invent building heights beyond retained packet evidence."
+  ],
+  "validation_status": "BLOCKED - global inventory and provenance disputes remain open"
 }

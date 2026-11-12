@@ -19,6 +19,13 @@
   ],
   "negative": [
     "Do NOT create 12 persons (3 parts x 4) - only 4 global",
-    "Do NOT duplicate bench - static structure single identity"
-  ]
+    "Do NOT duplicate bench - static structure single identity",
+    "Do NOT present the four legacy IDs as verified persistent identities.",
+    "Do NOT claim continuous 34:10 source coverage or absence of temporal gaps.",
+    "Do NOT render this compiled spec as a validated merged reconstruction."
+  ],
+  "validation_status": "BLOCKED - legacy global correspondences and temporal coverage are unverified",
+  "rendering_status": "Illustrative schema only; not approved as a verified merged-scene render target",
+  "global_identity_ledger_status": "The four listed IDs are legacy correspondence candidates, not committed global identities.",
+  "temporal_coverage_status": "The 34:10 continuous coverage claim is unverified; source video, part boundary evidence and snapshots are absent."
 }

@@ -24,19 +24,22 @@
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
           "relation": "beside",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "buildings flank roads"
+          "evidence": "buildings flank roads",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         },
         {
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
           "relation": "along",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "trees along sidewalk"
+          "evidence": "trees along sidewalk",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         },
         {
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
           "relation": "on edge of",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "parked cars at curb"
+          "evidence": "parked cars at curb",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         }
       ],
       "coverage": {
@@ -45,14 +48,19 @@
         "height_range": "0-21.5m",
         "grid_spacing": "100m"
       },
-      "provenance": "Each point retains source scan id - see snapshot/objs/ point cloud metadata"
+      "provenance": "Each point retains source scan id - see snapshot/objs/ point cloud metadata",
+      "coverage_status": "legacy output claim; not independently verified"
     }
   ],
   "unresolved_registration_conflicts": [
     {
       "location": "intersection center",
       "conflict": "Moving car at time scan_0150 vs scan_0151 - same space occupied by different objects at different times",
-      "resolution": "Marked as dynamic, excluded from static map or kept with temporal label"
+      "resolution": "The packet does not establish whether these points were excluded or retained with temporal labels. Proposed handling: verify dynamic labels/velocity, then exclude from the static map or preserve in a separate temporal layer.",
+      "resolution_status": "UNRESOLVED - no source scans or filtering log retained"
     }
-  ]
+  ],
+  "registration_status": "legacy stated method; not independently verified",
+  "registration_verification_limit": "The exact source acquisition, raw scans, calibration/pose inputs and reproducible registration log are absent.",
+  "coordinate_system_status": "legacy ENU/origin claim; exact acquisition and pose files are absent"
 }

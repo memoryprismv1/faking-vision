@@ -22,10 +22,10 @@ The supplied archive contains seven distinct WebP image assets, but its packet m
 | Packet | Role | Expected use |
 |---|---|---|
 | `windy_day_original` | Baseline | Strong wind and wind effects visible in clothing/sea |
-| `windy_day_calm_EDIT_005_passive` | Edited | Calm conditions; passive wind effects change; object positions remain static |
+| `windy_day_calm_EDIT_005_passive` | Mixed environment edit with limited active response | Calm conditions; clothing/person state changes, but dog remains unchanged under the legacy v0.25 treatment |
 | `bermuda_cove_pleasant_original` | Baseline | Pleasant environmental conditions |
 | `bermuda_cove_harsh_EDIT_006_passive_old` | Negative example | Intentionally retains the cat exposed under harsh conditions; expected to fail the active-object rule |
-| `bermuda_cove_harsh_EDIT_006_active_insulation_fix` | Corrected example | Cat moves to shade and spatial record changes |
+| `bermuda_cove_harsh_EDIT_006_active_insulation_fix` | Corrected example | Cat moves to shade; the lighthouse and other unchanged baseline entities remain in OI/MSRM |
 | `wall_cat_pleasant_original` | Baseline | Dry, mild conditions; cat on wall |
 | `wall_cat_rainy_EDIT_007_active` | Edited | Rain affects passive environment; cat moves to shelter |
 
@@ -33,8 +33,11 @@ The supplied archive contains seven distinct WebP image assets, but its packet m
 
 - Replaced unsupported image-ownership/licence claims with explicit unresolved provenance status.
 - Added the existing lighthouse's location to the old Bermuda Cove spatial record, so that the intentionally failing cat behaviour is not confounded by an unrelated missing spatial entry.
-- Added a distributed-region record for vegetation in the rainy Wall Cat spatial record; it is a broad garden-shrub region, not a fabricated single-point coordinate.
+- Restored the same lighthouse as an unchanged entity in the active Bermuda edit's OI and MSRM; the edit must not silently drop an off-focus baseline object.
+- Added a distributed-region record for vegetation in the rainy Wall Cat spatial record; it is a broad garden-shrub region, not a fabricated single-point coordinate. The rainy edit now has an open packet dispute and a blocked-pending-source-review gate because vegetation is absent from the pleasant baseline inventory. Without the withheld source images, it is unknown whether vegetation was already present but omitted from the baseline or was introduced by the edit; the submitted PASS remains unverified.
+- Resolved the Bermuda Cove baseline cat-position wording from the paired EDIT_006 edit log: the authored baseline position is on the chair, not an unresolved choice between wall and chair. The baseline OI/MSRM now agree, and the active edit's `edit_base` explicitly references the baseline packet. Visual confirmation remains unavailable while the source image is withheld.
 - Kept the old passive Bermuda edit alongside the corrected active edit so the negative test remains available.
+- Clarified that Windy Day is not a purely passive edit: the person changes behaviour/posture, while the dog is explicitly left unchanged under the legacy v0.25 assumption. Treat that as a known incomplete behaviour model, not as a clean passive-only control.
 - Added a verification report and an asset manifest. JSON parsing and cross-record checks are not represented as full FV semantic or pixel-level validation.
 
 ## Remaining gates
@@ -42,3 +45,8 @@ The supplied archive contains seven distinct WebP image assets, but its packet m
 1. Supply source URLs and licence/permission evidence for each image asset.
 2. Restore the exact, verified media to the corresponding packet folders.
 3. Run the repository's authoritative FV validator and have a peer review the visual edits against the source images.
+
+
+## Packet-level gate declarations
+
+Each of the seven packet folders now has its own `README.txt` with an explicit dispute state: six declare `DISPUTES: NONE`; `wall_cat_rainy_EDIT_007_active` declares `DISPUTES: OPEN` and remains blocked pending source-image review. These are still metadata-only records: the image binaries remain withheld, the legacy `source_provenance.json` is not the current packet-provenance schema, and no root-level `viewpoint.json` is present. The README declarations clarify gate state; they do not make the folders self-contained or compilation-ready.

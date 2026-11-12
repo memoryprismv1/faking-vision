@@ -1,6 +1,35 @@
 {
   "packet_id": "PKT-CCTV-STORAGE-PART2-001",
-  "status": "none",
-  "disputes": [],
-  "note": "Part 2 of 3 - no open disputes, ready for merge"
+  "status": "open",
+  "analysis_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "PKT-CCTV-STORAGE-PART2-001-DSP-001",
+      "topic": "Source provenance and source-aligned evidence are missing",
+      "issue": "The source URL, acquisition record, original video and source-aligned snapshots are absent. The part boundary, 683-second duration, event summary and observations cannot be independently verified.",
+      "evidence": [
+        "README.txt: evidence status",
+        "OI.json: source_provenance",
+        "TIR.json: source_evidence_status and evidence_status fields",
+        "snapshot/manifest.json: source lineage is not independently backed by retained media"
+      ],
+      "required_resolution": "Provide a traceable source URL and acquisition record, retain or durably reference the original source, verify exact part boundaries and duration, and supply source-aligned snapshots with timestamps and hashes. Reassess all observations and event descriptions against that evidence.",
+      "operational_disposition": "ACTIVE",
+      "temporal_range_legacy": "11:23–22:46",
+      "resolution_status": "OPEN"
+    },
+    {
+      "dispute_id": "PKT-CCTV-STORAGE-PART2-001-DSP-002",
+      "topic": "Person correspondence and event descriptions are unverified",
+      "issue": "The TIR contains legacy person/action observations and cross-part continuity hypotheses, but source frames are absent. Neutral packet-scoped labels are retained; names and cross-part identity cannot be established from the available artifact.",
+      "evidence": [
+        "OI.json: packet-scoped person candidates and legacy event descriptions",
+        "TIR.json: unverified legacy hypotheses and observations",
+        "README.txt: source evidence limitation"
+      ],
+      "required_resolution": "Re-evaluate person candidates and event descriptions from source-aligned frames. Keep packet-scoped IDs provisional until independent correspondence evidence supports any cross-part identity; do not infer personal names from the narrative label.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
+    }
+  ]
 }

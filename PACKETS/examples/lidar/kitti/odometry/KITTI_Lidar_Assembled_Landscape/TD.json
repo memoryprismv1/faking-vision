@@ -21,10 +21,12 @@
         {
           "id": "scan_0000",
           "change": "registered and merged into global map",
-          "evidence": "pose from poses/00.txt line 0"
+          "evidence": "pose from poses/00.txt line 0",
+          "commit_status": "NOT VERIFIED"
         }
       ],
-      "provenance": "Source: velodyne/0000000000.bin"
+      "provenance": "Source: velodyne/0000000000.bin",
+      "evidence_status": "UNVERIFIED legacy scan-registration claim; source scan and pose files are absent"
     },
     {
       "interval_id": "ASSEMBLE_STEP_0001",
@@ -43,10 +45,12 @@
         {
           "id": "scan_0001",
           "change": "registered and merged into global map",
-          "evidence": "pose from poses/00.txt line 1"
+          "evidence": "pose from poses/00.txt line 1",
+          "commit_status": "NOT VERIFIED"
         }
       ],
-      "provenance": "Source: velodyne/0000000001.bin"
+      "provenance": "Source: velodyne/0000000001.bin",
+      "evidence_status": "UNVERIFIED legacy scan-registration claim; source scan and pose files are absent"
     },
     {
       "interval_id": "ASSEMBLE_STEP_0002",
@@ -65,10 +69,12 @@
         {
           "id": "scan_0002",
           "change": "registered and merged into global map",
-          "evidence": "pose from poses/00.txt line 2"
+          "evidence": "pose from poses/00.txt line 2",
+          "commit_status": "NOT VERIFIED"
         }
       ],
-      "provenance": "Source: velodyne/0000000002.bin"
+      "provenance": "Source: velodyne/0000000002.bin",
+      "evidence_status": "UNVERIFIED legacy scan-registration claim; source scan and pose files are absent"
     },
     {
       "interval_id": "ASSEMBLE_STEP_0003",
@@ -87,10 +93,12 @@
         {
           "id": "scan_0003",
           "change": "registered and merged into global map",
-          "evidence": "pose from poses/00.txt line 3"
+          "evidence": "pose from poses/00.txt line 3",
+          "commit_status": "NOT VERIFIED"
         }
       ],
-      "provenance": "Source: velodyne/0000000003.bin"
+      "provenance": "Source: velodyne/0000000003.bin",
+      "evidence_status": "UNVERIFIED legacy scan-registration claim; source scan and pose files are absent"
     },
     {
       "interval_id": "ASSEMBLE_STEP_0004",
@@ -109,11 +117,15 @@
         {
           "id": "scan_0004",
           "change": "registered and merged into global map",
-          "evidence": "pose from poses/00.txt line 4"
+          "evidence": "pose from poses/00.txt line 4",
+          "commit_status": "NOT VERIFIED"
         }
       ],
-      "provenance": "Source: velodyne/0000000004.bin"
+      "provenance": "Source: velodyne/0000000004.bin",
+      "evidence_status": "UNVERIFIED legacy scan-registration claim; source scan and pose files are absent"
     }
   ],
-  "atd_note": "ATD not applicable for assembly - sequential addition of scans is assembly order, not perturbation-driven subdivision. Full 400 steps truncated to 5 in TD for brevity, full history in logs"
+  "atd_note": "ATD not applicable for assembly - sequential addition of scans is assembly order, not perturbation-driven subdivision. Full 400 steps truncated to 5 in TD for brevity, full history in logs",
+  "td_status": "legacy assembly-step summary; not an authoritative record of reproduced scan registration",
+  "atd_note_status": "workflow guidance only; not evidence that the assembly ran"
 }

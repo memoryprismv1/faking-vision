@@ -11,12 +11,13 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 | Command | Use it for | Main result |
 |---|---|---|
 | `fv analyse` | Analyse a raw image or video source | FV analysis packet |
-| `fv investigate` | Pursue a visual question, object, event, relationship, or correspondence | Investigation record and supported packet updates |
+| `fv investigate` | Investigate an object, event, relationship, correspondence, or question in supplied media, including what happened and when | Evidence-grounded findings, relevant timing, investigation record and supported packet updates |
 | `fv assemble` | Integrate partial or overlapping observations into a larger spatial/visual representation | Registered or assembled representation |
 | `fv merge` | Reconcile independently produced FV packets | Merged packet or object inventory |
 | `fv create` | Construct a packet from established FV information or an explicit specification | Newly created FV packet |
 | `fv rebuild` / `fv upgrade` | Migrate an existing packet to a target FV specification version | Rebuilt packet and migration report |
 | `fv edit` | Make an intentional change to packet content | Edited packet state and edit record |
+| `fv edit viewpoint` | List/inspect source viewpoints and render VPOs; edit render-preset pose/state | Updated render VPO state and edit record |
 | `fv resolve` | Address a dispute or competing interpretation | Reconciled or explicitly unresolved packet state |
 | `fv validate` | Check a packet | Validation report |
 | `fv compile` | Compile a resolved and validated packet for reconstruction | Renderer specification and, where supported, reconstruction |
@@ -41,12 +42,15 @@ The authoritative rules are in [the FV Working Process Specification](SPECIFICAT
 
 **Output:**
 - For an image: the complete FV packet as actual packet files, packaged as a ZIP. The ZIP is the primary deliverable.
-- For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record.
+- For a video: a packet containing OI (Object Inventory), MSRM (Map Spatial Relationship Manager), and TD (Temporal Data). TD is authoritative for the temporal record. Package the video packet as a ZIP when file packaging is available; the ZIP is the primary deliverable.
 - For every newly generated packet: root-level `packet_provenance.json`, validated against `SPECIFICATION/FV_Packet_Provenance_Schema.json`.
+- For every newly generated image/video packet: root-level `viewpoint.json` with source-supported initialisation. For video, record supported viewpoint transitions in TD. Preserve unknown position/orientation; do not invent camera geometry.
+- For video frames actually captured/retained as evidence, perform the applicable FV image-analysis procedure; sampling does not replace analysis of a selected frame.
+- When audio is intentionally included: preserve the source audio and timestamped `transcript.json` together under packet-level `audio/`; create the transcript before initial TIR/TD investigation. Treat it as a provisional sampling cue, assess transcription fidelity separately from cross-modal support and timing/context mismatch, and commit claims to TD only when source evidence supports them.
 
 The media record may include optional attribution, organization, and contributor information when supplied or reliably available. Do not infer missing people, roles, organizations, contact details, timestamps, licences, or rights claims. Omit unavailable optional add-ons; do not retrofit legacy packets with guessed information.
 
-**Boundary:** Analyse is source analysis. Use `fv investigate` when the task is to pursue a specified question, object, event, relationship, or correspondence across observations.
+**Boundary:** Analyse is general source analysis and packet creation. Use `fv investigate` when the user wants a finding about a specified object, event, relationship, correspondence, or question in supplied media. No separate `fv query` command is defined; question-directed media analysis belongs to `fv investigate`.
 
 **Example:**
 
@@ -56,25 +60,31 @@ fv analyse [attached image or video]
 
 ## `fv investigate`
 
-**Purpose:** Investigate a specified object, event, relationship, correspondence, or question across one or more visual observations or media.
+**Purpose:** Investigate a specified object, event, relationship, correspondence, or question in supplied media or across multiple observations/media. The user may simply name an object in the media, or ask a question about it. Investigate the target itself and report source-supported findings, including what it did and when where relevant.
 
-**Input:** The question or target to investigate, plus the relevant observations or media.
+**Input:** The target or question and the relevant source media/observations. The question directs attention and sampling; it does not dictate the answer.
 
-**Output:** A persistent investigation record/report when the investigation produces a result that needs to be retained. Use TIR (Temporal Investigation Record) as the investigative workspace. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. Promote only source-supported conclusions into authoritative packet records.
+**Output:** A direct, evidence-grounded finding with relevant timestamps or intervals where applicable, plus a persistent TIR (Temporal Investigation Record) when the investigation produces a result that needs to be retained. Preserve hypotheses, competing and rejected interpretations, sampling decisions, evidence paths, and unresolved questions. A chat answer should identify material coverage gaps or uncertainty; it must not require the user to inspect TD files to obtain the finding. Commit only source-supported conclusions to authoritative packet records.
 
-A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
+For video, use temporal observations and adaptive sampling as needed to locate relevant actions/events and their timing. Report absence only when the available media coverage is adequate to support it; otherwise report that the result is inconclusive or coverage is incomplete. A task objective can alter attention or sampling priority. It cannot supply missing identity, event, motivation, or temporal facts.
+
+When audio is included, assess transcription fidelity separately from visual/cross-modal support, ambiguity, and timing/context mismatch in TIR. Transcript segments may guide adaptive sampling before visual confirmation, but claims enter TD only when supported by acquired source observations.
 
 **Example:**
 
 ```text
 fv investigate this person across these CCTV clips
+fv investigate the kitten in this video
+fv investigate what the kitten did in this video and when
+fv investigate whether a white dog appears anywhere in this image
+fv investigate whether a delivery person appeared during the covered CCTV period
 ```
 
 ## `fv assemble`
 
-**Purpose:** Combine partial or overlapping visual/spatial observations into a larger, more cohesive representation.
+**Purpose:** Integrate partial, viewpoint-dependent spatial representations into a larger, more cohesive representation.
 
-**Input:** Source pieces or local representations that cover portions of a larger view or place. Examples include overlapping LiDAR scans, telescope fields, aerial imagery, microscopy tiles, and overlapping photographs.
+**Input:** Source pieces or local representations that cover portions of a larger view or place. Examples include overlapping LiDAR scans, telescope fields, aerial imagery, microscopy tiles, and overlapping photographs. Treat each as a local view/maplet associated with its supported viewpoint and spatial information, not as an interchangeable image crop or file tile. Maplets may differ in viewpoint, direction, coverage, scale, resolution, occlusion, and detail.
 
 **Procedure and output:**
 1. Identify each source piece, its generator, and acquisition context where known.
@@ -84,7 +94,7 @@ fv investigate this person across these CCTV clips
 5. Integrate the pieces while preserving which source views contribute to each region.
 6. Preserve unobserved areas, weak correspondences, viewpoint-specific evidence, and unresolved conflicts.
 
-**Boundary:** Assembly integrates local spatial representations. It is not merely a comparison of separate datasets, and geometric correspondence does not establish persistent object identity. It is also not `fv merge`.
+**Boundary:** Assembly integrates local spatial representations into a cohesive map/view; it is not merely joining file edges or blending pixels. Separate historical/current datasets covering the same field are independent observations, not automatically pieces of one acquisition; comparison is a distinct companion workflow, not an established assembly result. Geometric correspondence does not establish persistent object identity. It is also not `fv merge`.
 
 **Example:**
 
@@ -137,7 +147,7 @@ fv rebuild [packet] [--to <FV-version>]
 fv upgrade [packet] [--to <FV-version>]
 ```
 
-If no target version is supplied, use the current authoritative FV specification version available to the agent. `fv upgrade` is an alias for the same operation, not a separate workflow.
+If no target version is supplied, use the current authoritative Working Process Specification itself as the target, as the normative rebuild rule directs. Its header describes a v0.24 base with later normative additions, including v0.26 and v0.27, but does not assign a consolidated release number. Record this target description in the migration report without inventing a release label or treating v0.27 alone as the consolidated version. The consolidated release label remains an open versioning decision; its absence does not by itself block migration to the current authoritative specification. `fv upgrade` is an alias for the same operation, not a separate workflow.
 
 **Input:** An existing FV packet and, optionally, the target FV version.
 
@@ -160,7 +170,7 @@ If no target version is supplied, use the current authoritative FV specification
 **Example:**
 
 ```text
-fv rebuild [legacy-packet.zip] --to current
+fv rebuild [legacy-packet.zip]
 ```
 
 ## `fv edit`
@@ -169,15 +179,25 @@ fv rebuild [legacy-packet.zip] --to current
 
 **Input:** The packet and the intended change, such as an object property, viewpoint, or environmental condition edit.
 
-**Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful.
+**Image-packet interaction forms:**
 
-The target must be sufficiently unambiguous. Do not guess between objects or properties. Preserve before/after information and applicable provenance.
+```text
+fv edit
+fv edit <object-name/object-id> --list
+fv edit <object-name/object-id> <property-id>
+```
+
+With no arguments, list available objects. With `--list`, list the selected object's properties. The property form identifies a direct edit target; the general syntax for supplying a new value is not standardized. Do not invent value-assignment syntax. These are agent interaction conventions, not evidence of a standalone CLI.
+
+**Output:** The edited packet state, with successful changes and their provenance recorded in the packet's edit log. Failed or unresolved operations must not be recorded as successful. Preserve before/after information. For viewpoint edits, preserve source `initial_state`, validate the render VPO against `FV_Viewpoint_Schema.json`, and leave OI/MSRM scene content unchanged.
+
+The target must be sufficiently unambiguous. Do not guess between objects or properties.
 
 **Boundary:** Edit changes packet content; it does not perform specification-version migration. Use `fv rebuild` or `fv upgrade` for migration. The general value-assignment syntax for every object/property edit is not fully standardized; do not invent unsupported syntax.
 
 ### Viewpoint editing
 
-The viewpoint subcommands have defined forms:
+The `fv edit viewpoint` subcommand has defined forms:
 
 | Operation | Syntax | Purpose |
 |---|---|---|
@@ -192,7 +212,12 @@ The viewpoint subcommands have defined forms:
 | Set default | `fv edit viewpoint default <VP-ID>` | Set the packet's default render viewpoint |
 | Reset | `fv edit viewpoint reset <VP-ID>` | Restore the selected preset's saved state |
 
-Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
+Every viewpoint edit must validate against `SPECIFICATION/FV_Viewpoint_Schema.json`, preserve the source `initial_state`, record before/after values and provenance in the edit log, and leave OI/MSRM scene content unchanged. List/show may inspect source viewpoint records and render VPOs; set/save/default/reset operations modify an editable render VPO or active render pose only. Do not treat a source-only viewpoint record as an editable render VPO. A 2D source image alone does not provide arbitrary 3D geometry; report unsupported or approximate renders rather than claiming exact camera movement.
+
+`VPO_DEFAULT` may be instantiated only through an explicit packet-creation or editor action. The current textarea command list does not define an instantiation subcommand or syntax. Do not invent one; use an explicitly available editor action or request clarification. The current Visual Workbench text console parses only viewpoint `set position` and `set orientation`; use the broader browser UI controls for other supported VPO fields rather than claiming the console implements every listed form.
+
+**Schema/command coverage boundary:** `FV_Viewpoint_Schema.json` also defines projection-specific `orthographic_scale`, framing (`aspect_ratio`, `fit`, optional center/notes), coordinate-frame metadata, and optional tolerances. The command table does not yet define standard edit syntax for all of these fields. Do not infer that `set projection orthographic` alone creates a valid orthographic pose; the required `orthographic_scale`, coordinate frame, and framing must also be present. Until command syntax is explicitly specified, use a schema-valid editor action or request clarification.
+
 
 **Example:**
 
@@ -206,14 +231,16 @@ fv edit viewpoint set VP-AB12CD34 position 2 1 4
 
 **Input:** The relevant dispute, ambiguity, or competing interpretation, together with any required human resolution information and cited evidence.
 
-**Procedure and output:** Follow the existing dispute lifecycle. Where human intervention is required, the human supplies the resolution information. The AI then reconciles the packet against the cited evidence and human changes, preserves provenance, and validates affected records. The resulting packet and resolution history must retain whether the issue was resolved or remains unresolved.
+**Procedure and output:** Preserve the original automated observation, uncertainty, evidence references, and dispute history. Where human intervention is required, the human supplies resolution information but does not declare the packet reconciled. The AI then reads `dispute.json`, inspects cited source evidence and snapshots, reviews the human changes, and reconciles the packet. At minimum, update OI and PC where justified; update other packet records only where a justified dependency is established. Preserve provenance and distinguish later human additions from the AI's original observations.
+
+After reconciliation, validate the affected packet records. If every dispute is resolved and validation passes, move the detailed `dispute.json` to `dispute.reconciled.json` and create a new small `dispute.json` with aggregate status `resolved`. If any dispute remains unresolved or validation fails, keep the detailed `dispute.json` in place with aggregate status `open`. The packet and resolution history must preserve whether the issue was resolved or remains unresolved.
 
 **Boundary:** An open or invalid dispute remains a reconstruction gate. Do not merely change a status field to make compilation possible.
 
 **Example:**
 
 ```text
-fv resolve dispute D-014
+fv resolve dispute DSP-a1b2c3d4
 ```
 
 ## `fv validate`
@@ -223,6 +250,8 @@ fv resolve dispute D-014
 **Input:** The packet to validate.
 
 **Checks and output:** Produce a validation report covering applicable structural problems, missing required fields, contradictions, inventory problems, evidence consistency, unresolved disputes, and reconciliation state. Also assess whether the packet may need migration to the current FV specification version.
+
+When audio is included, verify that the audio file and `transcript.json` are present, source-aligned, and mutually traceable; check that TIR preserves the provisional transcript assessment and material discrepancies. Audio and visual evidence remain separate evidence streams.
 
 The rebuild assessment must use one of these outcomes and explain the reason, affected records/rules, and next step:
 
@@ -254,6 +283,7 @@ fv validate [packet]
 - Do not resolve disputes or repair an invalid packet during compilation.
 - Translate packet content into renderer-specific syntax without adding semantic content, world knowledge, props, motivations, genre conventions, or other undeclared information.
 - Include the required rebuild assessment. If rebuild is **REBUILD REQUIRED**, stop and direct the operator to rebuild/upgrade, validate, and retry. If rebuild may be needed or recommended, continue only where the packet independently passes all compilation gates and the target specification permits its compatibility path; state that no rebuild occurred.
+- If the assessment is **ASSESSMENT INDETERMINATE**, do not imply that the packet is current. Stop if the uncertainty affects a required compilation rule and identify the missing information; otherwise continue only with an explicit warning and the applicable compatibility boundary.
 - If rendering is unavailable, produce the lossless compiled renderer specification rather than pretending a reconstruction occurred.
 
 ### Prompt-only mode
@@ -266,7 +296,7 @@ fv compile --prompt [attached-packet.zip]
 
 This mode produces only a compiled, generator-ready prompt/specification artifact. The packet ZIP is input, not an instruction to render.
 
-Prompt-only mode applies the same validation, reconciliation, and dispute gates as ordinary compilation. Preserve packet identities, inventories, scene membership, spatial relations, temporal order, transitions, uncertainty, negative constraints, and viewpoint information. State renderer limitations and missing geometry where relevant. Do not invoke an image/video generator or claim that an image was generated. The operation ends when the prompt artifact is produced.
+Prompt-only mode applies the same validation, reconciliation, and dispute gates as ordinary compilation. Preserve packet identities, closed object and background inventories, scene membership, off-screen persistence, spatial relations, temporal order, transitions, uncertainty, negative constraints, and viewpoint information. State renderer limitations and missing geometry where relevant. Do not invoke an image/video generator or claim that an image was generated. The operation ends when the prompt artifact is produced.
 
 **Examples:**
 
@@ -286,9 +316,10 @@ fv compile --prompt [attached-packet.zip]
 - Analyse the generated media independently. Do not use the expected packet as evidence for what is visible in the generated media.
 - Keep the media generator, generated-media packet generator/analyst, and auditor identities distinct. Use `packet_provenance.json` when present; legacy packets without it remain usable with unknown provenance.
 - Do not use the reconstruction generator's explanation as evidence.
-- Do not rewrite either packet during the audit.
+- Do not rewrite either packet during the audit. Keep the generated media available for inspecting and locating deviations.
 - Classify deviations using the FV failure taxonomy, including inventory, identity, spatial, temporal, behaviour, style, unsupported-detail, and evaluator-uncertainty classes.
-- Record evidence references and category-specific counts, denominators, uncertainty, and rates.
+- Each material deviation must reference source-media evidence (frame/time/region/crop where applicable) and relevant expected/generated packet records where possible.
+- Record category-specific numerator, denominator, uncertainty count, rate, and exact unit definition/scope. Calculate `100 * numerator / denominator`; use null for a zero denominator. Do not count uncertain units as passes or failures, or collapse unlike categories into one overall percentage.
 
 When file creation is available, create `FV_AUDIT_REPORT.json` as the primary downloadable artifact and validate it against `SPECIFICATION/FV_Audit_Report_Schema.json`. A readable summary is supplementary.
 
@@ -313,7 +344,7 @@ analyse / investigate / assemble / merge / create
                     ↓
           (optional rebuild/upgrade)
                     ↓
-                 resolve
+       (resolve if required)
                     ↓
                 validate
                     ↓
@@ -322,7 +353,7 @@ analyse / investigate / assemble / merge / create
                   audit
 ```
 
-Not every task requires every operation. Use only the operations needed for the task and the packet's state.
+Not every task requires every operation. Use only the operations needed for the task and the packet's state. An intentional `fv edit` may be needed when packet content must change; it is a separate operation, not a mandatory stage in every reconstruction path. Validate affected packet records before compilation.
 
 In particular:
 

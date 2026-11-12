@@ -9,8 +9,11 @@ This packet covers only its own source chunk. A currently quiet or ordinary obje
 DISPOSITION VOCABULARY
 - ACTIVE: investigate with available local evidence; preserve hypotheses and uncertainty.
 - DEFERRED: retain the observation/data, but do not spend current investigative effort absent a relevant change or task need.
-- RESOLVED AS NON-BLOCKING FOR THIS CHUNK: the question does not warrant further operational attention within this chunk. This is not a claim that the underlying object/identity is permanently irrelevant or globally resolved.
+- DEFERRED / NON-BLOCKING FOR THIS CHUNK: the question does not warrant further operational attention within this chunk at present. The observation and uncertainty remain retained; later evidence or a new task may promote it again.
 - UNRESOLVED: evidence does not decide the question. It may be active or deferred.
+
+Dispute-gate distinction
+An operational attention disposition is not dispute resolution. A DEFERRED item remains unresolved: its per-dispute `resolution_status` stays OPEN, and the canonical aggregate `dispute.json` status remains OPEN. The rendering/compilation gate therefore remains blocked until the required resolution, AI reconciliation and packet validation lifecycle is complete.
 
 Making Vision application
 Do not repeatedly track or classify every stable background object merely to keep it in active attention. Preserve the scene information at an appropriate level; promote objects/events when something changes or when a later task makes them pertinent. Sampling gaps remain gaps, not proof of no change.

@@ -25,7 +25,7 @@ FV METHOD AND EVIDENCE
 
 PACKET CONTENTS
 - OI.json: 19 packet-scoped object/region candidates; repeated vehicles are partly grouped or explicitly unresolved rather than assigned unsupported individual identities.
-- MSRM.json: scene intervals and coarse relative spatial organization across the changing camera view.
+- MSRM.json: scene intervals and coarse relative spatial organization across the changing camera view. A follow-up structural repair added the seven previously unreferenced OI candidates (OBJ-013 through OBJ-019) to the relevant scene records using their existing OI time ranges and spatial summaries. All 19 OI IDs now appear in MSRM, with no extra/unknown IDs. This is a cross-reference repair, not an exhaustive visual re-analysis.
 - TD.json: ordered temporal observations with snapshot evidence references and explicit sampling limits.
 - snapshot/manifest.json: source lineage, timestamps, hashes and crop provenance.
 - snapshot/verification/: 105 full-frame snapshots.
@@ -36,15 +36,19 @@ BOUNDARIES
 - This is initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No vehicle make/model, person identity, placard meaning, exact world coordinates, or unsupported persistent vehicle identity is asserted.
 
-DISPUTES: NONE at packet level. Local uncertainties and provisional correspondence are preserved in OI/TD; no identity merge or reconstruction compilation is authorized by this statement.
+DISPUTES: aggregate status is OPEN. Three dispute records remain: the inventory-completeness item is DEFERRED from current chunk-level attention but remains unresolved; two investigations remain ACTIVE/OPEN (moving light-coloured vehicle-like form; opening camera/view change). The merge/render gate remains blocked. No identity merge or reconstruction compilation is authorized.
 
 
 HONEST STATUS ADDENDUM (2026-10-14)
 - PC.json and TIR.json added to make packet-local identity declarations and investigation limits explicit.
 - dispute.json contains three open issues; merge gate remains blocked.
-- VALIDATION_REPORT.txt records structural checks only.
+- VALIDATION_REPORT.txt records the updated structural cross-reference checks only: OI/PC ID sets match and all 19 OI entities are represented in MSRM. Two investigations remain active and the merge gate remains blocked.
 - The 105 one-second snapshots are not proof of exhaustive object coverage or complete event capture.
 - No FV executable/CLI was run. Do not describe this packet as fully analysed, validated, merged, or compiled.
 
 OPERATIONAL DISPOSITION (Making Vision v1/v2)
 See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory and low-priority identity questions may be DEFERRED rather than treated as blocking. This is chunk-local only: later chunks may promote the same object or question again. Deferred is not deleted, forgotten, or globally resolved. Active event/view-change investigations remain open.
+
+
+LEGACY METADATA BOUNDARY
+This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.

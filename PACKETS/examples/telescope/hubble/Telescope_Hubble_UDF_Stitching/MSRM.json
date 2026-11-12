@@ -8,9 +8,13 @@
     {
       "scene_id": "HUDF_ENTIRE",
       "entities_present": [
-        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-001"
+        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-001",
+        "PKT-TELESCOPE-HUDF-STITCH-001-OBJ-002"
       ],
-      "total_galaxies": 10000
+      "total_galaxies": 10000,
+      "total_galaxies_status": "legacy claim; not independently verified"
     }
-  ]
+  ],
+  "registration_status": "legacy stated method; execution not verified",
+  "registration_verification_limit": "No original exposures, archive IDs, calibration/distortion inputs, tie-point records, or reproducible drizzle/registration log are included."
 }

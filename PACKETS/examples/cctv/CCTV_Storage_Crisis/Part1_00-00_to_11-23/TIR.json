@@ -1,7 +1,7 @@
 {
   "packet_id": "PKT-CCTV-STORAGE-PART1-001",
   "tir_version": "v0.24 TIR - Temporal Investigation Record",
-  "note": "TIR is rich in-memory workspace, retains provisional, contradictory, rejected hypotheses. TD is committed official record derived from TIR.",
+  "note": "Retrospective legacy TIR metadata. Source frames/video are absent, so observations and hypotheses cannot be independently verified. In a normal FV workflow TD is the committed record derived from TIR; the TD retained here is explicitly non-authoritative because its source evidence is unavailable.",
   "temporal_range": {
     "start": "00:00",
     "end": "11:23"
@@ -9,34 +9,40 @@
   "observations": [
     {
       "time": "00:00 + 10s",
-      "object": "Person A (Kelly Thomas) - seated/standing near bench",
+      "object": "Person A - seated/standing near bench",
       "action": "present",
-      "confidence": "high",
-      "evidence": "L1 direct - visible in frame"
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained.",
+      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
     },
     {
       "time": "00:00 + 45s",
-      "object": "Person B (Officer Ramos)",
+      "object": "Person B",
       "action": "approaching",
-      "confidence": "high"
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
     },
     {
       "time": "00:00 + 2min",
-      "object": "Person C (Officer Cicinelli)",
+      "object": "Person C",
       "action": "arriving",
-      "confidence": "high"
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
     }
   ],
   "hypotheses": [
     {
       "hypothesis": "Same identities across Part1-3",
-      "status": "provisional",
-      "quality": "high - clothing continuity, position continuity"
+      "status": "unverified legacy hypothesis",
+      "quality": "legacy assessment only; source media and frame evidence are absent"
     },
     {
       "hypothesis": "Object count = 6 persons + bench + shelter structure",
-      "status": "strengthened",
-      "evidence": "L2 relational - relative positions"
+      "status": "unverified legacy hypothesis",
+      "evidence": "L2 relational - relative positions",
+      "quality": "legacy assessment only; source media and frame evidence are absent"
     }
   ],
   "uncertainty": [
@@ -47,5 +53,7 @@
     "current": "Initial contact - officers approach, questioning",
     "previous": [],
     "frameid": null
-  }
+  },
+  "source_evidence_status": "UNVERIFIED - source URL, acquisition record, original media and source-aligned snapshots are absent",
+  "investigation_limit": "No identity, event, or cross-part continuity claim in this TIR is independently verifiable from the retained files."
 }

@@ -15,8 +15,8 @@
     "id": "cat",
     "type": "animal - living - active",
     "species": "black and white shorthair",
-    "behavior_before": "sitting on wall / chair exposed",
-    "behavior_after": "crouched underneath white chair in its shadow, seeking shade, tucked in doorway shadow",
+    "behavior_before": "sitting on chair, exposed (baseline position stated in edit_log.json)",
+    "behavior_after": "crouched under the white chair in its shadow, seeking shade",
     "insulation_state": "active shade_seek - insulating from heat",
     "appearance": "normal but in shade, avoiding direct sun",
     "location_preference": "shade, cool surface",
@@ -31,5 +31,10 @@
     "id": "water",
     "type": "environment - passive",
     "state": "bright glare"
+  },
+  {
+    "id": "lighthouse",
+    "type": "structure - passive",
+    "state": "white lighthouse on distant headland"
   }
 ]

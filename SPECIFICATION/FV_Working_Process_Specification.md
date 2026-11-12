@@ -2,6 +2,8 @@ FAKING VISION
 
 Working Process Specification — Rewritten (v0.24)
 
+**Document status:** The base text is v0.24 and the document includes later normative additions, including v0.26 and v0.27. Those additions retain their own historical labels; this note does not declare a separately consolidated release number.
+
 Ground-up operational specification for image/video analysis, FV investigation, assembly, packet merge, packet generation, reconstruction, prompt compilation, and evidence-grade evaluation.
 
 Acceptance test: Give this document, an image or video, and no prior FV knowledge to an unfamiliar AI instance. It must be able to analyse the source and produce a valid FV packet. Conversely, given this document and a valid FV packet, it must be able to produce or attempt a reconstruction without inventing semantic content.
@@ -80,7 +82,7 @@ The FV command interface names distinct operations. The commands are an operator
 
 `fv analyse` — analyse a raw visual source and produce a source-grounded FV analysis packet. For video, TD is mandatory for a video reconstruction target.
 
-`fv investigate` — pursue a specified object, event, relationship, correspondence, or question across one or more observations or media. Use TIR as the investigative workspace; promote only supported conclusions into authoritative packet records.
+`fv investigate` — investigate a specified object, event, relationship, correspondence, or question in supplied media or across one or more observations/media. The user may simply identify an object to investigate, or supply a specific question. Investigate a single source (for example, a kitten in a video) or multiple observations, and return source-supported findings such as what the object did and when. Return evidence-grounded findings and relevant timing directly; use TIR as the investigative workspace and commit only supported conclusions to authoritative packet records. No separate `fv query` command or mode is defined.
 
 `fv assemble` — integrate partial, viewpoint-dependent visual/spatial representations of a larger place or field into a more cohesive spatial representation. This includes overlapping media outputs from a generator, including outputs produced as an observer or sensor changes position or direction. Typical test material includes LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, and overlapping photographs. Preserve the local-view/source relationships, provenance, and unresolved registration conflicts.
 
@@ -88,7 +90,7 @@ Assembly is not object-identity merge. Assembly may establish the spatial corres
 
 ### Biological grounding: viewpoint-oriented spatial integration
 
-FV's `assemble` operation is grounded in the biological model described by [Making Vision](https://www.memoryprism.com/readings/making-vision): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
+FV's `assemble` operation is grounded in the biological model described by [Making Vision V2](https://www.memoryprism.com/readings/making-vision-v2): vision is viewpoint-oriented. An organism does not acquire a complete place from one all-encompassing view. As it looks in different directions and moves through positions and spaces, it acquires multiple local, viewpoint-dependent representations of portions of the same environment.
 
 In this account, a **maplet** is a local spatial representation associated with a particular viewpoint. It is not simply a cropped photograph: it carries local spatial information related to the observer's position and the spatial structure available to the organism. Use *maplet* descriptively for this local representation; do not assume a particular neural implementation from the term alone.
 
@@ -122,6 +124,10 @@ Assembly determines how local spatial representations fit together. It may estab
 
 `fv create` — deliberately construct a new FV packet from established FV information or an explicit specification. This includes a reconstruction packet where applicable. Creation must not manufacture unsupported visual facts or convert external knowledge into visual evidence.
 
+`fv rebuild [packet] [--to <FV-version>]` — migrate an existing packet to the current authoritative Working Process Specification, or to the explicit target supplied with `--to`. Preserve the source packet, create a separate rebuilt copy unless replacement is explicitly requested, record the migration, and validate the rebuilt copy. Rebuild is not content editing, source re-analysis, dispute resolution, or compilation.
+
+`fv edit` — make an intentional, evidence-grounded change to existing packet content. For image-packet interaction, `fv edit` with no arguments lists available objects; `fv edit <object-name/object-id> --list` lists the selected object's properties; and `fv edit <object-name/object-id> <property-id>` identifies a direct property edit. The general value-assignment syntax is not standardized; do not invent it. Require an unambiguous target and applicable property, and preserve successful edits with before/after information and provenance. `fv edit viewpoint` is a defined subcommand with its own viewpoint/VPO operations and constraints.
+
 `fv resolve` — resolve packet disputes, ambiguities, correspondence conflicts, or competing interpretations. Where human intervention is required, follow the existing human-resolution → AI-reconciliation → packet-validation lifecycle. An open dispute remains a rendering gate.
 
 `fv validate` — validate packet structure, evidence traceability, consistency, inventory closure, and dispute/reconciliation state. Validation does not silently repair the packet.
@@ -140,7 +146,7 @@ Assembly determines how local spatial representations fit together. It may estab
 
 ### 3.1.3 Reconstruction command gate
 
-The normal downstream path is: `analyse / investigate / assemble / merge / create → resolve → validate → compile → audit`. Not every job requires every operation. `compile` is a hard fidelity gate and never performs dispute resolution or packet repair. If the packet is not resolved and validated, return it to the appropriate earlier operation.
+The normal downstream path is: `analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → (resolve if required) → validate → compile → audit`. Not every job requires every operation. Rebuild is used only when packet-version migration is needed; it does not replace content editing or dispute resolution. `compile` is a hard fidelity gate and never performs dispute resolution or packet repair. If the packet is not resolved and validated, return it to the appropriate earlier operation.
 
 # 4. Source intake
 
@@ -221,15 +227,17 @@ For each potentially meaningful structure, create a candidate record.
 
 Example: if a fruit is initially observed only as a small red rounded form, the evidence may support strawberry, raspberry, or another candidate rather than a single identity. Surface structures, aggregate-unit structure, a leafy calyx, or other diagnostic components can then be searched for to distinguish candidates. The fruit name is not evidence until the visible component bundle supports it.
 
-For video, component emergence, disappearance, movement, or interaction may trigger adaptive sampling or behaviour-triggered component tracking when the component materially changes candidature, identity, relationship, or uncertainty. Record the candidature trajectory in TIR; promote only source-supported conclusions into TD.
+For video, component emergence, disappearance, movement, or interaction may trigger adaptive sampling or behaviour-triggered component tracking when the component materially changes candidature, identity, relationship, or uncertainty. Record the candidature trajectory in TIR; commit only source-supported conclusions to TD.
 
 Do not use later whole-object recognition to retroactively rewrite the earlier candidature record. The investigation must preserve the forward evidence path that existed when each candidate was considered.
 
-Candidate verification is component- and relationship-based. A candidate may be promoted when the observed bundle of components and relationships is sufficiently diagnostic for the task. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
+## 5.2.1 Component-driven candidature and verification
+
+Candidate verification is component- and relationship-based. Allocate additional processing to a candidate when its salience, uncertainty, task relevance, anomaly, or explanatory potential warrants closer inspection. The resulting inspection may strengthen, weaken, reject, or leave the candidate unresolved; the allocation decision itself does not establish its identity or evidential status. A candidate should be weakened or rejected when expected diagnostic evidence is contradicted, or when a required component should have been visible in the inspected view but is not observed. Mere absence from an uninformative or occluded view is not rejection.
 
 Search should be targeted by the candidate set. Once a component creates candidature, ask what additional source evidence would distinguish the candidates, then inspect for that evidence. Do not search only for confirming evidence for the first candidate; where feasible, include evidence that could discriminate between or falsify the alternatives.
 
-- the evidence supporting the promotion or rejection decision.
+- the evidence supporting the allocation decision and any resulting strengthening, weakening, or rejection;
 
 - whether the candidate was strengthened, weakened, rejected, or remains unresolved;
 
@@ -246,8 +254,6 @@ For each component-driven candidature, record at minimum:
 A component is evidence, not an identity. A single component may support several candidates. Candidate generation must preserve the alternatives actually supported by the observed component and context; it must not collapse immediately to the most familiar object.
 
 When an object identity is uncertain, a visible component may be used to generate a bounded set of object candidates. Do not require whole-object recognition before candidature. The operational direction is: component → candidate set → targeted search for expected components/relationships → candidate verification or rejection.
-
-## 5.2.1 Component-driven candidature and verification
 
 ## 5.3 Pass 3 — entity/component/appearance decision
 
@@ -301,13 +307,13 @@ Useful TIR wording includes:
 
 • “If the said object is the same object across multiple investigated media, search for [expected/discriminating component or relationship].”
 
-Do not promote a correspondence hypothesis to a committed persistent identity until the available evidence supports that resolution. If continuity cannot be established, retain separate candidates or unresolved identity as appropriate.
+Do not commit a correspondence hypothesis as a persistent identity until the available evidence supports that resolution. If continuity cannot be established, retain separate candidates or unresolved identity as appropriate.
 
 Record the evidence used for the identity decision.
 
-## 5.5 Pass 5 — packet promotion
+## 5.5 Pass 5 — packet commitment
 
-Only after observation and candidate resolution should information be promoted into the reconstruction packet.
+Only after observation and candidate resolution should information be committed to the reconstruction packet. This is distinct from candidate/object promotion, which allocates additional processing effort and does not itself establish a packet fact.
 
 Recognition is not a prerequisite for packet construction. A novel object may first be represented structurally and remain unnamed. Naming can be added later when supported.
 
@@ -331,17 +337,17 @@ Start by identifying meaningful temporal units. A temporal unit may be a continu
 
 1. Inspect intervals around every meaningful appearance, disappearance, movement, or state change.
 
-## If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Promote a resulting statement into TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
+### 6.1.1 Audio transcript as a provisional temporal cue
 
-## A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
+If a transcript claim identifies a potential gap in the current TIR/TD representation, use its temporal location as an adaptive sampling target, subject to the current transcript assessment and timing/context information. Acquire the additional source observation and update TIR. Commit a resulting statement to TD only when the retained source evidence supports it. If the relationship between the audio commentary and the visual scene remains unresolved, preserve the uncertainty rather than deciding that the commentary is false, satirical, or otherwise untrustworthy without evidence.
 
-## The temporary TIR must independently assess the transcript against the source audio and the visual source evidence. Track the audio/transcript channel cumulatively rather than using a binary keep/discard decision. At minimum distinguish: transcription fidelity (whether the transcript accurately represents the audio); visual/cross-modal support (whether a narrated claim corresponds to visual evidence); unresolved or ambiguous content; and timing/context mismatch where audio-supported commentary does not correspond scene-by-scene with the current visual interval.
+A small number of transcript errors or apparent mismatches does not by itself invalidate the transcript as a useful sampling signal. The investigation should record the discrepancy, continue testing the channel, and use transcript claims as candidate sampling cues while their support is being established.
 
-## Use the transcript during temporal investigation as an additional cue for adaptive sampling. A transcript segment may identify a time or interval that deserves visual inspection, including an event, action, relationship, or other claim that was not captured by the initial temporal observations. The claim does not need to be visually supported yet; identifying a potential gap is itself a reason to acquire the relevant source observation.
+The temporary TIR must independently assess the transcript against the source audio and the visual source evidence. Track the audio/transcript channel cumulatively rather than using a binary keep/discard decision. At minimum distinguish: transcription fidelity (whether the transcript accurately represents the audio); visual/cross-modal support (whether a narrated claim corresponds to visual evidence); unresolved or ambiguous content; and timing/context mismatch where audio-supported commentary does not correspond scene-by-scene with the current visual interval.
 
-## When audio is intentionally included, generate a timestamped transcript before the initial temporary TIR/TD temporal investigation. The transcript is a provisional analytical variable, not a source-of-truth record and not a substitute for listening to the source audio.
+Use the transcript during temporal investigation as an additional cue for adaptive sampling. A transcript segment may identify a time or interval that deserves visual inspection, including an event, action, relationship, or other claim that was not captured by the initial temporal observations. The claim does not need to be visually supported yet; identifying a potential gap is itself a reason to acquire the relevant source observation.
 
-## 6.1.1 Audio transcript as a provisional temporal cue
+When audio is intentionally included, generate a timestamped transcript before the initial temporary TIR/TD temporal investigation. The transcript is a provisional analytical variable, not a source-of-truth record and not a substitute for listening to the source audio.
 
 ## 6.2 Temporal sampling
 
@@ -351,7 +357,7 @@ Sampling density must be adaptive. Begin with a lazy/coarse temporal scan. When 
 
 Every source frame that FV actually captures or retains as an evidence observation must undergo the default FV image-analysis procedure. Temporal sampling determines which source frames are acquired as evidence; it does not replace image analysis of those frames with mere frame retention.
 
-For each selected frame, perform the applicable image-analysis passes: visual inventory, candidate generation, entity/component/appearance decision, identity assessment where temporal context permits, and packet/evidence promotion as warranted. The resulting frame-level analysis must be available to TIR and may update OI, MSRM, TD, uncertainty, disputes, or other packet records where justified.
+For each selected frame, perform the applicable image-analysis passes: visual inventory, candidate generation, entity/component/appearance decision, identity assessment where temporal context permits, and evidence assessment and packet commitment as warranted. The resulting frame-level analysis must be available to TIR and may update OI, MSRM, TD, uncertainty, disputes, or other packet records where justified.
 
 A selected frame is therefore both source evidence and an FV image-analysis observation. A packet must not treat a captured frame as semantically unanalysed merely because the temporal sampler selected it. Conversely, frames that were never selected need not receive the same full FV image-analysis treatment.
 
@@ -365,11 +371,11 @@ For every candidate that may persist, maintain a temporal ledger.
 
 Do not track every declared component merely because it exists. Component tracking is triggered by component behaviour when that behaviour creates enough perturbation or uncertainty to matter to the FV representation.
 
-A component may remain an inventory/property detail while behaviourally irrelevant. Promote it to a temporal tracking target only when its change, movement, interaction, deformation, state transition, or other behaviour materially affects the scene representation, an object state, a relationship, an action, reconstruction fidelity, or an unresolved temporal question.
+A component may remain an inventory/property detail while behaviourally irrelevant. Allocate temporal tracking effort to it only when its change, movement, interaction, deformation, state transition, or other behaviour materially affects the scene representation, an object state, a relationship, an action, reconstruction fidelity, or an unresolved temporal question.
 
 Examples: a visible wheel does not automatically require wheel tracking; wheel rotation that materially explains vehicle behaviour may require local tracking. A person's hand does not automatically become a tracked component; a hand reaching for, contacting, or manipulating another object may make the hand's behaviour information-bearing. A decorative button that changes without affecting represented structure need not be tracked.
 
-Component tracking is therefore **perturbation-triggered, not inventory-triggered**. The tracking decision and its evidence should be recorded in TIR, and any promoted component state/change should enter TD only when supported by the retained observations.
+Component tracking is therefore **perturbation-triggered, not inventory-triggered**. The tracking decision and its evidence should be recorded in TIR, and any resulting component state/change should be committed to TD only when supported by the retained observations.
 
 | **Field** | **Required content** |
 | --- | --- |
@@ -410,7 +416,7 @@ The observation record is the bridge between raw source and packet. It must pres
 | interpretation | possible branch |
 | confidence | medium |
 | alternatives | shadow / branch |
-| packet disposition | unresolved; not promoted as object |
+| packet disposition | unresolved; not committed as object |
 | evidence reference | frame 298 crop / image region |
 
 The analyst must be able to answer: 'What in the source caused this packet field to exist?' If the answer is only 'because that is what the scene normally contains,' the field is not source-grounded.
@@ -499,19 +505,19 @@ Example TD diff: 00:14.2→00:14.6, traffic_light_01.color = yellow→green. A q
 
 Using PC as an object database is an architectural capability to be tested, not a claim that the methodology has already been validated. Continuous same-camera footage split into temporally adjacent files is the intended experimental material for testing object reuse, packet merge, and object-database normalisation.
 
-### 8.4.3 Object database status
+### 8.4.1 PC as a canonical object database
 
-The snapshot property is an additive property of an existing PC object declaration. Adding it must not change the existing PC structure, field organization, or semantics. If no visual evidence is available or needed, the property may be absent.
-
-A PC object may include a snapshot property containing references to preserved visual evidence for that canonical object. Snapshot references provide visual grounding for inspection, comparison, merge, and later normalisation; they do not replace the canonical PC declaration and do not turn snapshots into canonical definitions.
+PC may also serve as the project’s canonical object database when a project declares reusable visual objects as genuine project-wide constants. This is a functional use of the existing PC structure, not a new packet layer or a replacement for PC.
 
 ### 8.4.2 Snapshot property for PC objects
 
 An object declared in PC remains in the existing PC object/declaration structure. Do not reorganize PC, introduce a separate object-database container, or move existing PC information merely to support this use. Object-database capability is additive.
 
-PC may also serve as the project’s canonical object database when a project declares reusable visual objects as genuine project-wide constants. This is a functional use of the existing PC structure, not a new packet layer or a replacement for PC.
+### 8.4.3 Object database status
 
-### 8.4.1 PC as a canonical object database
+The snapshot property is an additive property of an existing PC object declaration. Adding it must not change the existing PC structure, field organization, or semantics. If no visual evidence is available or needed, the property may be absent.
+
+A PC object may include a snapshot property containing references to preserved visual evidence for that canonical object. Snapshot references provide visual grounding for inspection, comparison, merge, and later normalisation; they do not replace the canonical PC declaration and do not turn snapshots into canonical definitions.
 
 ## 8.5 Disputes — packet-level human-intervention and rendering-gate layer
 
@@ -555,33 +561,35 @@ dispute.json is the current actionable/rendering-gate state. dispute.reconciled.
 
 The reconciliation lifecycle is: AI analysis → dispute.json = open → rendering blocked → human reviews source/evidence and adds or corrects packet information → packet returned to AI → AI reads dispute.json + human changes + source/evidence → OI / PC updated as justified → packet validation → dispute.json moved to dispute.reconciled.json → new small dispute.json = resolved → rendering permitted.
 
-## When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable, and that the temporal investigation records the provisional transcript assessment and any material discrepancies.
-
-## AUDIO_COMPANION.txt may continue to provide human-readable audio notes, but it does not replace the audio file or transcript.json when a transcript is intentionally included.
-
-## Audio and visual evidence are separate evidence streams. A transcript may inform OI, TD, disputes, or other packet fields, but those fields must remain traceable to the audio segment or visual evidence that supports them. When audio and visual evidence disagree, preserve the conflict and use the existing uncertainty/dispute process rather than silently privileging one stream.
-
-## The packet must preserve the relationship between the audio file and the source video, including source identity and relevant time alignment. transcript.json should contain timestamped transcript segments and, where supported, speaker/voice attribution and transcription uncertainty. Do not invent words that are not supported by the audio. If speech is unclear, preserve the uncertainty rather than silently normalising it.
-
-## audio/
-    source.<original-extension>
-    transcript.json
-
-## Use an optional packet-level audio/ directory:
-
-## If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and promote the result into TD only when the source supports it.
-
-## A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Scene-by-scene visual disagreement must therefore be recorded as a timing/context discrepancy unless the source evidence establishes that the commentary is false. Do not infer satire, fabrication, or speaker intent merely from a mismatch.
-
-## The temporal investigation must test the transcript against the source audio and the visual evidence. TIR should maintain cumulative assessment of at least two distinct properties: transcription fidelity (whether the transcript represents the audio accurately) and cross-modal support (whether narrated claims correspond to visual evidence), alongside unresolved/ambiguous content and timing/context mismatches. This assessment is not a binary transcript-valid/invalid gate: isolated transcription or interpretation errors do not by themselves invalidate an otherwise useful audio channel.
-
-## Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be promoted directly into TD merely because the transcript contains a claim.
-
-## When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
-
 ## 8.6 Audio evidence and transcript
 
-## 8.6 Snapshots — preserved visual evidence
+When audio is included, packet validation must verify that the audio file and transcript are present, source-aligned, and mutually traceable, and that the temporal investigation records the provisional transcript assessment and any material discrepancies.
+
+AUDIO_COMPANION.txt may continue to provide human-readable audio notes, but it does not replace the audio file or transcript.json when a transcript is intentionally included.
+
+Audio and visual evidence are separate evidence streams. A transcript may inform OI, TD, disputes, or other packet fields, but those fields must remain traceable to the audio segment or visual evidence that supports them. When audio and visual evidence disagree, preserve the conflict and use the existing uncertainty/dispute process rather than silently privileging one stream.
+
+The packet must preserve the relationship between the audio file and the source video, including source identity and relevant time alignment. transcript.json should contain timestamped transcript segments and, where supported, speaker/voice attribution and transcription uncertainty. Do not invent words that are not supported by the audio. If speech is unclear, preserve the uncertainty rather than silently normalising it.
+
+Use an optional packet-level audio/ directory:
+
+```text
+audio/
+    source.<original-extension>
+    transcript.json
+```
+
+If the provisional transcript identifies a temporal location or claim not adequately represented in the current TIR/TD, use it to trigger additional sampling at the relevant location, even when the claim has not yet been visually supported. Update TIR with the new evidence and commit the result to TD only when the source supports it.
+
+A commentary segment may be accurate while referring to an earlier, later, off-screen, or otherwise different scene state. Scene-by-scene visual disagreement must therefore be recorded as a timing/context discrepancy unless the source evidence establishes that the commentary is false. Do not infer satire, fabrication, or speaker intent merely from a mismatch.
+
+The temporal investigation must test the transcript against the source audio and the visual evidence. TIR should maintain cumulative assessment of at least two distinct properties: transcription fidelity (whether the transcript represents the audio accurately) and cross-modal support (whether narrated claims correspond to visual evidence), alongside unresolved/ambiguous content and timing/context mismatches. This assessment is not a binary transcript-valid/invalid gate: isolated transcription or interpretation errors do not by themselves invalidate an otherwise useful audio channel.
+
+Generate the transcript before the initial temporary temporal investigation and retain it as a provisional analysis variable. It may be used to guide adaptive temporal sampling, including by identifying potential gaps before those claims are independently verified, but it must not be committed directly to TD merely because the transcript contains a claim.
+
+When audio is intentionally included in a video packet, preserve the audio file and its transcript together as source-derived evidence. The transcript is an interpretation/extraction of the audio; it is not a substitute for the audio evidence.
+
+## 8.7 Snapshots — preserved visual evidence
 
 Snapshots are preserved source-derived visual evidence selected for inspection, verification, transition analysis, ambiguity, dispute resolution, or audit. The term is media-neutral and replaces source-specific language such as saved_frames.
 
@@ -629,7 +637,7 @@ Filesystem discipline: folder structure is part of the operator interface. Do no
 
 ## 9.2 Build OI
 
-1. Create an OI entry for every promoted object/instance.
+1. Create an OI entry for every object/instance committed to the packet.
 
 1. Add only properties supported by source evidence or explicitly authorized project instructions.
 
@@ -1051,7 +1059,7 @@ For generated or re-rendered images, preserve the disputed output and the releva
 | confidence | High / medium / low. |
 | resolution | Confirmed / unresolved / rejected. |
 
-Do not promote an evaluator's uncertain observation into a formal failure until supporting evidence is located.
+Do not classify an evaluator's uncertain observation as a formal failure until supporting evidence is located.
 
 ## 17.1 Downloadable JSON audit report
 
@@ -1139,7 +1147,7 @@ For every video packet, test whether TD supports at least the following classes 
 
 ☐ Uncertain candidates retained as unresolved where necessary.
 
-☐ OI built from promoted entities only.
+☐ OI built from entities committed to the packet only.
 
 ☐ MSRM built from observed spatial relationships.
 
@@ -1443,7 +1451,7 @@ These must not be collapsed. A generator failure may actually be a packet error 
 
 # 30. Final acceptance test
 
-## 29.1 Packet merge identity test
+## 30.1 Packet merge identity test
 
 When multiple packets describe temporally adjacent material from the same source/world, merge must compare packet-scoped object declarations rather than assuming local IDs are globally identical. The merge process must preserve source packet provenance, test continuity and visual evidence, and only then establish a normalised persistent object identity.
 
@@ -1465,11 +1473,13 @@ The specification passes only when an unfamiliar AI can use it as an executable 
 
 1. Any undocumented step that the AI must be taught separately is a specification gap.
 
-30.1 Additional acceptance test: temporal queryability
+## 30.2 Additional acceptance test: temporal queryability
 
-Give an unfamiliar AI a valid video packet and ask temporal questions whose answers are explicitly encoded in TD, such as 'When did the light turn green?' The AI must retrieve the answer from TD rather than infer it from OI, MSRM, the scene category, or external world knowledge. Then ask a question whose answer is not encoded. The AI must report insufficient temporal information rather than fabricate an answer.
+Give an unfamiliar AI a valid video packet and ask temporal questions whose answers are explicitly encoded in TD, such as 'When did the light turn green?' The AI must retrieve the answer from TD rather than infer it from OI, MSRM, the scene category, or external world knowledge. Then ask a question whose answer is not encoded. The AI must report insufficient temporal information rather than fabricate an answer. This is an acceptance test for the packet's temporal evidence and the agent's ability to investigate it; it does not define a separate `fv query` command.
 
-## 30.2 Command-interface acceptance test
+For source-media investigation, give the AI a raw image or video and ask a question about a specified object or event (for example, whether a white dog appears in the image, or what a kitten did in the video and when). The AI must investigate the supplied media, return the supported finding with relevant timestamps/evidence, and state when coverage or sampling is insufficient. The user must not need to inspect TD files to obtain the answer.
+
+## 30.3 Command-interface acceptance test
 
 An unfamiliar AI should be able to interpret the FV command interface without undocumented instructions. Given a raw source, `fv analyse` must invoke the source-analysis procedure. Given a specified question over one or more observations, `fv investigate` must preserve an explicit investigative evidence path. Given partial or overlapping spatial observations, `fv assemble` must perform source-grounded registration/assembly without silently normalizing object identity. Given independent packets, `fv merge` must preserve packet provenance and test identity equivalence before normalization. Given established information, `fv create` must construct the requested packet without inventing visual facts. Given an open dispute, `fv resolve` must follow the required resolution lifecycle. `fv validate` must report readiness without silently repairing the packet. `fv compile` must refuse unresolved or invalid input. `fv audit` must independently evaluate the result.
 
@@ -1571,7 +1581,7 @@ Where temporal evidence cannot be resolved confidently, retain the relevant sour
 
 - Retain evidence around important relationship changes.
 
-- Retain evidence where later observations promote or refine an object/component.
+- Retain evidence where later observations support or refine an object/component.
 
 - Do not retain every frame simply because a fixed-rate policy selected it.
 
@@ -1603,6 +1613,8 @@ Sampling effort should therefore behave approximately as: quiet interval → low
 
 If an explicit task objective is supplied by the experiment, it may alter sampling priority. The task objective is an external analysis instruction, not source evidence. It may specify what to track or investigate, but it must not supply identities, events, motivations, or missing temporal facts. Goal-directed sampling and evidence acquisition remain separate.
 
+### 32.10.1 Change Propensity, Current Change, and Change Generators
+
 CP, EY, and change-generator identity serve different functions: SCP/CCP control where attention is directed; EY records what evidence is actually being produced; change_generator_obj_ids records the supported source relationship responsible for propagation. They must not be collapsed into one score.
 
 Incongruity may be recorded when an initially low expected change state produces unexpectedly meaningful evidence. Operationally, this is an expectation/observation mismatch that warrants additional investigation; it is not an object identity and must not be used to manufacture one.
@@ -1623,27 +1635,17 @@ Static Change Propensity (SCP) is the baseline propensity assigned to an object 
 
 Adaptive temporal sampling may use Change Propensity (CP) as an attention-prior mechanism. CP is not a source fact and must not be treated as an importance score or as observed change. Its purpose is to provide a shortcut for deciding what to look at first when attention is limited.
 
-## 32.10.1 Change Propensity, Current Change, and Change Generators
+
 
 ## 32.11 Temporal timestamps are index metadata
 
-A source timestamp, frame number, or derived source-time coordinate is temporal index metadata attached to an observation or TD record. It is not itself a visual object and must not be promoted or repeatedly represented as scene content merely because its displayed value changes from frame to frame.
+A source timestamp, frame number, or derived source-time coordinate is temporal index metadata attached to an observation or TD record. It is not itself a visual object and must not be committed or repeatedly represented as scene content merely because its displayed value changes from frame to frame.
 
 If the source contains a visually displayed CCTV timestamp, that timestamp is visual evidence and should be read from the relevant source frame or snapshot only when the question requires it. The machine temporal coordinate and the visually displayed timestamp are distinct fields.
 
-# 35. Change log — v0.11
+## Change log — v0.9
 
-• Refined Adaptive Temporal Decomposition to explicitly support perturbation-driven adaptive sampling: lazy scanning by default, increased local sampling around TD clusters, recursive subdivision while perturbation persists, and relaxation when it subsides.
-
-• Added a merge-sort-like chunking strategy as an implementation pattern for locating temporal perturbations efficiently without making fixed-rate sampling the FV model.
-
-• Clarified that sampling density is a dynamic implementation parameter driven by observed perturbation rate/concentration and must be empirically calibrated.
-
-• Clarified that frame numbers and source timestamps are temporal index metadata, not visual objects; displayed CCTV timestamps remain source visual evidence and are inspected only when needed.
-
-# 33. Change log — v0.9
-
-# 34. Change log — v0.10
+## Change log — v0.10
 
 • Added packet-level DISPUTES flat file for cases where automated analysis cannot reliably resolve what is present or how it should be represented and human intervention is required.
 
@@ -1688,6 +1690,16 @@ FV reconstruction experiments may intentionally use crude or ugly renderers. Aes
 ## 32.15 Experimental material selection
 
 FV experiments do not require prestigious, large, or specialized datasets. For exploratory work, prefer small, directly accessible material that permits rapid observation, modification, reconstruction, and failure analysis. Dataset prestige and scale are not FV requirements.
+
+## Change log — v0.11
+
+• Refined Adaptive Temporal Decomposition to explicitly support perturbation-driven adaptive sampling: lazy scanning by default, increased local sampling around TD clusters, recursive subdivision while perturbation persists, and relaxation when it subsides.
+
+• Added a merge-sort-like chunking strategy as an implementation pattern for locating temporal perturbations efficiently without making fixed-rate sampling the FV model.
+
+• Clarified that sampling density is a dynamic implementation parameter driven by observed perturbation rate/concentration and must be empirically calibrated.
+
+• Clarified that frame numbers and source timestamps are temporal index metadata, not visual objects; displayed CCTV timestamps remain source visual evidence and are inspected only when needed.
 
 ## Change log — v0.12
 
@@ -1741,7 +1753,7 @@ Clarified that object-database use, packet merge, and object-database normalisat
 
 • Made TD the owner of video observation records; no separate observation.json/observations.json is required.
 
-Information should be promoted from TIR into TD only when the evidence supports the corresponding official temporal statement. Provisional reasoning should remain distinguishable from committed packet facts.
+Information should be committed from TIR to TD only when the evidence supports the corresponding official temporal statement. Provisional reasoning should remain distinguishable from committed packet facts.
 
 TIR is therefore not a temporary or inferior version of TD. It is the record of the investigation from which the official TD record is derived. The AI may use TIR freely as an analytical workspace and may revise, extend, or contradict provisional entries as new evidence is acquired.
 
@@ -1922,7 +1934,7 @@ Change log — v0.19
 
 - Defined component candidature as an evidence-preserving alternative to immediate whole-object recognition.
 
-- Added required candidature/verification fields for observed components, candidate alternatives, discriminating components/relationships, search results, and promotion/rejection status.
+- Added required candidature/verification fields for observed components, candidate alternatives, discriminating components/relationships, search results, and processing-allocation/candidate-outcome status.
 
 - Clarified that later whole-object recognition must not retroactively rewrite the earlier evidence path.
 
@@ -1996,7 +2008,7 @@ The supplied test bundle repeats assertions that source images were generated by
 
 `fv rebuild [packet] [--to <FV-version>]`
 
-`fv upgrade` is an accepted alias for `fv rebuild`. If no target version is supplied, use the current authoritative FV specification version available to the agent. State the source and target versions in the rebuild report.
+`fv upgrade` is an accepted alias for `fv rebuild`. If no target version is supplied, use the current authoritative FV specification version available to the agent. State the source and target versions in the rebuild report. The current document identifies a v0.24 base with later normative additions, including v0.26 and v0.27, but does not assign a consolidated release number. When this is the target, describe it as the current authoritative Working Process Specification and state that its consolidated release label is unassigned; do not invent a version number or infer that v0.27 alone is the consolidated version.
 
 ## Responsibilities and boundaries
 
@@ -2126,8 +2138,8 @@ For a difficult or ambiguous source, consider separate analytical passes:
 - **Broad-scene pass:** establish major structures and relationships.
 - **Candidate-focused pass:** inspect one uncertain or consequential candidate
   and the components or relationships that would distinguish alternatives.
-- **Alternative-promotion pass:** change which candidate or relationship gets
-  attention and test whether the scene interpretation changes.
+- **Alternative-allocation pass:** redirect attention to a different candidate or
+  relationship and test whether the scene interpretation changes.
 - **Consistency pass:** check the resulting interpretations against the same
   source evidence and preserve unresolved alternatives.
 

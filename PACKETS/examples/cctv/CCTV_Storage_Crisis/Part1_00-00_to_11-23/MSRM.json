@@ -25,8 +25,11 @@
       ],
       "camera": {
         "type": "fixed CCTV surveillance, prepositioned, no movement",
-        "framing": "static 640x360"
-      }
+        "framing": "static 640x360",
+        "verification_status": "legacy camera-state claim; not independently verifiable from retained source frames"
+      },
+      "verification_status": "legacy scene/spatial claim; not independently verifiable from retained source evidence"
     }
-  ]
+  ],
+  "spatial_status": "UNVERIFIED legacy spatial summary; source frames and source video are not retained"
 }

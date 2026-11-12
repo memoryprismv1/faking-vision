@@ -1,19 +1,66 @@
 # How to Use Faking Vision
 
-**v0.24 update:** temporal analysis now separates Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence.
+**Historical v0.24 change note:** temporal analysis separated Static Change Propensity (SCP), Current Change Propensity (CCP), Evidence Yield (EY), and change-generator relationships; explicit task objectives may alter sampling priority but remain separate from source evidence. Later normative additions and current operating rules are documented below and in the authoritative Working Process Specification.
 
 This guide is a quick route into the repository. The **FV Working
 Process Specification is authoritative**. This guide does not replace
 it.
 
+## Foundational prerequisites: Making Vision and research
+
+Before performing visual analysis, investigation, assembly, merge,
+reconstruction, or audit, read both the current
+[Making Vision V2 material](https://www.memoryprism.com/readings/making-vision-v2)
+and the repository's [FV research foundations](docs/FV_RESEARCH_FOUNDATIONS.md).
+Making Vision is the architectural synthesis; the research document maps
+empirical/theoretical findings to FV procedures and states their limits. The
+active agent skill treats both as prerequisites. If either cannot be accessed,
+disclose that limitation and do not perform those visual operations;
+documentation-only work may continue.
+
+## What FV is intended to prevent
+
+The failure target is not just incorrect object naming. An AI can produce a coherent but wrong scene model: it may miss or merge entities, lose components, misassign boundaries, overlook low-salience changes, confuse appearance with identity, infer physical scale from an uncalibrated image, or silently turn a plausible interpretation into an observed fact.
+
+Do not treat fluent description or a plausible scene narrative as proof of complete analysis. FV preserves source-supported structure, alternatives, uncertainty, temporal evidence, calibration assumptions, and the boundary between observation, inference, and packet commitment. Reconstruction is then independently audited against the packet.
+
+Use the processing architecture as an allocation model:
+
+`current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence`
+
+Promotion means that a candidate, state, region, or event warrants additional
+processing. It is not recognition, identification, confirmation of an object,
+or permission to commit a persistent identity to the FV packet. A promoted
+candidate may remain ambiguous or be rejected after further investigation.
+
+Keep processing allocation separate from packet commitment. Preserve directly
+supported boundaries, free space, relative position, movement, and other
+visual structure even when object identity is unknown. Commit entities,
+identities, and correspondences only when source evidence supports them.
+
+Making Vision is a working architectural synthesis, not an established
+published biological theory. Treat its constructs as testable architecture;
+do not present promotion, maplets, or the unified selective-allocation model
+as established neural mechanisms.
+
 ## FV artifact output
 
 FV operations produce actual artifacts, not merely prose responses.
 
-- `fv analyse` creates the structured FV packet as files and packages the packet as a ZIP for delivery. The ZIP is the primary deliverable; human-readable analysis is supplementary.
+- `fv analyse` creates the structured FV packet as files and packages image and video packets as a ZIP when packaging is available. The ZIP is the primary deliverable; human-readable analysis is supplementary.
+- `fv investigate` preserves a persistent investigation record/report when the investigation produces a result that needs to be retained.
+- `fv assemble` creates the registered/assembled representation and retains source-view relationships, provenance, transformations, diagnostics, and unresolved conflicts.
+- `fv merge` creates the reconciled packet/object inventory and preserves packet-scoped identities, provenance, and correspondence decisions.
+- `fv create` creates the requested packet as actual files when file creation is available.
+- `fv rebuild` / `fv upgrade` creates a separate rebuilt packet and migration report, then validates the rebuilt copy against the target specification. The original packet remains preserved unless an in-place replacement is explicitly requested.
+- `fv edit` preserves the edited packet and edit-log provenance, including before/after information for successful changes.
+- `fv edit viewpoint` preserves the source viewpoint initialisation, records the render-pose edit, validates against the viewpoint schema, and does not change OI/MSRM scene content.
+- `fv resolve` preserves the dispute/resolution record and reconciled packet state when applicable.
 - `fv validate` produces a validation report artifact and does not silently repair the packet.
 - `fv compile` produces the compiled renderer specification and/or reconstruction artifact available to the environment.
-- `fv audit` produces an independent audit artifact.
+- `fv audit` produces an independent JSON audit artifact when file creation is available; the JSON report is primary and a human-readable summary is supplementary.
+
+**Batch audit is separate:** the offline `TOOLS/fv_audit_batch.py` utility aggregates existing audit reports. It is not a native `fv audit batch` skill command and does not re-audit media.
 
 When file creation and packaging are available, do not substitute a textual dump of the packet for the packet ZIP. Do not simulate file creation by printing what the files would contain.
 
@@ -24,15 +71,17 @@ The textarea commands are operational boundaries, not claims that a standalone F
 | Command | Use it for | Main result |
 |---|---|---|
 | `fv analyse` | Analyse a raw image, video, CCTV sequence, LiDAR-camera sequence, scientific sequence, animation, or other visual source. | Source-grounded FV analysis packet. |
-| `fv investigate` | Pursue a specified object, event, relationship, correspondence, or question across one or more observations/media. | Investigation record/report and, where appropriate, packet updates. |
+| `fv investigate` | Investigate a specified object, event, relationship, correspondence, or question in supplied media or across observations; return findings and relevant timing. | Evidence-grounded findings, investigation record/report when retained, and packet updates where appropriate. |
 | `fv assemble` | Put partial or overlapping observations together into a larger spatial/visual representation: LiDAR scans, telescope fields, aerial/satellite imagery, microscopy tiles, overlapping photographs, etc. | Registered/assembled representation with provenance and unresolved registration issues preserved. |
 | `fv merge` | Reconcile independently produced FV packets and compare packet-scoped object declarations. | Merged packet/object inventory with provenance preserved and identity normalization only where supported. |
 | `fv create` | Deliberately construct a new FV packet from established FV information or an explicit specification. | Requested packet type, including a reconstruction packet where applicable. |
 | `fv rebuild` (alias: `fv upgrade`) | Migrate an existing/legacy packet to a specified or current FV version while preserving historical provenance. | Separate rebuilt packet, migration report, and target-version validation result. |
 | `fv edit` | Make intentional changes to existing packet content, such as object properties, viewpoints, or environmental conditions. | Edited packet state with before/after values and provenance recorded; not a version-migration operation. |
+| `fv edit viewpoint` | List/inspect source viewpoints and render VPOs; edit render-preset pose/state without changing source initialisation. | Updated render VPO state and edit-log entry, validated against the viewpoint schema. |
 | `fv resolve` | Resolve an open dispute or competing interpretation. | Reconciled packet or explicitly still-unresolved packet, with resolution history preserved. |
 | `fv validate` | Check packet structure, evidence, consistency, disputes, and readiness. | Validation report; no silent repair. |
 | `fv compile` | Convert a **resolved and validated** packet into renderer instructions and, where supported, reconstruct. | Compiled renderer specification and/or reconstruction artifact. |
+| `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
 
 
 ### Validation and compilation report rebuild status
@@ -41,7 +90,6 @@ Both `fv validate` and `fv compile` must explicitly say whether a packet may nee
 
 A legacy packet can still validate and compile through an expressly documented compatibility path. In that case, report the rebuild warning without falsely failing the packet. If migration is required to satisfy a target rule, `fv compile` stops and directs the operator to `fv rebuild` / `fv upgrade`, then validate again. Neither validation nor compilation silently rebuilds or edits the packet.
 
-| `fv audit` | Independently test the reconstruction against the packet and source where available. | Independent audit report. |
 
 ### Rebuild is not edit
 
@@ -49,7 +97,7 @@ A legacy packet can still validate and compile through an expressly documented c
 
 `fv edit` remains the operation for intentional changes to packet content: object properties, viewpoints, environmental conditions, and other supported edits. It does not perform version migration. Rebuild may identify a required content change that needs an explicit `fv edit`, human input, or source re-analysis; it must not silently perform those operations.
 
-Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the current authoritative FV version is the target. `fv upgrade` is an alias, not a separate workflow.
+Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the current authoritative Working Process Specification itself is the target. Its v0.24 base and later normative additions are not assigned a consolidated release number, so describe that target in the migration report without inventing a new version label. The missing consolidated label does not by itself block migration. `fv upgrade` is an alias, not a separate workflow.
 
 ### The important distinctions
 
@@ -61,7 +109,7 @@ Use `fv rebuild [packet] [--to <FV-version>]`; if no target is supplied, the cur
 
 **Create is not analyse.**
 
-`analyse` derives a packet from a source through the FV observation procedure. `create` constructs a packet from information that has already been established or explicitly specified. Existing packet-creation workflows, including packets derived from supplied literature, remain subject to evidence/uncertainty rules and must not turn external knowledge into visual evidence.
+`analyse` derives a packet from a source through the FV observation procedure. `create` constructs a packet from information that has already been established or explicitly specified. If supplied literature contains already established structured information, `create` may construct a packet from that information while preserving its provenance and evidence status. If a published image or video is the visual source to be inspected, use `fv analyse` instead. In either case, external knowledge must not be turned into direct visual evidence.
 
 **Compile is not resolve.**
 
@@ -71,7 +119,7 @@ If a packet contains an open dispute, failed reconciliation, or failed validatio
 
 A typical reconstruction path is:
 
-`analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → resolve → validate → compile → audit`
+`analyse / investigate / assemble / merge / create → (optional rebuild/upgrade) → (resolve if required) → validate → compile → audit`
 
 Some jobs can skip operations that are not needed. `resolve` is required when a dispute or unresolved issue blocks the requested downstream operation. `validate` is the final packet gate before `compile`.
 
@@ -79,19 +127,39 @@ Some jobs can skip operations that are not needed. `resolve` is required when a 
 
 Give the AI the source image together with:
 
-the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
+the current canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md`. The active skill links to this file but does not embed the full current specification. If the repository is unavailable to the agent, supply this specification; the separately archived v0.24 snapshot is historical reference only.
 
-The image-analysis path is:
+The image-analysis path is an **allocation loop**, not a mandatory serial coarse-to-fine pipeline:
 
-`source → observation → candidate generation → entity/component/appearance resolution → packet promotion → packet construction → validation → export`
+`current sensory input + persistent knowledge/internal state/environmental context → economical broad processing ↔ selective allocation of deeper processing → evidence assessment → supported packet commitment`
+
+Broad processing preserves useful current structure—boundaries, surfaces, free space, relative position, components, shading, occlusion and other relations—even when object identity is unknown. It can generate candidates and perturbations, but not every candidate or change is automatically promoted.
+
+Promotion means allocating additional processing to a candidate, state, region or event. It is not recognition, confirmation, identity assignment or packet commitment. Promotion may be influenced by salience, uncertainty, task relevance, novelty, information value, risk, expectations, learned relevance, internal/physiological state, energy, environmental statistics and anticipated consequences. Allocation is continually recalibrated as the sensory field, internal state and environmental regime change. A promoted candidate may remain unresolved or be rejected.
+
+After additional inspection, distinguish:
+- directly observed structure and appearance;
+- relational conclusions derived from observed elements;
+- calibrated or knowledge-supported inference;
+- unresolved alternatives.
+
+Commit entities, identities, correspondences and relationships to authoritative packet records only when the source evidence supports them. Keep the processing-allocation decision and the packet-commitment decision separate.
+
+A useful operational outline is therefore:
+
+`source → broad structural observation → candidate/perturbation generation where applicable → selective additional inspection where warranted → alternative/discriminating-evidence checks → evidence-grounded entity/identity decisions → packet commitment → validation → export`
+
+This outline describes common work, not a fixed sequence every candidate must pass through.
 
 ### Component candidature
 
-When an object is ambiguous, do not wait for whole-object recognition.
+When an object is ambiguous, do not wait for whole-object recognition. A visible component can generate a candidate set, but candidate generation does not automatically require expensive inspection.
 
-Use:
+Use the component to identify potentially discriminating evidence:
 
-`component → candidate set → search for discriminating components/relationships → verify/reject`
+`observed component/relationship → candidate set → decide whether additional inspection is warranted → search for discriminating components/relationships → strengthen, weaken, reject or retain unresolved`
+
+The decision to inspect further is an allocation decision. It may be driven by task relevance, uncertainty, risk, information value or expected consequence as well as visual salience. Do not promote every candidate simply because it exists.
 
 A component is evidence, not identity. Preserve multiple evidence-supported candidates when necessary. Record what additional component or relationship was sought, what was observed, and why a candidate was strengthened, weakened, rejected, or left unresolved. Do not let later recognition rewrite the earlier evidence path.
 
@@ -103,7 +171,7 @@ For cross-media identity, keep TIR ambiguous until correspondence is supported:
 - if correspondence remains unresolved, record the competing candidates and what discriminating component/relationship should be searched for;
 - if the said object is the same object across multiple investigated media, search for expected/discriminating components and relationships;
 - do not treat an unobserved expected component as negative evidence when the view is occluded, cropped, blurred, too small, or otherwise uninformative;
-- promote correspondence to persistent identity only when source evidence supports it.
+- commit a correspondence as persistent identity only when source evidence supports it.
 
 The resulting FV packet uses:
 
@@ -116,7 +184,7 @@ The resulting FV packet uses:
 
 Keep observation, interpretation, and packet commitment distinct.
 Observe visible structure before semantic naming where identity is
-uncertain. Do not promote something into the closed reconstruction
+uncertain. Do not commit something to the closed reconstruction
 inventory merely because it is plausible or typical.
 
 Every material packet assertion must remain traceable to source evidence
@@ -126,7 +194,7 @@ or be explicitly represented as inference/uncertainty.
 
 Give the AI the source video together with:
 
-the canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md` (also incorporated into `SKILL.md`)
+the current canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md`. The active skill links to this file but does not embed the full current specification. If the repository is unavailable to the agent, supply this specification; the separately archived v0.24 snapshot is historical reference only.
 
 The video path uses:
 
@@ -150,16 +218,31 @@ Video analysis should:
 3.  Acquire additional temporal evidence where observable structure,
     identity continuity, spatial relationships, state changes, or
     uncertainty justify it.
-4.  Track persistent identities across observations.
+4.  Assess correspondence across observations; maintain persistent identity only when source evidence supports it. Candidate continuity, category similarity or motion alone is not identity proof.
 5.  Distinguish movement from duplication.
 6.  Distinguish occlusion and off-screen absence from deletion.
 7.  Record entry/exit and state/behaviour changes.
-8.  Promote evidence-supported temporal statements into **TD**.
+8.  Commit evidence-supported temporal statements to **TD**.
 9.  Preserve richer provisional investigation in **TIR** when needed.
+
+Every source frame actually captured or retained as an evidence observation
+must undergo the applicable FV image-analysis procedure: visual inventory,
+candidate generation, entity/component/appearance decision, identity
+assessment where temporal context permits, and evidence assessment and packet commitment
+where warranted. Temporal sampling selects which frames to acquire; it does
+not replace analysis of a selected frame.
 
 ### Audio-assisted temporal analysis
 
 When audio is intentionally included:
+
+Preserve the source audio with the video identity and relevant time alignment
+under the packet-level `audio/` directory, alongside its timestamped
+`transcript.json`. The transcript is an interpretation/extraction of the
+audio, not a substitute for the source audio. Audio and visual evidence are
+separate streams; keep packet claims traceable to the audio segment or visual
+observation that supports them. Preserve unclear speech and uncertainty.
+Speaker/voice attribution is optional and must be source-supported.
 
 1. Generate the timestamped transcript early, before the initial temporary TIR/TD investigation.
 2. Keep the transcript as a provisional variable; it is not source truth.
@@ -168,7 +251,7 @@ When audio is intentionally included:
 5. Track transcription fidelity, cross-modal visual support, unresolved content, and timing/context mismatch cumulatively.
 6. Do not discard the transcript channel because of a small number of apparent errors.
 7. If a transcript claim identifies a potential gap, sample the relevant time/interval even if the claim is not yet visually supported, then update TIR.
-8. Promote only source-supported results into TD.
+8. Commit only source-supported results to TD.
 9. If commentary does not match the current scene, preserve the discrepancy rather than assuming it is false, satirical, fabricated, or intentionally misleading.
 
 ### TIR versus TD
@@ -184,7 +267,7 @@ the FV packet.
 TIR is not a weaker version of TD. It records the investigation from
 which evidence-supported temporal statements are derived. Provisional
 reasoning may be revised as new evidence is acquired; only supported
-statements are promoted into TD.
+statements are committed to TD.
 
 ### ATD
 
@@ -238,21 +321,27 @@ specifies what to investigate, not what happened.
 
 ## 3. Investigate a visual question with FV
 
-Use `fv investigate` when the task is not simply to describe or packetize a source, but to answer a specified visual question.
+Use `fv investigate` when you want an object, event, relationship, or correspondence investigated in supplied media—not only when comparing observations across multiple sources. You can simply name the object (for example, investigate the kitten in this video); you do not need to formulate a question. You can also ask a specific question about it.
 
 Examples:
 
+- investigate the kitten in a video;
+- find out what a kitten did in a video and when each action occurred;
+- determine whether a white dog appears anywhere in an image;
+- determine whether a delivery person appeared during the period covered by CCTV;
 - track a specified object across multiple videos;
 - investigate whether two observed objects correspond;
 - determine when a relationship changed;
 - investigate an appearance/disappearance or ambiguous event;
 - inspect multiple media for evidence relevant to one target.
 
-The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, and unresolved questions there. Promote only evidence-supported conclusions into the authoritative packet records.
+The investigation workspace is **TIR**. Keep hypotheses, competing interpretations, rejected hypotheses, sampling decisions, evidence paths, and unresolved questions there. Commit only evidence-supported conclusions to the authoritative packet records.
 
-A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts.
+For video, use temporal observations and adaptive sampling as needed to locate actions/events and their timing. Return the answer directly with relevant timestamps or intervals; the user should not have to open TD files to get an ordinary investigative finding. Report coverage gaps and uncertainty. Claim that something did not occur only when the available media coverage is adequate to support that conclusion.
 
-`fv investigate` should return the evidence path, relevant source observations, correspondence/component evidence, supported conclusions, and unresolved issues. If the investigation changes the packet, the affected packet must still pass the normal validation lifecycle.
+A task objective can change where the system spends attention. It cannot supply missing identity, event, motivation, or temporal facts. There is no separate `fv query` command or mode: question-directed analysis of supplied media is part of `fv investigate`.
+
+`fv investigate` should return the finding, evidence path, relevant source observations, correspondence/component evidence where relevant, supported conclusions, and unresolved issues. If the investigation changes the packet, the affected packet must still pass the normal validation lifecycle.
 
 ## 4. Assemble partial or overlapping observations
 
@@ -292,18 +381,22 @@ Use `fv create` when the required packet is being constructed from already estab
 
 The command may be used to create a reconstruction packet or other explicitly supported packet type. It must not manufacture visual facts. Any supplied inference, external knowledge, or test instruction must remain distinguishable from source-derived evidence.
 
-## 7. Create FV packets from existing literature
+## 7. Analyse published media
 
-When a published image or video is the source material, treat the
-published material as the source and apply the normal FV analysis
-process.
+When an image or video published in a paper, report, archive, or other
+literature source is the visual input, use `fv analyse`. The published
+media is the source to be inspected; the surrounding text is provenance
+and context, not a substitute for what the image or video visibly shows.
 
-Keep the literature/source identity and the evidence supporting packet
-assertions traceable. Do not add scene content because it is typical of
-the source category or supplied by outside knowledge.
+Keep the publication identity and precise media locator (figure, page,
+frame, timestamp, or crop where available) traceable. If the publication
+also supplies measurements, annotations, or interpretations, record
+those as externally supplied information and keep them distinct from
+direct visual observations. Do not add scene content because it is
+typical of the source category or asserted by the accompanying text.
 
-The resulting packet can then be used independently as a reconstruction
-representation.
+Use `fv create` only when constructing a packet from already established
+FV information or an explicit packet specification, as described above.
 
 ## 8. Packet closure, identity, and uncertainty
 
@@ -462,7 +555,7 @@ Human resolution does not directly repair the packet. The affected
 analysis/packet records must be reprocessed and validated before the
 dispute can be cleared.
 
-## 14. Three distinct correctness questions
+## 14. Five distinct correctness questions
 
 Keep these separate:
 
@@ -545,7 +638,7 @@ to packet semantics.
 - Added provisional correspondence wording and discriminating-component search for identity resolution.
 - Clarified that an unobserved expected component is not negative evidence when the view is uninformative or occluded.
 
-## Image packet editing and environmental participation (v0.25-v0.26)
+## Image packet editing — v0.25 design addition
 
 The image-only `fv edit` interface is an agent interaction convention, not a claim that a standalone executable exists.
 
@@ -556,6 +649,8 @@ fv edit <object-name/object-id> <property-id>
 ```
 
 With no arguments, list available objects. With `--list`, list the selected object's properties. The property form identifies a direct edit; syntax for supplying the new value remains unspecified. Do not proceed unless the target is sufficiently unique and the property is applicable. Never guess between ambiguous objects. Record successful edits only.
+
+The v0.25 design also proposed a separate environment packet, `edit_base` values (`singleton` or `collection`), and a dedicated FV version-marker file. Their schemas and dependent-record rules were left open. Treat those as historical design proposals, not established packet requirements: the v0.26 normative addition below defines the current environmental record responsibilities, while the current rebuild rules prohibit inventing an undocumented version-marker file.
 
 ### v0.26: classify an object's response to an environmental edit
 
@@ -580,3 +675,7 @@ Keep the packet records consistent:
 Fail when an explicit test expectation is contradicted, such as the negative harsh-sun case requiring the exposed cat to be flagged. If high stress makes a response worth investigating but the evidence does not determine that response, mark it unresolved or request review rather than applying a universal rule. When a packet asserts active shelter/shade seeking, independently check that the object is actually sheltered in the edited image and that OI, MSRM, and the edit log agree.
 
 Keep syntax checks, structural checks, FV semantic validation, and independent visual audit as separate results. Preserve legacy packet provenance and do not treat missing environment data in a legacy packet as an automatic failure. Do not publish source images as creator-owned or licence-cleared without source URLs and rights evidence.
+
+### Change log — v0.27
+
+- Added `fv rebuild` / `fv upgrade` as a distinct packet-version migration operation. It preserves historical evidence/provenance and requires target-version validation; it does not replace editing, dispute resolution, or compilation.

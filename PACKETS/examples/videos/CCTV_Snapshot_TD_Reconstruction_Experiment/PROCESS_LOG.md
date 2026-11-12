@@ -13,3 +13,16 @@ This experiment used three packet-scoped CCTV analyses and their preserved snaps
 ## Output
 
 `FV_CCTV_snapshot_TD_reconstruction.mp4` is retained in this directory. The three source part files are not stored in the GitHub repository because of file-size restrictions; the original source is linked in `SOURCE_AND_PROVENANCE.md`.
+
+
+## Cross-segment metadata review
+
+The packet manifests do not provide a fully normalized parent-source timebase:
+
+- Part 1's manifest records packet/source IDs and sampled source times but no parent-source interval.
+- Part 2 declares parent interval 105.569333–211.138667 seconds and encoded duration 105.599675 seconds; start + duration is 211.169008 seconds, about 30.341 ms beyond the declared interval end.
+- Part 3 declares parent interval 211.138667–316.708 seconds and encoded duration 105.554 seconds; start + duration is 316.692667 seconds, about 15.333 ms before the declared interval end.
+
+These values may reflect segment-boundary and re-encoding/frame-duration differences, but the repository does not include the original split procedure needed to reconcile them. Do not silently normalize or concatenate the chunks using nominal duration alone. Preserve the source metadata and treat the precise boundary mapping as unresolved pending source-level verification.
+
+Part 2 still has no retained TIR.json or PC.json. A later evidence-status review added `PKT-CCTV-002/dispute.json` with three open issues: provisional pedestrian correspondence, camera-view transitions, and one-second sampling coverage. This records the open questions but does not reconstruct a persistent TIR; the separate investigation reasoning remains incomplete and should not be inferred from the README/TD alone.

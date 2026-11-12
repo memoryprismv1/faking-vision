@@ -1,0 +1,47 @@
+PASS | image_cat_jump OI.json parses
+PASS | image_cat_jump MSRM.json parses
+PASS | image_cat_jump packet_provenance.json parses
+PASS | image_cat_jump viewpoint.json parses
+PASS | image_cat_jump OBSERVATION_RECORD.json parses
+PASS | image_cat_jump packet IDs match
+PASS | image_cat_jump inventory lock
+PASS | image_cat_jump OI IDs unique
+PASS | image_cat_jump MSRM refs resolve to OI
+PASS | image_cat_jump viewpoint IDs unique
+PASS | image_cat_jump MSRM source viewpoint exists
+PASS | image_cat_jump provenance media hash matches source
+PASS | image_cat_jump README declares DISPUTES NONE
+PASS | video_kitten_mat OI.json parses
+PASS | video_kitten_mat MSRM.json parses
+PASS | video_kitten_mat packet_provenance.json parses
+PASS | video_kitten_mat viewpoint.json parses
+PASS | video_kitten_mat TD.json parses
+PASS | video_kitten_mat TIR.json parses
+PASS | video_kitten_mat packet IDs match
+PASS | video_kitten_mat inventory lock
+PASS | video_kitten_mat OI IDs unique
+PASS | video_kitten_mat MSRM refs resolve to OI
+PASS | video_kitten_mat viewpoint IDs unique
+PASS | video_kitten_mat MSRM source viewpoint exists
+PASS | video_kitten_mat provenance media hash matches source
+PASS | video_kitten_mat README declares DISPUTES NONE
+PASS | image_cat_jump packet_provenance.json full schema validation
+PASS | image_cat_jump viewpoint.json full schema validation
+PASS | video_kitten_mat packet_provenance.json full schema validation
+PASS | video_kitten_mat viewpoint.json full schema validation
+PASS | image has no TD
+PASS | image has exactly one default render VPO
+PASS | image source and render viewpoints distinct
+PASS | image compile spec selects default VPO
+PASS | video TD interval coverage starts at zero
+PASS | video TD intervals contiguous
+PASS | video TD coverage ends at source duration
+PASS | video TD intervals positive
+PASS | video TIR source hash matches provenance
+PASS | video TIR sampling counts match TD
+PASS | video unresolved candidates remain separate from OI entities
+PASS | video mat persists in every TD interval
+PASS | video tail finding boundary matches TD interval
+PASS | video has no default render VPO asserted
+PASS | image source dimensions match observation record
+PASS | video metadata matches TIR

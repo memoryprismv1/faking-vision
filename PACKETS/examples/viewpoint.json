@@ -1,8 +1,13 @@
 [
   {
     "id": "VP-a1b2c3d4",
+    "role": "source",
     "observer": {
       "type": "camera"
+    },
+    "initial_state": {
+      "status": "unknown",
+      "description": "Source camera position and orientation are not established by this example."
     }
   }
 ]

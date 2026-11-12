@@ -1,0 +1,22 @@
+{
+  "packet_id": "WALL-CAT-RAINY-EDIT-007",
+  "status": "open",
+  "edit_gate": "BLOCKED_PENDING_SOURCE_REVIEW",
+  "disputes": [
+    {
+      "dispute_id": "DSP-WALL-CAT-001",
+      "topic": "Vegetation inventory differs between baseline and rainy edit",
+      "issue": "The rainy edit OI/MSRM contains a vegetation entity and describes the cat sheltering beneath bushes, but the pleasant baseline OI/MSRM contains only the wall and cat. The two states reference the same source image hash in the asset manifest, but the source image binaries are withheld; it cannot be determined whether vegetation was already present and omitted from the baseline inventory or was introduced by the edit.",
+      "evidence": [
+        "../wall_cat_pleasant_original/OI.json: inventory contains wall and cat only",
+        "../wall_cat_pleasant_original/MSRM.json: no vegetation region",
+        "OI.json: vegetation entity in edited state",
+        "MSRM.json: foreground vegetation region",
+        "../source_asset_manifest.json: source asset binaries withheld; source provenance unresolved"
+      ],
+      "required_resolution": "Restore and inspect the licensed source images. If vegetation is visible in the baseline, add its baseline record and spatial region with evidence. If it is newly introduced, record it explicitly as an edit-introduced entity and explain the edit operation. Do not silently treat it as a persistent inherited entity.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
+    }
+  ]
+}

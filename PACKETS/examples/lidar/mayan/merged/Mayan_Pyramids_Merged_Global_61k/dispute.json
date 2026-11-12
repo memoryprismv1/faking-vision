@@ -1,5 +1,36 @@
 {
   "packet_id": "PKT-MAYAN-MERGE-61K-001",
-  "status": "none",
-  "disputes": []
+  "status": "open",
+  "merge_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "MAYAN-MERGE-DSP-001",
+      "topic": "Declared global structure total is not represented by typed inventory",
+      "issue": "OI declares 61,000 total global structures, while the three typed totals (1,200 pyramids, 1,800 causeways, 3,000 plazas) account for 6,000. The remaining 55,000 are not categorized or represented as explicit global identities in the sample inventory.",
+      "evidence": [
+        "OI.json: total_global and typed totals",
+        "MSRM.json: scene total 61000 but only 12 sample identities",
+        "README.txt: packet consistency and verification limits"
+      ],
+      "required_resolution": "Provide a traceable inventory or aggregate representation for the remaining structures, with clear category/count semantics and provenance, or reduce the claimed packet total to what is actually represented. Do not invent categories or identities to fill the remainder.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "This merged packet only; the published survey context does not establish this packet's processed inventory.",
+      "resolution_status": "OPEN"
+    },
+    {
+      "dispute_id": "MAYAN-MERGE-DSP-002",
+      "topic": "Merge inputs and correspondence evidence are absent",
+      "issue": "OI and TIR retain legacy claims of 100+ flight-transect packets and 61,000 correspondence investigations, but contributing packets, source flight identifiers, raw point clouds and correspondence evidence are not included. The snapshot manifest contains only a packet ID.",
+      "evidence": [
+        "OI.json: merge_inputs and correspondence_quality fields",
+        "TIR.json: unified_tir legacy assertion",
+        "snapshot/manifest.json: packet ID only",
+        "README.txt: source and input status"
+      ],
+      "required_resolution": "Supply the contributing packet/TIR records, flight-line provenance and reproducible correspondence evidence, or explicitly scope this artifact to an illustrative 12-identity sample and withdraw claims of a reproduced 100+ input merge.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "This merged packet only; source-study totals are context, not proof of this merge.",
+      "resolution_status": "OPEN"
+    }
+  ]
 }

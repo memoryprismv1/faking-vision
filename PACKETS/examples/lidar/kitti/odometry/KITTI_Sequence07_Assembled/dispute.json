@@ -1,5 +1,22 @@
 {
   "packet_id": "PKT-KITTI-ASSEMBLE-007",
-  "status": "none",
-  "disputes": []
+  "status": "open",
+  "assembly_gate": "BLOCKED_FOR_REPRODUCTION",
+  "disputes": [
+    {
+      "dispute_id": "KITTI-ASSEMBLE-007-DSP-001",
+      "topic": "Sequence 07 assembly and quantitative output claims are not reproducible",
+      "issue": "The packet names Sequence 07 inputs but does not retain raw scans, poses, calibration files or a reproducible registration log. The 1,101 scan count, 3.2 million points, 1,500 m × 900 m coverage, overlap and dynamic-object filtering claims cannot be independently checked.",
+      "evidence": [
+        "README.txt: source reference and verification limits",
+        "OI.json: source_provenance verification_status",
+        "MSRM.json: coverage and registration status",
+        "PC.json: calibration constant references",
+        "snapshot/manifest.json: packet ID only"
+      ],
+      "required_resolution": "Supply or durably reference the exact Sequence 07 scans, poses and calibration; retain registration/filtering logs and a source-backed point/coverage summary. Recompute quantitative claims from those inputs.",
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
+    }
+  ]
 }

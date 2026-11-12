@@ -1,15 +1,27 @@
 {
   "packet_id": "PKT-MAYAN-MERGE-61K-001",
-  "global_map": "Maya Biosphere Reserve 2,100km2, 61k structures interconnected",
+  "global_map": "Legacy claimed Maya-region map (2,100 km2, 61,000 structures); the packet contains only a 12-identity sample and does not retain source flight-line evidence.",
   "scenes": [
     {
       "scene_id": "GLOBAL_MAYA_MEGACITY",
       "entities_present": [
         "PYR-GLOBAL-00001",
         "PYR-GLOBAL-00002",
-        "PYR-GLOBAL-00003"
+        "PYR-GLOBAL-00003",
+        "PYR-GLOBAL-00004",
+        "PYR-GLOBAL-00005",
+        "PYR-GLOBAL-00006",
+        "PYR-GLOBAL-00007",
+        "PYR-GLOBAL-00008",
+        "PYR-GLOBAL-00009",
+        "PYR-GLOBAL-00010",
+        "PYR-GLOBAL-00011",
+        "PYR-GLOBAL-00012"
       ],
-      "total": 61000
+      "total": 61000,
+      "total_status": "legacy claim; not independently verified",
+      "sample_status": "Only the 12 listed sample identities are represented in entities_present."
     }
-  ]
+  ],
+  "inventory_status": "BLOCKED - only 6,000 of the claimed 61,000 structures are represented in typed aggregate totals; 55,000 remain uncategorized. See OI.inventory_audit."
 }

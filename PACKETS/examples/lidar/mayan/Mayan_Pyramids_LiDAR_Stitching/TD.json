@@ -6,7 +6,8 @@
       "action": "10km x 0.5km strip, 560k pts/sec",
       "visible": [
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001"
-      ]
+      ],
+      "evidence_status": "UNVERIFIED legacy flight/assembly claim; source flight lines and processing records are absent"
     },
     {
       "interval_id": "FLIGHT_002",
@@ -14,7 +15,8 @@
       "visible": [
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002"
-      ]
+      ],
+      "evidence_status": "UNVERIFIED legacy flight/assembly claim; source flight lines and processing records are absent"
     },
     {
       "interval_id": "ASSEMBLED_2100KM2",
@@ -25,8 +27,11 @@
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
         "PKT-MAYAN-LIDAR-STITCH-001-OBJ-005"
-      ]
+      ],
+      "evidence_status": "UNVERIFIED legacy flight/assembly claim; source flight lines and processing records are absent"
     }
   ],
-  "atd_note": "For airborne LiDAR, ATD increases density around pyramid clusters (perturbation = elevation change >5m over 20m), low density over flat jungle floor. Recursive subdivision where unresolved mound vs pyramid"
+  "atd_note": "For airborne LiDAR, ATD increases density around pyramid clusters (perturbation = elevation change >5m over 20m), low density over flat jungle floor. Recursive subdivision where unresolved mound vs pyramid",
+  "td_status": "legacy workflow outline; not a verified flight-line assembly history",
+  "atd_note_status": "design guidance only; not a measured or executed adaptive sampling record"
 }

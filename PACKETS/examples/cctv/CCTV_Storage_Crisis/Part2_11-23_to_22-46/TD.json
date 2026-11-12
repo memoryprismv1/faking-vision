@@ -1,7 +1,7 @@
 {
   "packet_id": "PKT-CCTV-STORAGE-PART2-001",
   "spec_version": "0.24",
-  "td_is_authoritative": true,
+  "td_is_authoritative": false,
   "timeline": [
     {
       "interval_id": "PART2_SEGMENT",
@@ -22,8 +22,13 @@
           "change": "Escalation - use of force, restraint",
           "change_type": "action/state change"
         }
-      ]
+      ],
+      "evidence_status": "UNVERIFIED legacy interval/visibility/event claim",
+      "temporal_commit_status": "NOT COMMITTED - source evidence unavailable"
     }
   ],
-  "atd_note": "For fixed CCTV, ATD should detect no global camera perturbation, only local object changes. Local activity baseline: bench area high activity, background static."
+  "atd_note": "For fixed CCTV, ATD should detect no global camera perturbation, only local object changes. Local activity baseline: bench area high activity, background static.",
+  "td_status": "legacy temporal summary; not an authoritative evidence-backed TD",
+  "source_coverage_status": "UNVERIFIED - source video, source-aligned snapshots and exact part boundaries are absent",
+  "atd_note_status": "design guidance only; not a measured or executed perturbation analysis"
 }

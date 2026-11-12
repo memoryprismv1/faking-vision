@@ -1,6 +1,6 @@
 # FV prompt-compilation acceptance procedure
 
-**Status: agent-level acceptance is pending.** These are skill-runtime operations, not executable repository CLI commands. Playwright tests do not invoke an FV agent and must not be reported as proof that `fv validate` or `fv compile --prompt` executed.
+**Status: PASS for the three defined agent-level cases (2026-11-12).** Case A passed after the packet explicitly declared `DISPUTES: NONE`, full provenance/viewpoint JSON Schema checks passed, and the validation report recorded semantic/evidence/dispute/rebuild readiness before prompt-only compilation. Case B passed the legacy viewpoint compatibility gate. Case C passed the negative reconciliation gate. These are skill-runtime operations, not executable repository CLI commands. This acceptance does not establish a standalone FV CLI or a general-purpose validator/runtime.
 
 ## Acceptance boundary
 
@@ -54,4 +54,19 @@ The repository's `PACKETS/examples/videos/Cat_jumping_backwards/` packet is a ne
 
 For each case, record case ID and packet hash; FV skill/specification revision; agent/model and date; exact validation and compile result; whether source files changed; whether any generator was invoked (must be no); and pass/fail with reviewer notes.
 
-Do not mark Cases A or B passed until actual agent-level runs and artifacts are attached. Case C's fixture state alone is not proof that an agent correctly blocks compilation.
+## Recorded agent-level results (2026-11-12)
+
+- **Case A — PASS:** the corrected Wikimedia image packet explicitly declares `DISPUTES: NONE`; structural, semantic, evidence, dispute/reconciliation and rebuild assessments passed. The full repository provenance and viewpoint JSON Schemas passed under Draft 2020-12. Exactly one default render VPO was selected, source viewpoint initialisation remained unknown and distinct, and prompt-only compilation emitted `COMPILED_SPEC.txt` without invoking a generator. The first intermediate packet lacked the explicit dispute declaration; its prompt artifact was rejected and is not counted as a pass. The corrected final archive contains the accepted packet.
+- **Case B — PASS:** the legacy `blue_chairs` image packet now explicitly declares `DISPUTES: NONE`; virtual `VP-DEFAULT` was read as legacy source-viewpoint compatibility only, not a render VPO. No camera geometry or synthetic `viewpoint.json` was added. Compilation was correctly not attempted because no render VPO was available. See the isolated Case B run record.
+- **Case C — PASS:** prompt production was blocked because post-reconciliation validation remained pending; no generator was invoked and the input packet was unchanged.
+
+The final Wikimedia rerun passed 47/47 local structural, reference, temporal, dispute-gate and schema checks. Four full schema validations passed (provenance and viewpoint schemas for both packets). OI/MSRM/TD/TIR have no dedicated JSON Schemas in the current repository, so their validation was structural/reference/temporal consistency plus agent-level semantic/evidence review.
+
+Evidence records:
+- [Wikimedia media rerun](results/2026-11-12-wikimedia-media-agent-run.md)
+- [Case B legacy viewpoint run](results/2026-11-12-case-b-legacy-viewpoint-run.md)
+- [47-check log](results/2026-11-12-wikimedia-media-agent-run/LOCAL_CHECKS.txt)
+- [Run manifest](results/2026-11-12-wikimedia-media-agent-run/RUN_MANIFEST.json)
+- [Case C negative-gate run](results/2026-11-12-case-c-agent-run.md)
+
+The final rerun archive (`FV_Wikimedia_Test_2026-11-12-final.zip`) is retained locally, not committed to the repository. The repository run record documents source hashes, method, outputs and limitations. Overall acceptance is **PASS for the three defined cases only**; this is not proof of a standalone CLI or a general-purpose FV runtime.

@@ -7,21 +7,24 @@
       "action": "Load packet 00 OI",
       "visible": [
         "PKT-KITTI-ASSEMBLE-001"
-      ]
+      ],
+      "evidence_status": "legacy claimed workflow step; not independently verified from retained source inputs"
     },
     {
       "interval_id": "MERGE_STEP_01",
       "action": "Load packet 07 OI",
       "visible": [
         "PKT-KITTI-ASSEMBLE-007"
-      ]
+      ],
+      "evidence_status": "legacy claimed workflow step; not independently verified from retained source inputs"
     },
     {
       "interval_id": "MERGE_STEP_02",
       "action": "Correspondence investigation for 12 overlapping buildings",
       "visible": [
         "BUILDING-GLOBAL-001..012"
-      ]
+      ],
+      "evidence_status": "legacy claimed workflow step; not independently verified from retained source inputs"
     },
     {
       "interval_id": "MERGE_STEP_03",
@@ -30,7 +33,10 @@
         "BUILDING-GLOBAL-001",
         "BUILDING-GLOBAL-002",
         "BUILDING-GLOBAL-003"
-      ]
+      ],
+      "evidence_status": "legacy claimed workflow step; not independently verified from retained source inputs"
     }
-  ]
+  ],
+  "td_status": "legacy merge-workflow outline; not a verified execution log",
+  "merge_commit_status": "BLOCKED - correspondence and inventory disputes remain open"
 }

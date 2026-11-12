@@ -22,19 +22,22 @@
           "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-002",
           "relation": "connects",
           "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
-          "evidence": "causeway connects pyramid to plaza"
+          "evidence": "causeway connects pyramid to plaza",
+          "evidence_status": "legacy relationship description; source point-cloud evidence is absent"
         },
         {
           "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
           "relation": "adjacent to",
           "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-003",
-          "evidence": "pyramid adjacent to plaza"
+          "evidence": "pyramid adjacent to plaza",
+          "evidence_status": "legacy relationship description; source point-cloud evidence is absent"
         },
         {
           "subject": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-004",
           "relation": "encloses",
           "object": "PKT-MAYAN-LIDAR-STITCH-001-OBJ-001",
-          "evidence": "fortification encloses city center"
+          "evidence": "fortification encloses city center",
+          "evidence_status": "legacy relationship description; source point-cloud evidence is absent"
         }
       ],
       "coverage": {
@@ -43,7 +46,13 @@
         "flight_lines": "100+",
         "points": "billions of pulses"
       },
-      "provenance": "Each ground point retains flight ID and return number (first/last)"
+      "provenance": "Each ground point retains flight ID and return number (first/last)",
+      "verification_status": "UNVERIFIED legacy scene and inventory claim",
+      "coverage_status": "The 2,100 km2, 61,000+ structures, 100+ flight lines and billions-of-pulses figures are not demonstrated by retained packet inputs.",
+      "provenance_status": "Flight-ID/return-number provenance is described as intended, but no point-level artifact is retained to verify it."
     }
-  ]
+  ],
+  "coordinate_system_status": "legacy coordinate-system claim; exact flight acquisitions and georeferencing inputs are absent",
+  "registration_status": "UNVERIFIED legacy method description; raw flight lines, GPS/IMU inputs, calibration and processing logs are absent",
+  "coverage_status": "UNVERIFIED legacy survey-context/output claims; this packet does not contain the processed point cloud or reproducible assembly"
 }

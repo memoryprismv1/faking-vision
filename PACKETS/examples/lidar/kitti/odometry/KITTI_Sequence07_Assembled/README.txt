@@ -1,15 +1,19 @@
-Faking Vision ASSEMBLE Packet v0.24 - KITTI Sequence 07 Downtown
-packet_id: PKT-KITTI-ASSEMBLE-007
-operation: fv assemble
-sequence: 07 (1101 scans) - downtown Karlsruhe, urban canyon
+# KITTI Odometry Sequence 07 assembly example
 
-Source: KITTI Odometry 07 - velodyne/*.bin 1101 files, poses/07.txt, calib.txt
-Total coverage: ~1500m x 900m, ~3.2M points after merge
-This is the downtown sequence with dense building clusters, narrow streets, high overlap (40-60%)
+Packet ID: `PKT-KITTI-ASSEMBLE-007`
+Operation intended: `fv assemble`
+Specification label in supplied packet: v0.24
 
-FV Assemble procedure same as PKT-KITTI-ASSEMBLE-001 but for 07:
-- Registration: poses from 07.txt + ICP where overlap >30%
-- Provenance: scan_07_0000 to scan_07_1100 preserved
-- Dynamic objects excluded via SemanticKITTI
+## Source reference
 
-Generated: 2026-10-12T05:53:45.240336
+The packet identifies KITTI Odometry Sequence 07 and names the expected `velodyne/*.bin`, `poses/07.txt`, and `calib.txt` inputs. The raw scans, poses, calibration files, and a reproducible registration log are not included in this repository.
+
+## Intended demonstration
+
+This packet is intended to illustrate assembly of a sequence of LiDAR observations while preserving scan-level provenance and keeping assembly distinct from object-identity merge.
+
+## Verification limits
+
+The legacy README claims 1,101 scans, approximately 1,500 m × 900 m coverage, 3.2 million points, and 40–60% overlap. Those figures and the claim that dynamic objects were excluded using SemanticKITTI are not independently verified by the files present here.
+
+`dispute.json` now records an open source/reproducibility blocker and sets the assembly gate to BLOCKED_FOR_REPRODUCTION. Treat the packet and its point-cloud visualization as illustrative. Do not present the scan count, coverage, registration quality, filtering, or assembled result as reproduced or validated.

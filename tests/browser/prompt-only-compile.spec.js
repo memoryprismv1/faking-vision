@@ -54,14 +54,18 @@ test('legacy Cat packet is not compilation-ready while reconciliation validation
   const [gate, reconciled, validation] = await Promise.all([
     readJson(path.join(PACKET, 'dispute.json')),
     readJson(path.join(PACKET, 'dispute.reconciled.json')),
-    fs.readFile(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt'), 'utf8')
+    readJson(path.join(PACKET, 'VALIDATION_REPORT_POST_RESOLVE.txt'))
   ]);
   expect(gate.status).toBe('resolved');
-  expect(validation).toContain('VALID - resolved');
-  expect(validation).toContain('PERMITTED');
   expect(reconciled.status).toBe('resolved');
   expect(reconciled.ai_reconciliation.validation_after_reconciliation).toBe('to be performed');
-  // The packet's historical validation claim is stale/incomplete relative to
-  // the reconciliation record. The agent-level compile gate must therefore
-  // block; this fixture must never be treated as a successful compile run.
+  expect(validation.overall_status).toContain('PARTIAL');
+  expect(validation.checks.find(item => item.check === 'snapshot_structure').status).toBe('FAIL');
+  expect(validation.checks.find(item => item.check === 'persistent_investigation_record').status).toBe('NOT PRESENT');
+  expect(validation.checks.find(item => item.check === 'source_media_inspection').status).toBe('NOT PERFORMED');
+  expect(validation.rendering_gate).toContain('permitted compilation with uncertainty preserved');
+  expect(validation.rendering_gate).toContain('not a claim of visual verification');
+  // Human permission to render with uncertainty does not replace the pending
+  // post-reconciliation validation. The agent-level compile gate must block
+  // until that validation is completed; this fixture is not a compile pass.
 });

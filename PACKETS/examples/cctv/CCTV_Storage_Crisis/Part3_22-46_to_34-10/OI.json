@@ -4,11 +4,12 @@
   "operation": "fv analyse - part of CCTV split",
   "inventory_lock": true,
   "source_provenance": {
-    "original_file": "Full, unedited Kelly Thomas confrontation video (35 min.).webm",
+    "original_file": "Legacy source label (unverified): Full, unedited Kelly Thomas confrontation video (35 min.).webm",
     "part": "Part 3 22:46 to 34:10",
-    "original_duration": "34min10s",
-    "part_duration": "684s",
-    "storage_note": "Original 61.4MB for 34min10s = 1.8MB/min at 640x360 low res. At 1080p 10Mbps: 1 camera = 54GB/day, 1000 cameras = 54TB/day - storage crisis"
+    "original_duration": "Legacy claim: 34min10s (not independently verified)",
+    "part_duration": "Legacy part label: 684s (source segment not included for verification)",
+    "storage_note": "Legacy source-size claim: 61.4 MB for 34 min 10 s is approximately 1.8 MB/min. Illustrative bitrate arithmetic (decimal units): 10 Mbps = 4.5 GB/hour = 108 GB/day per camera; 5 Mbps = 2.25 GB/hour = 54 GB/day. These are bitrate calculations, not measured CCTV deployment rates.",
+    "verification_status": "UNVERIFIED - no source URL, acquisition record, source video or source-aligned snapshots are retained"
   },
   "entities": [
     {
@@ -19,18 +20,21 @@
       "properties": {
         "clothing": "unresolved - low res 640x360",
         "position": "bench area, Aftermath - prolonged restraint, officers remain, bystanders",
-        "evidence_level": "L1 direct"
+        "evidence_level": "legacy unverified claim: L1 direct",
+        "evidence_status": "legacy description only; source frames unavailable"
       },
       "components": [
         {
           "component_id": "PKT-CCTV-STORAGE-PART3-001-COMP-001",
           "type": "head",
-          "description": "head visible"
+          "description": "head visible",
+          "verification_status": "legacy component description; source frame unavailable for independent review"
         },
         {
           "component_id": "PKT-CCTV-STORAGE-PART3-001-COMP-002",
           "type": "torso",
-          "description": "torso"
+          "description": "torso",
+          "verification_status": "legacy component description; source frame unavailable for independent review"
         }
       ],
       "behaviour": {
@@ -39,7 +43,8 @@
       },
       "uncertainty": [
         "Identity name requires L4 knowledge - not visual"
-      ]
+      ],
+      "record_status": "legacy packet-scoped candidate; not independently verified"
     },
     {
       "canonical_id": "PKT-CCTV-STORAGE-PART3-001-OBJ-002",
@@ -48,15 +53,20 @@
       "label": "Person B - officer approaching",
       "properties": {
         "clothing": "uniform",
-        "evidence_level": "L2 relational - uniform indicates role"
-      }
+        "evidence_level": "legacy unverified claim: L2 relational - uniform indicates role",
+        "evidence_status": "legacy description only; source frames unavailable"
+      },
+      "record_status": "legacy packet-scoped candidate; not independently verified"
     },
     {
       "canonical_id": "PKT-CCTV-STORAGE-PART3-001-OBJ-003",
       "packet_scoped_id": "PKT-CCTV-STORAGE-PART3-001-OBJ-003",
       "category": "person",
       "label": "Person C - second officer",
-      "properties": {}
+      "properties": {
+        "evidence_status": "legacy description only; source frames unavailable"
+      },
+      "record_status": "legacy packet-scoped candidate; not independently verified"
     },
     {
       "canonical_id": "PKT-CCTV-STORAGE-PART3-001-OBJ-004",
@@ -65,8 +75,10 @@
       "label": "bus shelter / bench",
       "properties": {
         "type": "static structure",
-        "evidence_level": "L1 direct - fixed background"
-      }
+        "evidence_level": "legacy unverified claim: L1 direct - fixed background",
+        "evidence_status": "legacy description only; source frames unavailable"
+      },
+      "record_status": "legacy packet-scoped candidate; not independently verified"
     }
   ],
   "background": {
@@ -84,5 +96,6 @@
       "position near bench"
     ],
     "promotion_decision": "promoted to OBJ-001..004 with uncertainty preserved"
-  }
+  },
+  "analysis_status": "BLOCKED - illustrative legacy inventory only; source media and source-aligned evidence are absent"
 }
