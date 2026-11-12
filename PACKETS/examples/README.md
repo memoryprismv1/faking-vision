@@ -41,7 +41,7 @@ Do not present the numbers or processing claims in these examples as reproduced 
 
 ## Environmental edit pairs — metadata-only contribution
 
-`environmental_edit_pairs/` contains packet metadata for three environmental-change scenarios and their before/after states, including a deliberately failing negative example. The seven image binaries are withheld because source-page URLs and licence/permission evidence are absent. The active Bermuda edit's lighthouse is restored, and the baseline cat position is now internally aligned to the paired edit log (on the chair). The rainy Wall Cat edit has an open dispute and blocked-pending-source-review gate because vegetation appears in the edit inventory but not the baseline; the submitted PASS is unverified. See the folder README and verification report.
+`environmental_edit_pairs/` contains packet metadata for three environmental-change scenarios and their before/after states, including a deliberately failing negative example. The seven image binaries are withheld because source-page URLs and licence/permission evidence are absent. Each of the seven folders now has a packet-level README with an explicit dispute state: six declare `DISPUTES: NONE`, while the rainy Wall Cat edit declares `DISPUTES: OPEN`. The active Bermuda edit's lighthouse is restored, and the baseline cat position is now internally aligned to the paired edit log (on the chair). The rainy Wall Cat edit has an open dispute and blocked-pending-source-review gate because vegetation appears in the edit inventory but not the baseline; the submitted PASS is unverified. See the folder README and verification report.
 
 ## Shared viewpoint sample
 
