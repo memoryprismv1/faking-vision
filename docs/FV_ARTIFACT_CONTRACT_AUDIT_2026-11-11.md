@@ -247,3 +247,10 @@ This is a structural/contract normalization of example records and documentation
 The three CCTV Snapshot TD packets are also explicitly marked as legacy v0.24 records without current root-level `viewpoint.json` and `packet_provenance.json`. The packet READMEs now preserve those omissions as unknowns and prohibit synthesizing camera geometry or source provenance. This is a compatibility/documentation boundary, not a migration or validation claim.
 
 The legacy `Cat_jumping_backwards` example is also clarified as a negative gate fixture: `dispute.json` says `resolved`, but `dispute.reconciled.json` still records `validation_after_reconciliation: to be performed`. The post-resolution report now records this canonical gate inconsistency as FAIL and keeps rendering/compilation BLOCKED. Human permission to compile metadata-only output does not bypass required post-reconciliation validation. The packet itself was not rewritten, preserving the acceptance fixture.
+
+
+## Examples phase — explicit no-dispute and legacy packet boundaries (2026-11-12)
+
+The five legacy image examples and three authored video-target folders now declare `DISPUTES: NONE` in their packet READMEs. Their missing current root-level viewpoint/provenance records are explicitly documented; no source-camera geometry or provenance is synthesized. The `blue_chairs` Case B fixture is now dispute-clear, so the expected compile block is specifically the absence of a render VPO, not an ambiguous dispute state.
+
+The seven environmental edit-pair folders now each have a packet-level README. Six declare `DISPUTES: NONE`; the rainy Wall Cat edit declares `DISPUTES: OPEN` and remains blocked pending source-image review. These folders remain metadata-only because source binaries and licence/source-page evidence are withheld; their legacy `source_provenance.json` is not a substitute for the current packet-provenance schema, and no root-level viewpoint record is present.
