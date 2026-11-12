@@ -8,8 +8,9 @@
 
 ## Progress
 
-- Reviewed: 305 / 309 media files (305 images, 0 videos)
-- Remaining: 0 images and 4 videos (4 media files)
+- Reviewed: 309 / 309 media files (305 images, 4 videos; video review sampled as described below)
+- Remaining: 0 images and 0 videos (0 media files)
+- Visual inventory pass complete; privacy clearance is **not** complete. Outstanding: personal name in Batch 1; people/faces and vehicle plates in CCTV stills; readable vehicle plates and pole-mounted identifier in CCTV video; audio review for three rendered MP4s; source permission/licensing and metadata/provenance checks remain separate.
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -601,6 +602,18 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_103.jpg` | Same scene; several vehicle plates visible, some partly legible in source crops. No pedestrian discernible. Generic `ID:001` overlay. | **Flag: vehicle registration plates; mask visible/legible plates before publication unless permission is documented** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_104.jpg` | Parking-lot view with multiple front-facing vehicle plates; some characters partly legible in enlarged source crops. No pedestrian discernible. Generic `ID:001` overlay. | **Flag: vehicle registration plates; mask visible/legible plates before publication unless permission is documented** |
 
+
+## Batch 57 — MP4 video visual review (4 videos)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/A_Trip_to_the_Moon_FV_Packet/omni_rendering.mp4` | 10-second, 1280×720 rendered sequence. Sampled at 1-second intervals. Stylized theatrical/fictional male characters in costume move through illustrated moon, mushroom-grotto and stage scenes. No real-person identity, personal text, or other personal information observed. An AAC audio stream is present; audio content was not reviewed in this visual audit. | **No visual personal-data concern observed; audio review remains open** |
+| `PACKETS/examples/videos/Alice_in_wonderland/omni_rendering.mp4` | 10-second, 1280×720 rendered sequence. Sampled at 1-second intervals. Stylized storybook girl and anthropomorphic white rabbit in a field and burrow scene. Human figure is a rendered story character; no real-person identity or personal text observed. An AAC audio stream is present; audio content was not reviewed in this visual audit. | **No visual personal-data concern observed; audio review remains open** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/FV_CCTV_snapshot_TD_reconstruction.mp4` | 212-second, 1280×720 reconstruction/timeline video at 1 frame per second. Reviewed a 2-second-interval sample across the complete duration, including CCTV-001/002/003 segments, pole-label close-ups and parking-lot views. No clearly discernible pedestrians/faces in sampled frames. Multiple vehicle registration plates are visible in parking-lot segments; a pole-mounted alphanumeric label is legible in the CCTV-002/003 close-up segment. Generic camera/time and `ID:001` overlays are present. No audio stream. | **Strong privacy/context flag: mask visible vehicle plates and the legible pole-mounted identifier; verify source context before publication** |
+| `PACKETS/examples/videos/Old_macdonald/omni_rendering.mp4` | 10-second, 1280×720 rendered sequence. Sampled at 1-second intervals. Stylized cartoon farmer and farm animals in an illustrated setting. No real-person identity, personal text, or other personal information observed. An AAC audio stream is present; audio content was not reviewed in this visual audit. | **No visual personal-data concern observed; audio review remains open** |
+
+**Video-review limitation:** The three 10-second clips were sampled once per second; the 212-second CCTV reconstruction was sampled every two seconds (the source is 1 fps). This is a visual sampling audit, not a frame-by-frame examination. Audio tracks in the three rendered clips were not listened to or transcribed, so spoken names or other audio-only personal data are not cleared.
+
 ## Next
 
-All 305 images have now been visually inspected. Continue with the four MP4 video assets; inspect them in batches and assess visible people, vehicle identifiers, signage/overlays, and audio if present. Do not mark the corpus cleared until all videos and the outstanding image privacy flags are resolved.
+Resolve the outstanding visual privacy flags (mask/replace personal name, people/faces, vehicle registration plates, and the legible pole-mounted identifier where appropriate); review the three MP4 audio streams for spoken personal information; separately verify source permissions/licensing, metadata, and provenance. Do not mark the corpus cleared until these checks are complete.
