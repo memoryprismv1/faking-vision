@@ -30,5 +30,15 @@
       "category": "parked_vehicles_dense",
       "label": "many parked cars, higher density than 00"
     }
-  ]
+  ],
+  "source_provenance": {
+    "source_dataset": "KITTI Odometry Sequence 07",
+    "expected_inputs": [
+      "velodyne/*.bin",
+      "poses/07.txt",
+      "calib.txt"
+    ],
+    "verification_status": "UNVERIFIED - raw scans, poses, calibration files and reproducible registration log are absent"
+  },
+  "assembly_status": "ILLUSTRATIVE ONLY - scan count, coverage and filtering claims are not independently reproduced"
 }
