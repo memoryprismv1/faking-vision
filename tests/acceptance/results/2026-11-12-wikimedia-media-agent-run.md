@@ -15,7 +15,7 @@
 | `1280px-Cat_jump.jpg` | Image | 1280 × 853 | `e200298a5fbfb4df4ad3662d42727efb0e434226161614918a00bb126f7a873d` |
 | `Kitten_jumping_on_bamboo_mat.webm` | Video | 1920 × 1080; 30 fps; 4.333333 s; 130 frames | `203244ad83246a7ee74c46600b390e66547e55ffd5ff7d9375d95b71f9dfc799` |
 
-Both source files were retained unchanged in the final local rerun archive. Neither source binary is committed to the repository.
+Both source files were retained unchanged in the final local rerun archive. Neither source binary is committed to the repository. The supplied media metadata did not retain the original Commons file-page URLs; attribution records the source page as not recorded and the licence as unverified. No reuse-rights claim is made.
 
 ## Correction made during acceptance
 
@@ -80,7 +80,7 @@ The final bundle adds the explicit `DISPUTES: NONE` declaration to both packet R
 ## Checks and limits
 
 - **47/47** local structural, reference, temporal, dispute-gate and schema checks passed.
-- Four full JSON Schema validations passed: provenance and viewpoint schemas for both packets, using the full repository schema files under Draft 2020-12.
+- Four full JSON Schema validations passed with `jsonschema` 4.26.0 / `Draft202012Validator`: provenance and viewpoint schemas for both packets under Draft 2020-12. Tested schema blob SHAs: provenance `d4667c745b61414bff16cd5a0d9a026a12d2f933`; viewpoint `fd8ed83065e63778c1affc2d9c81b9edddefb058`.
 - No dedicated OI, MSRM, TD or TIR JSON Schemas are present in the current `SPECIFICATION/` directory; those records received structural/reference/temporal consistency checks, not a formal schema-conformance claim.
 - No standalone `fv validate` executable was invoked. The validation was performed as an agent-level skill operation against the current specification; the repository defines FV commands as agent-level operations, not a standalone CLI.
 - No renderer, media generator, or independent generated-media audit was invoked.
