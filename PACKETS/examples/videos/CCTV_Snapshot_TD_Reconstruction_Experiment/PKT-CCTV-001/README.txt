@@ -31,3 +31,7 @@ See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory
 
 Source integrity note
 The source segment is not included in this repository. The retained snapshots and manifest support inspection of the packet's sampled evidence and source-time mapping, but they do not replace the source video or establish exhaustive frame coverage. Packet analysis remains provisional.
+
+
+LEGACY METADATA BOUNDARY
+This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.
