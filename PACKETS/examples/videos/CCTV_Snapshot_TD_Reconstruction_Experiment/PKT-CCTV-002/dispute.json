@@ -1,0 +1,60 @@
+{
+  "packet_id": "PKT-CCTV-002",
+  "operation": "fv analyse",
+  "status": "open_active_investigations",
+  "analysis_status": "PARTIAL - sampled source analysis with unresolved temporal questions",
+  "merge_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "PKT-CCTV-002-DSP-001",
+      "topic": "Pedestrian candidate correspondence across sparse samples",
+      "status": "OPEN",
+      "issue": "A person-like figure is observed around t=15–20 and a similar-looking figure around t=35–42. The appearance and modest image-position shift are compatible with one person walking, but one-second sampled evidence does not establish continuous identity.",
+      "evidence": [
+        "snapshot/objs/pedestrian_candidate_t015.jpg",
+        "snapshot/objs/pedestrian_candidate_t039.jpg",
+        "snapshot/verification/frame_015.jpg",
+        "snapshot/verification/frame_040.jpg",
+        "OI.json: PKT-CCTV-002-OBJ-002",
+        "TD.json: OBJ-002 observations"
+      ],
+      "required_resolution": "Inspect denser frames across the interval and compare distinctive clothing/body/trajectory cues. Keep correspondence provisional unless evidence discriminates the same person from separate similar-looking figures.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "Part 2 only; no cross-part identity inference."
+    },
+    {
+      "dispute_id": "PKT-CCTV-002-DSP-002",
+      "topic": "Camera reframe and later zoom mechanism remain unresolved",
+      "status": "OPEN",
+      "issue": "A substantial framing shift occurs around t=49–52 and a tighter pole/placard view appears around t=98–100. The visual regime changes are observed, but exact pan/tilt/zoom mechanics and continuous camera motion between samples are not reconstructed.",
+      "evidence": [
+        "snapshot/verification/frame_049.jpg",
+        "snapshot/verification/frame_050.jpg",
+        "snapshot/verification/frame_052.jpg",
+        "snapshot/verification/frame_098.jpg",
+        "snapshot/verification/frame_100.jpg",
+        "MSRM.json: S02/S04",
+        "TD.json: camera/view-change records"
+      ],
+      "required_resolution": "Use denser frame sampling around both transitions to distinguish pan, tilt, zoom, camera repositioning or cut. Preserve the view-change event even if its mechanical cause remains unknown.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "Part 2 only."
+    },
+    {
+      "dispute_id": "PKT-CCTV-002-DSP-003",
+      "topic": "One-second sampling does not establish exhaustive event or vehicle coverage",
+      "status": "OPEN",
+      "issue": "The packet samples one frame per second. This supports the retained observations but can miss brief appearances, transitions or intermediate trajectories; vehicle entry/exit paths and some occluded objects remain unresolved.",
+      "evidence": [
+        "README.txt: FV METHOD AND EVIDENCE",
+        "snapshot/manifest.json: snapshot_method",
+        "OI.json: vehicle candidate uncertainty fields",
+        "TD.json: sampled event intervals"
+      ],
+      "required_resolution": "For a concrete query or event investigation, adaptively inspect denser intervals around observed changes and relevant periods; report coverage gaps and do not infer absence from unsampled intervals.",
+      "operational_disposition": "ACTIVE",
+      "chunk_scope": "Part 2 only; no exhaustive coverage claim."
+    }
+  ],
+  "cross_packet_caution": "No identity or continuous chronology is inferred across CCTV parts without source-aligned correspondence evidence."
+}
