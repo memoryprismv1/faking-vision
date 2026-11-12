@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 175 / 309 media files (175 images, 0 videos)
-- Remaining: 130 images and 4 videos (134 media files)
+- Reviewed: 180 / 309 media files (180 images, 0 videos)
+- Remaining: 125 images and 4 videos (129 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -362,6 +362,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_087.jpg` | Same roadside view; no person or vehicle visible. The alphanumeric pole label is still legible. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_088.jpg` | Empty parking/roadside crop; no person or vehicle visible. Pole labels remain present. | **Flag: pole-mounted identifier/signage; verify source context** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_089.jpg` | Same empty scene with pole-mounted labels and alphanumeric code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
+
+## Batch 36 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_090.jpg` | Static roadside/parking crop with utility poles, hedge and grass. No person or vehicle visible. Pole-mounted labels and alphanumeric code remain in view. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_091.jpg` | Same empty roadside scene; no person or vehicle visible. Pole labels remain present. | **Flag: pole-mounted identifier/signage; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_092.jpg` | Same scene; no person or vehicle visible. The short alphanumeric pole label is legible. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_093.jpg` | Empty roadside/parking crop with pole labels; no person or vehicle visible. | **Flag: pole-mounted identifier/signage; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_094.jpg` | Same empty scene with pole-mounted labels and alphanumeric code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
 
 ## Next
 
