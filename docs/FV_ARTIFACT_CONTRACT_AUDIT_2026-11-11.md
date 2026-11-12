@@ -234,3 +234,12 @@ The active skill and how-to guide both require the research reference alongside 
 
 
 The active skill and how-to guide now state the failure model directly: the target is a coherent but wrong scene model, not merely a wrong object label. The failure list includes missed/merged entities, lost components, boundary errors, overlooked low-salience changes, appearance/identity confusion, uncalibrated scale inference, and plausible interpretations silently converted into observations. The operational consequence is explicit: fluency and naming are not evidence of coverage; preserve structure, alternatives, uncertainty, temporal evidence, calibration, and observation/inference/packet-commitment boundaries.
+
+
+## Examples phase — dispute-gate normalization (2026-11-12)
+
+The example corpus contains 15 packet-level `dispute.json` files. A branch-wide structural pass confirmed that all 15 now use canonical aggregate `status` values (`none`, `open`, or `resolved`) and that every individual dispute record has a `resolution_status` field. The three CCTV Snapshot TD packets were normalized where they used custom aggregate values (`deferred_nonblocking_for_this_chunk`, `open_active_investigations`, and `open_active_temporal_investigations`) or stored per-dispute state under a generic `status` field.
+
+The Making Vision chunk-level attention decision is now kept separate from dispute resolution. `operational_disposition: DEFERRED` means the question need not receive current chunk-local attention; it does not mean the underlying dispute is resolved. Deferred items retain `resolution_status: OPEN`, so the canonical aggregate status remains `open` and the rendering/compilation gate remains blocked. No new aggregate dispute status was added to the specification.
+
+This is a structural/contract normalization of example records and documentation. It does not certify semantic completeness, source coverage, cross-chunk identity, or reconstruction readiness for these examples.
