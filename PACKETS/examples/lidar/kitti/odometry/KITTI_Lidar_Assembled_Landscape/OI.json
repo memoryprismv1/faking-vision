@@ -45,18 +45,20 @@
       "properties": {
         "type": "asphalt road, intersections",
         "appearance": "blue/cyan in height-colored map 0-3m",
-        "evidence_level": "L1 direct + L3 calibrated poses"
+        "evidence_level": "legacy unverified claim: L1 direct + L3 calibrated poses"
       },
       "components": [
         {
           "component_id": "PKT-KITTI-ASSEMBLE-001-COMP-001",
           "type": "lane_markings",
-          "description": "detected via reflectance >0.5"
+          "description": "detected via reflectance >0.5",
+          "verification_status": "legacy component description; source point-cloud evidence is absent"
         }
       ],
       "uncertainty": [
         "Exact lane count unresolved without camera image inspection"
-      ]
+      ],
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
@@ -65,12 +67,13 @@
       "label": "buildings 12-22m height",
       "properties": {
         "appearance": "orange/red in height map",
-        "evidence_level": "L1 direct points + L4 knowledge for building classification"
+        "evidence_level": "legacy unverified claim: L1 direct points + L4 knowledge for building classification"
       },
       "components": [],
       "uncertainty": [
         "Building instances not individually counted - assembly aggregates, not merge"
-      ]
+      ],
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
@@ -79,10 +82,11 @@
       "label": "trees and bushes 5-10m",
       "properties": {
         "appearance": "green/yellow",
-        "evidence_level": "L1 direct"
+        "evidence_level": "legacy unverified claim: L1 direct"
       },
       "components": [],
-      "uncertainty": []
+      "uncertainty": [],
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
@@ -91,12 +95,13 @@
       "label": "parked cars along curb",
       "properties": {
         "appearance": "small blue rectangles along road edge",
-        "evidence_level": "L2 relational"
+        "evidence_level": "legacy unverified claim: L2 relational"
       },
       "components": [],
       "uncertainty": [
         "Dynamic vs static not distinguished without SemanticKITTI filter - marked as potential registration conflict"
-      ]
+      ],
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     }
   ],
   "background": {
