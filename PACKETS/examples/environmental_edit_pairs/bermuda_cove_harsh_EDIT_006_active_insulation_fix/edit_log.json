@@ -1,6 +1,6 @@
 {
   "edit_id": "EDIT_006_ACTIVE",
-  "edit_base": "collection",
+  "edit_base": "bermuda_cove_pleasant_original",
   "target": "ENVIRONMENT",
   "edit_type": "environment_edit with active participation",
   "timestamp": "2026-10-21T05:30:00Z",
@@ -40,5 +40,5 @@
   "msrm_change": "required for living objects",
   "version": "0.26-proposed",
   "contribution_origin": "Meta; integration correction by ChatGPT",
-  "note": "supplied validation claim retained as claim, not independently verified"
+  "note": "supplied validation claim retained as claim, not independently verified Baseline packet reference is explicit; source image remains withheld and the submitted PASS has not been independently verified."
 }
