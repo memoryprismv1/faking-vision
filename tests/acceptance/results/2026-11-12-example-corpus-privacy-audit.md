@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 85 / 309 media files (85 images, 0 videos)
-- Remaining: 220 images and 4 videos (224 media files)
+- Reviewed: 90 / 309 media files (90 images, 0 videos)
+- Remaining: 215 images and 4 videos (219 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -182,6 +182,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/pedestrian_candidate_t039.jpg` | Pedestrian visible from head to upper torso at lower-right; face and clothing are distinguishable. A vehicle plate appears in background. | **Strong privacy flag: face/person visible; mask or replace unless publication permission is documented** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/pole_signs_t100.jpg` | Close crop of roadside/pole signage includes a vehicle registration plate with several characters visibly discernible; upper sign is too blurred to read confidently. | **Strong privacy flag: partially legible registration identifier; mask plate and review sign context** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/road_vehicle_t070.jpg` | Crop shows tree trunks, grass and a road; no vehicle or person is visible in the supplied image despite the filename. | **Flag: filename/content mismatch; verify crop provenance and object association** |
+
+## Batch 18 — CCTV-002 scene and verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/scene_zoom_t053.jpg` | Reframed view of an empty section of parking lot, trees and road; no people or vehicle identifiers visible. | No obvious visual privacy concern |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_001.jpg` | Full parking-lot frame with numerous vehicles; a dark sedan is crossing the foreground. No pedestrian clearly visible in this frame. Commercial vehicle markings and plates appear in the scene but are not confidently readable at this scale. | **Flag for vehicle-identifier and commercial-marking/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_002.jpg` | A pedestrian in a light shirt is visible at the far-right edge; face is small but head and clothing are distinguishable. Numerous vehicles and plates remain in view. | **Flag: person present; review face visibility, plates and source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_003.jpg` | Pedestrian remains at the far-right edge, closer to the parked vehicles; face is still small. A light pickup is moving through the lot. | **Flag: person present; review face visibility, plates and source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_004.jpg` | Pedestrian remains visible near the right edge, with face/head discernible at this scale. Multiple vehicles and commercial markings are present. | **Flag: person present; review face visibility, plates and source permissions** |
 
 ## Next
 
