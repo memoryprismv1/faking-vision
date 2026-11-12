@@ -315,3 +315,5 @@ No source-dependent uncertainty was silently resolved. No authoritative FV seman
 - CCTV Storage Crisis merged PC no longer asserts a fixed unmoving camera as a verified invariant; it records that statement as an unverified legacy assumption.
 - Cat-jumping dispute closure note now distinguishes human acceptance of limitations from factual resolution of the visual/background/timing questions.
 - CCTV experiment process log corrected to reflect Part 2's newly added dispute.json while retaining the explicit absence of PC.json and persistent TIR.json.
+
+- Mayan stitching MSRM now marks coordinate system, registration method, coverage, point-level provenance and spatial relationships as unverified legacy claims; KITTI Sequence 00/07 MSRM coordinate-system/origin claims are likewise qualified. KITTI Sequence 00's moving-car handling is explicitly a proposed rule, not a verified filter result.
