@@ -57,13 +57,14 @@ For each case, record case ID and packet hash; FV skill/specification revision; 
 ## Recorded agent-level results (2026-11-12)
 
 - **Case A — PASS:** the corrected Wikimedia image packet explicitly declares `DISPUTES: NONE`; structural, semantic, evidence, dispute/reconciliation and rebuild assessments passed. The full repository provenance and viewpoint JSON Schemas passed under Draft 2020-12. Exactly one default render VPO was selected, source viewpoint initialisation remained unknown and distinct, and prompt-only compilation emitted `COMPILED_SPEC.txt` without invoking a generator. The first intermediate packet lacked the explicit dispute declaration; its prompt artifact was rejected and is not counted as a pass. The corrected final archive contains the accepted packet.
-- **Case B — PASS:** the legacy `blue_chairs` image packet was read without adding `viewpoint.json`; virtual `VP-DEFAULT` was not treated as a render VPO and no camera geometry was inferred. Compilation was correctly not attempted because no render VPO was available.
+- **Case B — PASS:** the legacy `blue_chairs` image packet now explicitly declares `DISPUTES: NONE`; virtual `VP-DEFAULT` was read as legacy source-viewpoint compatibility only, not a render VPO. No camera geometry or synthetic `viewpoint.json` was added. Compilation was correctly not attempted because no render VPO was available. See the isolated Case B run record.
 - **Case C — PASS:** prompt production was blocked because post-reconciliation validation remained pending; no generator was invoked and the input packet was unchanged.
 
 The final Wikimedia rerun passed 47/47 local structural, reference, temporal, dispute-gate and schema checks. Four full schema validations passed (provenance and viewpoint schemas for both packets). OI/MSRM/TD/TIR have no dedicated JSON Schemas in the current repository, so their validation was structural/reference/temporal consistency plus agent-level semantic/evidence review.
 
 Evidence records:
 - [Wikimedia media rerun](results/2026-11-12-wikimedia-media-agent-run.md)
+- [Case B legacy viewpoint run](results/2026-11-12-case-b-legacy-viewpoint-run.md)
 - [47-check log](results/2026-11-12-wikimedia-media-agent-run/LOCAL_CHECKS.txt)
 - [Run manifest](results/2026-11-12-wikimedia-media-agent-run/RUN_MANIFEST.json)
 - [Case C negative-gate run](results/2026-11-12-case-c-agent-run.md)
