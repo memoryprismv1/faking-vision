@@ -14,7 +14,7 @@ The packet is intended to show registration and integration of partial LiDAR obs
 
 ## What is actually present
 
-The repository contains packet JSON records, a snapshot manifest, and illustrative visualization assets. It does **not** contain the raw KITTI point-cloud scans, the corresponding calibration and pose files, or a reproducible registration log sufficient to reproduce the described assembly.
+The repository contains packet JSON records, a manifest that now explicitly records that no snapshot objects are retained in the packet folder, and illustrative visualization assets. A legacy manifest reference to `snapshot/objs/assembled_map.png` and a craft-project HTML artifact did not resolve to files and has been withdrawn. The repository does **not** contain the raw KITTI point-cloud scans, the corresponding calibration and pose files, or a reproducible registration log sufficient to reproduce the described assembly.
 
 ## Verification limits
 
