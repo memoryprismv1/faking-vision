@@ -37,8 +37,8 @@
 
 ## Validation and acceptance
 
-- Provenance JSON: PASS against repository schema constraints.
-- Viewpoint JSON: PASS against repository schema constraints.
+- Provenance JSON: PASS using Draft 2020-12 validation with a compact local schema fragment transcribed from the repository schema for the fields present; the full repository schema file was not executed directly.
+- Viewpoint JSON: PASS using Draft 2020-12 validation with a compact local schema fragment transcribed from the repository schema; the full repository schema file was not executed directly.
 - Case A default render VPO selection: PASS.
 - Case A prompt-only compile: PASS; no generator invoked.
 - Case B legacy image packet compatibility: PASS (compatibility gate only). Inspected `PACKETS/examples/images/blue_chairs/`, an older packet whose OI/MSRM/README date to the repository's initial 2026-09-08 commit; the viewpoint schema was first added 2026-11-03. The packet has no `viewpoint.json`. The virtual `VP-DEFAULT` remains read-time-only source compatibility, not a render VPO; no camera geometry was inferred. Because no render VPO exists, prompt compilation was correctly not attempted. No repository source files were modified. This is an agent-level compatibility decision, not a dedicated CLI validator execution.
