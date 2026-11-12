@@ -58,5 +58,6 @@
     }
   ],
   "registration_status": "legacy stated method; not independently verified",
-  "registration_verification_limit": "The exact source acquisition, raw scans, calibration/pose inputs and reproducible registration log are absent."
+  "registration_verification_limit": "The exact source acquisition, raw scans, calibration/pose inputs and reproducible registration log are absent.",
+  "coordinate_system_status": "legacy ENU/origin claim; exact acquisition and pose files are absent"
 }
