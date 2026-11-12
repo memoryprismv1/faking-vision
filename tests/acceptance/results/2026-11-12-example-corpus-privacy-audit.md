@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 215 / 309 media files (215 images, 0 videos)
-- Remaining: 90 images and 4 videos (94 media files)
+- Reviewed: 220 / 309 media files (220 images, 0 videos)
+- Remaining: 85 images and 4 videos (89 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -442,6 +442,18 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_013.jpg` | Close crop of pole-mounted labels and alphanumeric code; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_014.jpg` | Close crop of the same pole labels/code; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
 
+## Batch 44 — CCTV-003 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_015.jpg` | Empty parking/roadside view with utility poles, hedge, grass and road. No person or vehicle visible. Pole-mounted labels remain visible; lower-right `ID:001` is a generic overlay. | **Flag: pole-mounted identifier/signage; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_016.jpg` | Same empty roadside/parking view. No person or vehicle visible. Pole labels and generic `ID:001` overlay remain. | **Flag: pole-mounted identifier/signage; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_017.jpg` | Similar empty parking/roadside view; no person or vehicle visible. Pole-mounted labels and generic `ID:001` overlay remain. | **Flag: pole-mounted identifier/signage; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_018.jpg` | Tighter crop of the pole-mounted labels; no person or vehicle visible. A short alphanumeric pole label is discernible. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; establish what it identifies and mask unless confirmed non-sensitive** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_019.jpg` | Close-up of the same pole-mounted alphanumeric label; no person or vehicle visible. The code is clearly legible in this crop. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
+
 ## Next
+
+Continue with `PKT-CCTV-003/snapshot/verification/frame_020.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
 Continue with the next small batch from the repository media inventory. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
