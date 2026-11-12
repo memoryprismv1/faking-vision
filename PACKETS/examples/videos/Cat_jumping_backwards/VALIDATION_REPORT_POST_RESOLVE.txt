@@ -34,8 +34,13 @@
       "check": "source_media_inspection",
       "status": "NOT PERFORMED",
       "details": "The source video is not included and direct frame inspection was not performed. Object appearance, exact trajectory, background, and original/replay transition time remain limited or unresolved as recorded in OI/MSRM/TD."
+    },
+    {
+      "check": "canonical_rendering_gate_consistency",
+      "status": "FAIL",
+      "details": "The aggregate dispute.json resolved label conflicts with the pending post-reconciliation validation recorded in dispute.reconciled.json. Treat the current rendering/compilation gate as blocked."
     }
   ],
   "overall_status": "PARTIAL - human accepted metadata-only analysis for this experiment; full snapshot structure and source-level validation are not established.",
-  "rendering_gate": "The human resolution explicitly permitted compilation with uncertainty preserved for this experiment. This permission is not a claim of visual verification, complete packet validation, or snapshot retention."
+  "rendering_gate": "BLOCKED: dispute.json currently says resolved, but dispute.reconciled.json records validation_after_reconciliation as 'to be performed'. Under the current specification, human permission to compile does not replace post-reconciliation packet validation. Do not compile or generate until that validation is completed and recorded. This does not establish visual verification, complete packet validation, or snapshot retention."
 }
