@@ -16,4 +16,4 @@ This packet is intended to illustrate assembly of a sequence of LiDAR observatio
 
 The legacy README claims 1,101 scans, approximately 1,500 m × 900 m coverage, 3.2 million points, and 40–60% overlap. Those figures and the claim that dynamic objects were excluded using SemanticKITTI are not independently verified by the files present here.
 
-Treat the packet and its point-cloud visualization as illustrative. Do not present the scan count, coverage, registration quality, filtering, or assembled result as reproduced or validated.
+`dispute.json` now records an open source/reproducibility blocker and sets the assembly gate to BLOCKED_FOR_REPRODUCTION. Treat the packet and its point-cloud visualization as illustrative. Do not present the scan count, coverage, registration quality, filtering, or assembled result as reproduced or validated.
