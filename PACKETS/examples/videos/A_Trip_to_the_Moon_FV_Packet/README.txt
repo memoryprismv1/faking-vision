@@ -38,3 +38,9 @@ Status and limits:
 ## Packet consistency review
 
 A cross-reference check found three OI scene members without an explicit MSRM relation: Astronomer 03 in S02, the Moon-surface background in S03, and the Earth-return background in S06. These relations have now been added from the corresponding OI scene states. The capsule is deliberately marked off-screen but persistent in S04/S05; its lack of an on-screen spatial relation in those scenes is intentional. This is a structural consistency correction, not a source-film audit.
+
+
+DISPUTES: NONE
+
+LEGACY/TARGET METADATA BOUNDARY
+This is an authored reconstruction-target brief, not a source-media analysis packet. The original film and source frames are not included. It has no current root-level `viewpoint.json` or `packet_provenance.json`; no source-camera geometry or source-media provenance is asserted. It is not a current-format source-analysis packet or evidence of a verified film inventory.
