@@ -309,3 +309,9 @@ No source-dependent uncertainty was silently resolved. No authoritative FV seman
 - CCTV Storage Crisis Part 1–3 MSRM records now mark scene/spatial/camera claims as unverified, consistent with their OI/TIR/TD evidence limitations. The CCTV Snapshot experiment process log now acknowledges the Part 2 dispute file while preserving the absence of a persistent TIR/PC.
 - Reviewed all 15 example dispute.json files: none has status=none. CCTV Part 1's and Part 3's chunk-local deferred items and Cat-jumping's human acceptance with limitations remain distinct from active unresolved disputes.
 - Reviewed all 14 example snapshot manifests against the repository tree. The only unresolved path is the KITTI Sequence 00 legacy assembled-map reference, which is explicitly classified in the manifest as not present and withdrawn; no active manifest claim remains that it is a retained snapshot.
+
+- KITTI Sequence 00, KITTI Sequence 07 and Mayan stitching PC records no longer present unverified calibration/sensor/flight parameters as committed constants. Those values are retained as explicitly unverified legacy input claims; PC.constants is empty until exact acquisition-specific inputs are retained.
+- KITTI merged-building PC now clarifies that no source-derived snapshot assets are retained; its snapshot manifest is only a packet-ID marker.
+- CCTV Storage Crisis merged PC no longer asserts a fixed unmoving camera as a verified invariant; it records that statement as an unverified legacy assumption.
+- Cat-jumping dispute closure note now distinguishes human acceptance of limitations from factual resolution of the visual/background/timing questions.
+- CCTV experiment process log corrected to reflect Part 2's newly added dispute.json while retaining the explicit absence of PC.json and persistent TIR.json.
