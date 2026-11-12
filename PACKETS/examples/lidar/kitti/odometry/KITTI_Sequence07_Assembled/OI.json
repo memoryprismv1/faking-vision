@@ -10,7 +10,8 @@
       "label": "downtown road network 07",
       "properties": {
         "type": "dense urban roads, intersections every 80-120m"
-      }
+      },
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-002",
@@ -18,17 +19,20 @@
       "label": "dense building canyon 15-35m",
       "properties": {
         "height_range": "15-35m, taller than seq00"
-      }
+      },
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-003",
       "category": "vegetation_sparse",
-      "label": "sparse trees downtown"
+      "label": "sparse trees downtown",
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     },
     {
       "canonical_id": "PKT-KITTI-ASSEMBLE-007-OBJ-004",
       "category": "parked_vehicles_dense",
-      "label": "many parked cars, higher density than 00"
+      "label": "many parked cars, higher density than 00",
+      "verification_status": "UNVERIFIED legacy packet inventory claim; raw source scans/flight lines and reproducible processing evidence are absent"
     }
   ],
   "source_provenance": {
