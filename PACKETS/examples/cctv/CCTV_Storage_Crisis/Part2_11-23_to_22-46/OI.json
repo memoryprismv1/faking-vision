@@ -20,19 +20,21 @@
       "properties": {
         "clothing": "unresolved - low res 640x360",
         "position": "bench area, Escalation - use of force, restraint",
-        "evidence_level": "L1 direct",
+        "evidence_level": "legacy unverified claim: L1 direct",
         "evidence_status": "legacy description only; source frames unavailable"
       },
       "components": [
         {
           "component_id": "PKT-CCTV-STORAGE-PART2-001-COMP-001",
           "type": "head",
-          "description": "head visible"
+          "description": "head visible",
+          "verification_status": "legacy component description; source frame unavailable for independent review"
         },
         {
           "component_id": "PKT-CCTV-STORAGE-PART2-001-COMP-002",
           "type": "torso",
-          "description": "torso"
+          "description": "torso",
+          "verification_status": "legacy component description; source frame unavailable for independent review"
         }
       ],
       "behaviour": {
@@ -51,7 +53,7 @@
       "label": "Person B - officer approaching",
       "properties": {
         "clothing": "uniform",
-        "evidence_level": "L2 relational - uniform indicates role",
+        "evidence_level": "legacy unverified claim: L2 relational - uniform indicates role",
         "evidence_status": "legacy description only; source frames unavailable"
       },
       "record_status": "legacy packet-scoped candidate; not independently verified"
@@ -73,7 +75,7 @@
       "label": "bus shelter / bench",
       "properties": {
         "type": "static structure",
-        "evidence_level": "L1 direct - fixed background",
+        "evidence_level": "legacy unverified claim: L1 direct - fixed background",
         "evidence_status": "legacy description only; source frames unavailable"
       },
       "record_status": "legacy packet-scoped candidate; not independently verified"
