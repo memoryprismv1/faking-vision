@@ -7,7 +7,8 @@
     "initiative": "PACUNAM LiDAR Initiative 2016-2018, 2,100km2, 61,000 structures",
     "sensor": "Airborne LiDAR 560k pts/sec, billions of pulses",
     "publication": "Science 2018 Garrison et al.",
-    "total_scans_stitched": "100+ flight transects, each 10km x 0.5km, overlap 30-50%"
+    "total_scans_stitched": "100+ flight transects, each 10km x 0.5km, overlap 30-50%",
+    "verification_status": "UNVERIFIED for this packet - cited research context does not identify the exact contributing flight acquisitions; raw point clouds, flight-line list, calibration/registration inputs and processing log are absent."
   },
   "entities": [
     {
@@ -96,5 +97,6 @@
     ],
     "search_result": "Rectangular 40x40m base found, cardinal orientation, causeway 2km connects to plaza 100x100m - supports pyramid, natural hill rejected",
     "promotion_decision": "Promoted to OBJ-001 pyramid with uncertainty preserved about date"
-  }
+  },
+  "assembly_status": "ILLUSTRATIVE ONLY - no reproducible 2,100 km2 assembly is retained"
 }
