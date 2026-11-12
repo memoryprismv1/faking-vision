@@ -1,8 +1,17 @@
 {
   "packet_id": "PKT-KITTI-ASSEMBLE-007",
-  "constants": [
-    "Tr_velo_to_cam from calib 07",
-    "Velodyne HDL-64E"
+  "constants": [],
+  "legacy_input_parameter_claims": [
+    {
+      "name": "Tr_velo_to_cam",
+      "description": "Referenced as coming from Sequence 07 calibration; calibration file and actual transform are absent.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "name": "Velodyne HDL-64E",
+      "description": "Legacy sensor-family claim; exact acquisition/configuration is not independently established.",
+      "status": "UNVERIFIED"
+    }
   ],
-  "constants_status": "legacy source-input references; calibration file not retained or independently checked"
+  "note": "No calibration or sensor parameter is committed as a verified packet-wide constant. Populate PC constants only from the exact acquired source dataset and retained calibration records."
 }
