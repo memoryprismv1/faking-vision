@@ -256,3 +256,8 @@ The five legacy image examples and three authored video-target folders now decla
 The seven environmental edit-pair folders now each have a packet-level README. Six declare `DISPUTES: NONE`; the rainy Wall Cat edit declares `DISPUTES: OPEN` and remains blocked pending source-image review. These folders remain metadata-only because source binaries and licence/source-page evidence are withheld; their legacy `source_provenance.json` is not a substitute for the current packet-provenance schema, and no root-level viewpoint record is present.
 
 A separate inventory pass over all 29 example directories containing `OI.json` found no missing dispute declaration: 15 directories carry `dispute.json`; the remaining 14 declare `DISPUTES: NONE` in their packet README. This is a packet-gate declaration check only, not a claim that all 29 packets are otherwise current-format or compile-ready.
+
+
+## Follow-up: typed dispute identifier in command examples
+
+The deferred example-level inconsistency is corrected. The `fv resolve dispute` examples in both `commands.md` and `SKILL.md` now use `DSP-a1b2c3d4`, matching the current specification's typed-ID convention for newly generated dispute records. This is an illustrative opaque suffix, not a reference to a real packet dispute. Existing legacy dispute IDs in historical example packets were not rewritten.
