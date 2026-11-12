@@ -335,7 +335,7 @@ The lifecycle is human resolution → AI evidence review and reconciliation → 
 
 Example:
 
-`fv resolve dispute D-014`
+`fv resolve dispute DSP-a1b2c3d4`
 
 ### `fv edit`
 
