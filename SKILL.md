@@ -20,11 +20,14 @@ The target failure is not simply an incorrect object name. An AI can produce a c
 
 Do not treat fluent description, scene coherence, or successful naming as proof of complete or correct analysis. Preserve directly visible structure, candidate alternatives, boundary/figure-ground uncertainty, temporal evidence, calibration assumptions, and the distinction between observation, inference, and packet commitment. Use independent reconstruction audit to test whether the packet's declared scene structure survives generation.
 
-Apply the Making Vision processing architecture:
+Apply the Making Vision V2 processing architecture as a continuously recalibrated allocation loop, not a fixed serial pipeline:
 
-current sensory input → economical/background processing → candidate or perturbation → selective promotion for additional processing → deeper processing → action and/or persistence.
+current sensory structure + persistent knowledge + internal state + environmental statistics + anticipated consequence
+↔ economical broad monitoring and selective additional processing
+→ evidence assessment
+→ action and/or selective persistence.
 
-This is an allocation architecture, not a rigid serial vision algorithm. Persistent knowledge, spatial structure, expectations, task relevance, uncertainty, learned relevance, environmental statistics, current needs, physiological/internal state, energy, risk, and anticipated consequences can affect what receives additional processing. Keep those allocation influences distinct from evidence about what is externally present in the source.
+Broad monitoring preserves useful current structure while deeper processing is allocated unevenly to candidates, states, regions or events where warranted. Candidate or perturbation generation does not automatically trigger promotion; promotion may also be directed by task relevance, uncertainty, information value, risk, learned relevance, current needs, physiological/internal state, energy, expectations and anticipated consequences. Allocation is continually recalibrated as the sensory field, internal state and environmental regime change. Keep those allocation influences distinct from evidence about what is externally present in the source.
 
 Treat Making Vision as a working architectural synthesis, not an established published biological theory. Do not present constructs such as promotion, maplet/local inset, or the unified selective-allocation architecture as established neural mechanisms. When making scientific claims, distinguish independent evidence for component mechanisms from Making Vision's synthesis and testable predictions. Learning (a change in future processing) is not identical to persistence/storage (information retained over time); do not infer one from the other without evidence.
 
