@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 115 / 309 media files (115 images, 0 videos)
-- Remaining: 190 images and 4 videos (194 media files)
+- Reviewed: 120 / 309 media files (120 images, 0 videos)
+- Remaining: 185 images and 4 videos (189 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -242,6 +242,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_027.jpg` | Pedestrian remains at the far-left side, partly occluded by vehicles; head/upper body discernible. | **Flag: partially occluded person visible; review face masking and vehicle identifiers** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_028.jpg` | Pedestrian remains partly visible at the far-left edge behind/alongside parked vehicles. | **Flag: partially occluded person visible; review face masking and vehicle identifiers** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_029.jpg` | Pedestrian is no longer clearly visible; a small partial human-shaped area remains near the far-left edge and is partly obscured by vehicles. | **Flag: ambiguous partial person at edge; verify source frame and review vehicle identifiers** |
+
+## Batch 24 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_030.jpg` | Pedestrian in a light shirt is visible at the far-left side between parked vehicles; head/face and upper body discernible. Vehicle plates remain throughout the scene. | **Flag: person visible; review face masking and vehicle identifiers/source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_031.jpg` | Pedestrian moves along the left row of parked vehicles; face and clothing are visible at this scale. | **Flag: person visible; review face masking and vehicle identifiers/source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_032.jpg` | Same pedestrian remains in the left foreground, partly aligned with a parked vehicle; head/face and upper body visible. | **Flag: person visible; review face masking and vehicle identifiers/source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_033.jpg` | Pedestrian continues along the left foreground, partly occluded by vehicles; head/upper body remain discernible. | **Flag: partially occluded person visible; review face masking and vehicle identifiers/source permissions** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_034.jpg` | Pedestrian remains near the left edge of the lot, walking past parked vehicles; face/head and clothing visible at wide-frame scale. | **Flag: person visible; review face masking and vehicle identifiers/source permissions** |
 
 ## Next
 
