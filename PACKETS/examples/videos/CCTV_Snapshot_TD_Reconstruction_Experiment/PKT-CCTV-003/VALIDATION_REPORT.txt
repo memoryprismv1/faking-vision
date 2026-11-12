@@ -20,7 +20,7 @@ Cross-file checks:
 - Snapshot samples: 105 full-frame files are declared for nominal seconds 0 through 104. This does not establish continuous coverage or exhaustive event capture.
 
 Investigation and dispute status:
-- One inventory-completeness dispute is RESOLVED AS NON-BLOCKING FOR THIS CHUNK (deferred; not a claim of completeness).
+- One inventory-completeness item is operationally DEFERRED from current chunk-level attention; its per-dispute resolution_status remains OPEN. Aggregate dispute status is OPEN and the merge/render gate remains BLOCKED.
 - Two investigations remain ACTIVE/OPEN: the moving light-coloured vehicle-like form, and the opening camera/view change.
 - Merge gate: BLOCKED while active investigations remain open.
 - OI inventory completeness: NOT ESTABLISHED.
