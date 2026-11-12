@@ -617,3 +617,36 @@
 ## Next
 
 Resolve the outstanding visual privacy flags (mask/replace personal name, people/faces, vehicle registration plates, and the legible pole-mounted identifier where appropriate); review the three MP4 audio streams for spoken personal information; separately verify source permissions/licensing, metadata, and provenance. Do not mark the corpus cleared until these checks are complete.
+
+
+## Addendum — privacy-context and screen-capture reassessment (2026-11-12)
+
+This addendum refines earlier flags without deleting the historical visual observations above.
+
+### Screen-capture / system-privacy check
+- Reviewed the complete media inventory and its paths (305 raster images and 4 videos). No desktop, browser, application-window, terminal, taskbar, or other user-system screenshot was identified.
+- The non-CCTV image examples are scene photographs, LiDAR visualizations, and an astronomy visualization. The remaining media are the three rendered story videos and the CCTV source/reconstruction material.
+- This is a corpus-content finding, not a claim about material outside this archive. No user-system screenshot has been added, generated, or uploaded as part of this audit.
+
+### Reassessment of the desk image
+- Re-opened `PACKETS/examples/images/desk_with_objects/Desk_with_objects_for_editathon.jpg`.
+- The handwritten text reads as a display/sign referring to **Mileva Marić Einstein** in a Wikimedia event/workspace scene. It is a historical/public name in an exhibit-like context, not evidence of a private individual's name on a personal bag as previously recorded.
+- Withdraw the earlier “personal name” privacy flag. Retain ordinary source/licensing and provenance checks for the photograph.
+
+### CCTV context and disposition
+- The source is identified in the packet provenance notes as Supercircuits' BLK-HDPTZ12 camera demonstration, and the Wikimedia Commons file description explicitly describes the pole-mounted license plate as a distant test target (approximately 360 ft from the camera).
+- Accordingly, the pole-mounted alphanumeric plate/label should not be treated as a personal identifier by default: it appears to be part of the demonstration target. Retain its source-context explanation in the audit; do not automatically require masking solely because it is legible.
+- Vehicle registration plates on parked cars are contextual details in a public-facing parking-lot camera demonstration. Their presence alone is not a finding that the example exposes the user's system or a private record. Do not impose blanket masking of every plate as an automatic corpus rule. Escalate only where an identifier is clearly legible and the intended reuse, jurisdiction, context, or associated information creates a concrete privacy/legal concern.
+- People seen in the public-facing parking-lot scene are incidental bystanders in the source demonstration, not evidence of targeted surveillance of the user. Presence alone is not a privacy breach. Reassess any clearly identifiable face or sensitive/private activity in the actual publication context rather than treating every person-shaped figure as a mandatory removal.
+- These contextual judgments do not constitute legal advice or a final rights clearance. Commons' public-domain status and its stated automated-recording rationale remain a separate copyright/provenance question; the PTZ camera's deliberate pan/tilt/zoom/product-demo context warrants retaining that question for source verification.
+
+### Metadata and audio checks
+- A basic embedded-image EXIF scan of the 305 raster images found no GPS metadata and no populated camera-owner/artist fields. One image carried a whitespace-only description field. This does not inspect every possible container, sidecar, or video metadata field.
+- The three rendered MP4 audio tracks remain unreviewed. This environment did not provide a dependable speech-listening/transcription pass, so audio-only names or personal information are not cleared.
+- Video container metadata and source permissions/provenance still require a dedicated check.
+
+### Updated disposition
+- No user-system screenshot identified in the supplied archive.
+- Desk-image “personal name” flag withdrawn after direct reinspection.
+- CCTV blanket face/plate/pole-label masking flags downgraded to context-dependent review; preserve the observed content and source rationale, do not silently erase it.
+- Corpus is **not yet fully cleared**: audio, video metadata, source licensing/provenance, and any genuinely identifiable/sensitive CCTV content in the exact publication outputs remain to be resolved.
