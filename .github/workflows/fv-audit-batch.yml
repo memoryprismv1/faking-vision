@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/fv-audit-batch
+      - work/fv-docs-skill-cleanup-20261111
   pull_request:
     paths:
       - "TOOLS/**"
