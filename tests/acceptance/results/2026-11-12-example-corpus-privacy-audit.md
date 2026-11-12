@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 145 / 309 media files (145 images, 0 videos)
-- Remaining: 160 images and 4 videos (164 media files)
+- Reviewed: 150 / 309 media files (150 images, 0 videos)
+- Remaining: 155 images and 4 videos (159 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -302,6 +302,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_057.jpg` | Reframed view of empty pavement, parking lines, trees and grass; no person or vehicle visible. | No obvious visual privacy concern |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_058.jpg` | Tighter view of trees, road and parking spaces; no person or vehicle visible. Overlay at lower left reads `135.5,004.0`, which may be coordinate/telemetry data and needs source-context review. | **Flag: possible location/telemetry overlay; verify meaning and whether it reveals sensitive source context** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_059.jpg` | Tighter view of roadside trees, curb and empty spaces; no person or vehicle visible. Overlay at lower left reads `139.0,004.0`, potentially coordinate/telemetry data. | **Flag: possible location/telemetry overlay; verify meaning and whether it reveals sensitive source context** |
+
+## Batch 30 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_060.jpg` | Tight crop of utility poles, grass, roadway and empty parking spaces. No person or vehicle visible. A small pole-mounted label is present; text is too small to read confidently. Lower-left overlay reads `140.3,004.0`. | **Flag: possible coordinate/telemetry overlay and pole label; verify source context and whether either reveals sensitive location/infrastructure details** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_061.jpg` | Similar pole/road/empty parking-space view. No person or vehicle visible. Pole-mounted labels are visible and lower-left overlay reads `141.8,004.0`. | **Flag: possible coordinate/telemetry overlay and pole labels; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_062.jpg` | Same scene; no person or vehicle visible. Pole labels remain visible; overlay reads `141.8,004.0`. | **Flag: possible coordinate/telemetry overlay and pole labels; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_063.jpg` | Reframed view of utility poles, grass and empty roadway/parking spaces. No person or vehicle visible. Pole-mounted labels and overlay `142.2,004.0` are present. | **Flag: possible coordinate/telemetry overlay and pole labels; verify source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_064.jpg` | Similar empty roadside/parking crop. No person or vehicle visible. Small labels on pole and overlay `142.2,004.0` remain visible. | **Flag: possible coordinate/telemetry overlay and pole labels; verify source context** |
 
 ## Next
 
