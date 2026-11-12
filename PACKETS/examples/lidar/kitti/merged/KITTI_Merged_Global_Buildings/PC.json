@@ -1,4 +1,5 @@
 {
   "packet_id": "PKT-KITTI-MERGE-001",
-  "note": "PC for merge - global object database use, snapshot property for visual grounding"
+  "note": "Legacy packet purpose note only. No source-derived snapshot assets or source calibration/pose inputs are retained in this merged packet.",
+  "visual_grounding_status": "NOT PRESENT - snapshot/manifest.json records only the packet ID; it does not identify retained visual evidence."
 }
