@@ -1,11 +1,17 @@
 {
   "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
-  "overall_status": "VALID",
+  "overall_status": "BLOCKED_UNVERIFIED",
   "checks": [
     {
       "check": "pyramid_promotion",
-      "status": "PASS",
-      "details": "Rectangular base + cardinal + causeway = high quality correspondence, natural hill rejected"
+      "status": "NOT_VERIFIABLE",
+      "details": "Legacy assessment only. Source LiDAR point clouds and source-aligned evidence are absent; rectangular morphology, cardinal orientation and causeway correspondence cannot be independently checked."
     }
+  ],
+  "validation_scope": "The submitted PASS is a legacy assertion and is not reproducible from repository contents.",
+  "blockers": [
+    "Raw point clouds and exact flight acquisitions absent",
+    "No calibration/registration inputs or reproducible processing log",
+    "Pyramid/causeway interpretation remains a source-dependent hypothesis"
   ]
 }
