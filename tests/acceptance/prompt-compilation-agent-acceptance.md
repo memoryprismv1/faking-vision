@@ -1,6 +1,6 @@
 # FV prompt-compilation acceptance procedure
 
-**Status: agent-level acceptance is pending.** These are skill-runtime operations, not executable repository CLI commands. Playwright tests do not invoke an FV agent and must not be reported as proof that `fv validate` or `fv compile --prompt` executed.
+**Status: PARTIAL — agent-level cases exercised 2026-11-12.** Case B (legacy viewpoint compatibility) and Case C (negative reconciliation gate) passed their defined checks. Case A demonstrated default-render-VPO selection and prompt-only output, but remains partial because the full validation gate—including a separately recorded rebuild assessment and full semantic/evidence/dispute readiness—was not executed. These are skill-runtime operations, not executable repository CLI commands. Playwright tests do not invoke an FV agent and must not be reported as proof that `fv validate` or `fv compile --prompt` executed.
 
 ## Acceptance boundary
 
@@ -54,4 +54,14 @@ The repository's `PACKETS/examples/videos/Cat_jumping_backwards/` packet is a ne
 
 For each case, record case ID and packet hash; FV skill/specification revision; agent/model and date; exact validation and compile result; whether source files changed; whether any generator was invoked (must be no); and pass/fail with reviewer notes.
 
-Do not mark Cases A or B passed until actual agent-level runs and artifacts are attached. Case C's fixture state alone is not proof that an agent correctly blocks compilation.
+## Recorded agent-level results (2026-11-12)
+
+- **Case A — PARTIAL:** the Wikimedia image packet selected its separately declared `is_default: true` render VPO and emitted a prompt-only compile artifact. Source viewpoint initialisation remained unknown and distinct. The run's 28/28 local checks were structural/consistency checks, not a full JSON Schema or semantic `fv validate` run. Rebuild assessment and full validation dimensions remain outstanding.
+- **Case B — PASS (compatibility gate):** the legacy `blue_chairs` image packet was read without adding `viewpoint.json`; virtual `VP-DEFAULT` was not treated as a render VPO and no camera geometry was inferred. Compilation was correctly not attempted because no render VPO was available.
+- **Case C — PASS (negative gate):** prompt production was blocked because post-reconciliation validation remained pending; no generator was invoked and the input packet was unchanged.
+
+Evidence records:
+- [Wikimedia media rerun](results/2026-11-12-wikimedia-media-agent-run.md)
+- [Case C negative-gate run](results/2026-11-12-case-c-agent-run.md)
+
+The full Wikimedia rerun packet archive (`FV_Wikimedia_Test_2026-11-12-redone.zip`) is retained locally, not committed to the repository. The repository run record documents its hashes, method, outputs, and limitations. Overall acceptance remains **PARTIAL** until Case A's full validation gate is exercised and its evidence is retained. Case C's fixture state alone is not proof that an agent correctly blocks compilation; the separate Case C run record is the evidence for that agent-level result.
