@@ -368,3 +368,10 @@ A gate review found the first redone image packet lacked an explicit no-dispute 
 ### Follow-up — skill/operator V2 loop alignment
 
 The active `SKILL.md` and `HOW_TO_USE.md` now both state the Making Vision V2 architecture as a continuously recalibrated allocation loop. Economical broad monitoring and selective deeper processing coexist; candidate generation does not automatically cause promotion; allocation factors include current sensory conditions, persistent knowledge, internal state/energy, environmental statistics and anticipated consequences. This is explicitly not a mandatory serial coarse-to-fine pipeline. No biological mechanism claim was added.
+
+
+### Follow-up — typed dispute ID example correction (2026-11-12)
+
+The deferred `fv resolve dispute D-014` example inconsistency is corrected in both `commands.md` and `SKILL.md`. The example now uses `DSP-a1b2c3d4`, matching the current typed-ID convention for newly generated dispute records. Existing legacy IDs in example packets were left unchanged. The command map, skill map, and how-to map were rechecked and retain the same core operation set; `fv audit batch` remains explicitly identified as a non-native offline utility.
+
+The final media privacy acceptance remains pending by design and is reserved for the end of cleanup: visual inspection of every repository image and video, not filename-only screening.
