@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 185 / 309 media files (185 images, 0 videos)
-- Remaining: 120 images and 4 videos (124 media files)
+- Reviewed: 190 / 309 media files (190 images, 0 videos)
+- Remaining: 115 images and 4 videos (119 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -382,6 +382,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_097.jpg` | A dark minivan passes from right to left across the road. A driver/occupant silhouette is visible through the side window, but facial detail is not discernible. Pole-mounted labels remain in frame. | **Flag: vehicle occupant potentially visible; review privacy treatment and pole identifier** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_098.jpg` | Rear portion of the passing dark vehicle exits at the far-left edge; no person discernible. Pole-mounted labels remain visible. | **Flag: partial vehicle at edge; pole identifier/source context review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_099.jpg` | Vehicle has exited; empty roadside/parking crop with utility poles and labels. No person visible. | **Flag: potentially identifying infrastructure/location label; review and mask if needed** |
+
+## Batch 38 — CCTV-002 pole-label close-ups (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_100.jpg` | Close-up of a pole-mounted alphanumeric label and a second blurred sign. No person or vehicle visible. The lower label is clearly readable as a short code. | **Strong privacy/context flag: legible infrastructure/location identifier; determine what it identifies and mask unless confirmed non-sensitive** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_101.jpg` | Same close-up; alphanumeric code remains legible, with another blurred sign above. No person or vehicle visible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_102.jpg` | Same pole-label close-up; no person or vehicle visible. The alphanumeric code is legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_103.jpg` | Same close-up of pole labels; no person or vehicle visible. Code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_104.jpg` | Same close-up; no person or vehicle visible. Alphanumeric pole label is legible and fills a substantial part of the crop. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
 
 ## Next
 
