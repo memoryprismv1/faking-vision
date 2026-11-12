@@ -94,4 +94,4 @@ The final bundle adds the explicit `DISPUTES: NONE` declaration to both packet R
 
 ## Artifact retention
 
-The final rerun archive is retained locally as `FV_Wikimedia_Test_2026-11-12-final.zip`. It contains both packet structures, unchanged source files, observation and investigation records, prompt-only compile artifact, full validation report, manifest and 47-check log. The repository contains this evidence summary and source hashes, not the binary media or full archive.
+The final rerun archive is retained locally as `FV_Wikimedia_Test_2026-11-12-final.zip`. It contains both packet structures, unchanged source files, observation and investigation records, prompt-only compile artifact, full validation report, manifest and 47-check log. The repository retains the evidence summary plus `LOCAL_CHECKS.txt` and `RUN_MANIFEST.json` under `tests/acceptance/results/2026-11-12-wikimedia-media-agent-run/`; source binaries and the full archive are not committed.
