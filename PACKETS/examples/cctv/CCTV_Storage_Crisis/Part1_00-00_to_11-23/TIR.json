@@ -1,7 +1,7 @@
 {
   "packet_id": "PKT-CCTV-STORAGE-PART1-001",
   "tir_version": "v0.24 TIR - Temporal Investigation Record",
-  "note": "TIR is rich in-memory workspace, retains provisional, contradictory, rejected hypotheses. TD is committed official record derived from TIR.",
+  "note": "Retrospective legacy TIR metadata. Source frames/video are absent, so observations and hypotheses cannot be independently verified. In a normal FV workflow TD is the committed record derived from TIR; the TD retained here is explicitly non-authoritative because its source evidence is unavailable.",
   "temporal_range": {
     "start": "00:00",
     "end": "11:23"
