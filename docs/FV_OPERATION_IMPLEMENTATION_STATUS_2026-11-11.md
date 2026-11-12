@@ -1,6 +1,6 @@
 # FV operation implementation status
 
-Date: 2026-11-11
+Date: 2026-11-12
 Repository baseline: `main`
 Working branch: `work/fv-docs-skill-cleanup-20261111`
 
@@ -9,7 +9,7 @@ Working branch: `work/fv-docs-skill-cleanup-20261111`
 - **Specified:** the current Working Process Specification and/or agent skill defines the operation and its boundaries.
 - **Tool-supported (limited):** repository code implements a bounded part of the operation. This does not imply a general FV runtime or authoritative semantic validation.
 - **Experimentally represented:** packet examples, prototypes, or workflows show an intended shape or bounded behavior. They are not proof of a general implementation.
-- **Agent acceptance pending:** the operation is specified for an FV-capable agent, but the documented acceptance procedure has not yet been passed with retained agent-run evidence.
+- **Agent acceptance partial:** one or more defined agent-level acceptance cases have been exercised, but the complete acceptance gate or required evidence remains outstanding.
 
 The `fv` textarea commands are agent-level operation requests, not standalone shell commands or an installed FV CLI.
 
@@ -26,8 +26,8 @@ The `fv` textarea commands are agent-level operation requests, not standalone sh
 | `fv edit` | Specified | Two client-side browser prototypes exist: the schematic Visual Workbench and the Media Object Editor MVP. | Limited editing prototypes, not a general FV packet editor, authoritative validator, or full reconstruction workbench. Their version selectors/defaults remain v0.25/v0.26-era; neither implements the v0.27 rebuild workflow. |
 | `fv edit viewpoint` | Specified; VPO schema and `VPO_DEFAULT` template exist | Browser UI supports VPO creation/editing, import/export, and edit logs. Browser tests cover camera/VPO behavior. | The Visual Workbench text console currently parses viewpoint `set position` and `set orientation` only. The broader command forms are not all implemented in that console. Explicit `VPO_DEFAULT` creation is a UI action, not a defined textarea subcommand. |
 | `fv resolve` | Human-resolution and AI-reconciliation lifecycle specified | Dispute records and lifecycle examples exist. | No general-purpose automatic dispute resolver identified. Human decisions must not be fabricated by an agent. |
-| `fv validate` | Structural, semantic, evidence, dispute, and rebuild-assessment requirements specified | Limited editor-level checks exist; JSON schemas and schema-validation tests exist for provenance/audit artifacts. | The browser workbench's `fv validate` is an editor-level structural/reference check, not the authoritative full FV semantic validator. Agent-level acceptance remains unverified. |
-| `fv compile` | Renderer-neutral compilation and `--prompt` mode specified | Compiled specifications/prompts and an agent-level acceptance procedure exist. | No general renderer adapter or generator integration established. Prompt-compilation agent acceptance is explicitly pending. |
+| `fv validate` | Structural, semantic, evidence, dispute, and rebuild-assessment requirements specified | Limited editor-level checks exist; JSON schemas and schema-validation tests exist for provenance/audit artifacts. | The browser workbench's `fv validate` is an editor-level structural/reference check, not the authoritative full FV semantic validator. Agent-level validation was exercised in the Wikimedia prompt-compilation run and the negative reconciliation-gate run; full semantic/evidence/dispute validation and a separately recorded rebuild assessment remain unverified. |
+| `fv compile` | Renderer-neutral compilation and `--prompt` mode specified | Compiled specifications/prompts and an agent-level acceptance procedure exist. | No general renderer adapter or generator integration established. Agent-level prompt-only acceptance is partial: Case A demonstrated default-render-VPO selection and prompt output but did not complete the full validation gate; Case B legacy compatibility and Case C negative-gate enforcement passed their defined checks. |
 | `fv audit` | Independent packet-to-packet audit and JSON report schema specified | Audit report schema and report contract exist. | No general automated media auditor identified. The batch utility below does not perform audits. |
 | `fv audit batch` | Proposed as an agent-level interface; explicitly not a native skill-runtime command | `TOOLS/fv_audit_batch.py`, aggregate schema, nine unit tests, and GitHub Actions workflow exist. | Implemented offline utility validates and aggregates existing reports; it does not re-audit media or rewrite source reports. |
 
@@ -68,9 +68,22 @@ The MVP loads user-supplied video or still images, supports manual polygon mask 
 | Playwright prompt-only fixture checks | 2 | Golden prompt content and legacy Cat-packet reconciliation gate fixture assertions | Execution of an agent-level compiler or proof that the agent enforces the compile gate |
 | Python audit-batch tests | 9 | Aggregation, duplicate handling, unit profiles, schema output, invalid-report diagnostics, provenance roles | Independent visual/media auditing |
 | Python provenance-schema tests | 5 | Optional add-ons and provenance schema constraints | Full packet semantic validation |
-| Agent prompt-compilation acceptance | Pending | Default VPO selection, legacy viewpoint compatibility, negative reconciliation gate | No pass may be claimed until actual agent runs and artifacts are retained |
+| Agent prompt-compilation acceptance | Partial: 3 defined cases exercised | Case A default VPO selection/prompt output; Case B legacy viewpoint compatibility; Case C negative reconciliation gate | Case A remains partial because full validation/rebuild assessment was not executed. Local structural checks are not full schema or semantic validation. See acceptance run records |
 
 There are 24 Playwright tests across the four browser spec files (including two prompt-only fixture checks), and 14 Python unit tests in the inspected files. The two prompt-only tests are fixture/contract assertions; they do not execute the agent-level compiler or establish its acceptance. Test definitions are present; this document does not claim that they were executed or passed during this audit.
+
+## Agent-level prompt-compilation acceptance (2026-11-12)
+
+- **Case A — PARTIAL:** Wikimedia image packet default render VPO selected correctly and a prompt-only compile artifact was produced. Source viewpoint initialisation remained separately unknown. The run passed 28 local structural/consistency checks, but did not execute the full validation dimensions or a separately recorded rebuild assessment.
+- **Case B — PASS (compatibility gate):** legacy `blue_chairs` packet remained unchanged; virtual `VP-DEFAULT` was treated only as a read-time source-viewpoint compatibility identity, not a render VPO. No camera geometry or synthetic `viewpoint.json` was added; compilation was not attempted without a render VPO.
+- **Case C — PASS (negative gate):** prompt compilation was blocked because post-reconciliation validation remained pending. No generator was invoked and the packet was unchanged.
+- The complete Wikimedia rerun packet archive is retained locally as `FV_Wikimedia_Test_2026-11-12-redone.zip`; its repository-side run record documents source hashes, method, artifacts and limitations. The archive itself is not committed.
+- Overall prompt-compilation acceptance remains **PARTIAL** until Case A's full validation gate and evidence are completed.
+
+Evidence:
+- [Wikimedia media rerun](../tests/acceptance/results/2026-11-12-wikimedia-media-agent-run.md)
+- [Case C negative-gate run](../tests/acceptance/results/2026-11-12-case-c-agent-run.md)
+- [Acceptance procedure](../tests/acceptance/prompt-compilation-agent-acceptance.md)
 
 ## GitHub Actions workflows and observed CI evidence
 
