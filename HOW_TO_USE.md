@@ -129,17 +129,37 @@ Give the AI the source image together with:
 
 the current canonical Markdown specification at `SPECIFICATION/FV_Working_Process_Specification.md`. The active skill links to this file but does not embed the full current specification. If the repository is unavailable to the agent, supply this specification; the separately archived v0.24 snapshot is historical reference only.
 
-The image-analysis path is:
+The image-analysis path is an **allocation loop**, not a mandatory serial coarse-to-fine pipeline:
 
-`source → observation/structural inventory → candidate generation → selective promotion for additional processing → candidate verification and alternative search → entity/component/appearance decision → identity resolution where supported → evidence-grounded packet commitment → packet construction → validation → export`
+`current sensory input + persistent knowledge/internal state/environmental context → economical broad processing ↔ selective allocation of deeper processing → evidence assessment → supported packet commitment`
+
+Broad processing preserves useful current structure—boundaries, surfaces, free space, relative position, components, shading, occlusion and other relations—even when object identity is unknown. It can generate candidates and perturbations, but not every candidate or change is automatically promoted.
+
+Promotion means allocating additional processing to a candidate, state, region or event. It is not recognition, confirmation, identity assignment or packet commitment. Promotion may be influenced by salience, uncertainty, task relevance, novelty, information value, risk, expectations, learned relevance, internal/physiological state, energy, environmental statistics and anticipated consequences. A promoted candidate may remain unresolved or be rejected.
+
+After additional inspection, distinguish:
+- directly observed structure and appearance;
+- relational conclusions derived from observed elements;
+- calibrated or knowledge-supported inference;
+- unresolved alternatives.
+
+Commit entities, identities, correspondences and relationships to authoritative packet records only when the source evidence supports them. Keep the processing-allocation decision and the packet-commitment decision separate.
+
+A useful operational outline is therefore:
+
+`source → broad structural observation → candidate/perturbation generation where applicable → selective additional inspection where warranted → alternative/discriminating-evidence checks → evidence-grounded entity/identity decisions → packet commitment → validation → export`
+
+This outline describes common work, not a fixed sequence every candidate must pass through.
 
 ### Component candidature
 
-When an object is ambiguous, do not wait for whole-object recognition.
+When an object is ambiguous, do not wait for whole-object recognition. A visible component can generate a candidate set, but candidate generation does not automatically require expensive inspection.
 
-Use:
+Use the component to identify potentially discriminating evidence:
 
-`component → candidate set → search for discriminating components/relationships → verify/reject`
+`observed component/relationship → candidate set → decide whether additional inspection is warranted → search for discriminating components/relationships → strengthen, weaken, reject or retain unresolved`
+
+The decision to inspect further is an allocation decision. It may be driven by task relevance, uncertainty, risk, information value or expected consequence as well as visual salience. Do not promote every candidate simply because it exists.
 
 A component is evidence, not identity. Preserve multiple evidence-supported candidates when necessary. Record what additional component or relationship was sought, what was observed, and why a candidate was strengthened, weakened, rejected, or left unresolved. Do not let later recognition rewrite the earlier evidence path.
 
@@ -198,7 +218,7 @@ Video analysis should:
 3.  Acquire additional temporal evidence where observable structure,
     identity continuity, spatial relationships, state changes, or
     uncertainty justify it.
-4.  Track persistent identities across observations.
+4.  Assess correspondence across observations; maintain persistent identity only when source evidence supports it. Candidate continuity, category similarity or motion alone is not identity proof.
 5.  Distinguish movement from duplication.
 6.  Distinguish occlusion and off-screen absence from deletion.
 7.  Record entry/exit and state/behaviour changes.
