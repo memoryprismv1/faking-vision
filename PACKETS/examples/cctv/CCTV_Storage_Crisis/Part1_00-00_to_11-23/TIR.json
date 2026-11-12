@@ -11,23 +11,25 @@
       "time": "00:00 + 10s",
       "object": "Person A - seated/standing near bench",
       "action": "present",
-      "confidence": "high",
-      "evidence": "L1 direct - visible in frame",
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained.",
       "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
     },
     {
       "time": "00:00 + 45s",
       "object": "Person B",
       "action": "approaching",
-      "confidence": "high",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
     },
     {
       "time": "00:00 + 2min",
       "object": "Person C",
       "action": "arriving",
-      "confidence": "high",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
+      "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
+      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
+      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
     }
   ],
   "hypotheses": [
