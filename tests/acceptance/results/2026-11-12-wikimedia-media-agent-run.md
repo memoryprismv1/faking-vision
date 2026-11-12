@@ -41,10 +41,19 @@
 - Viewpoint JSON: PASS against repository schema constraints.
 - Case A default render VPO selection: PASS.
 - Case A prompt-only compile: PASS; no generator invoked.
-- Case B legacy image packet compatibility: NOT RUN (no legacy packet in this media set).
+- Case B legacy image packet compatibility: PASS (compatibility gate only). Inspected `PACKETS/examples/images/blue_chairs/`, an older packet whose OI/MSRM/README date to the repository's initial 2026-09-08 commit; the viewpoint schema was first added 2026-11-03. The packet has no `viewpoint.json`. The virtual `VP-DEFAULT` remains read-time-only source compatibility, not a render VPO; no camera geometry was inferred. Because no render VPO exists, prompt compilation was correctly not attempted. No repository source files were modified. This is an agent-level compatibility decision, not a dedicated CLI validator execution.
 - OI/MSRM/TD/TIR were created as structured packet artifacts; no formal schemas for those records were invoked in this run.
 - Source files retained unchanged in packet source folders.
 - No reconstruction was generated.
+
+## Case B legacy fixture evidence
+
+- OI blob: `ec7188bd9b4d1b5aae693eb725c38c8aaf9e56d8`
+- MSRM blob: `eaf2400289bf40fd60ea2eb3c4c1449542c5ac97`
+- README blob: `3006914455cc9d3eb468000fd08a6b63686176b3`
+- OI initial commit: 2026-09-08 (`fca92e904828c2c74936b7092e2c6edf37e9b325`)
+- Viewpoint schema first added: 2026-11-03 (`f86443e78eac7d6b1ee968b6f5f4ce6a56d2fb62`)
+- Result: legacy source compatibility honoured; no synthetic `viewpoint.json`, no invented camera geometry, and no render VPO inferred from `VP-DEFAULT`.
 
 ## Scope qualification
 
