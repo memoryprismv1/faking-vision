@@ -26,5 +26,5 @@
       "relation": "distributed foreground garden shrubs and planting bed; region rather than single point"
     }
   },
-  "validation_note": "reported PASS in submitted packet; not independently run"
+  "validation_note": "A PASS was reported in the submitted packet but was not independently run. Cross-state inventory dispute DSP-WALL-CAT-001 remains OPEN: vegetation is represented in this edit but absent from baseline OI; source images are withheld, so whether it is newly introduced or previously omitted is unresolved."
 }
