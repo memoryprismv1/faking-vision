@@ -88,7 +88,7 @@ The final bundle adds the explicit `DISPUTES: NONE` declaration to both packet R
 
 ## Other acceptance gates
 
-- **Case B — legacy viewpoint compatibility: PASS.** The older `blue_chairs` packet has no `viewpoint.json`; virtual `VP-DEFAULT` remains read-time-only source compatibility, not a render VPO. No viewpoint file or camera geometry was invented. Prompt compilation was not attempted because no render VPO was available.
+- **Case B — legacy viewpoint compatibility: PASS.** The older `blue_chairs` packet now explicitly declares `DISPUTES: NONE` and has no `viewpoint.json`; virtual `VP-DEFAULT` remains read-time-only source compatibility, not a render VPO. No viewpoint file or camera geometry was invented. Prompt compilation was not attempted because no render VPO was available. The isolated recheck is recorded in `2026-11-12-case-b-legacy-viewpoint-run.md`.
 - **Case C — negative reconciliation gate: PASS.** See `2026-11-12-case-c-agent-run.md`. Pending post-reconciliation validation blocked prompt production.
 - **Overall defined agent acceptance: PASS for Cases A, B and C.** This is acceptance of the defined skill-runtime cases, not evidence of a standalone CLI or general-purpose FV runtime.
 
