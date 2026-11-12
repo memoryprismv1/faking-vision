@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 90 / 309 media files (90 images, 0 videos)
-- Remaining: 215 images and 4 videos (219 media files)
+- Reviewed: 95 / 309 media files (95 images, 0 videos)
+- Remaining: 210 images and 4 videos (214 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -192,6 +192,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_002.jpg` | A pedestrian in a light shirt is visible at the far-right edge; face is small but head and clothing are distinguishable. Numerous vehicles and plates remain in view. | **Flag: person present; review face visibility, plates and source permissions** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_003.jpg` | Pedestrian remains at the far-right edge, closer to the parked vehicles; face is still small. A light pickup is moving through the lot. | **Flag: person present; review face visibility, plates and source permissions** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_004.jpg` | Pedestrian remains visible near the right edge, with face/head discernible at this scale. Multiple vehicles and commercial markings are present. | **Flag: person present; review face visibility, plates and source permissions** |
+
+## Batch 19 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_005.jpg` | Pedestrian in a light shirt remains near the far-right foreground; head/face and clothing are discernible, though small. A light pickup is crossing the lot; many vehicles and plates are present. | **Flag: person visible; vehicle identifiers and commercial markings need review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_006.jpg` | Same pedestrian continues walking along the right side of the parking lot. Face remains visible at small scale. | **Flag: person visible; review face masking and vehicle identifiers** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_007.jpg` | Pedestrian is closer to the foreground vehicles; face/head and clothing remain distinguishable. Pickup has moved across the lot. | **Flag: person visible; review face masking and vehicle identifiers** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_008.jpg` | Pedestrian continues past parked vehicles; face visible in the full frame. Pickup continues moving. | **Flag: person visible; review face masking and vehicle identifiers** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_009.jpg` | Pedestrian remains visible near the foreground SUV; face/head and clothing are discernible. Vehicle plates and commercial markings remain in scene. | **Flag: person visible; review face masking, plates and source permissions** |
 
 ## Next
 
