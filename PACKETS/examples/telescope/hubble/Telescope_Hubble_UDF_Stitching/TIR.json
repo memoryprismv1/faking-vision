@@ -2,5 +2,7 @@
   "packet_id": "PKT-TELESCOPE-HUDF-STITCH-001",
   "hypotheses": [
     "faint smudge = galaxy vs cosmic ray"
-  ]
+  ],
+  "investigation_status": "UNVERIFIED - source exposures and frame/catalogue evidence are absent",
+  "hypothesis_status": "The faint-smudge galaxy-versus-cosmic-ray question is a legacy hypothesis, not a resolved classification."
 }
