@@ -36,7 +36,7 @@ BOUNDARIES
 - This is initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No vehicle make/model, person identity, placard meaning, exact world coordinates, or unsupported persistent vehicle identity is asserted.
 
-DISPUTES: THREE DISPUTE RECORDS at packet level: one inventory-completeness item is deferred/non-blocking for this chunk; two investigations remain open and active (moving light-coloured vehicle-like form; opening camera/view change). The merge gate remains blocked. No identity merge or reconstruction compilation is authorized.
+DISPUTES: aggregate status is OPEN. Three dispute records remain: the inventory-completeness item is DEFERRED from current chunk-level attention but remains unresolved; two investigations remain ACTIVE/OPEN (moving light-coloured vehicle-like form; opening camera/view change). The merge/render gate remains blocked. No identity merge or reconstruction compilation is authorized.
 
 
 HONEST STATUS ADDENDUM (2026-10-14)
