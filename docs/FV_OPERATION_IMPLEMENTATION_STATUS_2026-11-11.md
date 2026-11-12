@@ -83,6 +83,8 @@ There are 24 Playwright tests across the four browser spec files (including two 
 
 Evidence:
 - [Wikimedia media rerun](../tests/acceptance/results/2026-11-12-wikimedia-media-agent-run.md)
+- [47-check log](../tests/acceptance/results/2026-11-12-wikimedia-media-agent-run/LOCAL_CHECKS.txt)
+- [Run manifest](../tests/acceptance/results/2026-11-12-wikimedia-media-agent-run/RUN_MANIFEST.json)
 - [Case C negative-gate run](../tests/acceptance/results/2026-11-12-case-c-agent-run.md)
 - [Acceptance procedure](../tests/acceptance/prompt-compilation-agent-acceptance.md)
 
