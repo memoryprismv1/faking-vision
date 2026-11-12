@@ -12,7 +12,7 @@
     "cat": {
       "x": 0.48,
       "y": 0.67,
-      "relation": "on wall / on chair, exposed"
+      "relation": "on chair, exposed (authored baseline; source image withheld)"
     },
     "vegetation": {
       "x": 0.5,
