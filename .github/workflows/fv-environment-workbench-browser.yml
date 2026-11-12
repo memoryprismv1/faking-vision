@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - work/fv-docs-skill-cleanup-20261111
+    paths:
+      - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
+      - 'PACKETS/tools/FV_Media_Object_Editor_MVP.html'
+      - 'tests/browser/**'
+      - 'SPECIFICATION/FV_Viewpoint_Schema.json'
+      - 'playwright.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/fv-environment-workbench-browser.yml'
   pull_request:
     paths:
       - 'PACKETS/tools/FV_Edit_Visual_Workbench.html'
