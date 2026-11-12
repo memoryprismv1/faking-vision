@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 190 / 309 media files (190 images, 0 videos)
-- Remaining: 115 images and 4 videos (119 media files)
+- Reviewed: 195 / 309 media files (195 images, 0 videos)
+- Remaining: 110 images and 4 videos (114 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -392,6 +392,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_102.jpg` | Same pole-label close-up; no person or vehicle visible. The alphanumeric code is legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_103.jpg` | Same close-up of pole labels; no person or vehicle visible. Code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_104.jpg` | Same close-up; no person or vehicle visible. Alphanumeric pole label is legible and fills a substantial part of the crop. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+
+## Batch 39 — CCTV-002 close-ups and CCTV-003 parking-lot views (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_105.jpg` | Close-up of the same pole-mounted alphanumeric label and a second blurred sign. No person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_106.jpg` | Same close-up of pole labels; no person or vehicle visible. The alphanumeric code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/first_wide_parking_view_t008.jpg` | Wide parking-lot view with many parked vehicles, visible registration plates and commercial vehicle markings. No pedestrian clearly discernible; occupants through windows are not sufficiently resolved to assess. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/late_lot_state_t100.jpg` | Wide parking-lot view with many vehicles and visible plates. No pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/mid_lot_later_state_t060.jpg` | Parking lot with a light-colored car door open; two people are standing beside/leaning into the vehicle. Heads and upper bodies are visible, though facial detail is limited by distance. Numerous vehicle plates are also present. | **Strong privacy flag: people visible; mask/replace unless publication permission is documented; review vehicle identifiers** |
 
 ## Next
 
