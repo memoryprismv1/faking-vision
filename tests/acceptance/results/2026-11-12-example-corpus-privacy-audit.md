@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 205 / 309 media files (205 images, 0 videos)
-- Remaining: 100 images and 4 videos (104 media files)
+- Reviewed: 210 / 309 media files (210 images, 0 videos)
+- Remaining: 95 images and 4 videos (99 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -421,6 +421,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_002.jpg` | Same pole-label close-up; no person or vehicle visible. Code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_003.jpg` | Wider pole/roadside view with multiple stickers and the same alphanumeric code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label and signage; review and mask if needed** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_004.jpg` | Wider roadside/parking crop with pole labels and code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label and signage; review and mask if needed** |
+
+## Batch 42 — CCTV-003 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_005.jpg` | Wider roadside/parking view with utility poles, hedge, empty spaces and a red vehicle partly entering at the lower-right edge. Pole-mounted labels and alphanumeric code remain visible. No pedestrian discernible. | **Flag: pole identifier and partial vehicle/source context review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_006.jpg` | Similar view with red vehicle partly visible at lower-right; pole labels remain in view. No person discernible. | **Flag: pole-mounted identifier/signage and partial vehicle review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_007.jpg` | Wider parking-lot scene with several vehicles, visible plates and commercial markings. No pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review; pole labels also visible** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_008.jpg` | Parking lot with red minivan and multiple other vehicles; plates/markings visible. No person discernible. | **Flag for vehicle-identifier/source permission review; pole labels also visible** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_009.jpg` | Blurred tighter crop of roadside pole/labels with part of a red vehicle at lower right. No person discernible. The alphanumeric pole label remains visible though blurred. | **Flag: pole identifier and vehicle fragment; verify source context and masking needs** |
 
 ## Next
 
