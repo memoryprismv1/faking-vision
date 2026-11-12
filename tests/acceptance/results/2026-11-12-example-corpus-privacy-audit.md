@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 50 / 309 media files (50 images, 0 videos)
-- Remaining: 255 images and 4 videos (259 media files)
+- Reviewed: 55 / 309 media files (55 images, 0 videos)
+- Remaining: 250 images and 4 videos (254 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -112,6 +112,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_043s.jpg` | Same scene; no person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_044s.jpg` | Same scene; no person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_046s.jpg` | Same scene; no person visible. Vehicle plates remain too small to read confidently in these full-frame images. | **Flag for vehicle-identifier/source permission review** |
+
+## Batch 11 — CCTV verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_047s.jpg` | Parking lot and access road; no pedestrian visible. A blue vehicle is moving in the distant road. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_048s.jpg` | Same scene; no pedestrian visible. Blue vehicle remains on the access road. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_050s.jpg` | Parking lot with parked vehicles; no person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_051s.jpg` | Same scene; no person visible. A vehicle is visible on the distant access road. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_052s.jpg` | Parking lot with parked vehicles; no person visible. | **Flag for vehicle-identifier/source permission review** |
 
 ## Next
 
