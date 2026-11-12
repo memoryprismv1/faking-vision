@@ -5,6 +5,12 @@ on:
     branches:
       - feature/fv-audit-batch
       - work/fv-docs-skill-cleanup-20261111
+    paths:
+      - "TOOLS/**"
+      - "SPECIFICATION/FV_Audit_Report_Schema.json"
+      - "SPECIFICATION/FV_Audit_Batch_Report_Schema.json"
+      - "SPECIFICATION/FV_Packet_Provenance_Schema.json"
+      - ".github/workflows/fv-audit-batch.yml"
   pull_request:
     paths:
       - "TOOLS/**"
