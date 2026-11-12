@@ -16,7 +16,8 @@
         "base": "40x40m",
         "height": "15.0m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00002",
@@ -31,7 +32,8 @@
         "base": "40x40m",
         "height": "15.3m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00003",
@@ -46,7 +48,8 @@
         "base": "40x40m",
         "height": "15.6m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00004",
@@ -61,7 +64,8 @@
         "base": "40x40m",
         "height": "15.9m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00005",
@@ -76,7 +80,8 @@
         "base": "40x40m",
         "height": "16.2m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00006",
@@ -91,7 +96,8 @@
         "base": "40x40m",
         "height": "16.5m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00007",
@@ -106,7 +112,8 @@
         "base": "40x40m",
         "height": "16.8m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00008",
@@ -121,7 +128,8 @@
         "base": "40x40m",
         "height": "17.1m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00009",
@@ -136,7 +144,8 @@
         "base": "40x40m",
         "height": "17.4m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00010",
@@ -151,7 +160,8 @@
         "base": "40x40m",
         "height": "17.7m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00011",
@@ -166,7 +176,8 @@
         "base": "40x40m",
         "height": "18.0m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     },
     {
       "global_canonical_id": "PYR-GLOBAL-00012",
@@ -181,7 +192,8 @@
         "base": "40x40m",
         "height": "18.3m",
         "orientation": "N-S/E-W"
-      }
+      },
+      "provenance_status": "UNVERIFIED - packet-scoped source IDs do not resolve to retained contributing packet records in this example; no source correspondence evidence is included."
     }
   ],
   "total_global": 61000,
@@ -196,5 +208,6 @@
     "uncategorized_remainder": 55000,
     "uncategorized_remainder_status": "not categorized or represented as explicit global identities; do not infer categories",
     "merge_status": "illustrative only; dispute.json merge_gate BLOCKED"
-  }
+  },
+  "merge_inputs_status": "UNVERIFIED legacy input-count claim; contributing flight-transect packets and source identifiers are absent."
 }
