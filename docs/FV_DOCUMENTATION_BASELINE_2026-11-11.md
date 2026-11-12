@@ -351,3 +351,10 @@ The earlier Wikimedia media run was not carried forward as accepted evidence. Bo
 The previous run record was replaced with an accurate account of the V2 rerun and its limits. The acceptance procedure and operation-status matrix now record overall prompt-compilation acceptance as **PARTIAL**, not pending and not complete. The complete rerun archive remains local; the repository contains the evidence summary and source hashes, not the source binaries or full archive.
 
 No merge was performed. The final privacy acceptance test—visual inspection of every repository image and video to ensure no personal material has entered the FV asset set—remains deliberately deferred until the other cleanup work is complete.
+
+
+### Follow-up — Making Vision V2 allocation model in operator guide
+
+The image-analysis section of `HOW_TO_USE.md` previously presented a compact arrow chain that could be read as a mandatory serial pipeline in which candidates are generated and then promoted. It now describes analysis as an allocation loop: economical broad processing preserves useful sensory structure; candidates/perturbations may arise; deeper processing is allocated selectively when warranted; and evidence-based packet commitment remains a separate decision. The guide now lists V2 allocation influences (including uncertainty, task relevance, information value, risk, expectations, learned relevance, internal state/energy, environmental statistics and anticipated consequences) and explicitly states that candidate generation does not automatically trigger promotion.
+
+The component-candidature section now distinguishes candidate generation from the decision to spend additional processing, and the video section makes persistent identity conditional on source-supported correspondence. This aligns the human guide with the active skill's V2 distinctions and the authoritative specification. No new FV mechanism or biological claim was added.
