@@ -317,3 +317,5 @@ No source-dependent uncertainty was silently resolved. No authoritative FV seman
 - CCTV experiment process log corrected to reflect Part 2's newly added dispute.json while retaining the explicit absence of PC.json and persistent TIR.json.
 
 - Mayan stitching MSRM now marks coordinate system, registration method, coverage, point-level provenance and spatial relationships as unverified legacy claims; KITTI Sequence 00/07 MSRM coordinate-system/origin claims are likewise qualified. KITTI Sequence 00's moving-car handling is explicitly a proposed rule, not a verified filter result.
+
+- Rechecked the five source-image packet inventories against their MSRM references: blue_chairs (15/15), desk_with_objects (14/14), kitchen_interior_design (16/16), restaurant_kitchen (14/14), small_room_interior (10/10). No missing/extra IDs or duplicate OI canonical IDs were found in these five structural comparisons.
