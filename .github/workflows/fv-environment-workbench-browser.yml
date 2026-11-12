@@ -29,6 +29,7 @@ on:
 jobs:
   chromium:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -46,7 +47,10 @@ jobs:
           test -s "$RUNNER_TEMP/fv-cctv-real-clip.webm"
           echo "FV_REAL_MEDIA_PATH=$RUNNER_TEMP/fv-cctv-real-clip.webm" >> "$GITHUB_ENV"
       - run: npm install --no-save http-server
-      - run: npm run test:e2e
+      - name: List discovered browser tests
+        run: npx playwright test --list
+      - name: Run browser tests
+        run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:
