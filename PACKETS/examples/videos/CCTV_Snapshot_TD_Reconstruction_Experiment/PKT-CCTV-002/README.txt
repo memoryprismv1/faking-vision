@@ -30,11 +30,11 @@ PACKET CONTENTS
 - snapshot/manifest.json: source lineage, timestamps, snapshot/crop hashes and crop provenance.
 - snapshot/verification/: 106 full-frame snapshots.
 - snapshot/objs/: eight source-derived evidence crops.
-- No PC.json, TIR.json, or dispute.json is included in this packet folder. The README's “DISPUTES: NONE” is a prose status, not a retained machine-readable dispute record. The process log describes targeted manual review, but no separate TIR preserves its hypotheses, decisions, and unresolved questions; do not infer a complete investigation trail from the TD and snapshot manifest alone.
+- No PC.json or TIR.json is included in this packet folder. `dispute.json` now records three active issues: provisional pedestrian correspondence, unresolved camera-view transitions, and the limits of one-second sampling. The process log and TD preserve some observations, but they do not substitute for a persistent TIR; do not infer a complete investigation trail from the TD and snapshot manifest alone.
 
 BOUNDARIES
 - This packet is not merged with Part 1. IDs are packet-local and must not be treated as cross-packet identities.
 - The packet is an initial FV analysis output. Validation, investigation, merge and compilation remain separate operations.
 - No make/model, person identity, sign meaning, or cross-view identity is asserted beyond the retained visual evidence.
 
-DISPUTES: NONE at packet level. Local uncertainties and provisional correspondence are preserved in OI/TD; no identity merge or reconstruction compilation is authorized by this statement.
+DISPUTES: THREE OPEN INVESTIGATIONS in dispute.json. The analysis is partial and the merge gate is BLOCKED. No identity merge or reconstruction compilation is authorized.
