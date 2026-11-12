@@ -94,4 +94,4 @@ the current command syntax exposes.
 3. Do not describe the batch processor as `fv audit`; it only validates/aggregates existing audit reports.
 4. Do not claim the browser command console supports every viewpoint command form.
 5. Treat question-directed analysis of supplied media as part of `fv investigate`; TD temporal queryability remains a packet capability and acceptance requirement, not a separate user-facing command.
-6. Example packet review and cleanup remain a separate later phase; no example files were changed in this status review.
+6. Example packet review and cleanup is tracked separately from the operation implementation matrix; the subsequent example audit and current evidence status are recorded in `PACKETS/examples/README.md` and `PACKETS/META_EXAMPLES_CATALOG.md`.
