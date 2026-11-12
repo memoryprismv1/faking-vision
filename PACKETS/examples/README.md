@@ -54,3 +54,6 @@ Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merge
 ## Verification boundary
 
 The checks recorded here are targeted structural, provenance, and cross-reference reviews. No full authoritative FV semantic validation, exhaustive frame-by-frame audit, independent reproduction of the LiDAR/telescope processing, or complete validation of every example packet is claimed.
+
+
+Dispute-gate convention: the example `dispute.json` files use canonical aggregate `status` values (`none`, `open`, `resolved`) and per-record `resolution_status`. Chunk-local attention deferral is recorded separately as `operational_disposition`; a deferred issue remains unresolved (`resolution_status: OPEN`) and does not clear an open rendering/compilation gate. This preserves the Making Vision allocation distinction without introducing a new aggregate dispute status.
