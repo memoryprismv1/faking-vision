@@ -2,5 +2,11 @@
   "status": "resolved",
   "packet_id": "PKT-CAT-JUMP-BACK-001",
   "resolved_at": "2026-10-12T05:30:23.101663",
-  "note": "All disputes resolved. Detailed history in dispute.reconciled.json. Rendering permitted per 8.5."
+  "note": "Dispute closure records the human's acceptance of metadata-only analysis with uncertainty preserved; it does not mean the underlying visual, background or timing questions were factually resolved. Rendering permission applies only to this metadata-only experiment under the recorded limitations.",
+  "closure_basis": "human acceptance of limitations and permission to compile with uncertainty preserved; no new source frames or factual evidence were added",
+  "factual_questions_remain_unresolved": [
+    "Direct frame inspection and source-level visual verification",
+    "Background/spatial layout beyond supplied metadata",
+    "Exact original/replay transition timestamp"
+  ]
 }
