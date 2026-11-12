@@ -16,8 +16,9 @@
         "PKT-CCTV-STORAGE-PART2-001-OBJ-001",
         "PKT-CCTV-STORAGE-PART3-001-OBJ-001"
       ],
-      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
-      "label": "Same individual across all 3 parts"
+      "quality": "UNVERIFIED legacy correspondence claim; no source media or source-aligned frame evidence is retained",
+      "label": "Same individual across all 3 parts",
+      "commit_status": "NOT COMMITTED - correspondence remains a candidate only"
     },
     {
       "global_id": "PERSON-GLOBAL-002",
@@ -26,8 +27,9 @@
         "PKT-CCTV-STORAGE-PART2-001-OBJ-002",
         "PKT-CCTV-STORAGE-PART3-001-OBJ-002"
       ],
-      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
-      "label": "Person B / uniformed officer candidate; personal identity/name not established by the retained packet evidence"
+      "quality": "UNVERIFIED legacy correspondence claim; no source media or source-aligned frame evidence is retained",
+      "label": "Person B / uniformed officer candidate; personal identity/name not established by the retained packet evidence",
+      "commit_status": "NOT COMMITTED - correspondence remains a candidate only"
     },
     {
       "global_id": "PERSON-GLOBAL-003",
@@ -36,7 +38,8 @@
         "PKT-CCTV-STORAGE-PART2-001-OBJ-003",
         "PKT-CCTV-STORAGE-PART3-001-OBJ-003"
       ],
-      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
+      "quality": "UNVERIFIED legacy correspondence claim; no source media or source-aligned frame evidence is retained",
+      "commit_status": "NOT COMMITTED - correspondence remains a candidate only"
     },
     {
       "global_id": "STRUCTURE-GLOBAL-001",
@@ -45,9 +48,18 @@
         "PKT-CCTV-STORAGE-PART2-001-OBJ-004",
         "PKT-CCTV-STORAGE-PART3-001-OBJ-004"
       ],
-      "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
+      "quality": "UNVERIFIED legacy correspondence claim; no source media or source-aligned frame evidence is retained",
+      "commit_status": "NOT COMMITTED - correspondence remains a candidate only"
     }
   ],
   "total_global": 4,
-  "note": "Movement is not duplication - same identity across 3 parts, off-screen is not deleted - persons remain even when temporarily occluded"
+  "note": "Movement is not duplication - same identity across 3 parts, off-screen is not deleted - persons remain even when temporarily occluded",
+  "merge_audit": {
+    "status": "BLOCKED",
+    "source_evidence_status": "Source video, source URL/acquisition record and source-aligned snapshots are absent.",
+    "global_identity_count": 4,
+    "global_identity_status": "Four legacy global identity candidates are represented, not verified identities.",
+    "temporal_continuity_status": "Part boundaries and continuous coverage are unverified; do not treat the 00:00–34:10 interval as a verified continuous recording.",
+    "required_before_commit": "Reacquire or durably reference source media; verify part boundaries and timestamps; re-investigate each proposed correspondence against source-aligned evidence; retain reviewed correspondence decisions and gaps."
+  }
 }
