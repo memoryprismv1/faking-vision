@@ -650,3 +650,10 @@ This addendum refines earlier flags without deleting the historical visual obser
 - Desk-image “personal name” flag withdrawn after direct reinspection.
 - CCTV blanket face/plate/pole-label masking flags downgraded to context-dependent review; preserve the observed content and source rationale, do not silently erase it.
 - Corpus is **not yet fully cleared**: audio, video metadata, source licensing/provenance, and any genuinely identifiable/sensitive CCTV content in the exact publication outputs remain to be resolved.
+
+
+### Follow-up — video container metadata (2026-11-12)
+- Inspected all four MP4 containers and stream metadata with ffprobe.
+- The three rendered story MP4s identify Google as the muxing/encoding tool and contain H.264 video plus AAC audio. Their stream tags are generic handler/language/vendor fields; no author, owner, GPS, device serial, filesystem path, or user-account field was present in the inspected container metadata.
+- The CCTV reconstruction identifies FFmpeg/libx264 as its encoder and contains H.264 video only; no audio stream or personal metadata fields were present in the inspected tags.
+- This is a metadata-field inspection, not a content review of the AAC audio. The audio remains the one unresolved media-content check.
