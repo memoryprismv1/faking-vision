@@ -348,7 +348,7 @@ The earlier Wikimedia media run was not carried forward as accepted evidence. Bo
 - Case B legacy `VP-DEFAULT` read-time compatibility: pass; no synthetic viewpoint file or camera geometry was added.
 - Case C negative reconciliation gate: pass; pending post-reconciliation validation correctly blocked prompt production.
 
-The previous run record was replaced with an accurate account of the V2 rerun and its limits. The acceptance procedure and operation-status matrix now record overall prompt-compilation acceptance as **PARTIAL**, not pending and not complete. The complete rerun archive remains local; the repository contains the evidence summary and source hashes, not the source binaries or full archive.
+The previous run record was replaced with an accurate account of the V2 rerun and its limits. A gate review caught that the first redone image packet lacked an explicit no-dispute declaration, so its prompt artifact was rejected. The corrected packet declares `DISPUTES: NONE`; four full provenance/viewpoint schema checks and 47/47 local checks passed. Cases A, B and C now pass their defined agent-level acceptance tests. Overall status is **PASS for these three cases only**, not a standalone CLI or general-purpose runtime. The final archive remains local; the repository retains the evidence summary, source hashes, 47-check log and run manifest, not the source binaries or full archive.
 
 No merge was performed. The final privacy acceptance test—visual inspection of every repository image and video to ensure no personal material has entered the FV asset set—remains deliberately deferred until the other cleanup work is complete.
 
@@ -362,7 +362,7 @@ The component-candidature section now distinguishes candidate generation from th
 
 ### Acceptance correction — 2026-11-12
 
-A gate review found the first redone image packet lacked an explicit no-dispute declaration, so its prompt artifact was rejected. The corrected packet declares `DISPUTES: NONE`; four full provenance/viewpoint schema checks and 47/47 local checks passed. Cases A, B and C now pass their defined agent-level acceptance tests. This is not a standalone CLI or general-purpose runtime result. The final media archive remains local; the repository retains the evidence summary and source hashes.
+A gate review found the first redone image packet lacked an explicit no-dispute declaration, so its prompt artifact was rejected. The corrected packet declares `DISPUTES: NONE`; four full provenance/viewpoint schema checks and 47/47 local checks passed. Cases A, B and C now pass their defined agent-level acceptance tests. This is not a standalone CLI or general-purpose runtime result. The final media archive remains local; the repository retains the evidence summary, source hashes, 47-check log and run manifest.
 
 
 ### Follow-up — skill/operator V2 loop alignment
