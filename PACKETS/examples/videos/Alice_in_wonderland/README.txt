@@ -73,3 +73,9 @@ STATUS
 This is a text-derived reconstruction brief, not an image/video analysis packet.
 The source is the quoted public-domain literary excerpt; no source video or
 independent visual audit is included.
+
+
+DISPUTES: NONE
+
+LEGACY METADATA BOUNDARY
+This is a historical informal v0.4 text-derived reconstruction brief, not a current-schema source-media packet. It has no root-level `viewpoint.json` or `packet_provenance.json`; no source-camera geometry or source-media provenance is asserted. Do not use it as current-schema or visual-analysis guidance.
