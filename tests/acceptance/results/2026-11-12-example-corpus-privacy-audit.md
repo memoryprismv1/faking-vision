@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 200 / 309 media files (200 images, 0 videos)
-- Remaining: 105 images and 4 videos (109 media files)
+- Reviewed: 205 / 309 media files (205 images, 0 videos)
+- Remaining: 100 images and 4 videos (104 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -412,6 +412,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/opening_sign_and_pole_t000.jpg` | Close-up of a pole-mounted alphanumeric label and additional signage; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/sign_pole_wider_view_t003.jpg` | Wider crop of the same pole and multiple labels, including the alphanumeric code; no person visible. | **Strong privacy/context flag: potentially identifying infrastructure/location label; review and mask if needed** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/wide_lot_and_background_t027.jpg` | Wide parking-lot/background view with many vehicles and visible plates/markings; no pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review** |
+## Batch 41 — CCTV-003 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_000.jpg` | Close-up of pole-mounted alphanumeric label and a second blurred sign; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_001.jpg` | Same close-up; no person or vehicle visible. The code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_002.jpg` | Same pole-label close-up; no person or vehicle visible. Code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_003.jpg` | Wider pole/roadside view with multiple stickers and the same alphanumeric code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label and signage; review and mask if needed** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_004.jpg` | Wider roadside/parking crop with pole labels and code; no person or vehicle visible. | **Flag: potentially identifying infrastructure/location label and signage; review and mask if needed** |
+
 ## Next
 
 Continue with the next small batch from the repository media inventory. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
