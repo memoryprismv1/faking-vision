@@ -111,7 +111,8 @@
         "car, moving object - should be excluded from static map"
       ],
       "status": "unresolved - registration conflict",
-      "resolution": "Exclude points with SemanticKITTI labels 252-259 or velocity >0.5 m/s"
+      "resolution_status": "NOT EXECUTED OR VERIFIED - source point clouds and filtering logs are absent",
+      "required_resolution": "Use source-supported SemanticKITTI labels 252-259 or a verified velocity estimate to decide whether these points are dynamic; exclude them from the static map or preserve them in a separate temporal layer. Do not treat this proposed rule as an applied filter."
     }
   ],
   "assembly_vs_merge": {
