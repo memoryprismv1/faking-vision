@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 60 / 309 media files (60 images, 0 videos)
-- Remaining: 245 images and 4 videos (249 media files)
+- Reviewed: 65 / 309 media files (65 images, 0 videos)
+- Remaining: 240 images and 4 videos (244 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -132,6 +132,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_060s.jpg` | Parking lot; a red car is entering/moving through the far-right access lane. No person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_061s.jpg` | Red car continues behind parked vehicles; no person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_064s.jpg` | Red car has moved across the lot and is now near the left side; no person visible. | **Flag for vehicle-identifier/source permission review** |
+
+## Batch 13 — CCTV verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_068s.jpg` | Parking lot with parked vehicles; no person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_072s.jpg` | Several vehicles have shifted position; no person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_076s.jpg` | Parking lot; no person visible. Vehicle positions differ from prior frames. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_080s.jpg` | A pedestrian appears in the foreground between parked cars, reaching toward or interacting with a parking sign/vehicle area. Face is visible in profile/oblique view but not sufficiently detailed here to establish identity. | **Flag: person visible; source permissions and face masking need review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_084s.jpg` | Pedestrian is no longer visible; parking lot and vehicles remain. | **Flag for vehicle-identifier/source permission review** |
 
 ## Next
 
