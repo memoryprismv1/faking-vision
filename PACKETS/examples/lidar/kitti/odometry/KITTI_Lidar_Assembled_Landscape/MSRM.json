@@ -24,19 +24,22 @@
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-002",
           "relation": "beside",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "buildings flank roads"
+          "evidence": "buildings flank roads",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         },
         {
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-003",
           "relation": "along",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "trees along sidewalk"
+          "evidence": "trees along sidewalk",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         },
         {
           "subject": "PKT-KITTI-ASSEMBLE-001-OBJ-004",
           "relation": "on edge of",
           "object": "PKT-KITTI-ASSEMBLE-001-OBJ-001",
-          "evidence": "parked cars at curb"
+          "evidence": "parked cars at curb",
+          "evidence_status": "legacy spatial relationship claim; source point-cloud data are absent"
         }
       ],
       "coverage": {
