@@ -335,3 +335,19 @@ No source-dependent uncertainty was silently resolved. No authoritative FV seman
 - The first browser run exposed one stale assertion in `tests/browser/prompt-only-compile.spec.js`: it expected the Cat example's withdrawn `VALID - resolved` label. The packet's corrected report is `PARTIAL`, with snapshot structure failed, no persistent TIR, and source-media inspection not performed. The test now parses the report as JSON and checks those exact limitations, while separately checking that the human rendering permission does not substitute for pending post-reconciliation validation. The corrected browser suite passed.
 - The push triggers include relevant-path filters so later documentation-only commits do not launch duplicate browser/Python runs. The final documentation record is therefore not expected to trigger either suite.
 - No merge was performed.
+
+
+## Follow-up — agent-level FV V2 media rerun and acceptance status (2026-11-12)
+
+The earlier Wikimedia media run was not carried forward as accepted evidence. Both media sources were re-inspected and packet artifacts regenerated using the Making Vision V2 distinctions between broad economical monitoring, selective additional processing, candidate generation, promotion, identification and packet commitment.
+
+- Image packet: `PKT-093b5e7066c20685`; one cat and one embankment committed, vegetation/ground retained as background, lower-right strip unresolved, source viewpoint unknown, separate explicit default render VPO selected for prompt-only compilation.
+- Video packet: `PKT-d1b7f0221871c504`; all 130 frames included in a low-resolution temporal-difference allocation pass, followed by 44 reconnaissance samples and 87 selective visual-review samples. No jump is visible in the 4.333-second clip. Grooming/mouthing remains unconfirmed; the white furry form remains unresolved and was not added as a second entity.
+- Local rerun checks: 28/28 structural/consistency checks passed. These are not a formal JSON Schema run for OI/MSRM/TD/TIR and not a full semantic `fv validate` execution. No standalone FV CLI, renderer, or generator was invoked.
+- Case A default-render-VPO selection and prompt-only output: partial pass; full validation and rebuild-assessment dimensions remain outstanding.
+- Case B legacy `VP-DEFAULT` read-time compatibility: pass; no synthetic viewpoint file or camera geometry was added.
+- Case C negative reconciliation gate: pass; pending post-reconciliation validation blocked prompt production.
+
+The previous run record was replaced with an accurate account of the V2 rerun and its limits. The acceptance procedure and operation-status matrix now record overall prompt-compilation acceptance as **PARTIAL**, not pending and not complete. The complete rerun archive remains local; the repository contains the evidence summary and source hashes, not the source binaries or full archive.
+
+No merge was performed. The final privacy acceptance test—visual inspection of every repository image and video to ensure no personal material has entered the FV asset set—remains deliberately deferred until the other cleanup work is complete.
