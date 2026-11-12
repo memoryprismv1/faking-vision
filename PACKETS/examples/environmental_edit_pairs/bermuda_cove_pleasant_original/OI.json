@@ -16,10 +16,11 @@
     "id": "cat",
     "type": "animal - living - active",
     "species": "black and white domestic shorthair",
-    "behavior": "sitting on top of white wall / sitting on chair",
+    "behavior": "sitting on the white chair, exposed",
     "insulation_state": "none - comfortable",
     "appearance": "dry, relaxed",
-    "location_preference": "exposed pleasant sun is ok"
+    "location_preference": "exposed pleasant sun is ok",
+    "position_basis": "The paired EDIT_006 edit_log identifies the baseline position as on the chair; source image is withheld, so this authored position has not been visually rechecked."
   },
   {
     "id": "vegetation",
