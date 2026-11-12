@@ -38,3 +38,7 @@ BOUNDARIES
 - No make/model, person identity, sign meaning, or cross-view identity is asserted beyond the retained visual evidence.
 
 DISPUTES: THREE OPEN INVESTIGATIONS in dispute.json. The analysis is partial and the merge gate is BLOCKED. No identity merge or reconstruction compilation is authorized.
+
+
+LEGACY METADATA BOUNDARY
+This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.
