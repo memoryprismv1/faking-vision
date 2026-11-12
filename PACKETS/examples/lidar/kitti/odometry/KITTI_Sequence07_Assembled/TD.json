@@ -4,27 +4,33 @@
     {
       "interval_id": "STEP_0000",
       "scene_id": "ASSEMBLED_MAP_07",
-      "start": 0
+      "start": 0,
+      "evidence_status": "UNVERIFIED - corresponding source scan and pose record are not retained"
     },
     {
       "interval_id": "STEP_0001",
       "scene_id": "ASSEMBLED_MAP_07",
-      "start": 1
+      "start": 1,
+      "evidence_status": "UNVERIFIED - corresponding source scan and pose record are not retained"
     },
     {
       "interval_id": "STEP_0002",
       "scene_id": "ASSEMBLED_MAP_07",
-      "start": 2
+      "start": 2,
+      "evidence_status": "UNVERIFIED - corresponding source scan and pose record are not retained"
     },
     {
       "interval_id": "STEP_0003",
       "scene_id": "ASSEMBLED_MAP_07",
-      "start": 3
+      "start": 3,
+      "evidence_status": "UNVERIFIED - corresponding source scan and pose record are not retained"
     },
     {
       "interval_id": "STEP_0004",
       "scene_id": "ASSEMBLED_MAP_07",
-      "start": 4
+      "start": 4,
+      "evidence_status": "UNVERIFIED - corresponding source scan and pose record are not retained"
     }
-  ]
+  ],
+  "td_status": "legacy assembly-step outline; not a verified processing log"
 }
