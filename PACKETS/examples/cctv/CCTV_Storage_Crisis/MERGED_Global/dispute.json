@@ -1,5 +1,49 @@
 {
   "packet_id": "PKT-CCTV-MERGE-001",
-  "status": "none",
-  "disputes": []
+  "status": "open",
+  "merge_gate": "BLOCKED",
+  "disputes": [
+    {
+      "dispute_id": "CCTV-MERGE-DSP-001",
+      "topic": "Source provenance and temporal coverage cannot be reproduced",
+      "status": "OPEN",
+      "issue": "No source URL/acquisition record, original video, source-aligned snapshots, or reproducible split procedure is retained. The three part durations and 00:00–34:10 continuous coverage claim are therefore unverified.",
+      "evidence": [
+        "Family README.md: evidence status",
+        "Part1–3 README.txt: evidence status",
+        "Part1–3 OI.json: source_provenance",
+        "MERGED_Global/TD.json: timeline_status",
+        "MERGED_Global/snapshot/manifest.json: packet ID only"
+      ],
+      "required_resolution": "Provide source provenance and the original media or durable source references; reproduce the exact part boundaries and durations; retain source-aligned snapshots and manifests; reconcile gaps/overlaps before creating a unified timeline.",
+      "operational_disposition": "ACTIVE"
+    },
+    {
+      "dispute_id": "CCTV-MERGE-DSP-002",
+      "topic": "Four cross-part identity correspondences lack retained evidence",
+      "status": "OPEN",
+      "issue": "The four global identities link three packet-scoped records each, but source frames are absent and the part TIR hypotheses are explicitly provisional/unverified. Clothing/position continuity and the high correspondence ratings cannot be independently reviewed.",
+      "evidence": [
+        "MERGED_Global/OI.json: global_identities and merge_audit",
+        "MERGED_Global/TIR.json: correspondence_investigation",
+        "Part1–3/TIR.json: unverified hypotheses and observations",
+        "Part1–3/dispute.json: open correspondence disputes"
+      ],
+      "required_resolution": "Re-investigate each proposed correspondence using source-aligned evidence. Retain competing candidates, discriminating observations and unresolved cases. Commit global identity only when evidence supports equivalence; otherwise preserve packet-scoped IDs as separate or unresolved.",
+      "operational_disposition": "ACTIVE"
+    },
+    {
+      "dispute_id": "CCTV-MERGE-DSP-003",
+      "topic": "Merged timeline and storage-reduction claims are not evidence-equivalent",
+      "status": "OPEN",
+      "issue": "The merged TD asserts visibility across each interval and the family historically claimed a 10,000x storage reduction. The source video and snapshots are absent, and packet-only metadata excludes evidence required for audit; neither continuous visibility nor an evidence-equivalent reduction is established.",
+      "evidence": [
+        "MERGED_Global/TD.json: timeline and coverage status",
+        "MERGED_Global/TIR.json: temporal continuity and storage comparison status",
+        "Family README.md: storage arithmetic and benchmark limitations"
+      ],
+      "required_resolution": "Rebuild the timeline only from verified source coverage and mark unobserved intervals/gaps. Compare storage only against a defined evidence-retention target that includes the media/snapshots needed for audit; withdraw unsupported reduction ratios.",
+      "operational_disposition": "ACTIVE"
+    }
+  ]
 }
