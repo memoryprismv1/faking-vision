@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 220 / 309 media files (220 images, 0 videos)
-- Remaining: 85 images and 4 videos (89 media files)
+- Reviewed: 225 / 309 media files (225 images, 0 videos)
+- Remaining: 80 images and 4 videos (84 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -452,7 +452,19 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_018.jpg` | Tighter crop of the pole-mounted labels; no person or vehicle visible. A short alphanumeric pole label is discernible. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; establish what it identifies and mask unless confirmed non-sensitive** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_019.jpg` | Close-up of the same pole-mounted alphanumeric label; no person or vehicle visible. The code is clearly legible in this crop. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
 
+## Batch 45 — CCTV-003 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_020.jpg` | Tight crop of pole-mounted labels. A short alphanumeric infrastructure code is clearly legible; no person or vehicle visible. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; establish what it identifies and mask unless confirmed non-sensitive** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_021.jpg` | Same close-up and legible pole-mounted code; no person or vehicle visible. Generic `ID:001` overlay remains. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_022.jpg` | Wider view of the same labelled pole in an otherwise empty parking area. No person or vehicle visible; code remains discernible. Generic `ID:001` overlay. | **Flag: potentially identifying infrastructure/location label; verify source context and masking needs** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_023.jpg` | Wide empty parking-lot view with utility poles, hedge and road. No people or vehicles visible; pole labels are small in this view. Generic `ID:001` overlay. | **Flag: infrastructure label present; no direct personal information observed** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_024.jpg` | Wider empty parking-lot view; no person visible. A partial vehicle enters at the lower-right edge, with no registration plate discernible. Pole-mounted labels remain visible; generic `ID:001` overlay. | **Flag: pole identifier/source context; partial vehicle fragment, no plate or occupant discernible** |
+
 ## Next
+
+Continue with `PKT-CCTV-003/snapshot/verification/frame_025.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
 Continue with `PKT-CCTV-003/snapshot/verification/frame_020.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
