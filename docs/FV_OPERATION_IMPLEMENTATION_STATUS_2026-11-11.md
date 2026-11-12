@@ -65,11 +65,12 @@ The MVP loads user-supplied video or still images, supports manual polygon mask 
 | Playwright viewpoint editor | 4 | VPO edits, command-console position update, schematic disclaimer, explicit VPO_DEFAULT instantiation | Full agent-level viewpoint command support or physical 3D rendering |
 | Playwright environment workbench | 11 | Environment edits, negative expectation, IDs/references, legacy version preservation, import/export | Authoritative FV semantic validation of arbitrary packets |
 | Playwright media object editor | 7 | Video/image editing, masks, property edits, VPO metadata, WebM export, real CCTV integration case | Automatic segmentation/tracking or semantic reconstruction |
+| Playwright prompt-only fixture checks | 2 | Golden prompt content and legacy Cat-packet reconciliation gate fixture assertions | Execution of an agent-level compiler or proof that the agent enforces the compile gate |
 | Python audit-batch tests | 9 | Aggregation, duplicate handling, unit profiles, schema output, invalid-report diagnostics, provenance roles | Independent visual/media auditing |
 | Python provenance-schema tests | 5 | Optional add-ons and provenance schema constraints | Full packet semantic validation |
 | Agent prompt-compilation acceptance | Pending | Default VPO selection, legacy viewpoint compatibility, negative reconciliation gate | No pass may be claimed until actual agent runs and artifacts are retained |
 
-There are 22 Playwright tests and 14 Python unit tests in the inspected files. Test definitions are present; this document does not claim that they were executed or passed during this audit.
+There are 24 Playwright tests across the four browser spec files (including two prompt-only fixture checks), and 14 Python unit tests in the inspected files. The two prompt-only tests are fixture/contract assertions; they do not execute the agent-level compiler or establish its acceptance. Test definitions are present; this document does not claim that they were executed or passed during this audit.
 
 ## GitHub Actions workflows
 
