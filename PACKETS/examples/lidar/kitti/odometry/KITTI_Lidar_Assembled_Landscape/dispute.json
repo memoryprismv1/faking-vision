@@ -6,7 +6,6 @@
     {
       "dispute_id": "KITTI-ASSEMBLE-001-DSP-001",
       "topic": "Exact source acquisition and registration inputs are not reproducible",
-      "status": "OPEN",
       "issue": "The README notes that the packet mixes KITTI Odometry sequence references with a raw-drive identifier and that the exact acquisition has not been established. Raw point-cloud scans, calibration/pose files and reproducible registration logs are absent.",
       "evidence": [
         "README.txt: source reference and verification limits",
@@ -15,12 +14,12 @@
         "snapshot/manifest.json: no source scan or pose evidence"
       ],
       "required_resolution": "Identify the exact source acquisition and supply/durably reference the matching scans, calibration, poses and registration log. Reconcile the raw-drive and Odometry sequence references before claiming a reproduced map.",
-      "operational_disposition": "ACTIVE"
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
     },
     {
       "dispute_id": "KITTI-ASSEMBLE-001-DSP-002",
       "topic": "Dynamic-object registration conflict remains unresolved",
-      "status": "OPEN",
       "issue": "OI records a moving-car candidate as a registration conflict; MSRM describes it as excluded or temporally labelled, but the retained files do not demonstrate which points were excluded or how the conflict was resolved.",
       "evidence": [
         "OI.json: unresolved_candidates CAND-DYNAMIC-001",
@@ -28,7 +27,8 @@
         "dispute.json legacy note previously described this as a non-blocking candidate"
       ],
       "required_resolution": "Retain the source scan/time evidence and the actual SemanticKITTI/velocity filtering decision, or preserve the affected region as unresolved and exclude it from the static assembled map. Do not claim a clean static map until resolved.",
-      "operational_disposition": "ACTIVE"
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
     }
   ]
 }
