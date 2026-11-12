@@ -33,7 +33,8 @@
       }
     ],
     "total_scans_assembled": 400,
-    "truncated_example_in_packet": "5 scans listed in OI for brevity, full 400 in README and final map"
+    "truncated_example_in_packet": "5 scans listed in OI for brevity, full 400 in README and final map",
+    "verification_status": "UNVERIFIED - the exact acquisition has not been established; raw scans, calibration/pose files and reproducible registration logs are absent."
   },
   "entities": [
     {
@@ -116,5 +117,6 @@
   "assembly_vs_merge": {
     "assembly_did": "Register and combine partial scans into larger spatial representation using poses + ICP, preserve provenance (scan id per point)",
     "assembly_did_not": "Silently assign global object identity - e.g., building seen in scan_0001 and scan_0100 remains same physical building but no merged global ID assigned in this assemble packet - that requires fv merge"
-  }
+  },
+  "assembly_status": "ILLUSTRATIVE ONLY - registration and dynamic-object handling are not independently reproducible"
 }
