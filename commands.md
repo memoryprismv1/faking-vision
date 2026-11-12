@@ -240,7 +240,7 @@ After reconciliation, validate the affected packet records. If every dispute is 
 **Example:**
 
 ```text
-fv resolve dispute D-014
+fv resolve dispute DSP-a1b2c3d4
 ```
 
 ## `fv validate`
