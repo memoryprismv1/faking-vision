@@ -5,7 +5,6 @@
     {
       "dispute_id": "HUDF-DSP-001",
       "topic": "Exposure assembly provenance and execution are not reproducible",
-      "status": "OPEN",
       "issue": "The packet describes an 800-exposure HUDF assembly and names registration, distortion correction and drizzle processing, but the original exposures, archive identifiers, complete exposure list, calibration inputs and processing log are absent.",
       "evidence": [
         "README.txt: source context and verification limits",
@@ -13,12 +12,12 @@
         "snapshot/manifest.json: packet ID only"
       ],
       "required_resolution": "Supply the exact archive exposure identifiers, source exposures or durable archive references, calibration inputs, and reproducible registration/processing record. Otherwise retain the workflow only as an illustrative contract example.",
-      "operational_disposition": "ACTIVE"
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
     },
     {
       "dispute_id": "HUDF-DSP-002",
       "topic": "Astronomical inventory and quantitative claims are unverified",
-      "status": "OPEN",
       "issue": "OI declares a galaxy and a 10,000-galaxy cluster; TD and MSRM repeat legacy claims about 800 exposures and 10,000 galaxies. The packet contains no source exposures or catalogue records to verify the identified galaxy, its properties, or the aggregate count.",
       "evidence": [
         "OI.json: galaxy properties and cluster entity",
@@ -27,7 +26,8 @@
         "README.txt: verification limits"
       ],
       "required_resolution": "Link source exposures/catalogue records and identify the basis for the individual galaxy classification and aggregate count, or keep these as explicitly unverified illustrative claims.",
-      "operational_disposition": "ACTIVE"
+      "operational_disposition": "ACTIVE",
+      "resolution_status": "OPEN"
     }
   ],
   "acceptance_gate": "BLOCKED"
