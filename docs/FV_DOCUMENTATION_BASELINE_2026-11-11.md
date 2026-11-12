@@ -363,3 +363,8 @@ The component-candidature section now distinguishes candidate generation from th
 ### Acceptance correction — 2026-11-12
 
 A gate review found the first redone image packet lacked an explicit no-dispute declaration, so its prompt artifact was rejected. The corrected packet declares `DISPUTES: NONE`; four full provenance/viewpoint schema checks and 47/47 local checks passed. Cases A, B and C now pass their defined agent-level acceptance tests. This is not a standalone CLI or general-purpose runtime result. The final media archive remains local; the repository retains the evidence summary and source hashes.
+
+
+### Follow-up — skill/operator V2 loop alignment
+
+The active `SKILL.md` and `HOW_TO_USE.md` now both state the Making Vision V2 architecture as a continuously recalibrated allocation loop. Economical broad monitoring and selective deeper processing coexist; candidate generation does not automatically cause promotion; allocation factors include current sensory conditions, persistent knowledge, internal state/energy, environmental statistics and anticipated consequences. This is explicitly not a mandatory serial coarse-to-fine pipeline. No biological mechanism claim was added.
