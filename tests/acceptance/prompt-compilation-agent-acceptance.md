@@ -64,6 +64,8 @@ The final Wikimedia rerun passed 47/47 local structural, reference, temporal, di
 
 Evidence records:
 - [Wikimedia media rerun](results/2026-11-12-wikimedia-media-agent-run.md)
+- [47-check log](results/2026-11-12-wikimedia-media-agent-run/LOCAL_CHECKS.txt)
+- [Run manifest](results/2026-11-12-wikimedia-media-agent-run/RUN_MANIFEST.json)
 - [Case C negative-gate run](results/2026-11-12-case-c-agent-run.md)
 
 The final rerun archive (`FV_Wikimedia_Test_2026-11-12-final.zip`) is retained locally, not committed to the repository. The repository run record documents source hashes, method, outputs and limitations. Overall acceptance is **PASS for the three defined cases only**; this is not proof of a standalone CLI or a general-purpose FV runtime.
