@@ -45,3 +45,8 @@ The supplied archive contains seven distinct WebP image assets, but its packet m
 1. Supply source URLs and licence/permission evidence for each image asset.
 2. Restore the exact, verified media to the corresponding packet folders.
 3. Run the repository's authoritative FV validator and have a peer review the visual edits against the source images.
+
+
+## Packet-level gate declarations
+
+Each of the seven packet folders now has its own `README.txt` with an explicit dispute state: six declare `DISPUTES: NONE`; `wall_cat_rainy_EDIT_007_active` declares `DISPUTES: OPEN` and remains blocked pending source-image review. These are still metadata-only records: the image binaries remain withheld, the legacy `source_provenance.json` is not the current packet-provenance schema, and no root-level `viewpoint.json` is present. The README declarations clarify gate state; they do not make the folders self-contained or compilation-ready.
