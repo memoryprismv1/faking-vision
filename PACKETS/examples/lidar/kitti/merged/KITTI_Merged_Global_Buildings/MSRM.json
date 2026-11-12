@@ -1,6 +1,6 @@
 {
   "packet_id": "PKT-KITTI-MERGE-001",
-  "global_map": "Combined ENU - 00 origin + 07 origin aligned via GPS/IMU, then ICP between overlapping region",
+  "global_map": "Legacy claimed combined ENU map using GPS/IMU alignment and ICP; source calibration, poses, scans and reproducible registration evidence are absent.",
   "scenes": [
     {
       "scene_id": "GLOBAL_MAP_KITTI_00_07",
@@ -18,7 +18,9 @@
         "BUILDING-GLOBAL-011",
         "BUILDING-GLOBAL-012"
       ],
-      "note": "54 global buildings across both sequences, 12 shared"
+      "note": "Legacy claim: 54 global buildings across both sequences, including 12 shared. Only 12 shared identity records are represented in OI; 42 claimed singleton identities are absent and must not be rendered."
     }
-  ]
+  ],
+  "registration_status": "UNVERIFIED - no retained source inputs or registration log",
+  "inventory_status": "BLOCKED - see OI.inventory_audit and dispute.json"
 }
