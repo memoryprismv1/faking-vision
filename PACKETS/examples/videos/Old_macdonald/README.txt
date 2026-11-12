@@ -26,3 +26,9 @@ No independent packet-to-video audit report is included here. Do not treat the p
 ## Packet consistency review
 
 The OI declares the farm landmarks present across all five scenes, and TD explicitly says the environment persists. The original MSRM only placed those landmarks in scene_01, and omitted the farmer from scene_04. The spatial records have been amended to carry the same global farm landmarks through scenes_02–05 and to retain the farmer in the widened scene_04 view. Where the exact screen position is not specified, the record says so rather than inventing one. This is a structural correction; the generated MP4 has not been independently audited against the packet.
+
+
+DISPUTES: NONE
+
+LEGACY/TARGET METADATA BOUNDARY
+This is a packet-to-generation experiment, not a source-media analysis packet. It has no root-level `viewpoint.json` or `packet_provenance.json`; no source-camera geometry or source-media provenance is asserted. The generated MP4 is not independently audited against the packet, and the presence of the output does not establish compilation or reconstruction correctness.
