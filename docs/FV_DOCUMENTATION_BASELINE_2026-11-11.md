@@ -344,9 +344,9 @@ The earlier Wikimedia media run was not carried forward as accepted evidence. Bo
 - Image packet: `PKT-093b5e7066c20685`; one cat and one embankment committed, vegetation/ground retained as background, lower-right strip unresolved, source viewpoint unknown, separate explicit default render VPO selected for prompt-only compilation.
 - Video packet: `PKT-d1b7f0221871c504`; all 130 frames included in a low-resolution temporal-difference allocation pass, followed by 44 reconnaissance samples and 87 selective visual-review samples. No jump is visible in the 4.333-second clip. Grooming/mouthing remains unconfirmed; the white furry form remains unresolved and was not added as a second entity.
 - Local rerun checks: 28/28 structural/consistency checks passed. These are not a formal JSON Schema run for OI/MSRM/TD/TIR and not a full semantic `fv validate` execution. No standalone FV CLI, renderer, or generator was invoked.
-- Case A default-render-VPO selection and prompt-only output: partial pass; full validation and rebuild-assessment dimensions remain outstanding.
+- Case A first demonstrated default-render-VPO selection and prompt-only output, but the initial packet lacked an explicit no-dispute declaration; that intermediate prompt was rejected. The corrected final rerun added `DISPUTES: NONE`, completed the full validation/rebuild assessment, and passed.
 - Case B legacy `VP-DEFAULT` read-time compatibility: pass; no synthetic viewpoint file or camera geometry was added.
-- Case C negative reconciliation gate: pass; pending post-reconciliation validation blocked prompt production.
+- Case C negative reconciliation gate: pass; pending post-reconciliation validation correctly blocked prompt production.
 
 The previous run record was replaced with an accurate account of the V2 rerun and its limits. The acceptance procedure and operation-status matrix now record overall prompt-compilation acceptance as **PARTIAL**, not pending and not complete. The complete rerun archive remains local; the repository contains the evidence summary and source hashes, not the source binaries or full archive.
 
