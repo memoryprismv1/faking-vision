@@ -1,6 +1,22 @@
 {
   "packet_id": "PKT-MAYAN-LIDAR-STITCH-001",
-  "constants": [
-    "UTM 16N, WGS84, LiDAR wavelength 1064nm, flight altitude 600m"
-  ]
+  "constants": [],
+  "legacy_input_parameter_claims": [
+    {
+      "name": "Coordinate reference",
+      "claim": "UTM 16N, WGS84",
+      "status": "UNVERIFIED for the exact packet flight acquisitions"
+    },
+    {
+      "name": "LiDAR wavelength",
+      "claim": "1064 nm",
+      "status": "UNVERIFIED for the exact packet flight acquisitions"
+    },
+    {
+      "name": "Flight altitude",
+      "claim": "600 m",
+      "status": "UNVERIFIED for the exact packet flight acquisitions"
+    }
+  ],
+  "note": "The cited survey context does not identify the exact flight acquisitions or establish these parameters for this packet. Do not treat legacy claims as committed PC constants."
 }
