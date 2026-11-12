@@ -6,5 +6,8 @@
   ],
   "negative": [
     "Do NOT add modern buildings, Do NOT duplicate pyramids - same identity stitched"
-  ]
+  ],
+  "validation_status": "BLOCKED - source flight-line evidence and classification disputes remain open",
+  "rendering_status": "Illustrative packet-shaped specification only; not approved as a verified assembly render target",
+  "identity_ledger_status": "Packet-scoped IDs are illustrative candidates; no global identity merge is performed by this assembly example."
 }
