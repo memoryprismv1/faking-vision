@@ -1,0 +1,88 @@
+{
+  "run_id": "2026-11-12-fv-v2-redo",
+  "fv_spec_version": "0.24",
+  "making_vision_basis": [
+    "Making Vision V2",
+    "Making Vision V1 (historical context)"
+  ],
+  "execution_scope": "agent-level; local media inspection and packet artifact creation; no standalone CLI",
+  "checks": {
+    "passed": 47,
+    "total": 47,
+    "errors": []
+  },
+  "sources": {
+    "image": {
+      "path": "image_cat_jump/source/1280px-Cat_jump.jpg",
+      "sha256": "e200298a5fbfb4df4ad3662d42727efb0e434226161614918a00bb126f7a873d",
+      "dimensions": [1280, 853]
+    },
+    "video": {
+      "path": "video_kitten_mat/source/Kitten_jumping_on_bamboo_mat.webm",
+      "sha256": "203244ad83246a7ee74c46600b390e66547e55ffd5ff7d9375d95b71f9dfc799",
+      "dimensions": [1920, 1080],
+      "fps": 30.0,
+      "frames": 130,
+      "duration_seconds": 4.333333333333333
+    }
+  },
+  "outputs": [
+    "image_cat_jump/OI.json",
+    "image_cat_jump/MSRM.json",
+    "image_cat_jump/viewpoint.json",
+    "image_cat_jump/packet_provenance.json",
+    "image_cat_jump/OBSERVATION_RECORD.json",
+    "image_cat_jump/COMPILED_SPEC.txt",
+    "video_kitten_mat/OI.json",
+    "video_kitten_mat/MSRM.json",
+    "video_kitten_mat/TD.json",
+    "video_kitten_mat/TIR.json",
+    "video_kitten_mat/viewpoint.json",
+    "video_kitten_mat/packet_provenance.json",
+    "VALIDATION_REPORT.md",
+    "LOCAL_CHECKS.txt"
+  ],
+  "formal_schema_validation": {
+    "draft": "2020-12",
+    "validator": "jsonschema 4.26.0 Draft202012Validator",
+    "schema_blob_shas": {
+      "provenance": "d4667c745b61414bff16cd5a0d9a026a12d2f933",
+      "viewpoint": "fd8ed83065e63778c1affc2d9c81b9edddefb058"
+    },
+    "passed": [
+      "image_cat_jump/packet_provenance.json against FV_Packet_Provenance_Schema.json",
+      "image_cat_jump/viewpoint.json against FV_Viewpoint_Schema.json",
+      "video_kitten_mat/packet_provenance.json against FV_Packet_Provenance_Schema.json",
+      "video_kitten_mat/viewpoint.json against FV_Viewpoint_Schema.json"
+    ],
+    "not_available": ["OI.json", "MSRM.json", "TD.json", "TIR.json"]
+  },
+  "validation": {
+    "image_cat_jump": {
+      "structural": "PASS",
+      "semantic": "PASS_WITH_RETAINED_UNCERTAINTY",
+      "evidence": "PASS",
+      "disputes": "NONE",
+      "rebuild_assessment": "REBUILD NOT INDICATED",
+      "compilation_readiness": "READY_FOR_PROMPT_ONLY"
+    },
+    "video_kitten_mat": {
+      "structural": "PASS",
+      "semantic": "PASS_WITH_RETAINED_UNCERTAINTY",
+      "evidence": "PASS",
+      "disputes": "NONE",
+      "rebuild_assessment": "REBUILD NOT INDICATED",
+      "compilation_readiness": "NOT_REQUESTED"
+    }
+  },
+  "limitations": [
+    "No dedicated JSON Schemas for OI/MSRM/TD/TIR in the current specification directory; these received structural/reference/temporal consistency checks and agent-level semantic/evidence review.",
+    "No standalone fv validate CLI invoked.",
+    "No media generation, reconstruction renderer, or independent generated-media audit.",
+    "Audio was not analysed."
+  ],
+  "source_rights": {
+    "commons_file_page_urls": "not retained in supplied media metadata",
+    "licence": "not verified; no reuse-rights claim made"
+  }
+}
