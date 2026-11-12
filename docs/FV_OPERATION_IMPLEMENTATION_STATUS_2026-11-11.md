@@ -17,8 +17,8 @@ The `fv` textarea commands are agent-level operation requests, not standalone sh
 
 | Operation | Specification status | Repository implementation/evidence | Boundary / current status |
 |---|---|---|---|
-| `fv analyse` | Specified | Packet structures, schemas, and example analysis artifacts exist. | No general-purpose analysis executable or automatic visual-analysis engine identified on `main`. Example correctness is deferred to the examples phase. |
-| `fv investigate` | Specified | TIR and adaptive temporal-investigation procedures are defined; investigation artifacts exist in examples. | No separate investigation runtime identified. Agent-level execution is not established by the presence of TIR files. |
+| `fv analyse` | Specified | Packet structures, schemas, and example analysis artifacts exist. | No general-purpose analysis executable or automatic visual-analysis engine identified on `main`. The Wikimedia rerun provides one bounded agent-level image-analysis demonstration; broad example correctness remains deferred to the examples phase. |
+| `fv investigate` | Specified | TIR and adaptive temporal-investigation procedures are defined; investigation artifacts exist in examples. | No separate investigation runtime identified. The Wikimedia rerun provides one bounded agent-level video-investigation demonstration with TIR/TD artifacts; it does not establish a general investigation runtime. |
 | `fv assemble` | Specified | Assembly procedure and example packets exist. Separate dataset/assembly workflows exist on divergent branches. | No general-purpose assembly engine identified on current `main`. Divergent workflows are not integrated by this documentation pass. |
 | `fv merge` | Specified | Merge rules and example merged packets exist. | No general-purpose packet-merge engine identified on current `main`. Similarity or matching IDs alone are not identity proof. |
 | `fv create` | Specified | Packet creation rules and packet schemas exist. | No dedicated packet-generation executable identified. This remains an agent-level operation. |
@@ -70,7 +70,7 @@ The MVP loads user-supplied video or still images, supports manual polygon mask 
 | Python provenance-schema tests | 5 | Optional add-ons and provenance schema constraints | Full packet semantic validation |
 | Agent prompt-compilation acceptance | Partial: 3 defined cases exercised | Case A default VPO selection/prompt output; Case B legacy viewpoint compatibility; Case C negative reconciliation gate | Case A remains partial because full validation/rebuild assessment was not executed. Local structural checks are not full schema or semantic validation. See acceptance run records |
 
-There are 24 Playwright tests across the four browser spec files (including two prompt-only fixture checks), and 14 Python unit tests in the inspected files. The two prompt-only tests are fixture/contract assertions; they do not execute the agent-level compiler or establish its acceptance. Test definitions are present; this document does not claim that they were executed or passed during this audit.
+There are 24 Playwright tests across the four browser spec files (including two prompt-only fixture checks), and 14 Python unit tests in the inspected files. The two prompt-only tests are fixture/contract assertions; they do not execute the agent-level compiler or establish its acceptance. Observed CI executions and their tested commits are listed below; those runs are separate from the agent-level acceptance cases recorded in the following section.
 
 ## Agent-level prompt-compilation acceptance (2026-11-12)
 
