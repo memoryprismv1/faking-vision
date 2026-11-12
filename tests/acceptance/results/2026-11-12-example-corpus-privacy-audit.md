@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 135 / 309 media files (135 images, 0 videos)
-- Remaining: 170 images and 4 videos (174 media files)
+- Reviewed: 140 / 309 media files (140 images, 0 videos)
+- Remaining: 165 images and 4 videos (169 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -282,6 +282,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_047.jpg` | Same scene with vehicles; no pedestrian discernible. Plates/markings remain in view. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_048.jpg` | Same parking-lot scene; no person visible. Vehicle identifiers remain present. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_049.jpg` | Same scene; no pedestrian visible. Vehicle plates and commercial markings remain in frame. | **Flag for vehicle-identifier/source permission review** |
+
+## Batch 28 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_050.jpg` | Wider reframed view of the parking lot from a different camera crop; numerous vehicles, but no pedestrian discernible. Registration plates and commercial vehicle markings are present. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_051.jpg` | Similar wide parking-lot view; no person visible. Vehicle plates/markings remain in scene. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_052.jpg` | Blurred, tighter crop of the parking lot and vehicles; no person discernible. Plate detail is too blurred to assess. | **No person visible; source/provenance and vehicle-identifier review at native resolution** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_053.jpg` | Reframed crop of an empty parking area with tree, pavement and parking lines; no person or vehicle identifier visible. | No obvious visual privacy concern |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_054.jpg` | Close scene crop showing tree trunks, grass and roadway; no person or vehicle visible. | No obvious visual privacy concern |
 
 ## Next
 
