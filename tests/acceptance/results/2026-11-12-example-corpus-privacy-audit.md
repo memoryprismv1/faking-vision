@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 140 / 309 media files (140 images, 0 videos)
-- Remaining: 165 images and 4 videos (169 media files)
+- Reviewed: 145 / 309 media files (145 images, 0 videos)
+- Remaining: 160 images and 4 videos (164 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -292,6 +292,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_052.jpg` | Blurred, tighter crop of the parking lot and vehicles; no person discernible. Plate detail is too blurred to assess. | **No person visible; source/provenance and vehicle-identifier review at native resolution** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_053.jpg` | Reframed crop of an empty parking area with tree, pavement and parking lines; no person or vehicle identifier visible. | No obvious visual privacy concern |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_054.jpg` | Close scene crop showing tree trunks, grass and roadway; no person or vehicle visible. | No obvious visual privacy concern |
+
+## Batch 29 — CCTV-002 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_055.jpg` | Tight reframed view of tree, grass, curb and empty parking spaces; no person or vehicle visible. | No obvious visual privacy concern |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_056.jpg` | Similar empty parking-space/tree crop; no person or vehicle visible. | No obvious visual privacy concern |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_057.jpg` | Reframed view of empty pavement, parking lines, trees and grass; no person or vehicle visible. | No obvious visual privacy concern |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_058.jpg` | Tighter view of trees, road and parking spaces; no person or vehicle visible. Overlay at lower left reads `135.5,004.0`, which may be coordinate/telemetry data and needs source-context review. | **Flag: possible location/telemetry overlay; verify meaning and whether it reveals sensitive source context** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_059.jpg` | Tighter view of roadside trees, curb and empty spaces; no person or vehicle visible. Overlay at lower left reads `139.0,004.0`, potentially coordinate/telemetry data. | **Flag: possible location/telemetry overlay; verify meaning and whether it reveals sensitive source context** |
 
 ## Next
 
