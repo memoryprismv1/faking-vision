@@ -403,16 +403,15 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/late_lot_state_t100.jpg` | Wide parking-lot view with many vehicles and visible plates. No pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/mid_lot_later_state_t060.jpg` | Parking lot with a light-colored car door open; two people are standing beside/leaning into the vehicle. Heads and upper bodies are visible, though facial detail is limited by distance. Numerous vehicle plates are also present. | **Strong privacy flag: people visible; mask/replace unless publication permission is documented; review vehicle identifiers** |
 
-## Batch 40 — CCTV-002 pole-label close-ups and CCTV-003 parking-lot views (5 images)
+## Batch 40 — CCTV-003 parking-lot and pole-sign examples (5 images)
 
 | Asset | Visual finding | Status |
 |---|---|---|
-| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_105.jpg` | Close-up of a pole-mounted alphanumeric code and blurred sign; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
-| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_106.jpg` | Same close-up of pole labels; no person or vehicle visible. The code remains legible. | **Strong privacy/context flag: legible identifier; source-context review and masking required before clearance** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/mid_lot_vehicle_arrangement_t042.jpg` | Wide parking-lot scene with numerous vehicles and visible registration plates; no pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/moving_light_vehicle_t090.jpg` | A light-colored sedan is moving through the parking lot; a driver/occupant is faintly visible through the side window, but facial detail is not discernible. Vehicle plates remain visible elsewhere in the frame. | **Flag: vehicle occupant potentially visible; review privacy treatment and vehicle identifiers** |
-| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/opening_sign_and_pole_t000.jpg` | Close-up of the same pole-mounted alphanumeric label and other signage; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
-
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/opening_sign_and_pole_t000.jpg` | Close-up of a pole-mounted alphanumeric label and additional signage; no person or vehicle visible. | **Strong privacy/context flag: legible infrastructure/location identifier; source-context review and masking required before clearance** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/sign_pole_wider_view_t003.jpg` | Wider crop of the same pole and multiple labels, including the alphanumeric code; no person visible. | **Strong privacy/context flag: potentially identifying infrastructure/location label; review and mask if needed** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/wide_lot_and_background_t027.jpg` | Wide parking-lot/background view with many vehicles and visible plates/markings; no pedestrian clearly discernible. | **Flag for vehicle-identifier/source permission review** |
 ## Next
 
 Continue with the next small batch from the repository media inventory. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
