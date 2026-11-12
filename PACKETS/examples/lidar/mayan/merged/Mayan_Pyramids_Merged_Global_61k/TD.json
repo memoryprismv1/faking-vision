@@ -3,7 +3,10 @@
   "timeline": [
     {
       "interval_id": "MERGE_ALL_FLIGHTS",
-      "action": "100+ flights -> 61k global IDs"
+      "action": "100+ flights -> 61k global IDs",
+      "evidence_status": "legacy aggregate claim; not independently verified"
     }
-  ]
+  ],
+  "td_status": "legacy merge-workflow claim; no source flight records or correspondence investigations are retained",
+  "merge_commit_status": "BLOCKED - source inputs, correspondence evidence and inventory are unresolved"
 }
