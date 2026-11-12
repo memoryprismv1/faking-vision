@@ -72,12 +72,20 @@ The MVP loads user-supplied video or still images, supports manual polygon mask 
 
 There are 24 Playwright tests across the four browser spec files (including two prompt-only fixture checks), and 14 Python unit tests in the inspected files. The two prompt-only tests are fixture/contract assertions; they do not execute the agent-level compiler or establish its acceptance. Test definitions are present; this document does not claim that they were executed or passed during this audit.
 
-## GitHub Actions workflows
+## GitHub Actions workflows and observed CI evidence
 
-- `.github/workflows/fv-environment-workbench-browser.yml`: Playwright Chromium workflow, triggered by relevant pull-request paths or manual dispatch. It prepares a short real CCTV excerpt for the integration test and uploads test results.
-- `.github/workflows/fv-audit-batch.yml`: Python schema/unit-test workflow, triggered by pushes to `feature/fv-audit-batch`, relevant pull-request paths, or manual dispatch.
+- `.github/workflows/fv-environment-workbench-browser.yml`: Playwright Chromium workflow. It prepares a short real CCTV excerpt, lists discovered tests, runs the browser suite, and uploads test results.
+- `.github/workflows/fv-audit-batch.yml`: Python schema/unit-test workflow. It installs dependencies, runs unittest discovery, and checks Python syntax.
 
-No manual workflow dispatch was performed during this audit. Available commit-run lookup did not provide a complete repository-wide workflow history; CI status is therefore **unverified**, not passed or failed.
+Observed runs on this working branch:
+
+| Suite | Run | Tested commit | Result | Evidence |
+|---|---:|---|---|---|
+| Python provenance/audit | 43191452973 | `3a97b2e13799101c78c66a4da89f8379f7d9f751` | **14 tests passed**; syntax check passed | [GitHub Actions](https://github.com/memoryprismv1/faking-vision/actions/runs/43191452973) |
+| Playwright Chromium | 43196216581 | `c504e4e129a7ffff972e03d4cc47025d0cbf7ad0` | **24 tests passed**, including real Wikimedia CCTV integration | [GitHub Actions](https://github.com/memoryprismv1/faking-vision/actions/runs/43196216581) |
+| Python provenance/audit | 43203495982 | `048eb1001cfc491315de4e82e7185ccf8baa8b7a` | **14 tests passed**; syntax check passed | [GitHub Actions](https://github.com/memoryprismv1/faking-vision/actions/runs/43203495982) |
+
+These are successful suite runs on the listed commits, not one combined run on a single commit. The latest Python run verifies the Python suite at `048eb10`; the browser suite has not yet been rerun at that exact commit. The two prompt-only browser tests are fixture/contract checks and do not constitute agent-level `fv compile` acceptance.
 
 ## Artifact contract cross-reference
 
