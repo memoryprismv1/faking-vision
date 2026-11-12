@@ -135,7 +135,7 @@ The image-analysis path is an **allocation loop**, not a mandatory serial coarse
 
 Broad processing preserves useful current structure—boundaries, surfaces, free space, relative position, components, shading, occlusion and other relations—even when object identity is unknown. It can generate candidates and perturbations, but not every candidate or change is automatically promoted.
 
-Promotion means allocating additional processing to a candidate, state, region or event. It is not recognition, confirmation, identity assignment or packet commitment. Promotion may be influenced by salience, uncertainty, task relevance, novelty, information value, risk, expectations, learned relevance, internal/physiological state, energy, environmental statistics and anticipated consequences. A promoted candidate may remain unresolved or be rejected.
+Promotion means allocating additional processing to a candidate, state, region or event. It is not recognition, confirmation, identity assignment or packet commitment. Promotion may be influenced by salience, uncertainty, task relevance, novelty, information value, risk, expectations, learned relevance, internal/physiological state, energy, environmental statistics and anticipated consequences. Allocation is continually recalibrated as the sensory field, internal state and environmental regime change. A promoted candidate may remain unresolved or be rejected.
 
 After additional inspection, distinguish:
 - directly observed structure and appearance;
