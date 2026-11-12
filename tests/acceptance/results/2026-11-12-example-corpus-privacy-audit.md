@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 75 / 309 media files (75 images, 0 videos)
-- Remaining: 230 images and 4 videos (234 media files)
+- Reviewed: 80 / 309 media files (80 images, 0 videos)
+- Remaining: 225 images and 4 videos (229 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -162,6 +162,16 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_097s.jpg` | A vehicle continues along the distant access road; no person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_098s.jpg` | A light-colored pickup is moving along the far access road; no person visible. | **Flag for vehicle-identifier/source permission review** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_100s.jpg` | A light pickup continues along the far road and a dark sedan is moving through the foreground parking area; no person visible. | **Flag for vehicle-identifier/source permission review** |
+
+## Batch 16 — CCTV frames and object crops (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_102s.jpg` | Parking lot scene; a dark sedan crosses the foreground and a light pickup is visible on the far access lane. No person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_104s.jpg` | Light pickup progresses along the far access lane; dark sedan continues across foreground. No person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_105s.jpg` | Light pickup and dark sedan remain visible in motion; no person visible. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/camera_reframe_t050.jpg` | Wider reframed parking-lot view with multiple parked vehicles; no person discernible. Vehicle details/plates may be present at source resolution. | **Flag for vehicle-identifier/source permission review** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/dark_vehicle_t097.jpg` | Crop shows a section of pavement, curb/grass edge and painted parking line. No vehicle or person is visible in the supplied image despite the filename. | **Flag: filename/content mismatch; verify crop provenance and object association** |
 
 ## Next
 
