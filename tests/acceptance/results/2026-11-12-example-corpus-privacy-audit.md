@@ -8,8 +8,8 @@
 
 ## Progress
 
-- Reviewed: 250 / 309 media files (250 images, 0 videos)
-- Remaining: 55 images and 4 videos (59 media files)
+- Reviewed: 255 / 309 media files (255 images, 0 videos)
+- Remaining: 50 images and 4 videos (54 media files)
 - Confirmed personal/user-owned material: none established.
 - Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
 
@@ -512,7 +512,19 @@
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_048.jpg` | Pedestrian is more fully visible at the bottom of frame, including side profile/head and upper body. Multiple vehicle plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: identifiable person visible and readable vehicle plates; mask/replace both before publication unless permission is documented** |
 | `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_049.jpg` | Two pedestrians are visible at the bottom of frame, viewed mostly from behind/side; heads and upper bodies are visible. Multiple vehicle plates are readable. Generic `ID:001` overlay. | **Strong privacy flag: two people visible and readable vehicle plates; mask/replace people and plates before publication unless permission is documented** |
 
+## Batch 51 — CCTV-003 verification frames (5 images)
+
+| Asset | Visual finding | Status |
+|---|---|---|
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_050.jpg` | Parking-lot view with numerous vehicles. A pedestrian is partly visible at the bottom edge, mainly lower body/legs; head and face are outside the frame. Multiple vehicle registration plates are visible and several appear readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle plates; partial pedestrian body also present. Mask plates and assess whether crop should exclude the person before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_051.jpg` | Similar parking-lot view; pedestrian remains partly visible at bottom edge, mainly legs/lower body, with no face visible. Multiple vehicle plates are visible; several appear readable. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle plates; partial pedestrian body present. Mask plates and assess crop before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_052.jpg` | Similar scene; a pedestrian's lower body/legs remain at the bottom edge, no head or face visible. Multiple vehicle plates are visible, some readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle plates; partial pedestrian body present. Mask plates and assess crop before publication** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_053.jpg` | Pedestrian has moved out of the visible crop. Numerous vehicles remain; multiple registration plates are visible and some appear readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle registration plates; mask before publication unless explicit permission is documented** |
+| `PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_054.jpg` | Similar parking-lot view with numerous vehicles; no pedestrian discernible. Multiple registration plates are visible, some readable at source resolution. Generic `ID:001` overlay. | **Strong privacy flag: readable vehicle registration plates; mask before publication unless explicit permission is documented** |
+
 ## Next
+
+Continue with `PKT-CCTV-003/snapshot/verification/frame_055.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
 Continue with `PKT-CCTV-003/snapshot/verification/frame_050.jpg` onward in the next five-image batch. Do not mark the corpus cleared until all 305 images and 4 videos have been visually inspected and the flagged items have been resolved.
 
