@@ -3,5 +3,6 @@
   "constants": [
     "Tr_velo_to_cam from calib 07",
     "Velodyne HDL-64E"
-  ]
+  ],
+  "constants_status": "legacy source-input references; calibration file not retained or independently checked"
 }
