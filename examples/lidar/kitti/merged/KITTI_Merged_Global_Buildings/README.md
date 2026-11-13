@@ -22,3 +22,14 @@ These are material internal completeness and evidence gaps. The 54-identity tota
 ## Status
 
 Keep this packet as an **incomplete merge-structure example**. `dispute.json` now records two open blockers and sets the merge gate to BLOCKED. The compiled-spec draft has been constrained to the 12 identities actually listed; the legacy 54 total and 42 singleton identities are retained only as unverified claims, not renderable inventory. Do not present this as a completed or validated global-building merge until the inventory is made internally complete, source evidence is linked, and correspondence decisions can be independently reviewed. Duplicate suffixed files that were byte-identical to canonical files have been removed; the canonical unsuffixed records are retained.
+
+
+## Provenance update (2026-11-13)
+
+The “54 buildings” and merged-global geometry remain legacy claims. The source sequence mapping can be resolved (sequence 00 → 2011_10_03_drive_0027; sequence 07 → 2011_09_30_drive_0027), but this packet does not retain the exact contributing scan IDs, raw scans, calibration, poses, per-sequence coordinate transforms, registration parameters, convergence/residual logs or output hashes.
+
+The KITTI odometry benchmark and raw-data portal are the authoritative acquisition routes:
+- https://www.cvlibs.net/datasets/kitti/eval_odometry.php
+- https://www.cvlibs.net/datasets/kitti/raw_data.php
+
+The raw-data portal requires account access; odometry package downloads are email-gated. No claim of a reproducible 54-building merge should be made until the exact source frames and all registration/transform records are recovered. Current disposition: BLOCKED / historical visualization only.

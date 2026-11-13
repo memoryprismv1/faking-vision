@@ -21,3 +21,27 @@ The repository contains packet JSON records, a manifest that now explicitly reco
 The legacy README describes 400+ scans, a particular drive, ICP refinement, overlap thresholds, an ENU map, and a 1200 m × 800 m output. Those are claims in the supplied README, not independently verified results of this repository example. The README also mixes KITTI Odometry sequence references with a raw-drive identifier; do not assume they identify the same acquisition.
 
 The visualizations are illustrative and are not substitutes for the missing source scans or a reproducible assembled point cloud. `dispute.json` now records two open blockers and sets the assembly gate to BLOCKED_FOR_REPRODUCTION: the exact source acquisition/registration inputs are absent, and the moving-car registration conflict is unresolved. Treat this as a procedural/packet-shape example, not a verified LiDAR assembly.
+
+
+## Provenance update (2026-11-13)
+
+The sequence-to-raw-drive mapping is now verified against the mapping table in the KITTI odometry devkit README:
+- Odometry sequence 00 → raw drive 2011_10_03_drive_0027, frames 000000–004540 (4,541 frames).
+- Odometry sequence 07 → raw drive 2011_09_30_drive_0027, frames 000000–001100 (1,101 frames).
+
+This resolves the drive/sequence correspondence, not the exact subset used by this packet. The legacy “400+ scans” claim and the mockup's 000000–000450 range do not identify the exact selected frame list. The actual scan files are not present here.
+
+Official acquisition references:
+- KITTI odometry benchmark: https://www.cvlibs.net/datasets/kitti/eval_odometry.php
+- KITTI raw data: https://www.cvlibs.net/datasets/kitti/raw_data.php
+
+The odometry benchmark lists an 80 GB Velodyne package, 1 MB calibration package and 4 MB ground-truth pose package. The raw-data portal requires account access; the small odometry packages are email-gated. The benchmark Velodyne scans are processed/egomotion-compensated, not a substitute for the raw-drive scans requested here.
+
+Required source package for a reproducible raw-drive reconstruction:
+- raw drive 2011_10_03_drive_0027 (prefer the synchronized package matching sequence 00);
+- Velodyne point clouds and timestamps;
+- OXTS/GPS/IMU packets and per-drive calibration files;
+- odometry calibration and ground-truth poses for the matching sequence;
+- exact selected frame IDs for this 400-scan subset.
+
+No raw scans, calibration files, poses, or registration logs have been acquired into this packet. Registration logs are processing outputs, not KITTI source files; they must record input frame IDs, transforms, algorithm/version, parameters, convergence, residuals and output hashes. Reproduction remains BLOCKED pending source package access and the missing 400-frame selection list.
