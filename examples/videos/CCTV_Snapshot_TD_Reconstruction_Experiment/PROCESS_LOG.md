@@ -26,3 +26,8 @@ The packet manifests do not provide a fully normalized parent-source timebase:
 These values may reflect segment-boundary and re-encoding/frame-duration differences, but the repository does not include the original split procedure needed to reconcile them. Do not silently normalize or concatenate the chunks using nominal duration alone. Preserve the source metadata and treat the precise boundary mapping as unresolved pending source-level verification.
 
 Part 2 still has no retained TIR.json or PC.json. A later evidence-status review added `PKT-CCTV-002/dispute.json` with three open issues: provisional pedestrian correspondence, camera-view transitions, and one-second sampling coverage. This records the open questions but does not reconstruct a persistent TIR; the separate investigation reasoning remains incomplete and should not be inferred from the README/TD alone.
+
+
+## Parent-source acquisition and alignment update (2026-11-13)
+
+The Commons distribution copy was acquired and fingerprinted; see SOURCE_AND_PROVENANCE.md and provenance/source_acquisition.json. The frame hash manifest records 80 global samples, six boundary samples and 240 transition samples. The source media and sample images are deleted after hashing; the artifact retains JSON only. The source screenshot storyboard confirms a wide view at 156s, tighter framing at 160s, a close-up by 208s, a tight parking-area view at 220s and 236s, and a wide view by 240s. These view changes occur inside Parts 2 and 3, not at the equal-third packet boundaries. The exact transition frames and camera mechanism remain unverified; the source is a camera demonstration and the Commons public-domain rationale is flagged for review.

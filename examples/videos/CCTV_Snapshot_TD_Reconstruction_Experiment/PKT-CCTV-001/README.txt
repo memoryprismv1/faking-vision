@@ -30,7 +30,7 @@ OPERATIONAL DISPOSITION (Making Vision v1/v2)
 See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory and low-priority identity questions may be DEFERRED rather than treated as blocking. This is chunk-local only: later chunks may promote the same object or question again. Deferred is not deleted, forgotten, or globally resolved. Active event/view-change investigations remain open.
 
 Source integrity note
-The source segment is not included in this repository. The retained snapshots and manifest support inspection of the packet's sampled evidence and source-time mapping, but they do not replace the source video or establish exhaustive frame coverage. Packet analysis remains provisional.
+The parent Commons distribution copy is now acquired and hashed; see the family provenance/source_acquisition.json and source_frame_manifest.json. Part 1's parent interval [0,105.569333] is inferred from the parent duration and Part 2 start because this packet's original manifest does not record it. The source video and sample images are not retained; the camera-native file and historical part_01.webm remain unavailable. The source storyboard shows the wide view at 0, 24, 64 and 104 seconds; packet analysis remains provisional and not exhaustive.
 
 
 LEGACY METADATA BOUNDARY
