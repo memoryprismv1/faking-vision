@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   query-mast:
@@ -36,3 +36,17 @@ jobs:
           path: hubble-mast-manifest/
           if-no-files-found: error
           retention-days: 30
+
+      - name: Commit MAST provenance manifest (push runs only)
+        if: github.event_name == 'push'
+        run: |
+          DEST="examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13"
+          mkdir -p "$DEST"
+          cp hubble-mast-manifest/*.json "$DEST/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST"
+          if ! git diff --cached --quiet; then
+            git commit -m "Record Hubble UDF MAST exposure and product manifest"
+            git push
+          fi

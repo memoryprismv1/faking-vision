@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   acquire-and-fingerprint:
@@ -30,9 +30,42 @@ jobs:
       - name: Acquire and fingerprint Commons source
         run: python3 TOOLS/acquire_fullerton_source.py --output-dir fullerton-acquisition
       - name: Upload source and aligned evidence
+        id: upload
         uses: actions/upload-artifact@v4
         with:
           name: fullerton-source-acquisition
           path: fullerton-acquisition/
           if-no-files-found: error
           retention-days: 30
+
+      - name: Commit reproducibility manifests (push runs only)
+        if: github.event_name == 'push'
+        run: |
+          DEST="examples/videos/fullerton_transit_center_cctv/provenance"
+          mkdir -p "$DEST"
+          cp fullerton-acquisition/source_acquisition.json "$DEST/source_acquisition.json"
+          cp fullerton-acquisition/source_aligned_evidence/frame_manifest.json "$DEST/source_frame_manifest.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          dest = Path("examples/videos/fullerton_transit_center_cctv/provenance")
+          for name in ["source_acquisition.json", "source_frame_manifest.json"]:
+              path = dest / name
+              data = json.loads(path.read_text(encoding="utf-8"))
+              data["workflow_artifact"] = {
+                  "run_id": os.environ["GITHUB_RUN_ID"],
+                  "run_url": f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}',
+                  "artifact_name": "fullerton-source-acquisition",
+                  "retention_days": 30,
+                  "source_media_committed_to_repository": False,
+                  "sample_frames_committed_to_repository": False
+              }
+              path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST"
+          if ! git diff --cached --quiet; then
+            git commit -m "Record Fullerton source acquisition manifest"
+            git push
+          fi
