@@ -9,10 +9,11 @@
 ## Progress
 
 - Reviewed: 309 / 309 media files (305 images, 4 videos; video review sampled as described below)
-- Remaining: 0 images and 0 videos (0 media files)
-- Visual inventory pass complete; privacy clearance is **not** complete. Outstanding: personal name in Batch 1; people/faces and vehicle plates in CCTV stills; readable vehicle plates and pole-mounted identifier in CCTV video; audio review for three rendered MP4s; source permission/licensing and metadata/provenance checks remain separate.
-- Confirmed personal/user-owned material: none established.
-- Follow-up flags: (1) handwritten personal name on a bag/sign in Batch 1; (2) a pedestrian's face is visible in the CCTV object crop below; (3) vehicle registration plates appear in the CCTV parking-lot crops, but are too small here to determine whether they are legible. Check source/context and whether masking is required before final clearance.
+- Remaining visual inventory: 0 images and 0 videos; all 309 media files received the visual review described in the batch records (video sampling limitations apply).
+- The initial flags for the desk-image name and blanket CCTV face/plate/pole masking were reassessed in the addenda below. The desk-image flag was withdrawn; CCTV observations are context-dependent, not automatic privacy violations.
+- No screenshot of a user's desktop, browser, application window, terminal, taskbar, or other personal system was identified in the supplied archive.
+- Metadata review: basic embedded image EXIF and all four MP4 containers were inspected as described below. No GPS or user-account/system-path identifiers were found in the fields inspected. The desk photograph's Commons metadata does disclose camera make/model and capture time; this is source-photographer capture metadata, not a screenshot or evidence of the user's system.
+- Remaining limitation: AAC audio in the three generated story MP4s was not listened to or transcribed. It is not audio-cleared. Source-specific licensing/provenance gaps remain for some legacy examples.
 
 ## Batch 1 — ordinary image examples (5 images)
 
@@ -614,9 +615,9 @@
 
 **Video-review limitation:** The three 10-second clips were sampled once per second; the 212-second CCTV reconstruction was sampled every two seconds (the source is 1 fps). This is a visual sampling audit, not a frame-by-frame examination. Audio tracks in the three rendered clips were not listened to or transcribed, so spoken names or other audio-only personal data are not cleared.
 
-## Next
+## Historical next-step note
 
-Resolve the outstanding visual privacy flags (mask/replace personal name, people/faces, vehicle registration plates, and the legible pole-mounted identifier where appropriate); review the three MP4 audio streams for spoken personal information; separately verify source permissions/licensing, metadata, and provenance. Do not mark the corpus cleared until these checks are complete.
+The initial next-step list above is superseded by the dated reassessment and closeout addenda below. In particular, the handwritten-name flag was withdrawn and blanket CCTV masking was downgraded after source-context review. The three AAC audio tracks remain unreviewed and are explicitly not audio-cleared.
 
 
 ## Addendum — privacy-context and screen-capture reassessment (2026-11-12)
@@ -657,3 +658,32 @@ This addendum refines earlier flags without deleting the historical visual obser
 - The three rendered story MP4s identify Google as the muxing/encoding tool and contain H.264 video plus AAC audio. Their stream tags are generic handler/language/vendor fields; no author, owner, GPS, device serial, filesystem path, or user-account field was present in the inspected container metadata.
 - The CCTV reconstruction identifies FFmpeg/libx264 as its encoder and contains H.264 video only; no audio stream or personal metadata fields were present in the inspected tags.
 - This is a metadata-field inspection, not a content review of the AAC audio. The audio remains the one unresolved media-content check.
+
+
+## Closeout — source rights and provenance review (2026-11-13)
+
+This is a source-record review, not a legal opinion or a blanket grant of redistribution rights. The source pages and packet READMEs were checked to classify what is documented and what remains missing.
+
+### Source records with identifiable published terms
+- The five still-image packets cite Wikimedia Commons source pages. The current Commons pages list CC0 1.0 for the blue-chairs, desk/display, restaurant-kitchen, and small-room photographs; the kitchen-interior-design image is marked public domain by its author. The packet READMEs retain author/source attribution where provided. These terms are recorded at the source pages; they do not waive privacy/personality rights in depicted people.
+- The desk/display photograph is a CC0 image by Medea7. Its Commons metadata includes iPhone 14 Pro camera make/model and capture timestamp, but the inspected metadata does not include GPS coordinates. These are source-photographer capture details, not evidence of a user's computer or system screenshot.
+- Cat_jumping_backwards.webm is listed on Commons under CC BY 3.0, with author Mary Qin and source Vimeo URL recorded in the packet README. Attribution and licence-link requirements must be retained. The source video is not stored in the repository and the packet explicitly says its analysis was metadata-only; it is not visually verified by this audit.
+- The Alice example identifies Project Gutenberg eBook #11 as its public-domain literary source. The Trip to the Moon example identifies the 1902 Georges Méliès film as its public-domain source. Both are text-/source-derived generation examples, not direct source-video analysis packets.
+- The Supercircuits CCTV source is listed on Commons as public domain using the PD-automated rationale. The Commons description says the pole-mounted plate is a camera test target. The uploader's copyright rationale is recorded, but the factual premise that the footage was entirely automated without human input has not been independently established; the PTZ/product-demonstration context remains an open source-rights qualification.
+
+### Provenance gaps retained
+- The three CCTV working source segments are not stored in the repository. Packet snapshots and the derived reconstruction are not substitutes for the original media. Legacy packet folders lack current root-level viewpoint.json and packet_provenance.json; packet-local time intervals and sampling limitations remain as recorded in the CCTV README and manifests.
+- The separate CCTV_Storage_Crisis example family has no source URL or acquisition record in its README and does not include its source video. Its source identity and reuse rights cannot be confirmed from the repository contents.
+- KITTI example READMEs identify benchmark/sequence references, but the raw scans, calibration/pose inputs, and reproducible registration logs are absent. The exact acquisition and the rights/terms applicable to any source-derived visualizations are not established by the retained evidence. These examples remain illustrative and blocked for reproduction as their packet READMEs state.
+- Mayan LiDAR examples cite PACUNAM / Garrison et al. research context, but the exact flight transects and raw point clouds are absent. The cited research context does not prove the provenance or licence of the particular generated/illustrative assets.
+- The Hubble example lacks original exposures, archive identifiers, calibration data, and a reproducible registration log. Its visualization is illustrative; source-exposure provenance and rights for any source-derived material are not fully established by the retained packet.
+- Environmental-edit pairs explicitly have unresolved source-asset provenance/licensing in their README and source-provenance records. The underlying source images were not supplied for independent inspection in this audit.
+- The Old MacDonald MP4 is a generated packet-to-video experiment, not a source-video example. Its AAC soundtrack is an output track; it was not listened to or transcribed. The same audio limitation applies to the Alice and Trip to the Moon generated MP4s.
+
+### Final disposition
+- **System screenshot check: no screenshot of the user's system identified in the supplied archive.**
+- Visual inventory: complete for the 305 images and four videos, with the sampling limits recorded above.
+- Metadata: the inspected image EXIF and MP4 container fields revealed no GPS coordinates or user-account/system-path fields. Source-photographer camera metadata and capture timestamps may remain in source images.
+- Audio: three AAC tracks remain unreviewed and are not audio-cleared; this is a known limitation, not a positive finding of personal information.
+- Source rights/provenance: documented for some Wikimedia/public-domain examples; unresolved or incomplete for several CCTV, LiDAR, telescope, and environmental-edit examples as itemized above.
+- **Do not describe the entire example corpus as fully privacy-, rights-, or provenance-cleared.** The visual privacy review did not identify a user-system screenshot; it does not cure missing source records or clear unreviewed audio.
