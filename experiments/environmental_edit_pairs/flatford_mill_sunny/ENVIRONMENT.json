@@ -1,0 +1,14 @@
+{
+  "environmental_stress": "none",
+  "conditions": {
+    "weather": "sunny",
+    "sky": "blue with scattered fair-weather clouds",
+    "illumination": "bright direct daylight with warm highlights",
+    "shadows": "stronger coherent natural cast shadows, retaining painterly treatment",
+    "water": "brighter blue-sky reflections and sunlight glints"
+  },
+  "edit_scope": "Passive environmental edit only. No intentional change to object identity, count, behaviour or spatial relationships.",
+  "unknowns": [
+    "Sun position and physical illumination geometry are not calibrated."
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "entities": [
+    {
+      "canonical_id": "RIVER_01",
+      "category": "river and waterway",
+      "appearance": "River occupies the left foreground and recedes toward the lock in the middle distance."
+    },
+    {
+      "canonical_id": "BOATS_01",
+      "category": "boats",
+      "appearance": "Several wooden boats occupy the left foreground and left middle-distance water."
+    },
+    {
+      "canonical_id": "BOATERS_01",
+      "category": "people",
+      "appearance": "Small human figures are visible in or beside the boats; individual identities unresolved."
+    },
+    {
+      "canonical_id": "LOCK_01",
+      "category": "water-control structure",
+      "appearance": "Low lock or sluice structure crosses the water in the middle distance."
+    },
+    {
+      "canonical_id": "MILL_AND_COTTAGES_01",
+      "category": "buildings",
+      "appearance": "Cluster of low pitched-roof buildings on the left middle-distance bank."
+    },
+    {
+      "canonical_id": "TOWPATH_01",
+      "category": "path",
+      "appearance": "Curving earthen towpath follows the water from the lower foreground toward the lock."
+    },
+    {
+      "canonical_id": "HORSE_01",
+      "category": "horse",
+      "appearance": "One harnessed horse stands in the lower central foreground beside the towpath."
+    },
+    {
+      "canonical_id": "HORSE_HANDLER_01",
+      "category": "person",
+      "appearance": "Human figure is immediately beside/on the horse; exact posture and role should be retained from source, not reinterpreted."
+    },
+    {
+      "canonical_id": "PEOPLE_DISTANT_01",
+      "category": "people",
+      "appearance": "Small figures appear along the path and in the middle-distance landscape; individual identities unresolved."
+    },
+    {
+      "canonical_id": "TREE_GROUP_LEFT_01",
+      "category": "trees",
+      "appearance": "Large leafy tree and tall narrow trees stand on the left bank."
+    },
+    {
+      "canonical_id": "TREE_GROUP_RIGHT_01",
+      "category": "trees",
+      "appearance": "Large mature branching trees dominate the right half of the composition."
+    },
+    {
+      "canonical_id": "FIELD_01",
+      "category": "field",
+      "appearance": "Open field extends across the middle-right background."
+    },
+    {
+      "canonical_id": "VEGETATION_01",
+      "category": "vegetation",
+      "appearance": "Grass, shrubs, reeds and low plants border the river, path and foreground."
+    },
+    {
+      "canonical_id": "FENCE_01",
+      "category": "wooden fence",
+      "appearance": "Low irregular wooden fence crosses the lower-right foreground."
+    },
+    {
+      "canonical_id": "SKY_01",
+      "category": "sky",
+      "appearance": "Large sky area above the landscape with extensive cloud formations."
+    }
+  ],
+  "uncertainty": [
+    "Small distant human figures are not individually resolved.",
+    "The exact posture/role of the foreground human figure(s) around the horse should not be over-specified."
+  ]
+}

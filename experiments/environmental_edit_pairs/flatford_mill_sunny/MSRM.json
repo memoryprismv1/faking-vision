@@ -1,0 +1,69 @@
+{
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {
+          "id": "RIVER_01",
+          "position": "left foreground to left middle distance"
+        },
+        {
+          "id": "BOATS_01",
+          "position": "on RIVER_01, concentrated at left foreground"
+        },
+        {
+          "id": "BOATERS_01",
+          "position": "in or beside BOATS_01"
+        },
+        {
+          "id": "LOCK_01",
+          "position": "middle distance across RIVER_01"
+        },
+        {
+          "id": "MILL_AND_COTTAGES_01",
+          "position": "left middle distance beyond the river"
+        },
+        {
+          "id": "TOWPATH_01",
+          "position": "lower foreground curving toward LOCK_01 alongside RIVER_01"
+        },
+        {
+          "id": "HORSE_01",
+          "position": "lower central foreground beside TOWPATH_01"
+        },
+        {
+          "id": "HORSE_HANDLER_01",
+          "position": "immediately beside/on HORSE_01"
+        },
+        {
+          "id": "PEOPLE_DISTANT_01",
+          "position": "small figures along the path and middle-distance landscape"
+        },
+        {
+          "id": "TREE_GROUP_LEFT_01",
+          "position": "left bank and left middle distance"
+        },
+        {
+          "id": "TREE_GROUP_RIGHT_01",
+          "position": "right half, foreground and middle distance"
+        },
+        {
+          "id": "FIELD_01",
+          "position": "middle-right background"
+        },
+        {
+          "id": "VEGETATION_01",
+          "position": "riverbanks, path edges and foreground"
+        },
+        {
+          "id": "FENCE_01",
+          "position": "lower-right foreground"
+        },
+        {
+          "id": "SKY_01",
+          "position": "upper field of view"
+        }
+      ]
+    }
+  ]
+}

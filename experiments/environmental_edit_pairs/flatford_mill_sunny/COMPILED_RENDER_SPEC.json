@@ -1,0 +1,35 @@
+{
+  "operation": "fv compile",
+  "target": "sunny reconstruction of supplied still image",
+  "change_only": [
+    "weather appearance",
+    "sky colour/cloud distribution",
+    "daylight warmth and intensity",
+    "cast-shadow strength",
+    "water reflections"
+  ],
+  "preserve": [
+    "original viewpoint and composition",
+    "river and lock",
+    "boats and boaters",
+    "mill/cottages",
+    "towpath",
+    "foreground horse and attendant",
+    "tree groups",
+    "field",
+    "vegetation",
+    "fence",
+    "distant figures",
+    "19th-century oil-painting character"
+  ],
+  "prohibited": [
+    "new semantic entities",
+    "removed entities",
+    "identity substitution",
+    "unrequested object movement or pose changes",
+    "modern details or photorealistic restyling"
+  ],
+  "response_classification": "passive",
+  "formal_validation": "Not run against repository schemas.",
+  "audit_status": "Preliminary only; no formal independently generated comparison packet or schema-validated FV_AUDIT_REPORT.json."
+}

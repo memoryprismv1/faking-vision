@@ -1,0 +1,36 @@
+{
+  "edits": [
+    {
+      "edit_id": "EDIT-SUNNY-001",
+      "operation": "fv edit environmental conditions → fv compile",
+      "response_classification": "passive",
+      "requested_change": "Make the existing Flatford Mill scene sunny.",
+      "before": "Cloud-dominant daylight and subdued illumination.",
+      "after": "Blue sky, scattered fair-weather clouds, brighter warm daylight, stronger shadows and brighter river reflections.",
+      "affected_objects_passive": [
+        "SKY_01",
+        "RIVER_01",
+        "TREE_GROUP_LEFT_01",
+        "TREE_GROUP_RIGHT_01",
+        "FIELD_01",
+        "VEGETATION_01",
+        "MILL_AND_COTTAGES_01",
+        "TOWPATH_01",
+        "BOATS_01",
+        "HORSE_01",
+        "FENCE_01",
+        "PEOPLE_DISTANT_01",
+        "BOATERS_01",
+        "HORSE_HANDLER_01"
+      ],
+      "affected_objects_active": [],
+      "msrm_changed": false,
+      "provenance": {
+        "source_file": "960px-John_Constable_-_Flatford_Mill.jpg",
+        "source_artwork": "John Constable, Flatford Mill (Scene on a Navigable River), 1816–1817",
+        "source_page": "https://commons.wikimedia.org/wiki/File:John_Constable_-_Flatford_Mill.jpg"
+      },
+      "outcome": "Rendered image produced; independent audit remains outstanding."
+    }
+  ]
+}
