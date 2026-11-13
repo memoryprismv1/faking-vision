@@ -12,24 +12,24 @@
       "object": "Person A - seated/standing near bench",
       "action": "present",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained.",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established.",
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame"
     },
     {
       "time": "11:23 + 45s",
       "object": "Person B",
       "action": "approaching",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame",
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established."
     },
     {
       "time": "11:23 + 2min",
       "object": "Person C",
       "action": "arriving",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame",
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established."
     }
   ],
   "hypotheses": [
