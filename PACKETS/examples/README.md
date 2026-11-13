@@ -2,6 +2,10 @@
 
 This index distinguishes what an example is meant to demonstrate from what the repository actually contains. A packet-shaped folder, README claim, validation report, or visualization is not by itself proof that source media were acquired, processing was executed, or the result was independently verified.
 
+## Visual privacy and provenance audit
+
+A visual privacy inventory of the supplied example corpus is recorded in [the 2026-11-12/13 audit log](../../tests/acceptance/results/2026-11-12-example-corpus-privacy-audit.md). It covers 305 images and four videos (the video review is sampled, not exhaustive). No screenshot of a user's desktop, browser, application window, terminal, or other personal system was identified. The three generated story MP4s contain AAC audio tracks that were not listened to or transcribed and are **not audio-cleared**. Source-rights and provenance gaps remain for several legacy examples; the audit identifies them individually. Do not interpret completion of the visual inventory as full privacy, rights, or provenance clearance.
+
 ## Images — source image packets
 
 Five image examples include their source image files, OI/MSRM records, and source-page references:
