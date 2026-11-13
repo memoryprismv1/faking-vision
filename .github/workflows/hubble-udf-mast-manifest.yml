@@ -1,0 +1,38 @@
+name: Hubble UDF MAST manifest
+
+on:
+  push:
+    branches:
+      - "work/fv-fullerton-legacy-provenance-20261113"
+    paths:
+      - "TOOLS/query_hubble_udf_mast.py"
+      - ".github/workflows/hubble-udf-mast-manifest.yml"
+  pull_request:
+    paths:
+      - "TOOLS/query_hubble_udf_mast.py"
+      - ".github/workflows/hubble-udf-mast-manifest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  query-mast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Astroquery
+        run: python -m pip install --upgrade astroquery
+      - name: Query public MAST observation and product metadata
+        run: python TOOLS/query_hubble_udf_mast.py --output-dir hubble-mast-manifest
+      - name: Upload MAST manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: hubble-udf-mast-manifest
+          path: hubble-mast-manifest/
+          if-no-files-found: error
+          retention-days: 30
