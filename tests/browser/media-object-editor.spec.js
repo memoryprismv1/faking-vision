@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-const APP = '/PACKETS/tools/FV_Media_Object_Editor_MVP.html';
+const APP = '/TOOLS/FV_Media_Object_Editor_MVP.html';
 const PACKET = [{ id: 'cat_01', type: 'cat', description: 'test cat', properties: { colour: 'orange' } }];
 
 async function makeVideo(page) {

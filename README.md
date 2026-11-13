@@ -143,7 +143,10 @@ Not every task requires every operation.
 - [Historical v0.24 specification snapshot](SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md) (reference only)
 - [Agent skill](SKILL.md)
 - [How to use FV](HOW_TO_USE.md)
-- Example packets: [`examples/`](examples/) — see the [examples index](examples/README.md).
+- [Example packets and evidence index](examples/README.md)
+- [Packet format and provenance guide](docs/FV_PACKET_GUIDE.md)
+- [Meta example contribution catalogue](docs/META_FV_EXAMPLES_CATALOG.md)
+- Repository tools: `TOOLS/`
 
 The Working Process Specification is the authoritative process document. The agent skill and supporting documentation provide operational access and guidance.
 
