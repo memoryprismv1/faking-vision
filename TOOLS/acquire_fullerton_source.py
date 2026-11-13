@@ -84,6 +84,17 @@ def main() -> None:
             "sha256": sha256(frame), "bytes": frame.stat().st_size
         })
 
+    transition_dir = evidence_dir / "transition_10fps"
+    transition_dir.mkdir(exist_ok=True)
+    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", "991", "-i",
+                    str(source), "-t", "3", "-vf", "fps=10", "-q:v", "2",
+                    str(transition_dir / "frame_%03d.jpg")], check=True)
+    transition_frames = sorted(transition_dir.glob("frame_*.jpg"))
+    transition_records = [{
+        "file": str(p.relative_to(out)), "nominal_source_time_s": 991 + i / 10,
+        "sha256": sha256(p), "bytes": p.stat().st_size
+    } for i, p in enumerate(transition_frames)]
+
     record = {
         "record_type": "source_acquisition_record",
         "dataset": "Fullerton Transportation Center surveillance video",
@@ -125,6 +136,8 @@ def main() -> None:
         "sampling": "one frame every 10 seconds plus boundary-adjacent samples",
         "global_sample_count": len(global_records),
         "global_frames": global_records, "boundary_frames": boundary_records,
+        "transition_sampling": "10 fps from 991s through 993.9s for manual view-change localization",
+        "transition_frames": transition_records,
         "warning": "Locator evidence only; not exhaustive visual analysis."
     }, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({
