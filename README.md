@@ -146,6 +146,19 @@ Not every task requires every operation.
 
 The Working Process Specification is the authoritative process document. The agent skill and supporting documentation provide operational access and guidance.
 
+## Example corpus privacy and provenance status
+
+The example media corpus has undergone a visual privacy inventory and a basic embedded-metadata review. The current findings and asset-level observations are recorded in the [example corpus visual privacy audit](tests/acceptance/results/2026-11-12-example-corpus-privacy-audit.md).
+
+- The reviewed inventory contains 305 images and 4 videos. No screenshot of a user's desktop, browser, application window, terminal, or other personal system was identified in the supplied corpus.
+- The earlier handwritten-name concern in the Wikimedia desk/display photograph was withdrawn after direct reinspection; the text refers to the historical/public name Mileva Marić Einstein in an exhibit-like setting.
+- CCTV observations must be read in their source context. The Commons description identifies the pole-mounted plate as a camera-demonstration test target. Incidental vehicles and public-facing bystanders are not automatically privacy violations; assess clearly legible identifiers and identifiable people in the actual reuse context rather than applying blanket masking.
+- The Commons page currently labels the Supercircuits CCTV source public domain under an automated-recording rationale. That rationale is not independently established here; the camera's PTZ/product-demonstration context leaves a source-rights question open.
+- The three generated story MP4s contain AAC audio tracks. **Those audio tracks were not listened to or transcribed and are not audio-cleared.** Audio-only names or other personal information therefore remain unchecked. This is a documented limitation, not a claim that personal information is present.
+- Source/licence records are uneven across the legacy examples. The five still-image packet READMEs cite Wikimedia Commons pages and CC0/public-domain terms, while several LiDAR, telescope, CCTV, and environmental-edit examples lack the original raw inputs or reproducible acquisition/provenance records. See the audit and each packet README before redistribution or claims of reproduced results.
+
+The corpus should not be described as fully privacy-, rights-, or provenance-cleared. The audit distinguishes visual findings, metadata checks, source licensing, and unavailable evidence; one does not substitute for another.
+
 ## License
 
 This repository is licensed under **CC BY-NC 4.0**.
