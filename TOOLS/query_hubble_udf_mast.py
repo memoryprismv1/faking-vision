@@ -5,7 +5,7 @@ Metadata only: no FITS bytes, calibration or registration are downloaded/run.
 from __future__ import annotations
 import argparse, datetime as dt, json
 from pathlib import Path
-from astroquery.mast import Mast
+from astroquery.mast import Observations
 import astroquery, astropy
 
 PROPOSALS = [9978, 10086]
@@ -28,8 +28,8 @@ def main():
     ap.add_argument("--output-dir", type=Path, required=True)
     out = ap.parse_args().output_dir
     out.mkdir(parents=True, exist_ok=True)
-    observations = Mast.query_criteria(**CRITERIA)
-    product_table = Mast.get_product_list(observations)
+    observations = Observations.query_criteria(**CRITERIA)
+    product_table = Observations.get_product_list(observations)
     obs_rows, product_rows = rows(observations), rows(product_table)
     unique = {}
     for row in product_rows:
