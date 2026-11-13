@@ -1,6 +1,12 @@
 name: Fullerton source acquisition
 
 on:
+  push:
+    branches:
+      - "work/fv-fullerton-legacy-provenance-20261113"
+    paths:
+      - "TOOLS/acquire_fullerton_source.py"
+      - ".github/workflows/fullerton-source-acquisition.yml"
   pull_request:
     paths:
       - "TOOLS/acquire_fullerton_source.py"
