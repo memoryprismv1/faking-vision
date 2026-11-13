@@ -1,0 +1,91 @@
+{
+  "record_type": "commons_source_acquisition",
+  "acquired_at_utc": "2026-11-13T10:47:12.899107+00:00",
+  "source_page": "https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video.webm",
+  "original_youtube_url": "https://www.youtube.com/watch?v=U7HRKjlXK-Y",
+  "source_page_metadata": {
+    "title": "File:BLK-HDPTZ12 Security Camera Parking Lot Surveillance Video.webm",
+    "pageid": 198394225,
+    "lastrevid": 1269449350,
+    "revision_id": 1269449350,
+    "touched": null,
+    "revision_timestamp": "2026-08-29T20:59:41Z"
+  },
+  "commons_imageinfo": {
+    "size": 67736771,
+    "sha1": "d1115753bffc8967898779dfedfa5fe609bdb530",
+    "timestamp": "2026-08-29T10:13:52Z",
+    "mime": "video/webm",
+    "width": 1920,
+    "height": 1080,
+    "metadata": {
+      "Artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.youtube.com/@supercircuits\">Supercircuits</a>",
+      "DateTimeOriginal": "2012-10-23",
+      "Credit": "<bdi lang=\"en\" dir=\"ltr\"><a href=\"//commons.wikimedia.org/wiki/Commons:YouTube_files\" title=\"Commons:YouTube files\">YouTube</a>: <a rel=\"nofollow\" class=\"external text\" href=\"https://www.youtube.com/watch?v=U7HRKjlXK-Y\"><bdi lang=\"\">BLK-HDPTZ12 Security Camera Parkng Lot Surveillance Video</bdi></a> \u2013 View/save archived versions on <a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/*/https://www.youtube.com/watch?v=U7HRKjlXK-Y\">archive.org</a></bdi>",
+      "LicenseShortName": "Public domain",
+      "UsageTerms": "Public domain",
+      "Copyrighted": "False",
+      "AttributionRequired": "false",
+      "Restrictions": "",
+      "ImageDescription": "This car park surveillance video shows of the quality of the 2.1 megapixel imager and the 12 x optical zoom. The license plate on the telegraph pole is 360 ft from the camera. The extremely closeup zoom uses the camera's digital zoom on top of the optical zoom. Be sure to view the video in HD to see the actual image quality."
+    }
+  },
+  "original_imageinfo_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video.webm",
+  "download_response_headers": {
+    "content-type": "video/webm",
+    "last-modified": "Sat, 29 Aug 2026 20:59:40 GMT",
+    "content-length": "67736771",
+    "etag": "7a98537b12a72cc4b1f60941e87731a9"
+  },
+  "source_sha256": "ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa",
+  "source_bytes": 67736771,
+  "ffprobe": {
+    "duration_seconds": 316.708,
+    "format_name": "matroska,webm",
+    "format_bit_rate": "1711021",
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "vp9",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "r_frame_rate": "30/1",
+        "sample_rate": null,
+        "channels": null
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "opus",
+        "width": null,
+        "height": null,
+        "avg_frame_rate": "0/0",
+        "r_frame_rate": "0/0",
+        "sample_rate": "48000",
+        "channels": 2
+      }
+    ]
+  },
+  "workflow_artifact": {
+    "run_id": "43411677857",
+    "run_url": "https://github.com/memoryprismv1/faking-vision/actions/runs/43411677857",
+    "artifact_name": "cctv-snapshot-source-manifest",
+    "retention_days": 30,
+    "source_media_retained": false,
+    "sample_images_retained": false
+  },
+  "privacy_and_licensing_review": {
+    "media_policy": "Source video and extracted frames are deleted after hashing; no plate-like markings or vehicle imagery are retained in the repository/artifact.",
+    "commons_license_claim": "Commons metadata asserts public domain under a fixed-CCTV/no-human-input rationale.",
+    "license_review_flag": "REVIEW REQUIRED: the page describes a Supercircuits camera demonstration and the storyboard shows deliberate PTZ/zoom framing changes. Commons' automated-camera rationale is not independently validated here; do not treat it as a legal conclusion.",
+    "visual_privacy_note": "A plate-like marking is visible in the source/storyboard; characters are not transcribed and no frame images are retained."
+  },
+  "expected_vs_measured": {
+    "commons_page_duration_rounded": "5 min 17 s",
+    "storyboard_duration_seconds": 316.708,
+    "measured_duration_seconds": 316.708,
+    "storyboard_resolution": "1920x1080",
+    "storyboard_frame_rate": "30 fps"
+  }
+}
