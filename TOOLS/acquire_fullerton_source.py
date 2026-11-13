@@ -46,6 +46,8 @@ def main() -> None:
         with temp.open("wb") as target:
             shutil.copyfileobj(response, target)
     temp.replace(source)
+    allowed_headers = {"content-type", "content-length", "last-modified", "etag", "x-object-meta-sha1base36"}
+    safe_headers = {k: v for k, v in headers.items() if k.lower() in allowed_headers}
 
     probe = run_json([
         "ffprobe", "-v", "error", "-show_entries",
@@ -111,7 +113,7 @@ def main() -> None:
         "retrieval": {
             "acquired_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
             "requested_url": SOURCE_URL, "final_url": final_url,
-            "response_headers": headers,
+            "response_headers": safe_headers,
             "local_file": str(source.relative_to(out)),
             "bytes": source.stat().st_size, "sha256": sha256(source)
         },
