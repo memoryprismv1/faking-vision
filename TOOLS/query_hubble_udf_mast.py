@@ -58,12 +58,28 @@ def main():
 
     obs_records = records(observations, OBS_FIELDS)
     products = Observations.get_product_list(observations)
-    product_records = records(products, PRODUCT_FIELDS) if len(products) else []
+    product_rows = records(products, PRODUCT_FIELDS) if len(products) else []
+    # MAST may associate the same file with multiple observation records.
+    # Preserve each product once and retain all associated MAST obsIDs.
+    product_map = {}
+    for row in product_rows:
+        uri = row.get("dataURI")
+        if not uri:
+            continue
+        if uri not in product_map:
+            product_map[uri] = {**row, "associated_obsIDs": []}
+        obs_id = row.get("obsID")
+        if obs_id is not None and obs_id not in product_map[uri]["associated_obsIDs"]:
+            product_map[uri]["associated_obsIDs"].append(obs_id)
+    product_records = list(product_map.values())
+    raw_exposures = [p for p in product_records if p.get("productSubGroupDescription") == "RAW"]
 
     obs_path = out / "hubble_udf_observations.json"
     product_path = out / "hubble_udf_products.json"
+    raw_path = out / "hubble_udf_raw_exposures.json"
     obs_path.write_text(json.dumps(obs_records, indent=2) + "\n", encoding="utf-8")
     product_path.write_text(json.dumps(product_records, indent=2) + "\n", encoding="utf-8")
+    raw_path.write_text(json.dumps(raw_exposures, indent=2) + "\n", encoding="utf-8")
 
     by_program = {}
     for row in obs_records:
@@ -85,19 +101,24 @@ def main():
         "astroquery_version": astroquery.__version__,
         "astropy_version": astropy.__version__,
         "observation_count": len(obs_records),
-        "product_count": len(product_records),
+        "product_count_unique_dataURI": len(product_records),
+        "raw_exposure_count_unique_dataURI": len(raw_exposures),
+        "product_rows_before_deduplication": len(product_rows),
+        "product_duplicate_rows_collapsed": len(product_rows) - len(product_records),
         "observations_by_proposal": by_program,
         "observations_by_filter": by_filter,
-        "products_by_subgroup": by_subgroup,
+        "products_by_subgroup_unique_dataURI": by_subgroup,
         "files": {
             "observations": obs_path.name,
             "products": product_path.name,
+            "raw_exposure_ids": raw_path.name,
         },
         "download_status": "METADATA_ONLY - no FITS exposure products downloaded",
         "reproducibility_status": (
-            "Archive observation and product identifiers are enumerated. "
-            "Raw exposure acquisition, calibration reference files/CRDS context, "
-            "and registration/reprojection logs are not produced by this query."
+            "MAST observation records and deduplicated product URIs are enumerated. "
+            "The unique RAW product list identifies the original exposure files. "
+            "FITS exposure bytes, calibration reference files/CRDS context, "
+            "and registration/reprojection logs are not downloaded or reproduced by this query."
         ),
     }
     (out / "hubble_udf_mast_manifest.json").write_text(
