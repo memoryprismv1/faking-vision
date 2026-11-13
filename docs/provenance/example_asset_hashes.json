@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-11-13T10:37:15.700320+00:00",
-  "git_commit": "856f662a245d5b25c475b961ee5414e3f22321cb",
+  "generated_at_utc": "2026-11-13T10:38:34.825919+00:00",
+  "git_commit": "a4bab003418ac8d48eff76a968fe09e4f4fe194a",
   "scope": "all files under examples/ at the named git commit",
   "file_count": 484,
   "hash_algorithm": "SHA-256",
@@ -9,8 +9,8 @@
   "files": [
     {
       "path": "examples/README.md",
-      "bytes": 11728,
-      "sha256": "5a4eee65fa295d8ed6d714096f51b9568cc0ed885234417bb910377032e99089",
+      "bytes": 11417,
+      "sha256": "f7f6f31cd82d9df8b6ae411b6934ef80cb4489da9b288b3b2dfdd312566d0d5c",
       "kind": "text_or_code",
       "media_type": "text/markdown"
     },
