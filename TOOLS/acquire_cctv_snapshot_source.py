@@ -7,6 +7,9 @@ vehicle/plate imagery is retained in the repository or workflow artifact.
 """
 from __future__ import annotations
 import argparse, datetime as dt, hashlib, json, os, shutil, subprocess, tempfile
+from urllib.parse import urlsplit, urlunsplit
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from pathlib import Path
 import requests
 
@@ -18,6 +21,19 @@ STORYBOARD_TIMES = [0, 24, 64, 104, 156, 160, 184, 208, 220, 236, 240, 252, 268,
 BOUNDARY_TIMES = [104.57, 105.57, 106.57, 210.14, 211.14, 212.14]
 TRANSITION_WINDOWS = [(158.0, 162.0), (238.0, 242.0)]
 ALLOWED_HEADERS = {"content-type", "content-length", "last-modified", "etag"}
+
+
+def http_session():
+    retry = Retry(
+        total=8, connect=5, read=5, status=8, backoff_factor=2,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset(["GET"]), respect_retry_after_header=True,
+    )
+    session = requests.Session()
+    session.mount("https://", HTTPAdapter(max_retries=retry))
+    session.headers.update({"User-Agent": "FakingVisionProvenance/1.0 (https://github.com/memoryprismv1/faking-vision)"})
+    return session
+
 
 def run_json(args):
     return json.loads(subprocess.check_output(args, text=True))
@@ -43,8 +59,7 @@ def commons_metadata():
         "format": "json",
         "formatversion": 2,
     }
-    r = requests.get(API_URL, params=params, timeout=60,
-                     headers={"User-Agent": "faking-vision-provenance/1.0"})
+    r = http_session().get(API_URL, params=params, timeout=60)
     r.raise_for_status()
     payload = r.json()
     page = payload["query"]["pages"][0]
@@ -78,8 +93,9 @@ def commons_metadata():
     }
 
 def download(url: str, target: Path):
-    r = requests.get(url, stream=True, timeout=180,
-                     headers={"User-Agent": "faking-vision-provenance/1.0"})
+    parts = urlsplit(url)
+    clean_url = urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+    r = http_session().get(clean_url, stream=True, timeout=240)
     r.raise_for_status()
     safe_headers = {k.lower(): v for k, v in r.headers.items()
                     if k.lower() in ALLOWED_HEADERS}
@@ -173,7 +189,8 @@ def main():
             "original_youtube_url": f"https://www.youtube.com/watch?v={YOUTUBE_ID}",
             "source_page_metadata": metadata["page"],
             "commons_imageinfo": {k: v for k, v in info.items() if k != "url"},
-            "download_url": info["url"],
+            "original_imageinfo_url": info["url"],
+            "download_url": urlunsplit((*urlsplit(info["url"])[:3], "", "")),
             "download_response_headers": download_headers,
             "source_sha256": source_sha,
             "source_bytes": source.stat().st_size,
