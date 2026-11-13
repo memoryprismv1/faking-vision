@@ -23,3 +23,8 @@ The legacy README names the PACUNAM LiDAR Initiative and claims 100+ flight-tran
 - The legacy README also claims specific correspondence thresholds and a large storage-reduction ratio. These are not independently established. The merged-map visualizations do not prove source coverage or correspondence correctness.
 
 Treat this as a conceptual merge example only. `dispute.json` now records two open blockers and sets the merge gate to BLOCKED: the 55,000 untyped remainder and the absent contributing packet/correspondence evidence. Do not cite the 61,000 count, the 100+ input count, the correspondence-quality claims, or the storage-reduction figure as reproduced results.
+
+
+## Provenance gate remains blocked
+
+The 61,000-structure total and 100+ input-flight-line claims are not reproduced by this packet. The contributing raw flight-line point clouds, exact transect identifiers and correspondence evidence remain unavailable. Public derivative feature layers are not source point clouds. See `docs/LEGACY_DATASET_PROVENANCE.md`.
