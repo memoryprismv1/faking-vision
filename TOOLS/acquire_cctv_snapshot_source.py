@@ -19,7 +19,7 @@ API_URL = "https://commons.wikimedia.org/w/api.php"
 YOUTUBE_ID = "U7HRKjlXK-Y"
 STORYBOARD_TIMES = [0, 24, 64, 104, 156, 160, 184, 208, 220, 236, 240, 252, 268, 300, 316]
 BOUNDARY_TIMES = [104.57, 105.57, 106.57, 210.14, 211.14, 212.14]
-TRANSITION_WINDOWS = [(158.0, 162.0), (238.0, 242.0)]
+TRANSITION_WINDOWS = [(154.0, 162.0), (204.0, 212.0), (236.0, 244.0)]
 ALLOWED_HEADERS = {"content-type", "content-length", "last-modified", "etag"}
 
 
