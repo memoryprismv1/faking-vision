@@ -226,7 +226,7 @@ test('integrates a real Wikimedia CCTV clip with canonical_id packet entities', 
   test.skip(!process.env.FV_REAL_MEDIA_PATH, 'CI supplies a short VP9/WebM excerpt from the documented source clip');
   test.setTimeout(120000);
   const videoBytes = await fs.readFile(process.env.FV_REAL_MEDIA_PATH);
-  const packetPath = path.resolve(__dirname, '../../PACKETS/examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json');
+  const packetPath = path.resolve(__dirname, '../../examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json');
   const packetBytes = await fs.readFile(packetPath);
   const objectId = 'PKT-CCTV-001-OBJ-046';
 

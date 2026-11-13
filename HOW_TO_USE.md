@@ -615,6 +615,10 @@ to packet semantics.
 `FV video packet → verify identity/occupancy/temporal structure → lossless renderer compilation → video reconstruction → independent audit`
 
 
+## Version labels and legacy compatibility
+
+The current authoritative Working Process Specification is a v0.24 base with later normative additions labelled v0.26 and v0.27; no consolidated release number has been assigned. The v0.25 material below is a historical design addition, not a standalone normative packet release. Prototype editor version selectors and local import defaults are not full FV version support or packet migration. See [FV versioning status](docs/FV_VERSIONING_STATUS.md) before assigning or interpreting a packet version.
+
 ### Change log — v0.22
 
 - Added SCP/CCP separation for temporal attention.

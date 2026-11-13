@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '../..');
-const PACKET = path.join(ROOT, 'PACKETS/examples/videos/Cat_jumping_backwards');
+const PACKET = path.join(ROOT, 'examples/videos/Cat_jumping_backwards');
 const FIXTURE = path.join(ROOT, 'tests/fixtures/prompt-only-cat');
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 

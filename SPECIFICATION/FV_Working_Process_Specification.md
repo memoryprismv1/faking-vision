@@ -2,7 +2,7 @@ FAKING VISION
 
 Working Process Specification — Rewritten (v0.24)
 
-**Document status:** The base text is v0.24 and the document includes later normative additions, including v0.26 and v0.27. Those additions retain their own historical labels; this note does not declare a separately consolidated release number.
+**Document status:** The base text is v0.24 and the document includes later normative additions, including v0.26 and v0.27. Those additions retain their own historical labels; this note does not declare a separately consolidated release number. See [FV versioning status](../docs/FV_VERSIONING_STATUS.md) for the label history and rebuild-target wording; this status note does not override the normative specification.
 
 Ground-up operational specification for image/video analysis, FV investigation, assembly, packet merge, packet generation, reconstruction, prompt compilation, and evidence-grade evaluation.
 

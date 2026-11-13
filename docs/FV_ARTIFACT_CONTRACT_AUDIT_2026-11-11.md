@@ -8,6 +8,8 @@ Working branch: `work/fv-docs-skill-cleanup-20261111`
 
 This audit compares the operation-level artifact requirements in the current Working Process Specification, active skill, command reference, and how-to guide against the machine-readable JSON schemas found in the repository.
 
+**Version-label note:** This audit preserves the historical v0.25 design and v0.26/v0.27 follow-up discussion. The current interpretation of those labels and the default rebuild target is maintained in [FV_VERSIONING_STATUS.md](FV_VERSIONING_STATUS.md); this historical audit does not assign a consolidated release number.
+
 This is a contract-coverage review, not a claim that every FV packet layer must have a separate JSON Schema. The specification deliberately defines some packet layers procedurally. Where no dedicated schema was found in the inspected schema references/searches, this report says so rather than inventing one.
 
 ## Schema inventory confirmed on the working branch

@@ -6,7 +6,7 @@ Execution: agent-level FV skill operation; no standalone CLI.
 
 ## Input
 
-`PACKETS/examples/images/blue_chairs/`
+`examples/images/blue_chairs/`
 
 - Legacy image packet with OI/MSRM and source image.
 - Packet README now explicitly declares `DISPUTES: NONE`.

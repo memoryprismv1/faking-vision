@@ -58,7 +58,7 @@ The workbench imports/exports the editor bundle below. It is a constrained editi
 }
 ```
 
-The required import contract is: an ENVIRONMENT object, OI array with unique non-empty id values, an MSRM object containing an objects map, and an edit-log array. environmental_stress must be exactly none, low, or high. Legacy input may use either the named *.json keys or the documented short aliases (ENVIRONMENT, OI, MSRM, edit_log). The import preserves the supplied FV version; absent version metadata defaults to 0.26. The UI maps 0.25 to the legacy selector and other supplied versions to the 0.26 selector, with a warning if the selected rule set differs from the packet's stored version.
+The required import contract is: an ENVIRONMENT object, OI array with unique non-empty id values, an MSRM object containing an objects map, and an edit-log array. environmental_stress must be exactly none, low, or high. Legacy input may use either the named *.json keys or the documented short aliases (ENVIRONMENT, OI, MSRM, edit_log). The import preserves the supplied FV version; absent version metadata defaults locally to 0.26. The UI maps 0.25 to the legacy selector and other supplied versions to the 0.26 selector, with a warning if the selected rule set differs from the packet's stored version. These selector values and the wrapper's `fv_version.json` field are prototype interchange controls only: they are not a canonical packet version-marker schema, a full implementation of either specification version, or a packet migration. The local 0.26 fallback must not be used to infer the authoring version of an unversioned packet.
 
 ### Edit values and edit log
 

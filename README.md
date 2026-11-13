@@ -136,15 +136,29 @@ Not every task requires every operation.
 - [Command reference](commands.md)
 - [Operation implementation status](docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md)
 - [Documentation audit and cleanup baseline](docs/FV_DOCUMENTATION_BASELINE_2026-11-11.md)
+- [FV versioning status](docs/FV_VERSIONING_STATUS.md)
 - [Artifact contract and schema coverage audit](docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md)
 - [Research foundations and operational evidence map](docs/FV_RESEARCH_FOUNDATIONS.md)
 - [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
 - [Historical v0.24 specification snapshot](SPECIFICATION/FV_Working_Process_Specification_v0.24_Historical.md) (reference only)
 - [Agent skill](SKILL.md)
 - [How to use FV](HOW_TO_USE.md)
-- Example packets: `PACKETS/examples/`
+- Example packets: [`examples/`](examples/) — see the [examples index](examples/README.md).
 
 The Working Process Specification is the authoritative process document. The agent skill and supporting documentation provide operational access and guidance.
+
+## Example corpus privacy and provenance status
+
+The example media corpus has undergone a visual privacy inventory and a basic embedded-metadata review. The current findings and asset-level observations are recorded in the [example corpus visual privacy audit](tests/acceptance/results/2026-11-12-example-corpus-privacy-audit.md).
+
+- The reviewed inventory contains 305 images and 4 videos. No screenshot of a user's desktop, browser, application window, terminal, or other personal system was identified in the supplied corpus.
+- The earlier handwritten-name concern in the Wikimedia desk/display photograph was withdrawn after direct reinspection; the text refers to the historical/public name Mileva Marić Einstein in an exhibit-like setting.
+- CCTV observations must be read in their source context. The Commons description identifies the pole-mounted plate as a camera-demonstration test target. Incidental vehicles and public-facing bystanders are not automatically privacy violations; assess clearly legible identifiers and identifiable people in the actual reuse context rather than applying blanket masking.
+- The Commons page currently labels the Supercircuits CCTV source public domain under an automated-recording rationale. That rationale is not independently established here; the camera's PTZ/product-demonstration context leaves a source-rights question open.
+- The three generated story MP4s contain AAC audio tracks. **Those audio tracks were not listened to or transcribed and are not audio-cleared.** Audio-only names or other personal information therefore remain unchecked. This is a documented limitation, not a claim that personal information is present.
+- Source/licence records are uneven across the legacy examples. The five still-image packet READMEs cite Wikimedia Commons pages and CC0/public-domain terms, while several LiDAR, telescope, and CCTV examples lack the original raw inputs or reproducible acquisition/provenance records. See the audit and each packet README before redistribution or claims of reproduced results.
+
+The corpus should not be described as fully privacy-, rights-, or provenance-cleared. The audit distinguishes visual findings, metadata checks, source licensing, and unavailable evidence; one does not substitute for another.
 
 ## License
 

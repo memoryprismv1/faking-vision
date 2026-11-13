@@ -4,7 +4,7 @@ Date: 2026-11-11
 Repository baseline: `main`
 Working branch: `work/fv-docs-skill-cleanup-20261111`
 Scope: documentation, skill, command reference, and related support files.
-Status: initial audit; no examples changed.
+Status: historical baseline audit. Current version-label interpretation is maintained in [FV_VERSIONING_STATUS.md](FV_VERSIONING_STATUS.md); current examples are indexed at [../examples/README.md](../examples/README.md).
 
 ## Source hierarchy confirmed
 
@@ -189,7 +189,7 @@ The following items remain open or are deliberately deferred. Items already comp
 - **Consolidated release label:** the current authoritative specification remains a v0.24 base with later normative additions, including v0.26 and v0.27. The default rebuild target is correctly defined as the current authoritative specification itself; the absence of a consolidated numeric label does not block that operation. Decide on a release label only when a numbered consolidated release is needed. Do not infer v0.27 as the consolidated target.
 - **Divergent implementation branches:** review unique branch content in the later implementation/dataset phase. The documentation pass records the branch comparisons but does not merge or cherry-pick them.
 - **`fv investigate` question-directed media use:** resolved by including single-image/video questions and timestamped object/event findings in the existing investigation operation. No separate `fv query` command will be defined.
-- **Examples:** the final examples phase is now underway; the targeted provenance, packaging, and cross-reference review is recorded below and in `PACKETS/examples/README.md`.
+- **Examples:** the final examples phase is now underway; the targeted provenance, packaging, and cross-reference review is recorded below and in `../examples/README.md`.
 
 The operation-status inventory is complete as a documentation artifact and is maintained in `docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md`. Command syntax and cross-document consistency review is also complete for the defined operations; question-directed media analysis is included in `fv investigate`, not listed as a separate operation.
 
@@ -243,7 +243,7 @@ The investigator returns the finding directly, with relevant timestamps/interval
 
 The examples phase was kept until the end, after the documentation, skill, command-reference, and `fv investigate` scope work. The review has now:
 
-- Added `PACKETS/examples/README.md` as a directory-level index distinguishing reconstruction briefs, source-media analysis, sampled evidence, metadata-only examples, and incomplete/illustrative packets.
+- Added `../examples/README.md` as a directory-level index distinguishing reconstruction briefs, source-media analysis, sampled evidence, metadata-only examples, and incomplete/illustrative packets.
 - Updated `PACKETS/README.md` to link the index and to describe the offline audit-batch utility accurately.
 - Compared Git blob hashes and removed 38 byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building folders. Removed the byte-identical `TIR_MERGED_UNIFIED.json` alias from the CCTV Storage Crisis merged folder; canonical `TIR.json` remains. Shared version/provenance boilerplate repeated across distinct environmental packets and the reused operational-disposition note in separate CCTV packet folders were retained.
 - Corrected the viewpoint sample to include the required `initial_state.status` with an explicit unknown source pose.
@@ -328,7 +328,7 @@ No source-dependent uncertainty was silently resolved. No authoritative FV seman
 
 - Rechecked the active command references and examples index against the latest branch. Question-directed source-media analysis remains under `fv investigate`; no separate `fv query` operation is listed.
 - Rechecked the example catalogue and directory-level index. Blocked gates, unresolved disputes, absent source assets and unverified legacy claims are represented as limitations. This remains documentation/structural review, not full visual or semantic validation.
-- The branch comparison against `main`, at pre-final-record head `3a97b2e13799101c78c66a4da89f8379f7d9f751`, was 470 commits ahead, 0 behind, with 155 changed files (139 under `PACKETS/examples/`, 16 elsewhere).
+- The branch comparison against `main`, at pre-final-record head `3a97b2e13799101c78c66a4da89f8379f7d9f751`, was 470 commits ahead, 0 behind, with 155 changed files (139 under `../examples/`, 16 elsewhere).
 - A local clone was attempted but could not proceed because this execution environment could not resolve `github.com`. Rather than treating that as a test failure or stopping, branch-scoped GitHub Actions push triggers were added to run the existing suites. The triggers are restricted to this working branch and relevant source/test/workflow paths; the Python workflow retains its original `feature/fv-audit-batch` push trigger. Documentation-only commits do not rerun these suites.
 - **Python verification passed:** GitHub Actions run [43191452973](https://github.com/memoryprismv1/faking-vision/actions/runs/43191452973), on commit `3a97b2e13799101c78c66a4da89f8379f7d9f751`. All 14 unit tests passed under Python 3.12, and the configured `py_compile` check passed.
 - **Browser verification passed:** GitHub Actions run [43191441725](https://github.com/memoryprismv1/faking-vision/actions/runs/43191441725), on commit `d546ea3c6e3eb76a932706f53a62e60973a68382`. All 24 Playwright tests passed, including the real Wikimedia CCTV clip integration test. Chromium installation, source-media download/trim, and test server setup also completed successfully.

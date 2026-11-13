@@ -10,11 +10,11 @@ This document records the example families Meta produced and the artifacts prese
 
 Keep the existing reconstruction-target folders for compatibility, and add narrowly scoped organization where the new examples need it. Do not create a folder merely because a new label appears.
 
-- `examples/images/`: image-target packets.
-- `examples/videos/`: video-target packets.
-- `examples/lidar/`: LiDAR-specific assembly/merge packets, with KITTI sequence and merge examples grouped together.
-- `examples/telescope/`: telescope-exposure assembly, including Hubble Ultra Deep Field.
-- `examples/cctv/`: long-recording packets partitioned into temporal parts and a merged global packet.
+- `../examples/images/`: image-target packets.
+- `../examples/videos/`: video-target packets.
+- `../examples/lidar/`: LiDAR-specific assembly/merge packets, with KITTI sequence and merge examples grouped together.
+- `../examples/telescope/`: telescope-exposure assembly, including Hubble Ultra Deep Field.
+- `../examples/videos/fullerton_transit_center_cctv/`: a long surveillance recording partitioned into temporal parts and a merged global packet.
 - `by_operation/`: only where an operation needs a teaching example independent of the source modality (analyse, investigate, assemble, merge, resolve, validate, compile, audit).
 - `lifecycle/`: linked states of the same packet only when the supplied artifacts demonstrate those states.
 - `templates/`: a template only when it is actually supplied and validated.
@@ -57,7 +57,7 @@ Source named in README: KITTI Odometry Sequence 07, including `velodyne/*.bin`, 
 Verification caveat: raw scans, poses, calibration and reproducible registration logs are absent. One open dispute blocks reproduction; the 1,101 scan count, 3.2M point count, 1,500 m × 900 m coverage and dynamic-object filtering claims remain unverified.
 
 ### 5. KITTI merged global buildings
-Packet ID and exact global-ID claims are encoded in the packet files; the supplied ZIP contains `COMPILED_SPEC.json`, `MSRM.json`, `OI.json`, `PC.json`, `TD.json`, `dispute.json`, and `snapshot/manifest.json`, but no README. A review README has since been added at `examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/README.md`.
+Packet ID and exact global-ID claims are encoded in the packet files; the supplied ZIP contains `COMPILED_SPEC.json`, `MSRM.json`, `OI.json`, `PC.json`, `TD.json`, `dispute.json`, and `snapshot/manifest.json`, but no README. A review README has since been added at `../examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/README.md`.
 Purpose inferred from packet naming and contents: merge observations into persistent global building identities.
 Verification caveat: duplicate suffixed JSON/manifests were byte-identical to canonical records and have been removed. OI contains 12 represented global records but retains a legacy declared total of 54; 42 singleton identities are not represented. The compiled-spec draft is constrained to the 12 represented identities and does not instantiate the missing 42. Two open disputes block the merge: inventory completeness and source-component provenance. No raw KITTI source data is retained.
 
@@ -69,13 +69,13 @@ Purpose described by Meta: assemble overlapping telescope exposures into a large
 Source named in README: Hubble Space Telescope Ultra Deep Field, 2003–2004.
 Verification caveat: the Hubble exposures, archive identifiers, complete exposure list, calibration inputs and reproducible processing log are absent. The OI's two entities are now both represented in the MSRM scene; that was a structural cross-reference correction only. Two open disputes block acceptance: reproducible exposure provenance and unverified astronomical inventory/count claims. The 800-exposure and 10,000-galaxy figures remain legacy claims, not reproduced results.
 
-### 7. CCTV storage-crisis temporal parts and global merge
-Packet family: `CCTV_Storage_Crisis`.
+### 7. Fullerton Transportation Center CCTV temporal parts and global merge
+Packet family: `fullerton_transit_center_cctv`.
 Sub-packets: `Part1_00-00_to_11-23`, `Part2_11-23_to_22-46`, `Part3_22-46_to_34-10`, and `MERGED_Global`.
 Supplied artifacts across the family include per-packet `OI.json`, `TD.json`, `TIR.json`, `MSRM.json`, `PC.json`, `dispute.json`, and `snapshot/manifest.json`; the merged packet additionally includes `COMPILED_SPEC.json` and the canonical merged `TIR.json`. Each part and the merged packet has a `README.txt`.
 Purpose described by Meta: divide a long recording into three temporal segments, then reconcile object identities and a unified timeline across the segments.
-Source named by README: a full, unedited Kelly Thomas confrontation video. The README calls it CCTV; the source type and original publication/source URL still need verification.
-Verification caveat: the source video, source URL/acquisition record and source-aligned snapshots are absent. All three part packets now have two open provenance/correspondence disputes and BLOCKED analysis gates; their OIs are unverified legacy candidates, TDs are non-authoritative, and TIR observations/hypotheses are explicitly unverified. Unsupported personal names were removed from the part TIRs. The merged packet has three open disputes and a BLOCKED merge gate: four global IDs remain uncommitted candidates, the unified timeline/coverage claim is unverified, and the compiled-spec draft is not an approved render target. Bitrate arithmetic is corrected; the 10,000x reduction claim remains withdrawn as non-evidence-equivalent.
+Source match: Wikimedia Commons [Full, unedited Kelly Thomas confrontation video (35 min.).webm](https://commons.wikimedia.org/wiki/File:Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm), 34 min 10 s at 640 × 360, described as surveillance-camera footage from Fullerton Transportation Center on 2011-07-05. The Commons page identifies the original YouTube source as https://www.youtube.com/watch?v=dDpJ5FtG6Ac and lists Orange County Register in the media metadata. The filename and duration match the packet family. The original source file and source-derived frames are not retained in this repository, so packet acquisition and segment-to-source alignment remain unverified. Commons displays public-domain rationales under California public-record and ineligible-work tags; this records the page's claim, not an independent legal opinion.
+Verification caveat: the Commons source match is strong, but the source video, packet-producer acquisition record and source-aligned snapshots are absent. The source identity/duration are matched to the Commons page; packet acquisition and part-to-source alignment are not verified. All three part packets now have two open provenance/correspondence disputes and BLOCKED analysis gates; their OIs are unverified legacy candidates, TDs are non-authoritative, and TIR observations/hypotheses are explicitly unverified. Unsupported personal names were removed from the part TIRs. The merged packet has three open disputes and a BLOCKED merge gate: four global IDs remain uncommitted candidates, the unified timeline/coverage claim is unverified, and the compiled-spec draft is not an approved render target. Bitrate arithmetic is corrected; the 10,000x reduction claim remains withdrawn as non-evidence-equivalent.
 
 ### 8. Cat jumping backwards video packet and dispute lifecycle
 Packet ID: `PKT-CAT-JUMP-BACK-001`
@@ -91,7 +91,7 @@ Evidence limitation stated by README: direct pixel-level frame inspection was un
 2. Record source URLs and dataset identifiers where supplied. Flag missing source links and acquisition records.
 3. Distinguish four states: source identified, source acquired, processing executed, result independently verified.
 4. Preserve original dispute files, reconciliations, pre-resolution and post-resolution reports, and packet manifests.
-5. Compare duplicate-looking files by content hash. This review removed byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building examples, retaining canonical unsuffixed files. Shared boilerplate files repeated across different environmental packets were retained. The byte-identical `TIR_MERGED_UNIFIED.json` alias in the CCTV Storage Crisis merged packet was removed; canonical `TIR.json` remains. Never discard a distinct lifecycle state.
+5. Compare duplicate-looking files by content hash. This review removed byte-identical suffixed packaging copies from the Cat-jumping and KITTI merged-building examples, retaining canonical unsuffixed files. Shared boilerplate files repeated across the environmental edit-pair source archive were retained in that historical source review; the environmental edit-pair family has since been removed from the active examples tree. The byte-identical `TIR_MERGED_UNIFIED.json` alias in the Fullerton Transportation Center CCTV merged packet was removed; canonical `TIR.json` remains. Never discard a distinct lifecycle state.
 6. Do not claim raw sensor media is included where the ZIP contains only structured packet artifacts.
 7. Retain provenance and uncertainty; do not silently promote unresolved claims or create global identities without documented correspondence evidence.
 
@@ -99,4 +99,4 @@ Evidence limitation stated by README: direct pixel-level frame inspection was un
 
 This catalog covers eight packet bundles represented in the supplied archives: Mayan LiDAR stitching, Mayan global merge, KITTI landscape assembly, KITTI Sequence 07 assembly, KITTI global buildings merge, Hubble Ultra Deep Field stitching, the three-part CCTV family plus merged global packet, and the cat-jumping video/lifecycle packet. Duplicate ZIP uploads were treated as repeat packaging, not new examples.
 
-This document is an inventory and provenance guide. It is not a claim that the raw sensor sources are included or that every processing step has been independently reproduced. The current example review also adds explicit evidence/dispute gates across the CCTV Storage Crisis, KITTI, Mayan LiDAR and Hubble packets, plus the environmental-pair Wall Cat dispute. Read `PACKETS/examples/README.md` for the current directory-level evidence-status index.
+This document is an inventory and provenance guide. It is not a claim that the raw sensor sources are included or that every processing step has been independently reproduced. The current example review also adds explicit evidence/dispute gates across the Fullerton Transportation Center CCTV, KITTI, Mayan LiDAR and Hubble packets,  Read `../examples/README.md` for the current directory-level evidence-status index.
