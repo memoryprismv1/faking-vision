@@ -1,6 +1,6 @@
 {
   "record_type": "commons_source_acquisition",
-  "acquired_at_utc": "2026-11-13T10:28:54.862388+00:00",
+  "acquired_at_utc": "2026-11-13T10:31:47.284205+00:00",
   "source_page": "https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video.webm",
   "original_youtube_url": "https://www.youtube.com/watch?v=U7HRKjlXK-Y",
   "source_page_metadata": {
@@ -68,8 +68,8 @@
     ]
   },
   "workflow_artifact": {
-    "run_id": "43409250445",
-    "run_url": "https://github.com/memoryprismv1/faking-vision/actions/runs/43409250445",
+    "run_id": "43409586287",
+    "run_url": "https://github.com/memoryprismv1/faking-vision/actions/runs/43409586287",
     "artifact_name": "cctv-snapshot-source-manifest",
     "retention_days": 30,
     "source_media_retained": false,
