@@ -39,18 +39,22 @@
     {
       "dispute_id": "PKT-CCTV-003-DSP-003",
       "topic": "opening camera/view change",
-      "issue": "The field of view changes substantially in the opening seconds; the mechanism (zoom, pan/tilt, cut, or other change) is not established from this packet alone.",
+      "issue": "The source-level sequence is more detailed than the original packet summary: a tight placard close-up at the start, an intermediate tight parking-area view by global 220s and still tight at 236s, then the wide parking-lot view is present by global 240s (about packet-local 28.86s). The earlier TIR statement that the wide view persists from local t=8 was too broad. Exact pan/tilt/zoom mechanism and transition frame remain unresolved.",
       "evidence": [
         "snapshot/verification/frame_000.jpg",
         "snapshot/verification/frame_003.jpg",
         "snapshot/verification/frame_004.jpg",
-        "snapshot/verification/frame_008.jpg"
+        "snapshot/verification/frame_008.jpg",
+        "Parent-source acquisition: ../provenance/source_acquisition.json",
+        "Parent-source frame hashes: ../provenance/source_frame_manifest.json",
+        "Prior source storyboard artifact: reconstruction_from_source_screenshots.pdf, global samples 220s, 236s and 240s (not stored in this repository)"
       ],
-      "required_resolution": "The substantial opening view change is salient and warrants investigation as a change in visual regime. Preserve the observed change; mechanism remains unresolved.",
+      "required_resolution": "Preserve the corrected view sequence. Exact transition frame and camera mechanism need denser visual inspection only if operationally relevant; do not infer object motion or identity from the framing changes.",
       "operational_disposition": "ACTIVE",
       "resolution_status": "OPEN",
       "making_vision_basis": "Making Vision v1/v2: retained information is not automatically active attention; promotion is contingent on change, task relevance, or new evidence. Chunk-local deferral is reversible.",
-      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant."
+      "chunk_scope": "This disposition applies only within this packet/source chunk; later chunks may make this object or question operationally relevant.",
+      "source_alignment_status": "PARTIALLY_VERIFIED_FROM_SOURCE_STORYBOARD_AND_HASH_MANIFEST"
     }
   ],
   "operational_policy": "Making Vision v1/v2: preserve data; allocate attention selectively; defer stable/background inventory questions when they do not affect the current chunk; re-promote when later evidence or another chunk makes them pertinent.",

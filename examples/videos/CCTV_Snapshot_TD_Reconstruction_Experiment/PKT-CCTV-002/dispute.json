@@ -25,7 +25,7 @@
     {
       "dispute_id": "PKT-CCTV-002-DSP-002",
       "topic": "Camera reframe and later zoom mechanism remain unresolved",
-      "issue": "A substantial framing shift occurs around t=49–52 and a tighter pole/placard view appears around t=98–100. The visual regime changes are observed, but exact pan/tilt/zoom mechanics and continuous camera motion between samples are not reconstructed.",
+      "issue": "Source-aligned storyboard review confirms a major wide-to-tight reframe between global source 156s and 160s (approximately packet-local 50.43–54.43s), followed by a close-up of a plate-like marking by global 208s (approximately packet-local 102.43s). The source demonstrates view/zoom changes, but exact transition frames and mechanical cause are not established.",
       "evidence": [
         "snapshot/verification/frame_049.jpg",
         "snapshot/verification/frame_050.jpg",
@@ -33,12 +33,16 @@
         "snapshot/verification/frame_098.jpg",
         "snapshot/verification/frame_100.jpg",
         "MSRM.json: S02/S04",
-        "TD.json: camera/view-change records"
+        "TD.json: camera/view-change records",
+        "Parent-source acquisition: ../provenance/source_acquisition.json",
+        "Parent-source frame hashes: ../provenance/source_frame_manifest.json",
+        "Prior source storyboard artifact: reconstruction_from_source_screenshots.pdf, global samples 156s, 160s, 184s and 208s (not stored in this repository)"
       ],
-      "required_resolution": "Use denser frame sampling around both transitions to distinguish pan, tilt, zoom, camera repositioning or cut. Preserve the view-change event even if its mechanical cause remains unknown.",
+      "required_resolution": "The source-level view changes are now recorded. Exact transition-frame timing and pan/tilt/zoom mechanism remain unresolved because the hash-only manifest does not retain images and the original part_02.mp4 is absent. If those details become operationally relevant, inspect denser source frames; do not infer object entry/exit from reframing.",
       "operational_disposition": "ACTIVE",
       "chunk_scope": "Part 2 only.",
-      "resolution_status": "OPEN"
+      "resolution_status": "OPEN",
+      "source_alignment_status": "PARTIALLY_VERIFIED_FROM_SOURCE_STORYBOARD_AND_HASH_MANIFEST"
     },
     {
       "dispute_id": "PKT-CCTV-002-DSP-003",

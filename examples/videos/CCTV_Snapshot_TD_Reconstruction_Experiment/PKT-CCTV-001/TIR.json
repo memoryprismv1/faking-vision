@@ -6,7 +6,7 @@
   "source_intake": {
     "filename": "part_01.webm",
     "duration_seconds": 105.6,
-    "fps": 30.0,
+    "fps": 30,
     "frame_dimensions": [
       1920,
       1080
@@ -631,5 +631,22 @@
     "Is the t=0 parked-vehicle inventory exhaustive where objects overlap or are clipped by image edges?",
     "Exact entry/exit times and complete routes of the moving vehicles are not established by the sampled evidence.",
     "No direct interaction between the pedestrian and silver sedan is established."
-  ]
+  ],
+  "source_alignment_review": {
+    "reviewed_at": "2026-11-13",
+    "source_file_sha256": "ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa",
+    "source_acquisition_record": "../provenance/source_acquisition.json",
+    "source_frame_manifest": "../provenance/source_frame_manifest.json",
+    "source_interval_parent_seconds": [
+      0,
+      105.569333
+    ],
+    "source_interval_status": "inferred from the parent duration and Part2 start; Part1's original packet manifest does not record its parent-source interval",
+    "storyboard_findings": [
+      "Global source samples at 0s, 24s, 64s and 104s show the wide parking-lot view.",
+      "The first major view reframe is later, between global 156s and 160s, outside Part1."
+    ],
+    "limitation": "Source media and sample images are not retained; only acquisition metadata and frame hashes are committed. This does not prove exhaustive coverage or the original split procedure."
+  },
+  "source_acquisition_status": "Commons distribution copy acquired and SHA-256 fingerprinted 2026-11-13; camera-native recorder file and historical part_01.webm are not retained."
 }

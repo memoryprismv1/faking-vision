@@ -56,5 +56,13 @@
     }
   ],
   "operational_policy": "Making Vision v1/v2: preserve data; allocate attention selectively; defer stable/background inventory questions when they do not affect the current chunk; re-promote when later evidence or another chunk makes them pertinent. Operational deferral does not change the canonical dispute gate: unresolved issues keep aggregate status open and block rendering.",
-  "cross_chunk_caution": "No object or observation is permanently dismissed by a deferred disposition. Do not infer continuity/identity across chunks without evidence."
+  "cross_chunk_caution": "No object or observation is permanently dismissed by a deferred disposition. Do not infer continuity/identity across chunks without evidence.",
+  "source_provenance_status": {
+    "status": "PARTIALLY_ESTABLISHED",
+    "source_page": "https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm",
+    "source_sha256": "ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa",
+    "acquisition_record": "../provenance/source_acquisition.json",
+    "frame_manifest": "../provenance/source_frame_manifest.json",
+    "note": "The Commons distribution copy is acquired and hashed. The original packet part_01.webm and its exact parent-source interval/acquisition history remain unavailable; inventory completeness and tiny distant-shape classification disputes remain open."
+  }
 }

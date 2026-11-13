@@ -149,16 +149,33 @@
     {
       "period_seconds": [
         8,
-        104
+        28
       ],
-      "observation": "Wide elevated parking-lot view persists with many parked vehicles in multiple rows. A light-coloured elongated vehicle-like form changes position in later samples; full trajectory and identity correspondence remain uncertain.",
+      "observation": "A tight/medium parking-area view continues after the initial placard reframe. Source storyboard samples at global 220s and 236s show the tight parking-area view with a red vehicle visible; the full wide view has not yet returned.",
       "confidence": "general scene observation; detailed exhaustive vehicle inventory not established",
       "evidence": [
         "snapshot/verification/frame_008.jpg",
         "snapshot/verification/frame_060.jpg",
         "snapshot/verification/frame_081.jpg",
         "snapshot/verification/frame_090.jpg",
-        "snapshot/verification/frame_104.jpg"
+        "snapshot/verification/frame_104.jpg",
+        "source storyboard: global 220s and 236s",
+        "../provenance/source_frame_manifest.json: hashes at global 220s and 236s"
+      ]
+    },
+    {
+      "period_seconds": [
+        29,
+        104
+      ],
+      "observation": "The wide parking-lot view is present by global source 240s (approximately packet-local 28.861333s) and persists through the later sampled interval. Do not extend the wide-view claim back to local t=8.",
+      "confidence": "source-aligned storyboard observation; exact transition frame not visually localized",
+      "evidence": [
+        "snapshot/verification/frame_029.jpg",
+        "snapshot/verification/frame_060.jpg",
+        "snapshot/verification/frame_081.jpg",
+        "snapshot/verification/frame_104.jpg",
+        "source storyboard: global 240s, 252s, 268s, 300s and 316s"
       ]
     }
   ],
@@ -171,7 +188,42 @@
   ],
   "open_questions": [
     "Exhaustive inventory of individual vehicles and other visible objects is not established.",
-    "The light-coloured moving vehicle-like form\u2019s exact identity, path and temporal correspondence remain uncertain.",
+    "The light-coloured moving vehicle-like form’s exact identity, path and temporal correspondence remain uncertain.",
     "Camera/view change mechanics during the opening reframing are not established."
-  ]
+  ],
+  "source_acquisition_status": "Parent Commons distribution copy acquired and fingerprinted; this packet's original part_03.mp4 is not retained. Source-level alignment is partial and does not replace the packet's local snapshots.",
+  "source_alignment_review": {
+    "reviewed_at": "2026-11-13",
+    "source_file_sha256": "ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa",
+    "source_acquisition_record": "../provenance/source_acquisition.json",
+    "source_frame_manifest": "../provenance/source_frame_manifest.json",
+    "parent_source_interval_seconds": [
+      211.138667,
+      316.708
+    ],
+    "source_to_packet_offset_seconds": 211.138667,
+    "storyboard_findings": [
+      {
+        "source_time_s": 220,
+        "packet_local_time_s": 8.861333,
+        "finding": "tight parking-area view; red vehicle visible"
+      },
+      {
+        "source_time_s": 236,
+        "packet_local_time_s": 24.861333,
+        "finding": "tight view continues"
+      },
+      {
+        "source_time_s": 240,
+        "packet_local_time_s": 28.861333,
+        "finding": "wide parking-lot view present"
+      },
+      {
+        "source_time_s": 252,
+        "packet_local_time_s": 40.861333,
+        "finding": "wide view continues"
+      }
+    ],
+    "limitation": "The 10-fps transition windows are represented by hashes only. The storyboard establishes the sampled view states but not the exact transition frame or camera mechanism."
+  }
 }
