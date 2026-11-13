@@ -20,7 +20,7 @@ FV METHOD AND EVIDENCE
 - Eight source-derived, unannotated crops are retained in snapshot/objs/.
 - Manual FV visual observation only: no built-in object detector, image classifier, automated tracker, OCR, or automated visual inference was used. Code was used only to extract/copy snapshots, crop specified regions, hash files and package the artifact.
 - Times are relative to part_03.mp4, nominal to the nearest sampled second; they are not original CCTV wall-clock times. Parent-relative time is approximately packet-local time + 211.138667 seconds.
-- The opening contains a tight view of two placards attached to a pole; the camera view widens during the first several seconds, then a wide parking-lot view persists. This is represented as camera/view change, not as objects entering or leaving the scene.
+- The opening contains a tight view of two placards attached to a pole; the view widens to a tight parking-area view during the first several seconds. The source storyboard still shows the tight parking-area view at global 220s and 236s; the wide parking-lot view returns by global 240s (about packet-local 28.86s), then persists. This is represented as camera/view change, not as objects entering or leaving the scene.
 - A light-coloured elongated vehicle-like form changes position in the later samples. Exact route and identity correspondence remain uncertain.
 
 PACKET CONTENTS
@@ -52,3 +52,7 @@ See FV_OPERATIONAL_DISPOSITION.txt and dispute.json. Stable/background inventory
 
 LEGACY METADATA BOUNDARY
 This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.
+
+
+PARENT-SOURCE REVIEW (2026-11-13)
+The parent Commons copy is acquired and hashed; see the family provenance records. Source storyboard samples show a tight parking-area view at global 220s and 236s, with the wide view present by 240s. The previous broad statement that the wide view persisted from packet-local t=8 has been corrected in TIR.json. The exact transition frame and camera mechanism remain unresolved. The source video and sample images are not retained.
