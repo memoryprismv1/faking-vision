@@ -8,7 +8,7 @@ Status: Initial analysis packet; independent of PKT-CCTV-001; not merged, valida
 SOURCE INTAKE
 - Packet source: part_02.mp4
 - Parent source: BLK-HDPTZ12_Security_Camera_Parking_Lot_Surveillance_Video (1).webm
-- Parent-source interval: approximately 105.569333–211.138667 seconds (Part 2)
+- Parent-source interval: 105.569333–211.138667 seconds (Part 2), as recorded in the packet manifest
 - Packet-source duration: 105.599675 seconds
 - Video: 1920 × 1080, H.264, reported frame rate 30/1
 - Audio stream present: True. Audio was not intentionally included or used as evidence.
@@ -42,3 +42,7 @@ DISPUTES: THREE OPEN INVESTIGATIONS in dispute.json. The analysis is partial and
 
 LEGACY METADATA BOUNDARY
 This packet predates the current root-level viewpoint/provenance requirements and has no `viewpoint.json` or `packet_provenance.json`. Source camera position, orientation and calibration remain unknown; do not infer them from framing or snapshot coordinates. The original source segment is not retained in this repository, and the snapshots/manifest do not replace it. Preserve these omissions as legacy unknowns; do not synthesize missing source metadata. This packet is not a current-format, compilation-ready packet.
+
+
+PARENT-SOURCE REVIEW (2026-11-13)
+The parent Commons copy is acquired and hashed; see the family provenance records. Source-level samples show a wide-to-tight reframe between global 156s and 160s (about packet-local 50.43–54.43s), followed by a close-up of a plate-like marking by global 208s (about packet-local 102.43s). The packet's local view-change notes are consistent with those sampled states. Exact transition frames and camera mechanism remain unresolved; no plate characters are transcribed and no source frames are retained.
