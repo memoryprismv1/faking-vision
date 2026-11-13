@@ -37,7 +37,10 @@ def records(table, fields):
     available = [f for f in fields if f in table.colnames]
     result = []
     for row in table:
-        result.append({field: clean(row[field]) for field in available})
+        item = {field: clean(row[field]) for field in available}
+        if item.get("productSubGroupDescription") == 0.0:
+            item["productSubGroupDescription"] = None
+        result.append(item)
     return result
 
 def main():
@@ -74,6 +77,43 @@ def main():
     product_records = list(product_map.values())
     raw_exposures = [p for p in product_records if p.get("productSubGroupDescription") == "RAW"]
 
+    # MAST observation IDs are association-level names; the RAW exposure
+    # rootnames share their first six characters with the corresponding
+    # observation ID. Validate that this join resolves uniquely.
+    prefix_map = {}
+    for observation in obs_records:
+        obs_id = str(observation.get("obs_id") or "")
+        prefix = obs_id[:6]
+        if not prefix or prefix.lower().startswith("hst_"):
+            continue
+        entry = prefix_map.setdefault(prefix, {"filters": set(), "proposals": set(), "obs_ids": set()})
+        if observation.get("filters") is not None:
+            entry["filters"].add(str(observation["filters"]))
+        if observation.get("proposal_id") is not None:
+            entry["proposals"].add(str(observation["proposal_id"]))
+        entry["obs_ids"].add(obs_id)
+    filter_counts = {}
+    proposal_filter_counts = {}
+    filter_join_failures = []
+    for exposure in raw_exposures:
+        filename = str(exposure.get("productFilename") or "")
+        prefix = filename[:6]
+        entry = prefix_map.get(prefix)
+        if entry and len(entry["filters"]) == 1 and len(entry["proposals"]) == 1:
+            exposure["obs_id_prefix"] = prefix
+            exposure["filter"] = next(iter(entry["filters"]))
+            exposure["proposal_id"] = next(iter(entry["proposals"]))
+            exposure["filter_mapping_status"] = "UNAMBIGUOUS_OBS_ID_PREFIX_JOIN"
+            filter_counts[exposure["filter"]] = filter_counts.get(exposure["filter"], 0) + 1
+            key = f'{exposure["proposal_id"]}:{exposure["filter"]}'
+            proposal_filter_counts[key] = proposal_filter_counts.get(key, 0) + 1
+        else:
+            exposure["obs_id_prefix"] = prefix
+            exposure["filter"] = None
+            exposure["proposal_id"] = None
+            exposure["filter_mapping_status"] = "UNRESOLVED_OR_AMBIGUOUS"
+            filter_join_failures.append(filename)
+
     obs_path = out / "hubble_udf_observations.json"
     product_path = out / "hubble_udf_products.json"
     raw_path = out / "hubble_udf_raw_exposures.json"
@@ -91,7 +131,7 @@ def main():
         by_filter[key] = by_filter.get(key, 0) + 1
     by_subgroup = {}
     for row in product_records:
-        key = str(row.get("productSubGroupDescription"))
+        key = str(row.get("productSubGroupDescription") or "UNSPECIFIED")
         by_subgroup[key] = by_subgroup.get(key, 0) + 1
 
     summary = {
@@ -103,6 +143,10 @@ def main():
         "observation_count": len(obs_records),
         "product_count_unique_dataURI": len(product_records),
         "raw_exposure_count_unique_dataURI": len(raw_exposures),
+        "raw_exposures_by_filter_prefix_join": filter_counts,
+        "raw_exposures_by_proposal_and_filter_prefix_join": proposal_filter_counts,
+        "raw_exposure_filter_join_failures": filter_join_failures,
+        "raw_exposure_filter_join_complete": len(filter_join_failures) == 0,
         "product_rows_before_deduplication": len(product_rows),
         "product_duplicate_rows_collapsed": len(product_rows) - len(product_records),
         "observations_by_proposal": by_program,
