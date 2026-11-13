@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 test('FV Edit camera drag changes VPO, logs it, exports and reloads it', async ({ page }, testInfo) => {
-  await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
+  await page.goto('/TOOLS/FV_Edit_Visual_Workbench.html');
   await expect(page.locator('#cameraMarker')).toBeVisible();
   const before = await page.locator('#cameraMarker').boundingBox();
   await page.locator('#cameraMarker').hover();
@@ -27,7 +27,7 @@ test('FV Edit camera drag changes VPO, logs it, exports and reloads it', async (
 });
 
 test('FV Edit viewpoint command updates pose and records before/after', async ({ page }) => {
-  await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
+  await page.goto('/TOOLS/FV_Edit_Visual_Workbench.html');
   const viewpointId = await page.locator('#cameraMarker').getAttribute('data-viewpoint-id');
   await page.locator('#command').fill(`fv edit viewpoint set ${viewpointId} position 2 1 5`);
   await page.locator('#runCommand').click();
@@ -36,13 +36,13 @@ test('FV Edit viewpoint command updates pose and records before/after', async ({
 });
 
 test('FV Edit schematic explicitly does not claim to render a new camera image', async ({ page }) => {
-  await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
+  await page.goto('/TOOLS/FV_Edit_Visual_Workbench.html');
   await expect(page.locator('.banner')).toContainText('SCHEMATIC ONLY');
   await expect(page.locator('.banner')).toContainText('not an original/edited image rendering');
 });
 
 test('legacy packet import does not materialize a VPO; explicit action instantiates VPO_DEFAULT', async ({ page }, testInfo) => {
-  await page.goto('/PACKETS/tools/FV_Edit_Visual_Workbench.html');
+  await page.goto('/TOOLS/FV_Edit_Visual_Workbench.html');
   const pending = page.waitForEvent('download');
   await page.locator('#exportBtn').click();
   const download = await pending;

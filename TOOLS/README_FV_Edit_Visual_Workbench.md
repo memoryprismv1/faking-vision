@@ -30,7 +30,7 @@ Open `FV_Edit_Visual_Workbench.html` in a modern desktop browser. It is self-con
 With Node.js 18+ available, run:
 
 ```sh
-node fv-editor-smoke-test.mjs FV_Edit_Visual_Workbench.html
+node TOOLS/fv-editor-smoke-test.mjs TOOLS/FV_Edit_Visual_Workbench.html
 ```
 
 The smoke test checks JavaScript syntax, seven fixture records, enum validity, unique IDs and resolving references, simulated JSON bundle round trips, stress derivation, the explicit negative test, and the import/export/disclaimer affordances. It is not browser end-to-end testing or the authoritative FV validator.

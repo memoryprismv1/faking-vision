@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 
-const APP = '/PACKETS/tools/FV_Edit_Visual_Workbench.html';
+const APP = '/TOOLS/FV_Edit_Visual_Workbench.html';
 
 async function exportBundle(page, testInfo) {
   const downloadPromise = page.waitForEvent('download');
