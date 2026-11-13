@@ -1,0 +1,79 @@
+{
+  "dataset": "Hubble Ultra Deep Field, ACS/WFC",
+  "query_time_utc": "2026-11-13T10:48:14.752663+00:00",
+  "workflow_run_id": "43411677866",
+  "workflow_run_url": "https://github.com/memoryprismv1/faking-vision/actions/runs/43411677866",
+  "artifact_name": "hubble-udf-mast-manifest",
+  "artifact_retention_days": 30,
+  "query_criteria": {
+    "obs_collection": "HST",
+    "proposal_id": [
+      9978,
+      10086
+    ],
+    "instrument_name": "ACS/WFC"
+  },
+  "astroquery_version": "0.4.11",
+  "astropy_version": "8.0.2",
+  "observation_count": 609,
+  "product_count_unique_dataURI": 15740,
+  "raw_exposure_count_unique_dataURI": 800,
+  "raw_exposures_by_filter_prefix_join": {
+    "F435W": 112,
+    "F606W": 112,
+    "F775W": 288,
+    "F850LP": 288
+  },
+  "raw_exposures_by_proposal_and_filter_prefix_join": {
+    "9978:F435W": 104,
+    "9978:F606W": 108,
+    "9978:F775W": 276,
+    "9978:F850LP": 272,
+    "10086:F850LP": 16,
+    "10086:F435W": 8,
+    "10086:F775W": 12,
+    "10086:F606W": 4
+  },
+  "raw_exposure_filter_join_failures": [],
+  "raw_exposure_filter_join_complete": true,
+  "raw_exposure_filter_join_method": "The first six characters of each RAW product filename rootname are joined to the first six characters of the MAST observation obs_id; the query returned one unique filter and proposal for all 800 RAW products.",
+  "product_rows_before_deduplication": 45187,
+  "product_duplicate_rows_collapsed": 29447,
+  "observations_by_proposal": {
+    "9978": 573,
+    "10086": 36
+  },
+  "observations_by_filter": {
+    "F435W": 57,
+    "F606W": 56,
+    "F775W": 146,
+    "F850LP": 148,
+    "detection": 202
+  },
+  "products_by_subgroup_unique_dataURI": {
+    "FLT_HLET": 800,
+    "SPT": 1002,
+    "TRL": 2206,
+    "LOG": 1002,
+    "UNSPECIFIED": 4008,
+    "FLC": 1600,
+    "FLT": 800,
+    "RAW": 800,
+    "JIF": 202,
+    "JIT": 202,
+    "ASN": 202,
+    "DRC": 1406,
+    "DRZ": 202,
+    "POINT-CAT": 404,
+    "SEGMENT-CAT": 404,
+    "HLET": 500
+  },
+  "files": {
+    "observations": "hubble_udf_observations.json",
+    "products": "hubble_udf_products.json",
+    "raw_exposure_ids": "hubble_udf_raw_exposures.json"
+  },
+  "download_status": "METADATA_ONLY - no FITS exposure products downloaded",
+  "calibration_and_registration_note": "The manifest enumerates RAW, FLT, FLC, DRZ, DRC, LOG, TRL and support-product URIs. FITS bytes, CRDS context/reference files, and registration/reprojection logs have not been downloaded or inspected.",
+  "reproducibility_status": "MAST observation records and deduplicated product URIs are enumerated. The unique RAW product list identifies the original exposure files. FITS exposure bytes, calibration reference files/CRDS context, and registration/reprojection logs are not downloaded or reproduced by this query."
+}
