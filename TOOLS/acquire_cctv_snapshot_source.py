@@ -70,13 +70,16 @@ def commons_metadata():
     selected = ["Artist", "DateTimeOriginal", "Source", "Credit",
                 "LicenseShortName", "UsageTerms", "Copyrighted",
                 "AttributionRequired", "Restrictions", "ImageDescription"]
+    revisions = page.get("revisions") or [{}]
+    revision = revisions[0]
     return {
         "page": {
             "title": page.get("title"),
             "pageid": page.get("pageid"),
-            "lastrevid": page.get("lastrevid"),
+            "lastrevid": page.get("lastrevid") or revision.get("revid"),
+            "revision_id": revision.get("revid"),
             "touched": page.get("touched"),
-            "revision_timestamp": (page.get("revisions") or [{}])[0].get("timestamp"),
+            "revision_timestamp": revision.get("timestamp"),
         },
         "imageinfo": {
             "url": info["url"],
