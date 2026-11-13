@@ -69,3 +69,6 @@ Legacy no-dispute declarations: the five image examples and the three authored v
 ## Provenance register
 
 See [Legacy Dataset Provenance](../docs/LEGACY_DATASET_PROVENANCE.md), [structured source registry](../docs/provenance/legacy_source_registry.json), and [binary asset hash manifest](../docs/provenance/example_asset_hashes.json). The register distinguishes original-source hashes from hashes of the repository's current derived assets.
+
+
+The generated `docs/provenance/example_asset_hashes.json` covers every file currently under `examples/`, including packet metadata and source-frame manifests. It records repository bytes at a specific commit; it is not an original-source checksum. Regenerate it after example assets or provenance records change.

@@ -79,7 +79,7 @@ The 13 November 2026 MAST query returned:
 - 800 unique products with subgroup RAW.
 - The 800 RAW product filenames and MAST URIs are committed in examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_raw_exposures.json. The 15,740 unique product URIs are in hubble_udf_products.json; observations and query counts are in hubble_udf_observations.json and hubble_udf_mast_manifest.json.
 - RAW filter mapping: F435W 112, F606W 112, F775W 288, F850LP 288. All 800 RAW products were mapped to one filter and proposal by joining the first six characters of the RAW product rootname to the first six characters of the MAST observation obs_id.
-- Successful reproducible query run: https://github.com/memoryprismv1/faking-vision/actions/runs/43407889542.
+- Successful reproducible query run: https://github.com/memoryprismv1/faking-vision/actions/runs/43411677866.
 
 This is a metadata result, not an exposure download. No FITS exposure bytes were downloaded. The RAW product list identifies archive products but does not establish the exact 800 files used in any historical stitching operation.
 
