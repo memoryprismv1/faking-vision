@@ -6,26 +6,31 @@
     {
       "dispute_id": "PKT-CCTV-STORAGE-PART1-001-DSP-001",
       "topic": "Source provenance and source-aligned evidence are missing",
-      "issue": "The source URL, acquisition record, original video and source-aligned snapshots are absent. The part boundary, 683-second duration, event summary and observations cannot be independently verified.",
+      "issue": "A Commons/YouTube distribution copy is now acquired and fingerprinted, with a retained acquisition record and source-frame manifest. The camera-native recorder file and historical split file are still absent. The source duration is measured, but the legacy 683-second segment file and its exact cut procedure cannot be independently confirmed.",
       "evidence": [
         "README.txt: evidence status",
         "OI.json: source_provenance",
         "TIR.json: source_evidence_status and evidence_status fields",
-        "snapshot/manifest.json: source lineage is not independently backed by retained media"
+        "snapshot/manifest.json: source lineage is not independently backed by retained media",
+        "provenance/source_acquisition.json: measured source metadata and SHA-256",
+        "provenance/source_frame_manifest.json: global, boundary and transition frame hashes",
+        "source review 2026-11-13: 10s TIR claim contradicted by title card; view transition between 992.7s and 992.8s"
       ],
-      "required_resolution": "Provide a traceable source URL and acquisition record, retain or durably reference the original source, verify exact part boundaries and duration, and supply source-aligned snapshots with timestamps and hashes. Reassess all observations and event descriptions against that evidence.",
+      "required_resolution": "The Commons distribution copy and current acquisition record are established. To fully close the historical packet-provenance gap, recover the camera-native file or original packet split files and their acquisition records; compare exact frame boundaries if those files become available.",
       "operational_disposition": "ACTIVE",
       "temporal_range_legacy": "00:00–11:23",
-      "resolution_status": "OPEN"
+      "resolution_status": "PARTIALLY_RESOLVED"
     },
     {
       "dispute_id": "PKT-CCTV-STORAGE-PART1-001-DSP-002",
       "topic": "Person correspondence and event descriptions are unverified",
-      "issue": "The TIR contains legacy person/action observations and cross-part continuity hypotheses, but source frames are absent. Neutral packet-scoped labels are retained; names and cross-part identity cannot be established from the available artifact.",
+      "issue": "Source review rejects the legacy claim that Person A is visible at 00:00+10s: the source frame is an opening title card. Other person/action observations remain unverified. The source contains a distinct view transition inside Part2, so cross-part identity continuity cannot be assumed.",
       "evidence": [
         "OI.json: packet-scoped person candidates and legacy event descriptions",
         "TIR.json: unverified legacy hypotheses and observations",
-        "README.txt: source evidence limitation"
+        "README.txt: source evidence limitation",
+        "TIR.json: rejected 10-second presence claim and source frame hash",
+        "source review 2026-11-13: distinct view transition between 992.7s and 992.8s"
       ],
       "required_resolution": "Re-evaluate person candidates and event descriptions from source-aligned frames. Keep packet-scoped IDs provisional until independent correspondence evidence supports any cross-part identity; do not infer personal names from the narrative label.",
       "operational_disposition": "ACTIVE",

@@ -12,24 +12,24 @@
       "object": "Person A - seated/standing near bench",
       "action": "present",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained.",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable"
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established.",
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame"
     },
     {
       "time": "22:46 + 45s",
       "object": "Person B",
       "action": "approaching",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame",
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established."
     },
     {
       "time": "22:46 + 2min",
       "object": "Person C",
       "action": "arriving",
       "confidence": "unverified legacy confidence; cannot be independently assessed without source frames",
-      "evidence_status": "legacy observation claim; source media and source-aligned snapshots are not retained, so not independently verifiable",
-      "evidence": "Legacy claim of direct visual evidence; source frames and source video are not retained."
+      "evidence_status": "legacy observation claim; source copy is acquired, but this timestamp/object/action has not been independently reviewed against a source frame",
+      "evidence": "Legacy claim of direct visual evidence. The source copy and frame manifest are available in the family provenance records; this specific observation has not been independently confirmed and no cross-part identity match is established."
     }
   ],
   "hypotheses": [
@@ -54,6 +54,23 @@
     "previous": [],
     "frameid": null
   },
-  "source_evidence_status": "UNVERIFIED - source URL, acquisition record, original media and source-aligned snapshots are absent",
-  "investigation_limit": "No identity, event, or cross-part continuity claim in this TIR is independently verifiable from the retained files."
+  "source_evidence_status": "PARTIALLY VERIFIED 2026-11-13: Commons distribution copy acquired and hashed; 10-second global locator pass, boundary samples, and a 10-fps view-transition sample generated. Only explicitly identified contradictions/view changes are verified; other legacy observations and identities remain unverified.",
+  "investigation_limit": "The source is a YouTube-derived Commons copy, not the camera-native recorder file. Sampling is not exhaustive. No cross-view identity correspondence is accepted without separate source-aligned evidence.",
+  "source_review": {
+    "reviewed_at": "2026-11-13",
+    "source_file_sha256": "e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9",
+    "source_duration_seconds": 2049.826,
+    "source_page": "https://commons.wikimedia.org/wiki/File:Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+    "acquisition_record": "../provenance/source_acquisition.json",
+    "frame_manifest": "../provenance/source_frame_manifest.json",
+    "sampling": "205-frame global locator pass at 10-second intervals; seven boundary samples; 30 transition samples at 10 fps from 991.0s through 993.9s",
+    "timeline_findings": [
+      "Opening title cards are visible at 0s, 10s, and 20s; the 30s locator frame is already in the first surveillance view.",
+      "A distinct view transition occurs between 992.7s and 992.8s; source metadata does not identify camera IDs.",
+      "The 683s and 1366s part boundaries are visually continuous in the sampled boundary frames; neither is the observed view transition.",
+      "The legacy Part2 interval (683s-1366s) contains both views."
+    ],
+    "identity_status": "No cross-view or cross-part identity correspondence is established by this locator review."
+  },
+  "source_view_context": "This legacy interval (1366s-2049.826s, label rounded to 34:10) follows the source view transition and is in the second distinct view. No cross-view identity match to Part1 or Part2 is established."
 }

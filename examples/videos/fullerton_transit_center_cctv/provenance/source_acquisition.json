@@ -1,0 +1,91 @@
+{
+  "record_type": "source_acquisition_record",
+  "dataset": "Fullerton Transportation Center surveillance video",
+  "source_file_title": "Full, unedited Kelly Thomas confrontation video (35 min.).webm",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+  "source_page_revision": "999941538",
+  "source_page_last_edited": "2025-02-18T19:40:00Z",
+  "commons_upload_date": "2021-07-07",
+  "commons_uploader": "Levivich",
+  "commons_summary_author_field": "None (prepositioned surveillance camera at Fullerton Transportation Center)",
+  "commons_embedded_metadata_author_field": "Orange County Register",
+  "original_youtube_source": "https://www.youtube.com/watch?v=dDpJ5FtG6Ac",
+  "commons_license_statement": "Commons displays California Public Records Act and ineligible-work public-domain rationales. This records Commons' assertions, not an independent legal opinion.",
+  "retrieval": {
+    "acquired_at_utc": "2026-11-13T10:02:59.567692+00:00",
+    "requested_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+    "final_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+    "response_headers": {
+      "content-type": "video/webm",
+      "x-object-meta-sha1base36": "ky3gvy27jvxoq2evbvc2llkkzsldtjx",
+      "last-modified": "Wed, 07 Jul 2021 17:00:51 GMT",
+      "content-length": "64379026",
+      "etag": "b46944ba41d2c2f252d66a795820c22c"
+    },
+    "local_file": "source/fullerton_kelly_thomas_commons_original.webm",
+    "bytes": 64379026,
+    "sha256": "e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9"
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "vp9",
+        "codec_type": "video",
+        "width": 640,
+        "height": 360,
+        "r_frame_rate": "30000/1001",
+        "avg_frame_rate": "30000/1001"
+      },
+      {
+        "index": 1,
+        "codec_name": "opus",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0"
+      }
+    ],
+    "format": {
+      "format_name": "matroska,webm",
+      "duration": "2049.826000",
+      "size": "64379026"
+    }
+  },
+  "expected_commons_metadata": {
+    "duration_seconds": 2050,
+    "dimensions": [
+      640,
+      360
+    ],
+    "video_codec": "VP9",
+    "audio_codec": "Opus",
+    "displayed_size": "61.4 MB"
+  },
+  "checks": {
+    "duration_matches_2050_seconds_within_1s": true,
+    "dimensions_are_640x360": true,
+    "video_codec_is_vp9": true,
+    "audio_codec_is_opus_if_present": true,
+    "size_is_55_to_70_decimal_mb": true
+  },
+  "all_expected_checks_pass": true,
+  "limitations": [
+    "This is a YouTube-derived Commons upload, not the camera's native recorder file.",
+    "Commons' displayed licensing rationale is not independently adjudicated here.",
+    "The 10-second global pass is a locator sample, not exhaustive visual analysis.",
+    "Audio is not analyzed or transcribed by this workflow.",
+    "Boundary-adjacent samples do not prove absent legacy split files were cut at the exact frames."
+  ],
+  "workflow_artifact": {
+    "run_id": "43405957378",
+    "run_url": "https://github.com/memoryprismv1/faking-vision/actions/runs/43405957378",
+    "artifact_name": "fullerton-source-acquisition",
+    "retention_days": 30,
+    "source_media_committed_to_repository": false,
+    "sample_frames_committed_to_repository": false
+  }
+}

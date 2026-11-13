@@ -6,27 +6,32 @@
     {
       "dispute_id": "CCTV-MERGE-DSP-001",
       "topic": "Source provenance and temporal coverage cannot be reproduced",
-      "issue": "No source URL/acquisition record, original video, source-aligned snapshots, or reproducible split procedure is retained. The three part durations and 00:00–34:10 continuous coverage claim are therefore unverified.",
+      "issue": "A Commons/YouTube distribution copy is now acquired and SHA-256 fingerprinted; its acquisition record and source-frame manifest are retained. The camera-native recorder file and historical split files remain absent. The legacy part labels are arithmetically contiguous, but the measured source duration is 2049.826s; sampled boundaries at 683s and 1366s are visually continuous, while a distinct view transition occurs inside Part2.",
       "evidence": [
         "Family README.md: evidence status",
         "Part1–3 README.txt: evidence status",
         "Part1–3 OI.json: source_provenance",
         "MERGED_Global/TD.json: timeline_status",
-        "MERGED_Global/snapshot/manifest.json: packet ID only"
+        "MERGED_Global/snapshot/manifest.json: packet ID only",
+        "provenance/source_acquisition.json: source SHA-256, measured duration and ffprobe metadata",
+        "provenance/source_frame_manifest.json: 205 global frames, seven boundary samples and 30 transition samples",
+        "source alignment report: view transition between 992.7s and 992.8s"
       ],
-      "required_resolution": "Provide source provenance and the original media or durable source references; reproduce the exact part boundaries and durations; retain source-aligned snapshots and manifests; reconcile gaps/overlaps before creating a unified timeline.",
+      "required_resolution": "The Commons distribution copy and current source alignment are documented. To fully close the historical segmentation gap, recover the camera-native file or original packet split files and their acquisition records; verify exact split-frame correspondence and any gaps/overlaps.",
       "operational_disposition": "ACTIVE",
-      "resolution_status": "OPEN"
+      "resolution_status": "PARTIALLY_RESOLVED"
     },
     {
       "dispute_id": "CCTV-MERGE-DSP-002",
       "topic": "Four cross-part identity correspondences lack retained evidence",
-      "issue": "The four global identities link three packet-scoped records each, but source frames are absent and the part TIR hypotheses are explicitly provisional/unverified. Clothing/position continuity and the high correspondence ratings cannot be independently reviewed.",
+      "issue": "The four global correspondences remain legacy hypotheses, not verified identities. The source contains two distinct visual views and Part2 spans the view transition; the source review does not establish cross-view or cross-part identity equivalence.",
       "evidence": [
         "MERGED_Global/OI.json: global_identities and merge_audit",
         "MERGED_Global/TIR.json: correspondence_investigation",
         "Part1–3/TIR.json: unverified hypotheses and observations",
-        "Part1–3/dispute.json: open correspondence disputes"
+        "Part1–3/dispute.json: open correspondence disputes",
+        "MERGED_Global/OI.json and TIR.json: correspondence status remains blocked after source review",
+        "Part1 TIR: 10-second person-presence claim rejected against title-card frame"
       ],
       "required_resolution": "Re-investigate each proposed correspondence using source-aligned evidence. Retain competing candidates, discriminating observations and unresolved cases. Commit global identity only when evidence supports equivalence; otherwise preserve packet-scoped IDs as separate or unresolved.",
       "operational_disposition": "ACTIVE",
@@ -35,7 +40,7 @@
     {
       "dispute_id": "CCTV-MERGE-DSP-003",
       "topic": "Merged timeline and storage-reduction claims are not evidence-equivalent",
-      "issue": "The merged TD asserts visibility across each interval and the family historically claimed a 10,000x storage reduction. The source video and snapshots are absent, and packet-only metadata excludes evidence required for audit; neither continuous visibility nor an evidence-equivalent reduction is established.",
+      "issue": "The measured distribution copy size and duration are now known, but the legacy 10,000x reduction claim is still not evidence-equivalent. Source frames required for audit are represented by hashes and temporary workflow artifacts, not a retained native recording or permanent frame archive.",
       "evidence": [
         "MERGED_Global/TD.json: timeline and coverage status",
         "MERGED_Global/TIR.json: temporal continuity and storage comparison status",

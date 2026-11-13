@@ -46,17 +46,17 @@
     "tests": [
       {
         "test": "clothing continuity",
-        "result": "Legacy claim: Person A same clothing across 3 parts - quality high. Source media are not retained; not independently verified.",
+        "result": "Legacy claim: Person A has the same clothing across three parts. Not independently verified; the source view changes inside Part2 and no cross-view identity evidence is recorded.",
         "commit_status": "UNVERIFIED legacy claim; no source evidence retained"
       },
       {
         "test": "position continuity",
-        "result": "Legacy claim: Bench remains fixed, persons move but return - quality high. Source media are not retained; not independently verified.",
+        "result": "Legacy claim: bench remains fixed and persons move/return. Not independently verified across the two distinct views; do not treat the same background as continuous.",
         "commit_status": "UNVERIFIED legacy claim; no source evidence retained"
       },
       {
         "test": "temporal continuity",
-        "result": "Legacy claim that there are no gaps greater than two seconds when concatenated; original source and split procedure are not retained, so continuity/gaps are not independently verifiable.",
+        "result": "Part labels are arithmetically contiguous, but original split files and the split procedure are absent. Sampled boundaries are visually continuous; the view transition at 992.7-992.8s is inside Part2.",
         "commit_status": "UNVERIFIED legacy claim; no source evidence retained"
       }
     ],
@@ -68,8 +68,8 @@
           "PKT-CCTV-STORAGE-PART2-001-OBJ-001",
           "PKT-CCTV-STORAGE-PART3-001-OBJ-001"
         ],
-        "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
-        "label": "Same individual across all 3 parts"
+        "quality": "legacy claim: high; not independently verified; no identity commitment. Cross-view correspondence remains blocked.",
+        "label": "Unverified Person A cross-part correspondence hypothesis"
       },
       {
         "global_id": "PERSON-GLOBAL-002",
@@ -78,8 +78,8 @@
           "PKT-CCTV-STORAGE-PART2-001-OBJ-002",
           "PKT-CCTV-STORAGE-PART3-001-OBJ-002"
         ],
-        "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository",
-        "label": "Person B / uniformed officer candidate; personal identity/name not established by the retained packet evidence"
+        "quality": "legacy claim: high; not independently verified; no identity commitment. Cross-view correspondence remains blocked.",
+        "label": "Unverified Person B / uniformed-person correspondence hypothesis; no personal name established"
       },
       {
         "global_id": "PERSON-GLOBAL-003",
@@ -88,7 +88,8 @@
           "PKT-CCTV-STORAGE-PART2-001-OBJ-003",
           "PKT-CCTV-STORAGE-PART3-001-OBJ-003"
         ],
-        "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
+        "quality": "legacy claim: high; not independently verified; no identity commitment. Cross-view correspondence remains blocked.",
+        "label": "Unverified Person C cross-part correspondence hypothesis"
       },
       {
         "global_id": "STRUCTURE-GLOBAL-001",
@@ -97,18 +98,19 @@
           "PKT-CCTV-STORAGE-PART2-001-OBJ-004",
           "PKT-CCTV-STORAGE-PART3-001-OBJ-004"
         ],
-        "quality": "legacy claim: high; not independently verifiable from the source media retained in this repository"
+        "quality": "legacy claim: high; not independently verified; no identity commitment. Cross-view correspondence remains blocked.",
+        "label": "Unverified structure correspondence hypothesis across distinct views"
       }
     ]
   },
   "storage_crisis_analysis": {
-    "original": "61.4MB for 34min10s at 640x360 = 1.8MB/min",
+    "original": "Measured Commons distribution copy: 64,379,026 bytes (61.4 MiB), 2049.826s, 640x360, VP9/Opus, average stream bitrate 251 kbps. It is a YouTube-derived copy, not the camera-native recorder file.",
     "extrapolated_1080p_10Mbps": "10 Mbps = 4.5 GB/hour = 108 GB/day per camera (decimal units); 5 Mbps = 2.25 GB/hour = 54 GB/day.",
     "world_scale": "At 1M cameras x 54GB/day (5Mbps) = 54PB/day, approximately 19.7EB/year; at 10Mbps, double those figures. Illustrative arithmetic, not a measured deployment baseline.",
     "fv_solution": "FV packet records semantic entities and relationships, but this example's packet-only size excludes source video and evidence needed for audit. No storage-reduction factor or evidence-equivalent replacement is established."
   },
-  "correspondence_status": "BLOCKED - the four global correspondences remain legacy hypotheses, not committed identities",
-  "source_evidence_status": "UNVERIFIED - source media, source URL/acquisition record and source-aligned frame evidence are absent.",
-  "temporal_continuity_status": "The no-gaps-greater-than-two-seconds claim cannot be checked from the retained artifacts.",
+  "correspondence_status": "BLOCKED - four global correspondences remain legacy hypotheses, not committed identities. Part2 spans two distinct views; no cross-view or cross-part identity match is accepted.",
+  "source_evidence_status": "PARTIALLY VERIFIED 2026-11-13: Commons distribution copy acquired and fingerprinted; 205 global locator frames, seven boundary samples, and 30 transition samples generated. The source is a YouTube-derived distribution copy, not the camera-native recorder file. Remaining local observations and identity correspondences are not exhaustively verified.",
+  "temporal_continuity_status": "The three legacy labels are arithmetically contiguous, but the measured source ends at 2049.826s (the 34:10 label is rounded by 0.174s). Boundary samples at 683s and 1366s are visually continuous. A distinct view transition occurs between 992.7s and 992.8s inside Part2; the source does not establish the legacy claim of no gaps greater than two seconds in the absent split files.",
   "storage_comparison_status": "Packet-only byte size is not an evidence-equivalent comparison with the original source video; no storage-reduction factor is established."
 }

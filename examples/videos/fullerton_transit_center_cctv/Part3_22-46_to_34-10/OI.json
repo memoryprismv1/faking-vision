@@ -4,12 +4,18 @@
   "operation": "fv analyse - part of CCTV split",
   "inventory_lock": true,
   "source_provenance": {
-    "original_file": "Legacy source label (unverified): Full, unedited Kelly Thomas confrontation video (35 min.).webm",
+    "original_file": "Wikimedia Commons distribution copy: Full, unedited Kelly Thomas confrontation video (35 min.).webm",
     "part": "Part 3 22:46 to 34:10",
-    "original_duration": "Legacy claim: 34min10s (not independently verified)",
-    "part_duration": "Legacy part label: 684s (source segment not included for verification)",
-    "storage_note": "Legacy source-size claim: 61.4 MB for 34 min 10 s is approximately 1.8 MB/min. Illustrative bitrate arithmetic (decimal units): 10 Mbps = 4.5 GB/hour = 108 GB/day per camera; 5 Mbps = 2.25 GB/hour = 54 GB/day. These are bitrate calculations, not measured CCTV deployment rates.",
-    "verification_status": "UNVERIFIED - no source URL, acquisition record, source video or source-aligned snapshots are retained"
+    "original_duration": "Measured 2049.826 seconds (34:09.826); Commons page rounds to 34:10.",
+    "part_duration": "Legacy part label: 684s (source segment not included for verification); interval label only, not proof of a retained split file.",
+    "storage_note": "Commons displays 61.4 MB; measured file size is 64,379,026 bytes (64.379 decimal MB / 61.4 MiB), duration 2049.826s, average stream bitrate 251 kbps. This is the distribution copy's bitrate, not a measured CCTV deployment rate. Illustrative decimal bitrate arithmetic remains: 10 Mbps = 108 GB/day per camera; 5 Mbps = 54 GB/day.",
+    "verification_status": "SOURCE COPY ACQUIRED AND HASHED 2026-11-13; camera-native recorder file and historical split files are not present; local object/action claims remain partially unverified.",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+    "source_sha256": "e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9",
+    "source_bytes": 64379026,
+    "source_encoding": "VP9/Opus, 640x360, 30000/1001 fps",
+    "source_copy_status": "YouTube-derived Commons upload; not the camera-native recorder file.",
+    "source_alignment_note": "Source view transition between 992.7s and 992.8s falls inside Part2; sampled boundaries at 683s and 1366s are visually continuous."
   },
   "entities": [
     {
@@ -82,8 +88,8 @@
     }
   ],
   "background": {
-    "status": "static CCTV background - parking lot, bus depot",
-    "note": "Background is static per CCTV - camera does not move, per Additional Guidance ATD should detect no global camera change, only local object changes"
+    "status": "second distinct surveillance view (View B)",
+    "note": "View B follows the transition between 992.7s and 992.8s. The view appears fixed in the sampled pass, but camera identity is not supplied and the sample is not exhaustive."
   },
   "component_candidature_record": {
     "observed_component": "person forms in low-res CCTV",
