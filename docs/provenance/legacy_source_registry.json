@@ -1,0 +1,306 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-11-13",
+  "purpose": "Inventory of source, acquisition, processing, licensing and reproducibility evidence for legacy FV examples. Repository asset hashes identify current checked-in bytes; they are not substitutes for original-source hashes.",
+  "asset_hash_manifest": "example_asset_hashes.json",
+  "records": [
+    {
+      "id": "fullerton-transit-center-cctv",
+      "category": "video",
+      "packet_path": "examples/videos/fullerton_transit_center_cctv/",
+      "source_reference": "https://commons.wikimedia.org/wiki/File:Full,_unedited_Kelly_Thomas_confrontation_video_(35_min.).webm",
+      "source_type": "YouTube-derived Wikimedia Commons distribution copy",
+      "source_status": "ACQUIRED_AND_HASHED",
+      "source_sha256": "e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9",
+      "source_media_retained": false,
+      "processing_record": "examples/videos/fullerton_transit_center_cctv/provenance/source_alignment_report.md",
+      "processing_status": "PARTIAL_SOURCE_ALIGNMENT",
+      "known_gaps": [
+        "Camera-native recorder file unavailable",
+        "Historical packet split files unavailable",
+        "Exact split procedure unavailable",
+        "Cross-part identity correspondences remain blocked"
+      ],
+      "licence_privacy": "Commons rationale recorded; not an independent legal opinion. No media or sample images committed."
+    },
+    {
+      "id": "cctv-snapshot-blk-hdptz12",
+      "category": "video",
+      "packet_path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/",
+      "source_reference": "https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Camera_Parkng_Lot_Surveillance_Video.webm",
+      "source_type": "YouTube-derived Supercircuits camera demonstration",
+      "source_status": "ACQUIRED_AND_HASHED",
+      "source_sha256": "ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa",
+      "source_media_retained": false,
+      "processing_record": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/provenance/source_alignment_report.md",
+      "processing_status": "PARTIAL_SOURCE_ALIGNMENT",
+      "known_gaps": [
+        "Original camera-native file unavailable",
+        "Historical packet split files unavailable",
+        "Exact transition frames not visually localized",
+        "Packet-local observations not exhaustively revalidated"
+      ],
+      "licence_privacy": "Commons public-domain rationale flagged REVIEW REQUIRED because this is a zoom/reframe camera demonstration. Plate-like marking not transcribed; no frames retained."
+    },
+    {
+      "id": "kitti-odometry-sequence-00",
+      "category": "lidar",
+      "packet_path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/",
+      "source_reference": "https://www.cvlibs.net/datasets/kitti/eval_odometry.php",
+      "source_type": "KITTI odometry sequence mapped to raw drive 2011_10_03_drive_0027",
+      "source_status": "MAPPING_VERIFIED_ACCESS_BLOCKED",
+      "source_media_retained": false,
+      "processing_record": "TOOLS/verify_kitti_odometry_inputs.py",
+      "processing_status": "VERIFIER_AVAILABLE_INPUTS_MISSING",
+      "known_gaps": [
+        "Raw Velodyne scans not acquired",
+        "Calibration and poses not acquired",
+        "Exact 400-scan frame list not retained",
+        "Registration logs and transforms absent"
+      ],
+      "licence_privacy": "Official KITTI download/access terms apply; no files redistributed."
+    },
+    {
+      "id": "kitti-odometry-sequence-07",
+      "category": "lidar",
+      "packet_path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/",
+      "source_reference": "https://www.cvlibs.net/datasets/kitti/eval_odometry.php",
+      "source_type": "KITTI odometry sequence mapped to raw drive 2011_09_30_drive_0027",
+      "source_status": "MAPPING_VERIFIED_ACCESS_BLOCKED",
+      "source_media_retained": false,
+      "processing_record": "TOOLS/verify_kitti_odometry_inputs.py",
+      "processing_status": "VERIFIER_AVAILABLE_INPUTS_MISSING",
+      "known_gaps": [
+        "Raw Velodyne scans not acquired",
+        "Calibration and poses not acquired",
+        "No retained per-frame processing parameters or registration logs"
+      ],
+      "licence_privacy": "Official KITTI download/access terms apply; no files redistributed."
+    },
+    {
+      "id": "kitti-merged-global-buildings",
+      "category": "lidar",
+      "packet_path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/",
+      "source_reference": "https://www.cvlibs.net/datasets/kitti/eval_odometry.php",
+      "source_type": "Legacy merged visualization derived from KITTI examples",
+      "source_status": "SOURCE_MAPPING_ONLY",
+      "source_media_retained": false,
+      "processing_record": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/README.md",
+      "processing_status": "NOT_REPRODUCIBLE",
+      "known_gaps": [
+        "Exact contributing scan IDs absent",
+        "Per-sequence transforms absent",
+        "Registration parameters/residuals/logs absent",
+        "54-building count remains a legacy claim"
+      ],
+      "licence_privacy": "Historical visualization only; not a validated reconstruction."
+    },
+    {
+      "id": "mayan-pacunum-2016-lidar",
+      "category": "lidar",
+      "packet_path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/",
+      "source_reference": "https://doi.org/10.5061/dryad.k51j708",
+      "source_type": "Public derivative GIS release associated with PACUNAM survey",
+      "source_status": "DERIVATIVE_GIS_ONLY",
+      "source_media_retained": false,
+      "processing_record": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/README.txt",
+      "processing_status": "RAW_PROCESSING_RECORD_MISSING",
+      "known_gaps": [
+        "Original LAS/LAZ point clouds absent",
+        "Exact flight-line/transect IDs absent",
+        "Trajectory/GPS/IMU and boresight calibration absent",
+        "Strip adjustment and registration logs absent"
+      ],
+      "licence_privacy": "Dryad derivative GIS release identified; raw data request not sent."
+    },
+    {
+      "id": "mayan-merged-global-61k",
+      "category": "lidar",
+      "packet_path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/",
+      "source_reference": "https://doi.org/10.5061/dryad.k51j708",
+      "source_type": "Legacy merged visualization; 61k refers to published structure estimate, not a verified point count",
+      "source_status": "DERIVATIVE_GIS_ONLY",
+      "source_media_retained": false,
+      "processing_record": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/README.txt",
+      "processing_status": "NOT_REPRODUCIBLE",
+      "known_gaps": [
+        "Source tile list absent",
+        "Flight-line IDs and transforms absent",
+        "Registration parameters and residuals absent",
+        "Output provenance not established"
+      ],
+      "licence_privacy": "Historical visualization only; do not label as a reproducible 61k-point merge."
+    },
+    {
+      "id": "hubble-udf-acs-wfc",
+      "category": "astronomy",
+      "packet_path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/",
+      "source_reference": "https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html",
+      "source_type": "MAST archive metadata for HST ACS/WFC proposals 9978 and 10086",
+      "source_status": "ARCHIVE_IDS_AND_PRODUCTS_ENUMERATED",
+      "source_media_retained": false,
+      "source_counts": {
+        "observations": 609,
+        "raw_exposures": 800,
+        "unique_products": 15740
+      },
+      "processing_record": "TOOLS/query_hubble_udf_mast.py and provenance/MAST_2026-11-13/",
+      "processing_status": "REPRODUCIBLE_METADATA_QUERY_ONLY",
+      "known_gaps": [
+        "FITS exposure bytes not downloaded",
+        "CRDS context/reference files not retained",
+        "Calibration and registration/reprojection logs absent",
+        "Archived DRZ/DRC products do not reproduce original alignment"
+      ],
+      "licence_privacy": "Archive metadata only; no FITS data redistributed."
+    },
+    {
+      "id": "image-blue-chairs",
+      "category": "image",
+      "packet_path": "examples/images/blue_chairs/",
+      "source_reference": "examples/images/blue_chairs/README.txt",
+      "source_status": "SOURCE_REFERENCE_RECORDED_ASSET_PRESENT",
+      "source_media_retained": true,
+      "processing_record": "Packet OI/TIR/MSRM files; source acquisition/processing log absent",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Original acquisition timestamp absent",
+        "Source-file checksum absent before repository import",
+        "Image processing/edit history not recorded"
+      ],
+      "licence_privacy": "Source page and licence details are in the packet README; current repository hash will be recorded separately."
+    },
+    {
+      "id": "image-desk-with-objects",
+      "category": "image",
+      "packet_path": "examples/images/desk_with_objects/",
+      "source_reference": "examples/images/desk_with_objects/README.txt",
+      "source_status": "SOURCE_REFERENCE_RECORDED_ASSET_PRESENT",
+      "source_media_retained": true,
+      "processing_record": "Packet OI/TIR/MSRM files; source acquisition/processing log absent",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Original acquisition timestamp absent",
+        "Source-file checksum absent before repository import",
+        "Image processing/edit history not recorded"
+      ],
+      "licence_privacy": "Source page and licence details are in the packet README; current repository hash will be recorded separately."
+    },
+    {
+      "id": "image-kitchen-interior-design",
+      "category": "image",
+      "packet_path": "examples/images/kitchen_interior_design/",
+      "source_reference": "examples/images/kitchen_interior_design/README.txt",
+      "source_status": "SOURCE_REFERENCE_RECORDED_ASSET_PRESENT",
+      "source_media_retained": true,
+      "processing_record": "Packet OI/TIR/MSRM files; source acquisition/processing log absent",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Original acquisition timestamp absent",
+        "Source-file checksum absent before repository import",
+        "Image processing/edit history not recorded"
+      ],
+      "licence_privacy": "Source page and licence details are in the packet README; current repository hash will be recorded separately."
+    },
+    {
+      "id": "image-restaurant-kitchen",
+      "category": "image",
+      "packet_path": "examples/images/restaurant_kitchen/",
+      "source_reference": "examples/images/restaurant_kitchen/README.txt",
+      "source_status": "SOURCE_REFERENCE_RECORDED_ASSET_PRESENT",
+      "source_media_retained": true,
+      "processing_record": "Packet OI/TIR/MSRM files; source acquisition/processing log absent",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Original acquisition timestamp absent",
+        "Source-file checksum absent before repository import",
+        "Image processing/edit history not recorded"
+      ],
+      "licence_privacy": "Source page and licence details are in the packet README; current repository hash will be recorded separately."
+    },
+    {
+      "id": "image-small-room-interior",
+      "category": "image",
+      "packet_path": "examples/images/small_room_interior/",
+      "source_reference": "examples/images/small_room_interior/README.txt",
+      "source_status": "SOURCE_REFERENCE_RECORDED_ASSET_PRESENT",
+      "source_media_retained": true,
+      "processing_record": "Packet OI/TIR/MSRM files; source acquisition/processing log absent",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Original acquisition timestamp absent",
+        "Source-file checksum absent before repository import",
+        "Image processing/edit history not recorded"
+      ],
+      "licence_privacy": "Source page and licence details are in the packet README; current repository hash will be recorded separately."
+    },
+    {
+      "id": "video-a-trip-to-the-moon",
+      "category": "video",
+      "packet_path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/",
+      "source_reference": "https://commons.wikimedia.org/wiki/File:Le_Voyage_dans_la_Lune_(1902).webm",
+      "source_type": "Public-domain film reference; reconstruction-target design, not source analysis",
+      "source_status": "REFERENCE_ONLY",
+      "source_media_retained": false,
+      "processing_record": "examples/videos/A_Trip_to_the_Moon_FV_Packet/README.txt",
+      "processing_status": "AUTHORED_BRIEF_ONLY",
+      "known_gaps": [
+        "Original film and source frames not included",
+        "No acquisition hash or source-frame manifest",
+        "No independent film inventory audit"
+      ],
+      "licence_privacy": "Public-domain reference recorded; no source media redistributed."
+    },
+    {
+      "id": "video-alice-in-wonderland",
+      "category": "video",
+      "packet_path": "examples/videos/Alice_in_wonderland/",
+      "source_reference": "https://www.gutenberg.org/ebooks/11",
+      "source_type": "Public-domain text excerpt used as a reconstruction source",
+      "source_status": "TEXT_REFERENCE_ONLY",
+      "source_media_retained": false,
+      "processing_record": "examples/videos/Alice_in_wonderland/README.txt",
+      "processing_status": "PARTIAL",
+      "known_gaps": [
+        "Exact Gutenberg edition/version not locked",
+        "Excerpt offsets/checksum absent",
+        "No source-media processing record"
+      ],
+      "licence_privacy": "Public-domain text reference; no video source asserted."
+    },
+    {
+      "id": "video-cat-jumping-backwards",
+      "category": "video",
+      "packet_path": "examples/videos/Cat_jumping_backwards/",
+      "source_reference": "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f1/Cat_jumping_backwards.webm/Cat_jumping_backwards.webm.480p.vp9.webm",
+      "source_type": "Commons cat video source",
+      "source_status": "SOURCE_URL_KNOWN_MEDIA_NOT_ACQUIRED",
+      "source_media_retained": false,
+      "processing_record": "examples/videos/Cat_jumping_backwards/README.txt",
+      "processing_status": "MISSING",
+      "known_gaps": [
+        "Source video not retained",
+        "No source hash or frame manifest",
+        "No processing log or precise replay-transition timestamp"
+      ],
+      "licence_privacy": "Animal-only source expected; no frame-level privacy audit recorded."
+    },
+    {
+      "id": "video-old-macdonald",
+      "category": "video",
+      "packet_path": "examples/videos/Old_macdonald/",
+      "source_reference": "examples/videos/Old_macdonald/README.txt",
+      "source_type": "Generated video output",
+      "source_status": "OUTPUT_ONLY",
+      "source_media_retained": true,
+      "processing_record": "examples/videos/Old_macdonald/README.txt",
+      "processing_status": "MISSING",
+      "known_gaps": [
+        "Source audio absent",
+        "Audio licence/rights not established",
+        "Prompt, renderer/model version and generation parameters absent"
+      ],
+      "licence_privacy": "Current output hash will be recorded; do not infer audio rights from the generated MP4."
+    }
+  ]
+}

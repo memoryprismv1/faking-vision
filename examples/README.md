@@ -66,3 +66,8 @@ Dispute-gate convention: the example `dispute.json` files use canonical aggregat
 
 
 Legacy no-dispute declarations: the five image examples and the three authored video-target folders (`A_Trip_to_the_Moon_FV_Packet`, `Alice_in_wonderland`, and `Old_macdonald`) now explicitly declare `DISPUTES: NONE` in their packet READMEs. The five image packets and the video targets remain legacy/target artifacts without current root-level viewpoint/provenance records; they are not thereby made current-format or compilation-ready. In particular, `blue_chairs` is the Case B legacy-viewpoint fixture: its virtual `VP-DEFAULT` is read-time compatibility only, not a render VPO.
+
+
+## Provenance register
+
+See [Legacy Dataset Provenance](../docs/LEGACY_DATASET_PROVENANCE.md), [structured source registry](../docs/provenance/legacy_source_registry.json), and [binary asset hash manifest](../docs/provenance/example_asset_hashes.json). The register distinguishes original-source hashes from hashes of the repository's current derived assets.
