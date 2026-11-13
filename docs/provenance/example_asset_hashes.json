@@ -1,0 +1,3399 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-11-13T10:49:16.709802+00:00",
+  "git_commit": "24391d3c2d49b02024a8ee3cccd077c28b303194",
+  "scope": "all files under examples/ at the named git commit",
+  "file_count": 484,
+  "hash_algorithm": "SHA-256",
+  "interpretation": "Hashes identify the repository bytes at generation time. They do not prove original-source identity, acquisition date, licence, or processing history.",
+  "files": [
+    {
+      "path": "examples/README.md",
+      "bytes": 11732,
+      "sha256": "39079b98f6d23cc754503883e527d8462dc93d0c56c81d860790ca11cfe9741e",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/images/blue_chairs/Blue_chairs_and_table_in_the_Western_Market_seating_area_2.jpg",
+      "bytes": 245372,
+      "sha256": "fa68a43c515fe73c5379cbbfb3cc4f75a6652100af5191689162f2f0a5d340b2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/images/blue_chairs/MSRM.json",
+      "bytes": 1734,
+      "sha256": "93c5ee742c72e0817b881ab155b2b5a74a09c84f49769f59be74e736894180ec",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/blue_chairs/OI.json",
+      "bytes": 3659,
+      "sha256": "6588a5180cebffef514dfc2a27b382f6a08c0b773f03afd2b204c791a4c28e44",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/blue_chairs/README.txt",
+      "bytes": 1568,
+      "sha256": "4ca8b1ceb3c2e49200c9ac974c367335aa83f70f9ba6ea171a0213dd1134098a",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/images/desk_with_objects/Desk_with_objects_for_editathon.jpg",
+      "bytes": 129337,
+      "sha256": "d8598fffd9eb6a7b41e6ecf58b3378dc66264f0b24a916c1544f415624088c9d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/images/desk_with_objects/MSRM.json",
+      "bytes": 1407,
+      "sha256": "a9faf8d2da31cf5ee7a95700e0024e41fdcbbf7fc5c81800017bc18d3e613824",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/desk_with_objects/OI.json",
+      "bytes": 3628,
+      "sha256": "712ae1f20dbda3fcc11d60ae2612f403fb76e1ba6fc73d9a2f044ff898fbd178",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/desk_with_objects/README.txt",
+      "bytes": 1496,
+      "sha256": "e43dea58bdc2af912038571de4d1a30f51cb2ceef591ed2e33d7927ddffd20d4",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/images/kitchen_interior_design/Kitchen_interior_design.jpg",
+      "bytes": 163827,
+      "sha256": "53e8b512c5c7edc7950d0bacbac08c9fd9f064efae5e3c4adb20e007593429dd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/images/kitchen_interior_design/MSRM.json",
+      "bytes": 1529,
+      "sha256": "7a38f6ed33bf589ec5eba2284ede04e171da749fb1b8dce70bd91cdceb65d39c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/kitchen_interior_design/OI.json",
+      "bytes": 3778,
+      "sha256": "a28b97e84d4f3cd878d2c4180a107601da169989e2ab7c58d64b79c5a092893c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/kitchen_interior_design/README.txt",
+      "bytes": 1827,
+      "sha256": "aaa8d98a0c03dc0ab9c9cf2e09e0ef5301303d9e395f2a628163e77a7c286518",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/images/restaurant_kitchen/MSRM.json",
+      "bytes": 1386,
+      "sha256": "5f1fdcd461eb721b5fa1775dcd02f97368d63121fe92e2320dfe4eccf6de7e88",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/restaurant_kitchen/OI.json",
+      "bytes": 3531,
+      "sha256": "bf90160272c6a6444ebe3c0fb868e0a6815f1b28ff70618dd66e50aad722d960",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/restaurant_kitchen/README.txt",
+      "bytes": 1528,
+      "sha256": "8d8a59b745032216206ab6fd37a7284d4d48a368449d337ed98ae1a62c2833ce",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/images/restaurant_kitchen/RestaurantKitchen.jpg",
+      "bytes": 148696,
+      "sha256": "a3c64993335ac71e5079dcfbdae3abbd45b3c62fcfd12e749b634c96f13c8fd3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/images/small_room_interior/MSRM.json",
+      "bytes": 972,
+      "sha256": "faae38a48ad56cd072d39cec8fb598f6efc1811a757aa563141f7a3fbea241d2",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/small_room_interior/OI.json",
+      "bytes": 2624,
+      "sha256": "6b6fe0b75a3ed1e4d5fcaa1abda7f52854b354adc414f60d3b2a2fb946f568e4",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/images/small_room_interior/README.txt",
+      "bytes": 1851,
+      "sha256": "fb3fe34b594a7102805a5561320092671b8bbafadef2ed399516c75b84d43f37",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/images/small_room_interior/Small_room_-_interior.JPG",
+      "bytes": 183822,
+      "sha256": "3f05a898cf0bc87e1d577a30bfb0fb0e3cf687f927eb03ad9855b78cbc8414e3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/COMPILED_SPEC.json",
+      "bytes": 2096,
+      "sha256": "08879db1b519e8059cb7cc374604bd99fa3b479d821bd8cc3db1a91cd627e891",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/MSRM.json",
+      "bytes": 1072,
+      "sha256": "4788d3ffca58350ba41de74aca6887ce65baa6b6533271da925ffccb2b96543d",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/OI.json",
+      "bytes": 8901,
+      "sha256": "296ec960d66a0ab96264fa3e01e46515f9c95eea7ff29b26c06f55d59ad20fcb",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/PC.json",
+      "bytes": 335,
+      "sha256": "40c5dbab4d21a913804176724a427d35bc4f346f78250637e9f1dc34a3215b31",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/README.md",
+      "bytes": 3444,
+      "sha256": "273751e3b45681fc98bf84616db6dd495e5d172e217cd3156b8a2f5940c214ea",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/TD.json",
+      "bytes": 1460,
+      "sha256": "ebe857b4ff9b78eb15b838894f1a7dff92901ab021f425b843d0a9200bbf5703",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/dispute.json",
+      "bytes": 2385,
+      "sha256": "f064f6b8522e290c79457a0c480d44a57078b19ff007fc1f10565d881fa99d58",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/snapshot/manifest.json",
+      "bytes": 40,
+      "sha256": "cda39a8988bfef4e917357d723e403453d0a9f0632ac50237580655c0ec30443",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/visualizations/06_kitti_persistent_building_ids.jpg",
+      "bytes": 374024,
+      "sha256": "b3f22368d15e8fb262908b2345410cc20cee76d0a806d12632cc9901caee87ad",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/visualizations/07_kitti_54_building_map.jpg",
+      "bytes": 438186,
+      "sha256": "9b2adc23ce2cc4b887b262daf44f73a4a927e881cec39ee5ce9dd93b1d80d991",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/merged/KITTI_Merged_Global_Buildings/visualizations/README.md",
+      "bytes": 756,
+      "sha256": "9baac9cbe754dd90c55b7dbb900a7063b524ea0c65f612fbd280e03acbc660ab",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/MSRM.json",
+      "bytes": 3104,
+      "sha256": "67e0d3149b5e7183ebf964b465eb54f8d3f53979824a9c316e3eb3a97dbd1f0a",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/OI.json",
+      "bytes": 5938,
+      "sha256": "4a07ba592a332761531988e418c9f0882508d0e661355bde48baaf92037d6161",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/PC.json",
+      "bytes": 1037,
+      "sha256": "5a611bc7c51dba061ec9ea90526e21c9a3935588245cb3015382522f5fc47222",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/README.txt",
+      "bytes": 4131,
+      "sha256": "699e14c6961eccfbc228c0ccbed07b0eefc96ee68ce4167141631710f2a8405a",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/TD.json",
+      "bytes": 4575,
+      "sha256": "0d788a64fc510b049f16bf5ee5ad923c85051feae98eb656f287901db8da852d",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/dispute.json",
+      "bytes": 2094,
+      "sha256": "2cf278e05b7597933dc67c3a9a63daeb3e4bc010a15861ad3ad6b70bbecc7a87",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/snapshot/manifest.json",
+      "bytes": 853,
+      "sha256": "90397a5ae3e8d22db48f0b6626e3c83364d0a942be0af995af35dbf84aa856b8",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/visualizations/11_kitti_sequence00_assembled_map.jpg",
+      "bytes": 308567,
+      "sha256": "a34d42d7b89be754e6ffeb3f1ab8edd81cd1451c11a8ed54056e54f02ab8ae62",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/visualizations/12_kitti_sequence00_assembled_map_duplicate.jpg",
+      "bytes": 563758,
+      "sha256": "d6929bb5b0ff7483b8397f653d7beaa7458b8e5769d5c379fb6248ed21096c40",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/visualizations/13_additional_lidar_visualization.jpg",
+      "bytes": 321288,
+      "sha256": "0ce60bfd76c13e98b599304e236e30379af4c711b10d8dbce0411e84ab8e8008",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/visualizations/14_additional_lidar_visualization.webp",
+      "bytes": 869766,
+      "sha256": "fad3f74b266ba63b008250ccff22b1a4fb44b93f1ba93c8afb9877ae1585c1da",
+      "kind": "image",
+      "media_type": "image/webp"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Lidar_Assembled_Landscape/visualizations/README.md",
+      "bytes": 1154,
+      "sha256": "9ca696bfbbf8cd769c131a5fde8dd6a82a7738ac30abed89c16a8c454634337b",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/MSRM.json",
+      "bytes": 759,
+      "sha256": "fdc11a89fe8af33a820e727429695f9f781ba05209446e43e0b8f811cbbe73a2",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/OI.json",
+      "bytes": 1974,
+      "sha256": "7ddbf3bcc3e4f2124b93b7200c9a1bdcbe47a2fdaa723352dbb6aa59c0e0d91d",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/PC.json",
+      "bytes": 694,
+      "sha256": "bdc4b9a6e9212e7fa0dc0eb5e189ff2a17a0f0232a07b08e9a84190facaa9337",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/README.txt",
+      "bytes": 2295,
+      "sha256": "9b880f9681b5636f7d72b6760569855cf44c0cc96469247145ad6ef9b257443c",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/TD.json",
+      "bytes": 1152,
+      "sha256": "c198511a682fc04b3f0063692224d22bc8730bb35a9a8ab4c86c411b1426e100",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/dispute.json",
+      "bytes": 1200,
+      "sha256": "d3fd4122e8637a8e5c31d88d6c20df96db15bc419f48d21714c6271eb6a0f8dd",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/snapshot/manifest.json",
+      "bytes": 43,
+      "sha256": "04f475ba44c62d2435b0d0e3cedf6c6ec062c27db4bb7ee4cc1c39f4b32e1d3a",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/visualizations/05_kitti_sequence07_pointcloud.webp",
+      "bytes": 655604,
+      "sha256": "cb75ebaefc98737957be3b68a7f4822972699519116f5ede4d027d85a7138e08",
+      "kind": "image",
+      "media_type": "image/webp"
+    },
+    {
+      "path": "examples/lidar/kitti/odometry/KITTI_Sequence07_Assembled/visualizations/README.md",
+      "bytes": 469,
+      "sha256": "3199c52ac47dcf6922aedefeff19348b44918500f45cba0f4f6fd30e8fc471de",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/COMPILED_SPEC.json",
+      "bytes": 641,
+      "sha256": "b3e40ea4081ee998beb977c49de30cc8e5be125a8d0f087268db2118175c5bf2",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/MSRM.json",
+      "bytes": 3088,
+      "sha256": "2a7457ec96c0af0abe5f1defbc7b544919c3bedd635d0d1225cfee05fbb7881f",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/OI.json",
+      "bytes": 5430,
+      "sha256": "b16cfdf82e1d40e8d501b8434bdc49fd1c0b15cf0b783f600f1e8cd9afc6bc5c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/PC.json",
+      "bytes": 732,
+      "sha256": "e8c861776e05140efb2369391a69561012fa79aa2222904c6ca63f7b8ad00ed5",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/README.txt",
+      "bytes": 4374,
+      "sha256": "ffad4c77f2be5ab671ea437109aaceda579590d9117741f5b15d56da526ea93a",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/TD.json",
+      "bytes": 1633,
+      "sha256": "e12f888edf94dc5e7654bde6058971ee1696994863788aafb1c9ea8e78023ea0",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/TIR.json",
+      "bytes": 1578,
+      "sha256": "b7b1cff0c3e1f1d13e42762e74592d684787e8976a9ccde3f67d34dd4f4ca41b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/VALIDATION_REPORT.txt",
+      "bytes": 753,
+      "sha256": "d6a4fab9e542e96614e9bf8eafa3a32cb5ed2b1160fb2dff148ba20e4cf44090",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/dispute.json",
+      "bytes": 2370,
+      "sha256": "53d0f095935db25914848512fc7f1697b3c5e8e5492c4c30a2c2d54b8b817da6",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/snapshot/manifest.json",
+      "bytes": 47,
+      "sha256": "69fc053861b7ae983f288555fc6ebe45d9cd133a0460c9b898e29101d432a8ba",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/Mayan_Pyramids_LiDAR_Stitching/visualizations/README.md",
+      "bytes": 518,
+      "sha256": "d891d80c29985f4a143198188f712d7805e9d2d25613e42f22063bcc24dcda4b",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/MSRM.json",
+      "bytes": 1029,
+      "sha256": "9f89c679132e870886424c44b1926205041a35f571ef556d7c5037217ffb2e0c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/OI.json",
+      "bytes": 9577,
+      "sha256": "f9539a0d13fbdfb905738480f76a2fe55b908fe1c1caa689f1e0367e02fdbc57",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/PC.json",
+      "bytes": 63,
+      "sha256": "de2154be624b99b02ebe98d5070404571cb6c65517da9562d108f77746622f0b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/README.txt",
+      "bytes": 3054,
+      "sha256": "e1cfe35854102193d705d580008399dcd435333af6694ffaf56fc77789eab1d2",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/TD.json",
+      "bytes": 472,
+      "sha256": "c8eab8e689d8ddd02133c0476ad86f6548902dd2f85db29e1ecbbd03031ce69e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/TIR.json",
+      "bytes": 280,
+      "sha256": "c88bb76eb139060eb0372eda8a3d2273f645085c289d9eac4c5fcbb4f2a12d39",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/dispute.json",
+      "bytes": 2357,
+      "sha256": "598552facb7c4344cb8661f0aefd665ece69b152011142ac47b5724da3d9afae",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/snapshot/manifest.json",
+      "bytes": 44,
+      "sha256": "eac74e347b7e0575a12a278ad54978043f99558dd4265e5f63ffd767f3f45855",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/visualizations/01_mayan_lidar_stitching.jpg",
+      "bytes": 626726,
+      "sha256": "5f9ec86adf020c38b23fb8b8b094733821fd465088157d02e3a5aabcb152d16a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/visualizations/02_mayan_megacity_map.jpg",
+      "bytes": 446141,
+      "sha256": "bf3b3421eb088102c7909cc7ae8f2aba31a255ffd3dcd7fd362fc17d845a6594",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/visualizations/03_mayan_semantic_segmentation.jpg",
+      "bytes": 595928,
+      "sha256": "94b33fb324eb7510d380b0a0247ab450193064ac99f94e129fcc634fa6483988",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/lidar/mayan/merged/Mayan_Pyramids_Merged_Global_61k/visualizations/README.md",
+      "bytes": 637,
+      "sha256": "92c3b4228e038582bd62127d87d2614f450dea81fb252cd9577b3e7322bdcbb3",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/MSRM.json",
+      "bytes": 790,
+      "sha256": "1049e39c03e0e3af4effb6a54584f51d8de98d2c253ad52538623df167dfd197",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/OI.json",
+      "bytes": 814,
+      "sha256": "6a6d076a637f3a7008a01f3e417f562896d7c4450540d8de2133560cc89f6e6b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/PC.json",
+      "bytes": 69,
+      "sha256": "bcdb0d360cb5caf91270fc8b9ec3bd460df73ee660cbe84de9b92599050b02bf",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/README.txt",
+      "bytes": 3851,
+      "sha256": "a2bec42e8f27716c7d907cec8b77c2359b231e6336e1c44cd5008b1ac2fff967",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/TD.json",
+      "bytes": 661,
+      "sha256": "50a30c5d5ced102b0341f5f268e7463078c6a7398f2266e788e7cbeb7a0c7b1b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/TIR.json",
+      "bytes": 347,
+      "sha256": "8ebc7eae50d6b08e69f69b5137de300a18d10cba1ac9c68b0e2f3146fb8e8706",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/dispute.json",
+      "bytes": 1994,
+      "sha256": "7b2317ac5ec557b8d697ff51444ffc4d8f513b2cea0596c5f4fd702d46f685bf",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_mast_manifest.json",
+      "bytes": 2771,
+      "sha256": "7f0fa069fbd063823e14b06bd5d61ed77c470f33581a03295fdf6ddd3ab03b76",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_observations.json",
+      "bytes": 262923,
+      "sha256": "ad08af71638516e991faf3080257b03eabc73e215ac7bbc25ad5716afc63b9ed",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_products.json",
+      "bytes": 5091147,
+      "sha256": "08e8bc06d3eb66331f9b5fe5a13e6ea18fa08b492426a72b58ff86ad06abdd3a",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_raw_exposures.json",
+      "bytes": 353931,
+      "sha256": "8c149462645fccbef83f05e723c06146b79606d52bfe796b8c996ac079a59d40",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/snapshot/manifest.json",
+      "bytes": 50,
+      "sha256": "b9cdd364d6074a0902f4e32b6f423d0bfc1d49fe9c0505c1483d65e492383d27",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/visualizations/02_hubble_udf_stitching_craft_poster.jpg",
+      "bytes": 419472,
+      "sha256": "d327660e94dda3fb7963f66f77e8f962f5b3599bd3e4ec18161e62edba3c8ca7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/visualizations/README.md",
+      "bytes": 470,
+      "sha256": "3ebad823cb15e0f48181933ede1b54b1f02408e6ee9cf88c5c1ce53ca117b85a",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/AUDIO_COMPANION.txt",
+      "bytes": 188,
+      "sha256": "a266764c03bb86e045e42d9fe0c0cbb861974c64452957d20b40dc302c225783",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/MSRM.json",
+      "bytes": 2889,
+      "sha256": "181adf971611391660ac68bc2b00a0ae56a9dfc559f714830f0d44f32cf952b1",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/OI.json",
+      "bytes": 3414,
+      "sha256": "33ba556f098f20b266d7ec2ab23e452b3f1d67a17bfb8d9f9f37db44862a113c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/PC.json",
+      "bytes": 2093,
+      "sha256": "00534b46974955a8a2f43a74fb26770807bb55f2f61b7066799c6ac85a156dad",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/README.txt",
+      "bytes": 2607,
+      "sha256": "09becf3add801a0dbfa548b08ced93816c706dcd7c39e9d42000a9ddc209ab34",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/TD.json",
+      "bytes": 1036,
+      "sha256": "079c8cc4089add94c50a928eea9b1d390bc8d580ee0c90c6cf409b3f4ab678e1",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/A_Trip_to_the_Moon_FV_Packet/omni_rendering.mp4",
+      "bytes": 3068405,
+      "sha256": "b048b95aeac096efa807144bbb3d9f44263469f7034c0e46af33ba6ef0d444a9",
+      "kind": "video",
+      "media_type": "video/mp4"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/MSRM.json",
+      "bytes": 938,
+      "sha256": "ef02eef054f537e9b1452840d39cc57b2a2bf1c7fb4f528d9ff5a13147390968",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/OI.json",
+      "bytes": 2110,
+      "sha256": "9fb4b39b903c313853deb3cdd407a7ef6b409e128c3b41c8c36040148248622e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/PC.json",
+      "bytes": 518,
+      "sha256": "213184c675993a24f5bda35c04ee2af6038e0fc50a4406e200bad00d2c9db88a",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/README.txt",
+      "bytes": 4103,
+      "sha256": "c34d6990ef4559cd06ffa362552b025c824152452329b30f8355b5db70310144",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/TD.json",
+      "bytes": 1702,
+      "sha256": "40b93d711ed9d69709ea678e4e1cc3e6667485e67e357a9f82c6fa763190b1f3",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/compiled_prompt.txt",
+      "bytes": 3530,
+      "sha256": "3bf129904491286d932e6d62b7b6799b8e53ac40af8be9767c6d88652fa6c75c",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Alice_in_wonderland/omni_rendering.mp4",
+      "bytes": 6050471,
+      "sha256": "1e331046f8737e76a8ef65dd2507389cdcac16b8502cd55127063ecb6df7fdb2",
+      "kind": "video",
+      "media_type": "video/mp4"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/FV_CCTV_snapshot_TD_reconstruction.mp4",
+      "bytes": 11465118,
+      "sha256": "d1ba0024bc0de96c0ab7f9ae6a3e98fd1d65255f624240f10595d6874cd2a1ee",
+      "kind": "video",
+      "media_type": "video/mp4"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/FV_OPERATIONAL_DISPOSITION.txt",
+      "bytes": 2202,
+      "sha256": "b8e859c95621fd36882ca71e347c40b5c006b8960186d65adf2f24f7b247e935",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/MSRM.json",
+      "bytes": 12607,
+      "sha256": "a5c06e9a01e9129483a345348ac2c3da4bb2c4a9a18a47a9648f37b90129e15d",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/OI.json",
+      "bytes": 25321,
+      "sha256": "31dc5ae6d3e1711365660e89333fc5d34014460f194ce65ba80a58274b491c83",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/PC.json",
+      "bytes": 17465,
+      "sha256": "5e252f1fd42fe06c7983c5832966af3bb440a2e7734fb2ae36d67cd23fafd3c9",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/README.txt",
+      "bytes": 3968,
+      "sha256": "331cd8dbf9a964b274a4719f8b06166883c219449b6a07654262935be42e4de3",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/TD.json",
+      "bytes": 16702,
+      "sha256": "bd64111a8f3ef0da4dcf4975da2a6ceb1b00416b242d8ec8ecc178754a3d8e1b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/TIR.json",
+      "bytes": 26638,
+      "sha256": "e3d63b48884992b4f8960549e5b7140d2984f991714e4c57af85dbe0ec26a15e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/VALIDATION_REPORT.txt",
+      "bytes": 1209,
+      "sha256": "60869b6aec072f996b7c5c4aa57e40776dfbd07dc5063a939655216b22364f5b",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/dispute.json",
+      "bytes": 4381,
+      "sha256": "2a7805b8faf772d28641c6c3c84aca008accaddf66f0529058ffbfd0707677b3",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/manifest.json",
+      "bytes": 17739,
+      "sha256": "a0f48d42d5c44830ffc9987cbd571040213176d84691639c0c932f33738bc933",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/blue_vehicle_t042.jpg",
+      "bytes": 47283,
+      "sha256": "683909890b9ccbed23933c53e04554551f760d31906fe9bf8cddae285c1fca9f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/blue_vehicle_t050.jpg",
+      "bytes": 51295,
+      "sha256": "1bdbc8558854794b8b938c839bfb8a3f5f6df307f5f2388838c8594faca555d7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/dark_sedan_t098.jpg",
+      "bytes": 48630,
+      "sha256": "4326f48a735c4254912cc68d7a03dc47acb6077d87aec8faca4bcd2b787b81c1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/dark_sedan_t105.jpg",
+      "bytes": 50594,
+      "sha256": "d4598f8f14e5e946024a8e8c4fcfbc519ef20a1b52080f854769fbaed6b71c0e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/pedestrian_t022.jpg",
+      "bytes": 73893,
+      "sha256": "e4caf2d183580ca49099e2bf37f6dac71c9afa6f6ea306182ba3ba5c3661f174",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/pedestrian_t028.jpg",
+      "bytes": 80019,
+      "sha256": "add3cede91a4fbf6150d26cdaff1ecfa0c58224384495afd5a4b01b378911c87",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/silver_sedan_t020.jpg",
+      "bytes": 91055,
+      "sha256": "60799e51371bc9af6eed655c691ed1ca65099c5d8cdc00b6a81067f044125abd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/silver_sedan_t024.jpg",
+      "bytes": 97794,
+      "sha256": "f693672ec60f4e43208a60d67ef0e84c4ba856eae5ed3268a4059a93cca9629a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/white_pickup_t098.jpg",
+      "bytes": 34860,
+      "sha256": "de8497738837cf58843e1f4e221b8f4f32142d0db24a197ce5949d5a52ea7eb7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/objs/white_pickup_t105.jpg",
+      "bytes": 37105,
+      "sha256": "4ba3447ffd5d1b17e4d3c0f0ed87b8f6f1b8e3b865828a5bb6c65b5b6022834c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_000s.jpg",
+      "bytes": 536676,
+      "sha256": "03d2ea79d2980677fd163a2d575a16d48e6083a56af78a86af3f486a69e8f622",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_003s.jpg",
+      "bytes": 577291,
+      "sha256": "f4ea19f87ff2dfc223aad69dcf0f86e4daccbea3a624e0a73fe35dff1ff49b47",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_004s.jpg",
+      "bytes": 582152,
+      "sha256": "81b12631c95a914fa6f3a05860de51438330d2504daa327b21f55885c6f71d2b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_008s.jpg",
+      "bytes": 588229,
+      "sha256": "6749e9252fafeb689299d067050e6db1607be6496ccd1d7a791a4a6c0f29a4d0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_009s.jpg",
+      "bytes": 574583,
+      "sha256": "ebfd1d251d1f33d85e3835b74d097c7aa05e03bb32991bcf21c7525d113c73f0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_012s.jpg",
+      "bytes": 588133,
+      "sha256": "43160eca243768482aa676b19e6327fd49ef56028d08ba9a5b2891b413e5b208",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_015s.jpg",
+      "bytes": 589431,
+      "sha256": "6da09182d75bfd1e1794365359c046ee4864ad99cca27345f2e241a224addcbb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_016s.jpg",
+      "bytes": 596326,
+      "sha256": "430a897a53b315c3210e78bdbf606c6cbf2ecb6626ddd807e33925f0cd7caedd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_018s.jpg",
+      "bytes": 583249,
+      "sha256": "bad25a88e919c87a4e5979b2c7c65d2308d566ba045d6ec0648678aa7181453d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_020s.jpg",
+      "bytes": 592457,
+      "sha256": "e0896676214200a6c836afab47756cb300428795938ee43507aecf7a4b66e57b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_022s.jpg",
+      "bytes": 593553,
+      "sha256": "ed9e915eb1efd2ac40dd73eeafcd481982b0e6c7ae2e439d5516120d0a072015",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_024s.jpg",
+      "bytes": 598748,
+      "sha256": "929e903dd2a48251545d2dfb04c04af6539696a80aa2b8213bfd5e0a86b91e65",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_026s.jpg",
+      "bytes": 581793,
+      "sha256": "624f280dd942e02b01cfc1963b7459b0cc1972aeb752e4e6500a3660d4502a43",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_028s.jpg",
+      "bytes": 587347,
+      "sha256": "af6878d97969fe3cd32310060f3d7df1a63783408f225973c6be3749e7d66fd3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_032s.jpg",
+      "bytes": 593035,
+      "sha256": "0636154008320e6bb4c758c3a79421ec382bfbc01610f8c7ff8deb6928e0f0ac",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_033s.jpg",
+      "bytes": 596802,
+      "sha256": "a4e25e2df3ec97ab7f752e875ae5ae34708838a20173e6ca4ab47d3c94085a62",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_035s.jpg",
+      "bytes": 591956,
+      "sha256": "d2cd4e4be33d414e38f03d7138f7baf165f385d5c333ba269e12f5bc718b09e5",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_036s.jpg",
+      "bytes": 596305,
+      "sha256": "33280d673416ad63a5f40d56ac7bb9e3200695dd47be94d5dbbf4b4f637e35d0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_037s.jpg",
+      "bytes": 601586,
+      "sha256": "02972d9f2e1d8cd208ea16c2a26c8366298142179a2e4f7a9aafaf6280771bcb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_040s.jpg",
+      "bytes": 608983,
+      "sha256": "b98fd70c12743d2515e0774d4b57497870b4d8d4929e1873760b8346da464303",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_042s.jpg",
+      "bytes": 587024,
+      "sha256": "448b49d6898429a86e180b824bb97b9834007f940989d30c30c7b4bf60012dae",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_043s.jpg",
+      "bytes": 613942,
+      "sha256": "375c52419f60e13b41927b573504bc91d9ea29fb25b28c1dc9a31e0bf67ebc03",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_044s.jpg",
+      "bytes": 624038,
+      "sha256": "7c158ca63981b682feb066c28fe1aa5d53c490c64f6ba786b9f7dd935f0cfff3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_046s.jpg",
+      "bytes": 636317,
+      "sha256": "7c8a2bb77c55411e7d65bd1b26396a6ee80490615ea1e1a5ae55d72e3027c44f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_047s.jpg",
+      "bytes": 628130,
+      "sha256": "d92c947756052e5e00de06a411f71b40119b03a4c8997006f9b78d33d6bb357c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_048s.jpg",
+      "bytes": 629577,
+      "sha256": "4bda5bca2c34c2b55df95e7b5b5781affabaf921a3ba13326bbfebfeb926cb25",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_050s.jpg",
+      "bytes": 627692,
+      "sha256": "c8332267996baa97d00055c9069b95c1dacca1813aab26748dbc1b4624835fcd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_051s.jpg",
+      "bytes": 642874,
+      "sha256": "b6d65ba2d20903c1c530f683c6ebd69420c2085da3fc1e245f47304e01d29ad2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_052s.jpg",
+      "bytes": 638616,
+      "sha256": "7c7fb754e2c9f6fbc3c3a10d0d167951fca694f1ddbc610b3f4513ea8bbd3c49",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_054s.jpg",
+      "bytes": 645535,
+      "sha256": "5b1831b69f7e336a1eb1b7d17618a3a8b3a9d58c4c9413ec02f77810de089fb0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_056s.jpg",
+      "bytes": 636864,
+      "sha256": "4438262f7413f9c1d1b2f370e7dd18c2231069df24cc4e8e69faea63b3e1f7f5",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_060s.jpg",
+      "bytes": 634695,
+      "sha256": "a9da2edeb05636663eee831e46f9d68993837f2055a5b1aca90add5f8036f377",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_061s.jpg",
+      "bytes": 640558,
+      "sha256": "0f71713c51941ff3b458cf4580700a2171e391bdee3e2a89cddb830056c1d828",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_064s.jpg",
+      "bytes": 651843,
+      "sha256": "7be5ef74e3324f8d8b1fa142052a748ee4430ea12fbd193c1fa720759434c4d0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_068s.jpg",
+      "bytes": 640337,
+      "sha256": "5e0989892345501320c8582dbf65abd7dd35b1f197793d9f8cc36c7003a3fd2b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_072s.jpg",
+      "bytes": 556996,
+      "sha256": "442a8352bc7b572354343b915052c4ca67ee7809054f639f0538e41d63ab02ac",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_076s.jpg",
+      "bytes": 551732,
+      "sha256": "3c4495b25a3519d8829bdeadf0e7839ef2b36a0ad25fce12146ee42c1226b2ee",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_080s.jpg",
+      "bytes": 552810,
+      "sha256": "9404593f825df11b494ddeb6af0e378403299f33ea88eadc08d9c91fe42fe1ba",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_084s.jpg",
+      "bytes": 542519,
+      "sha256": "df933a0256b30b6cf26dc8d27cc6e514794a3f8242bab9b713d7c29cf595ca5b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_087s.jpg",
+      "bytes": 554428,
+      "sha256": "460f9dabf4a1cd3d7b8c8b5f610ccf8c67ac999c2493bd88e4ae0cc5da15ab24",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_088s.jpg",
+      "bytes": 556852,
+      "sha256": "81d031993804dfddf0bada21c914e4b34d92d418bd65809f11a2d569c31d8d58",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_089s.jpg",
+      "bytes": 558173,
+      "sha256": "a28f86ad5edcf22c1be3e3e96a438e553df2d6aca520b84e5b9b732c30e58224",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_092s.jpg",
+      "bytes": 538465,
+      "sha256": "5adf66910613a291a63d77a29a0ec5abd6dda970fd5f45a1da4d8ead68b35715",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_094s.jpg",
+      "bytes": 540412,
+      "sha256": "1795fe27f66485d9630bcd0418997ef506853e248196848fb84473d629ab54bb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_095s.jpg",
+      "bytes": 550589,
+      "sha256": "c53794d55bac14bdeac7c8c2144e67fb5ff7b3a5224ab8a0f317641b2a01454f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_096s.jpg",
+      "bytes": 555770,
+      "sha256": "6225754d2afe9c3ab19f92d39582c032983378caf873e170e5d6f8004cebfeaf",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_097s.jpg",
+      "bytes": 556845,
+      "sha256": "5bcb38e6d7bd5ca470de36be5911e985ed04b518e5c59f45aacdb22fba7589e3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_098s.jpg",
+      "bytes": 555238,
+      "sha256": "b21d79f8b968a62e17faadc961abd6d051026bc1a83eb57cba79179229c7da8f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_100s.jpg",
+      "bytes": 538227,
+      "sha256": "aa8be7221e37bc8a7c84fe8ebb5874bc7df7b6c8b3f2054217bceab986ba8318",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_102s.jpg",
+      "bytes": 549641,
+      "sha256": "3a33d4c1cb7df2d29b5f690af921347d47515bfa3579dd230c2dcf3099b9c469",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_104s.jpg",
+      "bytes": 553460,
+      "sha256": "3ad12cf6106a0bdff4f7ee04a1066c7dd08d80eda6290d76d27f7dd8b3e63310",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-001/snapshot/verification/V_105s.jpg",
+      "bytes": 555151,
+      "sha256": "0fe1decf9f68696b484f05447b018308fac2d3606212977f96ab2c6c7752bfc4",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/MSRM.json",
+      "bytes": 16274,
+      "sha256": "b6bae1c9aa9df879ef2e1b0e695dc433d97c2da3e6e269b4904435d8ab7187cf",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/OI.json",
+      "bytes": 33062,
+      "sha256": "89f5e4fe3f344c8d344b2a0a338b7c389786c49b77de1082467f1d4d420a43c5",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/README.txt",
+      "bytes": 4473,
+      "sha256": "02a1aa324601c3a5b059b4d38d17fba8b3ca85e7cba9e362d48968a34bd437f7",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/TD.json",
+      "bytes": 10528,
+      "sha256": "3d469e4d175845ea3e11aa788aabf20a6f2cb0de60522858cb19293566a61ad7",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/dispute.json",
+      "bytes": 4237,
+      "sha256": "ac620a998a33d22369860d80eefd3866dac05e3a3a5b0b427279cac38bdf5210",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/manifest.json",
+      "bytes": 43354,
+      "sha256": "1d9a1b2b815c4483df476b3737069d5342aef1814be8b1d3b020ca2e94535ebb",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/camera_reframe_t050.jpg",
+      "bytes": 284879,
+      "sha256": "1c5ca341a6cd1871e30eef227812d63dbf569a08ed40a90d7edad89821e574cc",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/dark_vehicle_t097.jpg",
+      "bytes": 54900,
+      "sha256": "857290152cb87c6ac57bbd3e8123b7937f79d94a75e48c93e4db63abe66dd7cb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/moving_dark_vehicle_t000.jpg",
+      "bytes": 23137,
+      "sha256": "13058b4ae74f0c8e4c3a0097c7a47c24793c4f637d030d5ebe4f37de82bd512a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/pedestrian_candidate_t015.jpg",
+      "bytes": 8039,
+      "sha256": "6b89b66810470b3d392d27ebe2a1a51dafcf4740a8436326239119ec9544ff4d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/pedestrian_candidate_t039.jpg",
+      "bytes": 7313,
+      "sha256": "441b91f3356cf6c2ffe593b54584a0c1abb57a0cc45ec4cd18b4474eb8235711",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/pole_signs_t100.jpg",
+      "bytes": 45623,
+      "sha256": "abde31f1c081484a87577786be0248d151a080e1620583715fd35e3943f0b9ea",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/road_vehicle_t070.jpg",
+      "bytes": 30041,
+      "sha256": "77fef8ddaa3a0bdb48105f189b04f536235abf0a4573fa6bcbea6bb1efc9be35",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/objs/scene_zoom_t053.jpg",
+      "bytes": 229486,
+      "sha256": "f3ccd8bf1411ac06d1113cfbd3983ddaf0ef451ee3a0f9b96a2a5bd2c3277746",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_001.jpg",
+      "bytes": 260480,
+      "sha256": "b6a84fd5061d19f8dbe49c41e209aafbef720df0595bd29169543395f946a938",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_002.jpg",
+      "bytes": 260894,
+      "sha256": "b30b293ea0ac2d07e43cee73d02d98f87024ec6283b93e37e8150c0a6d7321eb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_003.jpg",
+      "bytes": 258869,
+      "sha256": "3f053d56dacf2c1a06363089df059b278d4781813fdf65df06306dac2737cad4",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_004.jpg",
+      "bytes": 259006,
+      "sha256": "fa012fde40e461803ac534eb9ee29585f81c4c60633ad2ea193042a9128b9848",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_005.jpg",
+      "bytes": 258775,
+      "sha256": "c7809e5a00aff4e25e2633ef74f81cca791e2207c4efd7d4999bdaa049aec985",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_006.jpg",
+      "bytes": 255664,
+      "sha256": "ad6a040645bcb31d6f78b58701b7d28413be2b24f808108205f418f1a2fa8d99",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_007.jpg",
+      "bytes": 259105,
+      "sha256": "817fea6ad7544f51f7b8f5044aafd43498f0658916d9ae985060890acb9ecd94",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_008.jpg",
+      "bytes": 261881,
+      "sha256": "5f8dec65262b08186ef30cbf748866eade8d7abd1d9d23324a5de0f8ea27226b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_009.jpg",
+      "bytes": 259051,
+      "sha256": "ba6d1860ab8dcc0abb8ba42d08cd1f69438efc53722ba4ac599d3a5fa3f4b1a3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_010.jpg",
+      "bytes": 257094,
+      "sha256": "cfc77bb48f82c4f6b5a16317784834b57b0ac69b9dc986301b3e31348ee4741d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_011.jpg",
+      "bytes": 258787,
+      "sha256": "7e7a073b32dbfcf4524b4237d9337b8caa4e2341f946802a9ebf29c5cff5bfb1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_012.jpg",
+      "bytes": 259708,
+      "sha256": "b53128eed938f2341152d62f553cc46e05af992e6ea89786552afbad1d3072ad",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_013.jpg",
+      "bytes": 259785,
+      "sha256": "44f38acd28db164c71b65615a2f1179a5fae84f1036cc9f3a9625a732911e684",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_014.jpg",
+      "bytes": 260277,
+      "sha256": "58827d8f46dee6bf987e6b7d5e2fc7fdb7c85076c22b5abfd3977b879365d48e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_015.jpg",
+      "bytes": 256112,
+      "sha256": "7e634815df1273c1a4d6e949296dc04c423ff9bcb2d205c515c4eaaf0f3af036",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_016.jpg",
+      "bytes": 257844,
+      "sha256": "659638db8213cadd751a4ec9d04b743fab34f9622704a5079fa919f2cb72566b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_017.jpg",
+      "bytes": 259944,
+      "sha256": "96f000f71435654501d0cdf1fb38e4c95208ac6896b24223cac8f18ba4d55e7f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_018.jpg",
+      "bytes": 259933,
+      "sha256": "74d47607821b1d2f28c178f6f7ad8c1f517191fcdf6a493b0761045bd0c69d81",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_019.jpg",
+      "bytes": 258389,
+      "sha256": "7a949c787134065c058d9d699a774e4b0698f1e55982765e419345fd3e602c3e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_020.jpg",
+      "bytes": 259181,
+      "sha256": "61b1340ee378432ecc5fea10e0b41ddc6a8c3d02fd4640b9c495a8d76c6fabbe",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_021.jpg",
+      "bytes": 258958,
+      "sha256": "c0c2feb277fc8150b97dbcd31ce35b470200a1cd4c11f0d6ae37f98121044be0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_022.jpg",
+      "bytes": 258799,
+      "sha256": "ae535d30c37bd9e30bd5117be211054316453a678c6b6a7634ed59ee72d11671",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_023.jpg",
+      "bytes": 252104,
+      "sha256": "54332884f1f62c3cef3d3a7c4fe7fa4e1881bc1cf26f18caca5f27609408dc76",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_024.jpg",
+      "bytes": 256483,
+      "sha256": "bd2fed4d5ce6620584c4f5f94c2dec44e7fc1f5f0d532e6ef68753bdc638524f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_025.jpg",
+      "bytes": 256974,
+      "sha256": "e0e06e6580459ca21c290c2400e8775bbc70189206e29f773039c9d3e2a72024",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_026.jpg",
+      "bytes": 258932,
+      "sha256": "37025fd0eed47f69d100027b1b796c7042b2049de6d4c8122f2f5e2700349de1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_027.jpg",
+      "bytes": 259174,
+      "sha256": "220a29bce9e7e3e5c7f671375ef5d194e4a04103f3ad06bda67eb62465167b0f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_028.jpg",
+      "bytes": 257287,
+      "sha256": "b0289733d5c05eb8834530bc8904562ca6cbf2e5e68d79207656ad48c33f3d6a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_029.jpg",
+      "bytes": 258586,
+      "sha256": "bca50d23496c7d22c0233769ee0f3a8a01b42b25a252a01c3765077389e66292",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_030.jpg",
+      "bytes": 258189,
+      "sha256": "8abb32c40a3c816ccf2ec45b23030b7f8b4fab555c24acb83e6461016d27a4b1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_031.jpg",
+      "bytes": 260237,
+      "sha256": "d10bde5bd76c8d69be2c87095e9dfd09d7948f4d66329e7123bf7766d066c429",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_032.jpg",
+      "bytes": 254524,
+      "sha256": "dd3ac0aa019271ef92a234480ee44d8d446017133779bdc9135d0f64f1995f88",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_033.jpg",
+      "bytes": 256164,
+      "sha256": "e48d45cafa21f3515d1f963f3c6a4d750ddc619f8456f17572c10aa2fd712270",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_034.jpg",
+      "bytes": 254764,
+      "sha256": "fccfe1a375350fc8fa250878d1908118ebb67f7cf5ce17ef96bcd9c408f529ab",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_035.jpg",
+      "bytes": 259090,
+      "sha256": "248383604deba308964df1a290a5c212248361511eacaa6680f4692a72fad6fa",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_036.jpg",
+      "bytes": 256779,
+      "sha256": "3932ba53a5b2ab8769532ca0412f15b323dbc03b70ee979d5971c03494fc9f0c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_037.jpg",
+      "bytes": 259769,
+      "sha256": "a49b59eb7f14163fa8e963fedc2c8bcd59779262996182a13792df2d1dbe386e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_038.jpg",
+      "bytes": 259738,
+      "sha256": "e212963658a0d7a4d377cdaf23e794387ec3ae1a9ef6324e8554e136f306fe5d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_039.jpg",
+      "bytes": 254584,
+      "sha256": "67f77ba7136af946f45f82571a90fbc44c9aa148c3107906181ad0e6cbb21e9d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_040.jpg",
+      "bytes": 256157,
+      "sha256": "dff15c21e468f6e0bc27290f5b4a5396a133e161ca790d3fc208d1da88f0119e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_041.jpg",
+      "bytes": 257538,
+      "sha256": "98ac3a75c5441e00d485200923d99bd2b9cb41001bbff96c50e46a93dd755aa6",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_042.jpg",
+      "bytes": 256870,
+      "sha256": "d7a66e262fce99b7940b0183d44909506ae1c1b8b18e00e114373360db51c007",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_043.jpg",
+      "bytes": 255933,
+      "sha256": "fe9e386c2f183c5ec7c43c7f36507603748ca6a15f792156d6215655f1bb3fbd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_044.jpg",
+      "bytes": 257259,
+      "sha256": "121dc309ec0e465af73baa273ba3f38b9b562875fe451c45a2b7903bbbb08df9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_045.jpg",
+      "bytes": 258231,
+      "sha256": "063ed7e7665f675e70c760d32a1976f1c279d48acc5eccc16616664d8ad681ba",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_046.jpg",
+      "bytes": 260041,
+      "sha256": "c2205dde23f0c6c1ca30f26e7b25dc4b5152ebbb0a79f99ad937009da3b59440",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_047.jpg",
+      "bytes": 259954,
+      "sha256": "a8928a39f9227ba58cef7a20202da591ee87a395bdd8a13727a58279b8dba9a9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_048.jpg",
+      "bytes": 259908,
+      "sha256": "96b2e735a4b6e2fff929adaafa97c0c742246ebca0a1f827915284ec1e51cd81",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_049.jpg",
+      "bytes": 254739,
+      "sha256": "eae002b0b9e2b42d1b62337efd8c66083fd6d4f0cf875bd2401a3a6da02e7547",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_050.jpg",
+      "bytes": 216191,
+      "sha256": "97e1d192a44c0589db0716e51b3e20bcd4d0ce49cdeb42a50fee987060d353ad",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_051.jpg",
+      "bytes": 218962,
+      "sha256": "c71a3677693be583d735fb6eea8c9a15775477c0f90b08be11835bf02797bd14",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_052.jpg",
+      "bytes": 120856,
+      "sha256": "9230984e5fa67559c4a536c89376d03f06b2cf5e4c657234a36630b515b3e7d7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_053.jpg",
+      "bytes": 106266,
+      "sha256": "4a68d3b502db859e22fb299af0be132042e45678d60e2b7156ba41dfdc9edcb4",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_054.jpg",
+      "bytes": 157167,
+      "sha256": "423b4835e285e8459ce299d22284ed7e4265214e34050031f5110d23d57fb994",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_055.jpg",
+      "bytes": 83771,
+      "sha256": "a3f643e7b4450645905f18fe6f9514e91b50624ac7ed71c4f988a52ad1f4681b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_056.jpg",
+      "bytes": 107297,
+      "sha256": "cc15c11d357fd35dfbad6f11211271a95b37440e852c24d795d1823bf76755ad",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_057.jpg",
+      "bytes": 129242,
+      "sha256": "b435c68b17247730a61c758c54fc4fbee6a7f3402131430c58d104f3e4bd05fe",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_058.jpg",
+      "bytes": 117688,
+      "sha256": "9adfa069d0b56baee72fb4d8ffa4f49ba71fe16e87189564726b453172795f89",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_059.jpg",
+      "bytes": 87687,
+      "sha256": "e362bf586c677e70db9f8dcc3fa2db28c0c1ed330900f290bcf5626c7efaf709",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_060.jpg",
+      "bytes": 92902,
+      "sha256": "5511bd3201b96d400a32db597abad5781daf0f6764461ed35c6f37d35fbead31",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_061.jpg",
+      "bytes": 110897,
+      "sha256": "fed59450570ed653b79c795c7294338f81a3ba27c7d6c61bf0e52d88343a905d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_062.jpg",
+      "bytes": 118942,
+      "sha256": "840cd4217f7326cff5dd455417c0abef9aa2ff0bc1f3652e6889bd769f344f6b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_063.jpg",
+      "bytes": 119273,
+      "sha256": "08fc3acbabbb0980e83698af341e9545932b0d903cce741a26b8e2c5adc6b9bd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_064.jpg",
+      "bytes": 123257,
+      "sha256": "bdd958671eb7869807794c7f00c46780aab001352e771c5f0f14acd5b846f33d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_065.jpg",
+      "bytes": 127854,
+      "sha256": "73d88dd20c9e293fb0a8fcc4256191e0a8e93604a7b62256b24f7e7a309aef5e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_066.jpg",
+      "bytes": 134463,
+      "sha256": "0647aef81229b48840d4739f77de7f3331d91a01c828ae6409fc28dfba5d85a1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_067.jpg",
+      "bytes": 134792,
+      "sha256": "364bd7979bca7b98e1b8f1808503d2e3554923a1aa282dadd8c324d78fd0ef3d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_068.jpg",
+      "bytes": 134200,
+      "sha256": "de852b68bb65ac9cd1b975a82c187ad0079127456edbb25676afcb3a5f4191e3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_069.jpg",
+      "bytes": 134810,
+      "sha256": "569d07ba4106d30c45caf37f5cde67e070ab47f6f50d354c3fd1eaf0e424bc7e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_070.jpg",
+      "bytes": 138235,
+      "sha256": "6039a53d8ddd298b7b90f1fe855aca8763f6a39fcaf7c912b671f380346ef131",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_071.jpg",
+      "bytes": 136388,
+      "sha256": "1cf31b06bbe0deaa39df6f6991ac9c1025741376c648fb74ea92101de4d76acf",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_072.jpg",
+      "bytes": 134836,
+      "sha256": "defd5171e7d36390cee577b013657c2c0625d15918c073d342f9765e1a64c749",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_073.jpg",
+      "bytes": 134465,
+      "sha256": "e6362d287751777f9183c4281eea825dfe99759dd934f5dfccaabace6000c091",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_074.jpg",
+      "bytes": 132615,
+      "sha256": "2ca97bece2dd00c19918241876648b8d05fcdf988c319b35362df396b8f12681",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_075.jpg",
+      "bytes": 128861,
+      "sha256": "088615c17896324a3ccd6a5b632e9ff6c102b396c41c66e95466b9b7f25eeb93",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_076.jpg",
+      "bytes": 122365,
+      "sha256": "bf474f6f67f2e47472d4e5d6efc5a4db69782d342f5715e4b80277638ae9f89c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_077.jpg",
+      "bytes": 122063,
+      "sha256": "7bf47ab168b9ca9241c97949758aab875e1e600fa2e2655d4d4408dd7a3ad98f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_078.jpg",
+      "bytes": 122109,
+      "sha256": "2e633029f4151ace9ae97bb29eb0a3e9b279467c6fd0397605df8f8814101896",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_079.jpg",
+      "bytes": 124682,
+      "sha256": "b967a35b0b53adc4b1b5b782667539cd2783a14e15b14a2beba61f708a77eaff",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_080.jpg",
+      "bytes": 124916,
+      "sha256": "95efc1eee00b43d9da1ca22d81041d2dec11492ecbe0f696aede0844721ad72d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_081.jpg",
+      "bytes": 127049,
+      "sha256": "5d7a1822b41055f2d7c32b0072030997ff5debe9d864f564d1cca2379c0140dd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_082.jpg",
+      "bytes": 129589,
+      "sha256": "a934c9f0d635cc46339ac91ea2ace81f059f227e0737eccbf21312c534a97d18",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_083.jpg",
+      "bytes": 123512,
+      "sha256": "2cddf58730aa815af7470c35a9595a7fb04ccedb9473e0127d1044ecaa5e97fd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_084.jpg",
+      "bytes": 118829,
+      "sha256": "b6e32eeb74befdf7cab1db2af1c34be38cbdbed415bff01726abb29fe8a4ab68",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_085.jpg",
+      "bytes": 120603,
+      "sha256": "43f8f3733b3ce85929f0effb858e74a99db655b05bff0c717b45bb30b8d38360",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_086.jpg",
+      "bytes": 122314,
+      "sha256": "1d3fc2d60b7388d28bd560a796257d4faa47118cf472cbf347d62bd461ef1dcc",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_087.jpg",
+      "bytes": 121633,
+      "sha256": "d3963472891fd37b966bccf989dbcbf42c2a4414aef72b1137bdb4945588517e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_088.jpg",
+      "bytes": 123518,
+      "sha256": "e55e0a50e4e0d5bd485e0ff1699702d3858d41f037ee1555f3c006040118ff96",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_089.jpg",
+      "bytes": 124717,
+      "sha256": "ae25613f24f26b6e3ac013166564bd9fa70ef06565198606bfc1e3e745519703",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_090.jpg",
+      "bytes": 125112,
+      "sha256": "c1afcdba1a2b455d182be974bd5601a84e5079586154de4d3fed4be333f49470",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_091.jpg",
+      "bytes": 119771,
+      "sha256": "e3fb82024916a4013d9483a654b0ea38af2e73cc868607aefbb226e646722988",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_092.jpg",
+      "bytes": 114609,
+      "sha256": "cf907df43d7cc4caf5a295c91d3825390f19514a86feffe5a98000c5f39cb064",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_093.jpg",
+      "bytes": 114378,
+      "sha256": "1a1864481d7289827afccdcb196f63195c76c3d57dba0a94ba7835d84b4b8012",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_094.jpg",
+      "bytes": 114620,
+      "sha256": "2641ecedf6fb69fdbcdb26c518e49c59106d3b0de55cddca92d9e982fdb603d2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_095.jpg",
+      "bytes": 116877,
+      "sha256": "283e4dc59d891af4a8afd48ab7ca2b6bc66bf235a156de3da4bbce1124e6ef18",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_096.jpg",
+      "bytes": 117668,
+      "sha256": "5c45b517c941af596849cfc56c820ae89fab008a8acf95b3dc7601adecf664c3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_097.jpg",
+      "bytes": 115001,
+      "sha256": "d287bbb3ad74bb49fa738ee48bd0e9b0f0f02fa366d525a828194252703d1482",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_098.jpg",
+      "bytes": 109662,
+      "sha256": "f97cb953ed92f5bdde2c817d3bc8c684515d6a0045db6026e17bb6e3bf373963",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_099.jpg",
+      "bytes": 104458,
+      "sha256": "95c356addfe3d2fef801e2208a0edc5117430565923132dc7621121539169c76",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_100.jpg",
+      "bytes": 49671,
+      "sha256": "86620e668f2ff16ad9c29be660a39cfe91e6b7238bd716e40379e302c967a3d9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_101.jpg",
+      "bytes": 52165,
+      "sha256": "a658587abe527f654c639c1de088a2e916e6d3fa6b12f033092a1d55bdd838c7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_102.jpg",
+      "bytes": 53894,
+      "sha256": "8f16c890b7096046b1759b7b18925305fb669b7ff13fafa966ee4a2aeeb822bb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_103.jpg",
+      "bytes": 52718,
+      "sha256": "cee558cf7810b601bc6cba52a2f1b3f498f669e712268db2a6986e100d8df29b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_104.jpg",
+      "bytes": 52413,
+      "sha256": "cb308fddfe9bed63e84fdefb37a2230288d51928ac0631c7b4b49edd3f517862",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_105.jpg",
+      "bytes": 52385,
+      "sha256": "94e8ceb978fdabb402c166c3b82a019250224798b73184330703ca8239662b1d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-002/snapshot/verification/frame_106.jpg",
+      "bytes": 51659,
+      "sha256": "dc52805dc831a93b86962fe069546fbda84f597bfe2d0f7e810ad142bfdb57c1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/FV_OPERATIONAL_DISPOSITION.txt",
+      "bytes": 2202,
+      "sha256": "b8e859c95621fd36882ca71e347c40b5c006b8960186d65adf2f24f7b247e935",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/MSRM.json",
+      "bytes": 4836,
+      "sha256": "1414efa3cc060acf0b8fd99465bd8eeef74c8ffdd4aa2889e57f3a271b9f2c24",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/OI.json",
+      "bytes": 10409,
+      "sha256": "774da933f535b59cde60529d4461fc8a9bf7a1e6591849cdac047be423889b39",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/PC.json",
+      "bytes": 4540,
+      "sha256": "48bf34c194e0be9648f9c35cad91304eb147577bdf41b59ec9a1694384427da6",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/README.txt",
+      "bytes": 5901,
+      "sha256": "4bdeac15d3b567337fac189684e7d13a5b6e139937768c9eaf7e9cc4352d0010",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/TD.json",
+      "bytes": 3776,
+      "sha256": "f2a9cdcff36fe1f3249b2ebb5651a9a02b1acf3b35d6c023df3bd8770509c2d0",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/TIR.json",
+      "bytes": 6599,
+      "sha256": "54fef6198b6e9e85c93631dd9dd9ddfa8fb4c7ddf6a90934aa4f4e46a3de74eb",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/VALIDATION_REPORT.txt",
+      "bytes": 2080,
+      "sha256": "cde16035cedd7762da70856d93d5250b7decfa3bb49c4c7f57c3042ca275b85b",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/dispute.json",
+      "bytes": 4837,
+      "sha256": "b09c3b7d370fcd074aed7f04b2ce0f0c5f7fbd1e5b0c0762c6e9d006c6642a47",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/manifest.json",
+      "bytes": 24614,
+      "sha256": "f185e7b3457a8fa5a5963c66124e6c75923b93e2c7c1021eb6423cfffc1f2236",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/first_wide_parking_view_t008.jpg",
+      "bytes": 427632,
+      "sha256": "4b3406efc51a0ad53ef0845f2f26d427201f8d47cfe83f9c4ee3a8862920640b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/late_lot_state_t100.jpg",
+      "bytes": 482818,
+      "sha256": "61bbcb5604cb9264fb8811b0fe5d1f097de390e86c8911a10d4516cf554eeda2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/mid_lot_later_state_t060.jpg",
+      "bytes": 513213,
+      "sha256": "1c4f74a1cd528bce97426bd2d246bcae86437abd0478df067226831e1d01250c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/mid_lot_vehicle_arrangement_t042.jpg",
+      "bytes": 491899,
+      "sha256": "855147821ff8bf9a8c22bdbea20d5341067d12f9b30f2ecce0d68f45310e4ce0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/moving_light_vehicle_t090.jpg",
+      "bytes": 501309,
+      "sha256": "c23e7e93130a2ee0b542e13ae426da2486f2e0072d5a41b1762f0f782b589291",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/opening_sign_and_pole_t000.jpg",
+      "bytes": 53332,
+      "sha256": "c7e2e2267aaf778be97605de7686861b5c5bd65aad32174acf84ec1444dcbd57",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/sign_pole_wider_view_t003.jpg",
+      "bytes": 85407,
+      "sha256": "bd96884a2a0b9704561357fad17e750d466abee1fccce14ad558dcf9b59ee870",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/objs/wide_lot_and_background_t027.jpg",
+      "bytes": 265094,
+      "sha256": "efa1236ed97cd7bec1a38cdd063b76ffebc530a963793b6772564cb79d261e89",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_000.jpg",
+      "bytes": 128008,
+      "sha256": "3b35ffebc771b69d6dbcc734a024c6dd984aed855757d8044115c0237ff1a4ea",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_001.jpg",
+      "bytes": 159652,
+      "sha256": "53d3e2402089b16ad616c6956d3c4dc9a9464319999f488db64fa4594c67e00d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_002.jpg",
+      "bytes": 157950,
+      "sha256": "cf5851679e5ebbd61cfee7f5319c23c0b031d6d617e689e039a085d612ca9c32",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_003.jpg",
+      "bytes": 166943,
+      "sha256": "9d415c51c51c0e48a7629dbb3861894ceb7f5eee3a3b1b1ebf85659be59c46ed",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_004.jpg",
+      "bytes": 207163,
+      "sha256": "488822712f31702730fb3ae4b9ff0bbfbf384249df2a125e077b3a9c9baa1ded",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_005.jpg",
+      "bytes": 216837,
+      "sha256": "3175dcf1830fe01ed9038cf202e8a09e03f3f2ffce370f2ee7fa780b3336b027",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_006.jpg",
+      "bytes": 244272,
+      "sha256": "4daeeefdf9d1bb3e08f85864f401a49be5b8f5d51279d64c74607b9ec1d2eaea",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_007.jpg",
+      "bytes": 274354,
+      "sha256": "ecc1d08d1b1065ca918193d24e3202887a07dc452baf9d5986677a98b0c2300c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_008.jpg",
+      "bytes": 325425,
+      "sha256": "e5f4a721ad204ddf63db01ac4868e93a8377a9ba565cdb2e71ef775cbcbe2066",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_009.jpg",
+      "bytes": 178016,
+      "sha256": "da3ef0c3afdc14086bfda266b5bdd3658670a1d3644463f2c2a9916eef6c0d8c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_010.jpg",
+      "bytes": 170192,
+      "sha256": "f0999be4f6aff456cca9f573874c811e8fcbe33fd91cc6307b67d6178aaa590b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_011.jpg",
+      "bytes": 195609,
+      "sha256": "ef77b075627e7c163f5c020ac2b986cffe040a7db0369ad359e7a2289e22a646",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_012.jpg",
+      "bytes": 164992,
+      "sha256": "83afb0f01bc360fc6416c235dbe4a4d03bcdf376926b7d72c55b48308556a2b3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_013.jpg",
+      "bytes": 222690,
+      "sha256": "9b6cfcc8aa8a4f1cbf954dd1b12e54a3e4c85422cd0d01492d4683dcfb3d5cf9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_014.jpg",
+      "bytes": 198709,
+      "sha256": "b230c8f705899c3d7b4423c092043c075add67ed87d581984d4c9e9bb92708d1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_015.jpg",
+      "bytes": 213306,
+      "sha256": "d80d995d49d7c1a2ab5fe689315b4dae4ed72ab59342fff053c913886a5e4b10",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_016.jpg",
+      "bytes": 225554,
+      "sha256": "5ae718626f59b2ca97a5328b4d658869f49cc60a7a04462d28caa60383d7c304",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_017.jpg",
+      "bytes": 218384,
+      "sha256": "f67cdf99c70f0d18180042b4e20cb527134f0c8015be360ee7faa4fa066bd714",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_018.jpg",
+      "bytes": 201914,
+      "sha256": "1fdb492ea199de11b5756a7b2b63bd3ec46e64bf6b7adb713b0396d5b5dff942",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_019.jpg",
+      "bytes": 171160,
+      "sha256": "74510745c4682f5e132d8808223ba28125fc961a3d8c20de146e4a1a71ffe6ca",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_020.jpg",
+      "bytes": 170522,
+      "sha256": "da9948a4aae904aa7cafc129256905a8dcdf3abce473828d90810b03b30c1ad1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_021.jpg",
+      "bytes": 174977,
+      "sha256": "5e0c7ebeddaf874ee866d4ad5698bcc4e9d61872c02c38e5a30a93f400ed0e5a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_022.jpg",
+      "bytes": 195821,
+      "sha256": "a867218535ae5c54a058052f62a6c13b25853b831c517e00cd08c052ff915d26",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_023.jpg",
+      "bytes": 200550,
+      "sha256": "105fcfb664c97aa150d2e6601c0d2225e48bee85bc2b4873406b2917f3ad11b4",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_024.jpg",
+      "bytes": 215112,
+      "sha256": "1664af15eea9b6a599981a4efe979dc448c0694a35137ef5ece7b3bd032a26e6",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_025.jpg",
+      "bytes": 233188,
+      "sha256": "b1f322ae76fab90cb0f95d5aeb5080fd9e13cb9e7913fd38d8f619bbdbb4f090",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_026.jpg",
+      "bytes": 211265,
+      "sha256": "a4d535023fc5d9c1b3224702d9d03690627b0ff67ef6bf0288c0619e68fa5411",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_027.jpg",
+      "bytes": 203987,
+      "sha256": "c092401b2b2ce4ee253ab831fd9b5b61aaee912939ffeebe232548ca93ac5676",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_028.jpg",
+      "bytes": 229337,
+      "sha256": "f9af9f2efa6cffdfed0d7901d264e710ff2460c0904c832959d2f3e25a41ee15",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_029.jpg",
+      "bytes": 299443,
+      "sha256": "7a16458001ace53042e30b0ce9c2fab7959404a0801da6b30f8348f068587b0d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_030.jpg",
+      "bytes": 299364,
+      "sha256": "a9a029ffd602e2ce7738447360c86a86a8eabc620cae485979743abdb6b1f473",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_031.jpg",
+      "bytes": 299158,
+      "sha256": "3c8c95360ac1a77ba07229cdb099beba4bbc1c20d8cf2b53cf7d35975270797f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_032.jpg",
+      "bytes": 275336,
+      "sha256": "260155af77bf6f81d21efbb668467569785ec972589f816bd53923583e6e199a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_033.jpg",
+      "bytes": 282768,
+      "sha256": "24590072e10878be8781e0c850507f4159e16fc7464d95f8bf0f5df42578cab1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_034.jpg",
+      "bytes": 276236,
+      "sha256": "f5732dc4f3cb0aa88a267fb347423b383a56ce7f8321f1a0e84cc1e069db115e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_035.jpg",
+      "bytes": 289131,
+      "sha256": "64e882423c105f5e6aa6910cb0afc899d007d795a4bafacbda2f971c98eed0b6",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_036.jpg",
+      "bytes": 285493,
+      "sha256": "aff85365960263622290878ad02bb8c08246aaf8c27ce0215a7aa736af9bdf70",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_037.jpg",
+      "bytes": 287633,
+      "sha256": "40e88dd48928c6dc0b11d0f90276c2090fe880dd2f01ee188fe5f9306d34bc65",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_038.jpg",
+      "bytes": 289781,
+      "sha256": "6ec73d09606334d96a03ba680e23e71ca15f95044e1ba9c4a11d5bec7beeb8c3",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_039.jpg",
+      "bytes": 220679,
+      "sha256": "4bab308010e40fff7995f4b724ddca0116153049d759ef401484276f0ce36462",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_040.jpg",
+      "bytes": 321289,
+      "sha256": "861de943ad931a20b924f0c4923500c4d6398c3e8ebfa41fba26a7e94f2077fb",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_041.jpg",
+      "bytes": 428923,
+      "sha256": "f23dcff120bd8628352fc8b47353e20b17ee72600afd778f024881be7d98f824",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_042.jpg",
+      "bytes": 447073,
+      "sha256": "90c25c24fb3ff484ca646c4dd719b1a996a9461e9f9ae7822e76c43bb42f7f90",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_043.jpg",
+      "bytes": 459821,
+      "sha256": "9186b871afd40fd6a53364a6d7d26f7f296c9ad82b9ab1d8d62c6b41aa77260b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_044.jpg",
+      "bytes": 465599,
+      "sha256": "1f7f85459e7262189543cd229d378f9420b727e2292f95b267f91960e87d1336",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_045.jpg",
+      "bytes": 464032,
+      "sha256": "617eb91f87e2ffb26db96bdd6af93e861e5c75304d4dd59ae3990b1ff326a17e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_046.jpg",
+      "bytes": 463991,
+      "sha256": "5dd4b7c3272c8bc5639ff4175b432414fc46541595d191395292e8309d8817c5",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_047.jpg",
+      "bytes": 468434,
+      "sha256": "29293b866f36a1de3e1eb2575dc0f5a8033c866703824048a8243e035d80ec48",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_048.jpg",
+      "bytes": 471472,
+      "sha256": "63466f01d8b2c8fa4151e95c9289a47087ed480d571e93fc4b479772ec32a06d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_049.jpg",
+      "bytes": 466828,
+      "sha256": "a4562f69bb4e98f859f21d51f30fe596d406539764c880979a0048a39221a5f1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_050.jpg",
+      "bytes": 457946,
+      "sha256": "ee405a4cc69fc8028a670a742d6b5d872ed9865d1abfc9ceb2cc3e5f1925a8f2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_051.jpg",
+      "bytes": 464498,
+      "sha256": "88bc5ad8579634afc47de554722ebc3eabfd7c7889d7ff5648f67c5291226bca",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_052.jpg",
+      "bytes": 466412,
+      "sha256": "6a839b9228d04916c017e801d1e90588d49a03e3250f26618a4f6f6b836a14f6",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_053.jpg",
+      "bytes": 462259,
+      "sha256": "b5612e56081d949c830401a5938b3b3367685cb912e1dc2f165b0da8cc297dd9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_054.jpg",
+      "bytes": 465318,
+      "sha256": "a4d3a5b76a87d2c6a2366d7fdd4d524f823ebea206719374e0683ae4aad1ad2c",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_055.jpg",
+      "bytes": 467937,
+      "sha256": "63ede9ec44115d8ed840b943afad098ed926e143a56892ae1d8b99ecdfb2ec6e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_056.jpg",
+      "bytes": 470661,
+      "sha256": "ee8d8549f74339c91231da7afcb4313448dcd992b6d6536f0a80eb64767890fd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_057.jpg",
+      "bytes": 466790,
+      "sha256": "8e328dbc1b4c848e4dc75e30dc7f6fc2a32f63d04057ba380049cfe49c15f8ec",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_058.jpg",
+      "bytes": 467972,
+      "sha256": "a82e006094f2629339e1252206576c89a87f98e5abfc34b9ff46fa8e43318ed0",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_059.jpg",
+      "bytes": 471123,
+      "sha256": "554d3c06838269689ac36b65abbf182d884aabc900e58474f25651b6bf631508",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_060.jpg",
+      "bytes": 472823,
+      "sha256": "54fddaeb10b2f9b07a3e76ea5736ebf3c56e652ae1b07646771a50834898b6dd",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_061.jpg",
+      "bytes": 475216,
+      "sha256": "b6748e09592b351dfee46270f3078bf985b88947ce2d29c02679bb9841892821",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_062.jpg",
+      "bytes": 470216,
+      "sha256": "4532b18f743fc8701134aa1de0cc92e7c6c841ee21e62953893596ca13518a72",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_063.jpg",
+      "bytes": 466763,
+      "sha256": "b383fa5424cc3eef74e7a50e934b1097e98e1ff8fb2c69c61c7a9e51a9fbf5a5",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_064.jpg",
+      "bytes": 468606,
+      "sha256": "feed8cf0e2fa69ada57c6295c141ee1d9f67d40a37a967d29c8093e5ec136897",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_065.jpg",
+      "bytes": 470054,
+      "sha256": "145cb4590370bf8cb82b0729d45b449bf523ee13cecedd474a98add41536649a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_066.jpg",
+      "bytes": 458980,
+      "sha256": "d48a7e590f2feed0ea65f647b3d94341406bb3f4c58402d570323d31f97667b9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_067.jpg",
+      "bytes": 457196,
+      "sha256": "88c704b9bbe213819918fc218b018a2d9cd07f4917bf7773c1959dbbbf8d55b2",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_068.jpg",
+      "bytes": 461366,
+      "sha256": "4482d23bbbac172484a25ab47392e20241d368d31cdaa5c8ea8222369f42ad6b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_069.jpg",
+      "bytes": 463131,
+      "sha256": "3457509b19b7f54b765779636a767c74da127edca790eb966a84478a2a34ab20",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_070.jpg",
+      "bytes": 456755,
+      "sha256": "2b762de7e74a9784745bd979ee6d2c0a7058e6bc37849abecc04ac4724f7188a",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_071.jpg",
+      "bytes": 459676,
+      "sha256": "36f9849f6fc5052899fb92e3089e0b9f69f66d4d0543fd6a4ccd8b6acc8dac79",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_072.jpg",
+      "bytes": 462348,
+      "sha256": "c6b719398c703ebe1ebcafc0049abea2a37bb97b25d3931c074fc086b3c6eb52",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_073.jpg",
+      "bytes": 465098,
+      "sha256": "d5dea8b1be05b583f17a7e072bb9d33274184e3b3f793b11496b0a400e34bcac",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_074.jpg",
+      "bytes": 466665,
+      "sha256": "74076d6a155728a238399927dbcf9fe796fcd0bac114b839221f246c54f947f1",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_075.jpg",
+      "bytes": 452753,
+      "sha256": "51088ed0c3cc6c727bee89730b5afe2e7d0e595c5f3a98e6562a95e0b180176b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_076.jpg",
+      "bytes": 458103,
+      "sha256": "5ca25985a40ff8aa93711e304f9a769ebe7ccde67f6d41de6671db59112130d9",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_077.jpg",
+      "bytes": 463561,
+      "sha256": "6bb6da6be837f92f6e287fc4e3e9446f754fab7c4ae9181d3af7b6b07cf48860",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_078.jpg",
+      "bytes": 465352,
+      "sha256": "91bceb326e61b209ee6abb6188e3854d0d1190ffd328774988c9305329745c59",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_079.jpg",
+      "bytes": 458381,
+      "sha256": "781018623ede79290a91ce4b10eb748f2f3e62facc8f31c1957d0a1e3a0e44bc",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_080.jpg",
+      "bytes": 462410,
+      "sha256": "5e2ae0dc418702c585bed56877ea95478411898dc60b6ed25270250cec078e9b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_081.jpg",
+      "bytes": 463145,
+      "sha256": "d36f9345fd93ee2eda1c6bd33b699a1fd791aeba04c22278623641b4fd808f32",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_082.jpg",
+      "bytes": 464551,
+      "sha256": "8ebe321e88474610298c432dcd0b322f67db40855506e5dd1ce2e2df723c4ea7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_083.jpg",
+      "bytes": 460735,
+      "sha256": "6d3b2508d3f3e974e8920dd673e5e0c2d448b33f08a6e06ea261d3f539c06b95",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_084.jpg",
+      "bytes": 456045,
+      "sha256": "cc560ae9977c44e810c89b9e4e441d43176b6ad603963a629e0188d77bae5627",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_085.jpg",
+      "bytes": 460561,
+      "sha256": "9bf92fd89cdce49431921d3624562876c14d2cd7115868de4ee3e7c359cadb39",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_086.jpg",
+      "bytes": 462593,
+      "sha256": "e936833d93be89f8b5c076ac3e8f26a1d0ab231e3b1bca477c2b96cda0465c10",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_087.jpg",
+      "bytes": 456186,
+      "sha256": "2bc938baa2aa0ebd764ec8f750738bd16e570e83c090a50404393c4e5846ed1d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_088.jpg",
+      "bytes": 460209,
+      "sha256": "bd6a4bea97534149808d7ced19e930821706110ea92c85dceb8f1e01c19b0534",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_089.jpg",
+      "bytes": 462961,
+      "sha256": "6448f4676322876986b98537d7cb6884b38f4c712d39f8723d6f7adf8ee309ac",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_090.jpg",
+      "bytes": 463130,
+      "sha256": "b60e4fc0cc5dff0ddbae1879750033ad3ac74685ecfa8dc070cc914deaeede0b",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_091.jpg",
+      "bytes": 464555,
+      "sha256": "5bbb8be0edfbe71f772b1d7f9abac0dbf92ef5ab214056381f846cc037eb673e",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_092.jpg",
+      "bytes": 451701,
+      "sha256": "e87474fddcb55428ee4686bcc0a5c0da600acbccc0d8b8cecfe96191804d2873",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_093.jpg",
+      "bytes": 461986,
+      "sha256": "6c1ad7c4ef5ea0e0487b6918c2dc7b39c3bdbd8f44f79ccbb3f164b5727bf215",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_094.jpg",
+      "bytes": 465064,
+      "sha256": "2cf89255aba4759a86a40921addf360bdf916d6b9e238f44216e6aff0269a150",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_095.jpg",
+      "bytes": 464099,
+      "sha256": "29482b61a34195d3517d0d7a7027c8bb9487d6f48710e4e424d4fd49e0fb7267",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_096.jpg",
+      "bytes": 453425,
+      "sha256": "9ec18e0e4d2f9b7eaa96f3194489691d4ceb671edfa0a3b7f3d8ac84a63d2caa",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_097.jpg",
+      "bytes": 455511,
+      "sha256": "c3f5d8c1bd36d600107d33e56a4db21c5e8ee14b1f0810f4a18627db9c829524",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_098.jpg",
+      "bytes": 454922,
+      "sha256": "486936ad0a09f05559dfdc48ec219aed29c99286a02c057bdd3ba5497d616da4",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_099.jpg",
+      "bytes": 462734,
+      "sha256": "517a30225866d4dde293a45b7cfa912112b4551abf57a6dd502a1598286e5f94",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_100.jpg",
+      "bytes": 445193,
+      "sha256": "d9f93a115cf2ccd87ec4b9510acd8baddd8a254b54f757ca21ea08cb8da56556",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_101.jpg",
+      "bytes": 454142,
+      "sha256": "8113f6dcfb5785b93cd9a55e0cf7ab8e3abf32ae236f35c906002abdce92ad8f",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_102.jpg",
+      "bytes": 456528,
+      "sha256": "d26ef8f0fa7564712c9582cbb83c7f678b578f65328fdc92d4dbdf91ede202f7",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_103.jpg",
+      "bytes": 458605,
+      "sha256": "732fcb62e5db1ba04ef9145d70ef2c9445f75580419a81cc12f55f2c0d786322",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PKT-CCTV-003/snapshot/verification/frame_104.jpg",
+      "bytes": 453051,
+      "sha256": "37c51408603af67a8fec9d2b01312aa1d4eabff8b1b7caaf2f615853cbccfa4d",
+      "kind": "image",
+      "media_type": "image/jpeg"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/PROCESS_LOG.md",
+      "bytes": 3729,
+      "sha256": "56344896e62f15756487704b4736cc91ce9ce2db8393ea624a85b23d9db5e59c",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/README.md",
+      "bytes": 4483,
+      "sha256": "0638f5e64dcc1cf005c824efeb82cd338909322781f87cbe5a1ebac92c6f17ba",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/SOURCE_AND_PROVENANCE.md",
+      "bytes": 4694,
+      "sha256": "47df08f04dcad3721b7f3fe4f571cf29af85a2d0e246ac984a27b138450d4398",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/provenance/source_acquisition.json",
+      "bytes": 4655,
+      "sha256": "298b30df12363d22abca960dc07f9e5e1a2df584bc3be2454236a04c6e3d5bec",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/provenance/source_alignment_report.md",
+      "bytes": 5393,
+      "sha256": "ddf6081163a1fdc49c9efd436cf17f2e093e593ee72e030f834d331c98188985",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/provenance/source_frame_manifest.json",
+      "bytes": 49435,
+      "sha256": "3ee043192afce98e7632a11f3c63aeaf421032fd4104b0e4c9e42cdade3c4dbd",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/COMPILED_PROMPT.txt",
+      "bytes": 2318,
+      "sha256": "4b1452b6e6a17e2c56c7469af44d1b3111ec07c9dd93d2bfc64ac6585b0a3c57",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/COMPILED_SPEC.json",
+      "bytes": 4688,
+      "sha256": "727912aebe1b9f0bdc37f11b3d0ffc0378b545400d8381a9e462a20afee0397a",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/MSRM.json",
+      "bytes": 2146,
+      "sha256": "757e8023abe4268508ff05fc6e61217ed5c399df7a1946c58f503559b1fe35fb",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/OI.json",
+      "bytes": 3667,
+      "sha256": "81dc3bc35e8bfdb97c59cd49476dfd4f9d55c0485b1d7602fdc856ced9659ba5",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/PC.json",
+      "bytes": 243,
+      "sha256": "81d0a890e5eea2bc7a949009ce78ca121fbb599ad65f04e2e53c9202ee51a6db",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/README.txt",
+      "bytes": 3233,
+      "sha256": "1193226be6e22767aba63c24f2d01739edf24bba13780d447eebbd5428813884",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/TD.json",
+      "bytes": 3646,
+      "sha256": "08b5388b6ac735e30fc17256b93dc6e28b6ca51a81ffb51d3da0acebb8f52f9b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/VALIDATION_REPORT.txt",
+      "bytes": 2942,
+      "sha256": "e660858cf509e8896be35b3e032b60910dc906cd6c5f7b3915f8e1a08297dbf7",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/VALIDATION_REPORT_POST_RESOLVE.txt",
+      "bytes": 3112,
+      "sha256": "5b653f5670afd1f0203e249256b7fb8c75c6a09de0f638bf688af275e9d8d8ca",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/dispute.json",
+      "bytes": 806,
+      "sha256": "093c0f4dd95e67f3c9bd58c729836353f39ffb46580f111dd05dc8e5840ff880",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/dispute.reconciled.json",
+      "bytes": 4327,
+      "sha256": "fec96bcff25d041e9ce6c8f473951bf14c88089fb3e2030321a42db3b605b622",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/snapshot/manifest.json",
+      "bytes": 410,
+      "sha256": "17461c6a280041b6427792f0dcf8666d1afe138f7bedc1b79f1912cf028c7b92",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Cat_jumping_backwards/validation_report.json",
+      "bytes": 3452,
+      "sha256": "4427a87210c236d39c1584ae150d693604249249b060ab8bb5893b1856c6f0ff",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/AUDIO_COMPANION.txt",
+      "bytes": 285,
+      "sha256": "cb6aafa5320107aa8fd06cad82214f70e22cf6c2578f474eb0017e37129259bf",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/MSRM.json",
+      "bytes": 6375,
+      "sha256": "47bf6b667a0dcd742cf9c5ce7f9bb7f41e7c158efa56d517677ad46d2fd9dc10",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/OI.json",
+      "bytes": 1646,
+      "sha256": "f4baee8241c91de38c35a15b14d29d33f3c781053a9c7da35701c9554ed24447",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/PC.json",
+      "bytes": 1530,
+      "sha256": "3363c650f9713eec1294f65a319a66fa3644c5a0d24c4a9365c310705a6cc98c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/README.txt",
+      "bytes": 2451,
+      "sha256": "5a08d7d4998a885125212f4008dbb68efa968bc733117b5b9040c985a6903530",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/TD.json",
+      "bytes": 1521,
+      "sha256": "1d4233a38de99106021f0118049f10bdf0c83e149efc23be168d2a6bfc2ba55e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/Old_macdonald/omni_rendering.mp4",
+      "bytes": 5646733,
+      "sha256": "5f850a97acdb1266f7d8e8def0ebad134567e9b9d747c7bb4f3090b346f3eecb",
+      "kind": "video",
+      "media_type": "video/mp4"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/COMPILED_SPEC.json",
+      "bytes": 1260,
+      "sha256": "f34416ba46bdb9a42a86d39edd8535a14dc9496f57348d98a9ddaa6e3e90c7fa",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/MSRM.json",
+      "bytes": 802,
+      "sha256": "9d24b0edc34ac6b3be9c8291479b0a0cd822adc82cd5c5e7a911d764daff91b8",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/OI.json",
+      "bytes": 3894,
+      "sha256": "2326881c05485553b00e65faf7d304d9e66a7d2566527b5f61401d2aa2ee67d5",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/PC.json",
+      "bytes": 489,
+      "sha256": "becc8a0cab436aa60035e36da98dbe121bb5c357a1a6a358114bf38f6194c701",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/README.txt",
+      "bytes": 3243,
+      "sha256": "53847870c9b71b31c0e3a41a68087b9bab9d916366a5bf6b5d82d62540c5bbcb",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/TD.json",
+      "bytes": 1687,
+      "sha256": "d4c72042378fd8ae4803c27f5dda53015d3f81b47f62ca312a946fadee312432",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/TIR.json",
+      "bytes": 6553,
+      "sha256": "acfff9c8348f791cad018c599e7adc8d8a3c89d1d23eadd45d626f73edc439d3",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/dispute.json",
+      "bytes": 4020,
+      "sha256": "c160de9f8171c08bf285a9c541b324d00412af59d931f4986aee7753bb1e1911",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/MERGED_Global/snapshot/manifest.json",
+      "bytes": 39,
+      "sha256": "a83374a9356eda6be54fb70cd37388228af9a0d4e36299219dd70ca935d956f1",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/MSRM.json",
+      "bytes": 1296,
+      "sha256": "a24774dd811d7e78781d51fe257b52d64e8ed8d89e37cc33b25343f68869053f",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/OI.json",
+      "bytes": 5413,
+      "sha256": "73f588c86cc21cb3fdd108170030f0e02995f4edd5af61f0d23afff968a98547",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/PC.json",
+      "bytes": 66,
+      "sha256": "215beb7c8d07f935e3741d6eab90c43b3cfda40d8c3f7ed99ab37e6ee770fd4b",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/README.txt",
+      "bytes": 1647,
+      "sha256": "8ef2b37f4f9c28af364d8b2d6e20132997d219c808ec219a0faea0be97afb578",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/TD.json",
+      "bytes": 1394,
+      "sha256": "7af6c698b1fb6587b991da0414c10d417bb7a2bcb05b5b0afee91c11e9bcceb0",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/TIR.json",
+      "bytes": 5630,
+      "sha256": "9e8e298f805b883cdd7c036d2c95dc2accf4488d71e7afb367dbd56179379b11",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/dispute.json",
+      "bytes": 2859,
+      "sha256": "be86e541db5865c03604c5b7a02f7ac18208ff29a59cd3652208130d6a6ab8bb",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part1_00-00_to_11-23/snapshot/manifest.json",
+      "bytes": 60,
+      "sha256": "e443ce162bfbc134b3adddb5c926b698b0c5620cc8fdaa5127fea0a522fd0a8e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/MSRM.json",
+      "bytes": 1284,
+      "sha256": "82da45db4253c1953fbb079a96e06387e23047362f0ee77d412f05ec16db70ea",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/OI.json",
+      "bytes": 5348,
+      "sha256": "45d4960728708b66b9c8d5987e59b847f359c6e56d3959ec498d427f1a7819a0",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/PC.json",
+      "bytes": 66,
+      "sha256": "235fd2189ace157f4e915091d4e3b2a1833e3c5d969de4524d86ee9fd73455b1",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/README.txt",
+      "bytes": 1665,
+      "sha256": "27537a007a0cfe4835865a69e203410dabe300903ff91cc4a96d07cfd746c389",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/TD.json",
+      "bytes": 1382,
+      "sha256": "0f464f61c7e2e781e43509af12cbe64ec0ab2ec1c86978044cc1c83472ad537c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/TIR.json",
+      "bytes": 5204,
+      "sha256": "f7caf4d7264ce9809f4fec0b41fe9340dfa88ed651e1ea422cbfd6fe29109c17",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/dispute.json",
+      "bytes": 2183,
+      "sha256": "f60b6313e855387220c07f75764675baf534b3805471b33c125ebc9d21b49f3e",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part2_11-23_to_22-46/snapshot/manifest.json",
+      "bytes": 60,
+      "sha256": "75200c0b8e2ac46ab1939ca6c001b0efa9ac6da2e5800443540d4735d7802e0f",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/MSRM.json",
+      "bytes": 1308,
+      "sha256": "e893b6f66af636b8340196aaa6aca09a61f17f02f071e791d782826c77535214",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/OI.json",
+      "bytes": 5400,
+      "sha256": "ddc1fb0bd8e01ba687aad8164e990bdaab4676cb124779a4fb484fc922c1ac60",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/PC.json",
+      "bytes": 66,
+      "sha256": "6dbb98346bbeb0888dcb5098cd4d4ad56a6bd2fc4ea7bfc3263db81a43d5996c",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/README.txt",
+      "bytes": 1651,
+      "sha256": "452a65db5640491634f02f381182f7e307d278da3c890da0aa3db810b9f6e382",
+      "kind": "text_or_code",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/TD.json",
+      "bytes": 1406,
+      "sha256": "00d2aabb24e2cf513c1673548c86ae9e70d35a06e027d640fab334e9ee1f4ee6",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/TIR.json",
+      "bytes": 5233,
+      "sha256": "eebe85d3bade7c3da4c5ad6479aff89e9a46038af992ad90fdd24861bffca303",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/dispute.json",
+      "bytes": 2183,
+      "sha256": "ae59a2049658586f1875e789060fc9679c4a1881872ac129258720697378151d",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/Part3_22-46_to_34-10/snapshot/manifest.json",
+      "bytes": 60,
+      "sha256": "ba2fd8981b4023389fcde74d65a14cdf3d23b098964d0e246d62987eca330427",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/README.md",
+      "bytes": 5129,
+      "sha256": "133a14311b2e832f9b951603002a39ed0db4403af08b13c516337f0a3633b2db",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/provenance/source_acquisition.json",
+      "bytes": 3634,
+      "sha256": "c46263aed7e00a05670428ae24e95e23715b3511229daa7d1d9994adef53a201",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/provenance/source_alignment_report.md",
+      "bytes": 4795,
+      "sha256": "4638f24411dc8b9ee9d6bcffc1d425fbc29b0196b7fde8d84b13ccb573c36a32",
+      "kind": "text_or_code",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "examples/videos/fullerton_transit_center_cctv/provenance/source_frame_manifest.json",
+      "bytes": 54434,
+      "sha256": "3c407f02befc390d5fac170f171180de27b0c7a3545772a08839a86e20f39a6f",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples/viewpoint.json",
+      "bytes": 262,
+      "sha256": "845119a308365bcd5ee9a70f265c723857bd1baa2a8855c91a6fe3112c605967",
+      "kind": "structured_data",
+      "media_type": "application/json"
+    }
+  ]
+}
