@@ -34,3 +34,6 @@ Before treating it as an evidence-backed teaching example, supply the source med
 ## Source acquisition and alignment review
 
 See provenance/source_alignment_report.md, provenance/source_acquisition.json, and provenance/source_frame_manifest.json. The acquired file SHA-256 is e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9 (64,379,026 bytes). The source is 2,049.826 s, 640 × 360, 29.97 fps, VP9/Opus. The Part1 TIR claim of a person at 10 s is rejected: that source frame is an opening title card. Cross-part identity correspondences remain blocked; no names or global identities are committed.
+
+
+Source review finding: the source contains a distinct view transition between 992.7 s and 992.8 s, inside Part2. The 683 s and 1,366 s boundaries are visually continuous in sampled frames. The Part1 TIR claim at 10 s is rejected because the source frame is an opening title card. See provenance/source_alignment_report.md.
