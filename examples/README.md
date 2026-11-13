@@ -53,7 +53,7 @@ Do not present the numbers or processing claims in these examples as reproduced 
 
 ## Duplicate packaging cleanup
 
-Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the CCTV Storage Crisis merged packet; canonical `TIR.json` remains. Shared version/provenance boilerplate repeated across distinct environmental packets and the same operational-disposition note reused in different CCTV packet folders were retained.
+Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the Fullerton Transportation Center CCTV merged packet; canonical `TIR.json` remains. The same operational-disposition note reused in distinct CCTV packet folders was retained. The environmental edit-pair family is no longer part of the active examples tree.
 
 ## Verification boundary
 
