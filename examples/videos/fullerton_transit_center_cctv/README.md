@@ -12,7 +12,7 @@ The Commons page's file history identifies the upload as 2021-07-07 by Levivich,
 
 ## Evidence status and limits
 
-The source identity and duration are matched to the Commons page, but the original source video and source-derived frame snapshots are not retained in this repository. The original packet contribution did not include an acquisition record. Therefore, packet-producer acquisition, the exact alignment of the three part intervals to the source, and the event/object observations remain unverified.
+The Commons distribution copy was acquired and fingerprinted on 2026-11-13. It is a YouTube-derived upload, not the camera-native recorder file. The acquisition record and source-frame manifest are retained under provenance/; the media and sample images are not committed to this repository. The workflow artifact is retained for 30 days, and the acquisition script can reproduce it.
 
 The legacy interval labels are arithmetically contiguous: 00:00–11:23 (683 s), 11:23–22:46 (683 s), and 22:46–34:10 (684 s), totaling 2,050 s. This confirms only the arithmetic of the labels; it does not verify that the absent part files were cut at those exact source frames. `TOOLS/acquire_fullerton_source.py` now provides a reproducible Commons download, SHA-256/ffprobe record, a 10-second locator pass, and samples around the two declared boundaries. Its output is a local acquisition artifact, not a validation of the legacy OI/TIR claims.
 
@@ -29,3 +29,8 @@ This family is **not** the separate [CCTV Snapshot TD Reconstruction Experiment]
 Use it only to discuss the *shape* of a multi-part CCTV investigation and the distinction between local packet identities and cross-part correspondence. Do not use it as an evidentiary account of the incident, a validated identity merge, or a storage benchmark.
 
 Before treating it as an evidence-backed teaching example, supply the source media or source-aligned evidence snapshots, an acquisition record, reproducible part boundaries, and a reviewable correspondence record.
+
+
+## Source acquisition and alignment review
+
+See provenance/source_alignment_report.md, provenance/source_acquisition.json, and provenance/source_frame_manifest.json. The acquired file SHA-256 is e30f2ea56d69747113ed7ae2e5f45cd35968390343a20e4716b22437e6dde3d9 (64,379,026 bytes). The source is 2,049.826 s, 640 × 360, 29.97 fps, VP9/Opus. The Part1 TIR claim of a person at 10 s is rejected: that source frame is an opening title card. Cross-part identity correspondences remain blocked; no names or global identities are committed.
