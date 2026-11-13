@@ -19,3 +19,8 @@ The legacy README claims 800 exposures, approximately 20-minute exposures, four 
 A cross-reference check found that OI declares two entities (a galaxy and a 10,000-galaxy cluster), while the MSRM scene originally listed only the galaxy. The cluster ID has now been added to `entities_present`, matching the OI and the scene's `total_galaxies` field. This is a structural correction only; the source exposures and claimed galaxy count remain unavailable for independent verification.
 
 Treat this as an assembly-contract illustration, not a reproduced HUDF reduction or validated astronomical catalogue. `dispute.json` now records two open blockers and sets the merge/acceptance gate to BLOCKED: the exposure assembly cannot be reproduced from retained inputs, and the astronomical inventory/count claims lack source catalogue evidence.
+
+
+## Provenance gate remains blocked
+
+A MAST metadata query for proposals 9978 and 10086 and instrument ACS/WFC enumerated 609 observation records and 800 unique RAW exposure product identifiers. This identifies candidate archive inputs, not the exact FITS files historically used by this packet. FITS bytes, calibration reference files/CRDS context, processing logs and registration transforms are still absent. See `docs/LEGACY_DATASET_PROVENANCE.md` and `TOOLS/query_hubble_udf_mast.py`.

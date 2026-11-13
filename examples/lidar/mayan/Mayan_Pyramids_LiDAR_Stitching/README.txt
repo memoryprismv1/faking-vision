@@ -23,3 +23,8 @@ The legacy README repeats figures such as 2,100 km², 61,000 structures, 100+ ov
 An additional packet-level correction: the legacy OI had placed a west-facing staircase in the observed component list while describing it as an “expected component”. That entry has now been removed from the observed components and retained only in the expected-component candidature record, with an explicit uncertainty note. It is not an observed staircase. The OI's candidate/search narrative and the specific dimensions/orientations also remain unverified.
 
 `dispute.json` now records two open blockers and sets the assembly gate to BLOCKED_FOR_REPRODUCTION. The former `VALID` report has been corrected to `BLOCKED_UNVERIFIED`; the source-dependent pyramid/causeway classifications and the flight-line assembly are not independently verified. Treat this as an assembly-contract illustration, not a verified reproduction of the PACUNAM survey or a completed 2,100 km² assembly.
+
+
+## Provenance gate remains blocked
+
+The PACUNAM raw flight-line point clouds and exact transect IDs are not present. Public derivative feature datasets and map services are not substitutes for the original survey point clouds. Raw data access may require custodian permission because archaeological-site protection restrictions apply. The required acquisition and permission record is specified in `docs/LEGACY_DATASET_PROVENANCE.md`.
