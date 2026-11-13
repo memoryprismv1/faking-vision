@@ -23,6 +23,25 @@ The legacy README describes 400+ scans, a particular drive, ICP refinement, over
 The visualizations are illustrative and are not substitutes for the missing source scans or a reproducible assembled point cloud. `dispute.json` now records two open blockers and sets the assembly gate to BLOCKED_FOR_REPRODUCTION: the exact source acquisition/registration inputs are absent, and the moving-car registration conflict is unresolved. Treat this as a procedural/packet-shape example, not a verified LiDAR assembly.
 
 
-## Dataset provenance clarification
+## Provenance update (2026-11-13)
 
-The authoritative KITTI Odometry benchmark input layout is `dataset/sequences/00/velodyne/*.bin`, `dataset/sequences/00/calib.txt`, `dataset/sequences/00/times.txt`, and `dataset/poses/00.txt`. The official benchmark Sequence 00 contains 4,541 scans. This packet's legacy claim of 400 scans is an unspecified subset: the exact selected frame IDs and their hashes are not retained. Do not infer that the packet assembled the full benchmark sequence or that its raw-drive reference alone identifies the complete odometry archive. `TOOLS/verify_kitti_odometry_inputs.py` can fingerprint locally supplied official Odometry inputs, but it does not reproduce this packet's registration or map.
+The sequence-to-raw-drive mapping is now verified against the mapping table in the KITTI odometry devkit README:
+- Odometry sequence 00 → raw drive 2011_10_03_drive_0027, frames 000000–004540 (4,541 frames).
+- Odometry sequence 07 → raw drive 2011_09_30_drive_0027, frames 000000–001100 (1,101 frames).
+
+This resolves the drive/sequence correspondence, not the exact subset used by this packet. The legacy “400+ scans” claim and the mockup's 000000–000450 range do not identify the exact selected frame list. The actual scan files are not present here.
+
+Official acquisition references:
+- KITTI odometry benchmark: https://www.cvlibs.net/datasets/kitti/eval_odometry.php
+- KITTI raw data: https://www.cvlibs.net/datasets/kitti/raw_data.php
+
+The odometry benchmark lists an 80 GB Velodyne package, 1 MB calibration package and 4 MB ground-truth pose package. The raw-data portal requires account access; the small odometry packages are email-gated. The benchmark Velodyne scans are processed/egomotion-compensated, not a substitute for the raw-drive scans requested here.
+
+Required source package for a reproducible raw-drive reconstruction:
+- raw drive 2011_10_03_drive_0027 (prefer the synchronized package matching sequence 00);
+- Velodyne point clouds and timestamps;
+- OXTS/GPS/IMU packets and per-drive calibration files;
+- odometry calibration and ground-truth poses for the matching sequence;
+- exact selected frame IDs for this 400-scan subset.
+
+No raw scans, calibration files, poses, or registration logs have been acquired into this packet. Registration logs are processing outputs, not KITTI source files; they must record input frame IDs, transforms, algorithm/version, parameters, convergence, residuals and output hashes. Reproduction remains BLOCKED pending source package access and the missing 400-frame selection list.

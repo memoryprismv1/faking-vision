@@ -30,7 +30,7 @@ For the two packets in this repository, the correct benchmark-level input layout
 
 Expected official scan counts are 4,541 for sequence 00 and 1,101 for sequence 07. These are benchmark sequence counts, not proof that the legacy packet used every scan. In particular, the Sequence 00 packet's legacy 400 scans assembled statement is an unspecified subset until exact selected frame IDs are recorded.
 
-The separate KITTI Raw Data release contains synchronized/unsynchronized camera streams, Velodyne point clouds, GPS/IMU records, and calibration. A raw-drive folder name is not interchangeable with an odometry sequence identifier. If a packet uses a raw-drive path such as 2011_10_03_drive_0027_sync, record the explicit mapping and preserve the raw-drive calibration/OXTS files; do not silently substitute odometry poses.
+The separate KITTI Raw Data release contains synchronized/unsynchronized camera streams, Velodyne point clouds, GPS/IMU records, and calibration. The odometry devkit mapping confirms sequence 00 → raw drive 2011_10_03_drive_0027 and sequence 07 → raw drive 2011_09_30_drive_0027. These mappings do not supply the raw-drive files. Preserve the raw-drive calibration/OXTS files and do not silently substitute odometry poses. The raw-data portal requires account access; odometry archives are email-gated.
 
 TOOLS/verify_kitti_odometry_inputs.py validates a locally extracted Odometry dataset: scan counts, point-file byte shape, calibration, timestamps, pose-line counts and SHA-256 fingerprints. It does not perform registration or validate the legacy map.
 
@@ -77,7 +77,9 @@ The 13 November 2026 MAST query returned:
 - 45,187 product rows before deduplication.
 - 15,740 unique product dataURI values.
 - 800 unique products with subgroup RAW.
-- The 800 RAW product filenames and MAST URIs are enumerated in the workflow artifact hubble-udf-mast-manifest (workflow run 43404648220; artifact ID 14027215435, retained until 13 December 2026).
+- The 800 RAW product filenames and MAST URIs are committed in examples/telescope/hubble/Telescope_Hubble_UDF_Stitching/provenance/MAST_2026-11-13/hubble_udf_raw_exposures.json. The 15,740 unique product URIs are in hubble_udf_products.json; observations and query counts are in hubble_udf_observations.json and hubble_udf_mast_manifest.json.
+- RAW filter mapping: F435W 112, F606W 112, F775W 288, F850LP 288. All 800 RAW products were mapped to one filter and proposal by joining the first six characters of the RAW product rootname to the first six characters of the MAST observation obs_id.
+- Successful reproducible query run: https://github.com/memoryprismv1/faking-vision/actions/runs/43407889542.
 
 This is a metadata result, not an exposure download. No FITS exposure bytes were downloaded. The RAW product list identifies archive products but does not establish the exact 800 files used in any historical stitching operation.
 
@@ -90,9 +92,9 @@ Reproduction still requires:
 4. Record selected exposure list, dither/association membership, registration transforms, distortion corrections, cosmic-ray rejection and drizzle/reprojection parameters.
 5. Compare the resulting mosaic and catalog against the legacy output.
 
-TOOLS/query_hubble_udf_mast.py regenerates the observation/product/raw-exposure metadata manifest. It intentionally does not download FITS bytes or claim to reproduce the mosaic.
+TOOLS/query_hubble_udf_mast.py regenerates the observation/product/raw-exposure metadata manifest and the per-RAW filter/proposal mapping. It intentionally does not download FITS bytes or claim to reproduce the mosaic. The metadata manifests are committed; the source FITS bytes, CRDS context/reference files and registration/reprojection logs remain outstanding.
 
-## 5. Cross-dataset evidence rule
+## 6. Cross-dataset evidence rule
 
 For all legacy examples, distinguish:
 - Source existence: an authoritative archive or custodian has the data.
@@ -102,3 +104,26 @@ For all legacy examples, distinguish:
 - Validation: an independent comparison supports the output and its claims.
 
 A successful metadata query or passing structural test only establishes the level it actually tests. It does not promote the next level.
+
+
+## 5. Other legacy examples: source and processing records
+
+The structured inventory is maintained in docs/provenance/legacy_source_registry.json. It covers the five image packets and the remaining video examples in addition to Fullerton, CCTV Snapshot, KITTI, Mayan and Hubble.
+
+| Example family | Source status | Processing/reproducibility status |
+|---|---|---|
+| Five image packets | Source image assets are present; source page/licence references are in each packet README | OI/TIR/MSRM records exist, but original acquisition timestamps, pre-import source hashes and image edit history are missing |
+| A Trip to the Moon | Public-domain film reference is recorded; source film and frames are not included | Authored reconstruction-target brief only; not a source-film inventory |
+| Alice in Wonderland | Project Gutenberg text reference is recorded; no source video is asserted | Text edition, excerpt offsets/checksum and generation steps are not locked |
+| Cat jumping backwards | Commons source URL is recorded; source video is not retained | No source hash, frame manifest or processing log |
+| Old Macdonald | Generated MP4 output is present | Source audio, audio rights, prompt, renderer/model version and generation parameters are missing |
+| CCTV Snapshot / BLK-HDPTZ12 | Commons distribution copy acquired and hashed; media/frames are not retained | Source storyboard and frame hashes provide partial alignment; Commons licence rationale is flagged for review |
+| Fullerton | Commons distribution copy acquired and hashed; camera-native source absent | Source alignment report retained; cross-part identity correspondence remains blocked |
+
+### Repository asset hashes
+
+TOOLS/build_example_asset_manifest.py produces docs/provenance/example_asset_hashes.json for the current binary assets under examples/. These are hashes of the bytes currently checked into this repository. They do not retroactively establish original source hashes, acquisition dates, licences or processing history.
+
+### Evidence boundary
+
+A source URL is not an acquisition record. A repository hash is not an original-source hash. A MAST product identifier is not a downloaded FITS file. A derived GIS layer is not a raw LiDAR point cloud. A rendered MP4 is not a reproducible generation pipeline. Each record therefore keeps source availability, processing evidence, licence/privacy review and reproduction status separate.
