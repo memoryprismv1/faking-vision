@@ -2,7 +2,7 @@
 
 **Status: experimental reconstruction; not a validated or compiled FV packet.**
 
-This example demonstrates a review video reconstructed from three packet-scoped CCTV records, their Temporal Declarations (TDs), and preserved snapshots. The source part files are not stored in this repository because of GitHub file-size restrictions; the reconstruction video is available here.
+This example demonstrates a review video reconstructed from three packet-scoped CCTV records, their Temporal Declarations (TDs), and preserved snapshots. The original Commons distribution copy has now been acquired and fingerprinted, but the source media and extracted frames are deleted after hashing and are not retained in the repository or workflow artifact. Only source metadata and frame hashes are retained under provenance/. The original camera-native file and the three historical packet split files are not retained.
 
 ## Files
 
@@ -26,3 +26,8 @@ Original source: https://commons.wikimedia.org/wiki/File:BLK-HDPTZ12_Security_Ca
 - A follow-up structural repair added PKT-CCTV-003's seven previously unreferenced OI candidates (OBJ-013 through OBJ-019) to the relevant MSRM scenes using their existing OI time ranges and spatial summaries. All 19 OI IDs now resolve in MSRM, with no extra/unknown IDs. This repairs cross-references only; inventory completeness and visual correctness remain unestablished.
 - PKT-CCTV-001 has two issues deferred from current chunk-level attention, but both remain OPEN in the canonical dispute gate; rendering/compilation remains blocked. PKT-CCTV-003 has three dispute records: one inventory-completeness item is deferred from current attention but remains unresolved, and two investigations are active/open; its aggregate status and merge gate remain open/blocked. PKT-CCTV-002 has three explicit open investigations (pedestrian correspondence, camera-view transitions, and one-second sampling coverage); it has a retained dispute.json but no PC.json or persistent TIR.json, and its merge gate is blocked.
 - This experiment remains a human-review reconstruction artefact, not a canonical FV compile, exhaustive reconstruction, or independently validated result.
+
+
+## Parent-source acquisition update (2026-11-13)
+
+The Commons distribution copy is fingerprinted (SHA-256 ff14641c693dbd1e78b1d22042876b5d3a4068c3301be8d07e504dd592debfaa; 67,736,771 bytes; 316.708s; 1920x1080 at 30fps; VP9/Opus). The acquisition and frame-hash manifests are in provenance/. The workflow retains JSON only: no video or sample images. The source is a Supercircuits camera demonstration, not a real incident recording. Commons lists it as public domain, but its fixed-camera/no-human-input rationale requires review because the description and sampled storyboard show deliberate zoom/reframing. Do not redistribute source frames until that review is resolved. See provenance/source_alignment_report.md.

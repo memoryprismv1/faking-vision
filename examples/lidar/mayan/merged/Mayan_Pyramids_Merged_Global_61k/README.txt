@@ -25,6 +25,8 @@ The legacy README names the PACUNAM LiDAR Initiative and claims 100+ flight-tran
 Treat this as a conceptual merge example only. `dispute.json` now records two open blockers and sets the merge gate to BLOCKED: the 55,000 untyped remainder and the absent contributing packet/correspondence evidence. Do not cite the 61,000 count, the 100+ input count, the correspondence-quality claims, or the storage-reduction figure as reproduced results.
 
 
-## Provenance gate remains blocked
+## Provenance correction (2026-11-13)
 
-The 61,000-structure total and 100+ input-flight-line claims are not reproduced by this packet. The contributing raw flight-line point clouds, exact transect identifiers and correspondence evidence remain unavailable. Public derivative feature layers are not source point clouds. See `docs/LEGACY_DATASET_PROVENANCE.md`.
+The “61k” label refers to the published study's estimate of approximately 61,480 mapped ancient structures; it is not evidence that this packet contains 61,000 raw LiDAR points. The public Dryad release (DOI 10.5061/dryad.k51j708) contains derivative GIS layers, not the original airborne LAS/LAZ point clouds or flight-line/transect IDs.
+
+The local merged geometry has no retained source tile list, flight-line IDs, strip-adjustment records, coordinate transforms, registration parameters, residuals or output hash manifest. It must be treated as a historical visualization, not a reproducible 61k-point merge. The raw-data and flight-line access gap remains BLOCKED pending PACUNAM/MARI-GISLAB/NCALM access.
