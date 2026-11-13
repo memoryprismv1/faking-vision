@@ -644,13 +644,13 @@ This addendum refines earlier flags without deleting the historical visual obser
 ### Metadata and audio checks
 - A basic embedded-image EXIF scan of the 305 raster images found no GPS metadata and no populated camera-owner/artist fields. One image carried a whitespace-only description field. This does not inspect every possible container, sidecar, or video metadata field.
 - The three rendered MP4 audio tracks remain unreviewed. This environment did not provide a dependable speech-listening/transcription pass, so audio-only names or personal information are not cleared.
-- Video container metadata and source permissions/provenance still require a dedicated check.
+- Video container metadata is addressed in this follow-up. Source permissions/provenance are reviewed in the 2026-11-13 closeout below.
 
 ### Updated disposition
 - No user-system screenshot identified in the supplied archive.
 - Desk-image “personal name” flag withdrawn after direct reinspection.
 - CCTV blanket face/plate/pole-label masking flags downgraded to context-dependent review; preserve the observed content and source rationale, do not silently erase it.
-- Corpus is **not yet fully cleared**: audio, video metadata, source licensing/provenance, and any genuinely identifiable/sensitive CCTV content in the exact publication outputs remain to be resolved.
+- Corpus is **not yet fully cleared**: audio, source licensing/provenance, and any genuinely identifiable/sensitive CCTV content in the exact publication outputs remain to be resolved. Video container metadata was subsequently inspected in the follow-up below.
 
 
 ### Follow-up — video container metadata (2026-11-12)
