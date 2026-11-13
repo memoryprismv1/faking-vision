@@ -1,4 +1,4 @@
-# CCTV Storage Crisis example family
+# Fullerton Transportation Center CCTV temporal-merge example family
 
 This folder contains three packet-part records and a merged packet record intended to illustrate temporal partitioning and cross-part identity reconciliation.
 

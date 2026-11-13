@@ -40,7 +40,7 @@ Use an actual older image packet that predates the viewpoint-file requirement. P
 
 ## Case C — negative reconciliation gate
 
-The repository's `PACKETS/examples/videos/Cat_jumping_backwards/` packet is a negative fixture. Its `dispute.json` says `resolved`, and its historical validation report says `VALID - resolved`; however, `dispute.reconciled.json` still says `ai_reconciliation.validation_after_reconciliation: "to be performed"`.
+The repository's `examples/videos/Cat_jumping_backwards/` packet is a negative fixture. Its `dispute.json` says `resolved`, and its historical validation report says `VALID - resolved`; however, `dispute.reconciled.json` still says `ai_reconciliation.validation_after_reconciliation: "to be performed"`.
 
 1. Run `fv validate [packet]` against the current authoritative skill/specification.
 2. Run `fv compile --prompt [same packet]`.

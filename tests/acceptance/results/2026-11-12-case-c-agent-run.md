@@ -4,7 +4,7 @@
 - Date: 2026-11-12
 - Agent/model: ChatGPT GPT-6
 - FV skill/specification: working-branch `SKILL.md` and `SPECIFICATION/FV_Working_Process_Specification.md` at the run's repository revision
-- Input packet: `PACKETS/examples/videos/Cat_jumping_backwards/`
+- Input packet: `examples/videos/Cat_jumping_backwards/`
 - Scope: validation and prompt-only compilation gate only
 - Generator invoked: no
 - Input packet modified: no
@@ -36,9 +36,9 @@ This is an agent-level Case C run, not proof of Cases A or B. The two Playwright
 
 ## Evidence inspected
 
-- `PACKETS/examples/videos/Cat_jumping_backwards/dispute.json`
-- `PACKETS/examples/videos/Cat_jumping_backwards/dispute.reconciled.json`
-- `PACKETS/examples/videos/Cat_jumping_backwards/VALIDATION_REPORT_POST_RESOLVE.txt`
-- `PACKETS/examples/videos/Cat_jumping_backwards/OI.json`
-- `PACKETS/examples/videos/Cat_jumping_backwards/MSRM.json`
-- `PACKETS/examples/videos/Cat_jumping_backwards/TD.json`
+- `examples/videos/Cat_jumping_backwards/dispute.json`
+- `examples/videos/Cat_jumping_backwards/dispute.reconciled.json`
+- `examples/videos/Cat_jumping_backwards/VALIDATION_REPORT_POST_RESOLVE.txt`
+- `examples/videos/Cat_jumping_backwards/OI.json`
+- `examples/videos/Cat_jumping_backwards/MSRM.json`
+- `examples/videos/Cat_jumping_backwards/TD.json`
