@@ -23,7 +23,7 @@ permissions:
 jobs:
   acquire-and-fingerprint:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 21
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
