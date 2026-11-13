@@ -1,0 +1,61 @@
+name: CCTV Snapshot source acquisition
+
+on:
+  push:
+    branches:
+      - "work/fv-legacy-provenance-followup-20261113"
+    paths:
+      - "TOOLS/acquire_cctv_snapshot_source.py"
+      - ".github/workflows/cctv-snapshot-source-acquisition.yml"
+  pull_request:
+    paths:
+      - "TOOLS/acquire_cctv_snapshot_source.py"
+      - ".github/workflows/cctv-snapshot-source-acquisition.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: fv-legacy-provenance-branch4
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  acquire-and-fingerprint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install media tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade requests
+      - name: Acquire Commons source and hash aligned samples
+        run: python TOOLS/acquire_cctv_snapshot_source.py --output-dir cctv-snapshot-acquisition
+      - name: Upload metadata manifests only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cctv-snapshot-source-manifest
+          path: cctv-snapshot-acquisition/*.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit provenance manifests (push runs only)
+        if: github.event_name == 'push'
+        run: |
+          DEST="examples/videos/CCTV_Snapshot_TD_Reconstruction_Experiment/provenance"
+          mkdir -p "$DEST"
+          cp cctv-snapshot-acquisition/source_acquisition.json "$DEST/source_acquisition.json"
+          cp cctv-snapshot-acquisition/source_frame_manifest.json "$DEST/source_frame_manifest.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST"
+          if ! git diff --cached --quiet; then
+            git commit -m "Record CCTV Snapshot source acquisition and frame hashes"
+            git fetch origin "$GITHUB_REF_NAME"
+            git rebase "origin/$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
