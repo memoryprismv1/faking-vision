@@ -32,7 +32,7 @@ This is a first working behaviour, not a full editor or authoritative FV packet 
 - Interpolation is only valid for masks with matching polygon vertex counts and may fail at scene cuts or shape changes.
 - The input packet is retained as a nested source object in the export bundle. Property changes are applied to matching records using `canonical_id` (preferred) or `id`; review the result before treating it as canonical OI/TD/MSRM data.
 - WebM export depends on browser MediaRecorder support and runs in real time. Keep the tab open until it finishes.
-- Exported visual output and packet JSON must be audited separately. This tool does not claim FV semantic validation.
+- Exported visual output and packet JSON must be audited separately. This tool does not claim FV semantic validation. If the MVP supplies a local v0.26 fallback when packet version metadata is absent, that is only an import convenience; it does not establish the packet's authoring version or migrate the packet. Preserve unknown/legacy version status.
 
 ## Next test
 

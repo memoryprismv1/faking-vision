@@ -23,7 +23,7 @@ Unknown means unknown. Do not infer an agent, model version, run ID, or generati
 
 ### 1.1 Backward compatibility
 
-- Existing v0.24 packets without `packet_provenance.json` remain valid under the legacy compatibility path.
+- Legacy packets created before the root-level provenance requirement (including existing v0.24 packets) may omit `packet_provenance.json` and remain valid under the legacy compatibility path. Preserve any declared source version; an unversioned packet remains version-unknown.
 - Missing provenance in a legacy packet MUST be represented downstream as `legacy_missing` / unknown, not treated as a packet validation failure.
 - Newly generated packets MUST include the provenance file, even when some values are unknown.
 - Do not rewrite old packets merely to add guessed provenance.

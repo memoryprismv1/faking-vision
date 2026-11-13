@@ -4,7 +4,7 @@ Date: 2026-11-11
 Repository baseline: `main`
 Working branch: `work/fv-docs-skill-cleanup-20261111`
 Scope: documentation, skill, command reference, and related support files.
-Status: initial audit; no examples changed.
+Status: historical baseline audit. Current version-label interpretation is maintained in [FV_VERSIONING_STATUS.md](FV_VERSIONING_STATUS.md); current examples are indexed at [../examples/README.md](../examples/README.md).
 
 ## Source hierarchy confirmed
 

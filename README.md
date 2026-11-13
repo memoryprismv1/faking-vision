@@ -136,6 +136,7 @@ Not every task requires every operation.
 - [Command reference](commands.md)
 - [Operation implementation status](docs/FV_OPERATION_IMPLEMENTATION_STATUS_2026-11-11.md)
 - [Documentation audit and cleanup baseline](docs/FV_DOCUMENTATION_BASELINE_2026-11-11.md)
+- [FV versioning status](docs/FV_VERSIONING_STATUS.md)
 - [Artifact contract and schema coverage audit](docs/FV_ARTIFACT_CONTRACT_AUDIT_2026-11-11.md)
 - [Research foundations and operational evidence map](docs/FV_RESEARCH_FOUNDATIONS.md)
 - [Working process specification](SPECIFICATION/FV_Working_Process_Specification.md)
