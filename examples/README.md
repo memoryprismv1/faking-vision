@@ -2,6 +2,8 @@
 
 This index distinguishes what an example is meant to demonstrate from what the repository actually contains. A packet-shaped folder, README claim, validation report, or visualization is not by itself proof that source media were acquired, processing was executed, or the result was independently verified.
 
+The current tree contains **22 example packet directories with `OI.json`**: five image packets, five LiDAR packets, one telescope packet, and eleven video packets. Fourteen have a `dispute.json`; the other eight explicitly declare `DISPUTES: NONE` in their packet READMEs. These counts describe the current tree, not the number of all folders or visual assets.
+
 ## Visual privacy and provenance audit
 
 A visual privacy inventory of the supplied example corpus is recorded in [the 2026-11-12/13 audit log](../tests/acceptance/results/2026-11-12-example-corpus-privacy-audit.md). It covers 305 images and four videos (the video review is sampled, not exhaustive). No screenshot of a user's desktop, browser, application window, terminal, or other personal system was identified. The three generated story MP4s contain AAC audio tracks that were not listened to or transcribed and are **not audio-cleared**. Source-rights and provenance gaps remain for several legacy examples; the audit identifies them individually. Do not interpret completion of the visual inventory as full privacy, rights, or provenance clearance.
@@ -53,11 +55,11 @@ Do not present the numbers or processing claims in these examples as reproduced 
 
 ## Duplicate packaging cleanup
 
-Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the Fullerton Transportation Center CCTV merged packet; canonical `TIR.json` remains. The same operational-disposition note reused in distinct CCTV packet folders was retained. The environmental edit-pair family is no longer part of the active examples tree.
+Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the Fullerton Transportation Center CCTV merged packet; canonical `TIR.json` remains. A current tree-wide content-hash check found one remaining identical pair: `FV_OPERATIONAL_DISPOSITION.txt` in CCTV Parts 1 and 3. Both copies are retained because each belongs to its own packet's self-contained operating record. No other byte-identical file groups were found in `examples/`. The similarly named KITTI Sequence 00 map files are not byte-identical and remain distinct supplied versions. The environmental edit-pair family is no longer part of the active examples tree.
 
 ## Verification boundary
 
-The checks recorded here are targeted structural, provenance, dispute-gate, and cross-reference reviews. All 29 example directories containing `OI.json` now have an explicit dispute declaration: 15 use `dispute.json`, and 14 declare `DISPUTES: NONE` in their packet README. No full authoritative FV semantic validation, exhaustive frame-by-frame audit, independent reproduction of the LiDAR/telescope processing, or complete validation of every example packet is claimed.
+The checks recorded here are targeted structural, provenance, dispute-gate, and cross-reference reviews. All 22 example packet directories containing `OI.json` have an explicit dispute declaration: 14 use `dispute.json`, and eight declare `DISPUTES: NONE` in their packet README. No full authoritative FV semantic validation, exhaustive frame-by-frame audit, independent reproduction of the LiDAR/telescope processing, or complete validation of every example packet is claimed.
 
 
 Dispute-gate convention: the example `dispute.json` files use canonical aggregate `status` values (`none`, `open`, `resolved`) and per-record `resolution_status`. Chunk-local attention deferral is recorded separately as `operational_disposition`; a deferred issue remains unresolved (`resolution_status: OPEN`) and does not clear an open rendering/compilation gate. This preserves the Making Vision allocation distinction without introducing a new aggregate dispute status.
