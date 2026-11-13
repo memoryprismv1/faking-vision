@@ -13,6 +13,10 @@ on:
       - ".github/workflows/hubble-udf-mast-manifest.yml"
   workflow_dispatch:
 
+concurrency:
+  group: fv-legacy-provenance-branch3
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -48,5 +52,7 @@ jobs:
           git add "$DEST"
           if ! git diff --cached --quiet; then
             git commit -m "Record Hubble UDF MAST exposure and product manifest"
-            git push
+            git fetch origin "$GITHUB_REF_NAME"
+            git rebase "origin/$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
           fi
