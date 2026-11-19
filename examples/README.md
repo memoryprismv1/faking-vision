@@ -2,7 +2,7 @@
 
 This index distinguishes what an example is meant to demonstrate from what the repository actually contains. A packet-shaped folder, README claim, validation report, or visualization is not by itself proof that source media were acquired, processing was executed, or the result was independently verified.
 
-The current tree contains **22 example packet directories with `OI.json`**: five image packets, five LiDAR packets, one telescope packet, and eleven video packets. Fourteen have a `dispute.json`; the other eight explicitly declare `DISPUTES: NONE` in their packet READMEs. These counts describe the current tree, not the number of all folders or visual assets.
+The current tree contains **23 example packet directories with `OI.json`**: five image packets, five LiDAR packets, one telescope packet, and eleven video packets. Fourteen have a `dispute.json`; the other eight explicitly declare `DISPUTES: NONE` in their packet READMEs. These counts describe the current tree, not the number of all folders or visual assets.
 
 ## Visual privacy and provenance audit
 
@@ -55,7 +55,11 @@ Do not present the numbers or processing claims in these examples as reproduced 
 
 ## Duplicate packaging cleanup
 
-Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the Fullerton Transportation Center CCTV merged packet; canonical `TIR.json` remains. A current tree-wide content-hash check found one remaining identical pair: `FV_OPERATIONAL_DISPOSITION.txt` in CCTV Parts 1 and 3. Both copies are retained because each belongs to its own packet's self-contained operating record. No other byte-identical file groups were found in `examples/`. The similarly named KITTI Sequence 00 map files are not byte-identical and remain distinct supplied versions. The environmental edit-pair family is no longer part of the active examples tree.
+Byte-identical suffixed copies were removed from the Cat-jumping and KITTI merged-building examples. The byte-identical `TIR_MERGED_UNIFIED.json` alias was removed from the Fullerton Transportation Center CCTV merged packet; canonical `TIR.json` remains. A current tree-wide content-hash check found one remaining identical pair: `FV_OPERATIONAL_DISPOSITION.txt` in CCTV Parts 1 and 3. Both copies are retained because each belongs to its own packet's self-contained operating record. No other byte-identical file groups were found in `examples/`. The similarly named KITTI Sequence 00 map files are not byte-identical and remain distinct supplied versions. The earlier environmental edit-pair family is no longer active. A separate environmental-edit example, with explicit audit caveats and image assets supplied separately, is indexed under `envirn_edits/`.
+
+## Environmental edits
+
+`envirn_edits/images/seine_giverny/` contains the Seine-at-Giverny seasonal/time-of-day edit packet: four image variants, source and packet records, and independent audit notes. The user's instruction was “dealers choice”; the four settings are spring blossom morning, summer midday clear, autumn golden evening, and winter frost dawn. Meta's supplied validation/audit PASS labels are retained as producer claims, not independent FV certification. See the nested README and `audit_notes.md` for provenance and structural limitations.
 
 ## Verification boundary
 
