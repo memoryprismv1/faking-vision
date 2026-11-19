@@ -1,0 +1,10 @@
+{
+  "packet_id":"PKT-IMPRESSION-SUNRISE-1872-001","edit_id":"EDIT-REDO-3-PASS","operation":"fv edit redo - Way 1 inside frame",
+  "user_instruction_verbatim":"lets redo Monet, Impression, Sunrise, 1872","way":"Way 1 inside frame",
+  "edits":[
+    {"season_time":"spring_morning_mist","status":"PASS","file":"edited_image_redo_spring_morning_mist.webp","boat_count":1,"signature":"none"},
+    {"season_time":"summer_evening","status":"PASS","file":"edited_image_redo_summer_evening.webp","boat_count":1,"signature":"none"},
+    {"season_time":"autumn_morning_mist","status":"PASS","file":"edited_image_redo_autumn_morning_mist.webp","boat_count":1,"signature":"none"}
+  ],
+  "missing":[{"season_time":"winter_night_moon","status":"not delivered - did not come through in this run"}]
+}

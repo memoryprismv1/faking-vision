@@ -1,0 +1,12 @@
+{
+  "packet_id":"PKT-IMPRESSION-SUNRISE-1872-001",
+  "scenes":[{"scene_id":"S01","entities":[
+    {"id":"SKY_01","position":"Upper portion, across top, above SUN_01, SHIPS_01, HARBOR_01"},
+    {"id":"SUN_01","position":"Middle right, in SKY_01, above WATER_01"},
+    {"id":"WATER_01","position":"Lower part, across foreground, below SHIPS_01 and HARBOR_01"},
+    {"id":"BOAT_01","position":"Lower centre, on WATER_01"},
+    {"id":"SHIPS_01","position":"On left, in middle left, above WATER_01"},
+    {"id":"HARBOR_01","position":"On right, in middle right, above WATER_01"}
+  ],"relations":["SKY_01 is above SUN_01, SHIPS_01, HARBOR_01","SUN_01 is middle right, above WATER_01","WATER_01 is below SHIPS_01, HARBOR_01","BOAT_01 is lower centre, on WATER_01","SHIPS_01 are on the left","HARBOR_01 is on the right"]}],
+  "coordinate_note":"MSRM authoritative positions are plain-language relations."
+}

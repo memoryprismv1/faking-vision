@@ -1,0 +1,16 @@
+{
+  "packet_id": "PKT-IMPRESSION-SUNRISE-1872-001",
+  "spec_version": "current-authoritative-v0.24-base-plus-v0.26-v0.27",
+  "inventory_lock": true,
+  "source_file_locked": "source_image.png only. Impression, Sunrise, 1872, harbor sunrise.",
+  "entities": [
+    {"canonical_id":"SKY_01","category":"misty sky with orange clouds","properties":{"appearance":"Misty sky across top, orange and pink clouds, hazy."},"components":[],"uncertainty":[]},
+    {"canonical_id":"SUN_01","category":"orange sun","properties":{"appearance":"Orange sun in middle right, small bright disc, with orange reflection path on water."},"components":[],"uncertainty":[]},
+    {"canonical_id":"WATER_01","category":"harbor water foreground","properties":{"appearance":"Harbor water across foreground, lower part, calm, blue-grey with orange reflection."},"components":[],"uncertainty":[]},
+    {"canonical_id":"BOAT_01","category":"small rowboat with figures","properties":{"appearance":"Small rowboat with figures in lower centre, dark silhouette, on water."},"components":[],"uncertainty":["Exact figure count not resolved - do not claim counts."]},
+    {"canonical_id":"SHIPS_01","category":"tall ships and chimneys on left","properties":{"appearance":"Tall ships and chimneys on left, masts and smoke, hazy blue, in middle left."},"components":[],"uncertainty":[]},
+    {"canonical_id":"HARBOR_01","category":"distant harbor structures on right","properties":{"appearance":"Distant harbor structures on right, cranes and docks, hazy blue, in middle right."},"components":[],"uncertainty":[]}
+  ],
+  "background":{"status":"appearance-only","description":"No separate background beyond SKY_01."},
+  "unresolved_candidates":[{"candidate_id":"CAND-BIRD-01","observed_component":"No clear bird","candidate_set":["no bird"],"status":"unresolved - not committed","reason":"No bounded bird grounded."}]
+}

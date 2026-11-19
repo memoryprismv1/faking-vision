@@ -1,0 +1,5 @@
+{
+  "packet_id":"PKT-IMPRESSION-SUNRISE-1872-001","edit_id":"EDIT-REDO-SPRING_MORNING_MIST","inventory_lock":true,
+  "note":"Same 6 entities, same positions, spring_morning_mist. All passive. Boat count 1.",
+  "entities":[{"canonical_id":"SKY_01","response":"passive"},{"canonical_id":"SUN_01","response":"passive"},{"canonical_id":"WATER_01","response":"passive"},{"canonical_id":"BOAT_01","response":"passive"},{"canonical_id":"SHIPS_01","response":"passive"},{"canonical_id":"HARBOR_01","response":"passive"}]
+}

@@ -1,0 +1,6 @@
+{
+  "packet_id":"PKT-IMPRESSION-SUNRISE-1872-001","edit_id":"EDIT-REDO-SUMMER_EVENING",
+  "environment_before":{"condition":"sunrise misty"},
+  "environment_after":{"condition":"summer_evening"},
+  "environmental_stress":"low"
+}
