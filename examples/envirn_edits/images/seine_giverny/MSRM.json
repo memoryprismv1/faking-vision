@@ -1,0 +1,19 @@
+{
+  "packet_id": "PKT-SEINE-GIVERNY-MORNING-001",
+  "scenes": [{
+    "scene_id": "S01",
+    "entities": [
+      {"id":"SKY_01","position":"Top centre, between TREES_LEFT_01 and TREES_RIGHT_01, above RIVER_01"},
+      {"id":"TREES_LEFT_01","position":"On left, from top left down to middle left, beside RIVER_01"},
+      {"id":"TREES_RIGHT_01","position":"On right, upper right to middle right, beside RIVER_01"},
+      {"id":"RIVER_01","position":"Centre to bottom, below SKY_01, between TREES_LEFT_01 and TREES_RIGHT_01"}
+    ],
+    "relations": [
+      "SKY_01 is top centre, above RIVER_01",
+      "TREES_LEFT_01 are on the left",
+      "TREES_RIGHT_01 are on the right",
+      "RIVER_01 is centre to bottom, between trees"
+    ]
+  }],
+  "coordinate_note": "MSRM authoritative positions are plain-language relations."
+}
