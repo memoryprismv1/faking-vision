@@ -1,0 +1,12 @@
+{
+  "packet_id":"PKT-SEINE-GIVERNY-MORNING-001","edit_id":"EDIT-4-PASS",
+  "operation":"fv edit - Way 1 inside frame, dealers choice",
+  "user_instruction_verbatim":"very nice. last once Monet, Morning on the Seine near Giverny again dealers choice",
+  "way":"Way 1 inside frame",
+  "edits":[
+    {"season_time":"spring_blossom_morning","status":"PASS","file":"edited_image_spring_blossom_morning.webp","boats":0,"figures":0,"signature":"none"},
+    {"season_time":"summer_midday_clear","status":"PASS","file":"edited_image_summer_midday_clear.webp","boats":0,"figures":0,"signature":"none"},
+    {"season_time":"autumn_golden_evening","status":"PASS","file":"edited_image_autumn_golden_evening.webp","boats":0,"figures":0,"signature":"none"},
+    {"season_time":"winter_frost_dawn","status":"PASS","file":"edited_image_winter_frost_dawn.webp","boats":0,"figures":0,"signature":"none"}
+  ]
+}
