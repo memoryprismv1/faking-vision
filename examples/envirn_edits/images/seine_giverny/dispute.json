@@ -1,0 +1,5 @@
+{
+  "packet_id":"PKT-SEINE-GIVERNY-MORNING-001","status":"open_dispute_on_identity",
+  "disputes":[{"dispute_id":"DISP-TITLE-DATE-01","question":"Is this file Morning on the Seine near Giverny?","status":"OPEN","evidence_for":["Search label says Morning on the Seine near Giverny","Composition matches description: Seine, fog, trees"],"evidence_against":["No museum accession verified","Many versions in series exist"],"resolution":"NOT RESOLVED. Packet locks to this file only."}],
+  "unresolved_candidates":["CAND-BOAT-01","CAND-FIGURE-01"]
+}
