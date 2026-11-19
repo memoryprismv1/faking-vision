@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-SEINE-GIVERNY-MORNING-001",
+  "edit_id": "EDIT-AUTUMN_GOLDEN_EVENING",
+  "environment_before": {"condition": "morning fog"},
+  "environment_after": {"condition": "autumn_golden_evening"},
+  "environmental_stress": "low"
+}
