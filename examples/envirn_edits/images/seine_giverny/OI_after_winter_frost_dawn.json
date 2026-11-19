@@ -1,0 +1,5 @@
+{
+  "packet_id":"PKT-SEINE-GIVERNY-MORNING-001","edit_id":"EDIT-WINTER_FROST_DAWN","inventory_lock":true,
+  "note":"Same 4 entities, same positions, winter_frost_dawn. All passive. Boats 0, figures 0, signature none.",
+  "entities":[{"canonical_id":"SKY_01","response":"passive"},{"canonical_id":"TREES_LEFT_01","response":"passive"},{"canonical_id":"TREES_RIGHT_01","response":"passive"},{"canonical_id":"RIVER_01","response":"passive"}]
+}
