@@ -1,0 +1,17 @@
+{
+  "packet_id": "PKT-SEINE-GIVERNY-MORNING-001",
+  "spec_version": "current-authoritative-v0.24-base-plus-v0.26-v0.27",
+  "inventory_lock": true,
+  "source_file_locked": "source_image.png only. Morning on the Seine near Giverny, fog/morning.",
+  "entities": [
+    {"canonical_id":"SKY_01","category":"misty sky top centre","properties":{"appearance":"Misty sky at top centre, pale pink-grey, hazy, between trees."},"components":[],"uncertainty":[]},
+    {"canonical_id":"TREES_LEFT_01","category":"dense trees on left bank","properties":{"appearance":"Dense trees on left bank, dark blue-green foliage, from top left down to middle left."},"components":[],"uncertainty":[]},
+    {"canonical_id":"TREES_RIGHT_01","category":"trees on right bank","properties":{"appearance":"Trees on right bank, green and purple foliage, upper right to middle right."},"components":[],"uncertainty":[]},
+    {"canonical_id":"RIVER_01","category":"river water centre to bottom","properties":{"appearance":"River water in centre to bottom, calm, blue with pale light reflection."},"components":[{"component_id":"RIVER_01-REFLECTION","type":"light reflection","description":"Light reflection on river, pale path in centre to bottom right"},{"component_id":"RIVER_01-TREE-REFLECTION","type":"tree reflection","description":"Tree reflections in water lower left"}],"uncertainty":[]}
+  ],
+  "background":{"status":"appearance-only","description":"No separate background beyond SKY_01."},
+  "unresolved_candidates":[
+    {"candidate_id":"CAND-BOAT-01","observed_component":"No clear boat","candidate_set":["no boat"],"status":"unresolved - not committed","reason":"No bounded boat grounded."},
+    {"candidate_id":"CAND-FIGURE-01","observed_component":"No clear figure","candidate_set":["no figure"],"status":"unresolved - not committed","reason":"No bounded figure grounded."}
+  ]
+}
