@@ -1,0 +1,15 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "edit_id": "EDIT-RANDOMISED-4",
+  "operation": "fv edit - randomised seasons + times, dealers choice",
+  "user_instruction_verbatim": "dealers choice",
+  "edits": [
+    {"season_time": "spring_dawn", "status": "done", "file": "edited_image_spring_dawn.webp"},
+    {"season_time": "summer_golden_evening", "status": "done", "file": "edited_image_summer_golden_evening.webp"},
+    {"season_time": "autumn_morning_mist", "status": "done", "file": "edited_image_autumn_morning_mist.webp"},
+    {"season_time": "winter_blizzard", "status": "done", "file": "edited_image_winter_blizzard.webp"}
+  ],
+  "affected_objects_passive": [
+    "SKY_01", "POND_01", "TREES_01", "SNOW_01", "HOUSES_01", "FIGURES_01"
+  ]
+}

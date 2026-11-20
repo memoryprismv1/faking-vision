@@ -1,0 +1,11 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "edit_id": "EDIT-SPRING_DAWN",
+  "environment_before": {
+    "condition": "winter snow"
+  },
+  "environment_after": {
+    "condition": "spring_dawn"
+  },
+  "environmental_stress": "low"
+}

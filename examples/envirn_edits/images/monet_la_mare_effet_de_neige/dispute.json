@@ -1,0 +1,23 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "status": "open_dispute_on_identity",
+  "disputes": [
+    {
+      "dispute_id": "DISP-TITLE-DATE-01",
+      "question": "Is this file La Mare, effet de neige, 1875?",
+      "status": "OPEN",
+      "evidence_for": [
+        "Search label says La Mare, effet de neige",
+        "Composition matches Christie's description: Argenteuil winter, pond, snow"
+      ],
+      "evidence_against": [
+        "No museum accession verified",
+        "Private collection / auction image, not museum scan"
+      ],
+      "resolution": "NOT RESOLVED. Packet locks to this file only."
+    }
+  ],
+  "unresolved_candidates": [
+    "CAND-BIRD-01"
+  ]
+}

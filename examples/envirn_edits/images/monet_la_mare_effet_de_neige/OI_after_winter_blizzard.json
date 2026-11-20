@@ -1,0 +1,14 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "edit_id": "EDIT-WINTER_BLIZZARD",
+  "inventory_lock": true,
+  "note": "Same 6 entities, same positions, winter_blizzard. All passive.",
+  "entities": [
+    {"canonical_id": "SKY_01", "response": "passive"},
+    {"canonical_id": "POND_01", "response": "passive"},
+    {"canonical_id": "TREES_01", "response": "passive"},
+    {"canonical_id": "SNOW_01", "response": "passive"},
+    {"canonical_id": "HOUSES_01", "response": "passive"},
+    {"canonical_id": "FIGURES_01", "response": "passive"}
+  ]
+}

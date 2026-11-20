@@ -1,0 +1,25 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {"id": "SKY_01", "position": "Upper portion, across top, above TREES_01 and HOUSES_01"},
+        {"id": "POND_01", "position": "Lower left, along bottom left, in front of SNOW_01"},
+        {"id": "TREES_01", "position": "Across middle, from left to right, in front of SNOW_01 and HOUSES_01"},
+        {"id": "SNOW_01", "position": "Middle, behind TREES_01, below HOUSES_01, above POND_01"},
+        {"id": "HOUSES_01", "position": "In background, on left, centre, and right, behind SNOW_01 and TREES_01"},
+        {"id": "FIGURES_01", "position": "In middle, on SNOW_01, between TREES_01"}
+      ],
+      "relations": [
+        "SKY_01 is above TREES_01, HOUSES_01",
+        "POND_01 is in foreground lower left, in front of SNOW_01",
+        "TREES_01 are across middle, in front of SNOW_01",
+        "SNOW_01 is in middle, behind TREES_01",
+        "HOUSES_01 are in background, behind SNOW_01",
+        "FIGURES_01 are in middle, on SNOW_01"
+      ]
+    }
+  ],
+  "coordinate_note": "MSRM authoritative positions are plain-language relations."
+}

@@ -1,0 +1,14 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "edit_id": "EDIT-AUTUMN_MORNING_MIST",
+  "inventory_lock": true,
+  "note": "Same 6 entities, same positions, autumn_morning_mist. All passive.",
+  "entities": [
+    {"canonical_id": "SKY_01", "response": "passive"},
+    {"canonical_id": "POND_01", "response": "passive"},
+    {"canonical_id": "TREES_01", "response": "passive"},
+    {"canonical_id": "SNOW_01", "response": "passive"},
+    {"canonical_id": "HOUSES_01", "response": "passive"},
+    {"canonical_id": "FIGURES_01", "response": "passive"}
+  ]
+}

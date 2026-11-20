@@ -1,0 +1,11 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "environment": {
+    "condition": "winter snow",
+    "sky": "pale blue",
+    "ground": "snow-covered field, pond partly frozen",
+    "trees": "bare",
+    "light": "bright winter daylight"
+  },
+  "environmental_stress": "low"
+}
