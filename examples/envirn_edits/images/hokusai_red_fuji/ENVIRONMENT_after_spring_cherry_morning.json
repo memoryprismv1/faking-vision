@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "edit_id": "EDIT-SPRING_CHERRY_MORNING",
+  "environment_before": {"condition": "clear morning fine wind"},
+  "environment_after": {"condition": "spring_cherry_morning"},
+  "environmental_stress": "low"
+}

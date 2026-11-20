@@ -1,0 +1,12 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "edit_id": "EDIT-SUMMER_STORM_DUSK",
+  "inventory_lock": true,
+  "note": "Same 4 entities, same positions, summer_storm_dusk. All passive.",
+  "entities": [
+    {"canonical_id": "SKY_01", "response": "passive"},
+    {"canonical_id": "FUJI_01", "response": "passive"},
+    {"canonical_id": "FOREST_01", "response": "passive"},
+    {"canonical_id": "CARTOUCHE_01", "response": "passive"}
+  ]
+}

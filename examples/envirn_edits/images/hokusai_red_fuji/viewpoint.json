@@ -1,0 +1,9 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "viewpoint": [{
+    "viewpoint_id": "VP-SOURCE-01",
+    "role": "source_viewpoint",
+    "initial_state": {"status": "unknown", "position": null, "orientation": null, "note": "Single still print."},
+    "is_source_initialisation": true
+  }]
+}

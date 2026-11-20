@@ -1,0 +1,16 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "status": "open_dispute_on_identity",
+  "disputes": [{
+    "dispute_id": "DISP-TITLE-DATE-01",
+    "question": "Is this file Fine Wind, Clear Morning, c.1830-32?",
+    "status": "OPEN",
+    "evidence_for": [
+      "Search label says Fine Wind, Clear Morning / Red Fuji",
+      "Composition matches Met description: red cone, blue sky, white clouds"
+    ],
+    "evidence_against": ["No museum accession verified", "Multiple impressions exist"],
+    "resolution": "NOT RESOLVED. Packet locks to this file only."
+  }],
+  "unresolved_candidates": ["CAND-FIGURE-01", "CAND-BIRD-01"]
+}

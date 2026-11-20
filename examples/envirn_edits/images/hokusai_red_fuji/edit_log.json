@@ -1,0 +1,13 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "edit_id": "EDIT-RANDOMISED-4",
+  "operation": "fv edit - randomised seasons + times, dealers choice",
+  "user_instruction_verbatim": "Hokusai, Fine Wind, Clear Morning — Red Fuji dealers choice",
+  "edits": [
+    {"season_time": "spring_cherry_morning", "status": "done", "file": "edited_image_spring_cherry_morning.webp"},
+    {"season_time": "summer_storm_dusk", "status": "done", "file": "edited_image_summer_storm_dusk.webp"},
+    {"season_time": "autumn_golden_evening", "status": "done", "file": "edited_image_autumn_golden_evening.webp"},
+    {"season_time": "winter_night_snow", "status": "done", "file": "edited_image_winter_night_snow.webp"}
+  ],
+  "affected_objects_passive": ["SKY_01", "FUJI_01", "FOREST_01", "CARTOUCHE_01"]
+}

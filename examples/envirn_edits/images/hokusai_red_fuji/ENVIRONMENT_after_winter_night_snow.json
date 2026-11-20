@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "edit_id": "EDIT-WINTER_NIGHT_SNOW",
+  "environment_before": {"condition": "clear morning fine wind"},
+  "environment_after": {"condition": "winter_night_snow"},
+  "environmental_stress": "low"
+}

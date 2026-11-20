@@ -1,0 +1,19 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "scenes": [{
+    "scene_id": "S01",
+    "entities": [
+      {"id": "SKY_01", "position": "Upper portion, across top, above FUJI_01 and FOREST_01"},
+      {"id": "FUJI_01", "position": "Centre to right, large cone, from middle down to bottom right, above FOREST_01"},
+      {"id": "FOREST_01", "position": "Lower left, along bottom left, below SKY_01, in front of FUJI_01 base"},
+      {"id": "CARTOUCHE_01", "position": "Upper left, in SKY_01"}
+    ],
+    "relations": [
+      "SKY_01 is above FUJI_01",
+      "FUJI_01 is centre to right",
+      "FOREST_01 is lower left, in front of FUJI_01 base",
+      "CARTOUCHE_01 is upper left, in SKY_01"
+    ]
+  }],
+  "coordinate_note": "MSRM authoritative positions are plain-language relations."
+}

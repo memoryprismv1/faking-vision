@@ -1,0 +1,10 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "environment": {
+    "condition": "clear morning, fine wind",
+    "sky": "deep blue with white streak clouds",
+    "mountain": "red, snow cap",
+    "light": "early morning light"
+  },
+  "environmental_stress": "low"
+}

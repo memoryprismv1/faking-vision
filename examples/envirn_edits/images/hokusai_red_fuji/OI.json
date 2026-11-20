@@ -1,0 +1,41 @@
+{
+  "packet_id": "PKT-HOKUSAI-RED-FUJI-001",
+  "spec_version": "current-authoritative-v0.24-base-plus-v0.26-v0.27",
+  "inventory_lock": true,
+  "source_file_locked": "source_image.png only. Red Fuji, Fine Wind Clear Morning.",
+  "entities": [
+    {
+      "canonical_id": "SKY_01",
+      "category": "deep blue sky with white clouds",
+      "properties": {"appearance": "Deep blue sky across top, with horizontal white streak clouds."},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FUJI_01",
+      "category": "Mount Fuji red cone",
+      "properties": {"appearance": "Mount Fuji red cone, large, centre to right, red to brown slope, from middle to bottom right."},
+      "components": [{"component_id": "FUJI_01-SNOWCAP", "type": "snow cap", "description": "Snow cap on summit, top centre, white with streaks"}],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "FOREST_01",
+      "category": "dark forest at foothills",
+      "properties": {"appearance": "Dark forest at foothills, lower left, dense dark blue-green trees, along bottom left."},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "CARTOUCHE_01",
+      "category": "title cartouche upper left",
+      "properties": {"appearance": "Title cartouche upper left, vertical white box with black calligraphy."},
+      "components": [],
+      "uncertainty": []
+    }
+  ],
+  "background": {"status": "appearance-only", "description": "No separate background beyond SKY_01."},
+  "unresolved_candidates": [
+    {"candidate_id": "CAND-FIGURE-01", "observed_component": "No clear figure", "candidate_set": ["no figure"], "status": "unresolved - not committed", "reason": "No bounded figure grounded."},
+    {"candidate_id": "CAND-BIRD-01", "observed_component": "No clear bird", "candidate_set": ["no bird"], "status": "unresolved - not committed", "reason": "No bounded bird grounded."}
+  ]
+}
