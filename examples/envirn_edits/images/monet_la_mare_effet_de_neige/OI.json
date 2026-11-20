@@ -1,0 +1,58 @@
+{
+  "packet_id": "PKT-MONET-LA-MARE-1875-001",
+  "spec_version": "current-authoritative-v0.24-base-plus-v0.26-v0.27",
+  "inventory_lock": true,
+  "source_file_locked": "source_image.png only. La Mare, pond foreground, trees middle, houses background.",
+  "entities": [
+    {
+      "canonical_id": "SKY_01",
+      "category": "pale blue sky",
+      "properties": {"appearance": "Pale blue sky across top."},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "POND_01",
+      "category": "pond in foreground",
+      "properties": {"appearance": "Pond in foreground, lower left, partly frozen blue water, along bottom left."},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "TREES_01",
+      "category": "bare trees",
+      "properties": {"appearance": "Bare trees across middle, leafless, tall trunks and branches, across width."},
+      "components": [],
+      "uncertainty": ["Exact tree count not resolved."]
+    },
+    {
+      "canonical_id": "SNOW_01",
+      "category": "snow-covered field",
+      "properties": {"appearance": "Snow-covered field across middle, behind trees, white with blue shadows, and on right lower."},
+      "components": [],
+      "uncertainty": []
+    },
+    {
+      "canonical_id": "HOUSES_01",
+      "category": "houses in background",
+      "properties": {"appearance": "Houses in background, on left, centre, and right, snow on roofs, behind snow field."},
+      "components": [],
+      "uncertainty": ["Exact house count not resolved."]
+    },
+    {
+      "canonical_id": "FIGURES_01",
+      "category": "small figures in snow",
+      "properties": {"appearance": "Small figures in snow in middle, on snow field, dark clothing, a few groups."},
+      "components": [
+        {"component_id": "FIGURES_01-GROUP-LEFT", "type": "group", "description": "Figures on left middle"},
+        {"component_id": "FIGURES_01-GROUP-CENTRE", "type": "group", "description": "Figures in centre middle"},
+        {"component_id": "FIGURES_01-RIGHT", "type": "figure", "description": "Figure on right middle"}
+      ],
+      "uncertainty": ["Exact figure count not resolved - do not claim counts. Activity not resolved."]
+    }
+  ],
+  "background": {"status": "appearance-only", "description": "No separate background beyond SKY_01."},
+  "unresolved_candidates": [
+    {"candidate_id": "CAND-BIRD-01", "observed_component": "No clear bird", "candidate_set": ["no bird"], "status": "unresolved - not committed", "reason": "No bounded bird grounded."}
+  ]
+}
