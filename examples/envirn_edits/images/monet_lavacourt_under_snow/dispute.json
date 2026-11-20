@@ -1,0 +1,19 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "status": "open_dispute_on_identity",
+  "disputes": [{
+    "dispute_id": "DISP-TITLE-DATE-01",
+    "question": "Is this file Lavacourt under Snow, 1881, Hugh Lane?",
+    "status": "OPEN",
+    "evidence_for": [
+      "Search label says Lavacourt under Snow",
+      "Composition matches Hugh Lane description: snowfield, houses right, river left"
+    ],
+    "evidence_against": [
+      "No museum accession verified in packet",
+      "Another Lavacourt snow scene exists with river on other side"
+    ],
+    "resolution": "NOT RESOLVED. Packet locks to this file only."
+  }],
+  "unresolved_candidates": ["CAND-FIGURE-01", "CAND-BIRD-01"]
+}

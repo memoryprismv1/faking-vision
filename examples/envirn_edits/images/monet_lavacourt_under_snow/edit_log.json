@@ -1,0 +1,14 @@
+{
+  "packet_id":"PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "edit_id":"EDIT-RANDOMISED-4",
+  "operation":"fv edit - randomised seasons + times",
+  "user_instruction_verbatim":"your call, do seasons, different time of day, whatever you want to. randomise it",
+  "edits":[
+    {"season_time":"spring_morning","status":"done","file":"edited_image_spring_morning.webp"},
+    {"season_time":"summer_midday","status":"done","file":"edited_image_summer_midday.webp"},
+    {"season_time":"autumn_dusk","status":"done","file":"edited_image_autumn_dusk.webp"},
+    {"season_time":"winter_night","status":"done","file":"edited_image_winter_night.webp"}
+  ],
+  "changed_properties":["SKY_01","SNOW_01 ground","TREES_01 foliage","RIVER_01","light"],
+  "affected_objects_passive":["SKY_01","SNOW_01","HOUSES_01","TREES_01","RIVER_01","HILLS_01"]
+}

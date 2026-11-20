@@ -1,0 +1,19 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "spec_version": "current-authoritative-v0.24-base-plus-v0.26-v0.27",
+  "inventory_lock": true,
+  "source_file_locked": "source_image.png only. Hugh Lane version, snowfield foreground, houses right, river left. Other file image_search_0_monet_lavacourt_under_snow_1879_wikimedia.jpg is a DIFFERENT Lavacourt snow scene, not mixed.",
+  "entities": [
+    {"canonical_id":"SKY_01","category":"pale yellow-pink sky","properties":{"appearance":"Pale yellow-pink sky across top, soft, overcast glow."},"components":[],"uncertainty":[]},
+    {"canonical_id":"SNOW_01","category":"snow-covered field foreground","properties":{"appearance":"Snow-covered field across foreground, lower part, white with lilac-blue shadows."},"components":[],"uncertainty":[]},
+    {"canonical_id":"HOUSES_01","category":"stone houses on right","properties":{"appearance":"Stone houses on right side, with snow on roofs, dark windows and doors, running from top right down to middle right."},"components":[],"uncertainty":["Exact house count not resolved."]},
+    {"canonical_id":"TREES_01","category":"bare trees in middle","properties":{"appearance":"Bare trees in middle, leafless, thin trunks and branches, in front of houses."},"components":[],"uncertainty":["Exact tree count not resolved."]},
+    {"canonical_id":"RIVER_01","category":"river on left","properties":{"appearance":"River on left side, pale grey water, along left edge, behind snowfield."},"components":[{"component_id":"RIVER_01-BOAT","type":"boat","description":"Small dark boat on river on left"}],"uncertainty":[]},
+    {"canonical_id":"HILLS_01","category":"distant snow hills","properties":{"appearance":"Distant snow hills on left middle, behind river, pale, low."},"components":[],"uncertainty":[]}
+  ],
+  "background":{"status":"appearance-only","description":"No separate background beyond SKY_01."},
+  "unresolved_candidates":[
+    {"candidate_id":"CAND-FIGURE-01","observed_component":"No clear figure","candidate_set":["no figure"],"status":"unresolved - not committed","reason":"No bounded figure grounded. Do not add figures."},
+    {"candidate_id":"CAND-BIRD-01","observed_component":"No clear bird","candidate_set":["no bird"],"status":"unresolved - not committed","reason":"No bounded bird grounded."}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "viewpoint": [{
+    "viewpoint_id": "VP-SOURCE-01",
+    "role": "source_viewpoint",
+    "initial_state": {
+      "status": "unknown",
+      "position": null,
+      "orientation": null,
+      "note": "Single still painting."
+    },
+    "is_source_initialisation": true
+  }]
+}

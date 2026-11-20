@@ -1,0 +1,10 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "environment": {
+    "condition": "winter snow, sunset glow",
+    "sky": "pale yellow-pink",
+    "ground": "snow-covered field",
+    "light": "soft sunset light, lilac-blue shadows"
+  },
+  "environmental_stress": "low"
+}

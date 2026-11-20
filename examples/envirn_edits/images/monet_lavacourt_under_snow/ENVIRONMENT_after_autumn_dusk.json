@@ -1,0 +1,7 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "edit_id": "EDIT-AUTUMN_DUSK",
+  "environment_before": {"condition": "winter snow sunset glow"},
+  "environment_after": {"condition": "autumn_dusk", "note": "Randomised edit: autumn_dusk"},
+  "environmental_stress": "low"
+}

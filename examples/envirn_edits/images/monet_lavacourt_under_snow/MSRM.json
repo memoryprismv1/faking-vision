@@ -1,0 +1,25 @@
+{
+  "packet_id": "PKT-MONET-LAVACOURT-UNDER-SNOW-001",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "entities": [
+        {"id":"SKY_01","position":"Upper portion, across top, above HOUSES_01, TREES_01, HILLS_01"},
+        {"id":"SNOW_01","position":"Lower part, across foreground, below SKY_01, in front of HOUSES_01 and RIVER_01"},
+        {"id":"HOUSES_01","position":"On right side, from top right down to middle right, above SNOW_01"},
+        {"id":"TREES_01","position":"In middle, in front of HOUSES_01, above SNOW_01"},
+        {"id":"RIVER_01","position":"On left side, along left edge, behind SNOW_01"},
+        {"id":"HILLS_01","position":"On left middle, behind RIVER_01, below SKY_01"}
+      ],
+      "relations": [
+        "SKY_01 is above HOUSES_01, TREES_01, HILLS_01",
+        "SNOW_01 is below SKY_01, in front of HOUSES_01 and RIVER_01",
+        "HOUSES_01 are on the right, above SNOW_01",
+        "TREES_01 are in the middle, in front of HOUSES_01",
+        "RIVER_01 is on the left, behind SNOW_01",
+        "HILLS_01 are on the left middle, behind RIVER_01"
+      ]
+    }
+  ],
+  "coordinate_note": "MSRM authoritative positions are plain-language relations."
+}
