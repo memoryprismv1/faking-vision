@@ -1,30 +1,45 @@
 # Faking Vision (FV)
 
-**Faking Vision is a visual analyser.** It turns images and video into structured, source-grounded information that can be inspected, questioned, compared, validated and reused.
+**Faking Vision (FV) is a way to leverage AI capabilities on media.** It turns media into structured information that AI systems can use to do substantially more than describe, caption, or generate images and video.
 
-Its central output is not a generated image, a caption, or a prompt. It is an **FV packet**: a collection of files that records what the source supports about the scene, its entities, components, spatial relationships, temporal changes, uncertainties and evidence.
+Its central output is an **AI-usable object database**, carried in portable FV packets: structured records of entities, components, observable properties, spatial and temporal relationships, events, viewpoints, evidence, uncertainty and provenance. The records can be investigated, queried through AI, compared across sources, assembled, merged, transformed and passed to other AI capabilities as working information.
 
-FV is built around a simple question:
+The point is not simply to understand a piece of media. It is to make the information inside media available for further work. Once objects, relationships and events have been extracted into a structured representation, an AI agent can reason over that representation, connect it to other sources, answer questions, detect patterns, build timelines, support decisions, or use it as input to other tools and workflows.
 
-> Can an AI account for what is actually present in visual media, show where its claims came from, and preserve what it does not know?
+> **Media in → structured object knowledge → many kinds of AI work out.**
 
-Reconstruction and generative-media workflows are downstream uses of that analysis. They are useful tests of whether the packet contains enough information, but they are not the product's centre of gravity. FV is not an Adobe-like media editor or a generative-media suite.
+Faking Vision is inspired by ideas explored in biological vision, but it is not limited to imitating human seeing. It is about giving AI a richer, persistent and reusable working representation of the world depicted or measured by media. Generative images and video are among the possible outputs and test environments—not the purpose or boundary of FV.
 
-## Why analyse rather than caption?
+## From media to an AI object database
 
-A caption can sound convincing while leaving the important questions unanswered:
+A caption is an answer for a reader. An FV packet is structured working material for AI systems.
 
-- Which entities are actually visible?
-- What are their boundaries, components and observable properties?
-- Where are they in relation to one another?
-- What changes over time, and when?
-- Is an apparent change a new object, a change of state, movement, or a change in visibility?
-- Which claims are directly supported by the source, which are interpretations, and which remain uncertain?
-- What did the camera not see?
+FV extracts and organises what the source supports: objects and their components, properties, boundaries, positions, relationships, state changes, movement, events, viewpoints, evidence and uncertainty. It preserves identities and links across time or sources only when the evidence supports them. It also preserves what is unknown, disputed, off-screen or outside the available coverage.
 
-A fluent description can omit objects, merge identities, invent plausible details, mistake appearance for structure, or turn an uncertain interpretation into a fact. FV is intended to make those gaps visible.
+That changes the kind of work an AI can do. Instead of repeatedly starting from raw media—or relying on a fluent paragraph that has thrown away most of the detail—an agent can work against a structured body of media-derived knowledge. It can ask questions of it, investigate particular entities, compare observations, follow relationships, build timelines, reconcile records, or pass relevant parts to another capability.
 
-It separates observation, interpretation, investigation and packet commitment. A plausible object is not automatically an established entity. A question can direct attention towards a part of the media, but it cannot supply the answer. If the evidence is insufficient, the uncertainty or dispute remains visible.
+The packet is portable. It can be used by different AI agents and tools without requiring each one to rediscover the source from scratch. It is not a claim that FV already runs a database server, provides unrestricted SQL, or implements every downstream application. The object database is the structured knowledge resource represented by FV packets; agents and other tools can operate on that resource.
+
+FV separates observation, interpretation, investigation and packet commitment. A plausible object is not automatically an established entity. A question can direct attention towards a part of the media, but it cannot supply the answer. If the evidence is insufficient, the uncertainty or dispute remains visible.
+
+## What this makes possible
+
+The same underlying object records can support very different jobs. These are examples of applications and compositions enabled by the FV approach, not claims that every application is already implemented as a turnkey feature.
+
+- **Searchable media archives:** find every appearance of an object, event, configuration or visual condition across large collections without manually watching every file.
+- **Cross-camera and cross-source investigation:** follow supported object continuity, compare observations, reconcile independent packets and expose gaps or conflicting accounts.
+- **Operational intelligence:** turn warehouse, factory, construction-site, transport or retail media into records of assets, movement, occupancy, equipment states, process steps and exceptions.
+- **Ecology and field research:** organise observations of organisms, behaviour, habitat conditions and change across cameras, locations and time.
+- **Science and remote observation:** work with telescope imagery, scans, maps and other sensor-derived material as structured observations rather than isolated pictures.
+- **Historical and cultural research:** compare objects, structures, scenes and changes across archival photographs, documents and recordings.
+- **Forensic and journalistic work:** build evidence-linked timelines, compare accounts against recorded events, and keep observations distinct from hypotheses.
+- **Accessibility and navigation:** derive structured descriptions of spaces, obstacles, routes, objects and changing conditions for other systems to use.
+- **AI orchestration:** give specialist agents a shared object-and-event representation so one agent can investigate, another can compare, another can model consequences, and another can produce a report or visualisation.
+- **Simulation and reconstruction:** use the structured representation as input to renderers, simulators, digital-twin workflows or generative systems, then compare their outputs with the source-grounded records.
+
+The more interesting applications often combine several of these: for example, an archive can become searchable, its events can be placed on timelines, recurring patterns can be detected, and the resulting evidence can feed a separate planning or research agent.
+
+The same reach creates responsibility. Media-derived records can be wrong, incomplete or sensitive. Keep source provenance, uncertainty, access controls and purpose limitations attached to the data. Do not turn an appearance match into a real-world identity claim, or treat a detected pattern as proof of intent or wrongdoing.
 
 ## The FV packet
 
@@ -111,9 +126,9 @@ FV uses distinct operations because analysing, investigating, assembling, mergin
 
 The operations are deliberately not interchangeable. Validation reports readiness; it does not silently repair a packet. Compilation translates the packet; it does not resolve disputes or add world knowledge. Audit checks the result; a generator's own explanation is not evidence that its output is correct.
 
-## Reconstruction is a test, not the product
+## Reconstruction is one downstream operation
 
-A useful test of an analysis packet is whether another system can reconstruct the represented scene from the packet alone without quietly filling gaps with its own assumptions.
+Reconstruction is one way to consume the object database: another system can render or simulate the represented scene from an FV packet. It is also a useful test of whether the packet contains enough information, but it is only one of many possible downstream operations.
 
 The packet is the reconstruction source of truth. A renderer may need the information translated into its own syntax, but that translation must not add semantic content. A reconstruction should not introduce entities, components or relationships that the packet never established, nor omit material information that the packet did establish.
 
@@ -121,7 +136,7 @@ The resulting media can be independently audited against the packet. A failed re
 
 FV also specifies downstream editing of packet content, including environmental and viewpoint changes, with an edit record. These are controlled operations on an analysed representation, not a general-purpose image/video editing suite. An intended one-variable change must still be checked; it must not be assumed that nothing else changed.
 
-**Generative media is therefore a downstream consumer and test environment for FV analysis—not the definition of Faking Vision.**
+**Generative media is one consumer of FV's structured media knowledge. The larger purpose is to make that knowledge useful across many AI tasks and systems.**
 
 ## Making Vision and Faking Vision
 
@@ -144,7 +159,7 @@ Faking Vision takes selected ideas into an operational framework for analysing v
 - It does not claim that every specified operation has a general-purpose software implementation.
 - It does not claim to reproduce the biological visual system.
 - It does not make a packet rights-cleared, privacy-cleared, museum-verified or true beyond its source. Source rights, provenance and reuse context require their own checks.
-- It is not a generative-media product whose primary purpose is to create or edit images and video.
+- It is not limited to image/video generation, editing, captioning or visual analysis as an end in itself.
 
 ## How to use FV
 
