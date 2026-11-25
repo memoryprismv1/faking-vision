@@ -1,9 +1,55 @@
 ---
 name: faking-vision
-description: Operate Faking Vision (FV) for image and video analysis, visual investigation, spatial assembly, FV packet construction and merge, dispute resolution, reconstruction, packet validation, prompt compilation, temporal investigation, independent reconstruction audit, and the textarea command interface for FV work. Use this skill whenever the user asks to analyse an image/video with FV, create or inspect an FV packet, reconstruct from an FV packet, or audit a reconstruction. The canonical FV Working Process Specification at `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative; do not substitute general computer-vision assumptions for FV procedures.
+description: Operate Faking Vision (FV) as a media-to-structured-knowledge system: extract AI-usable object, component, spatial, temporal and event records from media; investigate and query those records; assemble and merge knowledge across sources; and use the resulting object database in downstream AI tasks. Also supports packet creation, editing, dispute resolution, validation, reconstruction, prompt compilation and independent audit. Use this skill when a user wants AI to do useful work with information contained in media, not only describe or generate media. The canonical FV Working Process Specification at `SPECIFICATION/FV_Working_Process_Specification.md` is authoritative; do not substitute general computer-vision assumptions for FV procedures.
 ---
 
 # Faking Vision Agent Skill
+
+## Purpose: turn media into reusable AI knowledge
+
+Faking Vision is a way to leverage AI capabilities on media of many kinds. Its purpose is not exhausted by analysing a source or producing a caption. FV turns source material into a structured, portable **AI object database**, represented by FV packets, so that AI agents can do further work with the information contained in that media.
+
+Think of the workflow as:
+
+`media → source-grounded observations → structured object/event records → investigation, querying, comparison, synthesis and downstream action`
+
+The object database can preserve, where supported by the source and applicable specification:
+
+- entities, candidates, components and observable properties;
+- spatial placement, topology and relationships;
+- temporal intervals, movement, state changes and events;
+- viewpoint, field of view, coverage and absence limitations;
+- evidence references, provenance, uncertainty, alternatives and disputes;
+- correspondences and identity continuity across observations, chunks or independent packets when justified.
+
+An FV packet is the portable knowledge resource. It is not necessarily a running database service, and do not claim SQL, arbitrary indexing, automatic ingestion of every modality, or a turnkey downstream application unless the relevant tool actually provides it. The agent can nevertheless use packet records as structured context and can combine FV operations with other available AI capabilities.
+
+### Do more than describe the media
+
+When a user supplies media, do not assume the desired result is a visual description or a packet ZIP. Understand what work they want done with the information in the media. Possible workflows include:
+
+- find an object, event, condition or pattern across a collection;
+- build a timeline or compare activity across cameras, locations or periods;
+- track supported object continuity and reconcile independent observations;
+- compare states before and after an event or intervention;
+- identify anomalies, missing observations, process deviations or recurring configurations;
+- turn visual records into inventories, evidence indexes, maps, reports or structured inputs for another agent;
+- combine media-derived records with user-supplied data or other authorised sources;
+- provide structured context to planning, simulation, research, accessibility or operational agents;
+- compile or reconstruct selected aspects of a scene when a visual output is useful.
+
+These are examples of possible compositions, not assertions that each is a built-in FV command or implemented feature. Use the commands and tools that actually exist. If a task requires a capability outside FV, identify the appropriate available AI/tool capability and pass it the relevant structured FV information rather than pretending FV itself performs that work.
+
+### Treat the packet as working data, not paperwork for the user
+
+The user should not have to read OI, MSRM, TD, TIR or other packet files to get an answer. Inspect and operate on the files as needed, then return the requested finding, comparison, timeline, report, visualisation or next useful artifact directly. Provide the packet as a reusable deliverable when appropriate, not as a substitute for doing the requested work.
+
+For question-directed work, use `fv investigate` and answer the question from the source evidence. For broader downstream tasks, determine which FV operations produce the necessary records, then use other available capabilities where needed. Keep source observations, inferences, and downstream conclusions distinguishable.
+
+### Keep power and evidence separate
+
+A large structured media database can enable powerful search, correlation and inference, but it does not make weak evidence strong. Preserve source provenance, uncertainty, coverage limits and disputes. Similar appearance is not proof of identity; co-occurrence is not proof of causation; a detected pattern is not proof of intent or wrongdoing. Do not infer a real person's identity or sensitive attributes from appearance, and do not present surveillance-derived guesses as established facts. Apply applicable privacy, consent, access and purpose restrictions to sensitive media.
+
 
 ## Mandatory perceptual foundations and candidate/allocation gates
 
